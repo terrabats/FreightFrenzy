@@ -15,6 +15,8 @@ import com.qualcomm.robotcore.hardware.DcMotor.RunMode;
 import java.util.ArrayList;
 
 public class RobotPart {
+    public static ArrayList<RobotPart> allRobotParts = new ArrayList<>();
+    public static HardwareMap hardwareMap;
     public ArrayList<DcMotor> motors = new ArrayList<>();
     public ArrayList<Servo> servos = new ArrayList<>();
     public ArrayList<CRServo> crservos = new ArrayList<>();
@@ -22,10 +24,14 @@ public class RobotPart {
     public ArrayList<DistanceSensor> distancesensors = new ArrayList<>();
     public ElapsedTime timer = new ElapsedTime();
     private Status currentStatus;
-    private HardwareMap hardwareMap;
-    public void init(HardwareMap hwMap){
-        hardwareMap = hwMap;
+
+    public RobotPart(){
+        allRobotParts.add(this);
     }
+    public void init(){}
+    //public void init(HardwareMap hwMap){
+    //    hardwareMap = hwMap;
+    //}
     public void setStatus(Status status){
         currentStatus = status;
     }
@@ -48,11 +54,20 @@ public class RobotPart {
         return servo;
     }
     protected void createCRServo(){}
-    protected void createGyro(){}
+    protected BNO055IMU createGyro(String name){
+        BNO055IMU gyro = hardwareMap.get(BNO055IMU.class, name);
+        return gyro;
+    }
     protected void createDistanceSensor(){}
     protected enum Status{
         IDLE,
         ACTIVE,
         DISABLED
+    }
+    public static void initAll(HardwareMap hwMap){
+        hardwareMap = hwMap;
+        for(RobotPart part: allRobotParts){
+           part.init();
+        }
     }
 }

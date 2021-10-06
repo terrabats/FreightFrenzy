@@ -13,8 +13,7 @@ public class MecanumDrive extends RobotPart{
     private DcMotor fl;
     private DcMotor bl;
 
-    public void init(HardwareMap hwMap){
-        super.init(hwMap);
+    public void init(){
         fr = createMotor("fr", Direction.FORWARD, ZeroPowerBehavior.BRAKE, RunMode.RUN_WITHOUT_ENCODER);
         br = createMotor("br", Direction.FORWARD, ZeroPowerBehavior.BRAKE, RunMode.RUN_WITHOUT_ENCODER);
         fl = createMotor("fl", Direction.FORWARD, ZeroPowerBehavior.BRAKE, RunMode.RUN_WITHOUT_ENCODER);

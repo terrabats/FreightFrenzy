@@ -3,11 +3,14 @@ package global;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import robotparts.MecanumDrive;
+import robotparts.RobotPart;
+import robotparts.Sensors;
 
 public class TerraBot {
-    public MecanumDrive mechDrive = new MecanumDrive();
+    public RobotPart mechDrive = new MecanumDrive();
+    public RobotPart sensors = new Sensors();
     public void init(HardwareMap hwMap){
-        mechDrive.init(hwMap);
+        RobotPart.initAll(hwMap);
     }
 
 }
