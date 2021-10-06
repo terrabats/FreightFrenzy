@@ -9,6 +9,10 @@ public class TankDrive extends RobotPart{
     private DcMotor fl;
     private DcMotor bl;
 
+    public TankDrive(){
+        super();
+    }
+
     public void init(){
         fr = createMotor("fr", DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         br = createMotor("br", DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
