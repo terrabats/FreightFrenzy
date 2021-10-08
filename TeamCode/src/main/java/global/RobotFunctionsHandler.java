@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import util.CodeSeg;
 import util.Stage;
+import util.TerraThread;
 
 public class RobotFunctionsHandler {
     /* This is a description of how robot functions work
