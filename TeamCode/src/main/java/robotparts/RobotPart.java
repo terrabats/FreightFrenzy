@@ -7,12 +7,12 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import java.util.ArrayList;
 import java.util.TreeMap;
 
-import global.General;
+import global.TerraBot;
+import global.TestGeneral;
 
-public class RobotPart {
+public class RobotPart implements TestGeneral {
 
     // TODO: Finish this class
 
@@ -47,7 +47,7 @@ public class RobotPart {
     }
 
     protected DcMotor createMotor(String name, DcMotor.Direction dir, DcMotor.ZeroPowerBehavior zpb, DcMotor.RunMode mode){
-        DcMotor dcMotor = General.hardwareMap.get(DcMotor.class, name);
+        DcMotor dcMotor = TerraBot.hwMap.get(DcMotor.class, name);
         dcMotor.setPower(0);
         dcMotor.setDirection(dir);
         dcMotor.setZeroPowerBehavior(zpb);
@@ -57,7 +57,7 @@ public class RobotPart {
     }
 
     protected Servo createServo(String name, Servo.Direction dir, double startpos, double endpos){
-        Servo servo = General.hardwareMap.get(Servo.class, name);
+        Servo servo = TerraBot.hwMap.get(Servo.class, name);
         servo.setDirection(dir);
         servo.scaleRange(startpos, endpos);
         servo.setPosition(0);
@@ -69,7 +69,7 @@ public class RobotPart {
     protected void createCRServo(){}
 
     protected BNO055IMU createGyro(String name){
-        BNO055IMU gyro = General.hardwareMap.get(BNO055IMU.class, name);
+        BNO055IMU gyro = TerraBot.hwMap.get(BNO055IMU.class, name);
         gyrosensors.put(name, gyro);
         return gyro;
     }
