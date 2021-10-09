@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class TankDrive extends RobotPart{
+
+    // TODO: Figure out an easy way to define motors or create methods
     private DcMotor fr;
     private DcMotor br;
     private DcMotor fl;

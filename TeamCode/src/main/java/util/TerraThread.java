@@ -4,6 +4,8 @@ package util;
 //Used to make threads
 public class TerraThread implements Runnable {
 
+    // TODO: Make sure this works and try to find a better way
+
     CodeSeg cs;
     Stage st;
     public boolean executing = true;

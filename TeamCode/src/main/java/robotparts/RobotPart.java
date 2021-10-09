@@ -13,6 +13,9 @@ import java.util.TreeMap;
 import global.General;
 
 public class RobotPart {
+
+    // TODO: Finish this class
+
     public TreeMap<String, DcMotor> motors = new TreeMap<>();
     public TreeMap<String, Servo> servos = new TreeMap<>();
     public TreeMap<String, CRServo> crservos = new TreeMap<>();
