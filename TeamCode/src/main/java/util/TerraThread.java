@@ -8,7 +8,7 @@ public class TerraThread implements Runnable {
 
     CodeSeg cs;
     Stage st;
-    public boolean executing = true;
+    private boolean executing = true;
     public int refreshRate = 10; // hertz default
 
     //Define thread with codeseg to run and stage to stop
@@ -38,7 +38,7 @@ public class TerraThread implements Runnable {
         this.executing = false;
     }
     //Is the thread executing
-    private synchronized boolean isExecuting() {
+    public synchronized boolean isExecuting() {
         return this.executing;
     }
     //update the thread
@@ -52,10 +52,9 @@ public class TerraThread implements Runnable {
     //Overrides the run method of runnable and sleeps for the desired refresh rate
     @Override
     public void run() {
-        while (isExecuting()) {
+        while (executing) {
             update();
             Sleep.trySleep(() -> Thread.sleep(1000/refreshRate));
-//            try {Thread.sleep(1000/refreshRate); } catch (InterruptedException e) {}
         }
     }
 

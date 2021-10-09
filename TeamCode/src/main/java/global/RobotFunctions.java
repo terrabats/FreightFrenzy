@@ -36,14 +36,14 @@ public class RobotFunctions {
         pausing = false;
         next();
     }
-    //Updates the automodule
-    public void update(){
 
-        if(!pausing){
+    //Updates the automodule
+    public void update() {
+        if(!pausing) {
             //If the automodule is running and it should pause then set pausing to true
-            if(shouldPause()){
+            if(shouldPause()) {
                 pausing = true;
-            }else{//if the automodule is running and it should not pause then add the current robot function to the queue
+            } else { //if the automodule is running and it should not pause then add the current robot function to the queue
                 rfh.update(stageNum);
                 next();
             }
@@ -52,7 +52,7 @@ public class RobotFunctions {
 
     //Goes to next robot function
     public void next(){
-        if(stageNum < (defineStageNum)) {
+        if(stageNum < defineStageNum) {
             stageNum++;
         }else {
             stageNum = startStageNum;
@@ -66,12 +66,7 @@ public class RobotFunctions {
 
     //Should the automodule pause now?
     public boolean shouldPause(){
-        for(int i:pauses){
-            if(stageNum == i){
-                return true;
-            }
-        }
-        return false;
+        return pauses.contains(stageNum);
     }
 
     //Add new robot function(s)

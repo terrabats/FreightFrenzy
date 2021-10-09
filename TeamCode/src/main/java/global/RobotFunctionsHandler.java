@@ -3,7 +3,8 @@ package global;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Stack;
+import java.util.TreeMap;
 
 import util.CodeSeg;
 import util.Stage;
@@ -41,33 +42,26 @@ public class RobotFunctionsHandler {
      * and so on ...
      * */
 
-    //Robot Function queue index
-    public int rfsQueueIndex = 0;
     //Map of all robot functions defined
-    public volatile HashMap<Integer, ArrayList<Stage>> allRFs = new HashMap<>();
-    //List of all robot functions currently in the queue
-    public volatile ArrayList<Stage> rfsQueue = new ArrayList<>();
+    public volatile TreeMap<Integer, ArrayList<Stage>> allRFs = new TreeMap<>();
+    //List of all robot functions currently in the queue (Stack is a FIFO Queue)
+    public volatile Stack<Stage> rfsQueue = new Stack<>();
     //Timer
     public ElapsedTime timer = new ElapsedTime();
     //Update code for running the queue
 
-    //TODO
-    // Make this more efficient
     public CodeSeg updateCode = () -> {
-        if(rfsQueueIndex < rfsQueue.size()){
-            Stage s = rfsQueue.get(rfsQueueIndex);
+        if(!rfsQueue.empty()){
+            Stage s = rfsQueue.peek();
             if (s.run(timer.seconds())) {
-                rfsQueueIndex++;
+                rfsQueue.pop();
                 timer.reset();
             }
-        }else if(!rfsQueue.isEmpty()){
-            rfsQueueIndex = 0;
-            rfsQueue.clear();
         }
     };
+
     //Thread for queue
     public TerraThread rfsThread;
-
 
     //Start the queue thread
     public void start(){
@@ -76,10 +70,12 @@ public class RobotFunctionsHandler {
         Thread t = new Thread(rfsThread);
         t.start();
     }
+
     //Stop the thread
     public void stop(){
         rfsThread.stop();
     }
+
     //Update by adding the robot function at the specified index to the queue
     public void update(int curIndex){
         ArrayList<Stage> curRf = allRFs.get(curIndex);
@@ -98,11 +94,12 @@ public class RobotFunctionsHandler {
     @SafeVarargs
     public static ArrayList<Stage> combineStages(ArrayList<Stage>... stages){
         ArrayList<Stage> out = new ArrayList<>();
-        for(ArrayList<Stage> stages1 :stages) {
+        for(ArrayList<Stage> stages1 : stages) {
             out.addAll(stages1);
         }
         return out;
     }
+
     //Return the size of the robot functions list
     public int size(){
         return allRFs.size();
