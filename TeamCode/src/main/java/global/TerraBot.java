@@ -7,6 +7,7 @@ import robotparts.MecanumDrive;
 import robotparts.RobotPart;
 import robotparts.RobotPartHandler;
 import robotparts.Sensors;
+import robotparts.TankDrive;
 
 public class TerraBot {
     public static HardwareMap hwMap;

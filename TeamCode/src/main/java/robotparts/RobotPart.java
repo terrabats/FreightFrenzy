@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import java.util.TreeMap;
 
+import global.General;
 import global.TerraBot;
 import global.General;
 
@@ -22,11 +23,6 @@ public class RobotPart implements General {
     public TreeMap<String, BNO055IMU> gyrosensors = new TreeMap<>();
     public TreeMap<String, DistanceSensor> distancesensors = new TreeMap<>();
 
-//    public ArrayList<DcMotor> motors = new ArrayList<>();
-//    public ArrayList<Servo> servos = new ArrayList<>();
-//    public ArrayList<CRServo> crservos = new ArrayList<>(); // Continuous Rotation Servos
-//    public ArrayList<BNO055IMU> gyrosensors = new ArrayList<>();
-//    public ArrayList<DistanceSensor> distancesensors = new ArrayList<>();
 
     private Status currentStatus;
 

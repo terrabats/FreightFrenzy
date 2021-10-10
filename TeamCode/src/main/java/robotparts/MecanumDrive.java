@@ -26,12 +26,6 @@ public class MecanumDrive extends RobotPart{
         bl = createMotor("bl", Direction.FORWARD, ZeroPowerBehavior.BRAKE, RunMode.RUN_WITHOUT_ENCODER);
     }
 
-    // BACKUP METHODS – ADD TO THIS FOR EACH MOTOR
-    public DcMotor fr() { return motors.get("fr"); }
-    public DcMotor br() { return motors.get("br"); }
-    public DcMotor fl() { return motors.get("fl"); }
-    public DcMotor bl() { return motors.get("bl"); }
-
     public void move(double f, double s, double t){
 
     }
