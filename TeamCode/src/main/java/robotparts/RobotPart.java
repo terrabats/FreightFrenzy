@@ -10,9 +10,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import java.util.TreeMap;
 
 import global.TerraBot;
-import global.TestGeneral;
+import global.General;
 
-public class RobotPart implements TestGeneral {
+public class RobotPart implements General {
 
     // TODO: Finish this class
 
@@ -27,8 +27,6 @@ public class RobotPart implements TestGeneral {
 //    public ArrayList<CRServo> crservos = new ArrayList<>(); // Continuous Rotation Servos
 //    public ArrayList<BNO055IMU> gyrosensors = new ArrayList<>();
 //    public ArrayList<DistanceSensor> distancesensors = new ArrayList<>();
-
-    public ElapsedTime timer = new ElapsedTime();
 
     private Status currentStatus;
 

@@ -46,16 +46,17 @@ public class RobotFunctionsHandler {
     public volatile TreeMap<Integer, ArrayList<Stage>> allRFs = new TreeMap<>();
     //List of all robot functions currently in the queue (Stack is a FIFO Queue)
     public volatile Stack<Stage> rfsQueue = new Stack<>();
-    //Timer
-    public ElapsedTime timer = new ElapsedTime();
+//    //Timer
+//    public ElapsedTime timer = new ElapsedTime();
+    double timerSt = 0.0;
     //Update code for running the queue
 
     public CodeSeg updateCode = () -> {
         if(!rfsQueue.empty()){
             Stage s = rfsQueue.peek();
-            if (s.run(timer.seconds())) {
+            if (s.run(TerraBot.gameTime.seconds() - timerSt)) {
                 rfsQueue.pop();
-                timer.reset();
+                timerSt = TerraBot.gameTime.seconds();
             }
         }
     };
@@ -80,6 +81,9 @@ public class RobotFunctionsHandler {
     public void update(int curIndex){
         ArrayList<Stage> curRf = allRFs.get(curIndex);
         if(curRf != null){
+            if (rfsQueue.empty()) {
+                timerSt = TerraBot.gameTime.seconds();
+            }
             rfsQueue.addAll(curRf);
         }
     }
