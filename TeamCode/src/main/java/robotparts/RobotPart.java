@@ -41,7 +41,7 @@ public class RobotPart implements General {
     }
 
     protected DcMotor createMotor(String name, DcMotor.Direction dir, DcMotor.ZeroPowerBehavior zpb, DcMotor.RunMode mode){
-        DcMotor dcMotor = TerraBot.hwMap.get(DcMotor.class, name);
+        DcMotor dcMotor = TerraBot.hardwareMap.get(DcMotor.class, name);
         dcMotor.setPower(0);
         dcMotor.setDirection(dir);
         dcMotor.setZeroPowerBehavior(zpb);
@@ -51,7 +51,7 @@ public class RobotPart implements General {
     }
 
     protected Servo createServo(String name, Servo.Direction dir, double startpos, double endpos){
-        Servo servo = TerraBot.hwMap.get(Servo.class, name);
+        Servo servo = TerraBot.hardwareMap.get(Servo.class, name);
         servo.setDirection(dir);
         servo.scaleRange(startpos, endpos);
         servo.setPosition(0);
@@ -63,7 +63,7 @@ public class RobotPart implements General {
     protected void createCRServo(){}
 
     protected BNO055IMU createGyro(String name){
-        BNO055IMU gyro = TerraBot.hwMap.get(BNO055IMU.class, name);
+        BNO055IMU gyro = TerraBot.hardwareMap.get(BNO055IMU.class, name);
         gyrosensors.put(name, gyro);
         return gyro;
     }
