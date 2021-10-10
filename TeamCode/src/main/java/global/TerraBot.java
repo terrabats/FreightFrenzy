@@ -7,8 +7,6 @@ import robotparts.RobotPart;
 import robotparts.Sensors;
 
 public class TerraBot extends RobotFramework{
-
     public MecanumDrive mechDrive = new MecanumDrive();
-    //public Sensors sensors = new Sensors();
 
 }

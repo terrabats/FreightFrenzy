@@ -18,6 +18,7 @@ public class RobotFramework {
         for (RobotPart part : allRobotParts) {
             part.init();
         }
+        gameTime.reset();
     }
 
 }
