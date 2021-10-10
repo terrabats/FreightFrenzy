@@ -1,11 +1,11 @@
-package global;
-
-import com.qualcomm.robotcore.util.ElapsedTime;
+package robotfunctions;
 
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.TreeMap;
 
+import robot.Constants;
+import robot.TerraBot;
 import util.CodeSeg;
 import util.Stage;
 import util.TerraThread;

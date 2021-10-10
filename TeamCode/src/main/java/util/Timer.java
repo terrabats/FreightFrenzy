@@ -1,6 +1,6 @@
 package util;
 
-import global.TerraBot;
+import robot.TerraBot;
 
 public class Timer {
     private double startTime = 0;

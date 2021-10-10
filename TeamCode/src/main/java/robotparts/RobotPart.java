@@ -6,15 +6,12 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.robot.Robot;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import java.util.TreeMap;
 
-import global.General;
-import global.RobotFramework;
-import global.TerraBot;
-import global.General;
+import robot.General;
+import robot.RobotFramework;
+import robot.TerraBot;
 import util.Timer;
 
 public class RobotPart implements General {

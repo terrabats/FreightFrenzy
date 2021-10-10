@@ -1,7 +1,8 @@
-package global;
+package robotfunctions;
 
 import java.util.ArrayList;
 
+import robotfunctions.RobotFunctionsHandler;
 import util.Stage;
 
 public class RobotFunctions {
