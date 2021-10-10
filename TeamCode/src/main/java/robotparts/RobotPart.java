@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import java.util.TreeMap;
 
 import global.General;
+import global.RobotFramework;
 import global.TerraBot;
 import global.General;
 
@@ -26,9 +27,11 @@ public class RobotPart implements General {
 
     private Status currentStatus;
 
-    public RobotPart () { }
+    public RobotPart(){
+       RobotFramework.allRobotParts.add(this);
+    }
 
-    public void init () {}
+    public void init(){}
 
     public void setStatus(Status status){
         currentStatus = status;

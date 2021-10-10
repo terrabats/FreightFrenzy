@@ -9,16 +9,15 @@ import java.util.TreeMap;
 import robotparts.RobotPart;
 
 public class RobotFramework {
-    public static HardwareMap hardwareMap = null;
+    public static HardwareMap hardwareMap;
     public static ElapsedTime gameTime = new ElapsedTime();
-    public ArrayList<RobotPart> allRobotParts = new ArrayList<>();
+    public static ArrayList<RobotPart> allRobotParts = new ArrayList<>();
 
     public void init(HardwareMap hwMap){
         hardwareMap = hwMap;
         for (RobotPart part : allRobotParts) {
             part.init();
         }
-
     }
 
 }

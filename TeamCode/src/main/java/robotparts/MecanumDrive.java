@@ -26,8 +26,13 @@ public class MecanumDrive extends RobotPart{
         bl = createMotor("bl", Direction.FORWARD, ZeroPowerBehavior.BRAKE, RunMode.RUN_WITHOUT_ENCODER);
     }
 
-    public void move(double f, double s, double t){
+    // TODO: FIX THIS METHOD
 
+    public void move(double f, double s, double t){
+        fr.setPower(f+s+t);
+        br.setPower(f+s+t);
+        fl.setPower(f+s+t);
+        bl.setPower(f+s+t);
     }
 
 
