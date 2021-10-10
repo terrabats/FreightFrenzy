@@ -26,11 +26,9 @@ public class RobotPart implements General {
 
     private Status currentStatus;
 
-    public RobotPart(){
-        RobotPartHandler.allRobotParts.add(this);
-    }
+    public RobotPart () { }
 
-    public void init(){}
+    public void init () {}
 
     public void setStatus(Status status){
         currentStatus = status;

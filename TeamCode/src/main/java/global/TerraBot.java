@@ -8,11 +8,13 @@ import robotparts.Sensors;
 
 public class TerraBot extends RobotFramework{
 
-    public RobotPart mechDrive = new MecanumDrive();
+    public RobotPart mecDrive = new MecanumDrive();
     public RobotPart sensors = new Sensors();
 
 
     public void init(HardwareMap hwMap){
+        mecDrive.init();
+        sensors.init();
         super.init(hwMap);
 
     }
