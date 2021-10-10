@@ -9,6 +9,7 @@ import robot.TerraBot;
 import util.CodeSeg;
 import util.Stage;
 import util.TerraThread;
+import util.Timer;
 
 public class RobotFunctionsHandler {
     /* This is a description of how robot functions work
@@ -46,35 +47,28 @@ public class RobotFunctionsHandler {
     public volatile TreeMap<Integer, ArrayList<Stage>> allRFs = new TreeMap<>();
     //List of all robot functions currently in the queue (Stack is a FIFO Queue)
     public volatile Stack<Stage> rfsQueue = new Stack<>();
-//    //Timer
-//    public ElapsedTime timer = new ElapsedTime();
-    double timerSt = 0.0;
     //Update code for running the queue
+    private final Timer timer = new Timer();
 
     public CodeSeg updateCode = () -> {
         if(!rfsQueue.empty()){
             Stage s = rfsQueue.peek();
-            if (s.run(TerraBot.gameTime.seconds() - timerSt)) {
+            if (s.run(timer.seconds())) {
                 rfsQueue.pop();
-                timerSt = TerraBot.gameTime.seconds();
+                timer.reset();
             }
         }
     };
 
-    //Thread for queue
-    public TerraThread rfsThread;
-
     //Start the queue thread
     public void start(){
-        rfsThread = new TerraThread(updateCode);
-        rfsThread.changeRefreshRate(Constants.ROBOT_FUNCTIONS_REFRESH_RATE);
-        Thread t = new Thread(rfsThread);
-        t.start();
+        TerraBot.robotFunctionsThread.setCode(updateCode);
+        TerraBot.robotFunctionsThread.start();
     }
 
     //Stop the thread
     public void stop(){
-        rfsThread.stop();
+        TerraBot.robotFunctionsThread.stopUpdating();
     }
 
     //Update by adding the robot function at the specified index to the queue
@@ -82,7 +76,7 @@ public class RobotFunctionsHandler {
         ArrayList<Stage> curRf = allRFs.get(curIndex);
         if(curRf != null){
             if (rfsQueue.empty()) {
-                timerSt = TerraBot.gameTime.seconds();
+                timer.reset();
             }
             rfsQueue.addAll(curRf);
         }

@@ -83,11 +83,4 @@ public class RobotPart implements General {
     public Status getStatus(){
         return currentStatus;
     }
-
-    protected enum Status{
-        IDLE, //RobotPart is waiting for commands and is ready to be used
-        ACTIVE, //RobotPart is being used
-        DISABLED, //RobotPart is not allowed to be used
-        INACTIVE //RobotPart is not being used or off
-    }
 }
