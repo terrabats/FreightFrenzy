@@ -14,7 +14,7 @@ import robot.RobotFramework;
 import robot.TerraBot;
 import util.Timer;
 
-public class RobotPart implements General {
+public class RobotPart {
 
     public TreeMap<String, DcMotor> motors = new TreeMap<>();
     public TreeMap<String, Servo> servos = new TreeMap<>();

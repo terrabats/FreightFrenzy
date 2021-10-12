@@ -19,6 +19,6 @@ public class TestOp extends OpMode implements General {
 
     @Override
     public void loop() {
-        fault.check("robotPartsNotEmpty", Expectation.SURPRISING, Magnitude.MAJOR, TerraBot.allRobotParts.size() == 1);
+        //fault.check("robotPartsNotEmpty", Expectation.SURPRISING, Magnitude.MAJOR, TerraBot.allRobotParts.size() == 1);
     }
 }
