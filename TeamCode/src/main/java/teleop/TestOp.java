@@ -20,6 +20,7 @@ public class TestOp extends OpMode implements General {
         bot.init(hardwareMap, telemetry);
         TerraBot.robotFunctionsThread.setCode(() -> {
             telemetry.addData("Code", " is running");
+            telemetry.update();
         });
     }
 
@@ -35,5 +36,10 @@ public class TestOp extends OpMode implements General {
         telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
         telemetry.update();
         //fault.check("robotPartsNotEmpty", Expectation.SURPRISING, Magnitude.MAJOR, TerraBot.allRobotParts.size() == 1);
+    }
+
+    @Override
+    public void stop() {
+        bot.stop();
     }
 }

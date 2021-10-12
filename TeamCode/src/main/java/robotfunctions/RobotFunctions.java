@@ -68,7 +68,6 @@ public class RobotFunctions {
     public void start(){
         addPause();
         TerraBot.robotFunctionsThread.setCode(updateCode);
-        TerraBot.robotFunctionsThread.start();
     }
 
     //Stop the thread

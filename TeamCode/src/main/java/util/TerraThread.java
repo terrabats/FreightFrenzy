@@ -25,6 +25,7 @@ public class TerraThread extends Thread {
                 Sleep.trySleep(()-> sleep(1000/Constants.THREAD_REFRESH_RATE));
             }
         }
+        Sleep.trySleep(this::join);
     }
 
     public synchronized void setStatus(Status status){
