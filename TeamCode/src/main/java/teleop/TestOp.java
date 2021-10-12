@@ -33,8 +33,8 @@ public class TestOp extends OpMode implements General {
         }else if(gamepad1.b){
             TerraBot.robotFunctionsThread.setStatus(Status.DISABLED);
         }
-        telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
-        telemetry.update();
+//        telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
+//        telemetry.update();
         //fault.check("robotPartsNotEmpty", Expectation.SURPRISING, Magnitude.MAJOR, TerraBot.allRobotParts.size() == 1);
     }
 

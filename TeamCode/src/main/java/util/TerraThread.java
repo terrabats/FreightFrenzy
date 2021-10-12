@@ -15,17 +15,16 @@ public class TerraThread extends Thread {
 
     @Override
     public void run() {
-        while (!currentStatus.equals(Status.DISABLED)){
-            if(currentStatus.equals(Status.IDLE)){
-                synchronized (this) {
-                    Sleep.trySleep(this::wait);
-                }
-            }else if(currentStatus.equals(Status.ACTIVE)){
-                updateCode.run();
-                Sleep.trySleep(()-> sleep(1000/Constants.THREAD_REFRESH_RATE));
-            }
-        }
-        Sleep.trySleep(this::join);
+//        while (!currentStatus.equals(Status.DISABLED)){
+//            if(currentStatus.equals(Status.IDLE)){
+//                synchronized (this) {
+//                    Sleep.trySleep(this::wait);
+//                }
+//            }else if(currentStatus.equals(Status.ACTIVE)){
+//                updateCode.run();
+//                Sleep.trySleep(()-> sleep(1000/Constants.THREAD_REFRESH_RATE));
+//            }
+//        }
     }
 
     public synchronized void setStatus(Status status){
