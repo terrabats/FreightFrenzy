@@ -17,8 +17,8 @@ public class RobotFramework {
     public static Telemetry telemetry;
     public static ElapsedTime gameTime = new ElapsedTime();
     public static ArrayList<RobotPart> allRobotParts = new ArrayList<>();
-    public static TerraThread robotFunctionsThread = new TerraThread();
-    public static TerraThread odometryThread = new TerraThread();
+    public static TerraThread robotFunctionsThread;
+    public static TerraThread odometryThread;
 
     public void init(HardwareMap hwMap, Telemetry tel){
         hardwareMap = hwMap;
@@ -29,20 +29,11 @@ public class RobotFramework {
         for (RobotPart part : allRobotParts) {
             part.init();
         }
-        if(robotFunctionsThread.isAlive()){
-            telemetry.addData("alive", "");
-        }else{
-            telemetry.addData("dead", "");
-        }
-        telemetry.update();
-        //odometryThread.start();
-        gameTime.reset();
-        Timer timer = new Timer();
-        timer.reset();
-        while (timer.seconds() < 2){
-
-        }
+        robotFunctionsThread = new TerraThread();
+        odometryThread = new TerraThread();
         robotFunctionsThread.start();
+        odometryThread.start();
+        gameTime.reset();
     }
     public void stop(){
         robotFunctionsThread.stopUpdating();

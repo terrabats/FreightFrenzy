@@ -18,24 +18,26 @@ public class TestOp extends OpMode implements General {
     @Override
     public void init() {
         bot.init(hardwareMap, telemetry);
-        TerraBot.robotFunctionsThread.setCode(() -> {
-            telemetry.addData("Code", " is running");
-            telemetry.update();
-        });
+//        TerraBot.robotFunctionsThread.setCode(() -> {
+//            telemetry.addData("Code", " is running");
+//            telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
+//            telemetry.update();
+//        });
     }
 
     @Override
     public void loop() {
-        if(gamepad1.y){
-            TerraBot.robotFunctionsThread.setStatus(Status.IDLE);
-        }else if(gamepad1.x){
-            TerraBot.robotFunctionsThread.setStatus(Status.ACTIVE);
-        }else if(gamepad1.b){
-            TerraBot.robotFunctionsThread.setStatus(Status.DISABLED);
-        }
-//        telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
-//        telemetry.update();
-        //fault.check("robotPartsNotEmpty", Expectation.SURPRISING, Magnitude.MAJOR, TerraBot.allRobotParts.size() == 1);
+//        if(gamepad1.y){
+//            TerraBot.robotFunctionsThread.setStatus(Status.IDLE);
+//        }else if(gamepad1.x){
+//            TerraBot.robotFunctionsThread.setStatus(Status.ACTIVE);
+//        }else if(gamepad1.b){
+//            TerraBot.robotFunctionsThread.setStatus(Status.DISABLED);
+//        }else if(TerraBot.robotFunctionsThread.getStatus().equals(Status.IDLE)){
+//            telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
+//            telemetry.update();
+//        }
+        fault.check("robotPartsNotEmpty", Expectation.SURPRISING, Magnitude.MAJOR, TerraBot.allRobotParts.size() == 0);
     }
 
     @Override
