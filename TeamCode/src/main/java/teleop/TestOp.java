@@ -18,6 +18,7 @@ public class TestOp extends OpMode implements General {
     @Override
     public void init() {
         bot.init(hardwareMap, telemetry);
+        // hello
 //        TerraBot.robotFunctionsThread.setCode(() -> {
 //            telemetry.addData("Code", " is running");
 //            telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
