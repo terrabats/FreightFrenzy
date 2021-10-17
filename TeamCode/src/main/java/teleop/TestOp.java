@@ -18,6 +18,7 @@ public class TestOp extends OpMode {
     public void init() {
         bot = new TerraBot();
         bot.init(hardwareMap, telemetry);
+        // hello
 //        TerraBot.robotFunctionsThread.setCode(() -> {
 //            telemetry.addData("Code", " is running");
 //            telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
