@@ -1,15 +1,21 @@
 package robotfunctions;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 import java.util.TreeMap;
 
 import robot.Constants;
+import robot.RobotFramework;
 import robot.TerraBot;
 import util.CodeSeg;
 import util.Stage;
 import util.TerraThread;
 import util.Timer;
+
+import static robot.General.*;
+import static robot.RobotFramework.robotFunctionsThread;
 
 public class RobotFunctions {
     /* This is a description of how robot functions work
@@ -44,15 +50,18 @@ public class RobotFunctions {
      * */
 
     //List of all robot functions currently in the queue (Stack is a FIFO Queue)
-    public volatile Stack<Stage> rfsQueue = new Stack<>();
+    public volatile Queue<Stage> rfsQueue = new LinkedList<>();
     private final Timer timer = new Timer();
 
     //Update code for running the queue
     public CodeSeg updateCode = () -> {
-        if(!rfsQueue.empty()){
+        if(!rfsQueue.isEmpty()){
             Stage s = rfsQueue.peek();
-            if (s.run(timer.seconds())) {
-                rfsQueue.pop();
+            telemetry.addData("Robot Functions", "Not empty");
+            telemetry.addData("isPause", s.isPause());
+            telemetry.update();
+            if (!s.isPause() && s.run(timer.seconds())) {
+                rfsQueue.poll();
                 timer.reset();
             }
         }
@@ -60,29 +69,24 @@ public class RobotFunctions {
 
     public void resume() {
         if (rfsQueue.peek().isPause()) {
-            rfsQueue.pop();
+            rfsQueue.poll();
         }
     }
 
     //Start the queue thread
-    public void start(){
+    public void init(){
         addPause();
-        TerraBot.robotFunctionsThread.setCode(updateCode);
-    }
-
-    //Stop the thread
-    public void stop(){
-        TerraBot.robotFunctionsThread.stopUpdating();
+        robotFunctionsThread.setCode(updateCode);
     }
 
     //Add robot functions based on index
     public final void addToQueue(ArrayList<Stage> stages){
-        if (rfsQueue.empty()) timer.reset();
+        if (rfsQueue.isEmpty()) timer.reset();
         rfsQueue.addAll(stages);
     }
 
     public final void addToQueue(Stage s) {
-        if (rfsQueue.empty()) timer.reset();
+        if (rfsQueue.isEmpty()) timer.reset();
         rfsQueue.add(s);
     }
 

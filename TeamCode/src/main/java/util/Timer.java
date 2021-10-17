@@ -1,13 +1,13 @@
 package util;
 
-import robot.TerraBot;
+import static robot.General.*;
 
 public class Timer {
     private double startTime = 0;
     public void reset(){
-        startTime = TerraBot.gameTime.seconds();
+        startTime = gameTime.seconds();
     }
     public double seconds(){
-        return TerraBot.gameTime.seconds()-startTime;
+        return gameTime.seconds()-startTime;
     }
 }

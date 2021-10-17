@@ -1,10 +1,6 @@
 package util;
 
-import org.firstinspires.ftc.robotcore.internal.system.Assert;
-
-import robot.TerraBot;
-
-import static org.firstinspires.ftc.robotcore.internal.system.Assert.assertEquals;
+import static robot.General.*;
 
 public class Fault {
     public static int faultNum = 0;
@@ -14,12 +10,14 @@ public class Fault {
     //  it doesnt create so many logs, use telemety items to add them
     //  also create another class for acually dissplaying telemetry so that we can use that for debugging values
 
+    public Fault() { faultNum = 0; }
+
     public void check(String msg, Expectation e, Magnitude m, boolean test){
         faultNum++;
         if(!test){
             String out = " Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString();
-            TerraBot.telemetry.addData("Fault: " + Integer.toString(faultNum), out);
-            TerraBot.telemetry.update();
+            telemetry.addData("Fault: " + faultNum, out);
+            telemetry.update();
             if(debugging){
                 //assertEquals(7,7);
                 // using assert does not work
