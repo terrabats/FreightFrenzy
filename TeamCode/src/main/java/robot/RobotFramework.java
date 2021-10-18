@@ -54,7 +54,7 @@ public class RobotFramework {
             @Override
             public boolean run(double in) {
                 bot.mechDrive.move(0.3, 0, 0);
-                return in > 0.5;
+                return in > 1.5;
             }
         });
         rfsHandler.addToQueue(new Stage() {

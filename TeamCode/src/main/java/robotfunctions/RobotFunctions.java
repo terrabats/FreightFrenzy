@@ -49,7 +49,7 @@ public class RobotFunctions {
      * and so on ...
      * */
 
-    //List of all robot functions currently in the queue (Stack is a FIFO Queue)
+    //List of all robot functions currently in the queue (LinkedList is a FIFO Queue)
     public volatile Queue<Stage> rfsQueue = new LinkedList<>();
     private final Timer timer = new Timer();
 
@@ -59,17 +59,21 @@ public class RobotFunctions {
             Stage s = rfsQueue.peek();
             telemetry.addData("Robot Functions", "Not empty");
             telemetry.addData("isPause", s.isPause());
-            telemetry.update();
-            if (!s.isPause() && s.run(timer.seconds())) {
+            if (s.run(timer.seconds())) {
                 rfsQueue.poll();
                 timer.reset();
+                telemetry.addData("Robot Functions", "Done with task");
             }
+        } else {
+            telemetry.addData("Robot Functions", "No tasks");
         }
+        telemetry.update();
     };
 
     public void resume() {
         if (rfsQueue.peek().isPause()) {
             rfsQueue.poll();
+            timer.reset();
         }
     }
 

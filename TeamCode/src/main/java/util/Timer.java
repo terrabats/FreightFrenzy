@@ -8,6 +8,7 @@ public class Timer {
         startTime = gameTime.seconds();
     }
     public double seconds(){
+        telemetry.addData("GameTime", gameTime.seconds() - startTime);
         return gameTime.seconds()-startTime;
     }
 }
