@@ -7,6 +7,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import robot.TerraBot;
 import static robot.General.*;
 
+// Robot Functions are working!
+
+@Disabled
 @TeleOp(name = "RobotFunctionsTest")
 public class RobotFunctionsTest extends OpMode {
     @Override
