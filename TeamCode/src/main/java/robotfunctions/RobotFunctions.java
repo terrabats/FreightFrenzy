@@ -11,6 +11,7 @@ import robot.RobotFramework;
 import robot.TerraBot;
 import util.CodeSeg;
 import util.Stage;
+import util.Status;
 import util.TerraThread;
 import util.Timer;
 
@@ -57,15 +58,14 @@ public class RobotFunctions {
     public CodeSeg updateCode = () -> {
         if(!rfsQueue.isEmpty()){
             Stage s = rfsQueue.peek();
-            telemetry.addData("Robot Functions", "Not empty");
-            telemetry.addData("isPause", s.isPause());
             if (s.run(timer.seconds())) {
                 rfsQueue.poll();
                 timer.reset();
-                telemetry.addData("Robot Functions", "Done with task");
+            } else if (s.isPause()) {
+                robotFunctionsThread.setStatus(Status.IDLE);
             }
         } else {
-            telemetry.addData("Robot Functions", "No tasks");
+            robotFunctionsThread.setStatus(Status.IDLE);
         }
         telemetry.update();
     };
@@ -74,6 +74,7 @@ public class RobotFunctions {
         if (rfsQueue.peek().isPause()) {
             rfsQueue.poll();
             timer.reset();
+            robotFunctionsThread.setStatus(Status.ACTIVE);
         }
     }
 
@@ -85,12 +86,18 @@ public class RobotFunctions {
 
     //Add robot functions based on index
     public final void addToQueue(ArrayList<Stage> stages){
-        if (rfsQueue.isEmpty()) timer.reset();
+        if (rfsQueue.isEmpty()) {
+            timer.reset();
+            robotFunctionsThread.setStatus(Status.ACTIVE);
+        }
         rfsQueue.addAll(stages);
     }
 
     public final void addToQueue(Stage s) {
-        if (rfsQueue.isEmpty()) timer.reset();
+        if (rfsQueue.isEmpty()) {
+            timer.reset();
+            robotFunctionsThread.setStatus(Status.ACTIVE);
+        }
         rfsQueue.add(s);
     }
 

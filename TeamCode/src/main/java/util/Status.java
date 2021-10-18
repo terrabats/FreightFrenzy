@@ -1,4 +1,4 @@
-package robotparts;
+package util;
 
 public enum Status {
     IDLE, // Waiting for commands and is ready to be used

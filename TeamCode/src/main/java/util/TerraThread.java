@@ -2,7 +2,6 @@ package util;
 
 
 import robot.Constants;
-import robotparts.Status;
 
 public class TerraThread extends Thread {
 

@@ -9,9 +9,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import java.util.TreeMap;
 
-import robot.General;
 import robot.RobotFramework;
-import robot.TerraBot;
+import util.Status;
 import util.Timer;
 
 import static robot.General.*;
