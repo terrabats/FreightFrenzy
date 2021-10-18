@@ -16,8 +16,8 @@ public class TankDrive extends RobotPart{
 
     public void move(double f, double t){
         fr.setPower(f-t);
-        br.setPower(-f+t);
+        br.setPower(f-t);
         fl.setPower(f+t);
-        bl.setPower(-f-t);
+        bl.setPower(f+t);
     }
 }
