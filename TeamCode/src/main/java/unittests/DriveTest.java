@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robot.TerraBot;
-import static robot.General.*;
+import static global.General.*;
 
 // MOVEMENT IS WORKING!
 
@@ -15,7 +15,7 @@ public class DriveTest extends OpMode {
     @Override
     public void init() {
         bot = new TerraBot();
-        bot.init(hardwareMap, telemetry);
+        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
         telemetry.addData("Status", "Ready");
         telemetry.update();
     }

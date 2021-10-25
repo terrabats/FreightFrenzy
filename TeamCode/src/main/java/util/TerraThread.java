@@ -1,12 +1,12 @@
 package util;
 
 
-import robot.Constants;
+import global.Constants;
 
 public class TerraThread extends Thread {
 
     private volatile Status currentStatus = Status.ACTIVE;
-    private volatile CodeSeg updateCode = () -> {};
+    private volatile CodeSeg updateCode = (double... args) -> {};
 
     public synchronized void setCode(CodeSeg cs){updateCode = cs;}
 

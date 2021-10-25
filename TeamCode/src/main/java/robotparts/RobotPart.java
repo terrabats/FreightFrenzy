@@ -13,7 +13,7 @@ import robot.RobotFramework;
 import util.Status;
 import util.Timer;
 
-import static robot.General.*;
+import static global.General.*;
 
 public class RobotPart {
 

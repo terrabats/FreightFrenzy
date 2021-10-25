@@ -1,6 +1,6 @@
 package util;
 
-import static robot.General.*;
+import static global.General.*;
 
 public class Timer {
     private double startTime = 0;
