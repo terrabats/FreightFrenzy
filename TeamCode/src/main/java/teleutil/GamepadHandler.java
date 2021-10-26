@@ -4,6 +4,9 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import java.util.TreeMap;
 
+import teleutil.button.Button;
+import teleutil.button.ButtonEventType;
+import teleutil.button.ButtonHandler;
 import util.*;
 
 public class GamepadHandler {
@@ -36,7 +39,7 @@ public class GamepadHandler {
     public GamepadHandler(Gamepad gp) {
         gamepad = gp;
         for (Button b : Button.values()) {
-            handlerMap.put(b, new ButtonHandler(pressedMap.get(b), valueMap.get(b)));
+            handlerMap.put(b, new ButtonHandler(b));
         }
     }
 
@@ -46,7 +49,7 @@ public class GamepadHandler {
         }
     }
 
-    public void link(Button b, CodeSeg codeSeg) {
-        handlerMap.get(b).setCode(codeSeg);
+    public void link(Button b, ButtonEventType type, CodeSeg codeSeg) {
+        handlerMap.get(b).addEvent(type, codeSeg);
     }
 }

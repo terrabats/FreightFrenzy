@@ -1,4 +1,4 @@
-package teleutil;
+package teleutil.button;
 
 public enum Button {
     X,
