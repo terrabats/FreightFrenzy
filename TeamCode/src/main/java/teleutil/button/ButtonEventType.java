@@ -2,6 +2,6 @@ package teleutil.button;
 
 public enum ButtonEventType {
     NORMAL,
-    TOGGLE,
+    CHANGE_HOLD,
     TIMER
 }

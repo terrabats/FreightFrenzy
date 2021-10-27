@@ -15,8 +15,8 @@ public class ButtonHandler {
     public void addEvent(ButtonEventType type, CodeSeg codeSeg) {
         if (type == ButtonEventType.NORMAL) {
             eventHandlers.add(new ButtonEventHandler(button, codeSeg));
-        } else if (type == ButtonEventType.TOGGLE) {
-            eventHandlers.add(new ToggleEventHandler(button, codeSeg));
+        } else if (type == ButtonEventType.CHANGE_HOLD) {
+            eventHandlers.add(new ChangeHoldEventHandler(button, codeSeg));
         } // TODO: ADD ON TO THIS WHEN NEEDED
     }
 
