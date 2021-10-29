@@ -7,6 +7,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import java.util.ArrayList;
 
+import developing.InitOp;
 import robotparts.RobotPart;
 import teleutil.GamepadHandler;
 import util.Fault;
@@ -20,8 +21,10 @@ public class RobotFramework {
     public static TerraThread robotFunctionsThread;
     public static TerraThread odometryThread;
     public RobotFunctions rfsHandler;
+    private final InitOp initOp = new InitOp();
 
     public void init(HardwareMap hwMap, Telemetry tel, Gamepad gp1, Gamepad gp2){
+        //initOp.initObjects();
         fault = new Fault();
         hardwareMap = hwMap;
         telemetry = tel;

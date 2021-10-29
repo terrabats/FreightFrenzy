@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import geometry.*;
+import robot.TerraBot;
 
 import static global.General.*;
 
@@ -15,6 +16,7 @@ public class CoordinatePlaneTest extends OpMode {
 
     @Override
     public void init() {
+        bot = new TerraBot();
         bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
 
         coordinatePlane.add(new Vector(0, 0, AngleType.RADIANS));
