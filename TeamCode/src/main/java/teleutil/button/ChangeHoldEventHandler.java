@@ -15,7 +15,7 @@ public class ChangeHoldEventHandler extends ButtonEventHandler {
 
     @Override
     public void run() {
-        super.run();
+        runArgs(this.pressed() ? 1 : 0);
         wasPressed = this.pressed();
     }
 }

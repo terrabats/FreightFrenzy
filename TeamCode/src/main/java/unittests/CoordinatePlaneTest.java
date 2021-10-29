@@ -7,15 +7,19 @@ import geometry.*;
 
 import static global.General.*;
 
-// MOVEMENT IS WORKING!
+// TO BE TESTED
 
 @TeleOp(name = "CoordinatePlaneTest")
 public class CoordinatePlaneTest extends OpMode {
     public CoordinatePlane coordinatePlane = new CoordinatePlane();
+
     @Override
     public void init() {
+        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
+
         coordinatePlane.add(new Vector(0, 0, AngleType.RADIANS));
         coordinatePlane.add(new Line(new Point(1, 10), new Point(5, 10)));
+
         telemetry.addData("Status", "Ready");
         telemetry.update();
     }
