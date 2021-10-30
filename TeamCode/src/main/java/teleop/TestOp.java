@@ -15,10 +15,10 @@ public class TestOp extends OpMode {
 // TODO: Figure out a structure for this that makes it easy to code, maybe one teleop somehow
     @Override
     public void init() {
-        bot = new TerraBot();
-        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
-        telemetry.addData("Status", "Ready");
-        telemetry.update();
+//        bot = new TerraBot();
+//        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
+//        telemetry.addData("Status", "Ready");
+//        telemetry.update();
     }
 
     @Override

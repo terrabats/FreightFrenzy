@@ -15,7 +15,7 @@ import static global.General.*;
 public class GamepadTest extends OpMode {
     @Override
     public void init() {
-        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
+//        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
 
         gph1.link(Button.A, ButtonEventType.NORMAL, args -> telemetry.addData("A Button", "Pressed"));
         gph1.link(Button.B, ButtonEventType.NORMAL, args -> telemetry.addData("B Button", "Pressed"));

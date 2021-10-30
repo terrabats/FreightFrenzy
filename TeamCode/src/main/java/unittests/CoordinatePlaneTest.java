@@ -17,7 +17,7 @@ public class CoordinatePlaneTest extends OpMode {
     @Override
     public void init() {
         bot = new TerraBot();
-        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
+//        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
 
         coordinatePlane.add(new Vector(0, 0, AngleType.RADIANS));
         coordinatePlane.add(new Line(new Point(1, 10), new Point(5, 10)));

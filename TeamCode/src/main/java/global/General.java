@@ -12,10 +12,12 @@ import util.Fault;
 
 public class General {
     public static TerraBot bot;
-    public static Fault fault;
     public static HardwareMap hardwareMap;
     public static Telemetry telemetry;
-    public static ElapsedTime gameTime = new ElapsedTime();
+    public static Gamepad gamepad1;
+    public static Gamepad gamepad2;
+    public static ElapsedTime gameTime;
+    public static Fault fault;
     public static GamepadHandler gph1;
     public static GamepadHandler gph2;
 }

@@ -15,7 +15,7 @@ public class ThreadTest extends OpMode {
     @Override
     public void init() {
         bot = new TerraBot();
-        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
+//        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
         TerraBot.robotFunctionsThread.setCode((double... args) -> {
             telemetry.addData("Code", " is running");
             telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
