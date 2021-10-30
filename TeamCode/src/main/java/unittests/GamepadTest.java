@@ -3,6 +3,7 @@ package unittests;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import global.Common;
 import teleutil.button.Button;
 import teleutil.button.ButtonEventType;
 import util.ExceptionCatcher;
@@ -12,11 +13,10 @@ import static global.General.*;
 // TO BE TESTED
 
 @TeleOp(name = "GamepadTest")
-public class GamepadTest extends OpMode {
+public class GamepadTest extends OpMode implements Common {
     @Override
     public void init() {
-//        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
-
+        reference(this);
         gph1.link(Button.A, ButtonEventType.NORMAL, args -> telemetry.addData("A Button", "Pressed"));
         gph1.link(Button.B, ButtonEventType.NORMAL, args -> telemetry.addData("B Button", "Pressed"));
         gph1.link(Button.A, ButtonEventType.CHANGE_HOLD, args -> {

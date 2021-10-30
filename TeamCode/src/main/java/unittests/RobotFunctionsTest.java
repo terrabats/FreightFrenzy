@@ -4,18 +4,17 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import global.Common;
 import robot.TerraBot;
 import static global.General.*;
 
-// Robot Functions are working!
 
 @Disabled
 @TeleOp(name = "RobotFunctionsTest")
-public class RobotFunctionsTest extends OpMode {
+public class RobotFunctionsTest extends OpMode implements Common {
     @Override
     public void init() {
-        bot = new TerraBot();
-//        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
+        reference(this);
         bot.addRFsTeleOp();
         telemetry.addData("Status", "Ready");
         telemetry.update();
