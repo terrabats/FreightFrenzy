@@ -26,7 +26,7 @@ public interface Common{
         if(showTelemetry){log.showTelemetry();}
     }
     default void end(boolean showLogs){
-        if(showLogs){log.showLogs();}
         bot.stop();
+        if(showLogs){log.showLogs();}
     }
 }

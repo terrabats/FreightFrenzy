@@ -41,7 +41,6 @@ public class RobotFramework {
     public void stop(){
         robotFunctionsThread.stopUpdating();
         odometryThread.stopUpdating();
-        telemetryThread.stopUpdating();
     }
 
     public void addRFsTeleOp() {
