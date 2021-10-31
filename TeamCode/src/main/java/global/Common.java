@@ -26,8 +26,8 @@ public interface Common{
     default void update(boolean showTelemetry){
         if(showTelemetry){log.showTelemetry();}
     }
-    default void end(OpMode thisOpMode, boolean showLogs){
+    default void end(){
+        log.showLogs();
         bot.stop();
-        if(showLogs){log.showLogs(thisOpMode);}
     }
 }

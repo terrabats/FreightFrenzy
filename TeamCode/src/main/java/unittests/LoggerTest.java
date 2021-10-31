@@ -25,7 +25,6 @@ public class LoggerTest extends OpMode implements Common {
     }
     @Override
     public void stop(){
-        end(this, true);
-        //updateTelemetry(telemetry);
+        end();
     }
 }

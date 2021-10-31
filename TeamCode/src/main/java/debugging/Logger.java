@@ -8,7 +8,7 @@ import java.util.TreeMap;
 
 import teleutil.button.Button;
 import teleutil.button.ButtonEventType;
-import util.CodeSeg;
+import util.CodeSegs.CodeSeg;
 import util.ExceptionCatcher;
 
 import static global.General.*;
@@ -43,13 +43,9 @@ public class Logger {
         }
         telemetry.update();
     }
-    public void showLogs(OpMode thisOpMode){
-        while (!gamepad1.x){
-            for(Entry<String, Log> e: logs.entrySet()){
-                telemetry.addData(e.getValue().name, e.getValue().values);
-            }
-            telemetry.update();
-            thisOpMode.updateTelemetry(telemetry);
+    public void showLogs(){
+        for(Entry<String, Log> e: logs.entrySet()){
+            android.util.Log.d(e.getValue().name, String.valueOf(e.getValue().values));
         }
     }
 }
