@@ -77,6 +77,8 @@ public class RobotPart {
         return distanceSensor;
     }
 
+
+
     public void setStatus(Status status){
         currentStatus = status;
     }
