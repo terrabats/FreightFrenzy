@@ -19,5 +19,6 @@ public class ExampleTest extends OpMode implements Common {
 
     }
     @Override
-    public void stop(){end(true);}
+    public void stop(){//end(true);
+    }
 }

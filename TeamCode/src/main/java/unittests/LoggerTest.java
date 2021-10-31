@@ -16,11 +16,16 @@ public class LoggerTest extends OpMode implements Common {
 
     @Override
     public void loop() {
+        d += 0.1;
+        b = !b;
         log.display("log.display is working");
         log.monitor("Double", d);
         log.monitor("Boolean", b);
         update(true);
     }
     @Override
-    public void stop(){end(true);}
+    public void stop(){
+        end(this, true);
+        //updateTelemetry(telemetry);
+    }
 }

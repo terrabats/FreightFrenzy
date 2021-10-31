@@ -21,12 +21,13 @@ public interface Common{
         log = new Logger();
         gameTime = new ElapsedTime();
         bot = new TerraBot();
+        thisOpMode.msStuckDetectStop = 5000;
     }
     default void update(boolean showTelemetry){
         if(showTelemetry){log.showTelemetry();}
     }
-    default void end(boolean showLogs){
+    default void end(OpMode thisOpMode, boolean showLogs){
         bot.stop();
-        if(showLogs){log.showLogs();}
+        if(showLogs){log.showLogs(thisOpMode);}
     }
 }

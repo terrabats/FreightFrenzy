@@ -1,5 +1,7 @@
 package debugging;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+
 import java.util.ArrayList;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -14,47 +16,40 @@ import static global.General.log;
 import static robot.RobotFramework.*;
 public class Logger {
     private final TreeMap<String, Log> logs = new TreeMap<>();
-    private final TreeMap<String, Object> telemetries = new TreeMap<>();
     private static int logNum = 0;
-    private static int displayNum = 0;
 
     public void display(String text){
-        addLog("Display #" + displayNum, new Log(), text);
+        addLog(text, new Log(getLogName("Display")), text);
     }
 
     public void monitor(String name, Object val){
-        addLog(name, new Log(LogType.MONITOR), val);
+        addLog(name, new Log(getLogName(name), LogType.MONITOR), val);
+    }
+
+    private String getLogName(String name){
+        return "Log #"+logNum+": "+ name;
     }
 
     private void addLog(String name, Log log, Object o){
-        String logName = "Log #"+logNum+": "+ name + ": ";
-        if(!logs.containsKey(logName)){
-            logs.put(logName, log);
+        if(!logs.containsKey(name)){
+            logs.put(name, log);
             logNum++;
-            displayNum++;
         }
-        logs.get(logName).values.add(o);
-//        if(!telemetries.containsKey(name)){
-//            telemetries.put(name, o);
-//        }
+        logs.get(name).values.add(o);
     }
     public void showTelemetry(){
-        telemetryThread.setCode(args -> {
-            for(Entry<String, Object> e: telemetries.entrySet()){
-                telemetry.addData(e.getKey(), e.getValue());
+        for(String key: logs.descendingKeySet()){
+            telemetry.addData(logs.get(key).name, logs.get(key).getRecentObject());
+        }
+        telemetry.update();
+    }
+    public void showLogs(OpMode thisOpMode){
+        while (!gamepad1.x){
+            for(Entry<String, Log> e: logs.entrySet()){
+                telemetry.addData(e.getValue().name, e.getValue().values);
             }
             telemetry.update();
-        });
-    }
-    public void showLogs(){
-        telemetryThread.setCode(args -> {
-            while (!gamepad1.x){
-                for(Entry<String, Log> e: logs.entrySet()){
-                    telemetry.addData(e.getKey(), e.getValue().values);
-                }
-                telemetry.update();
-            }
-            telemetryThread.stopUpdating();
-        });
+            thisOpMode.updateTelemetry(telemetry);
+        }
     }
 }
