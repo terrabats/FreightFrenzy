@@ -1,5 +1,7 @@
 package debugging;
 
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
@@ -8,8 +10,8 @@ import util.condition.Status;
 import static global.General.*;
 
 public class Logger {
-    private final TreeMap<String, Log> logs = new TreeMap<>();
-    private static int logNum = 0;
+    private final LinkedHashMap<String, Log> logs = new LinkedHashMap<>();
+    private int logNum = 0;
 
     public void display(Object val){
         addLog(String.valueOf(val), new Log(getLogName("Display")), String.valueOf(val));
@@ -46,15 +48,15 @@ public class Logger {
         }
     }
     public void showTelemetry(){
-        for(String key: logs.descendingKeySet()){
+        for(String key: logs.keySet()){
             if(!logs.get(key).noTelemetry) {
-                telemetry.addData(logs.get(key).name, logs.get(key).getValues());
+                telemetry.addData(logs.get(key).name, logs.get(key).getCurrentObject());
             }
         }
         telemetry.update();
     }
     public void showLogs(){
-        for(String key: logs.descendingKeySet()){
+        for(String key: logs.keySet()){
             android.util.Log.println(7,logs.get(key).name, String.valueOf(logs.get(key).getValues()));
         }
     }

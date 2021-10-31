@@ -26,7 +26,11 @@ public class Log {
         }
     }
     public Object getCurrentObject(){
-        return values.get(values.size()-1);
+        if(values.size()>0) {
+            return values.get(values.size() - 1);
+        }else{
+            return null;
+        }
     }
     public ArrayList<Object> getValues(){
         return values;
