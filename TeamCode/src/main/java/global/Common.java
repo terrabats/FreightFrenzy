@@ -22,7 +22,11 @@ public interface Common{
         gameTime = new ElapsedTime();
         bot = new TerraBot();
     }
+    default void update(boolean showTelemetry){
+        if(showTelemetry){log.showTelemetry();}
+    }
     default void end(boolean showLogs){
         if(showLogs){log.showLogs();}
+        bot.stop();
     }
 }

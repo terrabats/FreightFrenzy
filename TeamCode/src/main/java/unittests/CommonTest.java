@@ -16,6 +16,7 @@ public class CommonTest extends OpMode implements Common {
     @Override
     public void loop() {
         log.display("Common is Working");
+        update(true);
     }
     @Override
     public void stop(){

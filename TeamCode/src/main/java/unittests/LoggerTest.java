@@ -7,16 +7,19 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import global.Common;
 import static global.General.*;
 
-@Disabled
-@TeleOp(name = "ExampleTest")
-public class ExampleTest extends OpMode implements Common {
-
+@TeleOp(name = "LoggerTest")
+public class LoggerTest extends OpMode implements Common {
+    private double d = 0;
+    private boolean b = false;
     @Override
     public void init() {reference(this);}
 
     @Override
     public void loop() {
-
+        log.display("log.display is working");
+        log.monitor("Double", d);
+        log.monitor("Boolean", b);
+        update(true);
     }
     @Override
     public void stop(){end(true);}

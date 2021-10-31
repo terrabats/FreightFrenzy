@@ -13,6 +13,7 @@ public class RobotFramework {
     public static ArrayList<RobotPart> allRobotParts = new ArrayList<>();
     public static TerraThread robotFunctionsThread;
     public static TerraThread odometryThread;
+    public static TerraThread telemetryThread;
     public RobotFunctions rfsHandler;
 
     public RobotFramework(){
@@ -25,9 +26,11 @@ public class RobotFramework {
         }
         robotFunctionsThread = new TerraThread();
         odometryThread = new TerraThread();
+        telemetryThread = new TerraThread();
         rfsHandler.init();
         robotFunctionsThread.start();
         odometryThread.start();
+        telemetryThread.start();
         gameTime.reset();
     }
 
@@ -38,6 +41,7 @@ public class RobotFramework {
     public void stop(){
         robotFunctionsThread.stopUpdating();
         odometryThread.stopUpdating();
+        telemetryThread.stopUpdating();
     }
 
     public void addRFsTeleOp() {
