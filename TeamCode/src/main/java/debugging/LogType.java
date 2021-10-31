@@ -2,5 +2,6 @@ package debugging;
 
 public enum LogType {
     NORMAL,
-    MONITOR
+    MONITOR,
+    STATUS
 }

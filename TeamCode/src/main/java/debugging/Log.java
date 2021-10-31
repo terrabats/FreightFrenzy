@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class Log {
     public String name = "";
     public LogType logType = LogType.NORMAL;
+    public boolean noTelemetry = false;
 
-    public ArrayList<Object> values = new ArrayList<>();
+    private final ArrayList<Object> values = new ArrayList<>();
 
     public Log(String name){
         this.name = name;
@@ -16,8 +17,19 @@ public class Log {
         this.logType = logType;
     }
 
-    public Object getRecentObject(){
+    public void add(Object o){
+        values.add(o);
+    }
+    public void addNewOnly(Object o){
+        if(!o.equals(getCurrentObject())){
+            values.add(o);
+        }
+    }
+    public Object getCurrentObject(){
         return values.get(values.size()-1);
+    }
+    public ArrayList<Object> getValues(){
+        return values;
     }
 
 }

@@ -15,7 +15,7 @@ public class Fault {
         if(!test){
             String out = "Fault: " + faultNum + " Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString();
             log.display(out);
-            throw new RuntimeException();
+            throw new RuntimeException(out);
         }
     }
 
