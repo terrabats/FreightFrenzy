@@ -2,7 +2,8 @@ package util;
 
 
 import global.Constants;
-import util.CodeSegs.CodeSeg;
+import util.codeseg.CodeSeg;
+import util.condition.Status;
 
 public class TerraThread extends Thread {
 

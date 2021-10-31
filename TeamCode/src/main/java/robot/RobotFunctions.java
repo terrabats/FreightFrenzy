@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import util.CodeSegs.CodeSeg;
+import util.codeseg.CodeSeg;
 import util.Stage;
-import util.Status;
+import util.condition.Status;
 import util.Timer;
 
 import static global.General.*;

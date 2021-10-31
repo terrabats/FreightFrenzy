@@ -17,9 +17,6 @@ public class RobotFramework {
 
     public RobotFramework(){
         rfsHandler = new RobotFunctions();
-        if(!Fault.debugging){
-            telemetry.setAutoClear(false);
-        }
         for (RobotPart part : allRobotParts) {
             part.init();
         }

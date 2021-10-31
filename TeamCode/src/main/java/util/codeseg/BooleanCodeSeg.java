@@ -1,4 +1,4 @@
-package util.CodeSegs;
+package util.codeseg;
 
 public interface BooleanCodeSeg {
     boolean run();

@@ -7,9 +7,9 @@ import java.util.TreeMap;
 import teleutil.button.Button;
 import teleutil.button.ButtonEventType;
 import teleutil.button.ButtonHandler;
-import util.CodeSegs.BooleanCodeSeg;
-import util.CodeSegs.CodeSeg;
-import util.CodeSegs.DoubleCodeSeg;
+import util.codeseg.BooleanCodeSeg;
+import util.codeseg.CodeSeg;
+import util.codeseg.DoubleCodeSeg;
 
 public class GamepadHandler {
     public static Gamepad gamepad;

@@ -1,19 +1,10 @@
 package debugging;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-
-import java.util.ArrayList;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import teleutil.button.Button;
-import teleutil.button.ButtonEventType;
-import util.CodeSegs.CodeSeg;
-import util.ExceptionCatcher;
-
 import static global.General.*;
-import static global.General.log;
-import static robot.RobotFramework.*;
+
 public class Logger {
     private final TreeMap<String, Log> logs = new TreeMap<>();
     private static int logNum = 0;

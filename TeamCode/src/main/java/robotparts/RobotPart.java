@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import java.util.TreeMap;
 
 import robot.RobotFramework;
-import util.Status;
+import util.condition.Status;
 import util.Timer;
 
 import static global.General.*;

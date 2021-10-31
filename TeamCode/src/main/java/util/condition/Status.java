@@ -1,4 +1,4 @@
-package util;
+package util.condition;
 
 public enum Status {
     IDLE, // Waiting for commands and is ready to be used
