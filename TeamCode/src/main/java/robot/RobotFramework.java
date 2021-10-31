@@ -1,15 +1,9 @@
 package robot;
 
-import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
 import java.util.ArrayList;
 
 import robotparts.RobotPart;
-import teleutil.GamepadHandler;
-import util.Fault;
+import debugging.Fault;
 import util.Stage;
 import util.TerraThread;
 

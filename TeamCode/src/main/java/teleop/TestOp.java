@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robot.TerraBot;
-import util.Fault.Expectation;
-import util.Fault.Magnitude;
+import debugging.Fault.Expectation;
+import debugging.Fault.Magnitude;
 import static global.General.*;
 
 @Disabled

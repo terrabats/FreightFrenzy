@@ -15,7 +15,10 @@ public class CommonTest extends OpMode implements Common {
 
     @Override
     public void loop() {
-        telemetry.addData("Status: ", "Common is Working");
-        telemetry.update();
+        log.display("Common is Working");
+    }
+    @Override
+    public void stop(){
+        end(true);
     }
 }

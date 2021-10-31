@@ -8,7 +8,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import robot.TerraBot;
 import teleutil.GamepadHandler;
-import util.Fault;
+import debugging.Fault;
+import debugging.Logger;
 
 public class General {
     public static TerraBot bot;
@@ -20,4 +21,5 @@ public class General {
     public static Fault fault;
     public static GamepadHandler gph1;
     public static GamepadHandler gph2;
+    public static Logger log;
 }
