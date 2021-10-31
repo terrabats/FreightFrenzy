@@ -1,6 +1,6 @@
-package util;
+package debugging;
 
-import static robot.General.*;
+import static global.General.*;
 
 public class Fault {
     public static int faultNum = 0;

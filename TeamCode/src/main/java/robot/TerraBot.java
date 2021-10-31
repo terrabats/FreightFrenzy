@@ -1,12 +1,12 @@
 package robot;
 
-import robotparts.MecanumDrive;
-import robotparts.TankDrive;
+import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import static robot.General.*;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
+import robotparts.MecanumDrive;
 
 public class TerraBot extends RobotFramework{
     public MecanumDrive mechDrive = new MecanumDrive();
-    public TankDrive tankDrive = new TankDrive();
 }
-

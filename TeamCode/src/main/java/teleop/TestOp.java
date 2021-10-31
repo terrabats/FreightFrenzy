@@ -4,11 +4,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import robot.RobotFramework;
 import robot.TerraBot;
-import util.Fault.Expectation;
-import util.Fault.Magnitude;
-import static robot.General.*;
+import debugging.Fault.Expectation;
+import debugging.Fault.Magnitude;
+import static global.General.*;
 
 @Disabled
 @TeleOp(name = "TestOp")
@@ -16,16 +15,10 @@ public class TestOp extends OpMode {
 // TODO: Figure out a structure for this that makes it easy to code, maybe one teleop somehow
     @Override
     public void init() {
-        bot = new TerraBot();
-        bot.init(hardwareMap, telemetry);
-        // hello
-//        TerraBot.robotFunctionsThread.setCode(() -> {
-//            telemetry.addData("Code", " is running");
-//            telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
-//            telemetry.update();
-//        });
-        telemetry.addData("Status", "Ready");
-        telemetry.update();
+//        bot = new TerraBot();
+//        bot.init(hardwareMap, telemetry, gamepad1, gamepad2);
+//        telemetry.addData("Status", "Ready");
+//        telemetry.update();
     }
 
     @Override

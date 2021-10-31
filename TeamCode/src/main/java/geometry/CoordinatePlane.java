@@ -5,9 +5,11 @@ import java.util.ArrayList;
 
 public class CoordinatePlane {
     double curOrientRad = 0.0;
-    public ArrayList<GeometryObject> objects = new ArrayList<>();
+    Point origin = new Point(0, 0);
 
-    public void addObject(GeometryObject o) {
+    private final ArrayList<GeometryObject> objects = new ArrayList<>();
+
+    public void add(GeometryObject o) {
         objects.add(o);
     }
 
@@ -25,20 +27,31 @@ public class CoordinatePlane {
 
     // Implements getObjects method – uses blank line (just need it for the type of the variable)
     public ArrayList<Line> getLines() {
-        return getObjects(new Line(0,0,0,0));
+        return getObjects(Line.class);
     }
 
     // Implements getObjects method – uses blank rect (just need it for the type of the variable)
     public ArrayList<Rect> getRects() {
-        return getObjects(new Rect(0,0,0,0));
+        return getObjects(Rect.class);
     }
 
-    public ArrayList<Vector> getVectors() { return getObjects(new Vector(0, 0, AngleType.DEGREES)); }
+    public ArrayList<Vector> getVectors() { return getObjects(Vector.class); }
 
-    public <T> ArrayList<T> getObjects(T exObject) {
+    @SuppressWarnings("unchecked")
+    public <T> ArrayList<T> getObjects(Class<T> type) {
         ArrayList<T> ret = new ArrayList<>();
-        for (GeometryObject o : objects) {
-            if ((exObject.getClass()).isInstance(o)) ret.add((T) o);
+        for (GeometryObject o : getRotatedObjects()) {
+            if (o.getClass() == type) {
+                ret.add((T) o);
+            }
+        }
+        return ret;
+    }
+
+    private ArrayList<GeometryObject> getRotatedObjects() {
+        ArrayList<GeometryObject> ret = new ArrayList<>();
+        for (GeometryObject a : objects) {
+            ret.add(a.getRotated(curOrientRad, origin));
         }
         return ret;
     }

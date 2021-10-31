@@ -1,5 +1,7 @@
 package geometry;
 
+import static java.lang.Math.*;
+
 public class Vector extends GeometryObject {
     //x and y coords of the tip of vector, theta is angle measured from the right horizontal
     public double x;
@@ -10,34 +12,25 @@ public class Vector extends GeometryObject {
     public Vector(double x1, double y1){
         x = x1;
         y = y1;
-        theta = Math.atan2(y, x);
+        theta = atan2(y, x);
     }
     //Constructor to create vect using angle and length
     public Vector(double angle, double len, AngleType unit) {
         if (unit.equals(AngleType.DEGREES)) {
-            angle *= Math.PI/180;
+            angle *= PI/180;
         }
-        this.x = len * Math.cos(angle);
-        this.y = len * Math.sin(angle);
+        this.x = len * cos(angle);
+        this.y = len * sin(angle);
     }
     //Gets a rotated vector of the current vector angle - positive is anticlockwise
-    public Vector getRotatedVec(double angle, AngleType type) {
-        double ang = 0;
-        if(type.equals(AngleType.DEGREES)) {
-            ang = theta + Math.toRadians(angle);
-        }else{
-            ang = theta + angle;
-        }
-        double radius = Math.sqrt(x * x + y * y);
-        return new Vector(Math.cos(ang) * radius, Math.sin(ang) * radius);
+
+    @Override
+    public GeometryObject getRotated(double angRad, Point origin) {
+        double ang = theta + angRad;
+        double radius = sqrt(x * x + y * y);
+        return new Vector(cos(ang) * radius, sin(ang) * radius);
     }
-    //Rotates the current vector see above
-    public void rotate(double angle, AngleType type){
-        Vector rot = getRotatedVec(angle,type);
-        this.x = rot.x;
-        this.y = rot.y;
-        this.theta = rot.theta;
-    }
+
     //Gets x
     public double getX() {
         return this.x;
@@ -48,21 +41,21 @@ public class Vector extends GeometryObject {
     }
     //Gets length
     public double getLen() {
-        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+        return sqrt(pow(x, 2) + pow(y, 2));
     }
     //Gets angle
     public double getAngle(AngleType type) {
         if (type == AngleType.RADIANS) {
-            return Math.atan2(y,x);
+            return atan2(y,x);
         } else {
-            return Math.atan2(y,x) * 180/Math.PI;
+            return atan2(y,x) * 180/PI;
         }
     }
     //Sets x and y coords
     public void setXY(double x1, double y1){
         x = x1;
         y = y1;
-        theta = Math.atan2(y, x);
+        theta = atan2(y, x);
     }
     //Creates a string representation
     public String toString() {

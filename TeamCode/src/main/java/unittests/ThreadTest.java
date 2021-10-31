@@ -4,23 +4,22 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import global.Common;
 import robot.TerraBot;
-import static robot.General.*;
+import static global.General.*;
 
-// THREADS ARE WORKING!
 
 @Disabled
 @TeleOp(name = "ThreadTest")
-public class ThreadTest extends OpMode {
+public class ThreadTest extends OpMode implements Common {
     @Override
     public void init() {
-        bot = new TerraBot();
-        bot.init(hardwareMap, telemetry);
-        TerraBot.robotFunctionsThread.setCode(() -> {
+        reference(this);
+        TerraBot.robotFunctionsThread.setCode((double... args) -> {
             telemetry.addData("Code", " is running");
             telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
         });
-        TerraBot.odometryThread.setCode(() -> {
+        TerraBot.odometryThread.setCode((double... args) -> {
             telemetry.addData("Code", " is running");
             telemetry.addData("Status: ", TerraBot.odometryThread.getStatus().toString());
             telemetry.update();

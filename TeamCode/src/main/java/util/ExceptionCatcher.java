@@ -1,13 +1,13 @@
 package util;
 
-public class Sleep {
+public class ExceptionCatcher {
 
     //Interface for runnable
     public interface InterruptedExceptionRunnable {
         void run() throws InterruptedException;
     }
     //Method to sleep for certain time
-    public static void trySleep(InterruptedExceptionRunnable runnable) {
+    public static void catchInterrupted(InterruptedExceptionRunnable runnable) {
         try { runnable.run(); } catch (InterruptedException ignored) { }
     }
 }

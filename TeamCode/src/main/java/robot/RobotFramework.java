@@ -1,19 +1,13 @@
 package robot;
 
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.util.ElapsedTime;
-
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
 import java.util.ArrayList;
 
-import robotfunctions.RobotFunctions;
 import robotparts.RobotPart;
-import util.Fault;
+import debugging.Fault;
 import util.Stage;
 import util.TerraThread;
 
-import static robot.General.*;
+import static global.General.*;
 
 public class RobotFramework {
     public static ArrayList<RobotPart> allRobotParts = new ArrayList<>();
@@ -21,10 +15,7 @@ public class RobotFramework {
     public static TerraThread odometryThread;
     public RobotFunctions rfsHandler;
 
-    public void init(HardwareMap hwMap, Telemetry tel){
-        fault = new Fault();
-        hardwareMap = hwMap;
-        telemetry = tel;
+    public RobotFramework(){
         rfsHandler = new RobotFunctions();
         if(!Fault.debugging){
             telemetry.setAutoClear(false);
@@ -56,12 +47,9 @@ public class RobotFramework {
                 bot.mechDrive.move(0.3, 0, 0);
                 return in > 1.5;
             }
-        });
-        rfsHandler.addToQueue(new Stage() {
             @Override
-            public boolean run(double in) {
+            public void runOnStop() {
                 bot.mechDrive.move(0, 0, 0);
-                return true;
             }
         });
     }
