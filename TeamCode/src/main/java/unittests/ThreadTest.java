@@ -10,7 +10,7 @@ import static global.General.*;
 
 
 @Disabled
-@TeleOp(name = "ThreadTest")
+@TeleOp(name = "ThreadTest", group = "UnitTests")
 public class ThreadTest extends OpMode implements Common {
     @Override
     public void init() {

@@ -1,6 +1,6 @@
 package teleutil.button;
 
-import util.CodeSeg;
+import util.CodeSegs.CodeSeg;
 
 public class ChangeHoldEventHandler extends ButtonEventHandler {
 

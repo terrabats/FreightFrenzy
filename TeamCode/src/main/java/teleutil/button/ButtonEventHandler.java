@@ -1,7 +1,7 @@
 package teleutil.button;
 
 import teleutil.GamepadHandler;
-import util.CodeSeg;
+import util.CodeSegs.CodeSeg;
 
 public class ButtonEventHandler {
     protected CodeSeg codeSeg;

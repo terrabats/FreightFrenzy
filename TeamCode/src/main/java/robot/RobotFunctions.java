@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import util.CodeSeg;
+import util.CodeSegs.CodeSeg;
 import util.Stage;
 import util.Status;
 import util.Timer;

@@ -8,7 +8,7 @@ import global.Common;
 import static global.General.*;
 
 @Disabled
-@TeleOp(name = "ExampleTest")
+@TeleOp(name = "ExampleTest", group = "UnitTests")
 public class ExampleTest extends OpMode implements Common {
 
     @Override

@@ -12,7 +12,7 @@ import static global.General.*;
 
 // TO BE TESTED
 
-@TeleOp(name = "GamepadTest")
+@TeleOp(name = "GamepadTest", group = "UnitTests")
 public class GamepadTest extends OpMode implements Common {
     @Override
     public void init() {
