@@ -2,7 +2,7 @@ package teleutil.button;
 
 import java.util.ArrayList;
 
-import util.CodeSeg;
+import util.CodeSegs.CodeSeg;
 
 public class ButtonHandler {
     private final Button button;

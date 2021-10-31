@@ -10,7 +10,7 @@ import debugging.Fault.Magnitude;
 import static global.General.*;
 
 @Disabled
-@TeleOp(name = "TestOp")
+@TeleOp(name = "TestOp", group = "TeleOp")
 public class TestOp extends OpMode {
 // TODO: Figure out a structure for this that makes it easy to code, maybe one teleop somehow
     @Override

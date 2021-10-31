@@ -10,7 +10,7 @@ import robot.TerraBot;
 import static global.General.*;
 
 @Disabled
-@TeleOp(name = "DriveTest")
+@TeleOp(name = "DriveTest", group = "UnitTests")
 public class DriveTest extends OpMode implements Common {
     @Override
     public void init() {

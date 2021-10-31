@@ -11,7 +11,7 @@ import static global.General.*;
 
 // TO BE TESTED
 
-@TeleOp(name = "CoordinatePlaneTest")
+@TeleOp(name = "CoordinatePlaneTest", group = "UnitTests")
 public class CoordinatePlaneTest extends OpMode implements Common {
     public CoordinatePlane coordinatePlane = new CoordinatePlane();
 

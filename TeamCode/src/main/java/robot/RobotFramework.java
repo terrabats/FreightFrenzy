@@ -44,17 +44,17 @@ public class RobotFramework {
     }
 
     public void addRFsTeleOp() {
-        rfsHandler.addToQueue(new Stage() {
-            @Override
-            public boolean run(double in) {
-                bot.mechDrive.move(0.3, 0, 0);
-                return in > 1.5;
-            }
-            @Override
-            public void runOnStop() {
-                bot.mechDrive.move(0, 0, 0);
-            }
-        });
+//        rfsHandler.addToQueue(new Stage() {
+//            @Override
+//            public boolean run(double in) {
+//                bot.mechDrive.move(0.3, 0, 0);
+//                return in > 1.5;
+//            }
+//            @Override
+//            public void runOnStop() {
+//                bot.mechDrive.move(0, 0, 0);
+//            }
+//        });
     }
 
 }
