@@ -9,12 +9,9 @@ import robot.TerraBot;
 import static global.General.*;
 
 
-@Disabled
-@TeleOp(name = "ThreadTest", group = "UnitTests")
-public class ThreadTest extends OpMode implements Common {
+public class ThreadTest extends UnitTest {
     @Override
     public void init() {
-        reference(this);
         TerraBot.robotFunctionsThread.setCode((double... args) -> {
             telemetry.addData("Code", " is running");
             telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
@@ -26,10 +23,6 @@ public class ThreadTest extends OpMode implements Common {
         });
 //        telemetry.addData("Status", "Ready");
 //        telemetry.update();
-    }
-
-    @Override
-    public void loop() {
     }
 
     @Override

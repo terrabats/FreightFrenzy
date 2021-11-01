@@ -11,13 +11,11 @@ import static global.General.*;
 
 // TO BE TESTED
 
-@TeleOp(name = "CoordinatePlaneTest", group = "UnitTests")
-public class CoordinatePlaneTest extends OpMode implements Common {
+public class CoordinatePlaneTest extends UnitTest {
     public CoordinatePlane coordinatePlane = new CoordinatePlane();
 
     @Override
     public void init() {
-        reference(this);
         coordinatePlane.add(new Vector(0, 0, AngleType.RADIANS));
         coordinatePlane.add(new Line(new Point(1, 10), new Point(5, 10)));
         telemetry.addData("Status", "Ready");

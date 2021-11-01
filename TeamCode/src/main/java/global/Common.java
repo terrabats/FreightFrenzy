@@ -9,6 +9,8 @@ import debugging.Logger;
 
 import static global.General.*;
 
+// DESTROY THIS IF MOVING THIS INTO UNITTEST WORKS
+
 public interface Common{
     default void reference(OpMode thisOpMode){
         hardwareMap = thisOpMode.hardwareMap;

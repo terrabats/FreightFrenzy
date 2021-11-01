@@ -9,12 +9,10 @@ import robot.RobotFramework;
 import robot.TerraBot;
 import static global.General.*;
 
-@Disabled
-@TeleOp(name = "DriveTest", group = "UnitTests")
-public class DriveTest extends OpMode implements Common {
+public class DriveTest extends UnitTest {
     @Override
     public void init() {
-        reference(this);
+        super.init();
     }
 
     @Override

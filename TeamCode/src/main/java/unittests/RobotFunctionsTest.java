@@ -1,22 +1,13 @@
 package unittests;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-import global.Common;
-import robot.TerraBot;
 import util.Stage;
 
 import static global.General.*;
 
 
-@Disabled
-@TeleOp(name = "RobotFunctionsTest", group = "UnitTests")
-public class RobotFunctionsTest extends OpMode implements Common {
+public class RobotFunctionsTest extends UnitTest {
     @Override
     public void init() {
-        reference(this);
         bot.rfsHandler.addToQueue(new Stage() {
             @Override
             public boolean run(double in) {
@@ -35,10 +26,6 @@ public class RobotFunctionsTest extends OpMode implements Common {
     @Override
     public void start() {
         bot.start();
-    }
-
-    @Override
-    public void loop() {
     }
 
     @Override

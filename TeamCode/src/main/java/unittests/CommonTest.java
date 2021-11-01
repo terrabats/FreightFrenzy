@@ -6,11 +6,10 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import global.Common;
 import static global.General.*;
 
-@TeleOp(name = "CommonTest", group = "UnitTests")
-public class CommonTest extends OpMode implements Common {
+public class CommonTest extends UnitTest {
     @Override
     public void init() {
-        reference(this);
+        super.init();
     }
 
     @Override

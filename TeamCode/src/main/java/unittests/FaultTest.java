@@ -10,11 +10,12 @@ import util.condition.Magnitude;
 
 import static global.General.*;
 
-@TeleOp(name = "FaultTest", group = "UnitTests")
-public class FaultTest extends OpMode implements Common {
+public class FaultTest extends UnitTest {
 
     @Override
-    public void init() {reference(this);}
+    public void init() {
+        super.init();
+    }
 
     @Override
     public void loop() {

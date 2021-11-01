@@ -12,11 +12,9 @@ import static global.General.*;
 
 // TO BE TESTED
 
-@TeleOp(name = "GamepadTest", group = "UnitTests")
-public class GamepadTest extends OpMode implements Common {
+public class GamepadTest extends UnitTest {
     @Override
     public void init() {
-        reference(this);
         gph1.link(Button.A, ButtonEventType.NORMAL, args -> telemetry.addData("A Button", "Pressed"));
         gph1.link(Button.B, ButtonEventType.NORMAL, args -> telemetry.addData("B Button", "Pressed"));
         gph1.link(Button.A, ButtonEventType.CHANGE_HOLD, args -> {

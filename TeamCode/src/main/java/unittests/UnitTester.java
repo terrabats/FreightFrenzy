@@ -30,6 +30,13 @@ public class UnitTester extends OpMode implements Common {
     }
 
     @Override
+    public void start() {
+        for (UnitTest t : allUnitTests) {
+            t.start();
+        }
+    }
+
+    @Override
     public void loop() {
         if(getCurrentTest().active()){
             log.display("Testing " + getCurrentTestName());
