@@ -2,11 +2,11 @@ package teleutil.button;
 
 import util.codeseg.CodeSeg;
 
-public class ChangeHoldEventHandler extends ButtonEventHandler {
+public class OnPressEventHandler extends ButtonEventHandler {
 
     boolean wasPressed = false;
 
-    public ChangeHoldEventHandler(Button b, CodeSeg cs) { super(b, cs); }
+    public OnPressEventHandler(Button b, CodeSeg cs) { super(b, cs); }
 
     @Override
     protected boolean eventOccurred() {
@@ -15,7 +15,9 @@ public class ChangeHoldEventHandler extends ButtonEventHandler {
 
     @Override
     public void run() {
-        runArgs(this.pressed() ? 1 : 0);
+        if (this.pressed()) {
+            super.run();
+        }
         wasPressed = this.pressed();
     }
 }

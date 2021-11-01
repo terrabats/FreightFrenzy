@@ -9,7 +9,7 @@ public class ButtonEventHandler {
 
     public ButtonEventHandler(Button b, CodeSeg cs) { button = b; codeSeg = cs; }
 
-    public void run() { runArgs(); }
+    public void run() { runArgs(pressed() ? 1 : 0); }
 
     protected boolean eventOccurred() { return true; }
 
