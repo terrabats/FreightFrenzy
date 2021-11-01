@@ -19,17 +19,5 @@ public class RobotFunctionsTest extends UnitTest {
                 bot.mechDrive.move(0, 0, 0);
             }
         });
-        telemetry.addData("Status", "Ready");
-        telemetry.update();
-    }
-
-    @Override
-    public void start() {
-        bot.start();
-    }
-
-    @Override
-    public void stop() {
-        bot.stop();
     }
 }

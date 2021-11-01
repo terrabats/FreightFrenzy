@@ -16,6 +16,9 @@ public class Logger {
     public void display(Object val){
         addLog(String.valueOf(val), new Log(getLogName("Display")), String.valueOf(val));
     }
+    public void display(String caption, Object val){
+        addLog(caption, new Log(getLogName(caption)), String.valueOf(val));
+    }
 
     public void monitor(String name, Object val){
         addLog(name, new Log(getLogName(name), LogType.MONITOR), val);

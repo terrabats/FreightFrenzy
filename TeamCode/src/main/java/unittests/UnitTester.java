@@ -25,6 +25,15 @@ public class UnitTester extends OpMode implements Common {
             t.init();
         }
         LoggerTest logger = new LoggerTest();
+        FaultTest faultTest = new FaultTest();
+        CommonTest commonTest = new CommonTest();
+        CoordinatePlaneTest coordinatePlaneTest = new CoordinatePlaneTest();
+        ThreadTest threadTest = new ThreadTest();
+        RobotFunctionsTest robotFunctionsTest = new RobotFunctionsTest();
+        GamepadTest gamepadTest = new GamepadTest();
+        DriveTest driveTest = new DriveTest();
+
+
         //logger.test();
         testAll();
     }

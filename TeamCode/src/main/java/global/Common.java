@@ -23,9 +23,14 @@ public interface Common{
         log = new Logger();
         gameTime = new ElapsedTime();
         bot = new TerraBot();
-        thisOpMode.msStuckDetectStop = 5000;
+    }
+    default void ready(){
+        bot.start();
+        log.display("Ready");
     }
     default void update(boolean showTelemetry){
+        gph1.run();
+        gph2.run();
         if(showTelemetry){log.showTelemetry();}
     }
     default void end(){

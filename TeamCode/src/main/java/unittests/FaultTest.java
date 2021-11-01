@@ -11,16 +11,8 @@ import util.condition.Magnitude;
 import static global.General.*;
 
 public class FaultTest extends UnitTest {
-
-    @Override
-    public void init() {
-        super.init();
-    }
-
     @Override
     public void loop() {
         fault.check("Is fault working?", Expectation.INCONCEIVABLE, Magnitude.CATASTROPHIC, false);
     }
-    @Override
-    public void stop(){end();}
 }
