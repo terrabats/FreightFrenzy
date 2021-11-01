@@ -24,6 +24,8 @@ public class UnitTester extends OpMode implements Common {
         for (UnitTest t: allUnitTests) {
             t.init();
         }
+//        Reflections reflections = new Reflections("my.project");
+//        Set<Class<? extends SomeType>> subTypes = reflections.getSubTypesOf(SomeType.class);
         LoggerTest logger = new LoggerTest();
         FaultTest faultTest = new FaultTest();
         CommonTest commonTest = new CommonTest();
@@ -32,9 +34,6 @@ public class UnitTester extends OpMode implements Common {
         RobotFunctionsTest robotFunctionsTest = new RobotFunctionsTest();
         GamepadTest gamepadTest = new GamepadTest();
         DriveTest driveTest = new DriveTest();
-
-
-        //logger.test();
         testAll();
     }
 
@@ -56,6 +55,7 @@ public class UnitTester extends OpMode implements Common {
         if(gamepad1.x){
             nextTest();
         }
+//        gph1.link(Button.X, ButtonEventType.ON_PRESS, args -> nextTest());
         update(true);
     }
 

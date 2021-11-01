@@ -13,20 +13,12 @@ public class ThreadTest extends UnitTest {
     @Override
     public void init() {
         TerraBot.robotFunctionsThread.setCode((double... args) -> {
-            telemetry.addData("Code", " is running");
-            telemetry.addData("Status: ", TerraBot.robotFunctionsThread.getStatus().toString());
+            log.display("Code is running");
+            log.status("Robot Functions Status", TerraBot.robotFunctionsThread.getStatus());
         });
         TerraBot.odometryThread.setCode((double... args) -> {
-            telemetry.addData("Code", " is running");
-            telemetry.addData("Status: ", TerraBot.odometryThread.getStatus().toString());
-            telemetry.update();
+            log.display("Code is running");
+            log.status("Odometry Thread Status", TerraBot.odometryThread.getStatus());
         });
-//        telemetry.addData("Status", "Ready");
-//        telemetry.update();
-    }
-
-    @Override
-    public void stop() {
-        bot.stop();
     }
 }

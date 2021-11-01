@@ -8,19 +8,15 @@ import static global.General.*;
 
 public class Fault {
     private int checkNum = 0;
-    private final Timer lagTimer = new Timer();
-    private double lastLagTime;
-
-    public Fault() {
-        lastLagTime = lagTimer.seconds();
-    }
-
-    public double getUpdateSpeed() {
-        double newTime = lagTimer.seconds();
-        double deltaTime = newTime - lastLagTime;
-        lastLagTime = newTime;
-        return deltaTime;
-    }
+//    private final Timer lagTimer = new Timer();
+//    private double lastLagTime;
+//
+//    public double getUpdateSpeed() {
+//        double newTime = lagTimer.seconds();
+//        double deltaTime = newTime - lastLagTime;
+//        lastLagTime = newTime;
+//        return deltaTime;
+//    }
 
     public void check(String msg, Expectation e, Magnitude m, boolean test){
         checkNum++;
