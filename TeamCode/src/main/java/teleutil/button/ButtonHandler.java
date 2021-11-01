@@ -17,7 +17,7 @@ public class ButtonHandler {
             eventHandlers.add(new ButtonEventHandler(button, codeSeg));
         } else if (type == ButtonEventType.CHANGE_HOLD) {
             eventHandlers.add(new ChangeHoldEventHandler(button, codeSeg));
-        } // TODO: ADD ON TO THIS WHEN NEEDED
+        } // ADD ON TO THIS WHEN NEEDED
     }
 
     public void run() {
