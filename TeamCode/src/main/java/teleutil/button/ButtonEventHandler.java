@@ -2,12 +2,13 @@ package teleutil.button;
 
 import teleutil.GamepadHandler;
 import util.codeseg.CodeSeg;
+import util.codeseg.ParameterCodeSeg;
 
 public class ButtonEventHandler {
-    protected CodeSeg codeSeg;
+    protected ParameterCodeSeg codeSeg;
     protected Button button;
 
-    public ButtonEventHandler(Button b, CodeSeg cs) { button = b; codeSeg = cs; }
+    public ButtonEventHandler(Button b, ParameterCodeSeg cs) { button = b; codeSeg = cs; }
 
     public void run() { runArgs(pressed() ? 1 : 0); }
 

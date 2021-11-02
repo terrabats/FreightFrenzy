@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.reflections.Reflections;
+//import org.reflections.Reflections;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -78,10 +78,10 @@ public class UnitTester extends OpMode implements Common {
     }
 
     private void createAllUnitTests(){
-        Reflections reflections = new Reflections("unittests");
-        Set<Class<? extends UnitTest>> unitTests = reflections.getSubTypesOf(UnitTest.class);
-        for (Class<? extends UnitTest> unitTestClasses : unitTests) {
-            ExceptionCatcher.catchNewInstance(() -> allUnitTests.add(unitTestClasses.newInstance()));
-        }
+//        Reflections reflections = new Reflections("unittests");
+//        Set<Class<? extends UnitTest>> unitTests = reflections.getSubTypesOf(UnitTest.class);
+//        for (Class<? extends UnitTest> unitTestClasses : unitTests) {
+//            ExceptionCatcher.catchNewInstance(() -> allUnitTests.add(unitTestClasses.newInstance()));
+//        }
     }
 }

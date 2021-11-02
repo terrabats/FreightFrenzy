@@ -2,6 +2,7 @@ package util;
 
 
 import global.Constants;
+import util.codeseg.ParameterCodeSeg;
 import util.condition.Status;
 
 public class TerraThread extends Thread {

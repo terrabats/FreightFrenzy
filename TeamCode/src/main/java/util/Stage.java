@@ -3,6 +3,7 @@ package util;
 import util.codeseg.CodeSeg;
 
 public class Stage {
+
     private CodeSeg start, stop, run, exit;
     private boolean isPause = false;
     private final Timer timer = new Timer();
@@ -37,13 +38,14 @@ public class Stage {
         start.run();
     }
     public void run(){
-        run.run(timer.seconds());
+//        run.run(timer.seconds());
     }
     public void stop(){
         stop.run();
     }
     public boolean isDone(){
-        return exit.runBoolean(timer.seconds());
+//        return exit.runBoolean(timer.seconds());
+        return false;
     }
     public boolean isPause(){ return isPause; }
     public void setPause(){

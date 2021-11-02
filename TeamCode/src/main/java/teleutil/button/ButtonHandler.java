@@ -3,6 +3,7 @@ package teleutil.button;
 import java.util.ArrayList;
 
 import util.codeseg.CodeSeg;
+import util.codeseg.ParameterCodeSeg;
 
 public class ButtonHandler {
     private final Button button;
@@ -12,7 +13,7 @@ public class ButtonHandler {
         button = b;
     }
 
-    public void addEvent(ButtonEventType type, CodeSeg codeSeg) {
+    public void addEvent(ButtonEventType type, ParameterCodeSeg codeSeg) {
         if (type == ButtonEventType.NORMAL) {
             eventHandlers.add(new ButtonEventHandler(button, codeSeg));
         } else if (type == ButtonEventType.ON_PRESS) {
