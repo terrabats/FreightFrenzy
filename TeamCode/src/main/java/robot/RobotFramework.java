@@ -3,8 +3,6 @@ package robot;
 import java.util.ArrayList;
 
 import robotparts.RobotPart;
-import debugging.Fault;
-import util.Stage;
 import util.TerraThread;
 
 import static global.General.*;

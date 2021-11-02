@@ -9,8 +9,6 @@ import debugging.Logger;
 
 import static global.General.*;
 
-// DESTROY THIS IF MOVING THIS INTO UNITTEST WORKS
-
 public interface Common{
     default void reference(OpMode thisOpMode){
         hardwareMap = thisOpMode.hardwareMap;
@@ -26,6 +24,7 @@ public interface Common{
     }
     default void ready(){
         bot.start();
+        fault.resetDelay();
         log.display("Ready");
     }
     default void update(boolean showTelemetry){
@@ -34,6 +33,7 @@ public interface Common{
         if(showTelemetry){log.showTelemetry();}
     }
     default void end(){
+        fault.logDelay();
         log.showLogs();
         bot.stop();
     }

@@ -28,6 +28,10 @@ public class Logger {
         addLog(name, new Log(getLogName(name), LogType.STATUS), status);
     }
 
+    public void save(String name, Object val){
+        addLog(name, new Log(getLogName(name), LogType.SAVE), val);
+    }
+
     private String getLogName(String name){
         return "Log #"+logNum+": "+ name;
     }
@@ -45,6 +49,7 @@ public class Logger {
                 logs.get(name).add(o);
                 break;
             case STATUS:
+            case SAVE:
                 logs.get(name).noTelemetry = true;
                 logs.get(name).addNewOnly(o);
                 break;

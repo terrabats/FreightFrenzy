@@ -4,12 +4,17 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.reflections.Reflections;
+
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.TreeMap;
 
 import global.Common;
 import teleutil.button.Button;
 import teleutil.button.ButtonEventType;
+import util.ExceptionCatcher;
+import util.codeseg.CodeSeg;
 
 import static global.General.*;
 
@@ -21,27 +26,14 @@ public class UnitTester extends OpMode implements Common {
     @Override
     public void init() {
         reference(this);
-        for (UnitTest t: allUnitTests) {
-            t.init();
-        }
-//        Reflections reflections = new Reflections("my.project");
-//        Set<Class<? extends SomeType>> subTypes = reflections.getSubTypesOf(SomeType.class);
-        LoggerTest logger = new LoggerTest();
-        FaultTest faultTest = new FaultTest();
-        CommonTest commonTest = new CommonTest();
-        CoordinatePlaneTest coordinatePlaneTest = new CoordinatePlaneTest();
-        ThreadTest threadTest = new ThreadTest();
-        RobotFunctionsTest robotFunctionsTest = new RobotFunctionsTest();
-        GamepadTest gamepadTest = new GamepadTest();
-        DriveTest driveTest = new DriveTest();
+        createAllUnitTests();
+        for (UnitTest t: allUnitTests) {t.init();}
         testAll();
     }
 
     @Override
     public void start() {
-        for (UnitTest t : allUnitTests) {
-            t.start();
-        }
+        for (UnitTest t : allUnitTests) {t.start();}
     }
 
     @Override
@@ -82,6 +74,14 @@ public class UnitTester extends OpMode implements Common {
     private void testAll(){
         for (UnitTest t: allUnitTests) {
             t.test();
+        }
+    }
+
+    private void createAllUnitTests(){
+        Reflections reflections = new Reflections("unittests");
+        Set<Class<? extends UnitTest>> unitTests = reflections.getSubTypesOf(UnitTest.class);
+        for (Class<? extends UnitTest> unitTestClasses : unitTests) {
+            ExceptionCatcher.catchNewInstance(() -> allUnitTests.add(unitTestClasses.newInstance()));
         }
     }
 }

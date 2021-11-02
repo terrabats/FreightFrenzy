@@ -2,15 +2,14 @@ package util;
 
 
 import global.Constants;
-import util.codeseg.CodeSeg;
 import util.condition.Status;
 
 public class TerraThread extends Thread {
 
     private volatile Status currentStatus = Status.ACTIVE;
-    private volatile CodeSeg updateCode = (double... args) -> {};
+    private volatile ParameterCodeSeg updateCode = (double... args) -> {};
 
-    public synchronized void setCode(CodeSeg cs){updateCode = cs;}
+    public synchronized void setCode(ParameterCodeSeg cs){updateCode = cs;}
 
     public synchronized void stopUpdating(){currentStatus = Status.DISABLED;}
 
