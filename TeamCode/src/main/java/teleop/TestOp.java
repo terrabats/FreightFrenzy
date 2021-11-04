@@ -9,10 +9,12 @@ import util.condition.Expectation;
 import util.condition.Magnitude;
 import static global.General.*;
 
+// TODO
+// Get this ready to test the chassis
+
 @Disabled
 @TeleOp(name = "TestOp", group = "TeleOp")
 public class TestOp extends OpMode {
-// TODO: Figure out a structure for this that makes it easy to code, maybe one teleop somehow
     @Override
     public void init() {
 //        bot = new TerraBot();

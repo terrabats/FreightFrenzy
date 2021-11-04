@@ -1,22 +1,19 @@
 package unittests;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 //import org.reflections.Reflections;
 
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.TreeMap;
 
 import global.Common;
-import teleutil.button.Button;
-import teleutil.button.ButtonEventType;
-import util.ExceptionCatcher;
-import util.codeseg.CodeSeg;
 
 import static global.General.*;
+
+
+// TODO
+// Fix this so that testing all the unit tests is easy and you can easily find which classes extend UnitTest
 
 @TeleOp(name = "UnitTester", group = "UnitTests")
 public class UnitTester extends OpMode implements Common {
@@ -34,11 +31,12 @@ public class UnitTester extends OpMode implements Common {
     @Override
     public void start() {
         for (UnitTest t : allUnitTests) {t.start();}
+        ready();
     }
 
     @Override
     public void loop() {
-        if(getCurrentTest().active()){
+        if(getCurrentTest().isActive()){
             log.display("Testing " + getCurrentTestName());
             getCurrentTest().loop();
         }else{

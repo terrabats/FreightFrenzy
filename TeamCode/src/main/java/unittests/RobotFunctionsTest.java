@@ -5,6 +5,8 @@ import util.codeseg.CodeSeg;
 
 import static global.General.*;
 
+// TODO
+// Fix this after stage is nice and easy to use
 
 public class RobotFunctionsTest extends UnitTest {
     @Override

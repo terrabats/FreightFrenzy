@@ -7,6 +7,9 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import robotparts.MecanumDrive;
 
+// TODO
+// Add all robotparts to this file
+
 public class TerraBot extends RobotFramework{
     public MecanumDrive mechDrive = new MecanumDrive();
 }

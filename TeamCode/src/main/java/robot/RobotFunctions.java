@@ -12,6 +12,9 @@ import util.Timer;
 import static global.General.*;
 import static robot.RobotFramework.robotFunctionsThread;
 
+// TODO
+// Fix this after fixing stage
+
 public class RobotFunctions {
 
     //List of all robot functions currently in the queue (LinkedList is a FIFO Queue)

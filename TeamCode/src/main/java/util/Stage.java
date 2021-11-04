@@ -2,6 +2,9 @@ package util;
 
 import util.codeseg.CodeSeg;
 
+// TODO
+// FIX this please and make it super easy to use somehow
+
 public class Stage {
 
     private CodeSeg start, stop, run, exit;

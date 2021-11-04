@@ -10,7 +10,7 @@ public class UnitTest {
     public void test(){
         testStatus = Status.ACTIVE;
     }
-    public boolean active(){
+    public boolean isActive(){
         return testStatus.equals(Status.ACTIVE);
     }
     public void init() {}
