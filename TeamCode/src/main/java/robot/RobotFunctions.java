@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import util.codeseg.CodeSeg;
 import util.Stage;
-import util.codeseg.ParameterCodeSeg;
 import util.condition.Status;
 import util.Timer;
 
 import static global.General.*;
 import static robot.RobotFramework.robotFunctionsThread;
-
-// TODO
-// Fix this after fixing stage
 
 public class RobotFunctions {
 
@@ -22,11 +19,11 @@ public class RobotFunctions {
     private final Timer timer = new Timer();
 
     //Update code for running the queue
-    public ParameterCodeSeg updateCode = (double... args) -> {
+    public CodeSeg updateCode = () -> {
         if(!rfsQueue.isEmpty()){
             Stage s = rfsQueue.peek();
-            if (!s.isDone()) {
-                s.stop();
+            if (s.run(timer.seconds())) {
+                s.runOnStop();
                 rfsQueue.poll();
                 timer.reset();
             } else if (s.isPause()) {
@@ -70,6 +67,11 @@ public class RobotFunctions {
     }
 
     public void addPause() {
-        addToQueue(new Stage(true));
+        addToQueue(new Stage() {
+            @Override
+            public boolean isPause() {
+                return true;
+            }
+        });
     }
 }

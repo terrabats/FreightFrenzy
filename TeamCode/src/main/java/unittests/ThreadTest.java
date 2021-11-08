@@ -12,11 +12,11 @@ import static global.General.*;
 public class ThreadTest extends UnitTest {
     @Override
     public void init() {
-        TerraBot.robotFunctionsThread.setCode((double... args) -> {
+        TerraBot.robotFunctionsThread.setCode(() -> {
             log.display("Code is running");
             log.status("Robot Functions Status", TerraBot.robotFunctionsThread.getStatus());
         });
-        TerraBot.odometryThread.setCode((double... args) -> {
+        TerraBot.odometryThread.setCode(() -> {
             log.display("Code is running");
             log.status("Odometry Thread Status", TerraBot.odometryThread.getStatus());
         });

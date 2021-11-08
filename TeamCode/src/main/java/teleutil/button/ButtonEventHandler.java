@@ -1,7 +1,6 @@
 package teleutil.button;
 
 import teleutil.GamepadHandler;
-import util.codeseg.CodeSeg;
 import util.codeseg.ParameterCodeSeg;
 
 public class ButtonEventHandler {

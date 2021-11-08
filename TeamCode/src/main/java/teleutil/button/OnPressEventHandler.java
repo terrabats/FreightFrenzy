@@ -1,6 +1,5 @@
 package teleutil.button;
 
-import util.codeseg.CodeSeg;
 import util.codeseg.ParameterCodeSeg;
 
 public class OnPressEventHandler extends ButtonEventHandler {
