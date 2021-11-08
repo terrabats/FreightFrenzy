@@ -19,7 +19,7 @@ public class RobotFunctions {
     private final Timer timer = new Timer();
 
     //Update code for running the queue
-    public CodeSeg updateCode = (double... args) -> {
+    public CodeSeg updateCode = () -> {
         if(!rfsQueue.isEmpty()){
             Stage s = rfsQueue.peek();
             if (s.run(timer.seconds())) {

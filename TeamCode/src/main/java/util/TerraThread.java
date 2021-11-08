@@ -8,7 +8,7 @@ import util.condition.Status;
 public class TerraThread extends Thread {
 
     private volatile Status currentStatus = Status.ACTIVE;
-    private volatile CodeSeg updateCode = (double... args) -> {};
+    private volatile CodeSeg updateCode = () -> {};
 
     public synchronized void setCode(CodeSeg cs){updateCode = cs;}
 
