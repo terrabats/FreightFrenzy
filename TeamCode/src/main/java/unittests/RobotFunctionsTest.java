@@ -1,6 +1,5 @@
 package unittests;
 
-import util.Stage;
 import util.codeseg.CodeSeg;
 
 import static global.General.*;
