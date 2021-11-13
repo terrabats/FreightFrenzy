@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import util.Stage;
 import util.codeseg.CodeSeg;
 import util.condition.Status;
 import util.Timer;
@@ -35,7 +36,7 @@ public class RobotFunctions {
     };
 
     public void resume() {
-        if (rfsQueue.peek().isPause()) {
+        if (!rfsQueue.isEmpty() && rfsQueue.peek().isPause()) {
             rfsQueue.poll();
             timer.reset();
             robotFunctionsThread.setStatus(Status.ACTIVE);
