@@ -1,21 +1,15 @@
 package unittests;
 
-import android.os.Environment;
-
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-//import org.reflections.Reflections;
 
 import java.util.ArrayList;
 
 import global.Common;
+import teleutil.button.Button;
+import teleutil.button.ButtonEventType;
 
 import static global.General.*;
-
-
-// TODO
-// Fix this so that testing all the unit tests is easy and you can easily find which classes extend UnitTest
 
 @TeleOp(name = "UnitTester", group = "UnitTests")
 public class UnitTester extends OpMode implements Common {
@@ -47,7 +41,6 @@ public class UnitTester extends OpMode implements Common {
         if(gamepad1.x){
             nextTest();
         }
-//        gph1.link(Button.X, ButtonEventType.ON_PRESS, args -> nextTest());
         update(true);
     }
 
@@ -78,10 +71,13 @@ public class UnitTester extends OpMode implements Common {
     }
 
     private void createAllUnitTests(){
-//        Reflections reflections = new Reflections("unittests");
-//        Set<Class<? extends UnitTest>> unitTests = reflections.getSubTypesOf(UnitTest.class);
-//        for (Class<? extends UnitTest> unitTestClasses : unitTests) {
-//            ExceptionCatcher.catchNewInstance(() -> allUnitTests.add(unitTestClasses.newInstance()));
-//        }
+        allUnitTests.add(new CommonTest());
+        allUnitTests.add(new CoordinatePlaneTest());
+        allUnitTests.add(new DriveTest());
+        allUnitTests.add(new FaultTest());
+        allUnitTests.add(new GamepadTest());
+        allUnitTests.add(new LoggerTest());
+        allUnitTests.add(new RobotFunctionsTest());
+        allUnitTests.add(new ThreadTest());
     }
 }
