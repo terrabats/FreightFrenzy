@@ -10,6 +10,7 @@ public class Fault {
     private int checkNum = 0;
     private int numUpdates = 0;
     private final Timer lagTimer = new Timer();
+    private final boolean unsafeMode = false;
 
     public void resetDelay(){
         numUpdates = 0;
@@ -36,7 +37,7 @@ public class Fault {
         checkNum++;
         if(!test){
             log.display( "Fault: " + checkNum + out);
-            if(createException) {
+            if(createException && !unsafeMode) {
                 throw new RuntimeException(out);
             }
         }

@@ -51,6 +51,8 @@ public class UnitTester extends OpMode implements Common {
         }
         end();
     }
+
+
     private String getCurrentTestName(){
         return getCurrentTest().getClass().getSimpleName();
     }
@@ -63,13 +65,11 @@ public class UnitTester extends OpMode implements Common {
             requestOpModeStop();
         }
     }
-
     private void testAll(){
         for (UnitTest t: allUnitTests) {
             t.test();
         }
     }
-
     private void createAllUnitTests(){
         allUnitTests.add(new CommonTest());
         allUnitTests.add(new CoordinatePlaneTest());

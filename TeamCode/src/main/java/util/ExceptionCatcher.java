@@ -1,5 +1,8 @@
 package util;
+import util.condition.Expectation;
+import util.condition.Magnitude;
 
+import static global.General.*;
 public class ExceptionCatcher {
 
     //Interface for runnable
@@ -11,10 +14,14 @@ public class ExceptionCatcher {
     }
     //Method to sleep for certain time
     public static void catchInterrupted(InterruptedExceptionRunnable runnable) {
-        try { runnable.run(); } catch (InterruptedException ignored) { }
+        try { runnable.run(); } catch (InterruptedException ignored) {
+            fault.check("IllegalAcess or NotInstantied new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL, false);
+        }
     }
 
     public static void catchNewInstance(NewInstanceRunnable runnable) {
-        try {runnable.run(); } catch (IllegalAccessException | InstantiationException ignored) {}
+        try {runnable.run(); } catch (IllegalAccessException | InstantiationException ignored) {
+            fault.check("IllegalAcess or NotInstantied new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL, false);
+        }
     }
 }
