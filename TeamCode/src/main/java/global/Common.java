@@ -2,6 +2,7 @@ package global;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import debugging.Synchroniser;
 import robot.TerraBot;
 import teleutil.GamepadHandler;
 import debugging.Fault;
@@ -18,13 +19,14 @@ public interface Common{
         gph1 = new GamepadHandler(gamepad1);
         gph2 = new GamepadHandler(gamepad2);
         fault = new Fault();
+        sync = new Synchroniser();
         log = new Logger();
         gameTime = new ElapsedTime();
         bot = new TerraBot();
     }
     default void ready(){
         bot.start();
-        fault.resetDelay();
+        sync.resetDelay();
         log.display("Ready");
     }
     default void update(boolean showTelemetry){
@@ -33,7 +35,7 @@ public interface Common{
         if(showTelemetry){log.showTelemetry();}
     }
     default void end(){
-        fault.logDelay();
+        sync.logDelay();
         log.showLogs();
         bot.stop();
     }

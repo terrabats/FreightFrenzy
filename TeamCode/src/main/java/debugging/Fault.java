@@ -7,18 +7,8 @@ import util.condition.Magnitude;
 import static global.General.*;
 
 public class Fault {
-    private int checkNum = 0;
-    private int numUpdates = 0;
-    private final Timer lagTimer = new Timer();
+    private int faultNum = 0;
     private final boolean unsafeMode = false;
-
-    public void resetDelay(){
-        numUpdates = 0;
-        lagTimer.reset();
-    }
-    public void logDelay(){
-        log.save("Delay (ms)", (1000*lagTimer.seconds())/numUpdates);
-    }
 
     public void guess(String msg, boolean test){
         createFault(" Msg: " + msg, test, false);
@@ -34,13 +24,16 @@ public class Fault {
     }
 
     private void createFault(String out, boolean test, boolean createException){
-        checkNum++;
         if(!test){
-            log.display( "Fault: " + checkNum + out);
-            if(createException && !unsafeMode) {
-                throw new RuntimeException(out);
+            faultNum++;
+            if(unsafeMode){
+                log.display( "Fault: " + faultNum + out);
+            }else{
+                log.display( "Fault: " + out);
+                if(createException) {
+                    throw new RuntimeException(out);
+                }
             }
         }
     }
-
 }
