@@ -7,6 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
 import com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior;
 import com.qualcomm.robotcore.hardware.DcMotor.RunMode;
 
+import java.util.Objects;
+
 public class MecanumDrive extends RobotPart{
     private DcMotor fr,br,fl,bl;
 
@@ -23,6 +25,14 @@ public class MecanumDrive extends RobotPart{
         br.setPower(-f-s+t);
         fl.setPower(f+s+t);
         bl.setPower(-f+s-t);
+    }
+
+    public double getPos(String mot) {
+        if (this.motors.containsKey(mot)) {
+            return Objects.requireNonNull(this.motors.get(mot)).getCurrentPosition();
+        } else {
+            return -1;
+        }
     }
 
 
