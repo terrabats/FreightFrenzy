@@ -12,6 +12,8 @@ import util.codeseg.CodeSeg;
 import util.codeseg.DoubleCodeSeg;
 import util.codeseg.ParameterCodeSeg;
 
+import static global.General.*;
+
 public class GamepadHandler {
     public static Gamepad gamepad;
 
@@ -48,6 +50,7 @@ public class GamepadHandler {
 
     public void run() {
         for (ButtonHandler handler : handlerMap.values()) {
+            log.display("Running a ButtonHandler");
             handler.run();
         }
     }

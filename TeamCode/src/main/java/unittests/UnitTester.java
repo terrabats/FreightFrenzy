@@ -21,12 +21,12 @@ public class UnitTester extends OpMode implements Common {
         reference(this);
         createAllUnitTests();
         for (UnitTest t: allUnitTests) {t.init();}
-        testAll();
+//        testAll();
     }
 
     @Override
     public void start() {
-        for (UnitTest t : allUnitTests) {t.start();}
+        for (UnitTest t : allUnitTests) {t.startIfTest();}
         ready();
     }
 
@@ -47,7 +47,7 @@ public class UnitTester extends OpMode implements Common {
     @Override
     public void stop(){
         for (UnitTest t: allUnitTests) {
-            t.stop();
+            t.stopIfTest();
         }
         end();
     }
@@ -71,11 +71,12 @@ public class UnitTester extends OpMode implements Common {
         }
     }
     private void createAllUnitTests(){
+        allUnitTests = new ArrayList<>();
         allUnitTests.add(new CommonTest());
         allUnitTests.add(new CoordinatePlaneTest());
         allUnitTests.add(new DriveTest());
         allUnitTests.add(new FaultTest());
-        allUnitTests.add(new GamepadTest());
+        allUnitTests.add(new GamepadTest().test());
         allUnitTests.add(new LoggerTest());
         allUnitTests.add(new RobotFunctionsTest());
         allUnitTests.add(new ThreadTest());

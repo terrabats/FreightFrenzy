@@ -10,6 +10,8 @@ import util.condition.Magnitude;
 
 import static global.General.*;
 
+// WORKS!
+
 public class FaultTest extends UnitTest {
     @Override
     public void loop() {

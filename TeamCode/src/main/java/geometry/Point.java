@@ -14,4 +14,7 @@ public class Point {
         double ny = sx * sin(angRad) + sy * cos(angRad);
         return new Point(nx, ny);
     }
+    public String toString() {
+        return x + " " + y;
+    }
 }

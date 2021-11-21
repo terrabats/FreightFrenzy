@@ -2,6 +2,7 @@ package geometry;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.*;
 
 public class CoordinatePlane {
     double curOrientRad = 0.0;
@@ -22,7 +23,7 @@ public class CoordinatePlane {
     }
 
     public double getAngRad(double ang, AngleType angType) {
-        return ang * (angType == AngleType.DEGREES ? (180/Math.PI) : 1);
+        return ang * (angType == AngleType.DEGREES ? (PI/180) : 1);
     }
 
     // Implements getObjects method – uses blank line (just need it for the type of the variable)

@@ -27,7 +27,7 @@ public class Vector extends GeometryObject {
     @Override
     public GeometryObject getRotated(double angRad, Point origin) {
         double ang = theta + angRad;
-        double radius = sqrt(x * x + y * y);
+        double radius = getLen();
         return new Vector(cos(ang) * radius, sin(ang) * radius);
     }
 

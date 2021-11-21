@@ -18,7 +18,7 @@ public class Synchroniser {
         numUpdates += 1;
     }
     public void logDelay(){
-        fault.check("Sync was never updated", Expectation.UNEXPECTED, Magnitude.CRITICAL, numUpdates == 0);
+        fault.check("Sync was never updated", Expectation.UNEXPECTED, Magnitude.CRITICAL, numUpdates != 0);
         log.save("Delay (ms)", (1000 * lagTimer.seconds()) / numUpdates);
     }
 }

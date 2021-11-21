@@ -11,7 +11,7 @@ public class ButtonEventHandler {
 
     public void run() { runArgs(pressed() ? 1 : 0); }
 
-    protected boolean eventOccurred() { return true; }
+    protected boolean eventOccurred() { return pressed(); }
 
     protected void runArgs(double... args) {
         if (eventOccurred()) {
