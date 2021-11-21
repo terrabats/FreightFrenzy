@@ -1,7 +1,10 @@
 package debugging;
 
 import util.Timer;
+import util.condition.Expectation;
+import util.condition.Magnitude;
 
+import static global.General.fault;
 import static global.General.log;
 
 public class Synchroniser {
@@ -11,7 +14,11 @@ public class Synchroniser {
         numUpdates = 0;
         lagTimer.reset();
     }
+    public void update(){
+        numUpdates += 1;
+    }
     public void logDelay(){
-        log.save("Delay (ms)", (1000*lagTimer.seconds())/numUpdates);
+        fault.check("Sync was never updated", Expectation.UNEXPECTED, Magnitude.CRITICAL, numUpdates == 0);
+        log.save("Delay (ms)", (1000 * lagTimer.seconds()) / numUpdates);
     }
 }

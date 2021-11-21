@@ -32,6 +32,7 @@ public interface Common{
     default void update(boolean showTelemetry){
         gph1.run();
         gph2.run();
+        sync.update();
         if(showTelemetry){log.showTelemetry();}
     }
     default void end(){
