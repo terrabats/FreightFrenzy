@@ -12,15 +12,18 @@ public class TerraThread extends Thread {
 
     private volatile Status currentStatus = Status.ACTIVE;
     private volatile CodeSeg updateCode = () -> {};
+    private volatile boolean setUpdateCode = false;
 
     public synchronized void setCode(CodeSeg cs){
         updateCode = cs;
+        setUpdateCode = true;
     }
 
     public synchronized void stopUpdating(){currentStatus = Status.DISABLED;}
 
     @Override
     public void run() {
+        fault.warn("Starting thread with empty CodeSeg", Expectation.EXPECTED, Magnitude.MINOR, setUpdateCode);
         while (!currentStatus.equals(Status.DISABLED)){
             if(currentStatus.equals(Status.IDLE)){
                 synchronized (this) {

@@ -15,12 +15,15 @@ public class RobotFramework {
 
     public RobotFramework(){
         rfsHandler = new RobotFunctions();
-        for (RobotPart part : allRobotParts) {
-            part.init();
-        }
         robotFunctionsThread = new TerraThread();
         odometryThread = new TerraThread();
         rfsHandler.init();
+    }
+
+    public void init(){
+        for (RobotPart part : allRobotParts) {
+            part.init();
+        }
         robotFunctionsThread.start();
         odometryThread.start();
         gameTime.reset();

@@ -9,7 +9,6 @@ import robot.TerraBot;
 
 import static global.General.*;
 
-// WORKS!
 
 public class CoordinatePlaneTest extends UnitTest {
     public CoordinatePlane coordinatePlane = new CoordinatePlane();
@@ -29,7 +28,7 @@ public class CoordinatePlaneTest extends UnitTest {
         log.display("Vector final", coordinatePlane.getVectors().get(0));
         log.display("Line final", coordinatePlane.getLines().get(0));
         coordinatePlane.rotate(45, AngleType.DEGREES);
-        log.display("Vector final2", coordinatePlane.getVectors().get(0));
-        log.display("Line final2", coordinatePlane.getLines().get(0));
+        log.display("Second vector final", coordinatePlane.getVectors().get(0));
+        log.display("Second line final", coordinatePlane.getLines().get(0));
     }
 }

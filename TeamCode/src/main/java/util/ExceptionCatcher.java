@@ -15,13 +15,13 @@ public class ExceptionCatcher {
     //Method to sleep for certain time
     public static void catchInterrupted(InterruptedExceptionRunnable runnable) {
         try { runnable.run(); } catch (InterruptedException ignored) {
-            fault.check("IllegalAcess or NotInstantied new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL, false);
+            fault.check("Illegal Access or Not Instantiated new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL, false);
         }
     }
 
     public static void catchNewInstance(NewInstanceRunnable runnable) {
         try {runnable.run(); } catch (IllegalAccessException | InstantiationException ignored) {
-            fault.check("IllegalAcess or NotInstantied new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL, false);
+            fault.check("Illegal Access or Not Instantiated new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL, false);
         }
     }
 }

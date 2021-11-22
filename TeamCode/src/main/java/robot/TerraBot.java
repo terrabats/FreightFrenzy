@@ -8,10 +8,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import robotparts.MecanumDrive;
 import robotparts.Odometry;
 
-// TODO
-// Add all robotparts to this file
-
 public class TerraBot extends RobotFramework {
-    public static MecanumDrive mechDrive = new MecanumDrive();
-    public static Odometry odometry = new Odometry();
+    public MecanumDrive mechDrive = new MecanumDrive();
+    public Odometry odometry = new Odometry();
 }

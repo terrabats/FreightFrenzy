@@ -10,10 +10,10 @@ public class Fault {
     private int faultNum = 0;
     private final boolean unsafeMode = false;
 
-    public void guess(String msg, boolean test){
+    public void warn(String msg, boolean test){
         createFault(" Msg: " + msg, test, false);
     }
-    public void guess(String msg, Expectation e, Magnitude m, boolean test){
+    public void warn(String msg, Expectation e, Magnitude m, boolean test){
         createFault(" Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString(), test, false);
     }
     public void check(String msg, boolean test) {

@@ -23,6 +23,7 @@ public interface Common{
         log = new Logger();
         gameTime = new ElapsedTime();
         bot = new TerraBot();
+        bot.init();
     }
     default void ready(){
         bot.start();

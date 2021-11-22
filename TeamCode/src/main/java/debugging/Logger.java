@@ -24,8 +24,11 @@ public class Logger {
         addLog(name, new Log(getLogName(name), LogType.MONITOR), val);
     }
 
-    public void status(String name, Status status){
-        addLog(name, new Log(getLogName(name), LogType.STATUS), status);
+    public void watch(Object val){
+        addLog(String.valueOf(val), new Log(getLogName(getLogName("Watch")), LogType.WATCH), String.valueOf(val));
+    }
+    public void watch(String caption, Object val){
+        addLog(caption, new Log(getLogName(caption), LogType.WATCH), String.valueOf(val));
     }
 
     public void save(String name, Object val){
@@ -48,7 +51,9 @@ public class Logger {
             case MONITOR:
                 logs.get(name).add(o);
                 break;
-            case STATUS:
+            case WATCH:
+                telemetry.addData(name, String.valueOf(o));
+                break;
             case SAVE:
                 logs.get(name).noTelemetry = true;
                 logs.get(name).addNewOnly(o);

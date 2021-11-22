@@ -9,24 +9,25 @@ import util.condition.Status;
 
 import static global.General.*;
 
-// WORKS!
 
 public class LoggerTest extends UnitTest {
     private double d = 0;
     private boolean b = false;
+    private Status s;
 
     @Override
     public void loop() {
         d += 0.1;
         b = !b;
-        if(testStatus.equals(Status.ACTIVE)){
-            testStatus = Status.IDLE;
+        if(s.equals(Status.ACTIVE)){
+            s = Status.IDLE;
         }else{
-            testStatus = Status.ACTIVE;
+            s = Status.ACTIVE;
         }
         log.display("log.display is working");
         log.monitor("Double", d);
         log.monitor("Boolean", b);
-        log.status("status", testStatus);
+        log.watch("Status Now", s);
+        log.save("All Status", s);
     }
 }

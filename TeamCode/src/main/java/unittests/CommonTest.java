@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import global.Common;
 import static global.General.*;
 
-// WORKS!
 
 public class CommonTest extends UnitTest {
 

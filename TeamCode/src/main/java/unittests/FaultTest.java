@@ -15,6 +15,6 @@ import static global.General.*;
 public class FaultTest extends UnitTest {
     @Override
     public void loop() {
-        fault.guess("Is fault working?", Expectation.INCONCEIVABLE, Magnitude.CATASTROPHIC, false);
+        fault.warn("Is fault working?", Expectation.INCONCEIVABLE, Magnitude.CATASTROPHIC, false);
     }
 }
