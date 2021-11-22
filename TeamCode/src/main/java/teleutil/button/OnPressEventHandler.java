@@ -1,12 +1,13 @@
 package teleutil.button;
 
+import teleutil.GamepadHandler;
 import util.codeseg.ParameterCodeSeg;
 
 public class OnPressEventHandler extends ButtonEventHandler {
 
     boolean wasPressed = false;
 
-    public OnPressEventHandler(Button b, ParameterCodeSeg cs) { super(b, cs); }
+    public OnPressEventHandler(Button b, ParameterCodeSeg cs, GamepadHandler gph) { super(b, cs, gph); }
 
     @Override
     protected boolean eventOccurred() {

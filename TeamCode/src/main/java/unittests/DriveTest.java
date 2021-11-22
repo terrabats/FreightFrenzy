@@ -1,12 +1,5 @@
 package unittests;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-import global.Common;
-import robot.RobotFramework;
-import robot.TerraBot;
 import static global.General.*;
 
 public class DriveTest extends UnitTest {

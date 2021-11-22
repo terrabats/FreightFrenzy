@@ -22,6 +22,7 @@ public class UnitTester extends OpMode implements Common {
         createAllUnitTests();
         for (UnitTest t: allUnitTests) {t.init();}
 //        testAll();
+        gph1.link(Button.X, ButtonEventType.ON_PRESS, (double... args) -> nextTest());
     }
 
     @Override
@@ -36,9 +37,6 @@ public class UnitTester extends OpMode implements Common {
             log.display("Testing " + getCurrentTestName());
             getCurrentTest().loop();
         }else{
-            nextTest();
-        }
-        if(gamepad1.x){
             nextTest();
         }
         update(true);
@@ -72,13 +70,14 @@ public class UnitTester extends OpMode implements Common {
     }
     private void createAllUnitTests(){
         allUnitTests = new ArrayList<>();
-        allUnitTests.add(new CommonTest());
-        allUnitTests.add(new CoordinatePlaneTest());
+//        allUnitTests.add(new CommonTest());
+//        allUnitTests.add(new CoordinatePlaneTest());
         allUnitTests.add(new DriveTest());
-        allUnitTests.add(new FaultTest());
-        allUnitTests.add(new GamepadTest().test());
-        allUnitTests.add(new LoggerTest());
+//        allUnitTests.add(new FaultTest());
+//        allUnitTests.add(new GamepadTest());
+//        allUnitTests.add(new LoggerTest());
         allUnitTests.add(new RobotFunctionsTest());
-        allUnitTests.add(new ThreadTest());
+//        allUnitTests.add(new ThreadTest());
+        testAll();
     }
 }

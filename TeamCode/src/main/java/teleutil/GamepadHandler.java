@@ -15,9 +15,9 @@ import util.codeseg.ParameterCodeSeg;
 import static global.General.*;
 
 public class GamepadHandler {
-    public static Gamepad gamepad;
+    public Gamepad gamepad;
 
-    public static final TreeMap<Button, BooleanCodeSeg> pressedMap = new TreeMap<Button, BooleanCodeSeg>() {{
+    public final TreeMap<Button, BooleanCodeSeg> pressedMap = new TreeMap<Button, BooleanCodeSeg>() {{
         put(Button.A, () -> gamepad.a);
         put(Button.B, () -> gamepad.b);
         put(Button.X, () -> gamepad.x);
@@ -34,7 +34,7 @@ public class GamepadHandler {
         put(Button.RIGHT_TRIGGER, () -> gamepad.right_trigger > 0.5);
     }};
 
-    public static final TreeMap<Button, DoubleCodeSeg> valueMap = new TreeMap<Button, DoubleCodeSeg>() {{
+    public final TreeMap<Button, DoubleCodeSeg> valueMap = new TreeMap<Button, DoubleCodeSeg>() {{
         put(Button.LEFT_TRIGGER, () -> gamepad.left_trigger);
         put(Button.RIGHT_TRIGGER, () -> gamepad.right_trigger);
     }};
@@ -44,13 +44,12 @@ public class GamepadHandler {
     public GamepadHandler(Gamepad gp) {
         gamepad = gp;
         for (Button b : Button.values()) {
-            handlerMap.put(b, new ButtonHandler(b));
+            handlerMap.put(b, new ButtonHandler(b, this));
         }
     }
 
     public void run() {
         for (ButtonHandler handler : handlerMap.values()) {
-            log.display("Running a ButtonHandler");
             handler.run();
         }
     }

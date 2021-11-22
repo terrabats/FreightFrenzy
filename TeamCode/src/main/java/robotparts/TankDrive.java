@@ -3,6 +3,8 @@ package robotparts;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+import java.util.Objects;
+
 public class TankDrive extends RobotPart{
     private DcMotor fr,br,fl,bl;
 
@@ -19,5 +21,13 @@ public class TankDrive extends RobotPart{
         br.setPower(f-t);
         fl.setPower(f+t);
         bl.setPower(f+t);
+    }
+
+    public double getPos(String mot) {
+        if (this.motors.containsKey(mot)) {
+            return Objects.requireNonNull(this.motors.get(mot)).getCurrentPosition();
+        } else {
+            return -1;
+        }
     }
 }
