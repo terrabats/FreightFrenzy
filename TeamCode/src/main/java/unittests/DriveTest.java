@@ -9,7 +9,7 @@ import static global.General.*;
 public class DriveTest extends UnitTest {
     @Override
     public void start() {
-        fault.check("robotPartsNotEmpty", Expectation.SURPRISING, Magnitude.MAJOR, TerraBot.allRobotParts.size() == 0);
+        fault.check("robotPartsIsEmpty", Expectation.SURPRISING, Magnitude.MAJOR, TerraBot.allRobotParts.size() != 0);
     }
 
     @Override

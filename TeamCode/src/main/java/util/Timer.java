@@ -13,7 +13,7 @@ public class Timer {
         ready = true;
     }
     public double seconds(){
-        fault.check("Used timer before reset", Expectation.SURPRISING, Magnitude.CRITICAL, ready);
+        fault.warn("Used timer before reset", Expectation.SURPRISING, Magnitude.CRITICAL, ready);
         return gameTime.seconds()-startTime;
     }
 }

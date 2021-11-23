@@ -52,7 +52,7 @@ public class Logger {
                 logs.get(name).add(o);
                 break;
             case WATCH:
-                telemetry.addData(name, String.valueOf(o));
+                telemetry.addData(log.name, String.valueOf(o));
                 break;
             case SAVE:
                 logs.get(name).noTelemetry = true;

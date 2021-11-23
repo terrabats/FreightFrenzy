@@ -15,6 +15,20 @@ import static global.General.*;
 public class UnitTester extends OpMode implements Common {
     private ArrayList<UnitTest> allUnitTests = new ArrayList<>();
     private int currentTestNum = 0;
+    private int testDelay = 5;
+    private final TestType typeOfTest = TestType.TIME;
+
+    private void createUnitTests(){
+        allUnitTests = new ArrayList<>();
+        allUnitTests.add(new CommonTest());
+        allUnitTests.add(new CoordinatePlaneTest());
+        allUnitTests.add(new DriveTest());
+        allUnitTests.add(new FaultTest());
+        allUnitTests.add(new GamepadTest());
+        allUnitTests.add(new LoggerTest());
+        allUnitTests.add(new RobotFunctionsTest());
+        allUnitTests.add(new ThreadTest());
+    }
 
     @Override
     public void init() {
@@ -22,6 +36,7 @@ public class UnitTester extends OpMode implements Common {
         createUnitTests();
         for (UnitTest t: allUnitTests) {t.init();}
         gph1.link(Button.X, ButtonEventType.ON_PRESS, (double... args) -> nextTest());
+        log.watch("Type of test: " + typeOfTest.toString());
     }
 
     @Override
@@ -56,15 +71,9 @@ public class UnitTester extends OpMode implements Common {
             requestOpModeStop();
         }
     }
-    private void createUnitTests(){
-        allUnitTests = new ArrayList<>();
-        allUnitTests.add(new CommonTest());
-        allUnitTests.add(new CoordinatePlaneTest());
-        allUnitTests.add(new DriveTest());
-        allUnitTests.add(new FaultTest());
-        allUnitTests.add(new GamepadTest());
-        allUnitTests.add(new LoggerTest());
-        allUnitTests.add(new RobotFunctionsTest());
-        allUnitTests.add(new ThreadTest());
+
+    private enum TestType{
+        CONTROL,
+        TIME
     }
 }
