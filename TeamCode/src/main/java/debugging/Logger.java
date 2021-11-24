@@ -70,6 +70,11 @@ public class Logger {
         }
         telemetry.update();
     }
+    public void clearTelemetry(){
+        for(String key: logs.keySet()){
+            logs.get(key).noTelemetry = true;
+        }
+    }
     public void showLogs(){
         for(String key: logs.keySet()){
             android.util.Log.println(7,logs.get(key).name, String.valueOf(logs.get(key).getValues()));

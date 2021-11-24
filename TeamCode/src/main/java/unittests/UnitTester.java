@@ -82,6 +82,7 @@ public class UnitTester extends OpMode implements Common {
         if(currentTestNum >= allUnitTests.size()){
             requestOpModeStop();
         }
+        log.clearTelemetry();
         timer.reset();
     }
 
