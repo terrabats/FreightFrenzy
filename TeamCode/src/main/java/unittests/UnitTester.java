@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import java.util.ArrayList;
+import util.Timer;
 
 import global.Common;
 import teleutil.button.Button;
@@ -15,8 +16,10 @@ import static global.General.*;
 public class UnitTester extends OpMode implements Common {
     private ArrayList<UnitTest> allUnitTests = new ArrayList<>();
     private int currentTestNum = 0;
-    private int testDelay = 5;
-    private final TestType typeOfTest = TestType.TIME;
+    private Timer timer = new Timer();
+
+    private final int testDelay = 5;
+    private final TestType testingMode = TestType.TIME;
 
     private void createUnitTests(){
         allUnitTests = new ArrayList<>();
@@ -35,19 +38,28 @@ public class UnitTester extends OpMode implements Common {
         reference(this);
         createUnitTests();
         for (UnitTest t: allUnitTests) {t.init();}
-        gph1.link(Button.X, ButtonEventType.ON_PRESS, (double... args) -> nextTest());
-        log.watch("Type of test: " + typeOfTest.toString());
+        if(testingMode.equals(TestType.CONTROL)) {
+            gph1.link(Button.X, ButtonEventType.ON_PRESS, (double... args) -> nextTest());
+        }
+        log.watch("Testing Mode: " + testingMode.toString());
+        activate();
     }
 
     @Override
     public void start() {
         for (UnitTest t : allUnitTests) {t.start();}
+        timer.reset();
         ready();
     }
 
     @Override
     public void loop() {
         log.display("Testing " + getCurrentTestName());
+        if(testingMode.equals(TestType.TIME)){
+            if(timer.seconds() > testDelay){
+                nextTest();
+            }
+        }
         getCurrentTest().test();
         update(true);
     }
@@ -70,6 +82,7 @@ public class UnitTester extends OpMode implements Common {
         if(currentTestNum >= allUnitTests.size()){
             requestOpModeStop();
         }
+        timer.reset();
     }
 
     private enum TestType{

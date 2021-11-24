@@ -25,10 +25,13 @@ public interface Common{
         bot = new TerraBot();
         bot.init();
     }
+    default void activate(){
+        log.watch("Ready");
+        log.showTelemetry();
+    }
     default void ready(){
         bot.start();
         sync.resetDelay();
-        log.display("Ready");
     }
     default void update(boolean showTelemetry){
         gph1.run();

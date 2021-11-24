@@ -13,7 +13,7 @@ import static global.General.*;
 public class LoggerTest extends UnitTest {
     private double d = 0;
     private boolean b = false;
-    private Status s;
+    private Status s = Status.ACTIVE;
 
     @Override
     public void loop() {

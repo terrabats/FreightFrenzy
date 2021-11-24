@@ -1,8 +1,14 @@
 package robotparts;
 
+import org.checkerframework.checker.units.qual.C;
+
+import robot.RobotFramework;
+import robot.TerraBot;
+import util.codeseg.CodeSeg;
+
 import static global.General.*;
 import static java.lang.Math.*;
-
+import static robot.RobotFramework.*;
 public class Odometry extends RobotPart {
 
     private static final double R = 10.0; // TODO: GET THE REAL VALUE
@@ -12,10 +18,13 @@ public class Odometry extends RobotPart {
     private double prevOdoOnePos;
     private double prevOdoTwoPos;
 
+    private final CodeSeg odometryUpdateCode = () -> {};
+
     @Override
     public void init() {
         prevOdoOnePos = 0.0;
         prevOdoTwoPos = 0.0;
+        odometryThread.setCode(odometryUpdateCode);
     }
 
     public double getDeltaOdoOne() {
