@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import java.util.ArrayList;
+
 import util.Timer;
 
 import global.Common;
@@ -18,21 +19,21 @@ public class UnitTester extends OpMode implements Common {
     private int currentTestNum = 0;
     private final Timer timer = new Timer();
 
-    private final int testDelay = 5;
+    private final int delay = 5;
     private final TestType testingMode = TestType.TIME;
 
     private void createUnitTests(){
         allUnitTests = new ArrayList<>();
-        allUnitTests.add(new CommonTest());
-        allUnitTests.add(new CoordinatePlaneTest());
+//        allUnitTests.add(new CommonTest());
+//        allUnitTests.add(new CoordinatePlaneTest());
         // TODO: REPLACE WITH TANK DRIVE TEST WHEN TESTING NEW ROBOT
-        allUnitTests.add(new MecDriveTest());
+//        allUnitTests.add(new MecDriveTest());
 //        allUnitTests.add(new TankDriveTest());
-        allUnitTests.add(new FaultTest());
-        allUnitTests.add(new GamepadTest());
+//        allUnitTests.add(new FaultTest());
+//        allUnitTests.add(new GamepadTest());
         allUnitTests.add(new LoggerTest());
         allUnitTests.add(new RobotFunctionsTest());
-        allUnitTests.add(new ThreadTest());
+//        allUnitTests.add(new ThreadTest());
     }
 
     @Override
@@ -58,17 +59,16 @@ public class UnitTester extends OpMode implements Common {
     public void loop() {
         log.display("Testing " + getCurrentTestName());
         if(testingMode.equals(TestType.TIME)){
-            if(timer.seconds() > testDelay){
+            if(timer.seconds() > delay){
                 nextTest();
             }
         }
-        getCurrentTest().test();
+        if (currentTestNum < allUnitTests.size()) getCurrentTest().test();
         update(true);
     }
 
     @Override
     public void stop(){
-        for (UnitTest t: allUnitTests) {t.stop();}
         end();
     }
 
@@ -80,6 +80,7 @@ public class UnitTester extends OpMode implements Common {
         return allUnitTests.get(currentTestNum);
     }
     private void nextTest(){
+        allUnitTests.get(currentTestNum).stop();
         currentTestNum++;
         if(currentTestNum >= allUnitTests.size()){
             requestOpModeStop();

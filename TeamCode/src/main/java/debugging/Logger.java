@@ -76,5 +76,6 @@ public class Logger {
         for(String key: logs.keySet()){
             android.util.Log.println(android.util.Log.ASSERT, getLog(key).name, String.valueOf(getLog(key).getValues()));
         }
+        android.util.Log.println(android.util.Log.ASSERT, "# of logs", String.valueOf(logs.keySet().size()));
     }
 }
