@@ -16,7 +16,7 @@ import static global.General.*;
 public class UnitTester extends OpMode implements Common {
     private ArrayList<UnitTest> allUnitTests = new ArrayList<>();
     private int currentTestNum = 0;
-    private Timer timer = new Timer();
+    private final Timer timer = new Timer();
 
     private final int testDelay = 5;
     private final TestType testingMode = TestType.TIME;
@@ -25,7 +25,9 @@ public class UnitTester extends OpMode implements Common {
         allUnitTests = new ArrayList<>();
         allUnitTests.add(new CommonTest());
         allUnitTests.add(new CoordinatePlaneTest());
-        allUnitTests.add(new DriveTest());
+        // TODO: REPLACE WITH TANK DRIVE TEST WHEN TESTING NEW ROBOT
+        allUnitTests.add(new MecDriveTest());
+//        allUnitTests.add(new TankDriveTest());
         allUnitTests.add(new FaultTest());
         allUnitTests.add(new GamepadTest());
         allUnitTests.add(new LoggerTest());

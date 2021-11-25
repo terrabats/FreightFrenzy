@@ -9,6 +9,7 @@ public class Carousel extends RobotPart{
 
     @Override
     public void init() {
+        // TODO: SET DIRECTIONS
         carouselLeft = createCRServo("carouselLeft", CRServo.Direction.FORWARD);
         carouselRight = createCRServo("carouselRight", CRServo.Direction.REVERSE);
         //

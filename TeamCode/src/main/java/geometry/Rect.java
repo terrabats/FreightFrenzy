@@ -37,7 +37,6 @@ public class Rect extends GeometryObject {
         return new Rect(new Point(ll.x+left, ll.y+bottom),  new Point(ur.x-right, ur.y-top));
     }
 
-    // TODO: THIS IS SCUFF FOR RECTANGLES
     @Override
     public GeometryObject getRotated(double angRad, Point origin) {
         return super.getRotated(angRad, origin);

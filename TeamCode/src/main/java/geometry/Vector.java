@@ -4,23 +4,20 @@ import static java.lang.Math.*;
 
 public class Vector extends GeometryObject {
     //x and y coords of the tip of vector, theta is angle measured from the right horizontal
-    public double x;
-    public double y;
+    public Point p;
     public double theta;
 
     //Constructor to create vect using coords
     public Vector(double x1, double y1){
-        x = x1;
-        y = y1;
-        theta = atan2(y, x);
+        p = new Point(x1, y1);
+        theta = atan2(p.y, p.x);
     }
     //Constructor to create vect using angle and length
     public Vector(double angle, double len, AngleType unit) {
         if (unit.equals(AngleType.DEGREES)) {
             angle *= PI/180;
         }
-        this.x = len * cos(angle);
-        this.y = len * sin(angle);
+        p = new Point(len * cos(angle), len * sin(angle));
     }
     //Gets a rotated vector of the current vector angle - positive is anticlockwise
 
@@ -33,29 +30,29 @@ public class Vector extends GeometryObject {
 
     //Gets x
     public double getX() {
-        return this.x;
+        return p.x;
     }
     //Gets y
     public double getY() {
-        return this.y;
+        return p.y;
     }
     //Gets length
     public double getLen() {
-        return sqrt(pow(x, 2) + pow(y, 2));
+        return sqrt(pow(p.x, 2) + pow(p.y, 2));
     }
     //Gets angle
     public double getAngle(AngleType type) {
         if (type == AngleType.RADIANS) {
-            return atan2(y,x);
+            return atan2(p.y,p.x);
         } else {
-            return atan2(y,x) * 180/PI;
+            return atan2(p.y,p.x) * 180/PI;
         }
     }
     //Sets x and y coords
     public void setXY(double x1, double y1){
-        x = x1;
-        y = y1;
-        theta = atan2(y, x);
+        p.x = x1;
+        p.y = y1;
+        theta = atan2(p.y, p.x);
     }
     //Creates a string representation
     public String toString() {
@@ -64,11 +61,11 @@ public class Vector extends GeometryObject {
 
 
     public Vector add(Vector in){
-        return new Vector(x+in.x, y+in.y);
+        return new Vector(p.x+in.p.x, p.y+in.p.y);
     }
 
     public Vector subtract(Vector in){
-        return new Vector(x-in.x, y-in.y);
+        return new Vector(p.x-in.p.x, p.y-in.p.y);
     }
 
 }

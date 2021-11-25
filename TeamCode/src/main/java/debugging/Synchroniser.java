@@ -17,7 +17,7 @@ public class Synchroniser {
         lagTimer.reset();
     }
     public void update(){
-        numUpdates += 1;
+        numUpdates++;
     }
     public void logDelay() {
         fault.warn("Sync was never updated", Expectation.UNEXPECTED, Magnitude.CRITICAL, numUpdates != 0);

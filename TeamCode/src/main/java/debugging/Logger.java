@@ -1,11 +1,6 @@
 package debugging;
 
-import java.util.Comparator;
 import java.util.LinkedHashMap;
-import java.util.Map.Entry;
-import java.util.TreeMap;
-
-import util.condition.Status;
 
 import static global.General.*;
 
@@ -39,6 +34,8 @@ public class Logger {
         return "Log #"+logNum+": "+ name;
     }
 
+    private Log getLog(String name) { return logs.get(name); }
+
     private void addLog(String name, Log log, Object o){
         if(!logs.containsKey(name)){
             logs.put(name, log);
@@ -46,38 +43,38 @@ public class Logger {
         }
         switch (log.logType){
             case NORMAL:
-                logs.get(name).addNewOnly(o);
+                getLog(name).addNewOnly(o);
                 break;
             case MONITOR:
-                logs.get(name).add(o);
+                getLog(name).add(o);
                 break;
             case WATCH:
                 telemetry.addData(log.name, String.valueOf(o));
-                logs.get(name).noTelemetry = true;
-                logs.get(name).add(o);
+                getLog(name).noTelemetry = true;
+                getLog(name).add(o);
                 break;
             case SAVE:
-                logs.get(name).noTelemetry = true;
-                logs.get(name).addNewOnly(o);
+                getLog(name).noTelemetry = true;
+                getLog(name).addNewOnly(o);
                 break;
         }
     }
     public void showTelemetry(){
         for(String key: logs.keySet()){
-            if(!logs.get(key).noTelemetry) {
-                telemetry.addData(logs.get(key).name, logs.get(key).getCurrentObject());
+            if(!getLog(key).noTelemetry) {
+                telemetry.addData(getLog(key).name, getLog(key).getCurrentObject());
             }
         }
         telemetry.update();
     }
     public void clearTelemetry(){
         for(String key: logs.keySet()){
-            logs.get(key).noTelemetry = true;
+            getLog(key).noTelemetry = true;
         }
     }
     public void showLogs(){
         for(String key: logs.keySet()){
-            android.util.Log.println(7,logs.get(key).name, String.valueOf(logs.get(key).getValues()));
+            android.util.Log.println(android.util.Log.ASSERT, getLog(key).name, String.valueOf(getLog(key).getValues()));
         }
     }
 }

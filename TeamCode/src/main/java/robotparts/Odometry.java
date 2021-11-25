@@ -1,15 +1,14 @@
 package robotparts;
 
-import org.checkerframework.checker.units.qual.C;
-
-import robot.RobotFramework;
-import robot.TerraBot;
 import util.codeseg.CodeSeg;
 
 import static global.General.*;
 import static java.lang.Math.*;
 import static robot.RobotFramework.*;
+
 public class Odometry extends RobotPart {
+
+    // TODO: TEST THIS
 
     private static final double R = 10.0; // TODO: GET THE REAL VALUE
     private static final double ODO1_TO_CENTER_X = 10.0; // TODO: GET THE REAL VALUE
@@ -28,13 +27,13 @@ public class Odometry extends RobotPart {
     }
 
     public double getDeltaOdoOne() {
-        double delta = bot.mechDrive.getPos("fr") - prevOdoOnePos;
+        double delta = bot.tankDrive.getPos("fr") - prevOdoOnePos;
         prevOdoOnePos += delta;
         return delta;
     }
 
     public double getDeltaOdoTwo() {
-        double delta = bot.mechDrive.getPos("br") - prevOdoTwoPos;
+        double delta = bot.tankDrive.getPos("br") - prevOdoTwoPos;
         prevOdoTwoPos += delta;
         return delta;
     }
