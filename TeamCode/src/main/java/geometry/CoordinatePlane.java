@@ -1,22 +1,23 @@
 package geometry;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static java.lang.Math.*;
 
 public class CoordinatePlane {
-    double curOrientRad = 0.0;
-    Point origin = new Point(0, 0);
+    protected double curOrientRad = 0.0;
+    protected final Point origin = new Point(0, 0);
 
     private final ArrayList<GeometryObject> objects = new ArrayList<>();
 
-    public void add(GeometryObject o) {
-        objects.add(o);
-    }
+    public void add(GeometryObject... o) { Collections.addAll(objects, o); }
 
     public void rotate(double ang, AngleType angType) {
         curOrientRad += getAngRad(ang, angType);
     }
+
+    public void move(double x, double y) { origin.x += x; origin.y += y; }
 
     public void setOrientation(double ang, AngleType angType) {
         curOrientRad = getAngRad(ang, angType);

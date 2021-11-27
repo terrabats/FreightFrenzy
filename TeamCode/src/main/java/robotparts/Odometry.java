@@ -8,8 +8,6 @@ import static robot.RobotFramework.*;
 
 public class Odometry extends RobotPart {
 
-    // TODO: TEST THIS
-
     private static final double R = 10.0; // TODO: GET THE REAL VALUE
     private static final double ODO1_TO_CENTER_X = 10.0; // TODO: GET THE REAL VALUE
     private static final double ODO1_TO_CENTER_Y = 10.0; // TODO: GET THE REAL VALUE
@@ -26,16 +24,20 @@ public class Odometry extends RobotPart {
         odometryThread.setCode(odometryUpdateCode);
     }
 
-    public double getDeltaOdoOne() {
-        double delta = bot.tankDrive.getPos("fr") - prevOdoOnePos;
+    private double getDeltaOdoOne() {
+        double delta = ticksToCm(bot.tankDrive.getPos("fr")) - prevOdoOnePos;
         prevOdoOnePos += delta;
         return delta;
     }
 
-    public double getDeltaOdoTwo() {
-        double delta = bot.tankDrive.getPos("br") - prevOdoTwoPos;
+    private double getDeltaOdoTwo() {
+        double delta = ticksToCm(bot.tankDrive.getPos("br")) - prevOdoTwoPos;
         prevOdoTwoPos += delta;
         return delta;
+    }
+
+    private double ticksToCm(double ticks) {
+        return ticks; // TODO: FIX THIS METHOD
     }
 
     public double[] getPosChangeCenter() {

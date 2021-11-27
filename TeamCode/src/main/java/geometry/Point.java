@@ -2,7 +2,7 @@ package geometry;
 
 import static java.lang.Math.*;
 
-public class Point {
+public class Point extends GeometryObject {
     public double x, y;
     public Point(double x, double y) {
         this.x = x;

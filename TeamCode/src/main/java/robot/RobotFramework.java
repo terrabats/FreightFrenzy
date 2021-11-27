@@ -2,6 +2,7 @@ package robot;
 
 import java.util.ArrayList;
 
+import geometry.CoordinatePlane;
 import robotparts.RobotPart;
 import util.TerraThread;
 
@@ -9,11 +10,13 @@ import static global.General.*;
 
 public class RobotFramework {
     public static ArrayList<RobotPart> allRobotParts = new ArrayList<>();
+    public CoordinatePlane localPlane;
     public static TerraThread robotFunctionsThread;
     public static TerraThread odometryThread;
     public RobotFunctions rfsHandler;
 
     public RobotFramework(){
+        localPlane = new CoordinatePlane();
         rfsHandler = new RobotFunctions();
         robotFunctionsThread = new TerraThread();
         odometryThread = new TerraThread();
