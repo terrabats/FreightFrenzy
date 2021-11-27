@@ -20,6 +20,30 @@ public class RobotFunctionsTest extends UnitTest {
                 bot.mechDrive.move(0, 0, 0);
             }
         });
+        bot.rfsHandler.addToQueue(new Stage() {
+            @Override
+            public boolean run(double in) {
+                bot.mechDrive.move(-0.3, 0, 0);
+                return in > 1;
+            }
+
+            @Override
+            public void runOnStop() {
+                bot.mechDrive.move(0, 0, 0);
+            }
+        });
+        bot.rfsHandler.addToQueue(new Stage() {
+            @Override
+            public boolean run(double in) {
+                bot.mechDrive.move(0, 0, 0.2);
+                return in > 1;
+            }
+
+            @Override
+            public void runOnStop() {
+                bot.mechDrive.move(0, 0, 0);
+            }
+        });
 
 //        bot.rfsHandler.addToQueue(new Stage() {
 //            @Override
