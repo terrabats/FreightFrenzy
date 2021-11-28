@@ -14,13 +14,9 @@ public class ButtonEventHandler {
 
     boolean wasPressed = false;
 
-    public ButtonEventHandler(Button b) { button = b; }
-
     public ButtonEventHandler(Button button, ParameterCodeSeg codeSeg, GamepadHandler gph) {
         this.button = button; this.codeSeg = codeSeg; this.gph = gph;
     }
-
-    public void set(GamepadHandler gamepadHandler) { gph = gamepadHandler; }
 
     public void run() { runArgs(pressed() ? 1 : 0); wasPressed = this.pressed(); }
 

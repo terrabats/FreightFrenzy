@@ -7,14 +7,10 @@ import java.util.TreeMap;
 
 import teleutil.button.Button;
 import teleutil.button.ButtonEventHandler;
-import teleutil.button.ButtonEventType;
 import teleutil.button.ButtonHandler;
 import util.codeseg.BooleanCodeSeg;
-import util.codeseg.CodeSeg;
 import util.codeseg.DoubleCodeSeg;
 import util.codeseg.ParameterCodeSeg;
-
-import static global.General.*;
 
 public class GamepadHandler {
     public Gamepad gamepad;
@@ -56,11 +52,7 @@ public class GamepadHandler {
         }
     }
 
-    public void addCustom(ButtonEventHandler eventHandler) {
-        Objects.requireNonNull(handlerMap.get(eventHandler.button)).addEvent(eventHandler);
-    }
-
-    public void link(Button b, ButtonEventType type, ParameterCodeSeg codeSeg) {
-        handlerMap.get(b).addEvent(type, codeSeg);
+    public void link(Button b, Class<? extends ButtonEventHandler> type, ParameterCodeSeg codeSeg) {
+        Objects.requireNonNull(handlerMap.get(b)).addEvent(type, codeSeg);
     }
 }

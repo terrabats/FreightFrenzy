@@ -5,8 +5,6 @@ import util.codeseg.ParameterCodeSeg;
 
 public class OnPressEventHandler extends ChangeHoldEventHandler {
 
-    public OnPressEventHandler(Button b) { super(b); }
-
     public OnPressEventHandler(Button button, ParameterCodeSeg codeSeg, GamepadHandler gph) { super(button, codeSeg, gph); }
 
     @Override

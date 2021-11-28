@@ -7,8 +7,6 @@ public class ChangeHoldEventHandler extends ButtonEventHandler {
 
     boolean wasPressed = false;
 
-    public ChangeHoldEventHandler(Button b) { super(b); }
-
     public ChangeHoldEventHandler(Button button, ParameterCodeSeg codeSeg, GamepadHandler gph) { super(button, codeSeg, gph); }
 
     @Override

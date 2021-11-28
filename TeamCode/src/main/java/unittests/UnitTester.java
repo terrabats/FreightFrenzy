@@ -5,11 +5,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import java.util.ArrayList;
 
+import teleutil.button.OnPressEventHandler;
 import util.Timer;
 
 import global.Common;
 import teleutil.button.Button;
-import teleutil.button.ButtonEventType;
 
 import static global.General.*;
 
@@ -42,7 +42,7 @@ public class UnitTester extends OpMode implements Common {
         createUnitTests();
         for (UnitTest t: allUnitTests) {t.init();}
         if(testingMode.equals(TestType.CONTROL)) {
-            gph1.link(Button.X, ButtonEventType.ON_PRESS, (double... args) -> nextTest());
+            gph1.link(Button.X, OnPressEventHandler.class, (double... args) -> nextTest());
         }
         log.watch("Testing Mode: " + testingMode.toString());
         activate();
