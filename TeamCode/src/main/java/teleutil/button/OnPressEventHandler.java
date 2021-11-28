@@ -3,22 +3,14 @@ package teleutil.button;
 import teleutil.GamepadHandler;
 import util.codeseg.ParameterCodeSeg;
 
-public class OnPressEventHandler extends ButtonEventHandler {
+public class OnPressEventHandler extends ChangeHoldEventHandler {
 
-    boolean wasPressed = false;
+    public OnPressEventHandler(Button b) { super(b); }
 
-    public OnPressEventHandler(Button b, ParameterCodeSeg cs, GamepadHandler gph) { super(b, cs, gph); }
-
-    @Override
-    protected boolean eventOccurred() {
-        return this.pressed() != wasPressed;
-    }
+    public OnPressEventHandler(Button button, ParameterCodeSeg codeSeg, GamepadHandler gph) { super(button, codeSeg, gph); }
 
     @Override
-    public void run() {
-        if (this.pressed()) {
-            super.run();
-        }
-        wasPressed = this.pressed();
+    protected void runArgs(double... args) {
+        if (args[0] == 1) super.runArgs(args);
     }
 }

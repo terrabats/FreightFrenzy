@@ -2,9 +2,11 @@ package teleutil;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import java.util.Objects;
 import java.util.TreeMap;
 
 import teleutil.button.Button;
+import teleutil.button.ButtonEventHandler;
 import teleutil.button.ButtonEventType;
 import teleutil.button.ButtonHandler;
 import util.codeseg.BooleanCodeSeg;
@@ -52,6 +54,10 @@ public class GamepadHandler {
         for (ButtonHandler handler : handlerMap.values()) {
             handler.run();
         }
+    }
+
+    public void addCustom(ButtonEventHandler eventHandler) {
+        Objects.requireNonNull(handlerMap.get(eventHandler.button)).addEvent(eventHandler);
     }
 
     public void link(Button b, ButtonEventType type, ParameterCodeSeg codeSeg) {
