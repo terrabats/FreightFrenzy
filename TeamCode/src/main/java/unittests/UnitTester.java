@@ -20,7 +20,7 @@ public class UnitTester extends OpMode implements Common {
     private final Timer timer = new Timer();
 
     private final int delay = 5;
-    private final TestType testingMode = TestType.TIME;
+    private final TestType testingMode = TestType.CONTROL;
 
     private void createUnitTests(){
         allUnitTests = new ArrayList<>();
