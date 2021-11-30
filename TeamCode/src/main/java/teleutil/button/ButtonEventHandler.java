@@ -9,12 +9,16 @@ import static global.General.*;
 
 public class ButtonEventHandler {
     protected ParameterCodeSeg codeSeg;
-    protected Button button;
+    public Button button;
     protected GamepadHandler gph;
 
-    public ButtonEventHandler(Button b, ParameterCodeSeg cs, GamepadHandler gph) { button = b; codeSeg = cs; this.gph = gph; }
+    boolean wasPressed = false;
 
-    public void run() { runArgs(pressed() ? 1 : 0); }
+    public ButtonEventHandler(Button button, ParameterCodeSeg codeSeg, GamepadHandler gph) {
+        this.button = button; this.codeSeg = codeSeg; this.gph = gph;
+    }
+
+    public void run() { runArgs(pressed() ? 1 : 0); wasPressed = this.pressed(); }
 
     protected boolean eventOccurred() { return pressed(); }
 

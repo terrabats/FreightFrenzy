@@ -5,15 +5,14 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Intake extends RobotPart{
-    private DcMotor intakemotor;
+    private DcMotor intake;
 
     @Override
     public void init(){
-        // TODO: SET DIRECTIONS
-        intakemotor = createMotor("lift", DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        intake = createMotor("in", DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
-    public void lift(double power){
-        intakemotor.setPower(power);
+    public void spin(double power){
+        intake.setPower(power);
     }
 }
