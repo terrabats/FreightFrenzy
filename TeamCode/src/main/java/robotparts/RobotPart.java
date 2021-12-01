@@ -3,6 +3,7 @@ package robotparts;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -22,6 +23,7 @@ public class RobotPart {
     public TreeMap<String, CRServo> crservos = new TreeMap<>();
     public TreeMap<String, BNO055IMU> gyrosensors = new TreeMap<>();
     public TreeMap<String, DistanceSensor> distancesensors = new TreeMap<>();
+    public TreeMap<String, ColorSensor> colorsensors = new TreeMap<>();
 
     private Status currentStatus = Status.INACTIVE;
 
@@ -75,6 +77,12 @@ public class RobotPart {
         DistanceSensor distanceSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, name);
         distancesensors.put(name, distanceSensor);
         return distanceSensor;
+    }
+
+    protected ColorSensor createColorSensor(String name){
+        ColorSensor colorSensor = hardwareMap.get(ColorSensor.class, name);
+        colorsensors.put(name, colorSensor);
+        return colorSensor;
     }
 
 
