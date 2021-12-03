@@ -2,7 +2,8 @@ package autoutil;
 
 import util.Timer;
 
-public class PID {
+public class Profiler {
+    // Fix this so that instead of PID it should contain just the things to store values of position, velocity, acelleraton, and things like that
     private final Timer timer = new Timer();
 
     private final double kp, ki, kd;
@@ -11,7 +12,7 @@ public class PID {
 
     private boolean prevUsed;
 
-    public PID(double kp, double ki, double kd) {
+    public Profiler(double kp, double ki, double kd) {
         this.kp = kp;
         this.ki = ki;
         this.kd = kd;

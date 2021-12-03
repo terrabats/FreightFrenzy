@@ -11,7 +11,7 @@ import util.condition.Magnitude;
 import static global.General.*;
 
 @TeleOp(name = "TestOp", group = "TeleOp")
-public class TestOp extends OpMode implements Common {
+public class TestOp extends Tele {
     @Override
     public void init() {
         reference(this);

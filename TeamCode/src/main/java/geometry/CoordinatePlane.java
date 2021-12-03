@@ -3,6 +3,8 @@ package geometry;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import geometry.polygons.Rect;
+
 import static java.lang.Math.*;
 
 public class CoordinatePlane {

@@ -1,6 +1,8 @@
-package geometry;
+package geometry.polygons;
 
-public class TriangleMath {
+import geometry.GeometryObject;
+
+public class Triangle extends Polygon {
     //Calculates law of cosines for C knowing a,b and the angle between them
     public static double lawOfCosinesC(double a, double b, double rad){
         return Math.sqrt(a*a+b*b-(2*a*b*Math.cos(rad)));
@@ -13,5 +15,4 @@ public class TriangleMath {
     public static double pythagoreanC(double a, double b){
         return Math.sqrt(a*a + b*b);
     }
-
 }
