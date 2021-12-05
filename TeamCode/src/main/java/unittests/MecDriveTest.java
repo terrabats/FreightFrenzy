@@ -14,11 +14,12 @@ public class MecDriveTest extends UnitTest {
 
     @Override
     public void loop() {
-        bot.mechDrive.move(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
+        //bot.mechDrive.move(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
     }
 
     @Override
     public void stop() {
-        bot.mechDrive.move(0, 0, 0);
+
+        //bot.mechDrive.move(0, 0, 0);
     }
 }
