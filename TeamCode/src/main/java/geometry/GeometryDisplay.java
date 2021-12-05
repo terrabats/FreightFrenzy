@@ -1,14 +1,15 @@
 package geometry;
 import android.graphics.Color;
+import java.awt.*;
+import java.awt.*;
+import java.awt.*;
+import java.awt.image.*;
+import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
 
-//import java.awt.*;
-//import java.awt.*;
-//import java.awt.image.*;
-//import java.awt.image.*;
-//import java.io.File;
-//
-//import javax.imageio.*;
-
+import javax.imageio.*;
+import javax.swing.JPanel;
 
 
 public class GeometryDisplay {
@@ -29,21 +30,20 @@ public class GeometryDisplay {
 //
 //    file = new File("newimage.jpg");
 //        ImageIO.write(rendImage, "jpg", file);
-//    JPanel dPanel;
-//
-//    public void save()
-//    {
-//        BufferedImage bImg = new BufferedImage(dPanel.getWidth(), dPanel.getHeight(), BufferedImage.TYPE_INT_RGB);
-//        Graphics2D cg = bImg.createGraphics();
-//        dPanel.paintAll(cg);
-//        try {
-//            if (ImageIO.write(bImg, "png", new File("./output_image.png")))
-//            {
-//                System.out.println("-- saved");
-//            }
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//    }
+    JPanel dPanel;
+
+    public void save()
+    {
+        BufferedImage bImg = new BufferedImage(dPanel.getWidth(), dPanel.getHeight(), BufferedImage.TYPE_INT_RGB);
+        Graphics2D cg = bImg.createGraphics();
+        dPanel.paintAll(cg);
+        try {
+            if (ImageIO.write(bImg, "png", new File("./output_image.png")))
+            {
+                System.out.println("-- saved");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
