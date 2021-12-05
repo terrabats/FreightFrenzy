@@ -2,6 +2,7 @@ package geometry.polygons;
 
 import geometry.GeometryObject;
 import geometry.Point;
+import geometry.Position;
 
 //Rect class defines a rectagle object
 public class Rect extends Quadrilateral {
@@ -41,8 +42,8 @@ public class Rect extends Quadrilateral {
     }
 
     @Override
-    public GeometryObject getRotated(double angRad, Point origin) {
-        return super.getRotated(angRad, origin);
+    public GeometryObject getRelativeTo(Position origin) {
+        return super.getRelativeTo(origin);
     }
 
     //Creates a string representation

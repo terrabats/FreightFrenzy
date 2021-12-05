@@ -26,25 +26,6 @@ public class ButtonHandler {
         }
     }
 
-//    public <T extends ButtonEventHandler> void addEvent (ParameterCodeSeg codeSegs) {
-//        eventHandlers.add(type.newInstance());
-////        if (type == ButtonEventType.NORMAL) {
-////            eventHandlers.add(new ButtonEventHandler(button, codeSegs, gph));
-////        } else if (type == ButtonEventType.ON_PRESS) {
-////            eventHandlers.add(new OnPressEventHandler(button, codeSegs, gph));
-////        } else if (type == ButtonEventType.CHANGE_HOLD) {
-////            eventHandlers.add(new ChangeHoldEventHandler(button, codeSegs, gph));
-////        } else if (type == ButtonEventType.ON_TURN_ON) {
-////            eventHandlers.add(new OnTurnOnEventHandler(button, codeSegs, gph));
-////        } else if (type == ButtonEventType.ON_TURN_OFF) {
-////            eventHandlers.add(new OnTurnOffEventHandler(button, codeSegs, gph));
-////        } else if (type == ButtonEventType.WHEN_ON) {
-////            eventHandlers.add(new WhenOnEventHandler(button, codeSegs, gph));
-////        } else if (type == ButtonEventType.WHEN_OFF) {
-////            eventHandlers.add(new WhenOffEventHandler(button, codeSegs, gph));
-////        }
-//    }
-
     public void run() {
         for (ButtonEventHandler handler : eventHandlers) {
             handler.run();

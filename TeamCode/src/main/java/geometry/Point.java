@@ -8,10 +8,10 @@ public class Point extends GeometryObject {
         this.x = x;
         this.y = y;
     }
-    public Point rotate(double angRad, Point origin) {
-        double sx = x - origin.x, sy = y - origin.y;
-        double nx = sx * cos(angRad) - sy * sin(angRad);
-        double ny = sx * sin(angRad) + sy * cos(angRad);
+    public Point changeOrigin(Position origin) {
+        double sx = x - origin.p.x, sy = y - origin.p.y;
+        double nx = sx * cos(origin.ang) - sy * sin(origin.ang);
+        double ny = sx * sin(origin.ang) + sy * cos(origin.ang);
         return new Point(nx, ny);
     }
     public String toString() {

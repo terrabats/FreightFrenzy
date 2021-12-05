@@ -26,7 +26,7 @@ public class Circle extends GeometryObject{
     }
 
     @Override
-    public GeometryObject getRotated(double angRad, Point origin) {
-        return new Circle((Point) center.rotate(angRad, origin), r);
+    public GeometryObject getRelativeTo(Position origin) {
+        return new Circle((Point) center.changeOrigin(origin), r);
     }
 }

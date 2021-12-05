@@ -8,21 +8,20 @@ import geometry.polygons.Rect;
 import static java.lang.Math.*;
 
 public class CoordinatePlane {
-    protected double curOrientRad = 0.0;
-    protected final Point origin = new Point(0, 0);
+    protected final Position origin = new Position(new Point(0, 0), 0);
 
     private final ArrayList<GeometryObject> objects = new ArrayList<>();
 
     public void add(GeometryObject... o) { Collections.addAll(objects, o); }
 
     public void rotate(double ang, AngleType angType) {
-        curOrientRad += getAngRad(ang, angType);
+        origin.ang += getAngRad(ang, angType);
     }
 
-    public void move(double x, double y) { origin.x += x; origin.y += y; }
+    public void move(double x, double y) { origin.translate(x, y); }
 
     public void setOrientation(double ang, AngleType angType) {
-        curOrientRad = getAngRad(ang, angType);
+        origin.ang = getAngRad(ang, angType);
     }
 
     public double getAngRad(double ang, AngleType angType) {
@@ -41,10 +40,12 @@ public class CoordinatePlane {
 
     public ArrayList<Vector> getVectors() { return getObjects(Vector.class); }
 
+    public ArrayList<Position> getPositions() { return getObjects(Position.class); }
+
     @SuppressWarnings("unchecked")
     public <T> ArrayList<T> getObjects(Class<T> type) {
         ArrayList<T> ret = new ArrayList<>();
-        for (GeometryObject o : getRotatedObjects()) {
+        for (GeometryObject o : getAdjustedObjects()) {
             if (o.getClass() == type) {
                 ret.add((T) o);
             }
@@ -52,10 +53,10 @@ public class CoordinatePlane {
         return ret;
     }
 
-    private ArrayList<GeometryObject> getRotatedObjects() {
+    private ArrayList<GeometryObject> getAdjustedObjects() {
         ArrayList<GeometryObject> ret = new ArrayList<>();
         for (GeometryObject a : objects) {
-            ret.add(a.getRotated(curOrientRad, origin));
+            ret.add(a.getRelativeTo(origin));
         }
         return ret;
     }

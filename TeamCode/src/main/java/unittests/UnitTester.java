@@ -25,12 +25,11 @@ public class UnitTester extends OpMode implements Common {
     private void createUnitTests(){
         allUnitTests = new ArrayList<>();
 //        allUnitTests.add(new CommonTest());
-//        allUnitTests.add(new CoordinatePlaneTest());
-        // TODO: REPLACE WITH TANK DRIVE TEST WHEN TESTING NEW ROBOT
+        allUnitTests.add(new CoordinatePlaneTest());
 //        allUnitTests.add(new MecDriveTest());
 //        allUnitTests.add(new TankDriveTest());
 //        allUnitTests.add(new FaultTest());
-        allUnitTests.add(new GamepadTest());
+//        allUnitTests.add(new GamepadTest());
 //        allUnitTests.add(new LoggerTest());
 //        allUnitTests.add(new RobotFunctionsTest());
 //        allUnitTests.add(new ThreadTest());

@@ -20,8 +20,8 @@ public class Line extends GeometryObject {
     }
 
     //Gets the position of the line at a certain t value
-    public double[] getAt(double t){
-        return new double[] { (p1.x)+(mx*t), (p1.y)+(my*t) };
+    public Point getAt(double t){
+        return new Point ((p1.x)+(mx*t), (p1.y)+(my*t));
     }
 
     //Gets the length of the line
@@ -30,8 +30,8 @@ public class Line extends GeometryObject {
     }
 
     @Override
-    public GeometryObject getRotated(double angRad, Point origin) {
-        return new Line(p1.rotate(angRad, origin), p2.rotate(angRad, origin));
+    public GeometryObject getRelativeTo(Position origin) {
+        return new Line(p1.changeOrigin(origin), p2.changeOrigin(origin));
     }
 
     public String toString() {

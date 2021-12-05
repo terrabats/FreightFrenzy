@@ -1,7 +1,7 @@
 package geometry;
 
 public abstract class GeometryObject {
-    public GeometryObject getRotated(double angRad, Point origin) {
+    public GeometryObject getRelativeTo(Position origin) {
         return this;
     }
 }

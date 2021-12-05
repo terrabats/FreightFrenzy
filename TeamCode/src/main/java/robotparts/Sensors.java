@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-import global.GameElement;
+import elements.GameElement;
 
 public class Sensors extends RobotPart {
 

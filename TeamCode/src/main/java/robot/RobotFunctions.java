@@ -22,6 +22,7 @@ public class RobotFunctions {
     public CodeSeg updateCode = () -> {
         if(!rfsQueue.isEmpty()){
             Stage s = rfsQueue.peek();
+            assert s != null;
             if (s.run(timer.seconds())) {
                 s.runOnStop();
                 rfsQueue.poll();
