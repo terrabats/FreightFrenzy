@@ -8,12 +8,15 @@ public class Point extends GeometryObject {
         this.x = x;
         this.y = y;
     }
-    public Point changeOrigin(Position origin) {
+
+    @Override
+    public Point getRelativeTo(Pose origin) {
         double sx = x - origin.p.x, sy = y - origin.p.y;
-        double nx = sx * cos(origin.ang) - sy * sin(origin.ang);
-        double ny = sx * sin(origin.ang) + sy * cos(origin.ang);
+        double nx = sx * cos(origin.ang) + sy * sin(origin.ang);
+        double ny = sx * -sin(origin.ang) + sy * cos(origin.ang);
         return new Point(nx, ny);
     }
+
     public String toString() {
         return x + " " + y;
     }

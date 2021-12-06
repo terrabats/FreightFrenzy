@@ -1,7 +1,6 @@
 package util;
 
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -10,12 +9,7 @@ import javax.swing.JPanel;
 import autoutil.Generator;
 import autoutil.paths.Path;
 import autoutil.paths.PathSegment;
-import geometry.Circle;
-import geometry.CoordinatePlane;
-import geometry.GeometryObject;
-import geometry.Line;
-import geometry.Point;
-import geometry.Position;
+import geometry.Pose;
 
 import static java.lang.Math.*;
 
@@ -43,7 +37,7 @@ public class Display extends JPanel {
     public void paintComponent(Graphics g) {
         for (PathSegment ps : pathToDisplay.segments) {
             System.out.println(ps.points.size());
-            for (Position p : ps.points) {
+            for (Pose p : ps.points) {
 //                g.drawLine(pX(p.p.x) + 300, pY(p.p.y) + 300, pX(p.p.x) + 300, pY(p.p.y) + 300);
                 g.fillOval(pX(p.p.x) + 300, pY(p.p.y) + 300, 5, 5);
             }

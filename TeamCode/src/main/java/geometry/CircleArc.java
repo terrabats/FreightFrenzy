@@ -24,15 +24,15 @@ public class CircleArc extends Circle {
                 getThetaFromPoint(p) <= Math.max(arcSt, arcEnd);
     }
 
-    public ArrayList<Position> getPoints(double angDivide) {
-        ArrayList<Position> ret = new ArrayList<>();
+    public ArrayList<Pose> getPoints(double angDivide) {
+        ArrayList<Pose> ret = new ArrayList<>();
         for (double i = arcSt; i <= ((arcSt < arcEnd) ? 0:(2*PI)) + arcEnd; i += angDivide) {
             ret.add(getPositionFromTheta(i));
         }
         return ret;
     }
 
-    public boolean goingCW(Position p) {
+    public boolean goingCW(Pose p) {
         if (p.p.x > center.x) {
             if (p.p.y > center.y) {
                 return p.ang == 0 || (p.ang >= 3 * PI / 2 && p.ang <= 2 * PI);

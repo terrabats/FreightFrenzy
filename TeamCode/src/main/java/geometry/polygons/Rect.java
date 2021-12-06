@@ -2,7 +2,7 @@ package geometry.polygons;
 
 import geometry.GeometryObject;
 import geometry.Point;
-import geometry.Position;
+import geometry.Pose;
 
 //Rect class defines a rectagle object
 public class Rect extends Quadrilateral {
@@ -42,7 +42,7 @@ public class Rect extends Quadrilateral {
     }
 
     @Override
-    public GeometryObject getRelativeTo(Position origin) {
+    public GeometryObject getRelativeTo(Pose origin) {
         return super.getRelativeTo(origin);
     }
 

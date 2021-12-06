@@ -3,7 +3,7 @@ package autoutil.paths;
 import geometry.Circle;
 import geometry.CircleArc;
 import geometry.Point;
-import geometry.Position;
+import geometry.Pose;
 import global.Constants;
 
 public class Arc extends PathSegment{
@@ -28,12 +28,12 @@ public class Arc extends PathSegment{
         points.addAll(arc.getPoints(Constants.ANG_ACC_ARC));
     }
 
-    public boolean goingCW(Position p) {
+    public boolean goingCW(Pose p) {
         return arc.goingCW(p);
     }
 
     @Override
-    public void unshift(Position origin) {
+    public void unshift(Pose origin) {
 //        Position orig = new Position(
 //                new Point(-origin.p.x, -origin.p.y), (-origin.ang) % (2 * Math.PI)
 //        );

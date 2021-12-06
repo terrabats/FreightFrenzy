@@ -8,7 +8,7 @@ import autoutil.paths.PathSegment;
 import autoutil.paths.PathLine;
 import geometry.Circle;
 import geometry.Point;
-import geometry.Position;
+import geometry.Pose;
 
 import static java.lang.Math.*;
 
@@ -18,28 +18,28 @@ public class Generator {
     // there should be one static generator
     // should be able to create multiple paths if a decision is needed
 
-    private final ArrayList<Position> positions = new ArrayList<>();
+    private final ArrayList<Pose> poses = new ArrayList<>();
 
     public void addNewPos(double x, double y, double ang) {
-        addNewPos(new Position(new Point(x, y), ang));
+        addNewPos(new Pose(new Point(x, y), ang));
     }
 
-    private void addNewPos(Position p) {
-        p.translate(positions.get(positions.size() - 1).p.x, positions.get(positions.size() - 1).p.y);
+    private void addNewPos(Pose p) {
+        p.translate(poses.get(poses.size() - 1).p.x, poses.get(poses.size() - 1).p.y);
         p.rotate(p.ang);
         addNewAbsPos(p);
     }
 
     public void addNewAbsPos(double x, double y, double ang) {
-        addNewAbsPos(new Position(new Point(x, y), ang));
+        addNewAbsPos(new Pose(new Point(x, y), ang));
     }
 
-    private void addNewAbsPos(Position p) { positions.add(p); }
+    private void addNewAbsPos(Pose p) { poses.add(p); }
 
     public Path done() {
         Path path = new Path();
-        for (int i = 0; i < positions.size() - 1; i++) {
-            path.addSegs(generateSeg(positions.get(i), positions.get(i + 1)));
+        for (int i = 0; i < poses.size() - 1; i++) {
+            path.addSegs(generateSeg(poses.get(i), poses.get(i + 1)));
         }
         for (PathSegment p : path.segments) {
             p.generatePoints();
@@ -47,14 +47,14 @@ public class Generator {
         return path;
     }
 
-    private ArrayList<PathSegment> generateSeg(Position p1, Position p2) {
+    private ArrayList<PathSegment> generateSeg(Pose p1, Pose p2) {
         ArrayList<PathSegment> ret = generateRelSeg(p1, p2);
         p1.rotate(-PI/2);
         for (PathSegment ps : ret) ps.unshift(p1);
         return ret;
     }
 
-    private ArrayList<PathSegment> generateRelSeg(Position p1, Position p2) {
+    private ArrayList<PathSegment> generateRelSeg(Pose p1, Pose p2) {
         ArrayList<PathSegment> ret = new ArrayList<>();
 
         p1.rotate(-PI/2);
@@ -115,7 +115,7 @@ public class Generator {
 
         PathLine tangentLine2 = new PathLine(new Point(x1, y1), new Point(x2, y2));
 
-        if (cir1arc.goingCW(new Position(new Point(0, 0), PI/2)) == cir2arc.goingCW(p2)) {
+        if (cir1arc.goingCW(new Pose(new Point(0, 0), PI/2)) == cir2arc.goingCW(p2)) {
             // TAKE SHORTCUT
             System.out.println("GOING THROUGH SHORTCUT");
             ret.add(cir1arc);

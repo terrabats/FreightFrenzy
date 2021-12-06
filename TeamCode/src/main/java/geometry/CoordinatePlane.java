@@ -8,7 +8,7 @@ import geometry.polygons.Rect;
 import static java.lang.Math.*;
 
 public class CoordinatePlane {
-    protected final Position origin = new Position(new Point(0, 0), 0);
+    protected final Pose origin = new Pose(new Point(0, 0), 0);
 
     private final ArrayList<GeometryObject> objects = new ArrayList<>();
 
@@ -40,7 +40,7 @@ public class CoordinatePlane {
 
     public ArrayList<Vector> getVectors() { return getObjects(Vector.class); }
 
-    public ArrayList<Position> getPositions() { return getObjects(Position.class); }
+    public ArrayList<Pose> getPositions() { return getObjects(Pose.class); }
 
     @SuppressWarnings("unchecked")
     public <T> ArrayList<T> getObjects(Class<T> type) {
