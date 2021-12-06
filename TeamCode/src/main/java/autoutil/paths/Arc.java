@@ -18,7 +18,9 @@ public class Arc extends PathSegment{
     }
 
     public double getArcLength() {
-        return Math.abs(arc.arcEnd - arc.arcSt) * arc.r;
+        double dAng = arc.arcEnd - arc.arcSt;
+        dAng = dAng + ((dAng < 0) ? 2 * Math.PI : 0);
+        return dAng * arc.r;
     }
 
     @Override
