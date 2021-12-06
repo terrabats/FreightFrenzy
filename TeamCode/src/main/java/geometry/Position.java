@@ -15,7 +15,7 @@ public class Position extends GeometryObject {
     @Override
     public Position getRelativeTo(Position origin) {
         Position pos2 = new Position(p, ang);
-        pos2.p.changeOrigin(origin);
+        pos2.p = pos2.p.changeOrigin(origin);
         pos2.rotate(-origin.ang);
         return pos2;
     }

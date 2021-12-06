@@ -16,17 +16,20 @@ public class Circle extends GeometryObject{
         double ang = tan((p.y - center.y)/(p.x - center.x));
         if (p.x < center.x) ang += PI;
         ang = ang > 0 ? ang : ang + 2 * PI;
+        if (p.x == center.x) {
+            ang = signum(p.y - center.y) * PI/2;
+        }
         return ang;
     }
 
     public Position getPositionFromTheta(double theta) {
         Point p = new Point(center.x + r * cos(theta), center.y + r * sin(theta));
-        double ang = (p.y == center.y) ? INF : tan(-(p.x - center.x)/(p.y - center.y));
+        double ang = (p.y == center.y) ? INF : tan(-(p.y - center.y)/(p.x - center.x));
         return new Position(p, ang);
     }
 
     @Override
     public GeometryObject getRelativeTo(Position origin) {
-        return new Circle((Point) center.changeOrigin(origin), r);
+        return new Circle(center.changeOrigin(origin), r);
     }
 }

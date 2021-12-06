@@ -7,14 +7,18 @@ import geometry.Position;
 import global.Constants;
 
 public class Arc extends PathSegment{
-    private final CircleArc arc;
+    public final CircleArc arc;
 
     public Arc(Circle generated, Point startPoint, Point endPoint) {
         arc = new CircleArc(generated.center, startPoint, endPoint, generated.r);
     }
 
+    public Arc(Circle generated, double st, double en) {
+        arc = new CircleArc(generated.center, st, en, generated.r);
+    }
+
     public double getArcLength() {
-        return (arc.arcEnd - arc.arcSt) * arc.r;
+        return Math.abs(arc.arcEnd - arc.arcSt) * arc.r;
     }
 
     @Override
@@ -24,5 +28,15 @@ public class Arc extends PathSegment{
 
     public boolean goingCW(Position p) {
         return arc.goingCW(p);
+    }
+
+    @Override
+    public void unshift(Position origin) {
+//        Position orig = new Position(
+//                new Point(-origin.p.x, -origin.p.y), (-origin.ang) % (2 * Math.PI)
+//        );
+//        arc.center = arc.center.changeOrigin(orig);
+//        arc.arcSt = (arc.arcSt + orig.ang) % (2 * Math.PI);
+//        arc.arcEnd = (arc.arcEnd + orig.ang) % (2 * Math.PI);
     }
 }

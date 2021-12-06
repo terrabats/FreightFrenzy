@@ -25,6 +25,7 @@ android {
 dependencies {
     implementation project(':FtcRobotController')
     implementation files('..\\libs\\java-awt.jar')
+    implementation files('../libs/java-awt.jar')
     annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
 
     // User defined implementations
