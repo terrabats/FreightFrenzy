@@ -1,8 +1,9 @@
-package unittests;
+package unittests.sensor;
 
 import static global.General.*;
 
 import geometry.Point;
+import unittests.UnitTest;
 
 // TODO: TEST THIS
 

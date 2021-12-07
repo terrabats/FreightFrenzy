@@ -1,6 +1,7 @@
-package unittests;
+package unittests.framework;
 
 import geometry.*;
+import unittests.UnitTest;
 
 import static global.General.*;
 

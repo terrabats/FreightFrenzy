@@ -2,6 +2,8 @@ package unittests;
 
 import util.condition.Status;
 
+import static global.General.*;
+
 public class UnitTest {
     protected Status status = Status.IDLE;
     public void init() {}
@@ -15,6 +17,6 @@ public class UnitTest {
     }
     protected void run() {}
     protected void loop() {}
-    public void stop() {}
+    public void stop() {bot.halt();}
     public void start() {}
 }
