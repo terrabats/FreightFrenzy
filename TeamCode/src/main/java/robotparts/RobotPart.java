@@ -5,6 +5,7 @@ import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
@@ -15,6 +16,7 @@ import java.util.TreeMap;
 
 import robot.RobotFramework;
 import robotparts.custom.Encoder;
+import robotparts.custom.LED;
 import robotparts.custom.PServo;
 import util.condition.Status;
 import util.Timer;
@@ -32,6 +34,7 @@ public class RobotPart {
     public TreeMap<String, ColorSensor> colorsensors = new TreeMap<>();
     public TreeMap<String, TouchSensor> touchsensors = new TreeMap<>();
     public TreeMap<String, Encoder> encoders = new TreeMap<>();
+    public TreeMap<String, LED> leds = new TreeMap<>();
 
     private Status currentStatus = Status.INACTIVE;
 
@@ -110,7 +113,11 @@ public class RobotPart {
         return encoder;
     }
 
-
+    protected LED createLED(String name){
+        LED led = new LED(hardwareMap.get(DigitalChannel.class,  "g" + name), hardwareMap.get(DigitalChannel.class,  "r" + name));
+        leds.put(name, led);
+        return led;
+    }
 
     public void setStatus(Status status){
         currentStatus = status;

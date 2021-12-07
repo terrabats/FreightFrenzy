@@ -120,6 +120,8 @@ public class UnitTester extends OpMode implements Common {
             requestOpModeStop();
         }
         log.clearTelemetry();
+        gph1.unlinkAll();
+        gph2.unlinkAll();
         timer.reset();
     }
 

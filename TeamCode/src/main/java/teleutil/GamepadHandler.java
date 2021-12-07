@@ -41,6 +41,15 @@ public class GamepadHandler {
 
     public GamepadHandler(Gamepad gp) {
         gamepad = gp;
+        defineAllButtons();
+    }
+
+    public void unlinkAll() {
+        handlerMap = new TreeMap<>();
+        defineAllButtons();
+    }
+
+    public void defineAllButtons() {
         for (Button b : Button.values()) {
             handlerMap.put(b, new ButtonHandler(b, this));
         }

@@ -1,11 +1,13 @@
 package robot;
 
+import robotparts.custom.LED;
 import robotparts.hardware.Carousel;
 import robotparts.hardware.Intake;
 import robotparts.hardware.Lift;
 import robotparts.sensors.Color;
 import robotparts.sensors.Distance;
 import robotparts.sensors.Gyro;
+import robotparts.sensors.Led;
 import robotparts.sensors.Odometry;
 import robotparts.hardware.Outtake;
 import robotparts.hardware.TankDrive;
@@ -25,6 +27,7 @@ public class TerraBot extends RobotFramework {
     public Distance distance = new Distance();
     public Color color = new Color();
     public Touch touch = new Touch();
+    public Led led = new Led();
 
     //public Sensors sensors = new Sensors();
 }
