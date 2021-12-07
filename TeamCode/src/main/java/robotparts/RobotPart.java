@@ -15,6 +15,7 @@ import java.util.TreeMap;
 
 import robot.RobotFramework;
 import robotparts.custom.Encoder;
+import robotparts.custom.PServo;
 import util.condition.Status;
 import util.Timer;
 
@@ -24,7 +25,7 @@ import robotparts.custom.Encoder.Type;
 public class RobotPart {
 
     public TreeMap<String, DcMotor> motors = new TreeMap<>();
-    public TreeMap<String, Servo> servos = new TreeMap<>();
+    public TreeMap<String, PServo> pservos = new TreeMap<>();
     public TreeMap<String, CRServo> crservos = new TreeMap<>();
     public TreeMap<String, BNO055IMU> gyrosensors = new TreeMap<>();
     public TreeMap<String, DistanceSensor> distancesensors = new TreeMap<>();
@@ -60,13 +61,10 @@ public class RobotPart {
         return dcMotor;
     }
 
-    protected Servo createServo(String name, Servo.Direction dir, double startpos, double endpos){
-        Servo servo = hardwareMap.get(Servo.class, name);
-        servo.setDirection(dir);
-        servo.scaleRange(startpos, endpos);
-        servo.setPosition(0);
-        servos.put(name, servo);
-        return servo;
+    protected PServo createPServo(String name, Servo.Direction dir, double startpos, double endpos){
+        PServo pservo = new PServo(hardwareMap.get(Servo.class, name), dir, startpos, endpos);
+        pservos.put(name, pservo);
+        return pservo;
     }
 
     protected CRServo createCRServo(String name, CRServo.Direction dir){

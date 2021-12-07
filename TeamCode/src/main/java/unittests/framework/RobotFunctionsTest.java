@@ -6,7 +6,7 @@ import util.codeseg.CodeSeg;
 
 import static global.General.*;
 
-public class RobotFunctionsTest extends UnitTest {
+public class RobotFunctionsTest extends FrameworkTest {
     @Override
     public void run() {
         bot.rfsHandler.addToQueue(new Stage() {

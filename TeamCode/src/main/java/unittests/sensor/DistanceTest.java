@@ -4,7 +4,7 @@ package unittests.sensor;
 import unittests.UnitTest;
 import static global.General.*;
 
-public class DistanceTest extends UnitTest {
+public class DistanceTest extends SensorTest {
     @Override
     protected void loop() {
         log.watch("left", bot.distance.getLeftDistance());

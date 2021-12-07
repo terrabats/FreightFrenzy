@@ -3,7 +3,7 @@ package unittests.sensor;
 import unittests.UnitTest;
 import static global.General.*;
 
-public class GyroTest extends UnitTest {
+public class GyroTest extends SensorTest {
 
     @Override
     protected void loop() {

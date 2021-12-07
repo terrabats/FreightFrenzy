@@ -6,7 +6,7 @@ import java.util.Arrays;
 import unittests.UnitTest;
 import static global.General.*;
 
-public class ColorTest extends UnitTest {
+public class ColorTest extends SensorTest {
     @Override
     protected void loop() {
         log.watch("rgb", Arrays.toString(bot.color.getOutakeColorRGB()));

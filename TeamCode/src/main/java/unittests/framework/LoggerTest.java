@@ -6,7 +6,7 @@ import util.condition.Status;
 import static global.General.*;
 
 
-public class LoggerTest extends UnitTest {
+public class LoggerTest extends FrameworkTest {
     private double d = 0;
     private boolean b = false;
     private Status s = Status.ACTIVE;

@@ -3,7 +3,12 @@ package unittests.hardware;
 import unittests.UnitTest;
 import static global.General.*;
 
-public class TurrentTest extends UnitTest {
+public class TurrentTest extends HardwareTest {
+    @Override
+    protected void run() {
+        showConfig(bot.turret);
+    }
+
     @Override
     public void loop() {
         bot.turret.spin(gamepad2.left_stick_x);

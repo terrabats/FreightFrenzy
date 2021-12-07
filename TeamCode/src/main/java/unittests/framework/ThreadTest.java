@@ -12,7 +12,7 @@ import util.condition.Status;
 import static global.General.*;
 
 
-public class ThreadTest extends UnitTest {
+public class ThreadTest extends FrameworkTest {
     @Override
     public void loop() {
         TerraBot.robotFunctionsThread.setCode(() -> {
