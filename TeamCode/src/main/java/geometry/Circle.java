@@ -22,14 +22,14 @@ public class Circle extends GeometryObject{
         return ang;
     }
 
-    public Position getPositionFromTheta(double theta) {
+    public Pose getPositionFromTheta(double theta) {
         Point p = new Point(center.x + r * cos(theta), center.y + r * sin(theta));
         double ang = (p.y == center.y) ? INF : tan(-(p.y - center.y)/(p.x - center.x));
-        return new Position(p, ang);
+        return new Pose(p, ang);
     }
 
     @Override
-    public GeometryObject getRelativeTo(Position origin) {
-        return new Circle(center.changeOrigin(origin), r);
+    public GeometryObject getRelativeTo(Pose origin) {
+        return new Circle(center.getRelativeTo(origin), r);
     }
 }

@@ -1,4 +1,4 @@
-package unittests;
+package unittests.framework;
 
 import teleutil.button.Button;
 import teleutil.button.ButtonEventHandler;
@@ -8,6 +8,7 @@ import teleutil.button.OnTurnOffEventHandler;
 import teleutil.button.OnTurnOnEventHandler;
 import teleutil.button.WhenOffEventHandler;
 import teleutil.button.WhenOnEventHandler;
+import unittests.UnitTest;
 
 import static global.General.*;
 

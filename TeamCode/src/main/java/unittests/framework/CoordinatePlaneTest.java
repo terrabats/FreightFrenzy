@@ -1,11 +1,7 @@
-package unittests;
-
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+package unittests.framework;
 
 import geometry.*;
-import global.Common;
-import robot.TerraBot;
+import unittests.UnitTest;
 
 import static global.General.*;
 
@@ -17,7 +13,7 @@ public class CoordinatePlaneTest extends UnitTest {
     public void init() {
         coordinatePlane.add(new Vector(0, 10, AngleType.RADIANS));
         coordinatePlane.add(new Line(new Point(1, 10), new Point(5, 10)));
-        coordinatePlane.add(new Position(new Point(2,3), 0));
+        coordinatePlane.add(new Pose(new Point(2,3), 0));
     }
 
     @Override

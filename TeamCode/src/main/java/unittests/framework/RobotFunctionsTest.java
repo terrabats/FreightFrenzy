@@ -1,5 +1,6 @@
-package unittests;
+package unittests.framework;
 
+import unittests.UnitTest;
 import util.Stage;
 import util.codeseg.CodeSeg;
 

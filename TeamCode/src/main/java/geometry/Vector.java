@@ -22,7 +22,7 @@ public class Vector extends GeometryObject {
     //Gets a rotated vector of the current vector angle - positive is anticlockwise
 
     @Override
-    public GeometryObject getRelativeTo(Position origin) {
+    public GeometryObject getRelativeTo(Pose origin) {
         double ang = theta + origin.ang;
         double radius = getLen();
         return new Vector(cos(ang) * radius, sin(ang) * radius);

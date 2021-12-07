@@ -7,14 +7,19 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
+import java.util.Map.*;
+import java.util.Objects;
 import java.util.TreeMap;
 
 import robot.RobotFramework;
+import robotparts.custom.Encoder;
 import util.condition.Status;
 import util.Timer;
 
 import static global.General.*;
+import robotparts.custom.Encoder.Type;
 
 public class RobotPart {
 
@@ -24,6 +29,8 @@ public class RobotPart {
     public TreeMap<String, BNO055IMU> gyrosensors = new TreeMap<>();
     public TreeMap<String, DistanceSensor> distancesensors = new TreeMap<>();
     public TreeMap<String, ColorSensor> colorsensors = new TreeMap<>();
+    public TreeMap<String, TouchSensor> touchsensors = new TreeMap<>();
+    public TreeMap<String, Encoder> encoders = new TreeMap<>();
 
     private Status currentStatus = Status.INACTIVE;
 
@@ -34,7 +41,15 @@ public class RobotPart {
     }
 
     public void init(){}
-
+    protected DcMotor createMotor(String name, DcMotor.Direction dir){
+        DcMotor dcMotor = hardwareMap.get(DcMotor.class, name);
+        dcMotor.setPower(0);
+        dcMotor.setDirection(dir);
+        dcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        dcMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motors.put(name, dcMotor);
+        return dcMotor;
+    }
     protected DcMotor createMotor(String name, DcMotor.Direction dir, DcMotor.ZeroPowerBehavior zpb, DcMotor.RunMode mode){
         DcMotor dcMotor = hardwareMap.get(DcMotor.class, name);
         dcMotor.setPower(0);
@@ -85,6 +100,18 @@ public class RobotPart {
         return colorSensor;
     }
 
+    protected TouchSensor createTouchSensor(String name){
+        TouchSensor touchSensor = hardwareMap.get(TouchSensor.class, name);
+        touchsensors.put(name, touchSensor);
+        return touchSensor;
+    }
+
+    protected Encoder createEncoder(String motor, String name, Type type){
+        Encoder encoder = new Encoder(hardwareMap.get(DcMotor.class, motor), type);
+        encoders.put(name, encoder);
+        return encoder;
+    }
+
 
 
     public void setStatus(Status status){
@@ -93,5 +120,14 @@ public class RobotPart {
 
     public Status getStatus(){
         return currentStatus;
+    }
+
+    public void halt(){
+        for(DcMotor mot: motors.values()){
+            mot.setPower(0);
+        }
+        for(CRServo crs: crservos.values()){
+            crs.setPower(0);
+        }
     }
 }

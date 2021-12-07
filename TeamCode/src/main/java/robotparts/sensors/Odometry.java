@@ -1,5 +1,7 @@
-package robotparts;
+package robotparts.sensors;
 
+import robotparts.RobotPart;
+import robotparts.custom.Encoder;
 import util.codeseg.CodeSeg;
 
 import static global.General.*;
@@ -17,21 +19,27 @@ public class Odometry extends RobotPart {
 
     private final CodeSeg odometryUpdateCode = () -> {};
 
+    private Encoder rEnc;
+    private Encoder cEnc;
+
     @Override
     public void init() {
+        rEnc = createEncoder("fr", "rEnc", Encoder.Type.NORMAL);
+        cEnc = createEncoder("br", "cEnc", Encoder.Type.NORMAL);
         prevOdoOnePos = 0.0;
         prevOdoTwoPos = 0.0;
         odometryThread.setCode(odometryUpdateCode);
+
     }
 
     private double getDeltaOdoOne() {
-        double delta = ticksToCm(bot.tankDrive.getPos("fr")) - prevOdoOnePos;
+        double delta = ticksToCm(rEnc.getPos() - prevOdoOnePos);
         prevOdoOnePos += delta;
         return delta;
     }
 
     private double getDeltaOdoTwo() {
-        double delta = ticksToCm(bot.tankDrive.getPos("br")) - prevOdoTwoPos;
+        double delta = ticksToCm(cEnc.getPos() - prevOdoTwoPos);
         prevOdoTwoPos += delta;
         return delta;
     }

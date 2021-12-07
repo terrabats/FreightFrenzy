@@ -1,5 +1,7 @@
 package robot;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 import java.util.ArrayList;
 
 import geometry.CoordinatePlane;
@@ -39,5 +41,11 @@ public class RobotFramework {
     public void stop(){
         robotFunctionsThread.stopUpdating();
         odometryThread.stopUpdating();
+    }
+
+    public void halt(){
+        for(RobotPart part: allRobotParts){
+            part.halt();
+        }
     }
 }

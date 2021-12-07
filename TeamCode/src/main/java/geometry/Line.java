@@ -30,8 +30,8 @@ public class Line extends GeometryObject {
     }
 
     @Override
-    public GeometryObject getRelativeTo(Position origin) {
-        return new Line(p1.changeOrigin(origin), p2.changeOrigin(origin));
+    public GeometryObject getRelativeTo(Pose origin) {
+        return new Line(p1.getRelativeTo(origin), p2.getRelativeTo(origin));
     }
 
     public String toString() {
