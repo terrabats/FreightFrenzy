@@ -11,4 +11,11 @@ public class Touch extends RobotPart {
     public void init() {
         tso = createTouchSensor("tso");
     }
+
+    public boolean isOuttakePressingTouchSensor(){
+        return tso.isPressed();
+    }
+    public double getValue(){
+        return tso.getValue();
+    }
 }

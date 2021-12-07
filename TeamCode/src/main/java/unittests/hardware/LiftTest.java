@@ -9,5 +9,6 @@ public class LiftTest extends UnitTest {
     @Override
     public void loop() {
         bot.lift.move(-gamepad2.right_stick_y);
+        log.watch("pos", bot.lift.getLiftPos());
     }
 }

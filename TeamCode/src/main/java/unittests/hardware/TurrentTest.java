@@ -7,5 +7,6 @@ public class TurrentTest extends UnitTest {
     @Override
     public void loop() {
         bot.turret.spin(gamepad2.left_stick_x);
+        log.watch("pos", bot.turret.getTurretPos());
     }
 }

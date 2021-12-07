@@ -1,6 +1,12 @@
 package unittests.sensor;
 
-import robotparts.RobotPart;
+import unittests.UnitTest;
+import static global.General.*;
 
-public class TouchTest extends RobotPart {
+public class TouchTest extends UnitTest {
+    @Override
+    protected void loop() {
+        log.watch("pressed", bot.touch.isOuttakePressingTouchSensor());
+        log.watch("value", bot.touch.getValue());
+    }
 }
