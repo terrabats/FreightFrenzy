@@ -26,9 +26,12 @@ public class CircleArc extends Circle {
 
     public ArrayList<Pose> getPoints(double angDivide) {
         ArrayList<Pose> ret = new ArrayList<>();
-        for (double i = arcSt; i <= ((arcSt < arcEnd) ? 0:(2*PI)) + arcEnd; i += angDivide) {
+        double endOfArc = ((arcSt < arcEnd) ? 0 : (2 * PI)) + arcEnd;
+        for (double i = arcSt; i <= endOfArc; i += angDivide) {
             ret.add(getPositionFromTheta(i));
+//            System.out.println(i * 180/PI);
         }
+//        System.out.println(arcSt + " " + arcEnd);
         return ret;
     }
 
