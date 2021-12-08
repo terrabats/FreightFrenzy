@@ -89,9 +89,13 @@ public class Generator {
         Point pointOfIntersection = betweenCenters.getAt(0.5);
 
         Arc cir1arc = getShorterArc(c1, new Point(0, 0), pointOfIntersection);
-        System.out.println(cir1arc.arc.arcSt + " " + cir1arc.arc.arcEnd);
+//        System.out.println(cir1arc.arc.getPositionFromTheta(cir1arc.arc.arcSt));
+//        System.out.println(cir1arc.arc.getPositionFromTheta(cir1arc.arc.arcEnd));
+//        System.out.println(cir1arc.arc.arcSt + " " + cir1arc.arc.arcEnd);
         Arc cir2arc = getShorterArc(c2, p2.p, pointOfIntersection);
-        System.out.println(cir2arc.arc.arcSt + " " + cir2arc.arc.arcEnd);
+//        System.out.println(cir2arc.arc.getPositionFromTheta(cir2arc.arc.arcSt));
+//        System.out.println(cir2arc.arc.getPositionFromTheta(cir2arc.arc.arcEnd));
+//        System.out.println(cir2arc.arc.arcSt + " " + cir2arc.arc.arcEnd);
 
 
         double mt = (c2.center.y - c1.center.y)/(c2.center.x - c1.center.x);

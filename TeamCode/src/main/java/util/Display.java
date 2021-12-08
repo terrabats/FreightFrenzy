@@ -24,7 +24,7 @@ public class Display extends JPanel {
     public void genTestPlane(){
         Generator generator = new Generator();
         generator.addNewAbsPos(10, 20, PI/2);
-        generator.addNewAbsPos(30, 40, 0);
+        generator.addNewAbsPos(30, 70, 0);
 
         pathToDisplay = generator.done();
 
@@ -36,7 +36,7 @@ public class Display extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         for (PathSegment ps : pathToDisplay.segments) {
-            System.out.println(ps.points.size());
+//            System.out.println(ps.points.size());
             for (Pose p : ps.points) {
 //                g.drawLine(pX(p.p.x) + 300, pY(p.p.y) + 300, pX(p.p.x) + 300, pY(p.p.y) + 300);
                 g.fillOval(pX(p.p.x) + 300, pY(p.p.y) + 300, 5, 5);
@@ -63,6 +63,6 @@ public class Display extends JPanel {
         window.setSize(display.height, display.width);
         window.setVisible(true);
 
-        System.out.println(display.pathToDisplay.segments.size());
+        System.out.println("-- " + display.pathToDisplay.segments.size());
     }
 }

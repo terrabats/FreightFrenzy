@@ -6,5 +6,5 @@ public class Constants {
 
     public static final int INF = (int) 1e99;
 
-    public static final double ANG_ACC_ARC = 0.05;
+    public static final double ANG_ACC_ARC = 0.1;
 }
