@@ -5,13 +5,14 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import robotparts.RobotPart;
+import robotparts.custom.PServo;
 
 public class Outtake extends RobotPart {
-    private Servo lo;
+    private PServo lo;
 
     @Override
     public void init(){
-        lo = createServo("lo", Servo.Direction.FORWARD, 0, 1);
+        lo = createPServo("lo", Servo.Direction.FORWARD, 0, 1);
     }
 
     public void move(double pos){lo.setPosition(pos);}

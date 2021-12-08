@@ -12,7 +12,7 @@ import util.condition.Magnitude;
 import static global.General.*;
 
 
-public class CommonTest extends UnitTest {
+public class CommonTest extends FrameworkTest {
     @Override
     public void start() {
         fault.check("robotPartsIsEmpty", Expectation.SURPRISING, Magnitude.MAJOR, TerraBot.allRobotParts.size() != 0);

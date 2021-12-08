@@ -13,7 +13,7 @@ import static global.General.*;
 
 
 
-public class FaultTest extends UnitTest {
+public class FaultTest extends FrameworkTest {
     @Override
     public void loop() {
         fault.warn("Is fault working?", Expectation.INCONCEIVABLE, Magnitude.CATASTROPHIC, false);

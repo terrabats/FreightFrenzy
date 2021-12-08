@@ -7,7 +7,7 @@ import unittests.UnitTest;
 
 // TODO: TEST THIS
 
-public class OdometryTest extends UnitTest {
+public class OdometryTest extends SensorTest {
     @Override
     public void init() {
         bot.localPlane.add(

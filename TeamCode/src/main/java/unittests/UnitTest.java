@@ -19,4 +19,13 @@ public class UnitTest {
     protected void loop() {}
     public void stop() {bot.halt();}
     public void start() {}
+    public Type getType(){
+        return Type.DEFAULT;
+    }
+    public enum Type {
+        DEFAULT,
+        FRAMEWORK,
+        HARDWARE,
+        SENSOR
+    }
 }

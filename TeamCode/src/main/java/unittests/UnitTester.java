@@ -19,7 +19,12 @@ import unittests.hardware.LiftTest;
 import unittests.hardware.OuttakeTest;
 import unittests.hardware.TankDriveTest;
 import unittests.hardware.TurrentTest;
+import unittests.sensor.ColorTest;
+import unittests.sensor.DistanceTest;
+import unittests.sensor.GyroTest;
 import unittests.sensor.OdometryTest;
+import unittests.sensor.SensorTest;
+import unittests.sensor.TouchTest;
 import unittests.unused.MechDriveTest;
 import util.Timer;
 
@@ -55,6 +60,11 @@ public class UnitTester extends OpMode implements Common {
         allUnitTests.add(new OuttakeTest());
         allUnitTests.add(new CarouselTest());
         // Sensor
+//        allUnitTests.add(new ColorTest());
+//        allUnitTests.add(new DistanceTest());
+//        allUnitTests.add(new GyroTest());
+//        allUnitTests.add(new OdometryTest());
+//        allUnitTests.add(new TouchTest());
 //        allUnitTests.add(new OdometryTest());
     }
 
@@ -79,7 +89,7 @@ public class UnitTester extends OpMode implements Common {
 
     @Override
     public void loop() {
-        log.display("Testing " + getCurrentTestName());
+        log.display("Testing " + getCurrentTestName() + "UnitTest type " + getCurrentTest().getType().toString());
         if(testingMode.equals(TestType.TIME)){
             if(timer.seconds() > delay){
                 nextTest();
@@ -98,9 +108,11 @@ public class UnitTester extends OpMode implements Common {
     private String getCurrentTestName(){
         return getCurrentTest().getClass().getSimpleName();
     }
+
     private UnitTest getCurrentTest(){
         return allUnitTests.get(currentTestNum);
     }
+
     private void nextTest(){
         allUnitTests.get(currentTestNum).stop();
         currentTestNum++;
