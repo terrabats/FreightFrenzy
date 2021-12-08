@@ -26,15 +26,19 @@ public class GamepadHandler {
         put(Button.DPAD_UP, () -> gamepad.dpad_up);
         put(Button.DPAD_LEFT, () -> gamepad.dpad_left);
         put(Button.DPAD_RIGHT, () -> gamepad.dpad_right);
-        put(Button.LEFT_STICK, () -> gamepad.left_stick_button);
-        put(Button.RIGHT_STICK, () -> gamepad.right_stick_button);
         put(Button.LEFT_TRIGGER, () -> gamepad.left_trigger > 0.5);
         put(Button.RIGHT_TRIGGER, () -> gamepad.right_trigger > 0.5);
+        put(Button.LEFT_STICK_BUTTON, () -> gamepad.left_stick_button);
+        put(Button.RIGHT_STICK_BUTTON, () -> gamepad.right_stick_button);
     }};
 
     public final TreeMap<Button, DoubleCodeSeg> valueMap = new TreeMap<Button, DoubleCodeSeg>() {{
         put(Button.LEFT_TRIGGER, () -> gamepad.left_trigger);
         put(Button.RIGHT_TRIGGER, () -> gamepad.right_trigger);
+        put(Button.LEFT_STICK_Y, () -> gamepad.left_stick_y);
+        put(Button.LEFT_STICK_X, () -> gamepad.left_stick_x);
+        put(Button.RIGHT_STICK_Y, () -> gamepad.right_stick_y);
+        put(Button.RIGHT_STICK_X, () -> gamepad.right_stick_x);
     }};
 
     public TreeMap<Button, ButtonHandler> handlerMap = new TreeMap<>();

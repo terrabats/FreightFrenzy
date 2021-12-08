@@ -1,0 +1,54 @@
+package teleop;
+
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import teleutil.button.Button;
+import teleutil.button.OnPressEventHandler;
+import teleutil.button.OnTurnOffEventHandler;
+import teleutil.button.OnTurnOnEventHandler;
+
+import static global.General.bot;
+import static global.General.gamepad1;
+import static global.General.gamepad2;
+import static global.General.gph1;
+
+@TeleOp(name = "TerraOp", group = "TeleOp")
+public class TerraOp extends Tele{
+
+    @Override
+    public void init() {
+        reference(this);
+
+        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.intake.spin(1));
+        gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.intake.spin(0));
+        gph1.link(Button.RIGHT_BUMPER, OnPressEventHandler.class, args -> bot.intake.spin(-1));
+
+        gph1.link(Button.LEFT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.move(0.3));
+        gph1.link(Button.LEFT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.move(0));
+
+        activate();
+    }
+
+    @Override
+    public void start() {
+        ready();
+    }
+
+    @Override
+    public void loop() {
+        bot.tankDrive.move(-gamepad1.right_stick_y, gamepad1.left_stick_x);
+
+        bot.carousel.spin(gamepad1.right_trigger);
+
+        bot.turret.spin(gamepad2.left_stick_x);
+
+        bot.lift.move(-gamepad2.right_stick_y);
+
+        update(true);
+    }
+
+    @Override
+    public void stop() {
+        end();
+    }
+}
