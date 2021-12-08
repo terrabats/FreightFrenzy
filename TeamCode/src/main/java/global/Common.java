@@ -7,6 +7,7 @@ import robot.TerraBot;
 import teleutil.GamepadHandler;
 import debugging.Fault;
 import debugging.Logger;
+import util.store.Storage;
 
 import static global.General.*;
 
@@ -21,6 +22,7 @@ public interface Common{
         fault = new Fault();
         sync = new Synchroniser();
         log = new Logger();
+        storage = new Storage();
         gameTime = new ElapsedTime();
         bot = new TerraBot();
         bot.init();
@@ -43,5 +45,6 @@ public interface Common{
         sync.logDelay();
         log.showLogs();
         bot.stop();
+        storage.saveItems();
     }
 }

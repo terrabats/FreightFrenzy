@@ -23,8 +23,8 @@ public class Display extends JPanel {
 
     public void genTestPlane(){
         Generator generator = new Generator();
-        generator.addNewAbsPos(0, 0, PI/2);
-        generator.addNewAbsPos(-30, 70, PI/4);
+        generator.addNewAbsPos(10, -10, PI/2);
+        generator.addNewAbsPos(30, 70, 3*PI/2);
 
         pathToDisplay = generator.done();
 

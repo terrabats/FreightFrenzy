@@ -11,6 +11,7 @@ import robot.TerraBot;
 import teleutil.GamepadHandler;
 import debugging.Fault;
 import debugging.Logger;
+import util.store.Storage;
 
 public class General {
     public static TerraBot bot;
@@ -24,4 +25,5 @@ public class General {
     public static GamepadHandler gph2;
     public static Logger log;
     public static Synchroniser sync;
+    public static Storage storage;
 }
