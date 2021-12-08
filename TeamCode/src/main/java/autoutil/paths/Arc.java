@@ -18,9 +18,7 @@ public class Arc extends PathSegment{
     }
 
     public double getArcLength() {
-        double dAng = arc.arcEnd - arc.arcSt;
-        dAng = dAng + ((dAng < 0) ? 2 * Math.PI : 0);
-        return dAng * arc.r;
+        return arc.getArcLength();
     }
 
     @Override
@@ -60,6 +58,8 @@ public class Arc extends PathSegment{
             newEndPt.ang *= -1;
             arc.center.y *= -1;
         }
-        arc = new CircleArc(arc.center, newStPt.p, newEndPt.p, arc.r);
+        CircleArc v1 = new CircleArc(arc.center, newStPt.p, newEndPt.p, arc.r);
+        CircleArc v2 = new CircleArc(arc.center, newEndPt.p, newStPt.p, arc.r);
+        arc = (v1.getArcLength() < v2.getArcLength()) ? v1 : v2;
     }
 }
