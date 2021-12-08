@@ -15,15 +15,15 @@ import static java.lang.Math.*;
 
 
 public class Display extends JPanel {
-    private final int height = 800;
-    private final int width = 800;
-    private final int xScale = 10;
-    private final int yScale = 10;
+    private final int height = 700;
+    private final int width = 700;
+    private final int xScale = 3;
+    private final int yScale = 3;
     private Path pathToDisplay;
 
     public void genTestPlane(){
         Generator generator = new Generator();
-        generator.addNewAbsPos(10, 20, PI/2);
+        generator.addNewAbsPos(0, 0, PI/2);
         generator.addNewAbsPos(30, 70, 0);
 
         pathToDisplay = generator.done();
@@ -39,7 +39,7 @@ public class Display extends JPanel {
 //            System.out.println(ps.points.size());
             for (Pose p : ps.points) {
 //                g.drawLine(pX(p.p.x) + 300, pY(p.p.y) + 300, pX(p.p.x) + 300, pY(p.p.y) + 300);
-                g.fillOval(pX(p.p.x) + 300, pY(p.p.y) + 300, 5, 5);
+                g.fillOval(pX(p.p.x) + width/2, pY(p.p.y) + height/2, 5, 5);
             }
         }
 //        for(Line l: plane.getLines()){
