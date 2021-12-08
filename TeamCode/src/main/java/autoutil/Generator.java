@@ -61,6 +61,12 @@ public class Generator {
         p2 = p2.getRelativeTo(p1);
         p1.rotate(PI/2);
 
+        boolean flipX = p2.p.x < 0;
+        boolean flipY = p2.p.y < 0;
+
+        p2.p.x = Math.abs(p2.p.x);
+        p2.p.y = Math.abs(p2.p.y);
+
         double p = p2.ang - PI/2;
         double dx = p2.p.x;
         double dy = p2.p.y;
@@ -130,6 +136,10 @@ public class Generator {
             System.out.println("NOT USING SHORTCUT");
             ret.add(cir1arc);
             ret.add(cir2arc);
+        }
+
+        for (PathSegment pathSegment : ret) {
+            pathSegment.flip(flipX, flipY);
         }
 
         return ret;

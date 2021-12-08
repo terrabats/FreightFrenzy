@@ -12,4 +12,6 @@ public class PathSegment {
     public void generatePoints() {}
 
     public void unshift(Pose origin) {}
+
+    public void flip(boolean x, boolean y) {}
 }

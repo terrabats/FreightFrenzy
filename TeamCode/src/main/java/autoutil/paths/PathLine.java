@@ -29,4 +29,18 @@ public class PathLine extends PathSegment{
 //        line.p1 = line.p1.changeOrigin(orig);
 //        line.p2 = line.p2.changeOrigin(orig);
     }
+
+    @Override
+    public void flip(boolean x, boolean y) {
+        if (x) {
+            line.p1.x *= -1;
+            line.p2.x *= -1;
+            line.mx *= -1;
+        }
+        if (y) {
+            line.p1.y *= -1;
+            line.p2.y *= -1;
+            line.my *= -1;
+        }
+    }
 }

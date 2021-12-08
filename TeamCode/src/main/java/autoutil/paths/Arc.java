@@ -7,7 +7,7 @@ import geometry.Pose;
 import global.Constants;
 
 public class Arc extends PathSegment{
-    public final CircleArc arc;
+    public CircleArc arc;
 
     public Arc(Circle generated, Point startPoint, Point endPoint) {
         arc = new CircleArc(generated.center, startPoint, endPoint, generated.r);
@@ -40,5 +40,26 @@ public class Arc extends PathSegment{
 //        arc.center = arc.center.changeOrigin(orig);
 //        arc.arcSt = (arc.arcSt + orig.ang) % (2 * Math.PI);
 //        arc.arcEnd = (arc.arcEnd + orig.ang) % (2 * Math.PI);
+    }
+
+    @Override
+    public void flip(boolean x, boolean y) {
+        Pose newStPt = arc.getPositionFromTheta(arc.arcSt);
+        Pose newEndPt = arc.getPositionFromTheta(arc.arcEnd);
+        if (x) {
+            newStPt.p.x *= -1;
+            newStPt.ang *= -1;
+            newEndPt.p.x *= -1;
+            newEndPt.ang *= -1;
+            arc.center.x *= -1;
+        }
+        if (y) {
+            newStPt.p.y *= -1;
+            newStPt.ang *= -1;
+            newEndPt.p.y *= -1;
+            newEndPt.ang *= -1;
+            arc.center.y *= -1;
+        }
+        arc = new CircleArc(arc.center, newStPt.p, newEndPt.p, arc.r);
     }
 }
