@@ -50,4 +50,10 @@ public class CircleArc extends Circle {
             }
         }
     }
+
+    public double getArcLength() {
+        double dAng = arcEnd - arcSt;
+        dAng = dAng + ((dAng < 0) ? 2 * Math.PI : 0);
+        return dAng * r;
+    }
 }
