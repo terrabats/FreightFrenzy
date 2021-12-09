@@ -12,17 +12,18 @@ public class Modules {
 
 
     //Mains
-    public Main mainTankDrive(double forward, double strafe){
-        return new Main(() -> bot.tankDrive.move(forward, strafe));
-    }
+    public Main mainTankDrive(double forward, double strafe){return new Main(() -> bot.tankDrive.move(forward, strafe));}
+    public Main mainLift(double power){return new Main(() -> bot.lift.move(power));}
 
     //Exits
     public Exit exitTime(double s){
         return new Exit(() -> bot.rfsHandler.timer.seconds() > s);
     }
+    public Exit exitLiftDown(){return new Exit(() -> bot.touch.isOuttakePressingTouchSensor());}
 
     //Stops
     public Stop stopTankDrive(){
         return new Stop(() -> bot.tankDrive.move(0,0));
     }
+    public Stop stopLife(){return new Stop(() -> bot.lift.move(0));}
 }
