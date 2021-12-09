@@ -1,6 +1,7 @@
 package robotparts.hardware;
 
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import robotparts.RobotPart;
@@ -11,8 +12,8 @@ public class Carousel extends RobotPart {
 
     @Override
     public void init() {
-        cl = createCRServo("cl", CRServo.Direction.FORWARD);
-        cr = createCRServo("cr", CRServo.Direction.REVERSE);
+        cl = createCRServo("cl", CRServo.Direction.REVERSE);
+        cr = createCRServo("cr", CRServo.Direction.FORWARD);
     }
 
     public void spin(double p)

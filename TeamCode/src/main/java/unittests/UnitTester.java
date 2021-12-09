@@ -63,8 +63,8 @@ public class UnitTester extends OpMode implements Common {
         // Hardware
 //        allUnitTests.add(new TankDriveTest());
 //        allUnitTests.add(new IntakeTest());
-        allUnitTests.add(new TurrentTest());
-        allUnitTests.add(new LiftTest());
+//        allUnitTests.add(new TurrentTest());
+//        allUnitTests.add(new LiftTest());
         allUnitTests.add(new OuttakeTest());
         allUnitTests.add(new CarouselTest());
 
