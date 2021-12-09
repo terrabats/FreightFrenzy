@@ -82,12 +82,12 @@ public class PathTester extends JPanel {
         return (int)(height-(y*yScale)-41);
     }
 
-    public static void main(String[] args) {
-        JFrame window = new JFrame("Coordinate Frame 1");
-        PathTester display = new PathTester();
-        window.add(display);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(display.height, display.width);
-        window.setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        JFrame window = new JFrame("Coordinate Frame 1");
+//        PathTester display = new PathTester();
+//        window.add(display);
+//        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        window.setSize(display.height, display.width);
+//        window.setVisible(true);
+//    }
 }

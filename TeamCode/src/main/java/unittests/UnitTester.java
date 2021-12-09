@@ -6,11 +6,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import java.util.ArrayList;
 
 import teleutil.button.OnPressEventHandler;
+import unittests.framework.AutoModuleTest;
 import unittests.framework.CommonTest;
 import unittests.framework.CoordinatePlaneTest;
 import unittests.framework.FaultTest;
 import unittests.framework.GamepadTest;
 import unittests.framework.LoggerTest;
+import unittests.framework.ModulesTest;
 import unittests.framework.RobotFunctionsTest;
 import unittests.framework.StorageTest;
 import unittests.framework.ThreadTest;
@@ -53,14 +55,19 @@ public class UnitTester extends OpMode implements Common {
 //        allUnitTests.add(new LoggerTest());
 //        allUnitTests.add(new RobotFunctionsTest());
 //        allUnitTests.add(new ThreadTest());
-        allUnitTests.add(new StorageTest());
+
+//        allUnitTests.add(new StorageTest());
+//        allUnitTests.add(new ModulesTest());
+//        allUnitTests.add(new AutoModuleTest());
+
         // Hardware
         allUnitTests.add(new TankDriveTest());
-        allUnitTests.add(new IntakeTest());
-        allUnitTests.add(new TurrentTest());
-        allUnitTests.add(new LiftTest());
-        allUnitTests.add(new OuttakeTest());
-        allUnitTests.add(new CarouselTest());
+//        allUnitTests.add(new IntakeTest());
+//        allUnitTests.add(new TurrentTest());
+//        allUnitTests.add(new LiftTest());
+//        allUnitTests.add(new OuttakeTest());
+//        allUnitTests.add(new CarouselTest());
+
         // Sensor
 //        allUnitTests.add(new ColorTest());
 //        allUnitTests.add(new DistanceTest());

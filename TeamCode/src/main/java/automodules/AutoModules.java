@@ -15,7 +15,7 @@ public class AutoModules {
     );
     public StageList Intake = new StageList(
             new Stage(
-                    modules.mainTankDrive(0.3,0.2),
+                    modules.mainIntake(0.3),
                     modules.exitTime(1),
                     modules.stopTankDrive()
             ),

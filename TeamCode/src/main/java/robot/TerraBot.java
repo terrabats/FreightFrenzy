@@ -22,12 +22,11 @@ public class TerraBot extends RobotFramework {
     public Outtake outtake = new Outtake();
     public Carousel carousel = new Carousel();
 
-    public Odometry odometry = new Odometry();
-    public Gyro gyro = new Gyro();
-    public Distance distance = new Distance();
-    public Color color = new Color();
-    public Touch touch = new Touch();
-    public Led led = new Led();
 
-    //public Sensors sensors = new Sensors();
+    public Odometry odometry; //= new Odometry();
+    public Gyro gyro; // = new Gyro();
+    public Distance distance; // = new Distance();
+    public Color color; // = new Color();
+    public Touch touch; // = new Touch();
+    public Led led; // = new Led();
 }

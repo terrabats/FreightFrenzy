@@ -2,7 +2,10 @@ package global;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import automodules.AutoModules;
+import automodules.Modules;
 import debugging.Synchroniser;
+import elements.FieldSide;
 import robot.TerraBot;
 import teleutil.GamepadHandler;
 import debugging.Fault;
@@ -25,7 +28,12 @@ public interface Common{
         storage = new Storage();
         gameTime = new ElapsedTime();
         bot = new TerraBot();
+//        storage = new Storage();
+//        modules = new Modules();
+//        autoModules = new AutoModules();
+        fieldSide = FieldSide.BLUE;
         bot.init();
+        //bot.addAutoModule(autoModules.ResetLift);
     }
     default void activate(){
         log.watch("Ready");

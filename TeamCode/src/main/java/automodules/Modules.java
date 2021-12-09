@@ -14,12 +14,14 @@ public class Modules {
     //Mains
     public Main mainTankDrive(double forward, double strafe){return new Main(() -> bot.tankDrive.move(forward, strafe));}
     public Main mainLift(double power){return new Main(() -> bot.lift.move(power));}
+    public Main mainIntake(double power){return new Main(()-> bot.intake.spin(power));}
 
     //Exits
     public Exit exitTime(double s){
         return new Exit(() -> bot.rfsHandler.timer.seconds() > s);
     }
     public Exit exitLiftDown(){return new Exit(() -> bot.touch.isOuttakePressingTouchSensor());}
+    public Exit exitBall(){return new Exit(()->bot.color.isBall());}
 
     //Stops
     public Stop stopTankDrive(){

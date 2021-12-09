@@ -25,6 +25,15 @@ public class Color extends RobotPart {
         return new float[]{cso.red(), cso.green(), cso.blue()};
     }
 
+    public boolean isBall(){
+        float h = getOuttakeColorHSV()[0];
+        return 0.0 < h && h < 3.0;
+    }
+    public boolean isCube(){
+        float h = getOuttakeColorHSV()[0];
+        return 0.0 < h && h < 3.0;
+    }
+
     //    // TODO: FIX THIS
 //    public GameElement get_part_intake() {
 //        if (in_dis.getDistance(DistanceUnit.CM) > THRESHOLD_DISTANCE) {
