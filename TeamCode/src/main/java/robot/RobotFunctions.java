@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import util.Stage;
 import util.codeseg.CodeSeg;
 import util.condition.Status;
 import util.Timer;
+import util.stage.Pause;
+import util.stage.Stage;
 
 import static global.General.*;
 import static robot.RobotFramework.robotFunctionsThread;
@@ -16,14 +17,14 @@ public class RobotFunctions {
 
     //List of all robot functions currently in the queue (LinkedList is a FIFO Queue)
     public volatile Queue<Stage> rfsQueue = new LinkedList<>();
-    private final Timer timer = new Timer();
+    public final Timer timer = new Timer();
 
     //Update code for running the queue
     public CodeSeg updateCode = () -> {
         if(!rfsQueue.isEmpty()){
             Stage s = rfsQueue.peek();
             assert s != null;
-            if (s.run(timer.seconds())) {
+            if (s.shouldStop()) {
                 s.runOnStop();
                 rfsQueue.poll();
                 timer.reset();
@@ -69,11 +70,6 @@ public class RobotFunctions {
     }
 
     public void addPause() {
-        addToQueue(new Stage() {
-            @Override
-            public boolean isPause() {
-                return true;
-            }
-        });
+        addToQueue(new Stage(new Pause()));
     }
 }

@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import debugging.Synchroniser;
+import elements.FieldSide;
 import robot.TerraBot;
 import teleutil.GamepadHandler;
 import debugging.Fault;
@@ -26,4 +27,5 @@ public class General {
     public static Logger log;
     public static Synchroniser sync;
     public static Storage storage;
+    public static FieldSide fieldSide;
 }

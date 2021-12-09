@@ -12,6 +12,7 @@ import unittests.framework.FaultTest;
 import unittests.framework.GamepadTest;
 import unittests.framework.LoggerTest;
 import unittests.framework.RobotFunctionsTest;
+import unittests.framework.StorageTest;
 import unittests.framework.ThreadTest;
 import unittests.hardware.CarouselTest;
 import unittests.hardware.IntakeTest;
@@ -52,6 +53,7 @@ public class UnitTester extends OpMode implements Common {
 //        allUnitTests.add(new LoggerTest());
 //        allUnitTests.add(new RobotFunctionsTest());
 //        allUnitTests.add(new ThreadTest());
+        allUnitTests.add(new StorageTest());
         // Hardware
         allUnitTests.add(new TankDriveTest());
         allUnitTests.add(new IntakeTest());

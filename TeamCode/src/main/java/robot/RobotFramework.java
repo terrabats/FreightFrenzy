@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import java.util.ArrayList;
 
+import elements.FieldSide;
 import geometry.CoordinatePlane;
 import robotparts.RobotPart;
 import util.TerraThread;
