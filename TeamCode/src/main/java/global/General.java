@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+import automodules.AutoModules;
+import automodules.Modules;
 import debugging.Synchroniser;
 import elements.FieldSide;
 import robot.TerraBot;
@@ -28,4 +30,6 @@ public class General {
     public static Synchroniser sync;
     public static Storage storage;
     public static FieldSide fieldSide;
+    public static Modules modules;
+    public static AutoModules autoModules;
 }

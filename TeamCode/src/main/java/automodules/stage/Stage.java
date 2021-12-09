@@ -1,4 +1,4 @@
-package util.stage;
+package automodules.stage;
 
 public class Stage {
     private Initial initial = new Initial(() -> {});

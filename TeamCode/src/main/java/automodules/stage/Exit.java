@@ -1,7 +1,6 @@
-package util.stage;
+package automodules.stage;
 
 import util.codeseg.BooleanCodeSeg;
-import util.codeseg.CodeSeg;
 
 public class Exit extends StageComponent{
     private BooleanCodeSeg shouldEnd;

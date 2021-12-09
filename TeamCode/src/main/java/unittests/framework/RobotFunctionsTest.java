@@ -1,9 +1,9 @@
 package unittests.framework;
 
-import util.stage.Exit;
-import util.stage.Main;
-import util.stage.Stage;
-import util.stage.Stop;
+import automodules.stage.Exit;
+import automodules.stage.Main;
+import automodules.stage.Stage;
+import automodules.stage.Stop;
 
 import static global.General.*;
 

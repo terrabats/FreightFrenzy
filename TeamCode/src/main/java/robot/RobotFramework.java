@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import java.util.ArrayList;
 
+import automodules.StageList;
 import elements.FieldSide;
 import geometry.CoordinatePlane;
 import robotparts.RobotPart;
@@ -48,5 +49,8 @@ public class RobotFramework {
         for(RobotPart part: allRobotParts){
             part.halt();
         }
+    }
+    public void addAutoModule(StageList autoModule){
+        rfsHandler.addAutoModule(autoModule);
     }
 }

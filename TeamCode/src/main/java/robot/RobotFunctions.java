@@ -1,14 +1,16 @@
 package robot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import automodules.StageList;
 import util.codeseg.CodeSeg;
 import util.condition.Status;
 import util.Timer;
-import util.stage.Pause;
-import util.stage.Stage;
+import automodules.stage.Pause;
+import automodules.stage.Stage;
 
 import static global.General.*;
 import static robot.RobotFramework.robotFunctionsThread;
@@ -50,14 +52,12 @@ public class RobotFunctions {
         addPause();
         robotFunctionsThread.setCode(updateCode);
     }
-
-    //Add robot functions based on index
-    public final void addToQueue(ArrayList<Stage> stages){
+    public final void addAutoModule(StageList autoModule){
         if (rfsQueue.isEmpty()) {
             timer.reset();
             robotFunctionsThread.setStatus(Status.ACTIVE);
         }
-        rfsQueue.addAll(stages);
+        rfsQueue.addAll(autoModule.getStages());
     }
 
     public final void addToQueue(Stage s) {
