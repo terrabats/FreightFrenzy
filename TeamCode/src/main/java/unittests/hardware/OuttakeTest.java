@@ -9,8 +9,8 @@ import static global.General.*;
 public class OuttakeTest extends HardwareTest {
     @Override
     protected void run() {
-        gph1.link(Button.LEFT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.move(0.3));
-        gph1.link(Button.LEFT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.move(0));
+        gph1.link(Button.RIGHT_TRIGGER, OnTurnOnEventHandler.class, args -> bot.outtake.move(0.3));
+        gph1.link(Button.RIGHT_TRIGGER, OnTurnOffEventHandler.class, args -> bot.outtake.move(0));
         showConfig(bot.outtake);
     }
 }

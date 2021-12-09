@@ -61,12 +61,12 @@ public class UnitTester extends OpMode implements Common {
 //        allUnitTests.add(new AutoModuleTest());
 
         // Hardware
-        allUnitTests.add(new TankDriveTest());
+//        allUnitTests.add(new TankDriveTest());
 //        allUnitTests.add(new IntakeTest());
-//        allUnitTests.add(new TurrentTest());
-//        allUnitTests.add(new LiftTest());
-//        allUnitTests.add(new OuttakeTest());
-//        allUnitTests.add(new CarouselTest());
+        allUnitTests.add(new TurrentTest());
+        allUnitTests.add(new LiftTest());
+        allUnitTests.add(new OuttakeTest());
+        allUnitTests.add(new CarouselTest());
 
         // Sensor
 //        allUnitTests.add(new ColorTest());
@@ -82,9 +82,7 @@ public class UnitTester extends OpMode implements Common {
         reference(this);
         createUnitTests();
         for (UnitTest t: allUnitTests) {t.init();}
-        if(testingMode.equals(TestType.CONTROL)) {
-            gph1.link(Button.X, OnPressEventHandler.class, (double... args) -> nextTest());
-        }
+        linkXToNextTest();
         log.watch("Testing Mode: " + testingMode.toString());
         activate();
     }
@@ -122,6 +120,12 @@ public class UnitTester extends OpMode implements Common {
         return allUnitTests.get(currentTestNum);
     }
 
+    private void linkXToNextTest(){
+        if(testingMode.equals(TestType.CONTROL)) {
+            gph1.link(Button.X, OnPressEventHandler.class, (double... args) -> nextTest());
+        }
+    }
+
     private void nextTest(){
         allUnitTests.get(currentTestNum).stop();
         currentTestNum++;
@@ -131,6 +135,7 @@ public class UnitTester extends OpMode implements Common {
         log.clearTelemetry();
         gph1.unlinkAll();
         gph2.unlinkAll();
+        linkXToNextTest();
         timer.reset();
     }
 
