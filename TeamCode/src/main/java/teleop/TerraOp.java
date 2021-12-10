@@ -3,6 +3,7 @@ package teleop;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import teleutil.button.Button;
+import teleutil.button.ButtonEventHandler;
 import teleutil.button.OnPressEventHandler;
 import teleutil.button.OnTurnOffEventHandler;
 import teleutil.button.OnTurnOnEventHandler;
@@ -21,7 +22,7 @@ public class TerraOp extends Tele{
 
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.intake.spin(1));
         gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.intake.spin(0));
-        gph1.link(Button.RIGHT_BUMPER, OnPressEventHandler.class, args -> bot.intake.spin(-1));
+        gph1.link(Button.RIGHT_BUMPER, ButtonEventHandler.class, args -> bot.intake.spin(-1));
 
         gph1.link(Button.LEFT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.move(0.3));
         gph1.link(Button.LEFT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.move(0));

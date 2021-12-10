@@ -23,8 +23,8 @@ public class Display extends JPanel {
 
     public void genTestPlane(){
         Generator generator = new Generator();
-        generator.addNewAbsPos(10, -10, PI/2);
-        generator.addNewAbsPos(30, 70, 3*PI/2);
+        generator.addNewAbsPos(0, 0, PI/2);
+        generator.addNewAbsPos(-30, 70, PI/4);
 
         pathToDisplay = generator.done();
 
@@ -54,15 +54,15 @@ public class Display extends JPanel {
         return (int)(y*yScale);
     }
 
-//    public static void main(String[] args) {
-//        JFrame window = new JFrame("Coordinate Frame 1");
-//        Display display = new Display();
-//        display.genTestPlane();
-//        window.add(display);
-//        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        window.setSize(display.height, display.width);
-//        window.setVisible(true);
-//
-//        System.out.println("-- " + display.pathToDisplay.segments.size());
-//    }
+    public static void main(String[] args) {
+        JFrame window = new JFrame("Coordinate Frame 1");
+        Display display = new Display();
+        display.genTestPlane();
+        window.add(display);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setSize(display.height, display.width);
+        window.setVisible(true);
+
+        System.out.println("-- " + display.pathToDisplay.segments.size());
+    }
 }
