@@ -54,15 +54,15 @@ public class Display extends JPanel {
         return (int)(y*yScale);
     }
 
-    public static void main(String[] args) {
-        JFrame window = new JFrame("Coordinate Frame 1");
-        Display display = new Display();
-        display.genTestPlane();
-        window.add(display);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(display.height, display.width);
-        window.setVisible(true);
-
-        System.out.println("-- " + display.pathToDisplay.segments.size());
-    }
+//    public static void main(String[] args) {
+//        JFrame window = new JFrame("Coordinate Frame 1");
+//        Display display = new Display();
+//        display.genTestPlane();
+//        window.add(display);
+//        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        window.setSize(display.height, display.width);
+//        window.setVisible(true);
+//
+//        System.out.println("-- " + display.pathToDisplay.segments.size());
+//    }
 }

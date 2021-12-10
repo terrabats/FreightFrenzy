@@ -26,7 +26,7 @@ public class TerraBot extends RobotFramework {
     public Odometry odometry; //= new Odometry();
     public Gyro gyro; // = new Gyro();
     public Distance distance; // = new Distance();
-    public Color color; // = new Color();
-    public Touch touch; // = new Touch();
+    public Color color = new Color();
+    public Touch touch = new Touch();
     public Led led; // = new Led();
 }

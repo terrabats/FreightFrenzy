@@ -21,17 +21,17 @@ public class Color extends RobotPart {
         return color;
     }
 
-    public float[] getOutakeColorRGB(){
-        return new float[]{cso.red(), cso.green(), cso.blue()};
-    }
+//    public float[] getOutakeColorRGB(){
+//        return new float[]{(float)cso.red()*255/800, (float)cso.green()*255/800, (float)cso.blue()*255/800};
+//    }
 
     public boolean isBall(){
         float h = getOuttakeColorHSV()[0];
-        return 0.0 < h && h < 3.0;
+        return 155 < h && h < 170;
     }
     public boolean isCube(){
         float h = getOuttakeColorHSV()[0];
-        return 0.0 < h && h < 3.0;
+        return 60 < h && h < 90;
     }
 
     //    // TODO: FIX THIS

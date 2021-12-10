@@ -23,6 +23,6 @@ public class Synchroniser {
         fault.warn("Sync was never updated", Expectation.UNEXPECTED, Magnitude.CRITICAL, numUpdates != 0);
         delay = (1000 * lagTimer.seconds()) / numUpdates;
         log.save("Delay (ms)", delay);
-        fault.check("Robot is lagging", Expectation.EXPECTED, Magnitude.CRITICAL, delay < MAX_ALLOWED_DELAY);
+        fault.warn("Robot is lagging", Expectation.EXPECTED, Magnitude.CRITICAL, delay < MAX_ALLOWED_DELAY);
     }
 }
