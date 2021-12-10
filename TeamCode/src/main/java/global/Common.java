@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import automodules.AutoModules;
 import automodules.Modules;
+import automodules.Stages;
 import debugging.Synchroniser;
 import elements.FieldSide;
 import robot.TerraBot;
@@ -30,6 +31,7 @@ public interface Common{
         bot = new TerraBot();
 //        storage = new Storage();
 //        modules = new Modules();
+//        stages = new Stages();
 //        autoModules = new AutoModules();
         fieldSide = FieldSide.BLUE;
         bot.init();

@@ -8,8 +8,8 @@ import automodules.stage.Stage;
 
 public class StageList {
     private ArrayList<Stage> stages;
-    public StageList(Stage... stages){
-        this.stages = (ArrayList<Stage>) Arrays.asList(stages.clone());
+    public StageList(Stage... stageArray){
+        stages.addAll(Arrays.asList(stageArray));
     }
 
     public ArrayList<Stage> getStages(){

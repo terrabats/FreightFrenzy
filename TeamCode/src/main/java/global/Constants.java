@@ -7,4 +7,6 @@ public class Constants {
     public static final int INF = (int) 1e99;
 
     public static final double ANG_ACC_ARC = 0.1;
+
+    public static final double LIFT_CM_TO_TICKS = (537.6)/(Math.PI*3); //in ticks/cm , (ticks/rev)/(rev/cm)
 }

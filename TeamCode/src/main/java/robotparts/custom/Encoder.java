@@ -19,6 +19,11 @@ public class Encoder {
         return type;
     }
 
+    public void reset(){
+        motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
     public enum Type{
         NORMAL,
         MOTOR
