@@ -11,6 +11,6 @@ public class CarouselTest extends HardwareTest {
 
     @Override
     public void loop() {
-        bot.carousel.spin(gamepad1.right_trigger);
+        bot.carousel.move(gamepad1.right_trigger);
     }
 }

@@ -20,14 +20,21 @@ public class Outtake extends RobotPart {
         lo.addPosition("open", 0.5);
         lo.setPosition("start");
     }
-
+    @Override
     public void move(double pos){
-        if(isInactive()){return;}
         lo.setPosition(pos);
     }
+    @Override
     public void move(String s){
-        if(isInactive()){return;}
-        lo.setPosition(s);}
+        lo.setPosition(s);
+    }
+
+    @Override
+    public void moveTele(double pos) { super.moveTele(pos); }
+
+    @Override
+    public void moveTele(String pos) { super.moveTele(pos); }
+
     public void lockCube(){ move("cubeLock"); }
     public void lockBall(){ move("ballLock"); }
     public void align(){ move("aligned"); }

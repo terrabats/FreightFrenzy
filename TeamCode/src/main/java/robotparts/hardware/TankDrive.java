@@ -23,16 +23,18 @@ public class TankDrive extends RobotPart {
         re = createPServo("re", Servo.Direction.FORWARD, 0, 1);
     }
 
+    @Override
     public void move(double f, double t){
-        if(isInactive()){return;}
         fr.setPower(f-t);
         br.setPower(f-t);
         fl.setPower(f+t);
         bl.setPower(f+t);
     }
 
+    @Override
+    public void moveTele(double f, double t) {super.moveTele(f, t);}
+
     public void retract(double pos){
-        if(isInactive()){return;}
         re.setPosition(pos);
     }
 }

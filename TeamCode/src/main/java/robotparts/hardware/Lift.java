@@ -19,11 +19,12 @@ public class Lift extends RobotPart {
         liEnc = createEncoder("li", "liEnc", Encoder.Type.MOTOR);
         liEnc.reset();
     }
-
+    @Override
     public void move(double p){
-        if(isInactive()){return;}
         li.setPower(p);
     }
+    @Override
+    public void moveTele(double p) {super.moveTele(p);}
 
     public double getLiftPos(){
         return liEnc.getPos();

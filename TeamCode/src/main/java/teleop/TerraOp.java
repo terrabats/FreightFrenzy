@@ -20,12 +20,12 @@ public class TerraOp extends Tele{
     public void init() {
         reference(this);
 
-        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.intake.spin(1));
-        gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.intake.spin(0));
-        gph1.link(Button.RIGHT_BUMPER, ButtonEventHandler.class, args -> bot.intake.spin(-1));
+        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.intake.moveTele(1));
+        gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.intake.moveTele(0));
+        gph1.link(Button.RIGHT_BUMPER, ButtonEventHandler.class, args -> bot.intake.moveTele(-1));
 
-        gph1.link(Button.LEFT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.move(0.3));
-        gph1.link(Button.LEFT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.move(0));
+        gph1.link(Button.LEFT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.moveTele(0.3));
+        gph1.link(Button.LEFT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.moveTele(0));
 
         activate();
     }
@@ -37,14 +37,13 @@ public class TerraOp extends Tele{
 
     @Override
     public void loop() {
-        bot.tankDrive.move(-gamepad1.right_stick_y, gamepad1.left_stick_x);
+        bot.tankDrive.moveTele(-gamepad1.right_stick_y, gamepad1.left_stick_x);
 
-        bot.carousel.spin(gamepad1.right_trigger);
+        bot.carousel.moveTele(gamepad1.right_trigger);
 
-        bot.turret.spin(gamepad2.left_stick_x);
+        bot.turret.moveTele(gamepad2.left_stick_x);
 
-        bot.lift.move(-gamepad2.right_stick_y);
-
+        bot.lift.moveTele(-gamepad2.right_stick_y);
         update(true);
     }
 

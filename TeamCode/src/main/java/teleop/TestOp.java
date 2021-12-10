@@ -19,8 +19,8 @@ public class TestOp extends Tele {
     @Override
     public void init() {
         reference(this);
-        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> {bot.intake.spin(1);});
-        gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> {bot.intake.spin(0);});
+        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> {bot.intake.move(1);});
+        gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> {bot.intake.move(0);});
         activate();
     }
 

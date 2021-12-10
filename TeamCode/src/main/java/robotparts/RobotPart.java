@@ -42,7 +42,8 @@ public class RobotPart {
        RobotFramework.allRobotParts.add(this);
     }
 
-    public void init(){}
+    public void init() {}
+
     protected DcMotor createMotor(String name, DcMotor.Direction dir){
         DcMotor dcMotor = hardwareMap.get(DcMotor.class, name);
         dcMotor.setPower(0);
@@ -133,6 +134,7 @@ public class RobotPart {
             crs.setPower(0);
         }
     }
+
     public boolean isActive(){
         return getStatus().equals(Status.ACTIVE);
     }
@@ -145,5 +147,15 @@ public class RobotPart {
     public void deactivate(){
         setStatus(Status.INACTIVE);
     }
+
+    protected void move(double val1){}
+    protected void move(double val1, double val2){}
+    protected void move(double val1, double val2, double val3){}
+    protected void move(String val1){}
+
+    protected void moveTele(double val1){ if(isInactive()){return;} move(val1); }
+    protected void moveTele(double val1, double val2){ if(isInactive()){return;} move(val1, val2); }
+    protected void moveTele(double val1, double val2, double val3){ if(isInactive()){return;} move(val1, val2, val3); }
+    protected void moveTele(String val1){ if(isInactive()){return;} move(val1); }
 
 }

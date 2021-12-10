@@ -16,9 +16,14 @@ public class Intake extends RobotPart {
         inEnc = createEncoder("in", "inEnc", Encoder.Type.MOTOR);
     }
 
-    public void spin(double power){
-        if(isInactive()){return;}
+    @Override
+    public void move(double power){
         in.setPower(power);
+    }
+
+    @Override
+    public void moveTele(double power) {
+        super.move(power);
     }
 
     public double getIntakePos(){

@@ -15,10 +15,14 @@ public class Carousel extends RobotPart {
         cl = createCRServo("cl", CRServo.Direction.REVERSE);
         cr = createCRServo("cr", CRServo.Direction.FORWARD);
     }
-
-    public void spin(double p){
-        if(isInactive()){return;}
+    @Override
+    public void move(double p){
         cl.setPower(p);
         cr.setPower(p);
+    }
+
+    @Override
+    public void moveTele(double p) {
+        super.moveTele(p);
     }
 }

@@ -25,9 +25,9 @@ public class AutoTest extends Auto{
         bot.tankDrive.move(0.4, 0);
         sleep(1500);
         bot.tankDrive.move(0,0.2);
-        bot.carousel.spin(1);
+        bot.carousel.move(1);
         sleep(5000);
-        bot.carousel.spin(0);
+        bot.carousel.move(0);
         bot.tankDrive.move(-0.4, 0);
         sleep(480);
         bot.tankDrive.move(0, -0.4);

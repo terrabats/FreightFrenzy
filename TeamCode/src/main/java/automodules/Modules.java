@@ -19,8 +19,8 @@ public class Modules {
     //Mains
     public Main mainTankDrive(double forward, double strafe){return new Main(() -> bot.tankDrive.move(forward, strafe));}
     public Main mainLift(double power){return new Main(() -> bot.lift.move(power));}
-    public Main mainIntake(double power){return new Main(()-> bot.intake.spin(power));}
-    public Main mainTurret(double power){return new Main(()-> bot.turret.spin(power));}
+    public Main mainIntake(double power){return new Main(()-> bot.intake.move(power));}
+    public Main mainTurret(double power){return new Main(()-> bot.turret.move(power));}
     public Main mainLockIfBall(){return new Main(() -> {if (bot.color.isBall()) {bot.outtake.lockBall();}});}
     public Main mainLockIfCube(){return new Main(() -> {if (bot.color.isCube()) {bot.outtake.lockCube();}});}
 
@@ -38,8 +38,8 @@ public class Modules {
         return new Stop(() -> bot.tankDrive.move(0,0));
     }
     public Stop stopLift(){return new Stop(() -> bot.lift.move(0));}
-    public Stop stopIntake(){return new Stop(() -> bot.intake.spin(0));}
-    public Stop stopTurret(){return new Stop(()-> bot.turret.spin(0));}
+    public Stop stopIntake(){return new Stop(() -> bot.intake.move(0));}
+    public Stop stopTurret(){return new Stop(()-> bot.turret.move(0));}
 
 
     //Pausing

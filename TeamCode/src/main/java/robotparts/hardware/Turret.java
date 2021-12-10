@@ -19,9 +19,13 @@ public class Turret extends RobotPart {
         trEnc = createEncoder("tr", "trEnc", Encoder.Type.NORMAL);
     }
 
-    public void spin(double pow) {
-        if(isInactive()){return;}
-        tr.setPower(pow);}
+    @Override
+    public void move(double power) {
+        tr.setPower(power);
+    }
+
+    @Override
+    public void moveTele(double power) { super.moveTele(power); }
 
     public double getTurretPos(){
         return trEnc.getPos();

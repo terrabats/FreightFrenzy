@@ -11,7 +11,7 @@ public class TurretTest extends HardwareTest {
 
     @Override
     public void loop() {
-        bot.turret.spin(gamepad2.left_stick_x);
+        bot.turret.move(gamepad2.left_stick_x);
         log.watch("pos", bot.turret.getTurretPos());
     }
 }
