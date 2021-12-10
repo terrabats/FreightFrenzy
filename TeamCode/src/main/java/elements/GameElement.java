@@ -1,6 +1,6 @@
 package elements;
 
 public enum GameElement {
-    SPHERE,
-    BOX
+    BALL,
+    CUBE
 }

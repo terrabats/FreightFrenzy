@@ -34,6 +34,11 @@ public class Color extends RobotPart {
         return 60 < h && h < 90;
     }
 
+    public boolean isFreight(){
+        return isBall() || isCube();
+    }
+
+
     //    // TODO: FIX THIS
 //    public GameElement get_part_intake() {
 //        if (in_dis.getDistance(DistanceUnit.CM) > THRESHOLD_DISTANCE) {

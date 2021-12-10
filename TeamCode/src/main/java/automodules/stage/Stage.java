@@ -6,6 +6,7 @@ public class Stage {
     private Exit exit = new Exit(() -> true);
     private Stop stop = new Stop(() -> {});
     private Pause pause = new Pause(false);
+    private boolean hasStarted = false;
 
 
     public Stage(Main m){
@@ -33,6 +34,10 @@ public class Stage {
 
     public void start(){
         initial.start();
+        hasStarted = true;
+    }
+    public boolean hasStarted(){
+        return hasStarted;
     }
     public void run(){
         main.loop();
@@ -42,6 +47,7 @@ public class Stage {
     }
     public void runOnStop(){
         stop.runOnStop();
+        hasStarted = false;
     }
     public boolean isPause(){
         return pause.isActive();

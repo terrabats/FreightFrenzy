@@ -22,4 +22,9 @@ public class Outtake extends RobotPart {
     }
 
     public void move(double pos){lo.setPosition(pos);}
+    public void lockCube(){ lo.setPosition("cubeLock"); }
+    public void lockBall(){ lo.setPosition("ballLock"); }
+    public void align(){ lo.setPosition("aligned"); }
+    public void start(){ lo.setPosition("start"); }
+    public void open(){ lo.setPosition("open"); }
 }

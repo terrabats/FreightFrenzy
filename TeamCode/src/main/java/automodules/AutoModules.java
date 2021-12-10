@@ -4,25 +4,18 @@ import java.util.ArrayList;
 import static global.General.*;
 
 import automodules.stage.Stage;
+import elements.GameElement;
 
 public class AutoModules {
     public StageList ResetLift = new StageList(
-            new Stage(
-                    modules.mainLift(-0.2),
-                    modules.exitLiftDown(),
-                    modules.stopLife()
-            )
+        stages.liftDown(-0.2)
     );
     public StageList Intake = new StageList(
-            new Stage(
-                    modules.mainIntake(0.3),
-                    modules.exitTime(1),
-                    modules.stopTankDrive()
-            ),
-            new Stage(
-                    modules.mainTankDrive(0.2,0.3),
-                    modules.exitTime(2),
-                    modules.stopTankDrive()
-            )
+        stages.intakeUntilFreight(1),
+        stages.outtakeLock(GameElement.BALL, 0.5)
+    );
+    public StageList Backward = new StageList(
+        stages.liftEncoder(0.4, 10),
+        stages.outtakeLock(GameElement.CUBE, 0.5)
     );
 }

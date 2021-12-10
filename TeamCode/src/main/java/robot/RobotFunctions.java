@@ -26,6 +26,10 @@ public class RobotFunctions {
         if(!rfsQueue.isEmpty()){
             Stage s = rfsQueue.peek();
             assert s != null;
+            if(!s.hasStarted()){
+                s.start();
+            }
+            s.run();
             if (s.shouldStop()) {
                 s.runOnStop();
                 rfsQueue.poll();
@@ -67,6 +71,11 @@ public class RobotFunctions {
             robotFunctionsThread.setStatus(Status.ACTIVE);
         }
         rfsQueue.add(s);
+    }
+
+    public final void emptyQueue(){
+        rfsQueue.clear();
+        timer.reset();
     }
 
     public void addPause() {
