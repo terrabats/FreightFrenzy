@@ -36,9 +36,7 @@ public class RobotPart {
     public TreeMap<String, Encoder> encoders = new TreeMap<>();
     public TreeMap<String, LED> leds = new TreeMap<>();
 
-    private Status currentStatus = Status.INACTIVE;
-
-    public Timer timer = new Timer();
+    private Status currentStatus = Status.ACTIVE;
 
     public RobotPart(){
        RobotFramework.allRobotParts.add(this);
@@ -135,4 +133,17 @@ public class RobotPart {
             crs.setPower(0);
         }
     }
+    public boolean isActive(){
+        return getStatus().equals(Status.ACTIVE);
+    }
+    public boolean isInactive(){
+        return getStatus().equals(Status.INACTIVE);
+    }
+    public void activate(){
+        setStatus(Status.ACTIVE);
+    }
+    public void deactivate(){
+        setStatus(Status.INACTIVE);
+    }
+
 }

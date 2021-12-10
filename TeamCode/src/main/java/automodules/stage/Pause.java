@@ -1,6 +1,6 @@
 package automodules.stage;
 
-public class Pause extends StageComponent{
+public class Pause {
     private boolean isActive;
     public Pause(){
         isActive = true;

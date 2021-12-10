@@ -5,29 +5,47 @@ import automodules.stage.Stage;
 import elements.Ball;
 import elements.GameElement;
 
+import static global.General.bot;
 import static global.General.modules;
 
 public class Stages {
     public Stage intakeUntilFreight(double power){return new Stage(
+            modules.usePart(bot.intake),
             modules.mainIntake(power),
             modules.exitFreight(),
-            modules.stopIntake()
+            modules.stopIntake(),
+            modules.returnPart(bot.intake)
     );}
 
     public Stage liftTime(double power, double time){return new Stage(
+            modules.usePart(bot.lift),
             modules.mainLift(power),
             modules.exitTime(time),
-            modules.stopLift()
+            modules.stopLift(),
+            modules.returnPart(bot.lift)
     );}
     public Stage liftEncoder(double power, double height){return new Stage(
+            modules.usePart(bot.lift),
             modules.initialLiftSetTarget(height),
             modules.mainLift(power),
-            modules.exitLiftReachedTarget()
+            modules.exitLiftReachedTarget(),
+            modules.returnPart(bot.lift)
     );}
     public Stage liftDown(double power){return new Stage(
+            modules.usePart(bot.lift),
             modules.mainLift(power),
             modules.exitLiftDown(),
-            modules.stopLift()
+            modules.stopLift(),
+            modules.returnPart(bot.lift)
+    );}
+
+    public Stage turretEncoder(double power, double angle){return new Stage(
+            modules.usePart(bot.turret),
+            modules.initialTurretSetTarget(angle),
+            modules.mainTurret(power),
+            modules.exitTurretReachedTarget(),
+            modules.stopTurret(),
+            modules.returnPart(bot.turret)
     );}
 
     public Stage outtakeLock(GameElement freightType, double time){
@@ -35,8 +53,12 @@ public class Stages {
         if(freightType.equals(GameElement.CUBE)){lock = modules.mainLockIfCube();}
         else if(freightType.equals(GameElement.BALL)){lock = modules.mainLockIfBall();}
         return new Stage(
+                modules.usePart(bot.outtake),
                 lock,
-                modules.exitTime(time)
+                modules.exitTime(time),
+                modules.returnPart(bot.outtake)
         );
     }
+
+
 }

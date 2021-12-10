@@ -1,52 +1,49 @@
 package automodules.stage;
 
+import org.checkerframework.checker.units.qual.A;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Stage {
-    private Initial initial = new Initial(() -> {});
-    private Main main = new Main(() -> {});
-    private Exit exit = new Exit(() -> true);
-    private Stop stop = new Stop(() -> {});
+
+    private final ArrayList<StageComponent> components = new ArrayList<>();
     private Pause pause = new Pause(false);
     private boolean hasStarted = false;
 
-
-    public Stage(Main m){
-        main = m;
-    }
-    public Stage(Initial i, Main m){
-        initial = i; main = m;
-    }
-    public Stage(Main m, Exit e){
-        main = m; exit = e;
-    }
-    public Stage(Initial i, Main m, Exit e){
-        initial = i; main = m; exit = e;
-    }
-
-    public Stage(Main m, Exit e, Stop s){
-        main = m; exit = e; stop = s;
-    }
-    public Stage(Initial i, Main m, Exit e, Stop s){
-        initial = i; main = m; exit = e; stop = s;
+    public Stage(StageComponent...stageComponents){
+        components.addAll(Arrays.asList(stageComponents));
     }
     public Stage(Pause p){
         pause = p;
     }
-
-    public void start(){
-        initial.start();
-        hasStarted = true;
-    }
     public boolean hasStarted(){
         return hasStarted;
     }
-    public void run(){
-        main.loop();
+
+    public void start(){
+        for(StageComponent sc: components){
+            sc.start();
+        }
+        hasStarted = true;
+    }
+    public void loop(){
+        for(StageComponent sc: components){
+            sc.loop();
+        }
     }
     public boolean shouldStop(){
-        return exit.shouldEnd();
+        for(StageComponent sc: components){
+            if(sc.shouldStop()){
+                return true;
+            }
+        }
+        return false;
     }
     public void runOnStop(){
-        stop.runOnStop();
+        for(StageComponent sc: components){
+            sc.runOnStop();
+        }
         hasStarted = false;
     }
     public boolean isPause(){

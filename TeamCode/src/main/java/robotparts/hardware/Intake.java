@@ -17,6 +17,7 @@ public class Intake extends RobotPart {
     }
 
     public void spin(double power){
+        if(isInactive()){return;}
         in.setPower(power);
     }
 

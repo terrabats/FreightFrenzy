@@ -24,6 +24,7 @@ public class TankDrive extends RobotPart {
     }
 
     public void move(double f, double t){
+        if(isInactive()){return;}
         fr.setPower(f-t);
         br.setPower(f-t);
         fl.setPower(f+t);
@@ -31,6 +32,7 @@ public class TankDrive extends RobotPart {
     }
 
     public void retract(double pos){
+        if(isInactive()){return;}
         re.setPosition(pos);
     }
 }

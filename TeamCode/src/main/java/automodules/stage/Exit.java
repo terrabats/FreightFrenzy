@@ -8,8 +8,8 @@ public class Exit extends StageComponent{
     public Exit(BooleanCodeSeg endCode){
         shouldEnd = endCode;
     }
-
-    public boolean shouldEnd(){
+    @Override
+    public boolean shouldStop(){
         return shouldEnd.run();
     }
 }

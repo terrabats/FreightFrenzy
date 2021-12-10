@@ -7,6 +7,7 @@ public class Stop extends StageComponent{
     public Stop(CodeSeg runOnStop){
         stop = runOnStop;
     }
+    @Override
     public void runOnStop(){
         stop.run();
     }

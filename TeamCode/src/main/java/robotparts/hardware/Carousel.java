@@ -16,8 +16,8 @@ public class Carousel extends RobotPart {
         cr = createCRServo("cr", CRServo.Direction.FORWARD);
     }
 
-    public void spin(double p)
-    {
+    public void spin(double p){
+        if(isInactive()){return;}
         cl.setPower(p);
         cr.setPower(p);
     }

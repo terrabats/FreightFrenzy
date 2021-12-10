@@ -21,6 +21,7 @@ public class Lift extends RobotPart {
     }
 
     public void move(double p){
+        if(isInactive()){return;}
         li.setPower(p);
     }
 

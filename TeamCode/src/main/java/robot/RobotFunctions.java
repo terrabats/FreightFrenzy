@@ -29,7 +29,7 @@ public class RobotFunctions {
             if(!s.hasStarted()){
                 s.start();
             }
-            s.run();
+            s.loop();
             if (s.shouldStop()) {
                 s.runOnStop();
                 rfsQueue.poll();

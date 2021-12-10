@@ -7,6 +7,7 @@ public class Initial extends StageComponent{
     public Initial(CodeSeg startCode){
         start = startCode;
     }
+    @Override
     public void start(){
         start.run();
     }

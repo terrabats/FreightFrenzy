@@ -16,6 +16,7 @@ public class AutoModules {
     );
     public StageList Backward = new StageList(
         stages.liftEncoder(0.4, 10),
-        stages.outtakeLock(GameElement.CUBE, 0.5)
+        stages.outtakeLock(GameElement.CUBE, 0.5),
+        stages.turretEncoder(0.4, 90)
     );
 }

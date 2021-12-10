@@ -21,10 +21,16 @@ public class Outtake extends RobotPart {
         lo.setPosition("start");
     }
 
-    public void move(double pos){lo.setPosition(pos);}
-    public void lockCube(){ lo.setPosition("cubeLock"); }
-    public void lockBall(){ lo.setPosition("ballLock"); }
-    public void align(){ lo.setPosition("aligned"); }
-    public void start(){ lo.setPosition("start"); }
-    public void open(){ lo.setPosition("open"); }
+    public void move(double pos){
+        if(isInactive()){return;}
+        lo.setPosition(pos);
+    }
+    public void move(String s){
+        if(isInactive()){return;}
+        lo.setPosition(s);}
+    public void lockCube(){ move("cubeLock"); }
+    public void lockBall(){ move("ballLock"); }
+    public void align(){ move("aligned"); }
+    public void start(){ move("start"); }
+    public void open(){ move("open"); }
 }

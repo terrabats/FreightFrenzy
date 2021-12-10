@@ -7,6 +7,7 @@ public class Main extends StageComponent{
     public Main(CodeSeg loopCode){
         loop = loopCode;
     }
+    @Override
     public void loop(){
         loop.run();
     }
