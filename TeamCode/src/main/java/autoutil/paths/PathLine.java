@@ -23,11 +23,7 @@ public class PathLine extends PathSegment{
 
     @Override
     public void unshift(Pose origin) {
-//        Position orig = new Position(
-//                new Point(-origin.p.x, -origin.p.y), (-origin.ang) % (2 * Math.PI)
-//                );
-//        line.p1 = line.p1.changeOrigin(orig);
-//        line.p2 = line.p2.changeOrigin(orig);
+        //
     }
 
     @Override

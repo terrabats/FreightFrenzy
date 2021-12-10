@@ -32,34 +32,42 @@ public class Arc extends PathSegment{
 
     @Override
     public void unshift(Pose origin) {
-//        Position orig = new Position(
-//                new Point(-origin.p.x, -origin.p.y), (-origin.ang) % (2 * Math.PI)
-//        );
-//        arc.center = arc.center.changeOrigin(orig);
-//        arc.arcSt = (arc.arcSt + orig.ang) % (2 * Math.PI);
-//        arc.arcEnd = (arc.arcEnd + orig.ang) % (2 * Math.PI);
+        origin.ang -= Math.PI/2;
+        Pose stP = arc.getPositionFromTheta(arc.arcSt);
+        Pose endP = arc.getPositionFromTheta(arc.arcEnd);
+        Pose originToBeRelativeTo = new Pose(new Point(0, 0), -origin.ang);
+        stP.p = stP.p.getRelativeTo(originToBeRelativeTo);
+        endP.p = endP.p.getRelativeTo(originToBeRelativeTo);
+        arc.center = arc.center.getRelativeTo(new Pose(new Point(0, 0), -origin.ang));
+
+        Arc a2 = new Arc(new Circle(arc.center, arc.r), endP.p, stP.p);
+
+        if (this.getArcLength() > a2.getArcLength()) {
+            this.arc.arcSt = a2.arc.arcEnd;
+            this.arc.arcEnd = a2.arc.arcSt;
+        }
     }
 
     @Override
     public void flip(boolean x, boolean y) {
-        Pose newStPt = arc.getPositionFromTheta(arc.arcSt);
-        Pose newEndPt = arc.getPositionFromTheta(arc.arcEnd);
-        if (x) {
-            newStPt.p.x *= -1;
-            newStPt.ang *= -1;
-            newEndPt.p.x *= -1;
-            newEndPt.ang *= -1;
-            arc.center.x *= -1;
-        }
-        if (y) {
-            newStPt.p.y *= -1;
-            newStPt.ang *= -1;
-            newEndPt.p.y *= -1;
-            newEndPt.ang *= -1;
-            arc.center.y *= -1;
-        }
-        CircleArc v1 = new CircleArc(arc.center, newStPt.p, newEndPt.p, arc.r);
-        CircleArc v2 = new CircleArc(arc.center, newEndPt.p, newStPt.p, arc.r);
-        arc = (v1.getArcLength() < v2.getArcLength()) ? v1 : v2;
+//        Pose newStPt = arc.getPositionFromTheta(arc.arcSt);
+//        Pose newEndPt = arc.getPositionFromTheta(arc.arcEnd);
+//        if (x) {
+//            newStPt.p.x *= -1;
+//            newStPt.ang *= -1;
+//            newEndPt.p.x *= -1;
+//            newEndPt.ang *= -1;
+//            arc.center.x *= -1;
+//        }
+//        if (y) {
+//            newStPt.p.y *= -1;
+//            newStPt.ang *= -1;
+//            newEndPt.p.y *= -1;
+//            newEndPt.ang *= -1;
+//            arc.center.y *= -1;
+//        }
+//        CircleArc v1 = new CircleArc(arc.center, newStPt.p, newEndPt.p, arc.r);
+//        CircleArc v2 = new CircleArc(arc.center, newEndPt.p, newStPt.p, arc.r);
+//        arc = (v1.getArcLength() < v2.getArcLength()) ? v1 : v2;
     }
 }

@@ -49,7 +49,7 @@ public class Generator {
 
     private ArrayList<PathSegment> generateSeg(Pose p1, Pose p2) {
         ArrayList<PathSegment> ret = generateRelSeg(p1, p2);
-        p1.rotate(-PI/2);
+//        p1.rotate(-PI/2);
         for (PathSegment ps : ret) ps.unshift(p1);
         return ret;
     }
