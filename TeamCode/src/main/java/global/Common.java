@@ -30,7 +30,6 @@ public interface Common{
         gameTime = new ElapsedTime();
         bot = new TerraBot();
         storage = new Storage();
-        fieldSide = FieldSide.BLUE;
         modules = new Modules();
         stages = new Stages();
         autoModules = new AutoModules();

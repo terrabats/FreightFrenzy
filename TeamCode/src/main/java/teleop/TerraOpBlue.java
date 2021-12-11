@@ -3,6 +3,7 @@ package teleop;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import elements.FieldSide;
 import global.Constants;
 import teleutil.GamepadHandler;
 import teleutil.button.Button;
@@ -16,6 +17,7 @@ import util.Timer;
 
 import static global.General.autoModules;
 import static global.General.bot;
+import static global.General.fieldSide;
 import static global.General.gamepad1;
 import static global.General.gamepad2;
 import static global.General.gph1;
@@ -23,7 +25,7 @@ import static global.General.gph2;
 import static global.General.log;
 
 @TeleOp(name = "TerraOp", group = "TeleOp")
-public class TerraOp extends Tele{
+public class TerraOpBlue extends Tele{
     Timer aTimer = new Timer();
     Timer bTimer = new Timer();
     Timer xTimer = new Timer();
@@ -31,6 +33,8 @@ public class TerraOp extends Tele{
 
     @Override
     public void init() {
+        fieldSide = FieldSide.BLUE;
+
         reference(this);
 
         //Gamepad 1
