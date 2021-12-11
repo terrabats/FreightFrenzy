@@ -25,21 +25,23 @@ public class TerraThread extends Thread {
     public void run() {
         //fault.warn("Starting thread with empty CodeSeg", Expectation.EXPECTED, Magnitude.MINOR, setUpdateCode);
         while (!currentStatus.equals(Status.DISABLED)){
-            if(currentStatus.equals(Status.IDLE)){
-                synchronized (this) {
-                    ExceptionCatcher.catchInterrupted(this::wait);
-                }
-            }else if(currentStatus.equals(Status.ACTIVE)){
-                updateCode.run();
-                ExceptionCatcher.catchInterrupted(()-> sleep(1000/Constants.THREAD_REFRESH_RATE));
-            }
+//            if(currentStatus.equals(Status.IDLE)){
+//                synchronized (this) {
+//                    ExceptionCatcher.catchInterrupted(this::wait);
+//                }
+//            }else if(currentStatus.equals(Status.ACTIVE)){
+//                updateCode.run();
+//                ExceptionCatcher.catchInterrupted(()-> sleep(1000/Constants.THREAD_REFRESH_RATE));
+//            }
+            updateCode.run();
+            ExceptionCatcher.catchInterrupted(()-> sleep(1000/Constants.THREAD_REFRESH_RATE));
         }
     }
 
     public synchronized void setStatus(Status status){
-        if(currentStatus.equals(Status.IDLE) && status.equals(Status.ACTIVE)){
-            ExceptionCatcher.catchInterrupted(this::notify);
-        }
+//        if(currentStatus.equals(Status.IDLE) && status.equals(Status.ACTIVE)){
+//            ExceptionCatcher.catchInterrupted(this::notify);
+//        }
         currentStatus = status;
     }
 

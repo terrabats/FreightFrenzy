@@ -14,6 +14,7 @@ import util.condition.Expectation;
 import util.condition.Magnitude;
 import static global.General.*;
 
+@Disabled
 @TeleOp(name = "TestOp", group = "TeleOp")
 public class TestOp extends Tele {
     @Override

@@ -24,6 +24,7 @@ public class Modules {
     public Main mainOuttakeLockIfBall(){return new Main(() -> {if (bot.color.isBall()) {bot.outtake.lockBall();}});}
     public Main mainOuttakeLockIfCube(){return new Main(() -> {if (bot.color.isCube()) {bot.outtake.lockCube();}});}
     public Main mainOuttakeDrop(){return new Main(()->bot.outtake.open());}
+    public Main mainOuttakeReset(){return new Main(()->bot.outtake.start());}
 
     //Exits
     public Exit exitTime(double s){return new Exit(() -> bot.rfsHandler.timer.seconds() > s);}
@@ -34,6 +35,7 @@ public class Modules {
     public Exit exitCube(){return new Exit(()->bot.color.isCube());}
     public Exit exitFreight(){return new Exit(()->bot.color.isFreight());}
     public Exit exitNever(){return new Exit(() -> false);}
+    public Exit exitAlways(){return new Exit(() -> true);}
 
     //Stops
     public Stop stopTankDrive(){
@@ -53,5 +55,8 @@ public class Modules {
     //Possession
     public Initial usePart(RobotPart part){return new Initial(part::deactivate);}
     public Stop returnPart(RobotPart part){return new Stop(part::activate);}
+
+
+    public Main setSlowMode(boolean val){return new Main(() -> bot.slowMode = val);}
 
 }

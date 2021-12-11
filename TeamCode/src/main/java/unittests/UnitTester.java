@@ -1,5 +1,6 @@
 package unittests;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -19,6 +20,7 @@ import teleutil.button.Button;
 
 import static global.General.*;
 
+@Disabled
 @TeleOp(name = "UnitTester", group = "UnitTests")
 public class UnitTester extends OpMode implements Common {
     private ArrayList<UnitTest> allUnitTests = new ArrayList<>();

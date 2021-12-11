@@ -17,7 +17,7 @@ public class Lift extends RobotPart {
     public void init() {
         li = createMotor("li", DcMotorSimple.Direction.FORWARD);
         liEnc = createEncoder("li", "liEnc", Encoder.Type.MOTOR);
-        liEnc.reset();
+        resetEncoder();
     }
     @Override
     public void move(double p){
@@ -33,7 +33,7 @@ public class Lift extends RobotPart {
     public void resetEncoder(){liEnc.reset();}
 
     public void setTarget(double h){
-        resetEncoder();
+        //resetEncoder();
         li.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         li.setTargetPosition((int)(h*Constants.LIFT_CM_TO_TICKS));
         li.setMode(DcMotor.RunMode.RUN_TO_POSITION);

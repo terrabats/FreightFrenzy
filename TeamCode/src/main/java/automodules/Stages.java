@@ -69,5 +69,17 @@ public class Stages {
             modules.returnPart(bot.outtake)
     );}
 
+    public Stage outtakeReset(double time){ return new Stage(
+            modules.usePart(bot.outtake),
+            modules.mainOuttakeReset(),
+            modules.exitTime(time),
+            modules.returnPart(bot.outtake)
+    );}
+
+    public Stage robotSetSlowMode(boolean val){return new Stage(
+            modules.setSlowMode(val),
+            modules.exitAlways()
+    );}
+
 
 }

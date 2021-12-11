@@ -19,6 +19,8 @@ public class RobotFramework {
     public static TerraThread odometryThread;
     public RobotFunctions rfsHandler;
 
+    public boolean slowMode = false;
+
     public RobotFramework(){
         localPlane = new CoordinatePlane();
         rfsHandler = new RobotFunctions();

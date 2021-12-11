@@ -35,10 +35,10 @@ public class RobotFunctions {
                 rfsQueue.poll();
                 timer.reset();
             } else if (s.isPause()) {
-                robotFunctionsThread.setStatus(Status.IDLE);
+                //robotFunctionsThread.setStatus(Status.IDLE);
             }
         } else {
-            robotFunctionsThread.setStatus(Status.IDLE);
+            //robotFunctionsThread.setStatus(Status.IDLE);
         }
         telemetry.update();
     };

@@ -40,4 +40,10 @@ public class Outtake extends RobotPart {
     public void align(){ move("aligned"); }
     public void start(){ move("start"); }
     public void open(){ move("open"); }
+
+    public void lockCubeTele(){ moveTele("cubeLock"); }
+    public void lockBallTele(){ moveTele("ballLock"); }
+    public void alignTele(){ moveTele("aligned"); }
+    public void startTele(){ moveTele("start"); }
+    public void openTele(){ moveTele("open"); }
 }
