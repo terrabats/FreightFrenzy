@@ -6,7 +6,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import java.util.ArrayList;
 
 import teleutil.button.OnPressEventHandler;
+import unittests.framework.AutoModuleTest;
+import unittests.framework.ModulesTest;
+import unittests.framework.StorageTest;
 import unittests.hardware.LiftTest;
+import unittests.hardware.OuttakeTest;
 import unittests.hardware.TurretTest;
 import util.Timer;
 
@@ -37,13 +41,13 @@ public class UnitTester extends OpMode implements Common {
 
 //        allUnitTests.add(new StorageTest());
 //        allUnitTests.add(new ModulesTest());
-//        allUnitTests.add(new AutoModuleTest());
+        allUnitTests.add(new AutoModuleTest());
 
         // Hardware
 //        allUnitTests.add(new TankDriveTest());
 //        allUnitTests.add(new IntakeTest());
 //        allUnitTests.add(new TurretTest());
-        allUnitTests.add(new LiftTest());
+//        allUnitTests.add(new LiftTest());
 //        allUnitTests.add(new OuttakeTest());
 //        allUnitTests.add(new CarouselTest());
 

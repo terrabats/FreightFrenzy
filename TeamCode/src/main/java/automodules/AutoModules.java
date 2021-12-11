@@ -5,6 +5,7 @@ import static global.General.*;
 
 import automodules.stage.Stage;
 import elements.GameElement;
+import global.Constants;
 
 public class AutoModules {
 
@@ -13,7 +14,7 @@ public class AutoModules {
     );
 
     public StageList Intake = new StageList(
-        stages.liftDown(-0.2),
+        stages.liftEncoder(0.4, 0),
         stages.intakeUntilFreight(1),
         stages.outtakeLock(GameElement.BALL, 0.5)
     );

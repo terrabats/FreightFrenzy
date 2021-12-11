@@ -19,7 +19,7 @@ public class Turret extends RobotPart {
     @Override
     public void init() {
         tr = createMotor("tr", DcMotorSimple.Direction.FORWARD);
-        trEnc = createEncoder("tr", "trEnc", Encoder.Type.NORMAL);
+        trEnc = createEncoder("tr", "trEnc", Encoder.Type.MOTOR);
     }
 
     @Override
@@ -37,10 +37,11 @@ public class Turret extends RobotPart {
 
     public void resetEncoder(){trEnc.reset();}
 
-    public void setTarget(double h){
+    public void setTarget(double angle){
         resetEncoder();
         tr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        tr.setTargetPosition((int)(h* Constants.LIFT_CM_TO_TICKS));
+        tr.setTargetPosition((int)(angle*Constants.TURRET_ANGLE_DEG_TO_TICKS));
+        tr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
     public boolean hasReachedTarget(){
@@ -55,5 +56,10 @@ public class Turret extends RobotPart {
         }else{
             return 0;
         }
+    }
+
+    public void stopAndResetMode() {
+        tr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        tr.setPower(0);
     }
 }

@@ -29,13 +29,12 @@ public interface Common{
         storage = new Storage();
         gameTime = new ElapsedTime();
         bot = new TerraBot();
-//        storage = new Storage();
-//        modules = new Modules();
-//        stages = new Stages();
-//        autoModules = new AutoModules();
+        storage = new Storage();
         fieldSide = FieldSide.BLUE;
+        modules = new Modules();
+        stages = new Stages();
+        autoModules = new AutoModules();
         bot.init();
-        //bot.addAutoModule(autoModules.ResetLift);
     }
     default void activate(){
         log.watch("Ready");

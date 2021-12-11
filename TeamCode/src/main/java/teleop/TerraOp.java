@@ -12,6 +12,7 @@ import teleutil.button.OnPressEventHandler;
 import teleutil.button.OnTurnOffEventHandler;
 import teleutil.button.OnTurnOnEventHandler;
 
+import static global.General.autoModules;
 import static global.General.bot;
 import static global.General.gamepad1;
 import static global.General.gamepad2;
@@ -20,6 +21,8 @@ import static global.General.gph2;
 
 @TeleOp(name = "TerraOp", group = "TeleOp")
 public class TerraOp extends Tele{
+
+
 
     @Override
     public void init() {
@@ -34,6 +37,12 @@ public class TerraOp extends Tele{
         //Gamepad 2
         gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.moveTele(0.3));
         gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.moveTele(0));
+
+
+        //Automodules
+        //gph1.link();
+
+        bot.addAutoModule(autoModules.ResetLift);
 
         activate();
     }

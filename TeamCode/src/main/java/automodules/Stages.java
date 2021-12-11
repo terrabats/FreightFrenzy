@@ -29,6 +29,7 @@ public class Stages {
             modules.initialLiftSetTarget(height),
             modules.mainLift(power),
             modules.exitLiftReachedTarget(),
+            modules.stopLiftEncoder(),
             modules.returnPart(bot.lift)
     );}
     public Stage liftDown(double power){return new Stage(
@@ -44,7 +45,7 @@ public class Stages {
             modules.initialTurretSetTarget(angle),
             modules.mainTurret(power),
             modules.exitTurretReachedTarget(),
-            modules.stopTurret(),
+            modules.stopTurretEncoder(),
             modules.returnPart(bot.turret)
     );}
     public Stage turretEncoderTarget(double power){ return turretEncoder(power, bot.turret.getTurretTargetPos());}

@@ -36,6 +36,16 @@ public class Lift extends RobotPart {
         resetEncoder();
         li.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         li.setTargetPosition((int)(h*Constants.LIFT_CM_TO_TICKS));
+        li.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    public void stopAndResetMode() {
+        setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        li.setPower(0);
+    }
+
+    public void setMode(DcMotor.RunMode mode) {
+        li.setMode(mode);
     }
 
     public boolean hasReachedTarget(){

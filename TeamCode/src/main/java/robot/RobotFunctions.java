@@ -66,7 +66,6 @@ public class RobotFunctions {
 
     public final void addToQueue(Stage s) {
         if (rfsQueue.isEmpty()) {
-            log.display("Starting RFsThread again");
             timer.reset();
             robotFunctionsThread.setStatus(Status.ACTIVE);
         }

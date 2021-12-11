@@ -48,7 +48,7 @@ public class Storage {
             case DOUBLE:
                 return Double.valueOf(rawValue);
             case BOOLEAN:
-                return Boolean.getBoolean(rawValue);
+                return Boolean.valueOf(rawValue);
         }
         return null;
     }

@@ -27,20 +27,23 @@ public class Modules {
 
     //Exits
     public Exit exitTime(double s){return new Exit(() -> bot.rfsHandler.timer.seconds() > s);}
-    public Exit exitLiftDown(){return new Exit(() -> bot.touch.isOuttakePressingTouchSensor());}
+    public Exit exitLiftDown(){return new Exit(() -> bot.touch.isOuttakePressingTouchSensor() || bot.rfsHandler.timer.seconds()>1);}
     public Exit exitLiftReachedTarget(){return new Exit(() -> bot.lift.hasReachedTarget());}
     public Exit exitTurretReachedTarget(){return new Exit(()->bot.turret.hasReachedTarget());}
     public Exit exitBall(){return new Exit(()->bot.color.isBall());}
     public Exit exitCube(){return new Exit(()->bot.color.isCube());}
     public Exit exitFreight(){return new Exit(()->bot.color.isFreight());}
+    public Exit exitNever(){return new Exit(() -> false);}
 
     //Stops
     public Stop stopTankDrive(){
         return new Stop(() -> bot.tankDrive.move(0,0));
     }
     public Stop stopLift(){return new Stop(() -> bot.lift.move(0));}
+    public Stop stopLiftEncoder(){return new Stop(() -> bot.lift.stopAndResetMode());}
     public Stop stopIntake(){return new Stop(() -> bot.intake.move(0));}
     public Stop stopTurret(){return new Stop(()-> bot.turret.move(0));}
+    public Stop stopTurretEncoder(){return new Stop(() -> bot.turret.stopAndResetMode());}
 
 
     //Pausing
