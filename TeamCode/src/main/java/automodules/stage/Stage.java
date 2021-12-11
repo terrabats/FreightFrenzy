@@ -8,8 +8,8 @@ import java.util.Arrays;
 public class Stage {
 
     private final ArrayList<StageComponent> components = new ArrayList<>();
-    private Pause pause = new Pause(false);
-    private boolean hasStarted = false;
+    private volatile Pause pause = new Pause(false);
+    private volatile boolean hasStarted = false;
 
     public Stage(StageComponent...stageComponents){
         components.addAll(Arrays.asList(stageComponents));

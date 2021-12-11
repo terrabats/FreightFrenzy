@@ -3,6 +3,7 @@ package teleop;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import global.Constants;
 import teleutil.GamepadHandler;
 import teleutil.button.Button;
 import teleutil.button.ButtonEventHandler;
@@ -19,10 +20,12 @@ import static global.General.gamepad1;
 import static global.General.gamepad2;
 import static global.General.gph1;
 import static global.General.gph2;
+import static global.General.log;
 
 @TeleOp(name = "TerraOp", group = "TeleOp")
 public class TerraOp extends Tele{
-    Timer buttonTimer = new Timer();
+    Timer aTimer = new Timer();
+    Timer bTimer = new Timer();
 
     @Override
     public void init() {
@@ -47,15 +50,32 @@ public class TerraOp extends Tele{
     @Override
     public void start() {
         ready();
-        buttonTimer.reset();
+        aTimer.reset();
+        bTimer.reset();
     }
 
     @Override
     public void loop() {
-        if(gamepad1.a && buttonTimer.seconds() > 0.3){
+        if(gamepad1.a && aTimer.seconds() > 0.3){
             bot.addAutoModule(autoModules.Intake);
-            buttonTimer.reset();
+            aTimer.reset();
         }
+
+        if(gamepad1.b && bTimer.seconds() > 0.3){
+            bot.addAutoModule(autoModules.Backward);
+            bTimer.reset();
+        }
+        log.display("size", bot.rfsHandler.rfsQueue.size());
+//
+//        if(gamepad1.y && buttonTimer.seconds() > 0.3){
+//            bot.addAutoModule(autoModules.Forward);
+//            buttonTimer.reset();
+//        }
+//
+//        if(gamepad1.x && buttonTimer.seconds() > 0.3){
+//            bot.rfsHandler.emptyQueue();
+//            buttonTimer.reset();
+//        }
 
         if(gamepad1.right_bumper){
             bot.intake.moveTele(1);
@@ -77,7 +97,7 @@ public class TerraOp extends Tele{
 
         // Gamepad2
         bot.turret.moveTele(gamepad2.left_stick_x);
-        bot.lift.moveTele(-gamepad2.right_stick_y);
+        bot.lift.moveTele(-gamepad2.right_stick_y+Constants.LIFT_REST_POW);
 
         update(true);
     }

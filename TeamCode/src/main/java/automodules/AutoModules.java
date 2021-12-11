@@ -13,20 +13,22 @@ public class AutoModules {
         stages.liftDown(-0.2)
     );
 
-    public StageList Intake = new StageList(
+    public volatile StageList Intake = new StageList(
         stages.liftEncoder(0.4, 0),
         stages.intakeUntilFreight(1),
-        stages.outtakeLock(GameElement.BALL, 0.5)
-    );
-    public StageList Backward = new StageList(
+        stages.outtakeLock(GameElement.BALL, 0.5),
         stages.liftEncoder(0.4, 10),
-        stages.outtakeLock(GameElement.CUBE, 0.5),
+        stages.outtakeLock(GameElement.CUBE, 0.5)
+    );
+    public volatile StageList Backward = new StageList(
+        stages.liftEncoder(0.4, 35),
+        //stages.liftEncoder(0.4, 45),
         stages.turretEncoderTarget(0.4)
     );
-    public StageList Forward = new StageList(
+    public volatile StageList Forward = new StageList(
         stages.outtakeDrop(1),
         stages.turretEncoder(0.4, 0),
-        stages.liftEncoder(0.4, 5)
+        stages.liftEncoder(0.4, 10)
     );
 
 }
