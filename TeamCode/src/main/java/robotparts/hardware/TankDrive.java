@@ -32,7 +32,7 @@ public class TankDrive extends RobotPart {
     }
 
     @Override
-    public void moveTele(double f, double t) {super.moveTele(f, t);}
+    public void moveTele(double f, double t) {super.moveTele(f, Math.abs(t) < 0.2 ? 0 : t);}
 
     public void retract(double pos){
         re.setPosition(pos);
