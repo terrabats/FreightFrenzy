@@ -23,7 +23,7 @@ public class TerraThread extends Thread {
 
     @Override
     public void run() {
-        fault.warn("Starting thread with empty CodeSeg", Expectation.EXPECTED, Magnitude.MINOR, setUpdateCode);
+        //fault.warn("Starting thread with empty CodeSeg", Expectation.EXPECTED, Magnitude.MINOR, setUpdateCode);
         while (!currentStatus.equals(Status.DISABLED)){
             if(currentStatus.equals(Status.IDLE)){
                 synchronized (this) {
