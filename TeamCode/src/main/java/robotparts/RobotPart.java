@@ -36,7 +36,7 @@ public class RobotPart {
     public TreeMap<String, Encoder> encoders = new TreeMap<>();
     public TreeMap<String, LED> leds = new TreeMap<>();
 
-    private Status currentStatus = Status.ACTIVE;
+    private volatile Status currentStatus = Status.ACTIVE;
 
     public RobotPart(){
        RobotFramework.allRobotParts.add(this);
@@ -141,10 +141,10 @@ public class RobotPart {
     public boolean isInactive(){
         return getStatus().equals(Status.INACTIVE);
     }
-    public void activate(){
+    public synchronized void activate(){
         setStatus(Status.ACTIVE);
     }
-    public void deactivate(){
+    public synchronized void deactivate(){
         setStatus(Status.INACTIVE);
     }
 
