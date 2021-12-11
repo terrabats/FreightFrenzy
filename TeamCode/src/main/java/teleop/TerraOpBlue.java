@@ -24,7 +24,7 @@ import static global.General.gph1;
 import static global.General.gph2;
 import static global.General.log;
 
-@TeleOp(name = "TerraOp", group = "TeleOp")
+@TeleOp(name = "TerraOpBlue", group = "TeleOp")
 public class TerraOpBlue extends Tele{
     Timer aTimer = new Timer();
     Timer bTimer = new Timer();

@@ -14,14 +14,21 @@ public class Gyro extends RobotPart {
     @Override
     public void init() {
         gsr = createGyro("gsr");
-        gsl = createGyro("gsl");
+//        gsl = createGyro("gsl");
+    }
+
+    public void resetRight() {
+        //
     }
 
     public double getRightHeading(){
         return gsr.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
     }
-    public double getLeftHeading(){
-        return gsl.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+//    public double getLeftHeading(){
+//        return gsl.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+//    }
+    public double getHeading() {
+        return getRightHeading();
     }
 
 }

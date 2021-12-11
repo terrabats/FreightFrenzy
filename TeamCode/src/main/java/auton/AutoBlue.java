@@ -1,5 +1,6 @@
 package auton;
 
+import elements.FieldSide;
 import util.ExceptionCatcher;
 import util.Timer;
 import static global.General.*;
@@ -14,6 +15,8 @@ public class AutoBlue extends Auto{
 
     @Override
     public void runOpMode() throws InterruptedException {
+
+        fieldSide = FieldSide.BLUE;
 
         reference(this);
         activate();

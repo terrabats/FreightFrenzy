@@ -10,7 +10,7 @@ import elements.FieldSide;
 import global.Constants;
 import util.Timer;
 
-@TeleOp(name = "TerraOp", group = "TeleOp")
+@TeleOp(name = "TerraOpRed", group = "TeleOp")
 public class TerraOpRed extends Tele{
     Timer aTimer = new Timer();
     Timer bTimer = new Timer();

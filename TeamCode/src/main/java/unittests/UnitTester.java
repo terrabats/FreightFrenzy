@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import java.util.ArrayList;
 
+import elements.FieldSide;
 import teleutil.button.OnPressEventHandler;
 import unittests.framework.AutoModuleTest;
 import unittests.framework.ModulesTest;
@@ -13,6 +14,7 @@ import unittests.framework.StorageTest;
 import unittests.hardware.LiftTest;
 import unittests.hardware.OuttakeTest;
 import unittests.hardware.TurretTest;
+import unittests.sensor.GyroTest;
 import util.Timer;
 
 import global.Common;
@@ -20,7 +22,7 @@ import teleutil.button.Button;
 
 import static global.General.*;
 
-@Disabled
+//@Disabled
 @TeleOp(name = "UnitTester", group = "UnitTests")
 public class UnitTester extends OpMode implements Common {
     private ArrayList<UnitTest> allUnitTests = new ArrayList<>();
@@ -43,7 +45,7 @@ public class UnitTester extends OpMode implements Common {
 
 //        allUnitTests.add(new StorageTest());
 //        allUnitTests.add(new ModulesTest());
-        allUnitTests.add(new AutoModuleTest());
+//        allUnitTests.add(new AutoModuleTest());
 
         // Hardware
 //        allUnitTests.add(new TankDriveTest());
@@ -56,7 +58,7 @@ public class UnitTester extends OpMode implements Common {
         // Sensor
 //        allUnitTests.add(new ColorTest());
 //        allUnitTests.add(new DistanceTest());
-//        allUnitTests.add(new GyroTest());
+        allUnitTests.add(new GyroTest());
 //        allUnitTests.add(new OdometryTest());
 //        allUnitTests.add(new TouchTest());
 //        allUnitTests.add(new OdometryTest());
@@ -64,6 +66,7 @@ public class UnitTester extends OpMode implements Common {
 
     @Override
     public void init() {
+        fieldSide = FieldSide.RED;
         reference(this);
         createUnitTests();
         for (UnitTest t: allUnitTests) {t.init();}
