@@ -47,11 +47,12 @@ public class Stages {
             modules.stopTurret(),
             modules.returnPart(bot.turret)
     );}
+    public Stage turretEncoderTarget(double power){ return turretEncoder(power, bot.turret.getTurretTargetPos());}
 
     public Stage outtakeLock(GameElement freightType, double time){
         Main lock = null;
-        if(freightType.equals(GameElement.CUBE)){lock = modules.mainLockIfCube();}
-        else if(freightType.equals(GameElement.BALL)){lock = modules.mainLockIfBall();}
+        if(freightType.equals(GameElement.CUBE)){lock = modules.mainOuttakeLockIfCube();}
+        else if(freightType.equals(GameElement.BALL)){lock = modules.mainOuttakeLockIfBall();}
         return new Stage(
                 modules.usePart(bot.outtake),
                 lock,
@@ -59,6 +60,13 @@ public class Stages {
                 modules.returnPart(bot.outtake)
         );
     }
+
+    public Stage outtakeDrop(double time){ return new Stage(
+            modules.usePart(bot.outtake),
+            modules.mainOuttakeDrop(),
+            modules.exitTime(time),
+            modules.returnPart(bot.outtake)
+    );}
 
 
 }

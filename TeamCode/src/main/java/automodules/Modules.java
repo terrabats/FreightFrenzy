@@ -21,8 +21,9 @@ public class Modules {
     public Main mainLift(double power){return new Main(() -> bot.lift.move(power));}
     public Main mainIntake(double power){return new Main(()-> bot.intake.move(power));}
     public Main mainTurret(double power){return new Main(()-> bot.turret.move(power));}
-    public Main mainLockIfBall(){return new Main(() -> {if (bot.color.isBall()) {bot.outtake.lockBall();}});}
-    public Main mainLockIfCube(){return new Main(() -> {if (bot.color.isCube()) {bot.outtake.lockCube();}});}
+    public Main mainOuttakeLockIfBall(){return new Main(() -> {if (bot.color.isBall()) {bot.outtake.lockBall();}});}
+    public Main mainOuttakeLockIfCube(){return new Main(() -> {if (bot.color.isCube()) {bot.outtake.lockCube();}});}
+    public Main mainOuttakeDrop(){return new Main(()->bot.outtake.open());}
 
     //Exits
     public Exit exitTime(double s){return new Exit(() -> bot.rfsHandler.timer.seconds() > s);}
