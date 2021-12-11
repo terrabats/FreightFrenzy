@@ -23,7 +23,7 @@ public class Intake extends RobotPart {
 
     @Override
     public void moveTele(double power) {
-        super.move(power);
+        super.moveTele(power);
     }
 
     public double getIntakePos(){

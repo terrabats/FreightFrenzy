@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import teleutil.GamepadHandler;
 import teleutil.button.Button;
 import teleutil.button.ButtonEventHandler;
+import teleutil.button.NotHeldEventHandler;
+import teleutil.button.OnNotHeldEventHandler;
 import teleutil.button.OnPressEventHandler;
 import teleutil.button.OnTurnOffEventHandler;
 import teleutil.button.OnTurnOnEventHandler;
@@ -27,10 +29,11 @@ public class TerraOp extends Tele{
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.intake.moveTele(1));
         gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.intake.moveTele(0));
         gph1.link(Button.LEFT_BUMPER, ButtonEventHandler.class, args -> bot.intake.moveTele(-1));
+        gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, args -> bot.intake.moveTele(0));
 
         //Gamepad 2
-        gph2.link(Button.RIGHT_TRIGGER, OnTurnOnEventHandler.class, args -> bot.outtake.moveTele(0.3));
-        gph2.link(Button.RIGHT_TRIGGER, OnTurnOffEventHandler.class, args -> bot.outtake.moveTele(0));
+        gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.moveTele(0.3));
+        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.moveTele(0));
 
         activate();
     }

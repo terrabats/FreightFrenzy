@@ -8,6 +8,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous(name="AutoTest")
 public class AutoTest extends Auto{
+
+    public double currentVoltage = 13.35;
+    public final double voltageCoeffTurn = 1.2;
+
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -19,26 +23,30 @@ public class AutoTest extends Auto{
         ready();
 
         bot.tankDrive.move(0.4, 0);
-        sleep(450);
+        sleep(false, 450);
         bot.tankDrive.move(0, 0.4);
-        sleep(920);
+        sleep(true, 920);
         bot.tankDrive.move(0.4, 0);
-        sleep(1500);
+        sleep(false, 1500);
         bot.tankDrive.move(0,0.2);
         bot.carousel.move(1);
-        sleep(5000);
+        sleep(true, 5000);
         bot.carousel.move(0);
         bot.tankDrive.move(-0.4, 0);
-        sleep(480);
+        sleep(false, 480);
         bot.tankDrive.move(0, -0.4);
-        sleep(850);
+        sleep(true, 850);
         bot.tankDrive.move(0.4, 0);
-        sleep(1200);
+        sleep(false, 1100);
         bot.tankDrive.move(0, -0.4);
-        sleep(500);
+        sleep(true, 200);
         bot.tankDrive.move(0,0);
 
         end();
+    }
+
+    public void sleep(boolean isTurn, long millis) {
+        sleep(isTurn ? (long) (millis + (13.5 - currentVoltage) * voltageCoeffTurn) : millis);
     }
 
 }
