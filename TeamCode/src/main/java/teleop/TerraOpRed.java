@@ -3,9 +3,11 @@ package teleop;
 import static global.General.autoModules;
 import static global.General.bot;
 import static global.General.fieldSide;
+import static global.General.stages;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import automodules.StageList;
 import elements.FieldSide;
 import global.Constants;
 import util.Timer;
@@ -34,7 +36,7 @@ public class TerraOpRed extends Tele{
 //        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.moveTele(0));
 
 
-        //bot.addAutoModule(autoModules.ResetLift);
+        bot.addAutoModule(new StageList(stages.liftEncoder(0.4,10)));
 
         activate();
     }

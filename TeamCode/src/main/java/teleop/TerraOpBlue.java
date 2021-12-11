@@ -3,6 +3,8 @@ package teleop;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import automodules.StageList;
+import automodules.stage.Stage;
 import elements.FieldSide;
 import global.Constants;
 import teleutil.GamepadHandler;
@@ -23,6 +25,8 @@ import static global.General.gamepad2;
 import static global.General.gph1;
 import static global.General.gph2;
 import static global.General.log;
+import static global.General.modules;
+import static global.General.stages;
 
 @TeleOp(name = "TerraOpBlue", group = "TeleOp")
 public class TerraOpBlue extends Tele{
@@ -48,7 +52,7 @@ public class TerraOpBlue extends Tele{
 //        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.moveTele(0));
 
 
-        //bot.addAutoModule(autoModules.ResetLift);
+        bot.addAutoModule(new StageList(stages.liftEncoder(0.4,10)));
 
         activate();
     }

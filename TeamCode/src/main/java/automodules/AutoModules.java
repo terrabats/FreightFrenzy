@@ -14,7 +14,7 @@ public class AutoModules {
 //    );
 
     public volatile StageList Intake = new StageList(
-        stages.liftEncoder(0.4, 0),
+        stages.liftEncoder(0.3, 0),
         stages.intakeUntilFreight(1),
         stages.outtakeLock(GameElement.BALL, 0.5),
         stages.liftEncoder(0.4, 10),
@@ -29,7 +29,7 @@ public class AutoModules {
         stages.robotSetSlowMode(false),
         stages.outtakeDrop(1),
         stages.turretEncoder(0.4, 0),
-        stages.liftEncoder(0.4, 10),
+        stages.liftEncoder(0.3, 10),
         stages.outtakeReset(0.7)
     );
 
