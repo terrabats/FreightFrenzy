@@ -51,14 +51,13 @@ public class TerraOpBlue extends Tele{
 //        gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.moveTele(0.3));
 //        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.moveTele(0));
 
-
-        bot.addAutoModule(new StageList(stages.liftEncoder(0.4,10)));
-
         activate();
     }
 
     @Override
     public void start() {
+        bot.addAutoModule(new StageList(stages.liftEncoder(0.4,10)));
+
         ready();
         aTimer.reset();
         bTimer.reset();
@@ -97,11 +96,11 @@ public class TerraOpBlue extends Tele{
             bot.intake.moveTele(0);
         }
 
-        if(gamepad2.right_bumper){
-            bot.outtake.lockCubeTele();
-        }else if(gamepad2.left_bumper){
-            bot.outtake.startTele();
-        }
+//        if(gamepad2.right_bumper){
+//            bot.outtake.lockCubeTele();
+//        }else if(gamepad2.left_bumper){
+//            bot.outtake.startTele();
+//        }
 
         // Gamepad1
         if(!bot.slowMode) {

@@ -6,6 +6,7 @@ import static global.General.fieldSide;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import elements.FieldSide;
+import robotparts.sensors.Gyro;
 
 @Autonomous(name="AutoRed")
 public class AutoRed extends Auto{
@@ -19,6 +20,7 @@ public class AutoRed extends Auto{
         fieldSide = FieldSide.RED;
 
         reference(this);
+
         activate();
 
         waitForStart();
@@ -26,17 +28,17 @@ public class AutoRed extends Auto{
         ready();
 
         bot.tankDrive.move(0.4, 0);
-        sleep(false, 500);
+        sleep(false, 480);
 //        bot.tankDrive.move(0, -0.4);
 //        sleep(true, 920);
         turnDeg(0.5, -95);
         bot.tankDrive.move(0.4, 0);
         sleep(false, 1500);
         bot.carousel.move(1); //
-        bot.tankDrive.move(0,0);
-        bot.tankDrive.move(0,-0.2); //
-        sleep(true, 5000); //
-        bot.carousel.move(0); //
+//        bot.tankDrive.move(0,0);
+        bot.tankDrive.move(0,-0.2);
+        sleep(true, 5000);
+        bot.carousel.move(0);
         bot.tankDrive.move(-0.4, 0);
         sleep(false, 480);
 //        bot.tankDrive.move(0, 0.4);

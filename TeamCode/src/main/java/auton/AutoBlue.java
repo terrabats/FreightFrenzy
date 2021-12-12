@@ -6,6 +6,7 @@ import static global.General.fieldSide;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import elements.FieldSide;
+import robotparts.sensors.Gyro;
 
 @Autonomous(name="AutoBlue")
 public class AutoBlue extends Auto{
@@ -19,6 +20,7 @@ public class AutoBlue extends Auto{
         fieldSide = FieldSide.BLUE;
 
         reference(this);
+
         activate();
 
         waitForStart();
@@ -26,7 +28,7 @@ public class AutoBlue extends Auto{
         ready();
 
         bot.tankDrive.move(0.4, 0);
-        sleep(false, 500);
+        sleep(false, 480);
 //        bot.tankDrive.move(0, -0.4);
 //        sleep(true, 920);
         turnDeg(0.5, 90);
