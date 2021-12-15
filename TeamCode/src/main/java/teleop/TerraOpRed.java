@@ -21,7 +21,6 @@ public class TerraOpRed extends Tele{
 
     @Override
     public void init() {
-        fieldSide = FieldSide.RED;
 
         reference(this);
 
@@ -35,7 +34,7 @@ public class TerraOpRed extends Tele{
 //        gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.moveTele(0.3));
 //        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.moveTele(0));
 
-        activate();
+        activate(FieldSide.RED);
     }
 
     @Override

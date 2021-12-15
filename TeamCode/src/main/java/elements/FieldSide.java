@@ -1,7 +1,7 @@
 package elements;
 
 public enum FieldSide {
-    BLUE("Left"), RED("Right");
+    BLUE("Left"), RED("Right"), UNKNOWN("Middle");
 
     private final String side;
     FieldSide(String s){
@@ -15,6 +15,8 @@ public enum FieldSide {
             return BLUE;
         }else if(side.equals("Right")){
             return RED;
+        }else if(side.equals("Middle")){
+            return UNKNOWN;
         }else{
             return null;
         }

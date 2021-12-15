@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import elements.FieldSide;
 import global.Common;
 import robot.TerraBot;
 import teleutil.button.Button;
@@ -22,7 +23,7 @@ public class TestOp extends Tele {
         reference(this);
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> {bot.intake.move(1);});
         gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> {bot.intake.move(0);});
-        activate();
+        activate(FieldSide.UNKNOWN);
     }
 
     @Override

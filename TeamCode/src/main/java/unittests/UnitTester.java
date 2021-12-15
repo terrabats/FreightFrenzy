@@ -33,6 +33,10 @@ public class UnitTester extends OpMode implements Common {
     private final TestType testingMode = TestType.CONTROL;
 
     private void createUnitTests(){
+        // TODO
+        // Make a framework to move around to select a specific unit test using dpad
+
+
         allUnitTests = new ArrayList<>();
         // Framework
 //        allUnitTests.add(new CommonTest());
@@ -58,7 +62,7 @@ public class UnitTester extends OpMode implements Common {
         // Sensor
 //        allUnitTests.add(new ColorTest());
 //        allUnitTests.add(new DistanceTest());
-        allUnitTests.add(new GyroTest());
+//        allUnitTests.add(new GyroTest());
 //        allUnitTests.add(new OdometryTest());
 //        allUnitTests.add(new TouchTest());
 //        allUnitTests.add(new OdometryTest());
@@ -72,7 +76,7 @@ public class UnitTester extends OpMode implements Common {
         for (UnitTest t: allUnitTests) {t.init();}
         linkXToNextTest();
         log.watch("Testing Mode: " + testingMode.toString());
-        activate();
+        activate(FieldSide.UNKNOWN);
     }
 
     @Override
@@ -98,7 +102,6 @@ public class UnitTester extends OpMode implements Common {
     public void stop(){
         end();
     }
-
 
     private String getCurrentTestName(){
         return getCurrentTest().getClass().getSimpleName();

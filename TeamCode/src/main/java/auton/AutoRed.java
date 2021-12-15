@@ -17,11 +17,9 @@ public class AutoRed extends Auto{
     @Override
     public void runOpMode() throws InterruptedException {
 
-        fieldSide = FieldSide.RED;
-
         reference(this);
 
-        activate();
+        activate(FieldSide.RED);
 
         waitForStart();
 

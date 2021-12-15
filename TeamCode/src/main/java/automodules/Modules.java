@@ -15,6 +15,7 @@ public class Modules {
 
     public Initial initialLiftSetTarget(double height){return new Initial(() -> bot.lift.setTarget(height));}
     public Initial initialTurretSetTarget(double angle){return new Initial(() -> bot.turret.setTarget(angle));}
+    public Initial initialTurretSetFieldSideTarget(){return new Initial(() -> bot.turret.setTarget(bot.turret.getTurretTargetPos()));}
 
     //Mains
     public Main mainTankDrive(double forward, double strafe){return new Main(() -> bot.tankDrive.move(forward, strafe));}

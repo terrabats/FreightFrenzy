@@ -48,7 +48,14 @@ public class Stages {
             modules.stopTurretEncoder(),
             modules.returnPart(bot.turret)
     );}
-    public Stage turretEncoderTarget(double power){ return turretEncoder(power, bot.turret.getTurretTargetPos());}
+    public Stage turretEncoderTarget(double power){return new Stage(
+            modules.usePart(bot.turret),
+            modules.initialTurretSetFieldSideTarget(),
+            modules.mainTurret(power),
+            modules.exitTurretReachedTarget(),
+            modules.stopTurretEncoder(),
+            modules.returnPart(bot.turret)
+    );}
 
     public Stage outtakeLock(GameElement freightType, double time){
         Main lock = null;

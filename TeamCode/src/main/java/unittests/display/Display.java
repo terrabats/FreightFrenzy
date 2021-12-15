@@ -1,4 +1,4 @@
-package util;
+package unittests.display;
 
 
 import java.awt.Graphics;
@@ -15,6 +15,10 @@ import static java.lang.Math.*;
 
 
 public class Display extends JPanel {
+
+    // TODO
+    // Make this a actual frame work that lets you draw things
+
     private final int height = 700;
     private final int width = 700;
     private final int xScale = 3;

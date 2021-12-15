@@ -3,6 +3,8 @@ package robotparts.hardware;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+import java.util.Objects;
+
 import elements.FieldSide;
 import global.Constants;
 import robotparts.RobotPart;
@@ -50,13 +52,14 @@ public class Turret extends RobotPart {
     }
 
     public double getTurretTargetPos(){
-        if(fieldSide.equals(FieldSide.BLUE)){
-            return Constants.BLUE_SIDE_TURRET_ANGLE;
-        }else if(fieldSide.equals(FieldSide.RED)){
-            return Constants.RED_SIDE_TURRET_ANGLE;
-        }else{
-            return 0;
+        if(fieldSide != null) {
+            if (fieldSide.equals(FieldSide.BLUE)) {
+                return Constants.BLUE_SIDE_TURRET_ANGLE;
+            } else if (fieldSide.equals(FieldSide.RED)) {
+                return Constants.RED_SIDE_TURRET_ANGLE;
+            }
         }
+        return 0;
     }
 
     public void stopAndResetMode() {

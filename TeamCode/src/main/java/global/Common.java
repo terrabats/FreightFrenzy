@@ -1,4 +1,5 @@
 package global;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -7,6 +8,7 @@ import automodules.Modules;
 import automodules.Stages;
 import debugging.Synchroniser;
 import elements.FieldSide;
+import geometry.Line;
 import robot.TerraBot;
 import teleutil.GamepadHandler;
 import debugging.Fault;
@@ -14,6 +16,7 @@ import debugging.Logger;
 import util.store.Storage;
 
 import static global.General.*;
+import static global.General.fieldSide;
 
 public interface Common{
     default void reference(OpMode thisOpMode){
@@ -29,13 +32,14 @@ public interface Common{
         storage = new Storage();
         gameTime = new ElapsedTime();
         bot = new TerraBot();
-        storage = new Storage();
         modules = new Modules();
         stages = new Stages();
         autoModules = new AutoModules();
         bot.init();
     }
-    default void activate(){
+
+    default void activate(FieldSide side){
+        fieldSide = side;
         log.watch("Ready");
         log.showTelemetry();
     }

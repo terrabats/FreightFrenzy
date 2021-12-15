@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import teleutil.GamepadHandler;
+import util.ExceptionCatcher;
 import util.codeseg.ParameterCodeSeg;
 
 public class ButtonHandler {
@@ -16,14 +17,13 @@ public class ButtonHandler {
     }
 
     public <T> void addEvent(Class<T> type, ParameterCodeSeg codeSegs) {
-        try {
+        ExceptionCatcher.catchNewInstance(() -> {
             T obj = type
-                    .getDeclaredConstructor(Button.class, ParameterCodeSeg.class, GamepadHandler.class)
-                    .newInstance(button, codeSegs, gph);
+                .getDeclaredConstructor(Button.class, ParameterCodeSeg.class, GamepadHandler.class)
+                .newInstance(button, codeSegs, gph);
             eventHandlers.add((ButtonEventHandler) obj);
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException e) {
-            e.printStackTrace();
-        }
+        });
+
     }
 
     public void run() {
