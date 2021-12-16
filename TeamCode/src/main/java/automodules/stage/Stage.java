@@ -8,14 +8,14 @@ import java.util.Arrays;
 public class Stage {
 
     private final ArrayList<StageComponent> components = new ArrayList<>();
-    private volatile Pause pause = new Pause(false);
     private volatile boolean hasStarted = false;
+    private volatile boolean isPause = false;
 
     public Stage(StageComponent...stageComponents){
         components.addAll(Arrays.asList(stageComponents));
     }
-    public Stage(Pause p){
-        pause = p;
+    public Stage(boolean isPause){
+        this.isPause = isPause;
     }
     public boolean hasStarted(){
         return hasStarted;
@@ -47,7 +47,7 @@ public class Stage {
         hasStarted = false;
     }
     public boolean isPause(){
-        return pause.isActive();
+        return isPause;
     }
 
 }

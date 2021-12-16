@@ -3,14 +3,15 @@ package automodules;
 import automodules.stage.Exit;
 import automodules.stage.Initial;
 import automodules.stage.Main;
-import automodules.stage.Pause;
-import automodules.stage.Stage;
 import automodules.stage.Stop;
 import robotparts.RobotPart;
 
 import static global.General.*;
 
 public class Modules {
+    // TODO
+    // Modules should be defined in respective robotparts
+
     //Initials
 
     public Initial initialLiftSetTarget(double height){return new Initial(() -> bot.lift.setTarget(height));}

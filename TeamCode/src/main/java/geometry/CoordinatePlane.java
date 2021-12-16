@@ -8,6 +8,11 @@ import geometry.polygons.Rect;
 import static java.lang.Math.*;
 
 public class CoordinatePlane {
+
+    // TODO
+    // Finish all geometric classes
+
+
     protected final Pose origin = new Pose(new Point(0, 0), 0);
 
     private final ArrayList<GeometryObject> objects = new ArrayList<>();

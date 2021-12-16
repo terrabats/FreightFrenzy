@@ -5,7 +5,7 @@ import static global.General.*;
 import geometry.Point;
 import unittests.UnitTest;
 
-// TODO: TEST THIS
+//TOD: TEST THIS
 
 public class OdometryTest extends SensorTest {
     @Override
@@ -23,6 +23,6 @@ public class OdometryTest extends SensorTest {
     public void run() {
         //bot.updateCoordinates();
 
-        // TODO: Display points and pos of robot
+        // TOD: Display points and pos of robot
     }
 }

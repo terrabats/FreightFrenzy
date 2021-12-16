@@ -46,6 +46,7 @@ public interface Common{
     default void ready(){
         bot.start();
         sync.resetDelay();
+        log.clearTelemetry();
     }
     default void update(boolean showTelemetry){
         gph1.run();

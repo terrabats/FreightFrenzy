@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 import static java.lang.Math.*;
 
-public class CircleArc extends Circle {
+public class CirclularArc extends Circle {
     public double arcSt, arcEnd; // radians
 
-    public CircleArc(Point center, Point start, Point end, double r) {
+    public CirclularArc(Point center, Point start, Point end, double r) {
         super(center, r);
         arcSt = getThetaFromPoint(start);
         arcEnd = getThetaFromPoint(end);
     }
 
-    public CircleArc(Point center, double st, double en, double r) {
+    public CirclularArc(Point center, double st, double en, double r) {
         super(center, r);
         arcSt = st;
         arcEnd = en;

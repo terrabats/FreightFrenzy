@@ -9,6 +9,10 @@ import static global.General.bot;
 import static global.General.modules;
 
 public class Stages {
+    // TODO
+    // Defined in robotparts
+    //
+
     public Stage intakeUntilFreight(double power){return new Stage(
             modules.usePart(bot.intake),
             modules.mainIntake(power),

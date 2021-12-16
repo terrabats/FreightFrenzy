@@ -1,20 +1,20 @@
 package autoutil.paths;
 
 import geometry.Circle;
-import geometry.CircleArc;
+import geometry.CirclularArc;
 import geometry.Point;
 import geometry.Pose;
 import global.Constants;
 
 public class Arc extends PathSegment{
-    public CircleArc arc;
+    public CirclularArc arc;
 
     public Arc(Circle generated, Point startPoint, Point endPoint) {
-        arc = new CircleArc(generated.center, startPoint, endPoint, generated.r);
+        arc = new CirclularArc(generated.center, startPoint, endPoint, generated.r);
     }
 
     public Arc(Circle generated, double st, double en) {
-        arc = new CircleArc(generated.center, st, en, generated.r);
+        arc = new CirclularArc(generated.center, st, en, generated.r);
     }
 
     public double getArcLength() {

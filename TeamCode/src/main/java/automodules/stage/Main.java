@@ -3,7 +3,7 @@ package automodules.stage;
 import util.codeseg.CodeSeg;
 
 public class Main extends StageComponent{
-    private CodeSeg loop;
+    private final CodeSeg loop;
     public Main(CodeSeg loopCode){
         loop = loopCode;
     }

@@ -5,4 +5,7 @@ public enum GameElement {
     CUBE,
     UNKNOWN,
     NONE
+
+    // TODO
+    // Add important information about objects here
 }

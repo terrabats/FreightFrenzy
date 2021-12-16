@@ -10,9 +10,9 @@ import static robot.RobotFramework.*;
 
 public class Odometry extends RobotPart {
 
-    private static final double R = 10.0; // TODO: GET THE REAL VALUE
-    private static final double ODO1_TO_CENTER_X = 10.0; // TODO: GET THE REAL VALUE
-    private static final double ODO1_TO_CENTER_Y = 10.0; // TODO: GET THE REAL VALUE
+    private static final double R = 10.0; // TOD: GET THE REAL VALUE
+    private static final double ODO1_TO_CENTER_X = 10.0; // TOD: GET THE REAL VALUE
+    private static final double ODO1_TO_CENTER_Y = 10.0; // TOD: GET THE REAL VALUE
 
     private double prevOdoOnePos;
     private double prevOdoTwoPos;
@@ -45,7 +45,7 @@ public class Odometry extends RobotPart {
     }
 
     private double ticksToCm(double ticks) {
-        return ticks; // TODO: FIX THIS METHOD
+        return ticks; // TOD: FIX THIS METHOD
     }
 
     public double[] getPosChangeCenter() {
