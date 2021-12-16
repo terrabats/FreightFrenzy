@@ -107,7 +107,17 @@ public class Selector<T> {
     public Status getStatus(){
         return status;
     }
+    public boolean isActive(){ return status.equals(Status.ACTIVE); }
+    public boolean isInActive(){ return !status.equals(Status.ACTIVE); }
     public void setStatus(Status status){
         this.status = status;
+    }
+
+    public ArrayList<String> getItemValuesClassNames(){
+        ArrayList<String> out = new ArrayList<>();
+        for(Item<T> item: items){
+            out.add(item.getValue().getClass().getSimpleName());
+        }
+        return out;
     }
 }

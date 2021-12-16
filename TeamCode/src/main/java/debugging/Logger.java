@@ -1,6 +1,10 @@
 package debugging;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+
+import teleutil.Selector;
+import util.store.Item;
 
 import static global.General.*;
 
@@ -28,6 +32,16 @@ public class Logger {
 
     public void save(String name, Object val){
         addLog(name, new Log(getLogName(name), LogType.SAVE), val);
+    }
+
+    public void list(ArrayList<String> values, int currentIndex){
+        for(int i = 0; i < values.size(); i++){
+            if(i != currentIndex) {
+                telemetry.addData("Item" + i, values.get(i));
+            }else{
+                telemetry.addData("Item" + i, "--> " + values.get(i));
+            }
+        }
     }
 
     private String getLogName(String name){

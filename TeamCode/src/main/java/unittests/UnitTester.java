@@ -105,21 +105,14 @@ public class UnitTester extends Tele {
     @Override
     public void loop() {
         selector.update(true);
-
-        switch (testingMode){
-            case TIME:
-
-                break;
-            case CONTROL:
-
-                break;
-            case SELECTION:
-                if(gamepad1.x){
-                    selector.setStatus(Status.ACTIVE);
-                }
-                break;
+        if(testingMode.equals(TestType.SELECTION)){
+            if(gamepad1.x){
+                selector.setStatus(Status.ACTIVE);
+            }
+            if(selector.isInActive()){
+                log.list(selector.getItemValuesClassNames(), selector.getCurrentIndex());
+            }
         }
-
         log.display("Testing " + getCurrentTestName() + "UnitTest type " + getCurrentTest().getType().toString());
         runCurrentTest();
         super.update(true);
@@ -141,7 +134,7 @@ public class UnitTester extends Tele {
         if(!testingMode.equals(TestType.SELECTION)) {
             selector.runToCurrentItem(UnitTest::test);
         }else{
-            if(selector.getStatus().equals(Status.ACTIVE)){
+            if(selector.isActive()){
                 selector.runToCurrentItem(UnitTest::test);
             }
         }
