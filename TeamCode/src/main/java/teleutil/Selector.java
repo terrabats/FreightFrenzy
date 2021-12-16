@@ -12,6 +12,7 @@ import util.store.Item;
 
 public class Selector<T> {
     private ArrayList<Item<T>> items = new ArrayList<>();
+    private final ArrayList<String> itemClassNames = new ArrayList<>();
     private BooleanCodeSeg up;
     private BooleanCodeSeg down;
     private int currentIndex;
@@ -27,6 +28,7 @@ public class Selector<T> {
 
     public void addItem(Item<T> item){
         items.add(item);
+        itemClassNames.add(item.getClass().getSimpleName());
     }
 
     private void init(){
@@ -113,11 +115,5 @@ public class Selector<T> {
         this.status = status;
     }
 
-    public ArrayList<String> getItemValuesClassNames(){
-        ArrayList<String> out = new ArrayList<>();
-        for(Item<T> item: items){
-            out.add(item.getValue().getClass().getSimpleName());
-        }
-        return out;
-    }
+    public ArrayList<String> getItemClassNames(){ return itemClassNames; }
 }

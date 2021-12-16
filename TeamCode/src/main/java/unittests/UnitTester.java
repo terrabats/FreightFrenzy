@@ -110,7 +110,7 @@ public class UnitTester extends Tele {
                 selector.setStatus(Status.ACTIVE);
             }
             if(selector.isInActive()){
-                log.list(selector.getItemValuesClassNames(), selector.getCurrentIndex());
+                log.list(selector.getItemClassNames(), selector.getCurrentIndex());
             }
         }
         log.display("Testing " + getCurrentTestName() + "UnitTest type " + getCurrentTest().getType().toString());
