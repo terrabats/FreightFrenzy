@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import java.util.ArrayList;
 
 import elements.FieldSide;
+import teleutil.Selector;
 import teleutil.button.OnPressEventHandler;
 import unittests.framework.AutoModuleTest;
 import unittests.framework.ModulesTest;
@@ -29,8 +30,10 @@ public class UnitTester extends OpMode implements Common {
     private int currentTestNum = 0;
     private final Timer timer = new Timer();
 
-    private final int delay = 5;
+    private final int delayForTime = 5;
     private final TestType testingMode = TestType.CONTROL;
+
+    private final Selector selector = new Selector(true);
 
     private void createUnitTests(){
         // TODO
@@ -91,7 +94,7 @@ public class UnitTester extends OpMode implements Common {
     public void loop() {
         log.display("Testing " + getCurrentTestName() + "UnitTest type " + getCurrentTest().getType().toString());
         if(testingMode.equals(TestType.TIME)){
-            if(timer.seconds() > delay){
+            if(timer.seconds() > delayForTime){
                 nextTest();
             }
         }
@@ -133,6 +136,7 @@ public class UnitTester extends OpMode implements Common {
 
     private enum TestType{
         CONTROL,
-        TIME
+        TIME,
+        SELECTION
     }
 }
