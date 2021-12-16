@@ -10,7 +10,7 @@ import teleutil.button.ButtonEventHandler;
 import teleutil.button.ButtonHandler;
 import util.codeseg.BooleanCodeSeg;
 import util.codeseg.DoubleCodeSeg;
-import util.codeseg.ParameterCodeSeg;
+import util.codeseg.DoubleParameterCodeSeg;
 
 public class GamepadHandler {
     public Gamepad gamepad;
@@ -65,7 +65,7 @@ public class GamepadHandler {
         }
     }
 
-    public void link(Button b, Class<? extends ButtonEventHandler> type, ParameterCodeSeg codeSeg) {
+    public void link(Button b, Class<? extends ButtonEventHandler> type, DoubleParameterCodeSeg codeSeg) {
         Objects.requireNonNull(handlerMap.get(b)).addEvent(type, codeSeg);
     }
 }

@@ -7,131 +7,144 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import java.util.ArrayList;
 
 import elements.FieldSide;
+import teleop.Tele;
 import teleutil.Selector;
 import teleutil.button.OnPressEventHandler;
-import unittests.framework.AutoModuleTest;
-import unittests.framework.ModulesTest;
-import unittests.framework.StorageTest;
-import unittests.hardware.LiftTest;
-import unittests.hardware.OuttakeTest;
-import unittests.hardware.TurretTest;
+import unittests.framework.*;
+import unittests.hardware.*;
+import unittests.sensor.*;
 import unittests.sensor.GyroTest;
 import util.Timer;
 
 import global.Common;
 import teleutil.button.Button;
+import util.codeseg.BooleanCodeSeg;
+import util.codeseg.TypeParameterCodeSeg;
+import util.condition.Status;
+import util.store.Item;
 
 import static global.General.*;
 
 //@Disabled
 @TeleOp(name = "UnitTester", group = "UnitTests")
-public class UnitTester extends OpMode implements Common {
-    private ArrayList<UnitTest> allUnitTests = new ArrayList<>();
-    private int currentTestNum = 0;
-    private final Timer timer = new Timer();
+public class UnitTester extends Tele {
 
-    private final int delayForTime = 5;
-    private final TestType testingMode = TestType.CONTROL;
+    private final TestType testingMode = TestType.SELECTION;
+    private final Selector<UnitTest> selector = new Selector<>(true);
 
-    private final Selector selector = new Selector(true);
+    // TODO
+    // TEST THIS CLASS and maybe add functionality to see all tests at once
 
     private void createUnitTests(){
-        // TODO
-        // Make a framework to move around to select a specific unit test using dpad
-        // Make it add every unit test
-
-
-        allUnitTests = new ArrayList<>();
         // Framework
-//        allUnitTests.add(new CommonTest());
-//        allUnitTests.add(new CoordinatePlaneTest());
-//        allUnitTests.add(new FaultTest());
-//        allUnitTests.add(new GamepadTest());
-//        allUnitTests.add(new LoggerTest());
-//        allUnitTests.add(new RobotFunctionsTest());
-//        allUnitTests.add(new ThreadTest());
-
-//        allUnitTests.add(new StorageTest());
-//        allUnitTests.add(new ModulesTest());
-//        allUnitTests.add(new AutoModuleTest());
+        add(new CommonTest());
+        add(new CoordinatePlaneTest());
+        add(new FaultTest());
+        add(new GamepadTest());
+        add(new LoggerTest());
+        add(new RobotFunctionsTest());
+        add(new ThreadTest());
+        add(new StorageTest());
+        add(new ModulesTest());
+        add(new AutoModuleTest());
 
         // Hardware
-//        allUnitTests.add(new TankDriveTest());
-//        allUnitTests.add(new IntakeTest());
-//        allUnitTests.add(new TurretTest());
-//        allUnitTests.add(new LiftTest());
-//        allUnitTests.add(new OuttakeTest());
-//        allUnitTests.add(new CarouselTest());
+        add(new TankDriveTest());
+        add(new IntakeTest());
+        add(new TurretTest());
+        add(new LiftTest());
+        add(new OuttakeTest());
+        add(new CarouselTest());
 
         // Sensor
-//        allUnitTests.add(new ColorTest());
-//        allUnitTests.add(new DistanceTest());
-//        allUnitTests.add(new GyroTest());
-//        allUnitTests.add(new OdometryTest());
-//        allUnitTests.add(new TouchTest());
-//        allUnitTests.add(new OdometryTest());
+        add(new ColorTest());
+        add(new DistanceTest());
+        add(new GyroTest());
+        add(new OdometryTest());
+        add(new TouchTest());
+        add(new OdometryTest());
     }
 
     @Override
     public void init() {
-        fieldSide = FieldSide.RED;
-        reference(this);
+        super.init();
+
+        switch (testingMode){
+            case TIME:
+                selector.init(5);
+                break;
+            case CONTROL:
+                selector.init(() -> gamepad1.x, () -> false);
+                break;
+            case SELECTION:
+                selector.init(gph1, Button.DPAD_UP, Button.DPAD_DOWN);
+                break;
+        }
+
+        selector.runOnNext(() -> {
+            selector.setStatus(Status.IDLE);
+            getCurrentTest().stop();
+            log.clearTelemetry();
+            gph1.unlinkAll();
+            gph2.unlinkAll();
+        });
+
         createUnitTests();
-        for (UnitTest t: allUnitTests) {t.init();}
-        linkXToNextTest();
+        selector.runToAll(UnitTest::init);
+
         log.watch("Testing Mode: " + testingMode.toString());
-        activate(FieldSide.UNKNOWN);
+        super.activate(FieldSide.UNKNOWN);
     }
 
     @Override
     public void start() {
-        for (UnitTest t : allUnitTests) {t.start();}
-        timer.reset();
-        ready();
+        selector.runToAll(UnitTest::start);
+        super.start();
     }
 
     @Override
     public void loop() {
-        log.display("Testing " + getCurrentTestName() + "UnitTest type " + getCurrentTest().getType().toString());
-        if(testingMode.equals(TestType.TIME)){
-            if(timer.seconds() > delayForTime){
-                nextTest();
-            }
+        selector.update(true);
+
+        switch (testingMode){
+            case TIME:
+
+                break;
+            case CONTROL:
+
+                break;
+            case SELECTION:
+                if(gamepad1.x){
+                    selector.setStatus(Status.ACTIVE);
+                }
+                break;
         }
-        if (currentTestNum < allUnitTests.size()) getCurrentTest().test();
-        update(true);
+
+        log.display("Testing " + getCurrentTestName() + "UnitTest type " + getCurrentTest().getType().toString());
+        runCurrentTest();
+        super.update(true);
     }
 
-    @Override
-    public void stop(){
-        end();
-    }
 
+    public void add(UnitTest test){
+        selector.addItem(new Item<>(test.getClass().getSimpleName(), test));
+    }
     private String getCurrentTestName(){
         return getCurrentTest().getClass().getSimpleName();
     }
 
     private UnitTest getCurrentTest(){
-        return allUnitTests.get(currentTestNum);
+        return selector.getCurrentItem().getValue();
     }
 
-    private void linkXToNextTest(){
-        if(testingMode.equals(TestType.CONTROL)) {
-            gph1.link(Button.X, OnPressEventHandler.class, (double... args) -> nextTest());
+    private void runCurrentTest(){
+        if(!testingMode.equals(TestType.SELECTION)) {
+            selector.runToCurrentItem(UnitTest::test);
+        }else{
+            if(selector.getStatus().equals(Status.ACTIVE)){
+                selector.runToCurrentItem(UnitTest::test);
+            }
         }
-    }
-
-    private void nextTest(){
-        allUnitTests.get(currentTestNum).stop();
-        currentTestNum++;
-        if(currentTestNum >= allUnitTests.size()){
-            requestOpModeStop();
-        }
-        log.clearTelemetry();
-        gph1.unlinkAll();
-        gph2.unlinkAll();
-        linkXToNextTest();
-        timer.reset();
     }
 
     private enum TestType{

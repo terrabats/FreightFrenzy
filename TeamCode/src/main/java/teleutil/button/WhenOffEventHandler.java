@@ -1,13 +1,13 @@
 package teleutil.button;
 
 import teleutil.GamepadHandler;
-import util.codeseg.ParameterCodeSeg;
+import util.codeseg.DoubleParameterCodeSeg;
 
 public class WhenOffEventHandler extends OnPressEventHandler {
     public boolean on = false;
-    private final ParameterCodeSeg runWhenOn;
+    private final DoubleParameterCodeSeg runWhenOn;
 
-    public WhenOffEventHandler(Button button, ParameterCodeSeg cs, GamepadHandler gph) {
+    public WhenOffEventHandler(Button button, DoubleParameterCodeSeg cs, GamepadHandler gph) {
         super(button, cs, gph);
         runWhenOn = cs;
         this.codeSeg = args -> on = !on;

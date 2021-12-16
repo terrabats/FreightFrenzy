@@ -1,30 +1,51 @@
 package teleutil;
 
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.TreeMap;
 
 import teleutil.button.Button;
 import util.Timer;
 import util.codeseg.BooleanCodeSeg;
 import util.codeseg.CodeSeg;
+import util.codeseg.TypeParameterCodeSeg;
+import util.condition.Status;
 import util.store.Item;
 
-public class Selector {
-    private final ArrayList<Item> items = new ArrayList<>();
+public class Selector<T> {
+    private ArrayList<Item<T>> items = new ArrayList<>();
     private BooleanCodeSeg up;
     private BooleanCodeSeg down;
     private int currentIndex;
     private final boolean wrapAround;
-    private final double delay = 0.5; //s
-    private final Timer timer = new Timer();
+    private double delay = 0.5; //s
+    private final Timer updateTimer = new Timer();
+    private CodeSeg next = () -> {};
+    private Status status = Status.IDLE;
 
     public Selector(boolean shouldWrapAround){
         wrapAround = shouldWrapAround;
     }
 
-    public void addItem(Item item){
+    public void addItem(Item<T> item){
         items.add(item);
+    }
+
+    private void init(){
+        items = new ArrayList<>();
+        updateTimer.reset();
+    }
+
+    public void init(GamepadHandler gph, Button upButton, Button downButton){
+        up = gph.pressedMap.get(upButton); down = gph.pressedMap.get(downButton);
+        init();
+    }
+
+    public void init(BooleanCodeSeg upSeg, BooleanCodeSeg downSeg){
+        up = upSeg; down = downSeg;
+        init();
+    }
+    public void init(double timeBetweenUpdates){
+        this.delay = timeBetweenUpdates;
+        init(() -> true, () -> false);
     }
 
     public void up(){
@@ -47,21 +68,46 @@ public class Selector {
         }
     }
 
-    public void linkButtons(GamepadHandler gph, Button upButton, Button downButton){
-        up = gph.pressedMap.get(upButton);
-        down = gph.pressedMap.get(downButton);
-        timer.reset();
-    }
-
-    public void update(){
-        if(timer.seconds() > delay) {
+    private void update(){
+        if(updateTimer.seconds() > delay) {
             if (up.run()) {
+                next.run();
                 up();
             } else if (down.run()) {
+                next.run();
                 down();
             }
-            timer.reset();
+            updateTimer.reset();
         }
     }
 
+    public void update(boolean showTelemetry){
+        update();
+    }
+
+    public int getCurrentIndex(){
+        return currentIndex;
+    }
+    public Item<T> getCurrentItem(){
+        return items.get(currentIndex);
+    }
+
+    public void runToAll(TypeParameterCodeSeg<T> seg){
+        for(Item<T> item: items){
+            seg.run(item.getValue());
+        }
+    }
+    public void runToCurrentItem(TypeParameterCodeSeg<T> seg){
+        seg.run(getCurrentItem().getValue());
+    }
+    public void runOnNext(CodeSeg seg){
+         next = seg;
+    }
+
+    public Status getStatus(){
+        return status;
+    }
+    public void setStatus(Status status){
+        this.status = status;
+    }
 }

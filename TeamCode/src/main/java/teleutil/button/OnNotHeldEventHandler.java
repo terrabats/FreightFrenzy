@@ -1,10 +1,10 @@
 package teleutil.button;
 
 import teleutil.GamepadHandler;
-import util.codeseg.ParameterCodeSeg;
+import util.codeseg.DoubleParameterCodeSeg;
 
 public class OnNotHeldEventHandler extends ChangeHoldEventHandler {
-    public OnNotHeldEventHandler(Button button, ParameterCodeSeg codeSeg, GamepadHandler gph) {
+    public OnNotHeldEventHandler(Button button, DoubleParameterCodeSeg codeSeg, GamepadHandler gph) {
         super(button, codeSeg, gph);
     }
 

@@ -1,17 +1,17 @@
 package util.store;
 
-public class Item {
-    private String name;
-    private Object value;
+public class Item<T> {
+    private final String name;
+    private final T value;
 
-    public Item(String name, Object value){
+    public Item(String name, T value){
         this.name = name;
         this.value = value;
     }
     public String getName(){
         return name;
     }
-    public Object getValue(){
+    public T getValue(){
         return value;
     }
 }

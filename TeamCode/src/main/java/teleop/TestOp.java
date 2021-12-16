@@ -1,18 +1,13 @@
 package teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import elements.FieldSide;
-import global.Common;
-import robot.TerraBot;
 import teleutil.button.Button;
 import teleutil.button.OnTurnOffEventHandler;
 import teleutil.button.OnTurnOnEventHandler;
-import util.codeseg.ParameterCodeSeg;
-import util.condition.Expectation;
-import util.condition.Magnitude;
+
 import static global.General.*;
 
 @Disabled
