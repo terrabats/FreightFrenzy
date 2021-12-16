@@ -35,6 +35,9 @@ public class TerraOpBlue extends Tele{
     Timer xTimer = new Timer();
     Timer yTimer = new Timer();
 
+    // TODO
+    // Check if button handler is really working, is there even a timer?
+
     @Override
     public void init() {
         super.init();
@@ -49,7 +52,7 @@ public class TerraOpBlue extends Tele{
 //        gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.moveTele(0.3));
 //        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.moveTele(0));
 
-        activate(FieldSide.BLUE);
+        super.activate(FieldSide.BLUE);
     }
 
     @Override

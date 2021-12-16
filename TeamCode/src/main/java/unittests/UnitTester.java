@@ -35,6 +35,7 @@ public class UnitTester extends OpMode implements Common {
     private void createUnitTests(){
         // TODO
         // Make a framework to move around to select a specific unit test using dpad
+        // Make it add every unit test
 
 
         allUnitTests = new ArrayList<>();

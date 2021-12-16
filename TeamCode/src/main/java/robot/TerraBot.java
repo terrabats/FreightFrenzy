@@ -29,4 +29,8 @@ public class TerraBot extends RobotFramework {
     public Color color = new Color();
     public Touch touch = new Touch();
     public Led led; // = new Led();
+
+    // TODO
+    // Make it so that it adds all of the robot parts as objects but only the active ones will be construced with the given name
+    // Or something where a empty robot part is made
 }

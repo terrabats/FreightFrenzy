@@ -2,5 +2,7 @@ package elements;
 
 public enum GameElement {
     BALL,
-    CUBE
+    CUBE,
+    UNKNOWN,
+    NONE
 }

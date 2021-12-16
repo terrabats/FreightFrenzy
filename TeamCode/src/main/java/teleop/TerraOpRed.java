@@ -22,7 +22,7 @@ public class TerraOpRed extends Tele{
     @Override
     public void init() {
 
-        reference(this);
+        super.reference(this);
 
         //Gamepad 1
 //        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.intake.moveTele(1));
@@ -34,14 +34,14 @@ public class TerraOpRed extends Tele{
 //        gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.moveTele(0.3));
 //        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.moveTele(0));
 
-        activate(FieldSide.RED);
+        super.activate(FieldSide.RED);
     }
 
     @Override
     public void start() {
         bot.addAutoModule(new StageList(stages.liftEncoder(0.4,10)));
 
-        ready();
+        super.start();
         aTimer.reset();
         bTimer.reset();
         yTimer.reset();
@@ -97,11 +97,6 @@ public class TerraOpRed extends Tele{
         bot.turret.moveTele(gamepad2.left_stick_x);
         bot.lift.moveTele(-gamepad2.right_stick_y+Constants.LIFT_REST_POW);
 
-        update(true);
-    }
-
-    @Override
-    public void stop() {
-        end();
+        super.loop();
     }
 }

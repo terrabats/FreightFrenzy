@@ -26,30 +26,22 @@ public class Color extends RobotPart {
 //    }
 
     public boolean isBall(){
-        float h = getOuttakeColorHSV()[0];
-        return 155 < h && h < 170;
+        return getFreightType().equals(GameElement.BALL);
     }
     public boolean isCube(){
+        return getFreightType().equals(GameElement.CUBE);
+    }
+
+    public boolean isFreight(){ GameElement element = getFreightType(); return element.equals(GameElement.BALL) || element.equals(GameElement.CUBE); }
+
+    public GameElement getFreightType(){
         float h = getOuttakeColorHSV()[0];
-        return 60 < h && h < 90;
+        if(155 < h && h < 170){
+            return GameElement.BALL;
+        }else if(60 < h && h < 90){
+            return GameElement.CUBE;
+        }else{
+            return GameElement.NONE;
+        }
     }
-
-    public boolean isFreight(){
-        return isBall() || isCube();
-    }
-
-
-    //    // TODO: FIX THIS
-//    public GameElement get_part_intake() {
-//        if (in_dis.getDistance(DistanceUnit.CM) > THRESHOLD_DISTANCE) {
-//            // No object?
-//            return null;
-//        } else if (in_cs.argb() < 30) {
-//            // The object is white?
-//            return GameElement.SPHERE;
-//        } else {
-//            // The object is yellow?
-//            return GameElement.BOX;
-//        }
-//    }
 }

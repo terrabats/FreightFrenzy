@@ -56,6 +56,9 @@ public class RobotFramework {
         rfsHandler.addAutoModule(autoModule);
     }
 
+
+    // TODO
+    // MAKe this work
     public void cancelAutoModule(){
         rfsHandler.emptyQueue();
     }
