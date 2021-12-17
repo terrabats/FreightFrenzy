@@ -18,18 +18,13 @@ public class Outtake extends RobotPart {
         lo.addPosition("open", 1.0);
         lo.setPosition("start");
     }
-//    @Override
-//    public void move(double pos){
-//        lo.setPosition(pos);
-//    }
 
     public void move(String s){
         lo.setPosition(s);
     }
 
-
-
     public void moveRF(String pos) { lo.setPositionRF(pos); }
+
 
     public void lockCube(){ move("cubeLock"); }
     public void lockBall(){ move("ballLock"); }

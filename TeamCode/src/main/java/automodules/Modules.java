@@ -50,13 +50,15 @@ public class Modules {
     public Stop stopTurretEncoder(){return new Stop(() -> bot.turret.stopAndResetMode());}
 
 
+    // TODO TEST
+    // Test this out below?
     //Pausing
     public Main pause() {return new Main(() -> bot.rfsHandler.addPause());}
     public Main resume(){return new Main(() -> bot.rfsHandler.resume());}
 
     //Possession
-    public Initial usePart(RobotPart part){return new Initial(part::free);}
-    public Stop returnPart(RobotPart part){return new Stop(part::use);}
+    public Initial usePart(RobotPart part){return new Initial(part::use);}
+    public Stop returnPart(RobotPart part){return new Stop(part::free);}
 
 
     public Main setSlowMode(boolean val){return new Main(() -> bot.slowMode = val);}

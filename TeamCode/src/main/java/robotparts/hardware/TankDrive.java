@@ -71,8 +71,4 @@ public class TankDrive extends RobotPart {
             return moveForTime == 0 ? (Math.abs(err) < turnError) : (curTime >= moveForTime);
         }
     }
-//
-//    public void retract(double pos){
-//        re.setPosition(pos);
-//    }
 }

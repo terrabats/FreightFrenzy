@@ -37,7 +37,6 @@ public class Turret extends RobotPart {
     public void resetEncoder(){trEnc.reset();}
 
     public void setTarget(double angle){
-        //resetEncoder();
         tr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         tr.setTargetPosition((int)(angle*Constants.TURRET_ANGLE_DEG_TO_TICKS));
         tr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
