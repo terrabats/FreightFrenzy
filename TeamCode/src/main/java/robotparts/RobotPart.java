@@ -10,22 +10,21 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
-import org.checkerframework.checker.units.qual.C;
-
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 import robot.RobotFramework;
 import robotparts.electronics.CMotor;
 import robotparts.electronics.CServo;
-import robotparts.electronics.Electronic;
 import robotparts.electronics.Encoder;
 import robotparts.electronics.LED;
 import robotparts.electronics.PMotor;
 import robotparts.electronics.PServo;
-import util.condition.Status;
 
 import static global.General.*;
 import robotparts.electronics.Encoder.Type;
+import util.User;
+import util.codeseg.TypeParameterCodeSeg;
 
 public class RobotPart extends Electronic {
 
@@ -42,6 +41,10 @@ public class RobotPart extends Electronic {
     public TreeMap<String, Encoder> encoders = new TreeMap<>();
     public TreeMap<String, LED> leds = new TreeMap<>();
 
+    public ArrayList<Electronic> electronics = new ArrayList<>();
+
+    private volatile User currentUser = User.NONE;
+
     public RobotPart(){
        RobotFramework.allRobotParts.add(this);
     }
@@ -51,32 +54,38 @@ public class RobotPart extends Electronic {
     protected CMotor createCMotor(String name, DcMotor.Direction dir){
         CMotor cmotor = new CMotor(hardwareMap.get(DcMotor.class, name), dir, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         cmotors.put(name, cmotor);
+        electronics.add(cmotor);
         return cmotor;
     }
 
     protected CMotor createCMotor(String name, DcMotor.Direction dir, DcMotor.ZeroPowerBehavior zpb, DcMotor.RunMode mode){
         CMotor cmotor = new CMotor(hardwareMap.get(DcMotor.class, name), dir, zpb, mode);
         cmotors.put(name, cmotor);
+        electronics.add(cmotor);
         return cmotor;
     }
 
     protected CServo createCServo(String name, CRServo.Direction dir){
         CServo cservo = new CServo(hardwareMap.get(CRServo.class, name), dir);
         cservos.put(name, cservo);
+        electronics.add(cservo);
         return cservo;
     }
 
     protected PServo createPServo(String name, Servo.Direction dir, double startpos, double endpos){
         PServo pservo = new PServo(hardwareMap.get(Servo.class, name), dir, startpos, endpos);
         pservos.put(name, pservo);
+        electronics.add(pservo);
         return pservo;
     }
     // TODO FIX
-    // Make this
+    // Make this proper
+    // ALSO REMEMBER TO ADD THE OTHER ELECTRONICS TO electronics arraylist
 
     protected PMotor createPMotor(String name, DcMotor.Direction dir){
         PMotor pmotor = new PMotor(hardwareMap.get(DcMotor.class, name), dir, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         pmotors.put(name, pmotor);
+        electronics.add(pmotor);
         return pmotor;
     }
 
@@ -123,14 +132,29 @@ public class RobotPart extends Electronic {
 
     public void halt(){
         for(CMotor mot: cmotors.values()){
-            mot.setPowerRF(0);
+            mot.setPower(0);
         }
         for(CServo crs: cservos.values()){
-            crs.setPowerRF(0);
+            crs.setPower(0);
         }
     }
 
-    // TODO FIX
-    // Fix this system of knowing when they are active?
+    public User getUser(){
+        return currentUser;
+    }
+
+    public void switchUser(User newUser){
+        currentUser = newUser;
+        forAllElectronics(e -> e.access.allow());
+    }
+
+    public void checkAccess(User newUser){
+        if(!newUser.equals(currentUser)) {
+            forAllElectronics(e -> e.access.deny());
+        }
+    }
+
+
+    private void forAllElectronics(TypeParameterCodeSeg<Electronic> run){ for(Electronic e: electronics){ run.run(e); } }
 
 }

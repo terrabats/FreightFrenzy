@@ -2,7 +2,9 @@ package robotparts.electronics;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class Encoder extends Electronic{
+import robotparts.Electronic;
+
+public class Encoder extends Electronic {
     private DcMotor motor;
     private Type type;
 

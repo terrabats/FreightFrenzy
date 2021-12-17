@@ -2,7 +2,9 @@ package robotparts.electronics;
 
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
-public class LED extends Electronic{
+import robotparts.Electronic;
+
+public class LED extends Electronic {
     private DigitalChannel red;
     private DigitalChannel green;
     public LED(DigitalChannel r, DigitalChannel g){
@@ -12,23 +14,25 @@ public class LED extends Electronic{
         green.setMode(DigitalChannel.Mode.OUTPUT);
     }
     public void setColor(LEDColor color){
-        switch (color){
-            case OFF:
-                red.setState(false);
-                green.setState(false);
-                break;
-            case RED:
-                red.setState(true);
-                green.setState(false);
-                break;
-            case GREEN:
-                red.setState(false);
-                green.setState(true);
-                break;
-            case ORANGE:
-                red.setState(true);
-                green.setState(true);
-                break;
+        if(access.isAllowed()) {
+            switch (color) {
+                case OFF:
+                    red.setState(false);
+                    green.setState(false);
+                    break;
+                case RED:
+                    red.setState(true);
+                    green.setState(false);
+                    break;
+                case GREEN:
+                    red.setState(false);
+                    green.setState(true);
+                    break;
+                case ORANGE:
+                    red.setState(true);
+                    green.setState(true);
+                    break;
+            }
         }
     }
     public enum LEDColor{

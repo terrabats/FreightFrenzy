@@ -5,7 +5,9 @@ import com.qualcomm.robotcore.hardware.Servo.*;
 
 import java.util.TreeMap;
 
-public class PServo extends Electronic{
+import robotparts.Electronic;
+
+public class PServo extends Electronic {
     private final Servo servo;
     private final Direction direction;
     private final double lower;
@@ -27,21 +29,16 @@ public class PServo extends Electronic{
         positions.put(name, p);
     }
 
-
-    public void setPosition(String name){
-        if(isFreeToUse()) { servo.setPosition(positions.get(name)); }
-    }
-
-    public void setPositionRF(String name){
-        servo.setPosition(positions.get(name));
-    }
+    public void setPosition(String name){ if(access.isAllowed()){ servo.setPosition(positions.get(name)); } }
 
     public double getPosition(){
         return servo.getPosition();
     }
+
     public double getLower(){
         return lower;
     }
+
     public double getUpper(){
         return upper;
     }

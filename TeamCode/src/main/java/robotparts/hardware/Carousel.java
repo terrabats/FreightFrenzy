@@ -21,9 +21,4 @@ public class Carousel extends RobotPart {
         cl.setPower(p);
         cr.setPower(p);
     }
-
-    public void moveRF(double p) {
-        cl.setPowerRF(p);
-        cr.setPowerRF(p);
-    }
 }

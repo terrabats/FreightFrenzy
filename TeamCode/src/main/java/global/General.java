@@ -15,6 +15,8 @@ import robot.TerraBot;
 import teleutil.GamepadHandler;
 import debugging.Fault;
 import debugging.Logger;
+import util.Access.*;
+import util.User;
 import util.store.Storage;
 
 public class General {
@@ -34,4 +36,5 @@ public class General {
     public static Modules modules;
     public static Stages stages;
     public static AutoModules autoModules;
+    public static User user;
 }

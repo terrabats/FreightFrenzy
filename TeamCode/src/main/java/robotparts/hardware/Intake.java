@@ -19,6 +19,4 @@ public class Intake extends RobotPart {
         in.setPower(power);
     }
 
-    public void moveRF(double power) { in.setPowerRF(power); }
-
 }

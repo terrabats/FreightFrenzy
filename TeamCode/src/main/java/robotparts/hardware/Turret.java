@@ -27,8 +27,6 @@ public class Turret extends RobotPart {
         tr.setPower(power);
     }
 
-    public void moveRF(double power) { tr.setPowerRF(power); }
-
     public double getTurretPos(){
         return trEnc.getPos();
     }

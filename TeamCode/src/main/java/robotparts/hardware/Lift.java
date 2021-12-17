@@ -23,8 +23,6 @@ public class Lift extends RobotPart {
         li.setPower(p);
     }
 
-    public void moveRF(double p) {li.setPowerRF(p);}
-
     public double getLiftPos(){
         return liEnc.getPos();
     }

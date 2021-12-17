@@ -5,6 +5,7 @@ import automodules.stage.Initial;
 import automodules.stage.Main;
 import automodules.stage.Stop;
 import robotparts.RobotPart;
+import util.User;
 
 import static global.General.*;
 
@@ -57,8 +58,8 @@ public class Modules {
     public Main resume(){return new Main(() -> bot.rfsHandler.resume());}
 
     //Possession
-    public Initial usePart(RobotPart part){return new Initial(part::use);}
-    public Stop returnPart(RobotPart part){return new Stop(part::free);}
+    public Initial usePart(RobotPart part){return new Initial(() -> part.switchUser(User.ROFU));}
+    public Stop returnPart(RobotPart part){return new Stop(() -> part.switchUser(user));}
 
 
     public Main setSlowMode(boolean val){return new Main(() -> bot.slowMode = val);}

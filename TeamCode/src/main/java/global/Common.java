@@ -13,6 +13,7 @@ import robot.TerraBot;
 import teleutil.GamepadHandler;
 import debugging.Fault;
 import debugging.Logger;
+import util.User;
 import util.store.Storage;
 
 import static global.General.*;
@@ -24,6 +25,7 @@ public interface Common{
         telemetry = thisOpMode.telemetry;
         gamepad1 = thisOpMode.gamepad1;
         gamepad2 = thisOpMode.gamepad2;
+        user = User.getUserFromTypeOfOpMode(thisOpMode);
         gph1 = new GamepadHandler(gamepad1);
         gph2 = new GamepadHandler(gamepad2);
         fault = new Fault();
@@ -49,15 +51,16 @@ public interface Common{
         log.clearTelemetry();
     }
     default void update(boolean showTelemetry){
+        bot.update();
         gph1.run();
         gph2.run();
         sync.update();
         if(showTelemetry){log.showTelemetry();}
     }
     default void end(){
+        bot.stop();
         sync.logDelay();
         log.showLogs();
-        bot.stop();
         storage.saveItems();
     }
 }

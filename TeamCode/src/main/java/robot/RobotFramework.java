@@ -1,14 +1,13 @@
 package robot;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-
 import java.util.ArrayList;
 
 import automodules.StageList;
-import elements.FieldSide;
 import geometry.CoordinatePlane;
 import robotparts.RobotPart;
 import util.TerraThread;
+import util.User;
+import util.codeseg.TypeParameterCodeSeg;
 
 import static global.General.*;
 
@@ -30,9 +29,7 @@ public class RobotFramework {
     }
 
     public void init(){
-        for (RobotPart part : allRobotParts) {
-            part.init();
-        }
+        forAllParts(RobotPart::init);
         robotFunctionsThread.start();
         odometryThread.start();
         gameTime.reset();
@@ -42,24 +39,32 @@ public class RobotFramework {
         rfsHandler.resume();
     }
 
+    public void update(){
+        forAllParts(part -> part.checkAccess(user));
+    }
+
     public void stop(){
         robotFunctionsThread.stopUpdating();
         odometryThread.stopUpdating();
     }
 
-    public void halt(){
-        for(RobotPart part: allRobotParts){
-            part.halt();
-        }
-    }
+    public void halt(){ forAllParts(RobotPart::halt); }
+
     public void addAutoModule(StageList autoModule){
         rfsHandler.addAutoModule(autoModule);
     }
 
-
+    public void setUser(User newUser){ forAllParts(part -> part.switchUser(newUser)); }
     // TODO FIX
     // MAKe this work
     public void cancelAutoModule(){
         rfsHandler.emptyQueue();
+    }
+
+
+    private void forAllParts(TypeParameterCodeSeg<RobotPart> run){
+        for(RobotPart part: allRobotParts){
+            run.run(part);
+        }
     }
 }

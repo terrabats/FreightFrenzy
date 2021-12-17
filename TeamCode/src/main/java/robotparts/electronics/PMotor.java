@@ -3,7 +3,9 @@ package robotparts.electronics;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-public class PMotor extends Electronic{
+import robotparts.Electronic;
+
+public class PMotor extends Electronic {
     // TODO FIX
     // Fix this
 
@@ -23,13 +25,8 @@ public class PMotor extends Electronic{
         motor.setPower(0);
     }
 
-    public void setPower(double p){
-        if(isFreeToUse()){ motor.setPower(p); }
-    }
+    public void setPower(double p){ if(access.isAllowed()){ motor.setPower(p); } }
 
-    public void setPowerRF(double p){
-        motor.setPower(p);
-    }
 
     public void setMode(DcMotor.RunMode mode){
         motor.setMode(mode);

@@ -3,7 +3,9 @@ package robotparts.electronics;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-public class CMotor extends Electronic{
+import robotparts.Electronic;
+
+public class CMotor extends Electronic {
     private final DcMotor motor;
     private final DcMotorSimple.Direction direction;
     private final DcMotor.ZeroPowerBehavior zeroPowerBehavior;
@@ -20,13 +22,7 @@ public class CMotor extends Electronic{
         motor.setPower(0);
     }
 
-    public void setPower(double p){
-        if(isFreeToUse()){ motor.setPower(p); }
-    }
-
-    public void setPowerRF(double p){
-        motor.setPower(p);
-    }
+    public void setPower(double p){ if(access.isAllowed()){ motor.setPower(p); } }
 
     public DcMotorSimple.Direction getDirection(){
         return direction;
