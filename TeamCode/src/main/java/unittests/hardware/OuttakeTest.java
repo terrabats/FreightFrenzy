@@ -6,7 +6,7 @@ import teleutil.button.OnTurnOnEventHandler;
 import unittests.UnitTest;
 import static global.General.*;
 
-public class OuttakeTest extends HardwareTest {
+public class OuttakeTest extends UnitTest {
     @Override
     protected void run() {
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.move(1));

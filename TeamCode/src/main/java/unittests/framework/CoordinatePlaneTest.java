@@ -6,7 +6,7 @@ import unittests.UnitTest;
 import static global.General.*;
 
 
-public class CoordinatePlaneTest extends FrameworkTest {
+public class CoordinatePlaneTest extends UnitTest {
     public CoordinatePlane coordinatePlane = new CoordinatePlane();
 
     @Override

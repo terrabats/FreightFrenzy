@@ -3,11 +3,12 @@ package unittests.sensor;
 import robotparts.custom.LED;
 import teleutil.button.Button;
 import teleutil.button.OnPressEventHandler;
+import unittests.UnitTest;
 
 import static global.General.bot;
 import static global.General.gph1;
 
-public class LedTest extends SensorTest{
+public class LedTest extends UnitTest {
     @Override
     protected void run() {
         gph1.link(Button.X, OnPressEventHandler.class, args -> bot.led.setColorOfLEDs(LED.LEDColor.OFF));

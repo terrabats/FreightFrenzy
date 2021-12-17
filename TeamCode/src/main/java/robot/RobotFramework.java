@@ -57,7 +57,7 @@ public class RobotFramework {
     }
 
 
-    // TODO
+    // TODO FIX
     // MAKe this work
     public void cancelAutoModule(){
         rfsHandler.emptyQueue();

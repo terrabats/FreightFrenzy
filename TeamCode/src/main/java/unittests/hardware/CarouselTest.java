@@ -3,7 +3,7 @@ package unittests.hardware;
 import unittests.UnitTest;
 import static global.General.*;
 
-public class CarouselTest extends HardwareTest {
+public class CarouselTest extends UnitTest {
     @Override
     protected void run() {
         showConfig(bot.carousel);

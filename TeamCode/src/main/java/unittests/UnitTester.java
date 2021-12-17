@@ -32,8 +32,8 @@ public class UnitTester extends Tele {
     private final TestType testingMode = TestType.SELECTION;
     private final Selector<UnitTest> selector = new Selector<>(true);
 
-    // TODO
-    // TEST THIS CLASS and maybe add functionality to see all tests at once
+    // TODO TEST
+    // Test this
 
     private void createUnitTests(){
         // Framework
@@ -113,7 +113,7 @@ public class UnitTester extends Tele {
                 log.list(selector.getItemClassNames(), selector.getCurrentIndex());
             }
         }
-        log.display("Testing " + getCurrentTestName() + "UnitTest type " + getCurrentTest().getType().toString());
+        log.display("Testing " + getCurrentTestName());
         runCurrentTest();
         super.update(true);
     }

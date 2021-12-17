@@ -1,13 +1,14 @@
 package unittests.framework;
 
 import elements.FieldSide;
+import unittests.UnitTest;
 import util.store.ItemType;
 
 import static global.General.fieldSide;
 import static global.General.log;
 import static global.General.storage;
 
-public class StorageTest extends FrameworkTest{
+public class StorageTest extends UnitTest {
     @Override
     protected void run() {
         fieldSide = FieldSide.RED;

@@ -7,7 +7,7 @@ import util.condition.Magnitude;
 
 import static global.General.*;
 
-public class TankDriveTest extends HardwareTest {
+public class TankDriveTest extends UnitTest {
     @Override
     protected void run() {
         showConfig(bot.tankDrive);

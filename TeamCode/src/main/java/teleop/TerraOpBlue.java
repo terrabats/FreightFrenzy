@@ -35,7 +35,7 @@ public class TerraOpBlue extends Tele{
     Timer xTimer = new Timer();
     Timer yTimer = new Timer();
 
-    // TODO
+    // TODO TEST
     // Check if button handler is really working, is there even a timer?
 
     @Override

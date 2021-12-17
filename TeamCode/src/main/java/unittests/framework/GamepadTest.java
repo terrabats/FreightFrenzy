@@ -12,7 +12,7 @@ import unittests.UnitTest;
 
 import static global.General.*;
 
-public class GamepadTest extends FrameworkTest {
+public class GamepadTest extends UnitTest {
     private int a;
     @Override
     public void start() {

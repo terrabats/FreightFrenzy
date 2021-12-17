@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import unittests.UnitTest;
 import static global.General.*;
 
-public class LiftTest extends HardwareTest {
+public class LiftTest extends UnitTest {
     @Override
     protected void run() {
         showConfig(bot.lift);

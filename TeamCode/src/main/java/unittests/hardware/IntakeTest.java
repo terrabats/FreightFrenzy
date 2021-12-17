@@ -9,7 +9,7 @@ import teleutil.button.OnTurnOffEventHandler;
 import teleutil.button.OnTurnOnEventHandler;
 import unittests.UnitTest;
 
-public class IntakeTest extends HardwareTest {
+public class IntakeTest extends UnitTest {
 
     @Override
     public void run() {

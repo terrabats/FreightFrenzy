@@ -158,7 +158,7 @@ public class RobotPart {
     protected void moveTele(double val1, double val2, double val3){ if(isInactive()){return;} move(val1, val2, val3); }
     protected void moveTele(String val1){ if(isInactive()){return;} move(val1); }
 
-    // TODO
+    // TODO FIX
     // Fix this system of knowing when they are active?
 
 }

@@ -6,6 +6,6 @@ public enum GameElement {
     UNKNOWN,
     NONE
 
-    // TODO
+    // TODO NEW
     // Add important information about objects here
 }

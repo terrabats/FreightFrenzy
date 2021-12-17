@@ -4,10 +4,11 @@ import automodules.stage.Exit;
 import automodules.stage.Main;
 import automodules.stage.Stage;
 import automodules.stage.Stop;
+import unittests.UnitTest;
 
 import static global.General.*;
 
-public class RobotFunctionsTest extends FrameworkTest {
+public class RobotFunctionsTest extends UnitTest {
     @Override
     public void run() {
         bot.rfsHandler.addToQueue(new Stage(

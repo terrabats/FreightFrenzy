@@ -1,9 +1,10 @@
 package unittests.framework;
 import automodules.stage.Stage;
+import unittests.UnitTest;
 
 import static global.General.*;
 
-public class ModulesTest extends FrameworkTest{
+public class ModulesTest extends UnitTest {
     @Override
     protected void run() {
         log.display("Works");

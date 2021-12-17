@@ -3,7 +3,7 @@ package unittests.hardware;
 import unittests.UnitTest;
 import static global.General.*;
 
-public class TurretTest extends HardwareTest {
+public class TurretTest extends UnitTest {
     @Override
     protected void run() {
         showConfig(bot.turret);

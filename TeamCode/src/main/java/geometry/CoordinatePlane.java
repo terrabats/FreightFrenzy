@@ -9,7 +9,7 @@ import static java.lang.Math.*;
 
 public class CoordinatePlane {
 
-    // TODO
+    // TODO NEW
     // Finish all geometric classes
 
 
