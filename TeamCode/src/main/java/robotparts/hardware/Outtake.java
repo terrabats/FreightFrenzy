@@ -1,11 +1,9 @@
 package robotparts.hardware;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import robotparts.RobotPart;
-import robotparts.custom.PServo;
+import robotparts.electronics.PServo;
 
 public class Outtake extends RobotPart {
     private PServo lo;
@@ -20,10 +18,10 @@ public class Outtake extends RobotPart {
         lo.addPosition("open", 1.0);
         lo.setPosition("start");
     }
-    @Override
-    public void move(double pos){
-        lo.setPosition(pos);
-    }
+//    @Override
+//    public void move(double pos){
+//        lo.setPosition(pos);
+//    }
     @Override
     public void move(String s){
         lo.setPosition(s);

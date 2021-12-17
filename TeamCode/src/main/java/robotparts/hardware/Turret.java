@@ -3,16 +3,12 @@ package robotparts.hardware;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import java.util.Objects;
-
 import elements.FieldSide;
 import global.Constants;
 import robotparts.RobotPart;
-import robotparts.custom.Encoder;
+import robotparts.electronics.Encoder;
 
-import static global.General.fault;
 import static global.General.fieldSide;
-import static java.lang.Math.*;
 
 public class Turret extends RobotPart {
     private DcMotor tr;

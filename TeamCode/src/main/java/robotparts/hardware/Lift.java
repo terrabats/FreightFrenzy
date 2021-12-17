@@ -3,11 +3,9 @@ package robotparts.hardware;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import org.firstinspires.ftc.teamcode.R;
-
 import global.Constants;
 import robotparts.RobotPart;
-import robotparts.custom.Encoder;
+import robotparts.electronics.Encoder;
 
 public class Lift extends RobotPart {
     private DcMotor li;

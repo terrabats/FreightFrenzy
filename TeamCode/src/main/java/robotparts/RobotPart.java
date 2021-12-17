@@ -10,19 +10,16 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
-import java.util.Map.*;
-import java.util.Objects;
 import java.util.TreeMap;
 
 import robot.RobotFramework;
-import robotparts.custom.Encoder;
-import robotparts.custom.LED;
-import robotparts.custom.PServo;
+import robotparts.electronics.Encoder;
+import robotparts.electronics.LED;
+import robotparts.electronics.PServo;
 import util.condition.Status;
-import util.Timer;
 
 import static global.General.*;
-import robotparts.custom.Encoder.Type;
+import robotparts.electronics.Encoder.Type;
 
 public class RobotPart {
 

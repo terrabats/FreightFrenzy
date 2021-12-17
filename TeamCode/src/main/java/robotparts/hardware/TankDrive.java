@@ -2,15 +2,11 @@ package robotparts.hardware;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
-
-import java.util.Objects;
 
 import elements.FieldSide;
 import robotparts.RobotPart;
-import robotparts.custom.PServo;
-import util.codeseg.CodeSeg;
+import robotparts.electronics.PServo;
 
 import static global.General.*;
 
@@ -69,8 +65,8 @@ public class TankDrive extends RobotPart {
             return moveForTime == 0 ? (Math.abs(err) < turnError) : (curTime >= moveForTime);
         }
     }
-
-    public void retract(double pos){
-        re.setPosition(pos);
-    }
+//
+//    public void retract(double pos){
+//        re.setPosition(pos);
+//    }
 }

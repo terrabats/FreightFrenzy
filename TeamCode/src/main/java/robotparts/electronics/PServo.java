@@ -1,20 +1,16 @@
-package robotparts.custom;
+package robotparts.electronics;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.Servo.*;
 
-import org.checkerframework.checker.units.qual.A;
-
-import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class PServo {
-    private Servo servo;
-    private Direction direction;
-    private double lower;
-    private double upper;
-    private TreeMap<String, Double> positions = new TreeMap<>();
+public class PServo extends Electronic{
+    private final Servo servo;
+    private final Direction direction;
+    private final double lower;
+    private final double upper;
+    private final TreeMap<String, Double> positions = new TreeMap<>();
 
     public PServo(Servo s, Direction dir, double l , double u){
         servo = s;
@@ -31,11 +27,13 @@ public class PServo {
         positions.put(name, p);
     }
 
-    public void setPosition(double pos){
-        servo.setPosition(pos);
-    }
+
     public void setPosition(String name){
-        setPosition(positions.get(name));
+        if(isFreeToUse()) { servo.setPosition(positions.get(name)); }
+    }
+
+    public void setPositionRF(String name){
+        servo.setPosition(positions.get(name));
     }
 
     public double getPosition(){

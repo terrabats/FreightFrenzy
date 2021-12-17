@@ -1,11 +1,9 @@
 package robotparts.sensors;
 
-import com.qualcomm.robotcore.hardware.DigitalChannel;
-
 
 import robotparts.RobotPart;
-import robotparts.custom.LED;
-import robotparts.custom.LED.*;
+import robotparts.electronics.LED;
+import robotparts.electronics.LED.*;
 
 
 public class Led extends RobotPart {

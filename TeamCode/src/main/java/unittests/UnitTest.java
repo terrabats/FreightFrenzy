@@ -3,11 +3,10 @@ package unittests;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import java.util.Map;
 import java.util.Map.*;
 
 import robotparts.RobotPart;
-import robotparts.custom.PServo;
+import robotparts.electronics.PServo;
 import util.condition.Status;
 
 import static global.General.*;

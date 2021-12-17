@@ -1,10 +1,8 @@
-package robotparts.custom;
+package robotparts.electronics;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import java.util.Objects;
-
-public class Encoder {
+public class Encoder extends Electronic{
     private DcMotor motor;
     private Type type;
 

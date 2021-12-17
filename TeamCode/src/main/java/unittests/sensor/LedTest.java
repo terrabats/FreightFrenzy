@@ -1,6 +1,6 @@
 package unittests.sensor;
 
-import robotparts.custom.LED;
+import robotparts.electronics.LED;
 import teleutil.button.Button;
 import teleutil.button.OnPressEventHandler;
 import unittests.UnitTest;

@@ -1,8 +1,8 @@
-package robotparts.custom;
+package robotparts.electronics;
 
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
-public class LED {
+public class LED extends Electronic{
     private DigitalChannel red;
     private DigitalChannel green;
     public LED(DigitalChannel r, DigitalChannel g){

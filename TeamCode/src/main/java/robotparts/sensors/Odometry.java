@@ -1,10 +1,9 @@
 package robotparts.sensors;
 
 import robotparts.RobotPart;
-import robotparts.custom.Encoder;
+import robotparts.electronics.Encoder;
 import util.codeseg.CodeSeg;
 
-import static global.General.*;
 import static java.lang.Math.*;
 import static robot.RobotFramework.*;
 
