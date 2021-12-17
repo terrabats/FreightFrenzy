@@ -6,23 +6,24 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import global.Constants;
 import robotparts.RobotPart;
 import robotparts.electronics.Encoder;
+import robotparts.electronics.PMotor;
 
 public class Lift extends RobotPart {
-    private DcMotor li;
+    private PMotor li;
     private Encoder liEnc;
 
     @Override
     public void init() {
-        li = createMotor("li", DcMotorSimple.Direction.FORWARD);
+        li = createPMotor("li", DcMotorSimple.Direction.FORWARD);
         liEnc = createEncoder("li", "liEnc", Encoder.Type.MOTOR);
         resetEncoder();
     }
-    @Override
+
     public void move(double p){
         li.setPower(p);
     }
-    @Override
-    public void moveTele(double p) {super.moveTele(p);}
+
+    public void moveRF(double p) {li.setPowerRF(p);}
 
     public double getLiftPos(){
         return liEnc.getPos();

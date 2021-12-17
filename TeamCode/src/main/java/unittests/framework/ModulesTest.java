@@ -19,8 +19,6 @@ public class ModulesTest extends UnitTest {
 
     @Override
     protected void loop() {
-        if(bot.tankDrive.isInactive()) {
-            bot.tankDrive.moveTele(-0.3, 0);
-        }
+        bot.tankDrive.move(-0.3, 0);
     }
 }

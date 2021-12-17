@@ -22,16 +22,14 @@ public class Outtake extends RobotPart {
 //    public void move(double pos){
 //        lo.setPosition(pos);
 //    }
-    @Override
+
     public void move(String s){
         lo.setPosition(s);
     }
 
-    @Override
-    public void moveTele(double pos) { super.moveTele(pos); }
 
-    @Override
-    public void moveTele(String pos) { super.moveTele(pos); }
+
+    public void moveRF(String pos) { lo.setPositionRF(pos); }
 
     public void lockCube(){ move("cubeLock"); }
     public void lockBall(){ move("ballLock"); }
@@ -39,9 +37,9 @@ public class Outtake extends RobotPart {
     public void start(){ move("start"); }
     public void open(){ move("open"); }
 
-    public void lockCubeTele(){ moveTele("cubeLock"); }
-    public void lockBallTele(){ moveTele("ballLock"); }
-    public void alignTele(){ moveTele("aligned"); }
-    public void startTele(){ moveTele("start"); }
-    public void openTele(){ moveTele("open"); }
+    public void lockCubeTele(){ move("cubeLock"); }
+    public void lockBallTele(){ move("ballLock"); }
+    public void alignTele(){ move("aligned"); }
+    public void startTele(){ move("start"); }
+    public void openTele(){ move("open"); }
 }

@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import java.util.Map.*;
 
 import robotparts.RobotPart;
+import robotparts.electronics.CMotor;
+import robotparts.electronics.CServo;
 import robotparts.electronics.PServo;
 import util.condition.Status;
 
@@ -29,17 +31,17 @@ public class UnitTest {
 
 
     protected void showConfig(RobotPart part){
-        for (Entry<String, DcMotor> entry: part.motors.entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
+        for (Entry<String, CMotor> entry: part.cmotors.entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
         for (Entry<String, PServo> entry: part.pservos.entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
-        for (Entry<String, CRServo> entry: part.crservos.entrySet()) { showConfig(entry.getKey(), (CRServo) entry.getValue()); }
+        for (Entry<String, CServo> entry: part.cservos.entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
     }
-    protected void showConfig(String name, DcMotor motor){
+    protected void showConfig(String name, CMotor motor){
         log.display("DcMotor: "+ name, "Dir: "+ motor.getDirection());
     }
     protected void showConfig(String name, PServo pservo){
         log.display("Servo: "+ name, "Dir: "+ pservo.getDirection() + "Lower: "+ pservo.getLower() + "Upper: " + pservo.getUpper());
     }
-    protected void showConfig(String name, CRServo crservo){
+    protected void showConfig(String name, CServo crservo){
         log.display("CRServo: "+ name, "Dir: "+ crservo.getDirection());
     }
 }

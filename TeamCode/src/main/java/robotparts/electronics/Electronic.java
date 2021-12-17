@@ -3,13 +3,13 @@ package robotparts.electronics;
 import util.condition.Status;
 
 public class Electronic {
-    protected Status status = Status.ACTIVE;
+    protected volatile Status status = Status.ACTIVE;
 
-    public Status getStatus(){
+    public synchronized Status getStatus(){
         return status;
     }
 
-    public void setStatus(Status status){
+    public synchronized void setStatus(Status status){
         this.status = status;
     }
 

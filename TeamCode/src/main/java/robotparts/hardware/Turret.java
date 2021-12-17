@@ -6,28 +6,28 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import elements.FieldSide;
 import global.Constants;
 import robotparts.RobotPart;
+import robotparts.electronics.CMotor;
 import robotparts.electronics.Encoder;
+import robotparts.electronics.PMotor;
 
 import static global.General.fieldSide;
 
 public class Turret extends RobotPart {
-    private DcMotor tr;
+    private PMotor tr;
     private Encoder trEnc;
 
     @Override
     public void init() {
-        tr = createMotor("tr", DcMotorSimple.Direction.FORWARD);
+        tr = createPMotor("tr", DcMotorSimple.Direction.FORWARD);
         trEnc = createEncoder("tr", "trEnc", Encoder.Type.MOTOR);
         resetEncoder();
     }
 
-    @Override
     public void move(double power) {
         tr.setPower(power);
     }
 
-    @Override
-    public void moveTele(double power) { super.moveTele(power); }
+    public void moveRF(double power) { tr.setPowerRF(power); }
 
     public double getTurretPos(){
         return trEnc.getPos();

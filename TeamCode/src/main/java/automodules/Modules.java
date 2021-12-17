@@ -55,8 +55,8 @@ public class Modules {
     public Main resume(){return new Main(() -> bot.rfsHandler.resume());}
 
     //Possession
-    public Initial usePart(RobotPart part){return new Initial(part::deactivate);}
-    public Stop returnPart(RobotPart part){return new Stop(part::activate);}
+    public Initial usePart(RobotPart part){return new Initial(part::free);}
+    public Stop returnPart(RobotPart part){return new Stop(part::use);}
 
 
     public Main setSlowMode(boolean val){return new Main(() -> bot.slowMode = val);}

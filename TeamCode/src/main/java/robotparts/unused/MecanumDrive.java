@@ -10,16 +10,17 @@ import com.qualcomm.robotcore.hardware.DcMotor.RunMode;
 import java.util.Objects;
 
 import robotparts.RobotPart;
+import robotparts.electronics.CMotor;
 
 public class MecanumDrive extends RobotPart {
-    private DcMotor fr,br,fl,bl;
+    private CMotor fr,br,fl,bl;
 
     @Override
     public void init(){
-        fr = createMotor("fr", Direction.REVERSE);
-        br = createMotor("br", Direction.FORWARD);
-        fl = createMotor("fl", Direction.FORWARD);
-        bl = createMotor("bl", Direction.REVERSE);
+        fr = createCMotor("fr", Direction.REVERSE);
+        br = createCMotor("br", Direction.FORWARD);
+        fl = createCMotor("fl", Direction.FORWARD);
+        bl = createCMotor("bl", Direction.REVERSE);
     }
 
     public void move(double f, double s, double t){

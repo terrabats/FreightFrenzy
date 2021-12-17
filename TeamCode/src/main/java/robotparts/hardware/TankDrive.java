@@ -4,26 +4,28 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.checkerframework.checker.units.qual.C;
+
 import elements.FieldSide;
 import robotparts.RobotPart;
+import robotparts.electronics.CMotor;
 import robotparts.electronics.PServo;
 
 import static global.General.*;
 
 public class TankDrive extends RobotPart {
-    private DcMotor fr,br,fl,bl;
+    private CMotor fr,br,fl,bl;
     private PServo re;
 
     @Override
     public void init(){
-        fr = createMotor("fr", DcMotorSimple.Direction.REVERSE);
-        br = createMotor("br", DcMotorSimple.Direction.REVERSE);
-        fl = createMotor("fl", DcMotorSimple.Direction.FORWARD);
-        bl = createMotor("bl", DcMotorSimple.Direction.FORWARD);
+        fr = createCMotor("fr", DcMotorSimple.Direction.REVERSE);
+        br = createCMotor("br", DcMotorSimple.Direction.REVERSE);
+        fl = createCMotor("fl", DcMotorSimple.Direction.FORWARD);
+        bl = createCMotor("bl", DcMotorSimple.Direction.FORWARD);
         re = createPServo("re", Servo.Direction.FORWARD, 0, 1);
     }
 
-    @Override
     public void move(double f, double t){
         fr.setPower(f-t);
         br.setPower(f-t);
@@ -31,8 +33,12 @@ public class TankDrive extends RobotPart {
         bl.setPower(f+t);
     }
 
-    @Override
-    public void moveTele(double f, double t) {super.moveTele(f, Math.abs(t) < 0.2 ? 0 : t);}
+    public void moveRF(double f, double t){
+        fr.setPowerRF(f-t);
+        br.setPowerRF(f-t);
+        fl.setPowerRF(f+t);
+        bl.setPowerRF(f+t);
+    }
 
     private double stAng = 0;
     private double endAng = 0;

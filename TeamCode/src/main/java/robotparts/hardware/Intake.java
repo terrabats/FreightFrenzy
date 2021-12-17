@@ -4,29 +4,27 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import robotparts.RobotPart;
+import robotparts.electronics.CMotor;
 import robotparts.electronics.Encoder;
 
 public class Intake extends RobotPart {
-    private DcMotor in;
-    private Encoder inEnc;
+    private CMotor in;
+//    private Encoder inEnc;
 
     @Override
     public void init(){
-        in = createMotor("in", DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        inEnc = createEncoder("in", "inEnc", Encoder.Type.MOTOR);
+        in = createCMotor("in", DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        inEnc = createEncoder("in", "inEnc", Encoder.Type.MOTOR);
     }
 
-    @Override
     public void move(double power){
         in.setPower(power);
     }
 
-    @Override
-    public void moveTele(double power) {
-        super.moveTele(power);
-    }
 
-    public double getIntakePos(){
-        return inEnc.getPos();
-    }
+    public void moveRF(double power) { in.setPowerRF(power); }
+
+//    public double getIntakePos(){
+//        return inEnc.getPos();
+//    }
 }

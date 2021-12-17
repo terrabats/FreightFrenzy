@@ -2,12 +2,17 @@ package robotparts.electronics;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class CServo extends Electronic{
     private final CRServo crservo;
+    private final DcMotorSimple.Direction direction;
 
-    public CServo(CRServo crs){
+    public CServo(CRServo crs, DcMotorSimple.Direction dir){
         crservo = crs;
+        direction = dir;
+        crservo.setDirection(direction);
+        crservo.setPower(0);
     }
 
 
@@ -17,5 +22,9 @@ public class CServo extends Electronic{
 
     public void setPowerRF(double power){
         crservo.setPower(power);
+    }
+
+    public DcMotorSimple.Direction getDirection(){
+        return direction;
     }
 }

@@ -5,24 +5,25 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import robotparts.RobotPart;
+import robotparts.electronics.CServo;
 
 public class Carousel extends RobotPart {
-    public CRServo cl;
-    public CRServo cr;
+    public CServo cl;
+    public CServo cr;
 
     @Override
     public void init() {
-        cl = createCRServo("cl", CRServo.Direction.REVERSE);
-        cr = createCRServo("cr", CRServo.Direction.FORWARD);
+        cl = createCServo("cl", CRServo.Direction.REVERSE);
+        cr = createCServo("cr", CRServo.Direction.FORWARD);
     }
-    @Override
+
     public void move(double p){
         cl.setPower(p);
         cr.setPower(p);
     }
 
-    @Override
-    public void moveTele(double p) {
-        super.moveTele(p);
+    public void moveRF(double p) {
+        cl.setPowerRF(p);
+        cr.setPowerRF(p);
     }
 }

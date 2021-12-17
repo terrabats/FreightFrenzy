@@ -72,11 +72,11 @@ public class TerraOpRed extends Tele{
         }
 
         if(gamepad1.right_bumper){
-            bot.intake.moveTele(1);
+            bot.intake.move(1);
         }else if(gamepad1.left_bumper){
-            bot.intake.moveTele(-1);
+            bot.intake.move(-1);
         }else{
-            bot.intake.moveTele(0);
+            bot.intake.move(0);
         }
 
 //        if(gamepad2.right_bumper){
@@ -87,15 +87,15 @@ public class TerraOpRed extends Tele{
 
         // Gamepad1
         if(!bot.slowMode) {
-            bot.tankDrive.moveTele(-gamepad1.right_stick_y, gamepad1.left_stick_x);
+            bot.tankDrive.move(-gamepad1.right_stick_y, gamepad1.left_stick_x);
         }else {
-            bot.tankDrive.moveTele(-gamepad1.right_stick_y*0.4, gamepad1.left_stick_x*0.4);
+            bot.tankDrive.move(-gamepad1.right_stick_y*0.4, gamepad1.left_stick_x*0.4);
         }
-        bot.carousel.moveTele(gamepad1.right_trigger);
+        bot.carousel.move(gamepad1.right_trigger);
 
         // Gamepad2
-        bot.turret.moveTele(gamepad2.left_stick_x);
-        bot.lift.moveTele(-gamepad2.right_stick_y+Constants.LIFT_REST_POW);
+        bot.turret.move(gamepad2.left_stick_x);
+        bot.lift.move(-gamepad2.right_stick_y+Constants.LIFT_REST_POW);
 
         super.loop();
     }

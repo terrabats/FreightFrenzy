@@ -10,22 +10,31 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
+import org.checkerframework.checker.units.qual.C;
+
 import java.util.TreeMap;
 
 import robot.RobotFramework;
+import robotparts.electronics.CMotor;
+import robotparts.electronics.CServo;
+import robotparts.electronics.Electronic;
 import robotparts.electronics.Encoder;
 import robotparts.electronics.LED;
+import robotparts.electronics.PMotor;
 import robotparts.electronics.PServo;
 import util.condition.Status;
 
 import static global.General.*;
 import robotparts.electronics.Encoder.Type;
 
-public class RobotPart {
+public class RobotPart extends Electronic {
 
-    public TreeMap<String, DcMotor> motors = new TreeMap<>();
+    public TreeMap<String, CMotor> cmotors = new TreeMap<>();
+    public TreeMap<String, CServo> cservos = new TreeMap<>();
+
+    public TreeMap<String, PMotor> pmotors = new TreeMap<>();
     public TreeMap<String, PServo> pservos = new TreeMap<>();
-    public TreeMap<String, CRServo> crservos = new TreeMap<>();
+
     public TreeMap<String, BNO055IMU> gyrosensors = new TreeMap<>();
     public TreeMap<String, DistanceSensor> distancesensors = new TreeMap<>();
     public TreeMap<String, ColorSensor> colorsensors = new TreeMap<>();
@@ -33,31 +42,28 @@ public class RobotPart {
     public TreeMap<String, Encoder> encoders = new TreeMap<>();
     public TreeMap<String, LED> leds = new TreeMap<>();
 
-    private volatile Status currentStatus = Status.ACTIVE;
-
     public RobotPart(){
        RobotFramework.allRobotParts.add(this);
     }
 
     public void init() {}
 
-    protected DcMotor createMotor(String name, DcMotor.Direction dir){
-        DcMotor dcMotor = hardwareMap.get(DcMotor.class, name);
-        dcMotor.setPower(0);
-        dcMotor.setDirection(dir);
-        dcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        dcMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motors.put(name, dcMotor);
-        return dcMotor;
+    protected CMotor createCMotor(String name, DcMotor.Direction dir){
+        CMotor cmotor = new CMotor(hardwareMap.get(DcMotor.class, name), dir, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        cmotors.put(name, cmotor);
+        return cmotor;
     }
-    protected DcMotor createMotor(String name, DcMotor.Direction dir, DcMotor.ZeroPowerBehavior zpb, DcMotor.RunMode mode){
-        DcMotor dcMotor = hardwareMap.get(DcMotor.class, name);
-        dcMotor.setPower(0);
-        dcMotor.setDirection(dir);
-        dcMotor.setZeroPowerBehavior(zpb);
-        dcMotor.setMode(mode);
-        motors.put(name, dcMotor);
-        return dcMotor;
+
+    protected CMotor createCMotor(String name, DcMotor.Direction dir, DcMotor.ZeroPowerBehavior zpb, DcMotor.RunMode mode){
+        CMotor cmotor = new CMotor(hardwareMap.get(DcMotor.class, name), dir, zpb, mode);
+        cmotors.put(name, cmotor);
+        return cmotor;
+    }
+
+    protected CServo createCServo(String name, CRServo.Direction dir){
+        CServo cservo = new CServo(hardwareMap.get(CRServo.class, name), dir);
+        cservos.put(name, cservo);
+        return cservo;
     }
 
     protected PServo createPServo(String name, Servo.Direction dir, double startpos, double endpos){
@@ -65,13 +71,13 @@ public class RobotPart {
         pservos.put(name, pservo);
         return pservo;
     }
+    // TODO FIX
+    // Make this
 
-    protected CRServo createCRServo(String name, CRServo.Direction dir){
-        CRServo crServo = hardwareMap.get(CRServo.class, name);
-        crServo.setPower(0);
-        crServo.setDirection(dir);
-        crservos.put(name, crServo);
-        return crServo;
+    protected PMotor createPMotor(String name, DcMotor.Direction dir){
+        PMotor pmotor = new PMotor(hardwareMap.get(DcMotor.class, name), dir, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        pmotors.put(name, pmotor);
+        return pmotor;
     }
 
     protected BNO055IMU createGyro(String name){
@@ -115,45 +121,14 @@ public class RobotPart {
         return led;
     }
 
-    public void setStatus(Status status){
-        currentStatus = status;
-    }
-
-    public Status getStatus(){
-        return currentStatus;
-    }
-
     public void halt(){
-        for(DcMotor mot: motors.values()){
-            mot.setPower(0);
+        for(CMotor mot: cmotors.values()){
+            mot.setPowerRF(0);
         }
-        for(CRServo crs: crservos.values()){
-            crs.setPower(0);
+        for(CServo crs: cservos.values()){
+            crs.setPowerRF(0);
         }
     }
-
-    public boolean isActive(){
-        return getStatus().equals(Status.ACTIVE);
-    }
-    public boolean isInactive(){
-        return getStatus().equals(Status.INACTIVE);
-    }
-    public synchronized void activate(){
-        setStatus(Status.ACTIVE);
-    }
-    public synchronized void deactivate(){
-        setStatus(Status.INACTIVE);
-    }
-
-    protected void move(double val1){}
-    protected void move(double val1, double val2){}
-    protected void move(double val1, double val2, double val3){}
-    protected void move(String val1){}
-
-    protected void moveTele(double val1){ if(isInactive()){return;} move(val1); }
-    protected void moveTele(double val1, double val2){ if(isInactive()){return;} move(val1, val2); }
-    protected void moveTele(double val1, double val2, double val3){ if(isInactive()){return;} move(val1, val2, val3); }
-    protected void moveTele(String val1){ if(isInactive()){return;} move(val1); }
 
     // TODO FIX
     // Fix this system of knowing when they are active?
