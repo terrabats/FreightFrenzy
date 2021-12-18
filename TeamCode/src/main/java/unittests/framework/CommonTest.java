@@ -21,5 +21,6 @@ public class CommonTest extends UnitTest{
     @Override
     public void loop() {
         log.display("Common is Working");
+        log.display("Current User", user.toString());
     }
 }
