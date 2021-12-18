@@ -145,11 +145,13 @@ public class RobotPart extends Electronic {
 
     public void switchUser(User newUser){
         currentUser = newUser;
-        forAllElectronics(e -> e.access.allow());
+        checkAccess(currentUser);
     }
 
-    public void checkAccess(User newUser){
-        if(!newUser.equals(currentUser)) {
+    public void checkAccess(User potentialUser){
+        if(potentialUser.equals(currentUser)) {
+            forAllElectronics(e -> e.access.allow());
+        }else{
             forAllElectronics(e -> e.access.deny());
         }
     }

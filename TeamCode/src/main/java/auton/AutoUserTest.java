@@ -4,8 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import util.Timer;
 
-import static global.General.log;
-import static global.General.user;
+import static global.General.mainUser;
 
 @Autonomous(name="AutoUserTest")
 public class AutoUserTest extends Auto{
@@ -14,7 +13,7 @@ public class AutoUserTest extends Auto{
     public void runOpMode() throws InterruptedException {
         reference(this);
         waitForStart();
-        telemetry.addData("Current User", user.toString());
+        telemetry.addData("Current User", mainUser.toString());
         telemetry.update();
         Timer timer = new Timer();
         timer.reset();

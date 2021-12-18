@@ -59,7 +59,7 @@ public class Modules {
 
     //Possession
     public Initial usePart(RobotPart part){return new Initial(() -> part.switchUser(User.ROFU));}
-    public Stop returnPart(RobotPart part){return new Stop(() -> part.switchUser(user));}
+    public Stop returnPart(RobotPart part){return new Stop(() -> part.switchUser(mainUser));}
 
 
     public Main setSlowMode(boolean val){return new Main(() -> bot.slowMode = val);}

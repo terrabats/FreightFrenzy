@@ -1,5 +1,4 @@
 package global;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -8,7 +7,6 @@ import automodules.Modules;
 import automodules.Stages;
 import debugging.Synchroniser;
 import elements.FieldSide;
-import geometry.Line;
 import robot.TerraBot;
 import teleutil.GamepadHandler;
 import debugging.Fault;
@@ -25,7 +23,7 @@ public interface Common{
         telemetry = thisOpMode.telemetry;
         gamepad1 = thisOpMode.gamepad1;
         gamepad2 = thisOpMode.gamepad2;
-        user = User.getUserFromTypeOfOpMode(thisOpMode);
+        mainUser = User.getUserFromTypeOfOpMode(thisOpMode);
         gph1 = new GamepadHandler(gamepad1);
         gph2 = new GamepadHandler(gamepad2);
         fault = new Fault();

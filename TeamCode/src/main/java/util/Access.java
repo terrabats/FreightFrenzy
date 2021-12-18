@@ -1,7 +1,7 @@
 package util;
 
 public class Access {
-    private static final ThreadLocal<Boolean> hasAccess = new ThreadLocal<>();
+    private final ThreadLocal<Boolean> hasAccess = new ThreadLocal<>();
     public Access(){
         deny();
     }

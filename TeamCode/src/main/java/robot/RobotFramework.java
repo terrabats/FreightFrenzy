@@ -30,6 +30,7 @@ public class RobotFramework {
 
     public void init(){
         forAllParts(RobotPart::init);
+        setUser(mainUser);
         robotFunctionsThread.start();
         odometryThread.start();
         gameTime.reset();
@@ -40,7 +41,7 @@ public class RobotFramework {
     }
 
     public void update(){
-        forAllParts(part -> part.checkAccess(user));
+        forAllParts(part -> part.checkAccess(mainUser));
     }
 
     public void stop(){
@@ -55,6 +56,7 @@ public class RobotFramework {
     }
 
     public void setUser(User newUser){ forAllParts(part -> part.switchUser(newUser)); }
+
     // TODO FIX
     // MAKe this work
     public void cancelAutoModule(){

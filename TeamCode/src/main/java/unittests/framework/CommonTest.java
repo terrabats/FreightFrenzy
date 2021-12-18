@@ -1,9 +1,5 @@
 package unittests.framework;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-import global.Common;
 import robot.TerraBot;
 import unittests.UnitTest;
 import util.condition.Expectation;
@@ -21,6 +17,6 @@ public class CommonTest extends UnitTest{
     @Override
     public void loop() {
         log.display("Common is Working");
-        log.display("Current User", user.toString());
+        log.display("Current User", mainUser.toString());
     }
 }

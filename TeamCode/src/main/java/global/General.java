@@ -36,5 +36,5 @@ public class General {
     public static Modules modules;
     public static Stages stages;
     public static AutoModules autoModules;
-    public static User user;
+    public static User mainUser;
 }

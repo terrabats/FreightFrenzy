@@ -37,33 +37,33 @@ public class UnitTester extends Tele {
 
     private void createUnitTests(){
         // Framework
-        add(new CommonTest());
-        add(new AccessTest());
-        add(new CoordinatePlaneTest());
-        add(new FaultTest());
-        add(new GamepadTest());
-        add(new LoggerTest());
-        add(new RobotFunctionsTest());
-        add(new ThreadTest());
-        add(new StorageTest());
+//        add(new CommonTest());
+//        add(new AccessTest());
+//        add(new CoordinatePlaneTest());
+//        add(new FaultTest());
+//        add(new GamepadTest());
+//        add(new LoggerTest());
+//        add(new RobotFunctionsTest());
+//        add(new ThreadTest());
+//        add(new StorageTest());
         add(new ModulesTest());
-        add(new AutoModuleTest());
+//        add(new AutoModuleTest());
 
         // Hardware
         add(new TankDriveTest());
-        add(new IntakeTest());
-        add(new TurretTest());
-        add(new LiftTest());
-        add(new OuttakeTest());
-        add(new CarouselTest());
+//        add(new IntakeTest());
+//        add(new TurretTest());
+//        add(new LiftTest());
+//        add(new OuttakeTest());
+//        add(new CarouselTest());
 
         // Sensor
-        add(new ColorTest());
-        add(new DistanceTest());
-        add(new GyroTest());
-        add(new OdometryTest());
-        add(new TouchTest());
-        add(new OdometryTest());
+//        add(new ColorTest());
+//        add(new DistanceTest());
+//        add(new GyroTest());
+//        add(new OdometryTest());
+//        add(new TouchTest());
+//        add(new OdometryTest());
     }
 
     @Override
