@@ -20,7 +20,7 @@ public class Selector<T> {
     private BooleanCodeSeg down;
     private int currentIndex;
     private final boolean wrapAround;
-    public double delay = 0.5;
+    public double delay = 0.2;
     public final Timer updateTimer = new Timer();
     private CodeSeg next = () -> {};
     private CodeSeg end = () -> {};
@@ -122,6 +122,8 @@ public class Selector<T> {
 
     public boolean isActive(){ return status.equals(Status.ACTIVE); }
     public boolean isInActive(){ return !status.equals(Status.ACTIVE); }
+    public void idle(){setStatus(Status.IDLE);}
+    public void active(){setStatus(Status.ACTIVE);}
     public void setStatus(Status status){
         this.status = status;
     }

@@ -29,7 +29,7 @@ import static global.General.*;
 @TeleOp(name = "UnitTester", group = "UnitTests")
 public class UnitTester extends Tele {
 
-    private final TestType testingMode = TestType.CONTROL;
+    private final TestType testingMode = TestType.SELECTION;
     private final Selector<UnitTest> selector = new Selector<>(true);
 
     // TODO TEST
@@ -39,8 +39,8 @@ public class UnitTester extends Tele {
         // Framework
         add(new CommonTest());
         add(new AccessTest());
-//        add(new CoordinatePlaneTest());
-//        add(new FaultTest());
+        add(new CoordinatePlaneTest());
+        add(new FaultTest());
 //        add(new GamepadTest());
 //        add(new LoggerTest());
 //        add(new RobotFunctionsTest());
@@ -78,16 +78,16 @@ public class UnitTester extends Tele {
                 selector.init(() -> gamepad1.x, () -> false);
                 break;
             case SELECTION:
-                selector.init(gph1, Button.DPAD_UP, Button.DPAD_DOWN);
+                selector.init(gph1, Button.DPAD_DOWN, Button.DPAD_UP);
                 break;
         }
 
         selector.runOnNext(() -> {
-            selector.setStatus(Status.IDLE);
             getCurrentTest().stop();
-            log.clearTelemetry();
+            selector.idle();
             gph1.unlinkAll();
             gph2.unlinkAll();
+            log.clearTelemetry();
         });
 
         if(!testingMode.equals(TestType.SELECTION)){
@@ -140,14 +140,17 @@ public class UnitTester extends Tele {
 
     public void showSelection(){
         if(testingMode.equals(TestType.SELECTION)){
-            if(gamepad1.x){
-                selector.setStatus(Status.ACTIVE);
-            }
             if(selector.isInActive()){
+                if(gamepad1.x){
+                    selector.active();
+                }
                 log.list(selector.getItemClassNames(), selector.getCurrentIndex());
+            }else{
+                log.display("Testing " + getCurrentTestName());
             }
+        }else {
+            log.display("Testing " + getCurrentTestName());
         }
-        log.display("Testing " + getCurrentTestName());
     }
 
     private enum TestType{
