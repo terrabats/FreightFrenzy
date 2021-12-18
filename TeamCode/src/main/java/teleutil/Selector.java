@@ -32,7 +32,7 @@ public class Selector<T> {
 
     public void addItem(Item<T> item){
         items.add(item);
-        itemClassNames.add(item.getClass().getSimpleName());
+        itemClassNames.add(item.getValue().getClass().getSimpleName());
     }
 
     private void init(){

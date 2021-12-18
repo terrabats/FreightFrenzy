@@ -36,10 +36,14 @@ public class Logger {
 
     public void list(ArrayList<String> values, int currentIndex){
         for(int i = 0; i < values.size(); i++){
+            String num = Integer.toString(i);
+            if(i < 10){
+                num = "0" + num;
+            }
             if(i != currentIndex) {
-                telemetry.addData("Item" + i, values.get(i));
+                telemetry.addData("Item" + num, "    " + values.get(i));
             }else{
-                telemetry.addData("Item" + i, "--> " + values.get(i));
+                telemetry.addData("Item" + num, "--> " + values.get(i));
             }
         }
     }
