@@ -11,6 +11,9 @@ import robotparts.RobotPart;
 public class Gyro extends RobotPart {
     private BNO055IMU gsr, gsl;
 
+    // TODO FIX
+    // This class takes forever to init, maybe calibration problem?
+
     @Override
     public void init() {
         gsr = createGyro("gsr");

@@ -24,12 +24,25 @@ public class TerraBot extends RobotFramework {
     public Carousel carousel = new Carousel();
     public Color color = new Color();
     public Touch touch = new Touch();
+//    public Gyro gyro = new Gyro();
+//    public Odometry odometry = new Odometry();
+//    public Distance distance = new Distance();
+//    public Led led = new Led();
+//    public MecanumDrive mecDrive = new MecanumDrive();
 
 
-    // Unused
+    // Empty Parts
+//    public TankDrive tankDrive;
+//    public Intake intake;
+//    public Turret turret;
+//    public Lift lift;
+//    public Outtake outtake;
+//    public Carousel carousel;
+//    public Color color;
+//    public Touch touch;
+    public Gyro gyro;
     public Odometry odometry;
-    public Gyro gyro = new Gyro();
     public Distance distance;
     public Led led;
-    public MecanumDrive mecDrive;
+    public MecanumDrive mecanumDrive;
 }

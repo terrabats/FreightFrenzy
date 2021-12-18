@@ -10,6 +10,9 @@ import util.codeseg.TypeParameterCodeSeg;
 import util.condition.Status;
 import util.store.Item;
 
+import static global.General.log;
+import static global.General.telemetry;
+
 public class Selector<T> {
     private ArrayList<Item<T>> items = new ArrayList<>();
     private final ArrayList<String> itemClassNames = new ArrayList<>();
@@ -17,9 +20,10 @@ public class Selector<T> {
     private BooleanCodeSeg down;
     private int currentIndex;
     private final boolean wrapAround;
-    private double delay = 0.5; //s
-    private final Timer updateTimer = new Timer();
+    public double delay = 0.5;
+    public final Timer updateTimer = new Timer();
     private CodeSeg next = () -> {};
+    private CodeSeg end = () -> {};
     private Status status = Status.IDLE;
 
     public Selector(boolean shouldWrapAround){
@@ -50,8 +54,13 @@ public class Selector<T> {
         init(() -> true, () -> false);
     }
 
+    public boolean isOnFirst(){ return currentIndex == 0; }
+
+    public boolean isOnLast(){ return currentIndex == items.size()-1; }
+
     public void up(){
-        if(currentIndex == items.size()-1) {
+        if(isOnLast()) {
+            end.run();
             if(wrapAround){
                 currentIndex = 0;
             }
@@ -61,7 +70,7 @@ public class Selector<T> {
     }
 
     public void down(){
-        if(currentIndex == 0){
+        if(isOnFirst()){
             if(wrapAround){
                 currentIndex = items.size()-1;
             }
@@ -70,22 +79,20 @@ public class Selector<T> {
         }
     }
 
-    private void update(){
+    public void update(){
         if(updateTimer.seconds() > delay) {
             if (up.run()) {
+                updateTimer.reset();
                 next.run();
                 up();
             } else if (down.run()) {
+                updateTimer.reset();
                 next.run();
                 down();
             }
-            updateTimer.reset();
         }
     }
 
-    public void update(boolean showTelemetry){
-        update();
-    }
 
     public int getCurrentIndex(){
         return currentIndex;
@@ -105,10 +112,14 @@ public class Selector<T> {
     public void runOnNext(CodeSeg seg){
          next = seg;
     }
+    public void runOnEnd(CodeSeg seg){
+        end = seg;
+    }
 
     public Status getStatus(){
         return status;
     }
+
     public boolean isActive(){ return status.equals(Status.ACTIVE); }
     public boolean isInActive(){ return !status.equals(Status.ACTIVE); }
     public void setStatus(Status status){

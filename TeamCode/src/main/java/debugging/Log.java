@@ -7,6 +7,9 @@ public class Log {
     public LogType logType = LogType.NORMAL;
     public boolean noTelemetry = false;
 
+    // TODO FIX
+    // Logger needs a lot of fixing and testing
+
     private final ArrayList<Object> values = new ArrayList<>();
 
     public Log(String name){

@@ -29,7 +29,7 @@ import static global.General.*;
 @TeleOp(name = "UnitTester", group = "UnitTests")
 public class UnitTester extends Tele {
 
-    private final TestType testingMode = TestType.SELECTION;
+    private final TestType testingMode = TestType.CONTROL;
     private final Selector<UnitTest> selector = new Selector<>(true);
 
     // TODO TEST
@@ -38,31 +38,32 @@ public class UnitTester extends Tele {
     private void createUnitTests(){
         // Framework
         add(new CommonTest());
-        add(new CoordinatePlaneTest());
-        add(new FaultTest());
-        add(new GamepadTest());
-        add(new LoggerTest());
-        add(new RobotFunctionsTest());
-        add(new ThreadTest());
-        add(new StorageTest());
-        add(new ModulesTest());
-        add(new AutoModuleTest());
+        add(new AccessTest());
+//        add(new CoordinatePlaneTest());
+//        add(new FaultTest());
+//        add(new GamepadTest());
+//        add(new LoggerTest());
+//        add(new RobotFunctionsTest());
+//        add(new ThreadTest());
+//        add(new StorageTest());
+//        add(new ModulesTest());
+//        add(new AutoModuleTest());
 
         // Hardware
-        add(new TankDriveTest());
-        add(new IntakeTest());
-        add(new TurretTest());
-        add(new LiftTest());
-        add(new OuttakeTest());
-        add(new CarouselTest());
+//        add(new TankDriveTest());
+//        add(new IntakeTest());
+//        add(new TurretTest());
+//        add(new LiftTest());
+//        add(new OuttakeTest());
+//        add(new CarouselTest());
 
         // Sensor
-        add(new ColorTest());
-        add(new DistanceTest());
-        add(new GyroTest());
-        add(new OdometryTest());
-        add(new TouchTest());
-        add(new OdometryTest());
+//        add(new ColorTest());
+//        add(new DistanceTest());
+//        add(new GyroTest());
+//        add(new OdometryTest());
+//        add(new TouchTest());
+//        add(new OdometryTest());
     }
 
     @Override
@@ -89,6 +90,10 @@ public class UnitTester extends Tele {
             gph2.unlinkAll();
         });
 
+        if(!testingMode.equals(TestType.SELECTION)){
+            selector.runOnEnd(this::requestOpModeStop);
+        }
+
         createUnitTests();
         selector.runToAll(UnitTest::init);
 
@@ -104,16 +109,8 @@ public class UnitTester extends Tele {
 
     @Override
     public void loop() {
-        selector.update(true);
-        if(testingMode.equals(TestType.SELECTION)){
-            if(gamepad1.x){
-                selector.setStatus(Status.ACTIVE);
-            }
-            if(selector.isInActive()){
-                log.list(selector.getItemClassNames(), selector.getCurrentIndex());
-            }
-        }
-        log.display("Testing " + getCurrentTestName());
+        selector.update();
+        showSelection();
         runCurrentTest();
         super.update(true);
     }
@@ -122,6 +119,7 @@ public class UnitTester extends Tele {
     public void add(UnitTest test){
         selector.addItem(new Item<>(test.getClass().getSimpleName(), test));
     }
+
     private String getCurrentTestName(){
         return getCurrentTest().getClass().getSimpleName();
     }
@@ -138,6 +136,18 @@ public class UnitTester extends Tele {
                 selector.runToCurrentItem(UnitTest::test);
             }
         }
+    }
+
+    public void showSelection(){
+        if(testingMode.equals(TestType.SELECTION)){
+            if(gamepad1.x){
+                selector.setStatus(Status.ACTIVE);
+            }
+            if(selector.isInActive()){
+                log.list(selector.getItemClassNames(), selector.getCurrentIndex());
+            }
+        }
+        log.display("Testing " + getCurrentTestName());
     }
 
     private enum TestType{
