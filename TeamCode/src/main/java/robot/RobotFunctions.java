@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import automodules.StageList;
+import util.User;
 import util.codeseg.CodeSeg;
 import util.condition.Status;
 import util.Timer;
@@ -20,6 +21,7 @@ public class RobotFunctions {
 
     //Update code for running the queue
     public CodeSeg updateCode = () -> {
+        bot.checkAccess(User.ROFU);
         if(!rfsQueue.isEmpty()){
             Stage s = rfsQueue.peek();
             assert s != null;

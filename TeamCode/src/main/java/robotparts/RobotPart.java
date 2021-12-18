@@ -145,7 +145,6 @@ public class RobotPart extends Electronic {
 
     public void switchUser(User newUser){
         currentUser = newUser;
-        checkAccess(currentUser);
     }
 
     public void checkAccess(User potentialUser){

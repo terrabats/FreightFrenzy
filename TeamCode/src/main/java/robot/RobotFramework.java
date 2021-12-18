@@ -40,10 +40,6 @@ public class RobotFramework {
         rfsHandler.resume();
     }
 
-    public void update(){
-        forAllParts(part -> part.checkAccess(mainUser));
-    }
-
     public void stop(){
         robotFunctionsThread.stopUpdating();
         odometryThread.stopUpdating();
@@ -56,6 +52,8 @@ public class RobotFramework {
     }
 
     public void setUser(User newUser){ forAllParts(part -> part.switchUser(newUser)); }
+
+    public void checkAccess(User potentialUser){ forAllParts(part -> part.checkAccess(potentialUser)); }
 
     // TODO FIX
     // MAKe this work

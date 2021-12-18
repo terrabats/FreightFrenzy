@@ -49,7 +49,7 @@ public interface Common{
         log.clearTelemetry();
     }
     default void update(boolean showTelemetry){
-        bot.update();
+        bot.checkAccess(mainUser);
         gph1.run();
         gph2.run();
         sync.update();
