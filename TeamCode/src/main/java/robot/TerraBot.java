@@ -12,24 +12,24 @@ import robotparts.hardware.Outtake;
 import robotparts.hardware.TankDrive;
 import robotparts.hardware.Turret;
 import robotparts.sensors.Touch;
+import robotparts.unused.MecanumDrive;
 
 public class TerraBot extends RobotFramework {
+
     public TankDrive tankDrive = new TankDrive();
     public Intake intake = new Intake();
     public Turret turret = new Turret();
     public Lift lift = new Lift();
     public Outtake outtake = new Outtake();
     public Carousel carousel = new Carousel();
-
-
-    public Odometry odometry; //= new Odometry();
-    public Gyro gyro = new Gyro();
-    public Distance distance; // = new Distance();
     public Color color = new Color();
     public Touch touch = new Touch();
-    public Led led; // = new Led();
 
-    // TODO NEW
-    // Make it so that it adds all of the robot parts as objects but only the active ones will be construced with the given name
-    // Or something where a empty robot part is made
+
+    // Unused
+    public Odometry odometry;
+    public Gyro gyro = new Gyro();
+    public Distance distance;
+    public Led led;
+    public MecanumDrive mecDrive;
 }

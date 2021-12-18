@@ -21,7 +21,7 @@ public class OdometryTest extends UnitTest {
 
     @Override
     public void run() {
-        //bot.updateCoordinates();
+//        bot.updateCoordinates();
 
         // TOD: Display points and pos of robot
     }

@@ -22,13 +22,12 @@ import util.codeseg.BooleanCodeSeg;
 import static global.General.*;
 
 public class Storage {
-    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Item<?>> items = new ArrayList<>();
 
-    public void addItem(String name, Object value) {
-        items.add(new Item(name, value));
+    public <T> void addItem(String name, T value) { items.add(new Item<>(name, value));
     }
     public void saveItems(){
-        for(Item i: items) {
+        for(Item<?> i: items) {
             saveText("current", i.getName(), i.getValue().toString());
         }
     }
@@ -72,17 +71,17 @@ public class Storage {
     }
 
     public void saveBitmap(String dirname, Bitmap in, String name){
-        File f = new File(makeOutputFolder(dirname), name + ".png");
-        ExceptionCatcher.catchIO(f::createNewFile);
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        in.compress(Bitmap.CompressFormat.PNG, 0, bos);
-        byte[] bitmapdata = bos.toByteArray();
-        ExceptionCatcher.catchIO(() -> {
-            FileOutputStream fos = new FileOutputStream(f);
-            fos.write(bitmapdata);
-            fos.flush();
-            fos.close();
-        });
+//        File f = new File(makeOutputFolder(dirname), name + ".png");
+//        ExceptionCatcher.catchIO(f::createNewFile);
+//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//        in.compress(Bitmap.CompressFormat.PNG, 0, bos);
+//        byte[] bitmapdata = bos.toByteArray();
+//        ExceptionCatcher.catchIO(() -> {
+//            FileOutputStream fos = new FileOutputStream(f);
+//            fos.write(bitmapdata);
+//            fos.flush();
+//            fos.close();
+//        });
     }
 
     private File makeOutputFolder(String dirname){
