@@ -8,7 +8,7 @@ import static global.General.*;
 
 public class OuttakeTest extends UnitTest {
     @Override
-    protected void run() {
+    protected void start() {
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.move("open"));
         gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.move("start"));
         showConfig(bot.outtake);

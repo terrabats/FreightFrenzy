@@ -28,7 +28,7 @@ public class AccessTest extends UnitTest {
     }
 
     @Override
-    protected void run() {
+    protected void start() {
         thread.start();
     }
 

@@ -5,7 +5,7 @@ import static global.General.*;
 
 public class TurretTest extends UnitTest {
     @Override
-    protected void run() {
+    protected void start() {
         showConfig(bot.turret);
     }
 

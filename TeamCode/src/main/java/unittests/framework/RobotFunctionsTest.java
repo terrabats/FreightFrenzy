@@ -10,7 +10,7 @@ import static global.General.*;
 
 public class RobotFunctionsTest extends UnitTest {
     @Override
-    public void run() {
+    public void start() {
         bot.rfsHandler.addToQueue(new Stage(
                 new Main(() -> bot.tankDrive.move(0.3, 0)),
                 new Exit(() -> bot.rfsHandler.timer.seconds() > 1),

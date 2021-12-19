@@ -10,7 +10,7 @@ import static global.General.gph1;
 
 public class LedTest extends UnitTest {
     @Override
-    protected void run() {
+    protected void start() {
         gph1.link(Button.X, OnPressEventHandler.class, args -> bot.led.setColorOfLEDs(LED.LEDColor.OFF));
         gph1.link(Button.Y, OnPressEventHandler.class, args -> bot.led.setColorOfLEDs(LED.LEDColor.GREEN));
         gph1.link(Button.A, OnPressEventHandler.class, args -> bot.led.setColorOfLEDs(LED.LEDColor.RED));

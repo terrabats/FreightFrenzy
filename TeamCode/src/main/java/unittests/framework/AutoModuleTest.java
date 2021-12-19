@@ -17,7 +17,7 @@ public class AutoModuleTest extends UnitTest {
     }
 
     @Override
-    protected void run() {
+    protected void start() {
         bot.addAutoModule(test);
     }
 }

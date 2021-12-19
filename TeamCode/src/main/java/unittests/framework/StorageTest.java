@@ -10,7 +10,7 @@ import static global.General.storage;
 
 public class StorageTest extends UnitTest {
     @Override
-    protected void run() {
+    protected void start() {
         fieldSide = FieldSide.RED;
         storage.addItem("St", "Test");
         storage.addItem("In", 1);

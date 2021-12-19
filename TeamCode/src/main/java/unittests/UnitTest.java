@@ -1,8 +1,5 @@
 package unittests;
 
-import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotor;
-
 import java.util.Map.*;
 
 import robotparts.RobotPart;
@@ -18,16 +15,15 @@ public class UnitTest {
     public void init() {}
     public void test(){
         if(status.equals(Status.IDLE)){
-            run();
+            start();
             status = Status.ACTIVE;
         }else{
             loop();
         }
     }
-    protected void run() {}
+    protected void start() {}
     protected void loop() {}
     public void stop() {bot.halt();}
-    public void start() {}
 
 
     protected void showConfig(RobotPart part){

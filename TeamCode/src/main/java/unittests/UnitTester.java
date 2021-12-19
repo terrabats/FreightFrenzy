@@ -102,12 +102,6 @@ public class UnitTester extends Tele {
     }
 
     @Override
-    public void start() {
-        selector.runToAll(UnitTest::start);
-        super.start();
-    }
-
-    @Override
     public void loop() {
         selector.update();
         showSelection();

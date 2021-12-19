@@ -5,7 +5,7 @@ import static global.General.*;
 
 public class CarouselTest extends UnitTest {
     @Override
-    protected void run() {
+    protected void start() {
         showConfig(bot.carousel);
     }
 

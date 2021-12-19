@@ -9,7 +9,7 @@ import static global.General.*;
 
 public class ModulesTest extends UnitTest {
     @Override
-    protected void run() {
+    protected void start() {
         bot.rfsHandler.addToQueue(new Stage(
                 modules.exitTime(1)
         ));

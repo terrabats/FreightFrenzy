@@ -9,7 +9,7 @@ import static global.General.*;
 
 public class TankDriveTest extends UnitTest {
     @Override
-    protected void run() {
+    protected void start() {
         showConfig(bot.tankDrive);
     }
 

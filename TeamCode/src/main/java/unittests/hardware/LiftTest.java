@@ -7,7 +7,7 @@ import static global.General.*;
 
 public class LiftTest extends UnitTest {
     @Override
-    protected void run() {
+    protected void start() {
         showConfig(bot.lift);
     }
 
