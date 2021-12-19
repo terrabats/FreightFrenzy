@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 import static java.lang.Math.*;
 
-public class CirclularArc extends Circle {
+public class CircularArc extends Circle {
     public double arcSt, arcEnd; // radians
 
-    public CirclularArc(Point center, Point start, Point end, double r) {
+    public CircularArc(Point center, Point start, Point end, double r) {
         super(center, r);
         arcSt = getThetaFromPoint(start);
         arcEnd = getThetaFromPoint(end);
     }
 
-    public CirclularArc(Point center, double st, double en, double r) {
+    public CircularArc(Point center, double st, double en, double r) {
         super(center, r);
         arcSt = st;
         arcEnd = en;
@@ -26,7 +26,7 @@ public class CirclularArc extends Circle {
 
     public ArrayList<Pose> getPoints(double angDivide) {
         ArrayList<Pose> ret = new ArrayList<>();
-        double endOfArc = ((arcSt < arcEnd) ? 0 : (2 * PI)) + arcEnd;
+        double endOfArc = ((arcSt <= arcEnd) ? 0 : (2 * PI)) + arcEnd;
         for (double i = arcSt; i <= endOfArc; i += angDivide) {
             ret.add(getPositionFromTheta(i));
 //            System.out.println(i * 180/PI);
@@ -39,21 +39,32 @@ public class CirclularArc extends Circle {
         if (p.p.x > center.x) {
             if (p.p.y > center.y) {
                 return p.ang == 0 || (p.ang >= 3 * PI / 2 && p.ang <= 2 * PI);
-            } else {
+            } else if (p.p.y < center.y) {
                 return p.ang >= PI && p.ang <= 3 * PI / 2;
+            } else {
+                return p.ang == 3 * PI / 2;
+            }
+        } else if (p.p.x < center.x) {
+            if (p.p.y > center.y) {
+                return p.ang >= 0 && p.ang <= PI / 2;
+            } else if (p.p.y < center.y) {
+                return p.ang >= PI / 2 && p.ang <= PI;
+            } else {
+                return p.ang == PI/2;
             }
         } else {
             if (p.p.y > center.y) {
-                return p.ang >= 0 && p.ang <= PI / 2;
+                return p.ang == 0;
             } else {
-                return p.ang >= PI / 2 && p.ang <= PI;
+                return p.ang == PI;
             }
         }
     }
 
     public double getArcLength() {
         double dAng = arcEnd - arcSt;
-        dAng = dAng + ((dAng < 0) ? 2 * Math.PI : 0);
+        dAng = dAng + ((dAng < 0) ? 2 * PI : 0);
+        if (abs(dAng) < 0.1) { return 0; }
         return dAng * r;
     }
 }

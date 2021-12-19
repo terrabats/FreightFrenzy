@@ -3,6 +3,7 @@ package autoutil.paths;
 import geometry.Line;
 import geometry.Point;
 import geometry.Pose;
+import global.Constants;
 
 public class PathLine extends PathSegment{
 
@@ -14,17 +15,12 @@ public class PathLine extends PathSegment{
 
     @Override
     public void generatePoints() {
-        for (double a = 0; a <= 1; a += 0.05) {
+        for (double a = 0; a <= 1; a += Constants.LINE_ACC_PATH) {
             points.add(new Pose(getAt(a), Math.atan2(line.my, line.mx)));
         }
     }
 
     public Point getAt(double t) { return line.getAt(t); }
-
-    @Override
-    public void unshift(Pose origin) {
-        //
-    }
 
     @Override
     public void flip(boolean x, boolean y) {

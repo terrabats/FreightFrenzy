@@ -21,7 +21,7 @@ public class Pose extends GeometryObject {
 
     public void translate(double x, double y) { p.x += x; p.y += y; }
 
-    public void rotate(double a) { ang += a; boundAngleTo2Pi(ang);}
+    public void rotate(double a) { ang += a; ang = boundAngleTo2Pi(ang);}
 
     @Override
     public String toString() {
