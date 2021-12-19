@@ -7,6 +7,7 @@ public class Constants {
     public static final int INF = (int) 1e99;
 
     public static final double ANG_ACC_ARC = 0.1;
+    public static final double LINE_ACC_PATH = 0.05;
 
     public static final double LIFT_CM_TO_TICKS = ((537.6)/(Math.PI*3))/3; //in ticks/cm , (ticks/rev)/(cm/rev), accounting for gear ratio
     public static final double TURRET_ANGLE_DEG_TO_TICKS = (537.6/360.0)*4; //(8192.0/360.0)*4.0; //ticks/deg, (ticks/deg)*ratio
