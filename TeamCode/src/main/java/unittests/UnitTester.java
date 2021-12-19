@@ -32,9 +32,6 @@ public class UnitTester extends Tele {
     private final TestType testingMode = TestType.SELECTION;
     private final Selector<UnitTest> selector = new Selector<>(true);
 
-    // TODO TEST
-    // Test this
-
     private void createUnitTests(){
         // Framework
 //        add(new CommonTest());

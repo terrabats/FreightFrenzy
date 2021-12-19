@@ -7,7 +7,7 @@ import robotparts.Electronic;
 
 public class PMotor extends Electronic {
     // TODO FIX
-    // Fix this
+    // Fix this by adding an encoder argument to this that lets it run the correct methods
 
     private final DcMotor motor;
     private final DcMotorSimple.Direction direction;

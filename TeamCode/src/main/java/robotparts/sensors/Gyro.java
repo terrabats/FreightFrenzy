@@ -13,6 +13,7 @@ public class Gyro extends RobotPart {
 
     // TODO FIX
     // This class takes forever to init, maybe calibration problem?
+    // Run this and try to see what the problem is
 
     @Override
     public void init() {

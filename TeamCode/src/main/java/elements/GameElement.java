@@ -8,4 +8,5 @@ public enum GameElement {
 
     // TODO NEW
     // Add important information about objects here
+    // For example size, weight, etc..
 }
