@@ -1,15 +1,14 @@
 package robotparts.sensors;
 
-import com.qualcomm.hardware.bosch.BNO055IMU;
-
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 
 import robotparts.RobotPart;
+import robotparts.electronics.Gyro;
 
-public class Gyro extends RobotPart {
-    private BNO055IMU gsr, gsl;
+public class GyroSensor extends RobotPart {
+    private Gyro gsr, gsl;
 
     // TODO FIX
     // This class takes forever to init, maybe calibration problem?
@@ -18,21 +17,22 @@ public class Gyro extends RobotPart {
     @Override
     public void init() {
         gsr = createGyro("gsr");
-//        gsl = createGyro("gsl");
+        gsl = createGyro("gsl");
     }
 
     public void resetRight() {
         //
     }
 
-    public double getRightHeading(){
-        return gsr.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
-    }
+
 //    public double getLeftHeading(){
 //        return gsl.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
 //    }
-    public double getHeading() {
-        return getRightHeading();
+    public double getRightHeading() {
+        return gsr.getHeading();
+    }
+    public double getLeftHeading() {
+        return gsl.getHeading();
     }
 
 }

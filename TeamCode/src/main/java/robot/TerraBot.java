@@ -3,15 +3,15 @@ package robot;
 import robotparts.hardware.Carousel;
 import robotparts.hardware.Intake;
 import robotparts.hardware.Lift;
-import robotparts.sensors.Color;
-import robotparts.sensors.Distance;
-import robotparts.sensors.Gyro;
+import robotparts.sensors.ColorSensors;
+import robotparts.sensors.DistanceSensor;
+import robotparts.sensors.GyroSensor;
 import robotparts.sensors.Led;
 import robotparts.sensors.Odometry;
 import robotparts.hardware.Outtake;
 import robotparts.hardware.TankDrive;
 import robotparts.hardware.Turret;
-import robotparts.sensors.Touch;
+import robotparts.sensors.TouchSensor;
 import robotparts.unused.MecanumDrive;
 
 public class TerraBot extends RobotFramework {
@@ -28,8 +28,8 @@ public class TerraBot extends RobotFramework {
     public Lift lift = new Lift();
     public Outtake outtake = new Outtake();
     public Carousel carousel = new Carousel();
-    public Color color = new Color();
-    public Touch touch = new Touch();
+    public ColorSensors colorSensors = new ColorSensors();
+    public TouchSensor touchSensor = new TouchSensor();
 //    public Gyro gyro = new Gyro();
 //    public Odometry odometry = new Odometry();
 //    public Distance distance = new Distance();
@@ -46,9 +46,9 @@ public class TerraBot extends RobotFramework {
 //    public Carousel carousel;
 //    public Color color;
 //    public Touch touch;
-    public Gyro gyro;
+    public GyroSensor gyroSensor;
     public Odometry odometry;
-    public Distance distance;
+    public DistanceSensor distanceSensor;
     public Led led;
     public MecanumDrive mecanumDrive;
 }

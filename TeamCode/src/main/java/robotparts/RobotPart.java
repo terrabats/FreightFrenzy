@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
@@ -16,13 +15,17 @@ import java.util.TreeMap;
 import robot.RobotFramework;
 import robotparts.electronics.CMotor;
 import robotparts.electronics.CServo;
+import robotparts.electronics.SColor;
+import robotparts.electronics.SDistance;
 import robotparts.electronics.Encoder;
+import robotparts.electronics.Gyro;
 import robotparts.electronics.LED;
 import robotparts.electronics.PMotor;
 import robotparts.electronics.PServo;
 
 import static global.General.*;
 import robotparts.electronics.Encoder.Type;
+import robotparts.electronics.Touch;
 import util.User;
 import util.codeseg.TypeParameterCodeSeg;
 
@@ -34,10 +37,10 @@ public class RobotPart extends Electronic {
     public TreeMap<String, PMotor> pmotors = new TreeMap<>();
     public TreeMap<String, PServo> pservos = new TreeMap<>();
 
-    public TreeMap<String, BNO055IMU> gyrosensors = new TreeMap<>();
-    public TreeMap<String, DistanceSensor> distancesensors = new TreeMap<>();
-    public TreeMap<String, ColorSensor> colorsensors = new TreeMap<>();
-    public TreeMap<String, TouchSensor> touchsensors = new TreeMap<>();
+    public TreeMap<String, Gyro> gyrosensors = new TreeMap<>();
+    public TreeMap<String, SDistance> distancesensors = new TreeMap<>();
+    public TreeMap<String, SColor> colorsensors = new TreeMap<>();
+    public TreeMap<String, Touch> touchsensors = new TreeMap<>();
     public TreeMap<String, Encoder> encoders = new TreeMap<>();
     public TreeMap<String, LED> leds = new TreeMap<>();
 
@@ -89,31 +92,30 @@ public class RobotPart extends Electronic {
         return pmotor;
     }
 
-    protected BNO055IMU createGyro(String name){
-        BNO055IMU gyro = hardwareMap.get(BNO055IMU.class, name);
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
-        parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
-        gyro.initialize(parameters);
+    protected Gyro createGyro(String name){
+        Gyro gyro = new Gyro(hardwareMap.get(BNO055IMU.class, name));
         gyrosensors.put(name, gyro);
+        electronics.add(gyro);
         return gyro;
     }
 
-    protected DistanceSensor createDistanceSensor(String name){
-        DistanceSensor distanceSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, name);
+    protected SDistance createDistanceSensor(String name){
+        SDistance distanceSensor = new SDistance(hardwareMap.get(ModernRoboticsI2cRangeSensor.class, name));
         distancesensors.put(name, distanceSensor);
+        electronics.add(distanceSensor);
         return distanceSensor;
     }
 
-    protected ColorSensor createColorSensor(String name){
-        ColorSensor colorSensor = hardwareMap.get(ColorSensor.class, name);
+    protected SColor createColorSensor(String name){
+        SColor colorSensor = new SColor(hardwareMap.get(ColorSensor.class, name));
         colorsensors.put(name, colorSensor);
+        electronics.add(colorSensor);
+
         return colorSensor;
     }
 
-    protected TouchSensor createTouchSensor(String name){
-        TouchSensor touchSensor = hardwareMap.get(TouchSensor.class, name);
+    protected Touch createTouchSensor(String name){
+        Touch touchSensor = new Touch(hardwareMap.get(TouchSensor.class, name));
         touchsensors.put(name, touchSensor);
         return touchSensor;
     }

@@ -24,19 +24,19 @@ public class Modules {
     public Main mainLift(double power){return new Main(() -> bot.lift.move(power));}
     public Main mainIntake(double power){return new Main(()-> bot.intake.move(power));}
     public Main mainTurret(double power){return new Main(()-> bot.turret.move(power));}
-    public Main mainOuttakeLockIfBall(){return new Main(() -> {if (bot.color.isBall()) {bot.outtake.lockBall();}});}
-    public Main mainOuttakeLockIfCube(){return new Main(() -> {if (bot.color.isCube()) {bot.outtake.lockCube();}});}
+    public Main mainOuttakeLockIfBall(){return new Main(() -> {if (bot.colorSensors.isBall()) {bot.outtake.lockBall();}});}
+    public Main mainOuttakeLockIfCube(){return new Main(() -> {if (bot.colorSensors.isCube()) {bot.outtake.lockCube();}});}
     public Main mainOuttakeDrop(){return new Main(()->bot.outtake.open());}
     public Main mainOuttakeReset(){return new Main(()->bot.outtake.start());}
 
     //Exits
     public Exit exitTime(double s){return new Exit(() -> bot.rfsHandler.timer.seconds() > s);}
-    public Exit exitLiftDown(){return new Exit(() -> bot.touch.isOuttakePressingTouchSensor() || bot.rfsHandler.timer.seconds()>1);}
+    public Exit exitLiftDown(){return new Exit(() -> bot.touchSensor.isOuttakePressingTouchSensor() || bot.rfsHandler.timer.seconds()>1);}
     public Exit exitLiftReachedTarget(){return new Exit(() -> bot.lift.hasReachedTarget());}
     public Exit exitTurretReachedTarget(){return new Exit(()->bot.turret.hasReachedTarget());}
-    public Exit exitBall(){return new Exit(()->bot.color.isBall());}
-    public Exit exitCube(){return new Exit(()->bot.color.isCube());}
-    public Exit exitFreight(){return new Exit(()->bot.color.isFreight());}
+    public Exit exitBall(){return new Exit(()->bot.colorSensors.isBall());}
+    public Exit exitCube(){return new Exit(()->bot.colorSensors.isCube());}
+    public Exit exitFreight(){return new Exit(()->bot.colorSensors.isFreight());}
     public Exit exitNever(){return new Exit(() -> false);}
     public Exit exitAlways(){return new Exit(() -> true);}
 

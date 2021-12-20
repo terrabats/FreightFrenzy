@@ -1,7 +1,6 @@
 package auton;
 
 import static global.General.bot;
-import static global.General.fieldSide;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
@@ -76,8 +75,8 @@ public class AutoRed2 extends Auto{
     private void turnDeg(double pow, double deg) {
         pow = Math.abs(pow) * Math.signum(deg);
         deg *= -1;
-        double stDeg = bot.gyro.getHeading();
-        while ((deg > 0 ? (bot.gyro.getHeading() < stDeg + deg) : (bot.gyro.getHeading() > stDeg + deg)) && opModeIsActive()) {
+        double stDeg = bot.gyroSensor.getHeading();
+        while ((deg > 0 ? (bot.gyroSensor.getHeading() < stDeg + deg) : (bot.gyroSensor.getHeading() > stDeg + deg)) && opModeIsActive()) {
             bot.tankDrive.move(0, pow);
             sleep(10);
         }
@@ -87,7 +86,7 @@ public class AutoRed2 extends Auto{
 
     private void turnBack(double pow, double finalPos) {
         pow *= -0.5;
-        while ((pow > 0 ? (bot.gyro.getHeading() > finalPos) : (bot.gyro.getHeading() < finalPos)) && opModeIsActive()) {
+        while ((pow > 0 ? (bot.gyroSensor.getHeading() > finalPos) : (bot.gyroSensor.getHeading() < finalPos)) && opModeIsActive()) {
             bot.tankDrive.move(0, pow);
             sleep(10);
         }

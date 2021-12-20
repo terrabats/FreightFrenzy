@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import robotparts.RobotPart;
 
-public class Touch extends RobotPart {
-    private TouchSensor tso;
+public class TouchSensor extends RobotPart {
+    private com.qualcomm.robotcore.hardware.TouchSensor tso;
 
     @Override
     public void init() {

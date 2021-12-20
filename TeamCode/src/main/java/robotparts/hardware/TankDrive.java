@@ -1,10 +1,7 @@
 package robotparts.hardware;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
-
-import org.checkerframework.checker.units.qual.C;
 
 import elements.FieldSide;
 import robotparts.RobotPart;
@@ -39,13 +36,13 @@ public class TankDrive extends RobotPart {
     private final double turnError = 1;
 
     public void setAutonNewSegment(double changeAng, double forTime) {
-        stAng = bot.gyro.getHeading();
+        stAng = bot.gyroSensor.getRightHeading()
         endAng = stAng - changeAng;
         moveForTime = forTime;
     }
 
     private double getAutonTurnError() {
-        return bot.gyro.getHeading() - endAng;
+        return bot.gyroSensor.getRightHeading() - endAng;
     }
 
     public boolean moveAutonDone(double f, double t, double curTime) {

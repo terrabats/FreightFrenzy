@@ -25,7 +25,7 @@ public class Line extends GeometryObject {
     }
 
     //Gets the length of the line
-    public double getDis(){
+    public double getlength(){
         return sqrt(pow(mx, 2) + pow(my, 2));
     }
 

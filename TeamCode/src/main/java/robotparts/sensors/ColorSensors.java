@@ -6,9 +6,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 import elements.GameElement;
 import robotparts.RobotPart;
+import robotparts.electronics.SColor;
 
-public class Color extends RobotPart {
-    private ColorSensor cso;
+public class ColorSensors extends RobotPart {
+    private SColor cso;
 
     @Override
     public void init() {
