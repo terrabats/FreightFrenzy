@@ -15,10 +15,18 @@ import static robot.RobotFramework.robotFunctionsThread;
 
 public class RobotFunctions {
 
-    //List of all robot functions currently in the queue (LinkedList is a FIFO Queue)
+    /**
+     * List of all robot functions currently in the queue (LinkedList is a FIFO Queue)
+     *
+     */
     public volatile Queue<Stage> rfsQueue = new LinkedList<>();
+    /**
+     * Timer for robotfunctions, resets after every stage is run
+     */
     public final Timer timer = new Timer();
-
+    /**
+     *
+     */
     //Update code for running the queue
     public CodeSeg updateCode = () -> {
         bot.checkAccess(User.ROFU);

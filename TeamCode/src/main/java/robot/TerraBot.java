@@ -16,6 +16,12 @@ import robotparts.unused.MecanumDrive;
 
 public class TerraBot extends RobotFramework {
 
+    /**
+     *  Define RobotPart objects here. If you are not using a specific robot part
+     *  define the object but don't instantiate it. All other methods related to the robot
+     *  should go in robot framework.
+     */
+
     public TankDrive tankDrive = new TankDrive();
     public Intake intake = new Intake();
     public Turret turret = new Turret();
