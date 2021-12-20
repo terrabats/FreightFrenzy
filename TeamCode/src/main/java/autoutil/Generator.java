@@ -27,28 +27,30 @@ public class Generator {
     private void addNewPos(Pose p) {
         p.translate(poses.get(poses.size() - 1).p.x, poses.get(poses.size() - 1).p.y);
         p.rotate(p.ang);
-        addNewAbsPos(p);
+        moveTo(p);
     }
 
-    public void addNewAbsPos(double x, double y, double ang) {
-        addNewAbsPos(new Pose(new Point(x, y), ang));
+    public void moveTo(double x, double y, double ang) {
+        moveTo(new Pose(new Point(x, y), ang));
     }
 
-    private void addNewAbsPos(Pose p) { poses.add(p); }
+    private void moveTo(Pose p) { poses.add(p); }
 
     public Path done() {
         Path path = new Path();
         for (int i = 0; i < poses.size() - 1; i++) {
             path.addSegs(generateSeg(poses.get(i), poses.get(i + 1)));
         }
-        for (PathSegment p : path.segments) {
-            p.generatePoints();
-        }
         return path;
     }
 
     private ArrayList<PathSegment> generateSeg(Pose p1, Pose p2) {
-        return generateRelSeg(p1, p2);
+        ArrayList<PathSegment> ret = generateRelSeg(p1, p2);
+        for (PathSegment p : ret) {
+            p.generatePoints();
+            p.changePointsForPath(p1);
+        }
+        return ret;
     }
 
     private ArrayList<PathSegment> generateRelSeg(Pose p1, Pose p2) {
@@ -57,6 +59,9 @@ public class Generator {
         p1.rotate(-PI/2);
         p2 = p2.getRelativeTo(p1);
         p1.rotate(PI/2);
+
+        p2.ang %= 2 * PI;
+        if (p2.ang > PI) { p2.ang -= 2 * PI; }
 
         p2.ang = abs(p2.ang) != PI/2 ? (signum(p2.p.x * p2.p.y) * p2.ang) : p2.ang;
 
@@ -121,8 +126,6 @@ public class Generator {
                 double x2 = -temp1 + c2.center.x;
                 double y2 = sqrt(pow(c1.r, 2) - pow(x2 - c2.center.x, 2)) + c2.center.y;
 
-                System.out.println(temp1);
-
                 PathLine tangentLine1 = new PathLine(new Point(x1, y1), new Point(x2, y2));
 
                 Arc a11 = getShorterArc(c1, new Point(0, 0), new Point(x1, y1));
@@ -154,11 +157,6 @@ public class Generator {
                 ret.add(new PathLine(new Point(0, 0), new Point(0, c2.center.y)));
                 ret.add(getShorterArc(c2, new Point(0, c2.center.y), p2.p));
             }
-
-//            ret.add(cir1arc);
-//            ret.add(cir2arc);
-//            ret.add(tangentLine1);
-//            ret.add(tangentLine2);
         } else {
             System.out.println("NOT USING SHORTCUT");
             ret.add(cir1arc);
