@@ -3,9 +3,10 @@ package robotparts.sensors;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import robotparts.RobotPart;
+import robotparts.electronics.Touch;
 
-public class TouchSensor extends RobotPart {
-    private com.qualcomm.robotcore.hardware.TouchSensor tso;
+public class TouchSensors extends RobotPart {
+    private Touch tso;
 
     @Override
     public void init() {
@@ -14,8 +15,5 @@ public class TouchSensor extends RobotPart {
 
     public boolean isOuttakePressingTouchSensor(){
         return tso.isPressed();
-    }
-    public double getValue(){
-        return tso.getValue();
     }
 }

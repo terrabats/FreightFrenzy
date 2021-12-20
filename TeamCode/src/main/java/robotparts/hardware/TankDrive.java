@@ -36,7 +36,7 @@ public class TankDrive extends RobotPart {
     private final double turnError = 1;
 
     public void setAutonNewSegment(double changeAng, double forTime) {
-        stAng = bot.gyroSensor.getRightHeading()
+        stAng = bot.gyroSensor.getRightHeading();
         endAng = stAng - changeAng;
         moveForTime = forTime;
     }

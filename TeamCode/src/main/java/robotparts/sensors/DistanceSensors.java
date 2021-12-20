@@ -18,18 +18,18 @@ public class DistanceSensors extends RobotPart {
     }
 
     public double getLeftDistance(){
-        return dsl.getDistance(DistanceUnit.CM);
+        return dsl.getDistance();
     }
     public double getRightDistance(){
-        return dsr.getDistance(DistanceUnit.CM);
+        return dsr.getDistance();
     }
     public double getFrontLeftDistance(){
-        return dsfl.getDistance(DistanceUnit.CM);
+        return dsfl.getDistance();
     }
     public double getFrontRightDistance(){
-        return dsfr.getDistance(DistanceUnit.CM);
+        return dsfr.getDistance();
     }
     public double getOuttakeDistance(){
-        return dso.getDistance(DistanceUnit.CM);
+        return dso.getDistance();
     }
 }

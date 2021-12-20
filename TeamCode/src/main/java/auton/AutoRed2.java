@@ -75,8 +75,8 @@ public class AutoRed2 extends Auto{
     private void turnDeg(double pow, double deg) {
         pow = Math.abs(pow) * Math.signum(deg);
         deg *= -1;
-        double stDeg = bot.gyroSensor.getHeading();
-        while ((deg > 0 ? (bot.gyroSensor.getHeading() < stDeg + deg) : (bot.gyroSensor.getHeading() > stDeg + deg)) && opModeIsActive()) {
+        double stDeg = bot.gyroSensor.getRightHeading();
+        while ((deg > 0 ? (bot.gyroSensor.getRightHeading() < stDeg + deg) : (bot.gyroSensor.getRightHeading() > stDeg + deg)) && opModeIsActive()) {
             bot.tankDrive.move(0, pow);
             sleep(10);
         }
@@ -86,7 +86,7 @@ public class AutoRed2 extends Auto{
 
     private void turnBack(double pow, double finalPos) {
         pow *= -0.5;
-        while ((pow > 0 ? (bot.gyroSensor.getHeading() > finalPos) : (bot.gyroSensor.getHeading() < finalPos)) && opModeIsActive()) {
+        while ((pow > 0 ? (bot.gyroSensor.getRightHeading() > finalPos) : (bot.gyroSensor.getRightHeading() < finalPos)) && opModeIsActive()) {
             bot.tankDrive.move(0, pow);
             sleep(10);
         }

@@ -13,4 +13,14 @@ public class SColor extends Electronic {
         this.colorSensor = colorSensor;
     }
 
+    public int getRed(){
+        return colorSensor.red();
+    }
+    public int getGreen(){
+        return colorSensor.green();
+    }
+    public int getBlue(){
+        return colorSensor.blue();
+    }
+
 }

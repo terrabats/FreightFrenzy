@@ -7,10 +7,10 @@ import static global.General.*;
 public class DistanceTest extends UnitTest {
     @Override
     protected void loop() {
-        log.watch("left", bot.distanceSensor.getLeftDistance());
-        log.watch("right", bot.distanceSensor.getRightDistance());
-        log.watch("front left", bot.distanceSensor.getFrontLeftDistance());
-        log.watch("front right", bot.distanceSensor.getFrontRightDistance());
-        log.watch("outtake", bot.distanceSensor.getOuttakeDistance());
+        log.watch("left", bot.distanceSensors.getLeftDistance());
+        log.watch("right", bot.distanceSensors.getRightDistance());
+        log.watch("front left", bot.distanceSensors.getFrontLeftDistance());
+        log.watch("front right", bot.distanceSensors.getFrontRightDistance());
+        log.watch("outtake", bot.distanceSensors.getOuttakeDistance());
     }
 }

@@ -18,7 +18,7 @@ public class ColorSensors extends RobotPart {
 
     public float[] getOuttakeColorHSV(){
         float[] color = new float[3];
-        android.graphics.Color.RGBToHSV(cso.red(), cso.green(), cso.blue(), color);
+        android.graphics.Color.RGBToHSV(cso.getRed(), cso.getGreen(), cso.getBlue(), color);
         return color;
     }
 

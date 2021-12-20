@@ -9,4 +9,7 @@ public class Touch extends Electronic {
     public Touch(TouchSensor touchSensor){
         this.touchSensor = touchSensor;
     }
+    public boolean isPressed(){
+        return touchSensor.isPressed();
+    }
 }
