@@ -31,7 +31,7 @@ public class Generator {
     }
 
     public void addNewAbsPos(double x, double y, double ang) {
-        addNewAbsPos(new Pose(new Point(x, y), abs(ang) != PI/2 ? (signum(x * y) * ang) : ang));
+        addNewAbsPos(new Pose(new Point(x, y), ang));
     }
 
     private void addNewAbsPos(Pose p) { poses.add(p); }
@@ -58,7 +58,9 @@ public class Generator {
         p2 = p2.getRelativeTo(p1);
         p1.rotate(PI/2);
 
-        System.out.println(p2.ang);
+        p2.ang = abs(p2.ang) != PI/2 ? (signum(p2.p.x * p2.p.y) * p2.ang) : p2.ang;
+
+        if (p2.ang == 0 && signum(p2.p.x * p2.p.y) == -1) { p2.ang = PI; }
 
         boolean isNegPiBy2 = p2.ang == -PI/2;
         if (isNegPiBy2) p2.ang *= -1;
@@ -98,17 +100,7 @@ public class Generator {
         Point pointOfIntersection = betweenCenters.getAt(0.5);
 
         Arc cir1arc = getShorterArc(c1, new Point(0, 0), pointOfIntersection);
-/*
-        System.out.println(cir1arc.arc.getPositionFromTheta(cir1arc.arc.arcSt));
-        System.out.println(cir1arc.arc.getPositionFromTheta(cir1arc.arc.arcEnd));
-        System.out.println(cir1arc.arc.arcSt + " " + cir1arc.arc.arcEnd);
-*/
         Arc cir2arc = getShorterArc(c2, p2.p, pointOfIntersection);
-/*
-        System.out.println(cir2arc.arc.getPositionFromTheta(cir2arc.arc.arcSt));
-        System.out.println(cir2arc.arc.getPositionFromTheta(cir2arc.arc.arcEnd));
-        System.out.println(cir2arc.arc.arcSt + " " + cir2arc.arc.arcEnd);
-*/
 
         if (isNegPiBy2) p2.ang *= -1;
 
@@ -121,14 +113,13 @@ public class Generator {
             if (mx != 0) {
                 double mt = my / mx;
 
-                double temp1 = (r2 * mt) / sqrt(pow(mt, 2) + 1);
+                double temp1 = (c1.r * mt) / sqrt(pow(mt, 2) + 1);
 
                 double x1 = -temp1 + c1.center.x;
-                double y1 = sqrt(pow(r2, 2) - pow(x1 - c1.center.x, 2)) + c1.center.y;
-
+                double y1 = sqrt(pow(c1.r, 2) - pow(x1 - c1.center.x, 2)) + c1.center.y;
 
                 double x2 = -temp1 + c2.center.x;
-                double y2 = sqrt(pow(r2, 2) - pow(x2 - c2.center.x, 2)) + c2.center.y;
+                double y2 = sqrt(pow(c1.r, 2) - pow(x2 - c2.center.x, 2)) + c2.center.y;
 
                 System.out.println(temp1);
 
@@ -139,10 +130,10 @@ public class Generator {
                 double arcLensPath1 = a11.getArcLength() + a12.getArcLength();
 
                 x1 = temp1 + c1.center.x;
-                y1 = -sqrt(pow(r2, 2) - pow(x1 - c1.center.x, 2)) + c1.center.y;
+                y1 = -sqrt(pow(c1.r, 2) - pow(x1 - c1.center.x, 2)) + c1.center.y;
 
                 x2 = temp1 + c2.center.x;
-                y2 = -sqrt(pow(r2, 2) - pow(x2 - c2.center.x, 2)) + c2.center.y;
+                y2 = -sqrt(pow(c1.r, 2) - pow(x2 - c2.center.x, 2)) + c2.center.y;
 
                 PathLine tangentLine2 = new PathLine(new Point(x1, y1), new Point(x2, y2));
 
@@ -184,7 +175,6 @@ public class Generator {
     private Arc getShorterArc(Circle c, Point p1, Point p2) {
         Arc arc1 = new Arc(c, p1, p2);
         Arc arc2 = new Arc(c, p2, p1);
-        System.out.println(arc1.getArcLength() + " " + arc2.getArcLength());
         return arc1.getArcLength() > arc2.getArcLength() ? arc2 : arc1;
     }
 }

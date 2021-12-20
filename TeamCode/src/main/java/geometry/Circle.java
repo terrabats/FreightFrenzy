@@ -14,16 +14,13 @@ public class Circle extends GeometryObject{
 
     public double getThetaFromPoint(Point p) {
         double ang = atan2(p.y - center.y, p.x - center.x);
-        if (p.x == center.x) {
-            ang = signum(p.y - center.y) * PI/2;
-        }
         ang %= 2 * PI;
         return ang;
     }
 
     public Pose getPositionFromTheta(double theta) {
         Point p = new Point(center.x + r * cos(theta), center.y + r * sin(theta));
-        double ang = (p.y == center.y) ? INF : -atan2(p.y - center.y, p.x - center.x);
+        double ang = -atan2(p.y - center.y, p.x - center.x);
         return new Pose(p, ang);
     }
 
