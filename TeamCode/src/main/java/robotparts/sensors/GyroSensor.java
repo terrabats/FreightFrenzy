@@ -10,7 +10,7 @@ import robotparts.electronics.Gyro;
 public class GyroSensor extends RobotPart {
     private Gyro gsr, gsl;
 
-    // TODO FIX
+    // TODO TEST/FIX
     // This class takes forever to init, maybe calibration problem?
     // Run this and try to see what the problem is
 

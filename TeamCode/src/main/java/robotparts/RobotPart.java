@@ -56,14 +56,14 @@ public class RobotPart extends Electronic {
     }
 
     /**
-     * Init method (to be overriden
+     * Init method (to be overwritten)
      */
     public void init() {}
 
     // TODO FIX
-    // Make all of thse literally one method or smt, if its possible
+    // Make all of these literally one method or smt, if its possible
     /**
-     * Create different robot parts from a set of parameterys
+     * Create different robot parts from a set of parameters
      */
     protected CMotor createCMotor(String name, DcMotor.Direction dir){
         CMotor cmotor = new CMotor(hardwareMap.get(DcMotor.class, name), dir, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);

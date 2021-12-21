@@ -50,19 +50,18 @@ public class RobotFunctions {
             }
             s.loop();
             /**
-             * If the stage should stop then run on stop code and remove the oldest stage and reset the timer
+             * If the stage should stop, then run on stop code, remove the stage, and reset the timer
+             * Otherwise, set the thread to Status.IDLE to prevent unnecessary lag
              */
             if (s.shouldStop()) {
                 s.runOnStop();
                 rfsQueue.poll();
                 timer.reset();
             } else if (s.isPause()) {
-                // TODO FIX
-                // Uh not sure whats going on here...?
-                //robotFunctionsThread.setStatus(Status.IDLE);
+                robotFunctionsThread.setStatus(Status.IDLE);
             }
         } else {
-            //robotFunctionsThread.setStatus(Status.IDLE);
+            robotFunctionsThread.setStatus(Status.IDLE);
         }
         /**
          * Update the telemetry
@@ -122,6 +121,7 @@ public class RobotFunctions {
      * Empty the queue and reset the timer
      */
     public final void emptyQueue(){
+        if (!rfsQueue.isEmpty()) rfsQueue.peek().runOnStop();
         rfsQueue.clear();
         timer.reset();
     }

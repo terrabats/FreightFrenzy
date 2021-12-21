@@ -37,7 +37,7 @@ public class RobotFramework {
     /**
      *  Represents if the robot is in slow mode
      */
-    // TODO NEW
+    // TODO TEST/NEW
     // Make slowMode better by doing testing and seeing if there is better way for the driver to slow down the robot
     public boolean slowMode = false;
 
@@ -112,8 +112,8 @@ public class RobotFramework {
     public void checkAccess(User potentialUser){ forAllParts(part -> part.checkAccess(potentialUser)); }
 
 
-    // TODO FIX
-    // MAKe this work
+    // TODO TEST
+    // Might have been fixed – test
     public void cancelAutoModule(){
         rfsHandler.emptyQueue();
     }
