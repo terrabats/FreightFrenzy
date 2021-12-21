@@ -10,9 +10,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 
 import robotparts.Electronic;
 
-public class Gyro extends Electronic {
+public class IGyro extends Electronic {
     private final BNO055IMU gyro;
-    public Gyro(BNO055IMU gyro){
+    public IGyro(BNO055IMU gyro){
         this.gyro = gyro;
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;

@@ -4,11 +4,11 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import robotparts.Electronic;
 
-public class Encoder extends Electronic {
+public class IEncoder extends Electronic {
     private DcMotor motor;
     private Type type;
 
-    public Encoder(DcMotor m, Type t) {
+    public IEncoder(DcMotor m, Type t) {
         motor = m;
         type = t;
     }

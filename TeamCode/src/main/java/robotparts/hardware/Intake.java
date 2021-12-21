@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import robotparts.RobotPart;
 import robotparts.electronics.CMotor;
-import robotparts.electronics.Encoder;
 
 public class Intake extends RobotPart {
     private CMotor in;

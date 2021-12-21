@@ -7,10 +7,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 import robotparts.Electronic;
 
-public class SDistance extends Electronic {
+public class IDistance extends Electronic {
     private final DistanceSensor distanceSensor;
 
-    public SDistance(DistanceSensor distanceSensor) {
+    public IDistance(DistanceSensor distanceSensor) {
         this.distanceSensor = distanceSensor;
     }
 

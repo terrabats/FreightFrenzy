@@ -9,24 +9,23 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
 import robot.RobotFramework;
 import robotparts.electronics.CMotor;
 import robotparts.electronics.CServo;
-import robotparts.electronics.SColor;
-import robotparts.electronics.SDistance;
-import robotparts.electronics.Encoder;
-import robotparts.electronics.Gyro;
-import robotparts.electronics.LED;
+import robotparts.electronics.IColor;
+import robotparts.electronics.IDistance;
+import robotparts.electronics.IEncoder;
+import robotparts.electronics.IGyro;
+import robotparts.electronics.OLed;
 import robotparts.electronics.PMotor;
 import robotparts.electronics.PServo;
 
 import static global.General.*;
-import robotparts.electronics.Encoder.Type;
-import robotparts.electronics.Touch;
+import robotparts.electronics.IEncoder.Type;
+import robotparts.electronics.ITouch;
 import util.User;
 import util.codeseg.TypeParameterCodeSeg;
 
@@ -36,8 +35,7 @@ public class RobotPart extends Electronic {
      * When making a new part of the robot part make sure to extend this class
      * then override the init method
      */
-    // TODO FIX
-    // ALSO FIX NAMING CONVENTIONS
+
     /**
      * TreeMap to store the list of electronics
      */
@@ -93,38 +91,38 @@ public class RobotPart extends Electronic {
         return pmotor;
     }
 
-    protected Gyro createGyro(String name){
-        Gyro gyro = new Gyro(hardwareMap.get(BNO055IMU.class, name));
+    protected IGyro createGyro(String name){
+        IGyro gyro = new IGyro(hardwareMap.get(BNO055IMU.class, name));
         electronics.put(name, gyro);
         return gyro;
     }
 
-    protected SDistance createDistanceSensor(String name){
-        SDistance distanceSensor = new SDistance(hardwareMap.get(ModernRoboticsI2cRangeSensor.class, name));
+    protected IDistance createDistanceSensor(String name){
+        IDistance distanceSensor = new IDistance(hardwareMap.get(ModernRoboticsI2cRangeSensor.class, name));
         electronics.put(name, distanceSensor);
         return distanceSensor;
     }
 
-    protected SColor createColorSensor(String name){
-        SColor colorSensor = new SColor(hardwareMap.get(ColorSensor.class, name));
+    protected IColor createColorSensor(String name){
+        IColor colorSensor = new IColor(hardwareMap.get(ColorSensor.class, name));
         electronics.put(name, colorSensor);
         return colorSensor;
     }
 
-    protected Touch createTouchSensor(String name){
-        Touch touchSensor = new Touch(hardwareMap.get(TouchSensor.class, name));
+    protected ITouch createTouchSensor(String name){
+        ITouch touchSensor = new ITouch(hardwareMap.get(TouchSensor.class, name));
         electronics.put(name, touchSensor);
         return touchSensor;
     }
 
-    protected Encoder createEncoder(String motor, String name, Type type){
-        Encoder encoder = new Encoder(hardwareMap.get(DcMotor.class, motor), type);
+    protected IEncoder createEncoder(String motor, String name, Type type){
+        IEncoder encoder = new IEncoder(hardwareMap.get(DcMotor.class, motor), type);
         electronics.put(name, encoder);
         return encoder;
     }
 
-    protected LED createLED(String name){
-        LED led = new LED(hardwareMap.get(DigitalChannel.class,  "g" + name), hardwareMap.get(DigitalChannel.class,  "r" + name));
+    protected OLed createLED(String name){
+        OLed led = new OLed(hardwareMap.get(DigitalChannel.class,  "g" + name), hardwareMap.get(DigitalChannel.class,  "r" + name));
         electronics.put(name, led);
         return led;
     }

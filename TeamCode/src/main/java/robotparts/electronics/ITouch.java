@@ -4,9 +4,9 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import robotparts.Electronic;
 
-public class Touch extends Electronic {
+public class ITouch extends Electronic {
     private final TouchSensor touchSensor;
-    public Touch(TouchSensor touchSensor){
+    public ITouch(TouchSensor touchSensor){
         this.touchSensor = touchSensor;
     }
     public boolean isPressed(){

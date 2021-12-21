@@ -2,15 +2,15 @@ package robotparts.sensors;
 
 
 import robotparts.RobotPart;
-import robotparts.electronics.LED;
-import robotparts.electronics.LED.*;
+import robotparts.electronics.OLed;
+import robotparts.electronics.OLed.*;
 
 
 public class Led extends RobotPart {
-    private LED ledfr;
-    private LED ledfl;
-    private LED ledbr;
-    private LED ledbl;
+    private OLed ledfr;
+    private OLed ledfl;
+    private OLed ledbr;
+    private OLed ledbl;
 
     @Override
     public void init() {

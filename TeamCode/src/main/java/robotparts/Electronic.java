@@ -6,6 +6,15 @@ import util.Access;
 import util.condition.Status;
 
 public class Electronic {
+
+    /**
+     * Naming conventions for electronics
+     * C -> continuous
+     * P -> positional
+     * O -> output
+     * I -> input
+     */
+
     /**
      * Status represents the current status of the electronic part
      * NOTE: This is volatile to prevent thread conflicts

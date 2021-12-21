@@ -1,14 +1,10 @@
 package robotparts.sensors;
 
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-
 import robotparts.RobotPart;
-import robotparts.electronics.Gyro;
+import robotparts.electronics.IGyro;
 
 public class GyroSensor extends RobotPart {
-    private Gyro gsr, gsl;
+    private IGyro gsr, gsl;
 
     // TODO TEST/FIX
     // This class takes forever to init, maybe calibration problem?

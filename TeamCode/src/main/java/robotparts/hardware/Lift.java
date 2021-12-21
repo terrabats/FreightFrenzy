@@ -5,17 +5,17 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import global.Constants;
 import robotparts.RobotPart;
-import robotparts.electronics.Encoder;
+import robotparts.electronics.IEncoder;
 import robotparts.electronics.PMotor;
 
 public class Lift extends RobotPart {
     private PMotor li;
-    private Encoder liEnc;
+    private IEncoder liEnc;
 
     @Override
     public void init() {
         li = createPMotor("li", DcMotorSimple.Direction.FORWARD);
-        liEnc = createEncoder("li", "liEnc", Encoder.Type.MOTOR);
+        liEnc = createEncoder("li", "liEnc", IEncoder.Type.MOTOR);
         resetEncoder();
     }
 

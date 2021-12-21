@@ -1,12 +1,10 @@
 package robotparts.sensors;
 
-import com.qualcomm.robotcore.hardware.TouchSensor;
-
 import robotparts.RobotPart;
-import robotparts.electronics.Touch;
+import robotparts.electronics.ITouch;
 
 public class TouchSensors extends RobotPart {
-    private Touch tso;
+    private ITouch tso;
 
     @Override
     public void init() {

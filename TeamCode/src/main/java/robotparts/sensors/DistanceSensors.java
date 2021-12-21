@@ -1,12 +1,10 @@
 package robotparts.sensors;
 
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
 import robotparts.RobotPart;
-import robotparts.electronics.SDistance;
+import robotparts.electronics.IDistance;
 
 public class DistanceSensors extends RobotPart {
-    private SDistance dsl,dsr,dsfl,dsfr,dso;
+    private IDistance dsl,dsr,dsfl,dsfr,dso;
 
     @Override
     public void init() {

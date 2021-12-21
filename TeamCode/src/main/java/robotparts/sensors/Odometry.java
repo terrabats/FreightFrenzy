@@ -1,7 +1,7 @@
 package robotparts.sensors;
 
 import robotparts.RobotPart;
-import robotparts.electronics.Encoder;
+import robotparts.electronics.IEncoder;
 import util.codeseg.CodeSeg;
 
 import static java.lang.Math.*;
@@ -18,13 +18,13 @@ public class Odometry extends RobotPart {
 
     private final CodeSeg odometryUpdateCode = () -> {};
 
-    private Encoder rEnc;
-    private Encoder cEnc;
+    private IEncoder rEnc;
+    private IEncoder cEnc;
 
     @Override
     public void init() {
-        rEnc = createEncoder("fr", "rEnc", Encoder.Type.NORMAL);
-        cEnc = createEncoder("br", "cEnc", Encoder.Type.NORMAL);
+        rEnc = createEncoder("fr", "rEnc", IEncoder.Type.NORMAL);
+        cEnc = createEncoder("br", "cEnc", IEncoder.Type.NORMAL);
         prevOdoOnePos = 0.0;
         prevOdoTwoPos = 0.0;
         odometryThread.setCode(odometryUpdateCode);
