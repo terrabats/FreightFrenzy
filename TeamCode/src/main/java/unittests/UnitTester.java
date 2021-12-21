@@ -25,7 +25,6 @@ import util.store.Item;
 
 import static global.General.*;
 
-//@Disabled
 @TeleOp(name = "UnitTester", group = "UnitTests")
 public class UnitTester extends Tele {
 

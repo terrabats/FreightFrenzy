@@ -11,8 +11,23 @@ import util.condition.Status;
 import static global.General.*;
 
 public class UnitTest {
+    /**
+     * Status of the unit test, starts at idle
+     */
     protected Status status = Status.IDLE;
+
+    /**
+     * For init, start, loop, and stop see tele
+     * @link Tele
+     */
     public void init() {}
+    protected void start() {}
+    protected void loop() {}
+    public void stop() {bot.halt();}
+
+    /**
+     * Test by running start, setting the status to active, and then running loop
+     */
     public void test(){
         if(status.equals(Status.IDLE)){
             start();
@@ -21,16 +36,22 @@ public class UnitTest {
             loop();
         }
     }
-    protected void start() {}
-    protected void loop() {}
-    public void stop() {bot.halt();}
 
-
+    /**
+     * Method to show the configuration of the motors and servos in a robotpart
+     * @param part
+     */
     protected void showConfig(RobotPart part){
         for (Entry<String, CMotor> entry: part.cmotors.entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
         for (Entry<String, PServo> entry: part.pservos.entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
         for (Entry<String, CServo> entry: part.cservos.entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
     }
+
+    /**
+     * Methods to show the config for a specific motor or servo
+     * @param name
+     * @param motor
+     */
     protected void showConfig(String name, CMotor motor){
         log.display("DcMotor: "+ name, "Dir: "+ motor.getDirection());
     }
