@@ -1,5 +1,9 @@
 package util.codeseg;
 
-public interface ParameterCodeSeg<I, R>{
-    R run(I input);
+/**
+ * Used to pass in code with a type of parameter
+ * @param <P>
+ */
+public interface ParameterCodeSeg<P> {
+    void run(P input);
 }

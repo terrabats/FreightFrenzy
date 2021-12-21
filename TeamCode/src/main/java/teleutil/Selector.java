@@ -5,18 +5,16 @@ import java.util.ArrayList;
 import teleutil.button.Button;
 import util.Timer;
 import util.codeseg.CodeSeg;
-import util.codeseg.TypeCodeSeg;
-import util.codeseg.TypeParameterCodeSeg;
+import util.codeseg.ReturnCodeSeg;
+import util.codeseg.ParameterCodeSeg;
 import util.condition.Status;
 import util.store.Item;
-
-import static global.General.*;
 
 public class Selector<T> {
     private ArrayList<Item<T>> items = new ArrayList<>();
     private final ArrayList<String> itemClassNames = new ArrayList<>();
-    private TypeCodeSeg<Boolean> up;
-    private TypeCodeSeg<Boolean> down;
+    private ReturnCodeSeg<Boolean> up;
+    private ReturnCodeSeg<Boolean> down;
     private int currentIndex;
     private final boolean wrapAround;
     public double delay = 0.2;
@@ -44,7 +42,7 @@ public class Selector<T> {
         init();
     }
 
-    public void init(TypeCodeSeg<Boolean> upSeg, TypeCodeSeg<Boolean> downSeg){
+    public void init(ReturnCodeSeg<Boolean> upSeg, ReturnCodeSeg<Boolean> downSeg){
         up = upSeg; down = downSeg;
         init();
     }
@@ -100,12 +98,12 @@ public class Selector<T> {
         return items.get(currentIndex);
     }
 
-    public void runToAll(TypeParameterCodeSeg<T> seg){
+    public void runToAll(ParameterCodeSeg<T> seg){
         for(Item<T> item: items){
             seg.run(item.getValue());
         }
     }
-    public void runToCurrentItem(TypeParameterCodeSeg<T> seg){
+    public void runToCurrentItem(ParameterCodeSeg<T> seg){
         seg.run(getCurrentItem().getValue());
     }
     public void runOnNext(CodeSeg seg){

@@ -1,6 +1,8 @@
 package util.codeseg;
 
-//Used to define and pass code
+/**
+ * Used to pass in code
+ */
 public interface CodeSeg {
     void run();
 }

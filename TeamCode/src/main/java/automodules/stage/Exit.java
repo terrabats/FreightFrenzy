@@ -1,11 +1,11 @@
 package automodules.stage;
 
-import util.codeseg.TypeCodeSeg;
+import util.codeseg.ReturnCodeSeg;
 
 public class Exit extends StageComponent{
-    private final TypeCodeSeg<Boolean> shouldEnd;
+    private final ReturnCodeSeg<Boolean> shouldEnd;
 
-    public Exit(TypeCodeSeg<Boolean> endCode){
+    public Exit(ReturnCodeSeg<Boolean> endCode){
         shouldEnd = endCode;
     }
     @Override

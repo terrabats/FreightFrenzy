@@ -27,7 +27,7 @@ import static global.General.*;
 import robotparts.electronics.IEncoder.Type;
 import robotparts.electronics.ITouch;
 import util.User;
-import util.codeseg.TypeParameterCodeSeg;
+import util.codeseg.ParameterCodeSeg;
 
 public class RobotPart extends Electronic {
     /**
@@ -188,6 +188,6 @@ public class RobotPart extends Electronic {
      * For all electonics run...
      * @param run
      */
-    private void forAllElectronics(TypeParameterCodeSeg<Electronic> run){ for(Electronic e: electronics.values()){ run.run(e); } }
+    private void forAllElectronics(ParameterCodeSeg<Electronic> run){ for(Electronic e: electronics.values()){ run.run(e); } }
 
 }

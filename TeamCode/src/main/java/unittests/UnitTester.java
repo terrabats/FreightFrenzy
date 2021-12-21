@@ -1,35 +1,33 @@
 package unittests;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
-import java.util.ArrayList;
 
 import elements.FieldSide;
 import teleop.Tele;
 import teleutil.Selector;
-import teleutil.button.OnPressEventHandler;
 import unittests.framework.*;
 import unittests.hardware.*;
-import unittests.sensor.*;
-import unittests.sensor.GyroTest;
-import util.Timer;
 
-import global.Common;
 import teleutil.button.Button;
-import util.codeseg.TypeParameterCodeSeg;
-import util.condition.Status;
 import util.store.Item;
 
 import static global.General.*;
 
 @TeleOp(name = "UnitTester", group = "UnitTests")
 public class UnitTester extends Tele {
-
-    private final TestType testingMode = TestType.SELECTION;
+    /**
+     * Selector object to select the unit test for selection test type
+     */
     private final Selector<UnitTest> selector = new Selector<>(true);
+    /**
+     * Type of testing mode
+     * @link TestType
+     */
+    private final TestType testingMode = TestType.SELECTION;
 
+    /**
+     * Creates all of the unit tests, comment in the ones you want
+     */
     private void createUnitTests(){
         // Framework
 //        add(new CommonTest());
@@ -61,10 +59,16 @@ public class UnitTester extends Tele {
 //        add(new OdometryTest());
     }
 
+    /**
+     * Init method
+     */
     @Override
     public void init() {
         super.init();
 
+        /**
+         * initialize the selector depending on the testing mode
+         */
         switch (testingMode){
             case TIME:
                 selector.init(5);
@@ -76,7 +80,10 @@ public class UnitTester extends Tele {
                 selector.init(gph1, Button.DPAD_DOWN, Button.DPAD_UP);
                 break;
         }
-
+        /**
+         * Run on the next test
+         * stop the current test, idle the selector, unlink gamepadhandlers, and clear telemetry
+         */
         selector.runOnNext(() -> {
             getCurrentTest().stop();
             selector.idle();
@@ -85,17 +92,27 @@ public class UnitTester extends Tele {
             log.clearTelemetry();
         });
 
+        /**
+         * Request the opmode to stop if reached the end (except for selection testing mode)
+         */
         if(!testingMode.equals(TestType.SELECTION)){
             selector.runOnEnd(this::requestOpModeStop);
         }
-
+        /**
+         * Create all the unit tests and initialize them
+         */
         createUnitTests();
         selector.runToAll(UnitTest::init);
-
+        /**
+         * Display the testing mode
+         */
         log.watch("Testing Mode: " + testingMode.toString());
         super.activate(FieldSide.UNKNOWN);
     }
 
+    /**
+     * Loop method, update the selector, show the current selection, run the current test
+     */
     @Override
     public void loop() {
         selector.update();
@@ -104,19 +121,34 @@ public class UnitTester extends Tele {
         super.update(true);
     }
 
-
-    public void add(UnitTest test){
+    /**
+     * Add a unit test to the selector
+     * @param test
+     */
+    private void add(UnitTest test){
         selector.addItem(new Item<>(test.getClass().getSimpleName(), test));
     }
 
+    /**
+     * get the current test name
+     * @return test name
+     */
     private String getCurrentTestName(){
         return getCurrentTest().getClass().getSimpleName();
     }
 
+    /**
+     * Get the current test
+     * @return current test
+     */
     private UnitTest getCurrentTest(){
         return selector.getCurrentItem().getValue();
     }
 
+    /**
+     * Run the current test
+     * NOTE: Selector mode will only run the test if its active
+     */
     private void runCurrentTest(){
         if(!testingMode.equals(TestType.SELECTION)) {
             selector.runToCurrentItem(UnitTest::test);
@@ -127,6 +159,9 @@ public class UnitTester extends Tele {
         }
     }
 
+    /**
+     * Show the selection, using log.list if selector mode, and just displaying it otherwise
+     */
     public void showSelection(){
         if(testingMode.equals(TestType.SELECTION)){
             if(selector.isInActive()){
@@ -142,9 +177,21 @@ public class UnitTester extends Tele {
         }
     }
 
+    /**
+     * Type of testing mode
+     */
     private enum TestType{
+        /**
+         * Move to the next test by clicking x so you can control when the next test occurs
+         */
         CONTROL,
+        /**
+         * The next test will automaticall run after a certian interval (set in init)
+         */
         TIME,
+        /**
+         * A screen will pop up to show you all of the availible tests and you can select the ones you want from there
+         */
         SELECTION
     }
 }

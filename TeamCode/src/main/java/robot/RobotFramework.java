@@ -7,7 +7,7 @@ import geometry.CoordinatePlane;
 import robotparts.RobotPart;
 import util.TerraThread;
 import util.User;
-import util.codeseg.TypeParameterCodeSeg;
+import util.codeseg.ParameterCodeSeg;
 
 import static global.General.*;
 
@@ -123,7 +123,7 @@ public class RobotFramework {
      * The type parameter code segment will accept the current robotpart
      * @param run
      */
-    private void forAllParts(TypeParameterCodeSeg<RobotPart> run){
+    private void forAllParts(ParameterCodeSeg<RobotPart> run){
         for(RobotPart part: allRobotParts){
             run.run(part);
         }
