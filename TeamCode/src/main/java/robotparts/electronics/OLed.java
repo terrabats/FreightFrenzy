@@ -4,10 +4,10 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 import robotparts.Electronic;
 
-public class LED extends Electronic {
+public class OLed extends Electronic {
     private DigitalChannel red;
     private DigitalChannel green;
-    public LED(DigitalChannel r, DigitalChannel g){
+    public OLed(DigitalChannel r, DigitalChannel g){
         red = r;
         green = g;
         red.setMode(DigitalChannel.Mode.OUTPUT);

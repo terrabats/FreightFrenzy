@@ -1,15 +1,11 @@
 package robotparts.sensors;
 
-import com.qualcomm.robotcore.hardware.ColorSensor;
-
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
 import elements.GameElement;
 import robotparts.RobotPart;
-import robotparts.electronics.SColor;
+import robotparts.electronics.IColor;
 
 public class ColorSensors extends RobotPart {
-    private SColor cso;
+    private IColor cso;
 
     @Override
     public void init() {

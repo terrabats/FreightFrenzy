@@ -6,20 +6,19 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import elements.FieldSide;
 import global.Constants;
 import robotparts.RobotPart;
-import robotparts.electronics.CMotor;
-import robotparts.electronics.Encoder;
+import robotparts.electronics.IEncoder;
 import robotparts.electronics.PMotor;
 
 import static global.General.fieldSide;
 
 public class Turret extends RobotPart {
     private PMotor tr;
-    private Encoder trEnc;
+    private IEncoder trEnc;
 
     @Override
     public void init() {
         tr = createPMotor("tr", DcMotorSimple.Direction.FORWARD);
-        trEnc = createEncoder("tr", "trEnc", Encoder.Type.MOTOR);
+        trEnc = createEncoder("tr", "trEnc", IEncoder.Type.MOTOR);
         resetEncoder();
     }
 

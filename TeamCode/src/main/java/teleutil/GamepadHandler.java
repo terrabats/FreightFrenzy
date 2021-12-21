@@ -9,12 +9,12 @@ import teleutil.button.Button;
 import teleutil.button.ButtonEventHandler;
 import teleutil.button.ButtonHandler;
 import util.codeseg.CodeSeg;
-import util.codeseg.TypeCodeSeg;
+import util.codeseg.ReturnCodeSeg;
 
 public class GamepadHandler {
     public Gamepad gamepad;
 
-    public final TreeMap<Button, TypeCodeSeg<Boolean>> pressedMap = new TreeMap<Button, TypeCodeSeg<Boolean>>() {{
+    public final TreeMap<Button, ReturnCodeSeg<Boolean>> pressedMap = new TreeMap<Button, ReturnCodeSeg<Boolean>>() {{
         put(Button.A, () -> gamepad.a);
         put(Button.B, () -> gamepad.b);
         put(Button.X, () -> gamepad.x);
@@ -31,7 +31,7 @@ public class GamepadHandler {
         put(Button.RIGHT_STICK_BUTTON, () -> gamepad.right_stick_button);
     }};
 
-    public final TreeMap<Button, TypeCodeSeg<Float>> valueMap = new TreeMap<Button, TypeCodeSeg<Float>>() {{
+    public final TreeMap<Button, ReturnCodeSeg<Float>> valueMap = new TreeMap<Button, ReturnCodeSeg<Float>>() {{
         put(Button.LEFT_TRIGGER, () -> gamepad.left_trigger);
         put(Button.RIGHT_TRIGGER, () -> gamepad.right_trigger);
         put(Button.LEFT_STICK_Y, () -> gamepad.left_stick_y);
