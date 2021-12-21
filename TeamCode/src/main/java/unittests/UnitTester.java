@@ -18,7 +18,6 @@ import util.Timer;
 
 import global.Common;
 import teleutil.button.Button;
-import util.codeseg.BooleanCodeSeg;
 import util.codeseg.TypeParameterCodeSeg;
 import util.condition.Status;
 import util.store.Item;

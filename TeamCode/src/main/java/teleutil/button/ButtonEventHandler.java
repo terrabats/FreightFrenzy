@@ -3,26 +3,26 @@ package teleutil.button;
 import java.util.Objects;
 
 import teleutil.GamepadHandler;
-import util.codeseg.DoubleParameterCodeSeg;
+import util.codeseg.CodeSeg;
 
 public class ButtonEventHandler {
-    protected DoubleParameterCodeSeg codeSeg;
+    protected CodeSeg codeSeg;
     public Button button;
     protected GamepadHandler gph;
 
     boolean wasPressed = false;
 
-    public ButtonEventHandler(Button button, DoubleParameterCodeSeg codeSeg, GamepadHandler gph) {
+    public ButtonEventHandler(Button button, CodeSeg codeSeg, GamepadHandler gph) {
         this.button = button; this.codeSeg = codeSeg; this.gph = gph;
     }
 
-    public void run() { runArgs(pressed() ? 1 : 0); wasPressed = this.pressed(); }
+    public void runAndUpdate() { run(); wasPressed = this.pressed(); }
 
     protected boolean eventOccurred() { return pressed(); }
 
-    protected void runArgs(double... args) {
+    protected void run() {
         if (eventOccurred()) {
-            codeSeg.run(args);
+            codeSeg.run();
         }
     }
 

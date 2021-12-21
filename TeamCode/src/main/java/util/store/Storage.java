@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import util.ExceptionCatcher;
-import util.codeseg.BooleanCodeSeg;
 
 import static global.General.*;
 
