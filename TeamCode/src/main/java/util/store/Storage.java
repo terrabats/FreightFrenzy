@@ -3,15 +3,9 @@ package util.store;
 import android.graphics.Bitmap;
 import android.os.Environment;
 
-import org.checkerframework.checker.units.qual.A;
-
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -21,6 +15,9 @@ import util.ExceptionCatcher;
 import static global.General.*;
 
 public class Storage {
+
+    // TODO TEST
+    // Test this class agian using unittester and storage test afte the to do in item is fixed
     /**
      * List of items to store
      */
@@ -40,7 +37,7 @@ public class Storage {
      */
     public void saveItems(){
         for(Item<?> i: items) {
-            saveText("current", i.getName(), i.getValue().toString());
+            saveText("current", i.getName(), i.toString());
         }
     }
 
@@ -54,24 +51,10 @@ public class Storage {
     /**
      * Get the item using the ItemType
      * @param name
-     * @param type
      * @return
      */
-    public Object getItem(String name, ItemType type){
-        String rawValue = readText("current", name);
-        switch (type){
-            case STRING:
-                return rawValue;
-            case INT:
-                return Integer.valueOf(rawValue);
-            case FLOAT:
-                return Float.valueOf(rawValue);
-            case DOUBLE:
-                return Double.valueOf(rawValue);
-            case BOOLEAN:
-                return Boolean.valueOf(rawValue);
-        }
-        return null;
+    public Object getItem(String name){
+        return Item.getObjectFromType(readText("current", name));
     }
 
     /**
@@ -102,20 +85,6 @@ public class Storage {
             out[0] = scan.nextLine();
         });
         return out[0];
-    }
-
-    public void saveBitmap(String dirname, Bitmap in, String name){
-//        File f = new File(makeOutputFolder(dirname), name + ".png");
-//        ExceptionCatcher.catchIO(f::createNewFile);
-//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//        in.compress(Bitmap.CompressFormat.PNG, 0, bos);
-//        byte[] bitmapdata = bos.toByteArray();
-//        ExceptionCatcher.catchIO(() -> {
-//            FileOutputStream fos = new FileOutputStream(f);
-//            fos.write(bitmapdata);
-//            fos.flush();
-//            fos.close();
-//        });
     }
 
     /**

@@ -2,7 +2,7 @@ package unittests.framework;
 
 import elements.FieldSide;
 import unittests.UnitTest;
-import util.store.ItemType;
+import util.store.Item;
 
 import static global.General.fieldSide;
 import static global.General.log;
@@ -23,12 +23,12 @@ public class StorageTest extends UnitTest {
 
     @Override
     protected void loop() {
-        log.watch("St", storage.getItem("St", ItemType.STRING));
-        log.watch("In", storage.getItem("In", ItemType.INT));
-        log.watch("Fl", storage.getItem("Fl", ItemType.FLOAT));
-        log.watch("Do", storage.getItem("Do", ItemType.DOUBLE));
-        log.watch("Bo", storage.getItem("Bo", ItemType.BOOLEAN));
-        fieldSide = FieldSide.create((String) storage.getItem("FieldSide", ItemType.STRING));
+        log.watch("St", storage.getItem("St"));
+        log.watch("In", storage.getItem("In"));
+        log.watch("Fl", storage.getItem("Fl"));
+        log.watch("Do", storage.getItem("Do"));
+        log.watch("Bo", storage.getItem("Bo"));
+        fieldSide = FieldSide.create((String) storage.getItem("FieldSide"));
         log.watch("FieldSide", fieldSide);
         log.watch("FieldColor", fieldSide.name());
     }

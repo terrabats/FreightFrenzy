@@ -1,5 +1,7 @@
 package util.store;
 
+import java.util.Objects;
+
 public class Item<T> {
     /**
      * Item represents a item, should be created as follows
@@ -15,6 +17,8 @@ public class Item<T> {
      */
     private final T value;
 
+    private final ItemType type;
+
     /**
      * Constructor, pass in the name and the value
      * @param name
@@ -23,6 +27,7 @@ public class Item<T> {
     public Item(String name, T value){
         this.name = name;
         this.value = value;
+        this.type = getTypeFromObject();
     }
 
     /**
@@ -39,6 +44,78 @@ public class Item<T> {
      */
     public T getValue(){
         return value;
+    }
+
+    /**
+     * Get the itemtype from the object given
+     * @return itemtype
+     */
+    private ItemType getTypeFromObject(){
+        if(value instanceof String){
+            return ItemType.STRING;
+        }else if(value instanceof Integer){
+            return ItemType.INT;
+        }else if(value instanceof Float){
+            return ItemType.FLOAT;
+        }else if(value instanceof Double){
+            return ItemType.DOUBLE;
+        }else if(value instanceof Boolean){
+            return ItemType.BOOLEAN;
+        }
+        return null;
+    }
+
+    /**
+     * Get the object from the rawString
+     * @param rawString
+     * @return
+     */
+    public static Object getObjectFromType(String rawString){
+        // TODO FIX
+        // Make it so that it split the raw string according to the below toString method, (split at the " : ")
+        String rawType = rawString;
+        String rawValue = rawString;
+        switch (Objects.requireNonNull(ItemType.fromString(rawType))){
+            case STRING:
+                return rawValue;
+            case INT:
+                return Integer.valueOf(rawValue);
+            case FLOAT:
+                return Float.valueOf(rawValue);
+            case DOUBLE:
+                return Double.valueOf(rawValue);
+            case BOOLEAN:
+                return Boolean.valueOf(rawValue);
+        }
+        return null;
+    }
+
+    /**
+     * String represntation of the object, has both the type and the value
+     * @return string of type and value
+     */
+    @Override
+    public String toString(){
+        return type.toString() + " : " + value.toString();
+    }
+
+    /**
+     * The type of item
+     */
+
+    public enum ItemType {
+        STRING,
+        INT,
+        FLOAT,
+        DOUBLE,
+        BOOLEAN;
+
+        public static ItemType fromString(String s){
+            for (ItemType t: ItemType.values()){
+                if(s.equals(t.toString())){ return t; }
+            }
+            return null;
+        }
     }
 }
 

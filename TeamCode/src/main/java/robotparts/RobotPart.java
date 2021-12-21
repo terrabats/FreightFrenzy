@@ -49,7 +49,7 @@ public class RobotPart extends Electronic {
 
     /**
      * Constructor to create the robot part
-     * NOTE: This automaticallty adds itself to the robotparts list
+     * NOTE: This automatically adds itself to the robotparts list
      */
     public RobotPart(){
        RobotFramework.allRobotParts.add(this);
@@ -60,8 +60,6 @@ public class RobotPart extends Electronic {
      */
     public void init() {}
 
-    // TODO FIX
-    // Make all of these literally one method or smt, if its possible
     /**
      * Create different robot parts from a set of parameters
      */
