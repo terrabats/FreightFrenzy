@@ -6,7 +6,7 @@ public class Log {
     // TODO
     // Make this have an item inside it
     /**
-     * Nmame of the log
+     * Name of the log
      */
     public String name = "";
     /**

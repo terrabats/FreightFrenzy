@@ -2,7 +2,7 @@ package global;
 
 public class Constants {
     // TODO TEST
-    // Try different values for the thread refresh rate and see how it affects preformance
+    // Try different values for the thread refresh rate and see how it affects performance
     /**
      * Refresh rate for threads, tested at 100 and 60 hz
      */
@@ -12,8 +12,9 @@ public class Constants {
      */
     public static final double MINIMUM_REFRESH_RATE = 30; //hz
 
-    // TODO COMMENT
-    // Akhil comment these pls
+    /**
+     * Accuracies for creating points in arc and line generations in Autonomous
+     */
     public static final double ANG_ACC_ARC = 0.1;
     public static final double LINE_ACC_PATH = 0.05;
 
