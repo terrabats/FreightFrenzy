@@ -9,15 +9,42 @@ import util.condition.Status;
 import static global.General.*;
 
 public class TerraThread extends Thread {
+    /**
+     * Class for handling and creating thread
+     * NOTE: Thread should not be used raw without this class in most instances
+     */
 
+    /**
+     * currentStatus represnts the status of the thread
+     * NOTE: The thread status is active by default
+     */
     private volatile Status currentStatus = Status.ACTIVE;
+
+    /**
+     * Code that will run in a loop in the update method, nothing by default
+     */
     private volatile CodeSeg updateCode = () -> {};
 
+    /**
+     * Set the update code
+     * @link updateCode
+     * @param cs
+     */
     public synchronized void setCode(CodeSeg cs){
         updateCode = cs;
     }
 
+    /**
+     * Stop updating the thread
+     * NOTE: Threads cannot be stopped, only stopped from updating (technically different things)
+     */
     public synchronized void stopUpdating(){currentStatus = Status.DISABLED;}
+
+    /**
+     * Run method overriden from Thread, all of updateCode will run here
+     * This happens until the status is set to disabled through stopUpdating
+     * NOTE: This will update according to the thread refresh rate in constants
+     */
 
     @Override
     public void run() {
@@ -27,10 +54,18 @@ public class TerraThread extends Thread {
         }
     }
 
+    /**
+     * Set status
+     * @param status
+     */
     public synchronized void setStatus(Status status){
         currentStatus = status;
     }
 
+    /**
+     * Get the status
+     * @return
+     */
     public synchronized Status getStatus(){
         return currentStatus;
     }

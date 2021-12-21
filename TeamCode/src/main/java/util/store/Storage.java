@@ -22,19 +22,42 @@ import util.codeseg.BooleanCodeSeg;
 import static global.General.*;
 
 public class Storage {
+    /**
+     * List of items to store
+     */
     private ArrayList<Item<?>> items = new ArrayList<>();
 
+    /**
+     * Add and item given a name and a value
+     * @param name
+     * @param value
+     * @param <T>
+     */
     public <T> void addItem(String name, T value) { items.add(new Item<>(name, value));
     }
+
+    /**
+     * Save the items currently in the arraylist
+     */
     public void saveItems(){
         for(Item<?> i: items) {
             saveText("current", i.getName(), i.getValue().toString());
         }
     }
+
+    /**
+     * Empty all of the items in the list to store
+     */
     public void emptyItems(){
         items = new ArrayList<>();
     }
 
+    /**
+     * Get the item using the ItemType
+     * @param name
+     * @param type
+     * @return
+     */
     public Object getItem(String name, ItemType type){
         String rawValue = readText("current", name);
         switch (type){
@@ -52,6 +75,12 @@ public class Storage {
         return null;
     }
 
+    /**
+     * Save the text using the directory name, the filename, and the string to save
+     * @param dirname
+     * @param filename
+     * @param in
+     */
     private void saveText(String dirname, String filename, String in)  {
         ExceptionCatcher.catchIO(() -> {
             PrintWriter out = new PrintWriter(makeOutputFolder(dirname).getAbsolutePath()+"/" + filename + ".txt");
@@ -61,6 +90,12 @@ public class Storage {
         });
     }
 
+    /**
+     * Read the text from the directory name, and the filename
+     * @param dirname
+     * @param filename
+     * @return
+     */
     private String readText(String dirname, String filename) {
         final String[] out = {""};
         ExceptionCatcher.catchIO(() -> {
@@ -84,6 +119,11 @@ public class Storage {
 //        });
     }
 
+    /**
+     * Make the output folder from the specified directory name
+     * @param dirname
+     * @return
+     */
     private File makeOutputFolder(String dirname){
         File filepath = Environment.getExternalStorageDirectory();
         File ftcDir = new File(filepath.getAbsolutePath()+"/FTC_Files/");
