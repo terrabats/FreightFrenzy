@@ -30,30 +30,55 @@ import util.User;
 import util.codeseg.TypeParameterCodeSeg;
 
 public class RobotPart extends Electronic {
-
+    /**
+     * Represents a part of the robot like the drivetrain or the intake
+     * When making a new part of the robot part make sure to extend this class
+     * then override the init method
+     */
+    // TODO FIX
+    // Remove all of the specific treemaps and make a method to get all based on certain class
+    // TODO FIX
+    // ALSO FIX NAMING CONVENTIONS
+    /**
+     * TreeMaps to store the list of electronics
+     */
     public TreeMap<String, CMotor> cmotors = new TreeMap<>();
     public TreeMap<String, CServo> cservos = new TreeMap<>();
-
     public TreeMap<String, PMotor> pmotors = new TreeMap<>();
     public TreeMap<String, PServo> pservos = new TreeMap<>();
-
     public TreeMap<String, Gyro> gyrosensors = new TreeMap<>();
     public TreeMap<String, SDistance> distancesensors = new TreeMap<>();
     public TreeMap<String, SColor> colorsensors = new TreeMap<>();
     public TreeMap<String, Touch> touchsensors = new TreeMap<>();
     public TreeMap<String, Encoder> encoders = new TreeMap<>();
     public TreeMap<String, LED> leds = new TreeMap<>();
-
+    /**
+     * TreeMaps to store the list of electronics
+     */
     public ArrayList<Electronic> electronics = new ArrayList<>();
-
+    /**
+     * The currentUser of the robotPart, by default none
+     */
     private volatile User currentUser = User.NONE;
 
+    /**
+     * Constructor to create the robot part
+     * NOTE: This automaticallty adds itself to the robotparts list
+     */
     public RobotPart(){
        RobotFramework.allRobotParts.add(this);
     }
 
+    /**
+     * Init method (to be overriden
+     */
     public void init() {}
 
+    // TODO FIX
+    // Make all of thse literally one method or smt, if its possible
+    /**
+     * Create different robot parts from a set of parameterys
+     */
     protected CMotor createCMotor(String name, DcMotor.Direction dir){
         CMotor cmotor = new CMotor(hardwareMap.get(DcMotor.class, name), dir, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         cmotors.put(name, cmotor);
@@ -81,9 +106,6 @@ public class RobotPart extends Electronic {
         electronics.add(pservo);
         return pservo;
     }
-    // TODO FIX
-    // Make this proper
-    // ALSO REMEMBER TO ADD THE OTHER ELECTRONICS TO electronics arraylist
 
     protected PMotor createPMotor(String name, DcMotor.Direction dir){
         PMotor pmotor = new PMotor(hardwareMap.get(DcMotor.class, name), dir, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -132,6 +154,9 @@ public class RobotPart extends Electronic {
         return led;
     }
 
+    /**
+     * Halt of the cmotors and cservos (i.e. set the power to 0)
+     */
     public void halt(){
         for(CMotor mot: cmotors.values()){
             mot.setPower(0);
@@ -141,14 +166,28 @@ public class RobotPart extends Electronic {
         }
     }
 
+    /**
+     * Get the currentUser
+     * @return currentUser
+     */
     public User getUser(){
         return currentUser;
     }
 
+    /**
+     * Switch the user to the new user,
+     * @param newUser
+     */
     public void switchUser(User newUser){
         currentUser = newUser;
     }
 
+    /**
+     * Check the access of the user if they match the current user
+     * This means that only the currentUser has access and all other users will be denied
+     * In order to use a robotpart you must call switch user
+     * @param potentialUser
+     */
     public void checkAccess(User potentialUser){
         if(potentialUser.equals(currentUser)) {
             forAllElectronics(e -> e.access.allow());
@@ -157,7 +196,10 @@ public class RobotPart extends Electronic {
         }
     }
 
-
+    /**
+     * For all electonics run...
+     * @param run
+     */
     private void forAllElectronics(TypeParameterCodeSeg<Electronic> run){ for(Electronic e: electronics){ run.run(e); } }
 
 }

@@ -6,10 +6,26 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import robotparts.Electronic;
 
 public class CMotor extends Electronic {
+    /**
+     * DcMotor object since its continuous
+     */
     private final DcMotor motor;
+    /**
+     * Logical direction of the motor (what is positive)
+     */
     private final DcMotorSimple.Direction direction;
+    /**
+     * What is the zero power behavior (i.e. should the robot activlt try to stop BRAKE, or coast FLOAT)
+     */
     private final DcMotor.ZeroPowerBehavior zeroPowerBehavior;
 
+    /**
+     * Constructor with parameters
+     * @param m
+     * @param dir
+     * @param zpb
+     * @param mode
+     */
     public CMotor(DcMotor m, DcMotor.Direction dir, DcMotor.ZeroPowerBehavior zpb, DcMotor.RunMode mode){
         motor = m;
         direction = dir;
@@ -22,8 +38,16 @@ public class CMotor extends Electronic {
         motor.setPower(0);
     }
 
+    /**
+     * Sets the power of the motor if access is allowed?
+     * @param p
+     */
     public void setPower(double p){ if(access.isAllowed()){ motor.setPower(p); } }
 
+    /**
+     * Gets the direction of the motor
+     * @return
+     */
     public DcMotorSimple.Direction getDirection(){
         return direction;
     }
