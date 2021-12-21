@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.TreeMap;
 
 import robot.RobotFramework;
@@ -36,26 +37,11 @@ public class RobotPart extends Electronic {
      * then override the init method
      */
     // TODO FIX
-    // Remove all of the specific treemaps and make a method to get all based on certain class
-    // TODO FIX
     // ALSO FIX NAMING CONVENTIONS
     /**
-     * TreeMaps to store the list of electronics
+     * TreeMap to store the list of electronics
      */
-    public TreeMap<String, CMotor> cmotors = new TreeMap<>();
-    public TreeMap<String, CServo> cservos = new TreeMap<>();
-    public TreeMap<String, PMotor> pmotors = new TreeMap<>();
-    public TreeMap<String, PServo> pservos = new TreeMap<>();
-    public TreeMap<String, Gyro> gyrosensors = new TreeMap<>();
-    public TreeMap<String, SDistance> distancesensors = new TreeMap<>();
-    public TreeMap<String, SColor> colorsensors = new TreeMap<>();
-    public TreeMap<String, Touch> touchsensors = new TreeMap<>();
-    public TreeMap<String, Encoder> encoders = new TreeMap<>();
-    public TreeMap<String, LED> leds = new TreeMap<>();
-    /**
-     * TreeMaps to store the list of electronics
-     */
-    public ArrayList<Electronic> electronics = new ArrayList<>();
+    public TreeMap<String, Electronic> electronics = new TreeMap<>();
     /**
      * The currentUser of the robotPart, by default none
      */
@@ -81,87 +67,93 @@ public class RobotPart extends Electronic {
      */
     protected CMotor createCMotor(String name, DcMotor.Direction dir){
         CMotor cmotor = new CMotor(hardwareMap.get(DcMotor.class, name), dir, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        cmotors.put(name, cmotor);
-        electronics.add(cmotor);
+        electronics.put(name, cmotor);
         return cmotor;
     }
 
     protected CMotor createCMotor(String name, DcMotor.Direction dir, DcMotor.ZeroPowerBehavior zpb, DcMotor.RunMode mode){
         CMotor cmotor = new CMotor(hardwareMap.get(DcMotor.class, name), dir, zpb, mode);
-        cmotors.put(name, cmotor);
-        electronics.add(cmotor);
+        electronics.put(name, cmotor);
         return cmotor;
     }
 
     protected CServo createCServo(String name, CRServo.Direction dir){
         CServo cservo = new CServo(hardwareMap.get(CRServo.class, name), dir);
-        cservos.put(name, cservo);
-        electronics.add(cservo);
+        electronics.put(name, cservo);
         return cservo;
     }
 
     protected PServo createPServo(String name, Servo.Direction dir, double startpos, double endpos){
         PServo pservo = new PServo(hardwareMap.get(Servo.class, name), dir, startpos, endpos);
-        pservos.put(name, pservo);
-        electronics.add(pservo);
+        electronics.put(name, pservo);
         return pservo;
     }
 
     protected PMotor createPMotor(String name, DcMotor.Direction dir){
         PMotor pmotor = new PMotor(hardwareMap.get(DcMotor.class, name), dir, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        pmotors.put(name, pmotor);
-        electronics.add(pmotor);
+        electronics.put(name, pmotor);
         return pmotor;
     }
 
     protected Gyro createGyro(String name){
         Gyro gyro = new Gyro(hardwareMap.get(BNO055IMU.class, name));
-        gyrosensors.put(name, gyro);
-        electronics.add(gyro);
+        electronics.put(name, gyro);
         return gyro;
     }
 
     protected SDistance createDistanceSensor(String name){
         SDistance distanceSensor = new SDistance(hardwareMap.get(ModernRoboticsI2cRangeSensor.class, name));
-        distancesensors.put(name, distanceSensor);
-        electronics.add(distanceSensor);
+        electronics.put(name, distanceSensor);
         return distanceSensor;
     }
 
     protected SColor createColorSensor(String name){
         SColor colorSensor = new SColor(hardwareMap.get(ColorSensor.class, name));
-        colorsensors.put(name, colorSensor);
-        electronics.add(colorSensor);
-
+        electronics.put(name, colorSensor);
         return colorSensor;
     }
 
     protected Touch createTouchSensor(String name){
         Touch touchSensor = new Touch(hardwareMap.get(TouchSensor.class, name));
-        touchsensors.put(name, touchSensor);
+        electronics.put(name, touchSensor);
         return touchSensor;
     }
 
     protected Encoder createEncoder(String motor, String name, Type type){
         Encoder encoder = new Encoder(hardwareMap.get(DcMotor.class, motor), type);
-        encoders.put(name, encoder);
+        electronics.put(name, encoder);
         return encoder;
     }
 
     protected LED createLED(String name){
         LED led = new LED(hardwareMap.get(DigitalChannel.class,  "g" + name), hardwareMap.get(DigitalChannel.class,  "r" + name));
-        leds.put(name, led);
+        electronics.put(name, led);
         return led;
+    }
+
+    /**
+     * Gets treemap of specific electronics
+     * @return Electronic TreeMap
+     */
+    @SuppressWarnings("unchecked")
+    public <T> TreeMap<String, T> getObjects(Class<T> type) {
+        TreeMap<String, T> ret = new TreeMap<>();
+        for (Map.Entry<String, Electronic> o : electronics.entrySet()) {
+            if (o.getClass() == type) {
+                ret.put(o.getKey(), (T) o.getValue());
+            }
+        }
+        return ret;
     }
 
     /**
      * Halt of the cmotors and cservos (i.e. set the power to 0)
      */
     public void halt(){
-        for(CMotor mot: cmotors.values()){
+        for(CMotor mot: getObjects(CMotor.class).values()){
             mot.setPower(0);
         }
-        for(CServo crs: cservos.values()){
+        for(CServo crs: getObjects(CServo.class).values()){
             crs.setPower(0);
         }
     }
@@ -200,6 +192,6 @@ public class RobotPart extends Electronic {
      * For all electonics run...
      * @param run
      */
-    private void forAllElectronics(TypeParameterCodeSeg<Electronic> run){ for(Electronic e: electronics){ run.run(e); } }
+    private void forAllElectronics(TypeParameterCodeSeg<Electronic> run){ for(Electronic e: electronics.values()){ run.run(e); } }
 
 }

@@ -10,6 +10,8 @@ import util.condition.Status;
 
 import static global.General.*;
 
+import com.qualcomm.robotcore.hardware.CRServo;
+
 public class UnitTest {
     /**
      * Status of the unit test, starts at idle
@@ -42,9 +44,9 @@ public class UnitTest {
      * @param part
      */
     protected void showConfig(RobotPart part){
-        for (Entry<String, CMotor> entry: part.cmotors.entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
-        for (Entry<String, PServo> entry: part.pservos.entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
-        for (Entry<String, CServo> entry: part.cservos.entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
+        for (Entry<String, CMotor> entry: part.getObjects(CMotor.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
+        for (Entry<String, PServo> entry: part.getObjects(PServo.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
+        for (Entry<String, CServo> entry: part.getObjects(CServo.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
     }
 
     /**
