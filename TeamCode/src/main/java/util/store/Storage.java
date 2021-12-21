@@ -53,25 +53,11 @@ public class Storage {
 
     /**
      * Get the item using the ItemType
-     * @param name
-     * @param type
-     * @return
+     * @param name name of item
+     * @return item
      */
-    public Object getItem(String name, ItemType type){
-        String rawValue = readText("current", name);
-        switch (type){
-            case STRING:
-                return rawValue;
-            case INT:
-                return Integer.valueOf(rawValue);
-            case FLOAT:
-                return Float.valueOf(rawValue);
-            case DOUBLE:
-                return Double.valueOf(rawValue);
-            case BOOLEAN:
-                return Boolean.valueOf(rawValue);
-        }
-        return null;
+    public Object getItem(String name){
+        return readText("current", name);
     }
 
     /**
