@@ -14,7 +14,7 @@ public class StorageTest extends UnitTest {
         storage.addItem("St", "Test");
         storage.addItem("In", 1);
         storage.addItem("Fl", 1.0f);
-        storage.addItem("Do", 1.0d);
+        storage.addItem("Do", 2.0d);
         storage.addItem("Bo", true);
         storage.addItem("FieldSide", fieldSide);
         storage.saveItems();
@@ -22,14 +22,14 @@ public class StorageTest extends UnitTest {
 
     @Override
     protected void loop() {
-        log.show("St", storage.getItem("St"));
-        log.show("In", storage.getItem("In"));
-        log.show("Fl", storage.getItem("Fl"));
-        log.show("Do", storage.getItem("Do"));
-        log.show("Bo", storage.getItem("Bo"));
+        log.showAndRecord("St", storage.getItem("St"));
+        log.showAndRecord("In", storage.getItem("In"));
+        log.showAndRecord("Fl", storage.getItem("Fl"));
+        log.showAndRecord("Do", storage.getItem("Do"));
+        log.showAndRecord("Bo", storage.getItem("Bo"));
         fieldSide = FieldSide.create((String) storage.getItem("FieldSide"));
-        log.show("FieldSide", fieldSide);
-        log.show("FieldColor", fieldSide.name());
+        log.showAndRecord("FieldSide", fieldSide);
+        log.showAndRecord("FieldColor", fieldSide.name());
     }
 
     @Override
