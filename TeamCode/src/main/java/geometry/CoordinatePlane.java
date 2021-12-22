@@ -10,7 +10,7 @@ import static java.lang.Math.*;
 public class CoordinatePlane {
 
     // TODO NEW
-    // Finish all geometric classes
+    // Finish all geometric classes in polygon
 
 
     protected final Pose origin = new Pose(new Point(0, 0), 0);

@@ -63,10 +63,10 @@ public class Odometry extends RobotPart {
     public double[] getPosChangeCenter() {
         double d1 = getDeltaOdoOne();
         double d2 = getDeltaOdoTwo();
-        log.watch("delta odo1", d1);
-        log.watch("delta odo2", d2);
+        log.show("delta odo1", d1);
+        log.show("delta odo2", d2);
         double theta = -(d2 - d1)/R;
-        log.watch("delta theta", theta);
+        log.show("delta theta", theta);
         if (theta != 0) {
             double r2 = d1 / theta;
 //            log.watch("r2", r2);

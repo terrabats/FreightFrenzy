@@ -34,13 +34,11 @@ public class Turret extends RobotPart {
     public void resetEncoder(){trEnc.reset();}
 
     public void setTarget(double angle){
-        tr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        tr.setTargetPosition((int)(angle*Constants.TURRET_ANGLE_DEG_TO_TICKS));
-        tr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        tr.setPosition(angle*Constants.TURRET_ANGLE_DEG_TO_TICKS);
     }
 
     public boolean hasReachedTarget(){
-        return !tr.isBusy();
+        return tr.hasReachedPosition();
     }
 
     public double getTurretTargetPos(){
@@ -55,7 +53,6 @@ public class Turret extends RobotPart {
     }
 
     public void stopAndResetMode() {
-        tr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        tr.setPower(0);
+        tr.stopAndReset();
     }
 }

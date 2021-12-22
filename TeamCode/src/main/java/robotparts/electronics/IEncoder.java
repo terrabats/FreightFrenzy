@@ -12,9 +12,11 @@ public class IEncoder extends Electronic {
         motor = m;
         type = t;
     }
+
     public double getPos() {
         return motor.getCurrentPosition();
     }
+
     public Type getType(){
         return type;
     }

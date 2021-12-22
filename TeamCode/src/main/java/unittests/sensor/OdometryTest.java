@@ -27,8 +27,8 @@ public class OdometryTest extends UnitTest {
     @Override
     protected void loop() {
         bot.odometry.getPosChangeCenter();
-        log.watch("x", bot.odometry.getCurX());
-        log.watch("y", bot.odometry.getCurY());
-        log.watch("h", bot.odometry.getCurTheta() * 180/Math.PI);
+        log.show("x", bot.odometry.getCurX());
+        log.show("y", bot.odometry.getCurY());
+        log.show("h", bot.odometry.getCurTheta() * 180/Math.PI);
     }
 }
