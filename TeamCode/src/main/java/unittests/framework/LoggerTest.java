@@ -20,10 +20,10 @@ public class LoggerTest extends UnitTest{
         }else{
             s = Status.ACTIVE;
         }
-        log.display("log.display is working");
-        log.monitor("Double", d);
-        log.monitor("Boolean", b);
-        log.watch("Status Now", s);
-        log.save("All Status", s);
+        log.show("Double", d);
+        log.show("Boolean", b);
+        log.show("log.display is working");
+        log.showAndRecord("Status Now", s);
+        log.record("Last Status", s);
     }
 }

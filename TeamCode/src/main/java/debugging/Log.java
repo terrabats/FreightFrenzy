@@ -2,38 +2,25 @@ package debugging;
 
 import java.util.ArrayList;
 
+import util.store.Item;
+
 public class Log {
-    // TODO
-    // Make this have an item inside it
     /**
-     * Name of the log
+     * Item containing name and values
      */
-    public String name = "";
+    private final Item<ArrayList<Object>> item;
     /**
      * Type of log
      */
-    public LogType logType = LogType.NORMAL;
-    /**
-     * If this is true then telemetry will not be outputed
-     */
-    public boolean noTelemetry = false;
+
+    private Object currentObject = null;
 
     /**
-     * List of values
-     */
-    private final ArrayList<Object> values = new ArrayList<>();
-
-    /**
-     * Constructors for log
+     * Constructor for log
      * @param name
      */
     public Log(String name){
-        this.name = name;
-    }
-
-    public Log(String name, LogType logType){
-        this.name = name;
-        this.logType = logType;
+        item = new Item<>(name, new ArrayList<>());
     }
 
     /**
@@ -41,7 +28,8 @@ public class Log {
      * @param o
      */
     public void add(Object o){
-        values.add(o);
+        currentObject = o;
+        item.getValue().add(o);
     }
 
     /**
@@ -49,9 +37,11 @@ public class Log {
      * @param o
      */
     public void addNewOnly(Object o){
-        if(!o.equals(getCurrentObject())){
-            values.add(o);
-        }
+        if(!o.equals(getCurrentObject())){ add(o); }
+    }
+
+    public String getName(){
+        return item.getName();
     }
 
     /**
@@ -59,19 +49,15 @@ public class Log {
      * @return current object
      */
     public Object getCurrentObject(){
-        if(values.size()>0) {
-            return values.get(values.size() - 1);
-        }else{
-            return null;
-        }
+        return currentObject;
     }
 
     /**
      * Get the list of values
-     * @return
+     * @return values
      */
     public ArrayList<Object> getValues(){
-        return values;
+        return item.getValue();
     }
 
 }

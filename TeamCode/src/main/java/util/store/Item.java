@@ -2,6 +2,8 @@ package util.store;
 
 import java.util.Objects;
 
+import static global.General.log;
+
 public class Item<T> {
     /**
      * Item represents a item, should be created as follows
@@ -27,7 +29,7 @@ public class Item<T> {
     public Item(String name, T value){
         this.name = name;
         this.value = value;
-        this.type = getTypeFromObject();
+        this.type = ItemType.STRING;
     }
 
     /**
@@ -71,10 +73,8 @@ public class Item<T> {
      * @return
      */
     public static Object getObjectFromType(String rawString){
-        // TODO FIX
-        // Make it so that it split the raw string according to the below toString method, (split at the " : ")
-        String rawType = rawString;
-        String rawValue = rawString;
+        String rawType = rawString.split(":")[0];
+        String rawValue = rawString.split(":")[1];
         switch (Objects.requireNonNull(ItemType.fromString(rawType))){
             case STRING:
                 return rawValue;
@@ -96,7 +96,7 @@ public class Item<T> {
      */
     @Override
     public String toString(){
-        return type.toString() + " : " + value.toString();
+        return type.toString() + ":" + value.toString();
     }
 
     /**
