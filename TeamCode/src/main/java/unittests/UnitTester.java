@@ -9,6 +9,7 @@ import unittests.framework.*;
 import unittests.hardware.*;
 
 import teleutil.button.Button;
+import unittests.sensor.OdometryTest;
 import util.store.Item;
 
 import static global.General.*;
@@ -23,7 +24,7 @@ public class UnitTester extends Tele {
      * Type of testing mode
      * @link TestType
      */
-    private final TestType testingMode = TestType.SELECTION;
+    private final TestType testingMode = TestType.CONTROL;
 
     /**
      * Creates all of the unit tests, comment in the ones you want
@@ -39,11 +40,11 @@ public class UnitTester extends Tele {
 //        add(new RobotFunctionsTest());
 //        add(new ThreadTest());
 //        add(new StorageTest());
-        add(new ModulesTest());
+//        add(new ModulesTest());
 //        add(new AutoModuleTest());
 
         // Hardware
-        add(new TankDriveTest());
+//        add(new TankDriveTest());
 //        add(new IntakeTest());
 //        add(new TurretTest());
 //        add(new LiftTest());
@@ -54,7 +55,7 @@ public class UnitTester extends Tele {
 //        add(new ColorTest());
 //        add(new DistanceTest());
 //        add(new GyroTest());
-//        add(new OdometryTest());
+        add(new OdometryTest());
 //        add(new TouchTest());
 //        add(new OdometryTest());
     }
