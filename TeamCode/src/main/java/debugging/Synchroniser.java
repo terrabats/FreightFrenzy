@@ -42,7 +42,7 @@ public class Synchroniser {
          * The amount of delay between refreshes
          */
         double delay = (1000 * lagTimer.seconds()) / numUpdates;
-        log.save("Delay (ms)", delay);
+        log.record("Delay (ms)", delay);
         fault.warn("Robot is lagging", Expectation.EXPECTED, Magnitude.CRITICAL, delay < (1000/MINIMUM_REFRESH_RATE));
     }
 }

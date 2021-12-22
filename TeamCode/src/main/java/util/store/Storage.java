@@ -1,6 +1,5 @@
 package util.store;
 
-import android.graphics.Bitmap;
 import android.os.Environment;
 
 import java.io.BufferedReader;
@@ -95,9 +94,9 @@ public class Storage {
     private File makeOutputFolder(String dirname){
         File filepath = Environment.getExternalStorageDirectory();
         File ftcDir = new File(filepath.getAbsolutePath()+"/FTC_Files/");
-        log.save("was ftcDir made?", ftcDir.mkdir());
+        log.record("was ftcDir made?", ftcDir.mkdir());
         File outDir = new File(ftcDir.getAbsolutePath()+"/"+dirname+"/");
-        log.save("was outDir made?", outDir.mkdir());
+        log.record("was outDir made?", outDir.mkdir());
         return outDir;
     }
 }

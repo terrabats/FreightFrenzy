@@ -68,7 +68,7 @@ public interface Common{
      */
     default void activate(FieldSide side){
         fieldSide = side;
-        log.watch("Ready");
+        log.show("Ready");
         log.showTelemetry();
     }
 

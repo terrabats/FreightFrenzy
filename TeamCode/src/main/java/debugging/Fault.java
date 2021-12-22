@@ -1,6 +1,5 @@
 package debugging;
 
-import util.Timer;
 import util.condition.Expectation;
 import util.condition.Magnitude;
 
@@ -70,11 +69,13 @@ public class Fault {
         if(!test){
             faultNum++;
             if(unsafeMode){
-                log.display( "Fault: " + faultNum + out);
+                log.showAndRecord( "Fault: " ,  faultNum + out);
             }else{
-                log.display( "Fault: " + out);
+                log.showAndRecord( "Fault: " ,  out);
                 if(createException) {
-                    throw new RuntimeException(out);
+                    RuntimeException exception = new RuntimeException(out);
+                    exception.printStackTrace();
+                    throw exception;
                 }
             }
         }

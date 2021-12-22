@@ -10,8 +10,6 @@ import util.condition.Status;
 
 import static global.General.*;
 
-import com.qualcomm.robotcore.hardware.CRServo;
-
 public class UnitTest {
     /**
      * Status of the unit test, starts at idle
@@ -55,12 +53,12 @@ public class UnitTest {
      * @param motor
      */
     protected void showConfig(String name, CMotor motor){
-        log.display("DcMotor: "+ name, "Dir: "+ motor.getDirection());
+        log.showAndRecord("DcMotor: "+ name, "Dir: "+ motor.getDirection());
     }
     protected void showConfig(String name, PServo pservo){
-        log.display("Servo: "+ name, "Dir: "+ pservo.getDirection() + "Lower: "+ pservo.getLower() + "Upper: " + pservo.getUpper());
+        log.showAndRecord("Servo: "+ name, "Dir: "+ pservo.getDirection() + "Lower: "+ pservo.getLower() + "Upper: " + pservo.getUpper());
     }
     protected void showConfig(String name, CServo crservo){
-        log.display("CRServo: "+ name, "Dir: "+ crservo.getDirection());
+        log.showAndRecord("CRServo: "+ name, "Dir: "+ crservo.getDirection());
     }
 }

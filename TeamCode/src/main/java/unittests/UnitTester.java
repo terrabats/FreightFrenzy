@@ -6,16 +6,18 @@ import elements.FieldSide;
 import teleop.Tele;
 import teleutil.Selector;
 import unittests.framework.*;
-import unittests.hardware.*;
 
 import teleutil.button.Button;
-import unittests.sensor.OdometryTest;
+import util.condition.Status;
 import util.store.Item;
 
 import static global.General.*;
 
+@SuppressWarnings("ALL")
 @TeleOp(name = "UnitTester", group = "UnitTests")
 public class UnitTester extends Tele {
+
+    private Status status = Status.ACTIVE;
     /**
      * Selector object to select the unit test for selection test type
      */
@@ -24,7 +26,7 @@ public class UnitTester extends Tele {
      * Type of testing mode
      * @link TestType
      */
-    private final TestType testingMode = TestType.CONTROL;
+    private final TestType testingMode = TestType.TIME;
 
     /**
      * Creates all of the unit tests, comment in the ones you want
@@ -36,7 +38,7 @@ public class UnitTester extends Tele {
 //        add(new CoordinatePlaneTest());
 //        add(new FaultTest());
 //        add(new GamepadTest());
-//        add(new LoggerTest());
+        add(new LoggerTest());
 //        add(new RobotFunctionsTest());
 //        add(new ThreadTest());
 //        add(new StorageTest());
@@ -55,7 +57,7 @@ public class UnitTester extends Tele {
 //        add(new ColorTest());
 //        add(new DistanceTest());
 //        add(new GyroTest());
-        add(new OdometryTest());
+//        add(new OdometryTest());
 //        add(new TouchTest());
 //        add(new OdometryTest());
     }
@@ -94,10 +96,10 @@ public class UnitTester extends Tele {
         });
 
         /**
-         * Request the opmode to stop if reached the end (except for selection testing mode)
+         * When the tests are done, set the status to disabled (except for selection mode)
          */
-        if(!testingMode.equals(TestType.SELECTION)){
-            selector.runOnEnd(this::requestOpModeStop);
+        if(!testingMode.equals(TestType.SELECTION)) {
+            selector.runOnEnd(() -> status = Status.DISABLED);
         }
         /**
          * Create all the unit tests and initialize them
@@ -107,7 +109,7 @@ public class UnitTester extends Tele {
         /**
          * Display the testing mode
          */
-        log.watch("Testing Mode: " + testingMode.toString());
+        log.show("Testing Mode: " + testingMode.toString());
         super.activate(FieldSide.UNKNOWN);
     }
 
@@ -116,9 +118,13 @@ public class UnitTester extends Tele {
      */
     @Override
     public void loop() {
-        selector.update();
-        showSelection();
-        runCurrentTest();
+        if(!status.equals(Status.DISABLED)) {
+            selector.update();
+            showSelection();
+            runCurrentTest();
+        }else{
+            log.show("Done With All Tests");
+        }
         super.update(true);
     }
 
@@ -171,10 +177,10 @@ public class UnitTester extends Tele {
                 }
                 log.list(selector.getItemClassNames(), selector.getCurrentIndex());
             }else{
-                log.display("Testing " + getCurrentTestName());
+                log.showAndRecord("Testing " ,  getCurrentTestName());
             }
         }else {
-            log.display("Testing " + getCurrentTestName());
+            log.showAndRecord("Testing " ,  getCurrentTestName());
         }
     }
 

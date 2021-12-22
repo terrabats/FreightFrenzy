@@ -9,8 +9,8 @@ import static global.General.*;
 public class ColorTest extends UnitTest {
     @Override
     protected void loop() {
-        log.watch("hsv", Arrays.toString(bot.colorSensors.getOuttakeColorHSV()));
-        log.watch("isBall", bot.colorSensors.isBall());
-        log.watch("isCube", bot.colorSensors.isCube());
+        log.show("hsv", Arrays.toString(bot.colorSensors.getOuttakeColorHSV()));
+        log.show("isBall", bot.colorSensors.isBall());
+        log.show("isCube", bot.colorSensors.isCube());
     }
 }

@@ -35,7 +35,7 @@ public class AccessTest extends UnitTest {
     @Override
     protected void loop() {
         // Should both be true until 5 seconds has passed, then access will not be allowed in thread.
-        log.display("Access is allowed here?", access.isAllowed());
-        log.display("Access is allowed in thread?", threadAccess);
+        log.showAndRecord("Access is allowed here?", access.isAllowed());
+        log.showAndRecord("Access is allowed in thread?", threadAccess);
     }
 }

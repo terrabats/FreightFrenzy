@@ -6,6 +6,6 @@ import static global.General.*;
 public class TouchTest extends UnitTest {
     @Override
     protected void loop() {
-        log.watch("pressed", bot.touchSensor.isOuttakePressingTouchSensor());
+        log.show("pressed", bot.touchSensor.isOuttakePressingTouchSensor());
     }
 }
