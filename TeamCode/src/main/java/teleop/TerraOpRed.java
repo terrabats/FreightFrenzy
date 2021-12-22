@@ -86,11 +86,8 @@ public class TerraOpRed extends Tele{
 //        }
 
         // Gamepad1
-        if(!bot.slowMode) {
-            bot.tankDrive.move(-gamepad1.right_stick_y, gamepad1.left_stick_x);
-        }else {
-            bot.tankDrive.move(-gamepad1.right_stick_y*0.4, gamepad1.left_stick_x*0.4);
-        }
+        bot.tankDrive.moveSmooth(-gamepad1.right_stick_y, gamepad1.left_stick_x);
+
         bot.carousel.move(gamepad1.right_trigger);
 
         // Gamepad2

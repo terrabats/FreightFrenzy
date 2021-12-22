@@ -16,7 +16,7 @@ import static java.lang.Math.*;
 
 public class Display extends JPanel {
 
-    // TODO NEW
+    // TOD3 NEW
     // Make this a actual frame work that lets you draw things
 
     private final int height = 700;

@@ -18,11 +18,9 @@ public class AutoModules {
     );
     public StageList Backward = new StageList(
         stages.liftEncoder(0.8, 55),
-        stages.turretEncoderTarget(0.8),
-        stages.robotSetSlowMode(true)
+        stages.turretEncoderTarget(0.8)
     );
     public StageList Forward = new StageList(
-        stages.robotSetSlowMode(false),
         stages.outtakeDrop(1),
         stages.turretEncoder(0.8, 0),
         stages.liftEncoder(0.4, 10),

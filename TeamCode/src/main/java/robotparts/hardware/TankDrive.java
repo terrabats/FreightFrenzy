@@ -4,15 +4,18 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import elements.FieldSide;
+import math.algebra.Logistic;
 import robotparts.RobotPart;
 import robotparts.electronics.CMotor;
 import robotparts.electronics.PServo;
 
 import static global.General.*;
+import static java.lang.Math.*;
 
 public class TankDrive extends RobotPart {
     private CMotor fr,br,fl,bl;
     private PServo re;
+    private Logistic movementCurve = new Logistic(10,5);
 
     @Override
     public void init(){
@@ -60,5 +63,11 @@ public class TankDrive extends RobotPart {
             move(0, t * Math.min(1, err/15));
             return moveForTime == 0 ? (Math.abs(err) < turnError) : (curTime >= moveForTime);
         }
+    }
+
+    public void moveSmooth(double f, double t){
+        // TODO TEST
+        // Test this and change coeffs if necessary
+        move(movementCurve.yr(f), t);
     }
 }

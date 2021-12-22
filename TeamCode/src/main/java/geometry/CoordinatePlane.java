@@ -9,7 +9,7 @@ import static java.lang.Math.*;
 
 public class CoordinatePlane {
 
-    // TODO NEW
+    // TODO3 NEW
     // Finish all geometric classes in polygon
 
 
