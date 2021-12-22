@@ -14,9 +14,6 @@ import util.ExceptionCatcher;
 import static global.General.*;
 
 public class Storage {
-
-    // TODO TEST
-    // Test this class agian using unittester and storage test afte the to do in item is fixed
     /**
      * List of items to store
      */
