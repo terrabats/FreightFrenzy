@@ -37,9 +37,6 @@ public class RobotFramework {
     /**
      *  Represents if the robot is in slow mode
      */
-    // TODO NEW
-    // Make slowMode better by doing testing and seeing if there is better way for the driver to slow down the robot
-//    public boolean slowMode = false;
 
     /**
      * Constructor for creating a robotFramework, this should be overriden by terraBot by extending this class
