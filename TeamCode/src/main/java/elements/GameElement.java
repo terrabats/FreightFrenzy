@@ -5,8 +5,4 @@ public enum GameElement {
     CUBE,
     UNKNOWN,
     NONE
-
-    // TODO NEW
-    // Add important information about objects here
-    // For example size, weight, etc..
 }
