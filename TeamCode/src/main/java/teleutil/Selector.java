@@ -17,8 +17,8 @@ public class Selector<T> {
     private ReturnCodeSeg<Boolean> down;
     private int currentIndex;
     private final boolean wrapAround;
-    public double delay = 0.2;
-    public final Timer updateTimer = new Timer();
+    private double delay = 0.2;
+    private Timer updateTimer = new Timer();
     private CodeSeg next = () -> {};
     private CodeSeg end = () -> {};
     private Status status = Status.IDLE;
@@ -49,6 +49,10 @@ public class Selector<T> {
     public void init(double timeBetweenUpdates){
         this.delay = timeBetweenUpdates;
         init(() -> true, () -> false);
+    }
+
+    public void resetUpdateTimer(){
+        updateTimer.reset();
     }
 
     public boolean isOnFirst(){ return currentIndex == 0; }
@@ -126,4 +130,5 @@ public class Selector<T> {
     }
 
     public ArrayList<String> getItemClassNames(){ return itemClassNames; }
+
 }

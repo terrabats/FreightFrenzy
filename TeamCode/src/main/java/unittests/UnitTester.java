@@ -41,8 +41,8 @@ public class UnitTester extends Tele {
 //        add(new LoggerTest());
 //        add(new RobotFunctionsTest());
 //        add(new ThreadTest());
-        add(new StorageTest());
-//        add(new ModulesTest());
+//        add(new StorageTest());
+        add(new ModulesTest());
 //        add(new AutoModuleTest());
 
         // Hardware
@@ -111,6 +111,11 @@ public class UnitTester extends Tele {
          */
         log.show("Testing Mode: " + testingMode.toString());
         super.activate(FieldSide.UNKNOWN);
+    }
+
+    @Override
+    public void start() {
+        selector.resetUpdateTimer();
     }
 
     /**
