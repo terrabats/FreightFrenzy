@@ -10,20 +10,21 @@ import static global.General.*;
 public class ModulesTest extends UnitTest {
     @Override
     protected void start() {
-        bot.rfsHandler.addToQueue(new Stage(
-                bot.intake.exitTime(2)
-        ));
-        bot.rfsHandler.addToQueue(new Stage(
-                bot.tankDrive.usePart(),
-                bot.tankDrive.main(0.3, 0),
-                bot.tankDrive.exitTime(1),
-                bot.tankDrive.stop(),
-                bot.tankDrive.returnPart()
-        ));
+        bot.rfsHandler.addToQueue(stages.intakeUntilFreight(1));
+//        bot.rfsHandler.addToQueue(new Stage(
+//                bot.intake.exitTime(1)
+//        ));
+//        bot.rfsHandler.addToQueue(new Stage(
+//                bot.tankDrive.usePart(),
+//                bot.tankDrive.main(0.3, 0),
+//                bot.tankDrive.exitTime(1),
+//                bot.tankDrive.stop(),
+//                bot.tankDrive.returnPart()
+//        ));
     }
 
     @Override
     protected void loop() {
-        bot.tankDrive.move(-0.3, 0);
+//        bot.tankDrive.move(-0.3, 0);
     }
 }

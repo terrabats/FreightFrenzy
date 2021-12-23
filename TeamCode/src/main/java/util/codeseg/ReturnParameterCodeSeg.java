@@ -2,7 +2,7 @@ package util.codeseg;
 
 /**
  * Used to return and object and input a parameter
- * @param <I>
+ * @param <P>
  * @param <R>
  */
 public interface ReturnParameterCodeSeg<P, R>{

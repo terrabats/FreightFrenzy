@@ -24,8 +24,8 @@ public class Intake extends RobotPart {
 
     // TODO TEST
     // Check if this works
-    public Main main(double power){return new Main(()-> bot.intake.move(power));}
+    public Main main(double power){return new Main(()-> move(power));}
 
-    public Stop stop(){return new Stop(() -> bot.intake.move(0));}
+    public Stop stop(){return new Stop(() -> move(0));}
 
 }

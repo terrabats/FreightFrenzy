@@ -13,6 +13,7 @@ public class Stages {
     // Defined in robotparts
     //
 
+
     public Stage intakeUntilFreight(double power){return new Stage(
             bot.intake.usePart(),
             bot.intake.main(power),

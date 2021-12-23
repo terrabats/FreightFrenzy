@@ -116,6 +116,7 @@ public class UnitTester extends Tele {
     @Override
     public void start() {
         selector.resetUpdateTimer();
+        super.start();
     }
 
     /**

@@ -52,13 +52,14 @@ public interface Common{
          * Create the robot, and then the modules, stages, and automodules
          */
         bot = new TerraBot();
+        /**
+        * Initialize the robot
+        */
+        bot.init();
+
         modules = new Modules();
         stages = new Stages();
         autoModules = new AutoModules();
-        /**
-         * Initialize the robot
-         */
-        bot.init();
     }
 
     /**

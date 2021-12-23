@@ -22,32 +22,32 @@ public class TerraBot extends RobotFramework {
      *  should go in robot framework.
      */
 
-//    public TankDrive tankDrive = new TankDrive();
-//    public Intake intake = new Intake();
-//    public Turret turret = new Turret();
-//    public Lift lift = new Lift();
-//    public Outtake outtake = new Outtake();
-//    public Carousel carousel = new Carousel();
-//    public ColorSensors colorSensors = new ColorSensors();
-//    public TouchSensors touchSensor = new TouchSensors();
+    public TankDrive tankDrive = new TankDrive();
+    public Intake intake = new Intake();
+    public Turret turret = new Turret();
+    public Lift lift = new Lift();
+    public Outtake outtake = new Outtake();
+    public Carousel carousel = new Carousel();
+    public ColorSensors colorSensors = new ColorSensors();
+    public TouchSensors touchSensor = new TouchSensors();
 //    public Gyro gyro = new Gyro();
-//    public Odometry odometry = new Odometry();
+    public Odometry odometry = new Odometry();
 //    public Distance distance = new Distance();
 //    public Led led = new Led();
 //    public MecanumDrive mecDrive = new MecanumDrive();
 
 
     // Empty Parts
-    public TankDrive tankDrive;
-    public Intake intake;
-    public Turret turret;
-    public Lift lift;
-    public Outtake outtake;
-    public Carousel carousel;
-    public ColorSensors colorSensors;
-    public TouchSensors touchSensor;
+//    public TankDrive tankDrive;
+//    public Intake intake;
+//    public Turret turret;
+//    public Lift lift;
+//    public Outtake outtake;
+//    public Carousel carousel;
+//    public ColorSensors colorSensors;
+//    public TouchSensors touchSensor;
     public GyroSensor gyroSensor;
-    public Odometry odometry = new Odometry();
+//    public Odometry odometry;
     public DistanceSensors distanceSensors;
     public Led led;
     public MecanumDrive mecanumDrive;
