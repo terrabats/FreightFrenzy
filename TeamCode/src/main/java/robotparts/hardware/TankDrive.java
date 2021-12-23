@@ -19,10 +19,6 @@ import static java.lang.Math.*;
 public class TankDrive extends RobotPart {
     private CMotor fr,br,fl,bl;
     private PServo re;
-    /**
-     * Keep k above 3 since that's basically linear
-     */
-    private final Logistic movementCurve = new Logistic(10,5);
 
     @Override
     public void init(){
@@ -73,9 +69,11 @@ public class TankDrive extends RobotPart {
     }
 
     public void moveSmooth(double f, double t){
+        Logistic movementCurveForward = new Logistic(10,5);
+        Logistic movementCurveTurn = new Logistic(30,6);
         // TODO TEST
         // Test this and change coeffs if necessary
-        move(movementCurve.yr(f), t);
+        move(movementCurveForward.yr(f), movementCurveTurn.yr(t));
     }
 
     public Main main(double forward, double strafe){
