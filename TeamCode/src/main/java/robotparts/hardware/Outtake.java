@@ -3,6 +3,8 @@ package robotparts.hardware;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import automodules.stage.Main;
+import automodules.stage.Stage;
+import elements.GameElement;
 import robotparts.RobotPart;
 import robotparts.electronics.PServo;
 
@@ -38,11 +40,36 @@ public class Outtake extends RobotPart {
     public void startTele(){ move("start"); }
     public void openTele(){ move("open"); }
 
-    // TODO TEST
-    // This may be a huge issue using bot inside itself
-    public Main lockIfBall(){return new Main(() -> {if (bot.colorSensors.isBall()) {lockBall();}});}
+    public Main mainLockIfBall(){return new Main(() -> {if (bot.colorSensors.isBall()) {lockBall();}});}
     public Main mainLockIfCube(){return new Main(() -> {if (bot.colorSensors.isCube()) {lockCube();}});}
 
-    public Main mainOuttakeDrop(){return new Main(this::open);}
-    public Main mainOuttakeReset(){return new Main(this::start);}
+    public Main mainDrop(){return new Main(this::open);}
+    public Main mainReset(){return new Main(this::start);}
+
+
+    public Stage outtakeLock(GameElement freightType, double time){
+        Main lock = null;
+        if(freightType.equals(GameElement.CUBE)){lock = mainLockIfCube();}
+        else if(freightType.equals(GameElement.BALL)){lock = mainLockIfBall();}
+        return new Stage(
+                usePart(),
+                lock,
+                exitTime(time),
+                returnPart()
+        );
+    }
+
+    public Stage outtakeDrop(double time){ return new Stage(
+            usePart(),
+            mainDrop(),
+            exitTime(time),
+            returnPart()
+    );}
+
+    public Stage outtakeReset(double time){ return new Stage(
+            usePart(),
+            mainReset(),
+            exitTime(time),
+            returnPart()
+    );}
 }

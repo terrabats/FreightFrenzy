@@ -7,15 +7,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import automodules.AutoModules;
-import automodules.Modules;
-import automodules.Stages;
 import debugging.Synchroniser;
 import elements.FieldSide;
 import robot.TerraBot;
 import teleutil.GamepadHandler;
 import debugging.Fault;
 import debugging.Logger;
-import util.Access.*;
 import util.User;
 import util.store.Storage;
 
@@ -68,10 +65,8 @@ public class General {
      */
     public static FieldSide fieldSide;
     /**
-     * Modules, stages, and automodles for creating automodules
+     * Automodles (exectues series of steps to make driving easier)
      */
-    public static Modules modules;
-    public static Stages stages;
     public static AutoModules autoModules;
     /**
      * The main user

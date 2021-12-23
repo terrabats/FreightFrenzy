@@ -3,8 +3,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import automodules.AutoModules;
-import automodules.Modules;
-import automodules.Stages;
 import debugging.Synchroniser;
 import elements.FieldSide;
 import robot.TerraBot;
@@ -52,14 +50,13 @@ public interface Common{
          * Create the robot, and then the modules, stages, and automodules
          */
         bot = new TerraBot();
-        /**
-        * Initialize the robot
-        */
-        bot.init();
 
-        modules = new Modules();
-        stages = new Stages();
         autoModules = new AutoModules();
+
+        /**
+         * Initialize the robot
+         */
+        bot.init();
     }
 
     /**

@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import automodules.stage.Exit;
 import automodules.stage.Initial;
 import automodules.stage.Main;
+import automodules.stage.Stage;
 import automodules.stage.Stop;
 import elements.FieldSide;
 import global.Constants;
@@ -71,7 +72,23 @@ public class Turret extends RobotPart {
 
     public Stop stopEncoder(){return new Stop(this::stopAndResetMode);}
 
+    public Stage turretEncoder(double power, double angle){return new Stage(
+            usePart(),
+            initialSetTarget(angle),
+            main(power),
+            exitReachedTarget(),
+            stopEncoder(),
+            returnPart()
+    );}
 
+    public Stage turretEncoderTarget(double power){return new Stage(
+            usePart(),
+            initialSetFieldSideTarget(),
+            main(power),
+            exitReachedTarget(),
+            stopEncoder(),
+            returnPart()
+    );}
 
 
 }

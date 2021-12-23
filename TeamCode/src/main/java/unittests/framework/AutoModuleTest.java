@@ -8,7 +8,7 @@ import static global.General.*;
 public class AutoModuleTest extends UnitTest {
 
     public StageList test = new StageList(
-            stages.turretEncoder(0.2, 90)
+            bot.turret.turretEncoder(0.2, 90)
     );
 
     @Override

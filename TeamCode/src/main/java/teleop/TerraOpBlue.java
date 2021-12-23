@@ -25,8 +25,6 @@ import static global.General.gamepad2;
 import static global.General.gph1;
 import static global.General.gph2;
 import static global.General.log;
-import static global.General.modules;
-import static global.General.stages;
 
 @TeleOp(name = "TerraOpBlue", group = "TeleOp")
 public class TerraOpBlue extends Tele{
@@ -58,7 +56,7 @@ public class TerraOpBlue extends Tele{
 
     @Override
     public void start() {
-        bot.addAutoModule(new StageList(stages.liftEncoder(0.4,10)));
+        //bot.addAutoModule(new StageList(bot.lift.liftEncoder(0.4,10)));
 
         super.start();
 

@@ -14,6 +14,7 @@ import java.util.TreeMap;
 
 import automodules.stage.Exit;
 import automodules.stage.Initial;
+import automodules.stage.Main;
 import automodules.stage.Stop;
 import robot.RobotFramework;
 import robotparts.electronics.CMotor;
@@ -197,4 +198,9 @@ public class RobotPart extends Electronic {
 
     public Initial usePart(){return new Initial(() -> switchUser(User.ROFU));}
     public Stop returnPart(){return new Stop(() -> switchUser(mainUser));}
+
+    // TODO TEST
+    // Test these please
+    public Main pause() {return new Main(() -> bot.rfsHandler.addPause());}
+    public Main resume(){return new Main(() -> bot.rfsHandler.resume());}
 }

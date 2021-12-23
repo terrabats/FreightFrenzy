@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import automodules.stage.Exit;
 import automodules.stage.Initial;
 import automodules.stage.Main;
+import automodules.stage.Stage;
 import automodules.stage.Stop;
 import global.Constants;
 import robotparts.RobotPart;
@@ -55,9 +56,26 @@ public class Lift extends RobotPart {
 
     public Exit exitReachedTarget(){return new Exit(this::hasReachedTarget);}
 
-    public Stop stopLift(){return new Stop(() -> move(0));}
+    public Stop stop(){return new Stop(() -> move(0));}
 
-    public Stop stopLiftEncoder(){return new Stop(this::stopAndResetMode);}
+    public Stop stopEncoder(){return new Stop(this::stopAndResetMode);}
+
+    public Stage liftTime(double power, double time){return new Stage(
+            usePart(),
+            main(power),
+            exitTime(time),
+            stop(),
+            returnPart()
+    );}
+
+    public Stage liftEncoder(double power, double height){return new Stage(
+            usePart(),
+            initialSetTarget(height),
+            main(power),
+            exitReachedTarget(),
+            stopEncoder(),
+            returnPart()
+    );}
 
 
 
