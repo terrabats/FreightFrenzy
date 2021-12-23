@@ -2,7 +2,6 @@ package unittests.sensor;
 
 import static global.General.*;
 
-import geometry.Point;
 import unittests.UnitTest;
 
 //TOD: TEST THIS
@@ -26,9 +25,9 @@ public class OdometryTest extends UnitTest {
 
     @Override
     protected void loop() {
-        bot.odometry.getPosChangeCenter();
+        bot.odometry.update();
         log.show("x", bot.odometry.getCurX());
         log.show("y", bot.odometry.getCurY());
-        log.show("h", bot.odometry.getCurTheta() * 180/Math.PI);
+        log.show("h", bot.odometry.getCurThetaDeg());
     }
 }

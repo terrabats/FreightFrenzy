@@ -15,16 +15,10 @@ public class GyroSensor extends RobotPart {
         gsr = createGyro("gsr");
         gsl = createGyro("gsl");
     }
-
-    public void resetRight() {
-        //
+    public double getRightHeadingRad() {
+        return getRightHeadingDeg() * Math.PI/180;
     }
-
-
-//    public double getLeftHeading(){
-//        return gsl.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
-//    }
-    public double getRightHeading() {
+    public double getRightHeadingDeg() {
         return gsr.getHeading();
     }
     public double getLeftHeading() {

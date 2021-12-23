@@ -3,8 +3,6 @@ package robotparts.hardware;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import automodules.stage.Exit;
-import automodules.stage.Initial;
 import automodules.stage.Main;
 import automodules.stage.Stop;
 import elements.FieldSide;
@@ -14,7 +12,6 @@ import robotparts.electronics.CMotor;
 import robotparts.electronics.PServo;
 
 import static global.General.*;
-import static java.lang.Math.*;
 
 public class TankDrive extends RobotPart {
     private CMotor fr,br,fl,bl;
@@ -42,13 +39,13 @@ public class TankDrive extends RobotPart {
     private final double turnError = 1;
 
     public void setAutonNewSegment(double changeAng, double forTime) {
-        stAng = bot.gyroSensor.getRightHeading();
+        stAng = bot.gyroSensor.getRightHeadingDeg();
         endAng = stAng - changeAng;
         moveForTime = forTime;
     }
 
     private double getAutonTurnError() {
-        return bot.gyroSensor.getRightHeading() - endAng;
+        return bot.gyroSensor.getRightHeadingDeg() - endAng;
     }
 
     public boolean moveAutonDone(double f, double t, double curTime) {
