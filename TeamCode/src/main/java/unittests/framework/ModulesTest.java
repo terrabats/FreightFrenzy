@@ -11,14 +11,14 @@ public class ModulesTest extends UnitTest {
     @Override
     protected void start() {
         bot.rfsHandler.addToQueue(new Stage(
-                modules.exitTime(1)
+                bot.intake.exitTime(2)
         ));
         bot.rfsHandler.addToQueue(new Stage(
-                modules.usePart(bot.tankDrive),
-                modules.mainTankDrive(0.3,0),
-                modules.exitTime(1),
-                modules.stopTankDrive(),
-                modules.returnPart(bot.tankDrive)
+                bot.tankDrive.usePart(),
+                bot.tankDrive.main(0.3, 0),
+                bot.tankDrive.exitTime(1),
+                bot.tankDrive.stop(),
+                bot.tankDrive.returnPart()
         ));
     }
 

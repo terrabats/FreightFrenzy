@@ -3,6 +3,10 @@ package robotparts.hardware;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import automodules.stage.Exit;
+import automodules.stage.Initial;
+import automodules.stage.Main;
+import automodules.stage.Stop;
 import elements.FieldSide;
 import math.algebra.Logistic;
 import robotparts.RobotPart;
@@ -15,7 +19,10 @@ import static java.lang.Math.*;
 public class TankDrive extends RobotPart {
     private CMotor fr,br,fl,bl;
     private PServo re;
-    private Logistic movementCurve = new Logistic(10,5);
+    /**
+     * Keep k above 3 since that's basically linear
+     */
+    private final Logistic movementCurve = new Logistic(10,5);
 
     @Override
     public void init(){
@@ -69,5 +76,13 @@ public class TankDrive extends RobotPart {
         // TODO TEST
         // Test this and change coeffs if necessary
         move(movementCurve.yr(f), t);
+    }
+
+    public Main main(double forward, double strafe){
+        return new Main(() -> move(forward, strafe));
+    }
+
+    public Stop stop(){
+        return new Stop(() -> {move(0,0);});
     }
 }

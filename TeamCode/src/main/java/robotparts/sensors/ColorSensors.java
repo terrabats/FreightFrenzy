@@ -1,8 +1,11 @@
 package robotparts.sensors;
 
+import automodules.stage.Exit;
 import elements.GameElement;
 import robotparts.RobotPart;
 import robotparts.electronics.IColor;
+
+import static global.General.bot;
 
 public class ColorSensors extends RobotPart {
     private IColor cso;
@@ -41,4 +44,6 @@ public class ColorSensors extends RobotPart {
             return GameElement.NONE;
         }
     }
+    public Exit exitFreight(){return new Exit(this::isFreight);}
+
 }

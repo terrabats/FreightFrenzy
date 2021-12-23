@@ -2,8 +2,11 @@ package robotparts.hardware;
 
 import com.qualcomm.robotcore.hardware.Servo;
 
+import automodules.stage.Main;
 import robotparts.RobotPart;
 import robotparts.electronics.PServo;
+
+import static global.General.bot;
 
 public class Outtake extends RobotPart {
     private PServo lo;
@@ -34,4 +37,12 @@ public class Outtake extends RobotPart {
     public void alignTele(){ move("aligned"); }
     public void startTele(){ move("start"); }
     public void openTele(){ move("open"); }
+
+    // TODO TEST
+    // This may be a huge issue using bot inside itself
+    public Main lockIfBall(){return new Main(() -> {if (bot.colorSensors.isBall()) {lockBall();}});}
+    public Main mainLockIfCube(){return new Main(() -> {if (bot.colorSensors.isCube()) {lockCube();}});}
+
+    public Main mainOuttakeDrop(){return new Main(this::open);}
+    public Main mainOuttakeReset(){return new Main(this::start);}
 }

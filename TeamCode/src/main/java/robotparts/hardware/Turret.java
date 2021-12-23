@@ -3,12 +3,17 @@ package robotparts.hardware;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+import automodules.stage.Exit;
+import automodules.stage.Initial;
+import automodules.stage.Main;
+import automodules.stage.Stop;
 import elements.FieldSide;
 import global.Constants;
 import robotparts.RobotPart;
 import robotparts.electronics.IEncoder;
 import robotparts.electronics.PMotor;
 
+import static global.General.bot;
 import static global.General.fieldSide;
 
 public class Turret extends RobotPart {
@@ -55,4 +60,18 @@ public class Turret extends RobotPart {
     public void stopAndResetMode() {
         tr.stopAndReset();
     }
+
+    public Initial initialSetTarget(double angle){return new Initial(() -> setTarget(angle));}
+    public Initial initialSetFieldSideTarget(){return new Initial(() -> setTarget(getTurretTargetPos()));}
+
+    public Main main(double power){return new Main(()-> move(power));}
+    public Exit exitReachedTarget(){return new Exit(this::hasReachedTarget);}
+
+    public Stop stop(){return new Stop(()-> bot.turret.move(0));}
+
+    public Stop stopEncoder(){return new Stop(this::stopAndResetMode);}
+
+
+
+
 }

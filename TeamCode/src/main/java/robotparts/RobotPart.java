@@ -12,6 +12,9 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 import java.util.Map;
 import java.util.TreeMap;
 
+import automodules.stage.Exit;
+import automodules.stage.Initial;
+import automodules.stage.Stop;
 import robot.RobotFramework;
 import robotparts.electronics.CMotor;
 import robotparts.electronics.CServo;
@@ -190,4 +193,8 @@ public class RobotPart extends Electronic {
      */
     private void forAllElectronics(ParameterCodeSeg<Electronic> run){ for(Electronic e: electronics.values()){ run.run(e); } }
 
+    public Exit exitTime(double s){return new Exit(() -> bot.rfsHandler.timer.seconds() > s);}
+
+    public Initial usePart(){return new Initial(() -> switchUser(User.ROFU));}
+    public Stop returnPart(){return new Stop(() -> switchUser(mainUser));}
 }
