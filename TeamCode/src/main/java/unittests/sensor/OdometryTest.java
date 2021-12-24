@@ -25,7 +25,8 @@ public class OdometryTest extends UnitTest {
 
     @Override
     protected void loop() {
-//        bot.odometry.update();
+//        bot.tankDrive.moveSmooth(-gamepad1.right_stick_y, gamepad1.left_stick_x);
+
         log.show("x", bot.odometry.getCurX());
         log.show("y", bot.odometry.getCurY());
         log.show("h", bot.odometry.getCurThetaDeg());

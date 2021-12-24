@@ -68,8 +68,6 @@ public class TankDrive extends RobotPart {
     public void moveSmooth(double f, double t){
         Logistic movementCurveForward = new Logistic(10,5);
         Logistic movementCurveTurn = new Logistic(30,6);
-        // TODO TEST
-        // Test this and change coeffs if necessary
         move(movementCurveForward.yr(f), movementCurveTurn.yr(t));
     }
 

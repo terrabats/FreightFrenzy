@@ -18,19 +18,15 @@ public class DisplayPath extends JPanel {
 
     private final int height = 700;
     private final int width = 700;
-    private final int xScale = 5;
-    private final int yScale = 5;
+    private final int xScale = 3;
+    private final int yScale = 3;
     private Path pathToDisplay;
 
     public void genTestPlane(){
         Generator generator = new Generator();
-        generator.moveTo(0,0, 0);
-        generator.moveTo(30, 0, PI);
-        generator.moveTo(10,5,PI);
-        generator.moveTo(30, 5, PI);
-        generator.moveTo(30,30, PI/2);
-        generator.moveTo(0, 0, -PI/2);
-        generator.moveTo(25, 20, 3 * PI/2);
+        generator.moveTo(0,0, PI/2);
+        generator.moveTo(-60, 60, PI/2);
+        generator.moveTo(-1,33,-PI/4);
 
         //(10, 5, pi) , (30, 5, pi), (30, 30, pi/2), (0, 0, -pi/2) , (25, 20, 3pi/2)
 

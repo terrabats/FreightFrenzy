@@ -15,10 +15,10 @@ public class IGyro extends Electronic {
     public IGyro(BNO055IMU gyro){
         this.gyro = gyro;
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
-        gyro.initialize(parameters);
+        //parameters.calibrationDataFile = "BNO055IMUCalibration.json";
+        this.gyro.initialize(parameters);
     }
     public double getHeading(){
         return gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;

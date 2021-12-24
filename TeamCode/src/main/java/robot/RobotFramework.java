@@ -16,7 +16,7 @@ public class RobotFramework {
      * The allRobotParts arraylist contains all of the robotParts in the robot,
      * The RobotPart constructor automatically adds itself to this static arraylist
      */
-    public static ArrayList<RobotPart> allRobotParts = new ArrayList<>();
+    public static ArrayList<RobotPart> allRobotParts;
     /**
      * The localPlane Coordinate plane represents the robots local perspective
      */
@@ -43,6 +43,7 @@ public class RobotFramework {
      * Objects are instantiated here, and rfsHandler is also initialized, which sets the update code
      */
     protected RobotFramework(){
+        allRobotParts = new ArrayList<>();
         localPlane = new CoordinatePlane();
         rfsHandler = new RobotFunctions();
         robotFunctionsThread = new TerraThread();
