@@ -13,7 +13,7 @@ public class GyroSensor extends RobotPart {
     @Override
     public void init() {
         gsr = createGyro("gsr");
-        gsl = createGyro("gsl");
+//        gsl = createGyro("gsl");
     }
     public double getRightHeadingRad() {
         return getRightHeadingDeg() * Math.PI/180;
@@ -21,8 +21,8 @@ public class GyroSensor extends RobotPart {
     public double getRightHeadingDeg() {
         return gsr.getHeading();
     }
-    public double getLeftHeading() {
-        return gsl.getHeading();
-    }
+//    public double getLeftHeading() {
+//        return gsl.getHeading();
+//    }
 
 }

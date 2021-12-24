@@ -31,6 +31,7 @@ public class TerraBot extends RobotFramework {
     public ColorSensors colorSensors = new ColorSensors();
     public TouchSensors touchSensor = new TouchSensors();
 //    public Gyro gyro = new Gyro();
+    public GyroSensor gyroSensor = new GyroSensor();
     public Odometry odometry = new Odometry();
 //    public Distance distance = new Distance();
 //    public Led led = new Led();
@@ -46,7 +47,6 @@ public class TerraBot extends RobotFramework {
 //    public Carousel carousel;
 //    public ColorSensors colorSensors;
 //    public TouchSensors touchSensor;
-    public GyroSensor gyroSensor;
 //    public Odometry odometry;
     public DistanceSensors distanceSensors;
     public Led led;

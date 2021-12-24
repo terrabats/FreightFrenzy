@@ -25,7 +25,7 @@ public class OdometryTest extends UnitTest {
 
     @Override
     protected void loop() {
-        bot.odometry.update();
+//        bot.odometry.update();
         log.show("x", bot.odometry.getCurX());
         log.show("y", bot.odometry.getCurY());
         log.show("h", bot.odometry.getCurThetaDeg());

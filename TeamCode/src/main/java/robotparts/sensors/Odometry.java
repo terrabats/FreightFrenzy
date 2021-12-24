@@ -17,18 +17,19 @@ public class Odometry extends RobotPart {
     private double prevOdoOnePos = 0;
 //    private double prevOdoTwoPos = 0;
 
-    private final CodeSeg odometryUpdateCode = () -> {};
+    private final CodeSeg odometryUpdateCode = this::update;
 
 //    private IEncoder rEnc;
     private IEncoder cEnc;
 
     public double[] curPos = new double[] { 0, 0, 0 };
+    public double[] lastChangePos = new double[] { 0, 0, 0 };
 
     @Override
     public void init() {
 //        rEnc = createEncoder("br", "rEnc", IEncoder.Type.NORMAL);
         cEnc = createEncoder("bl", "cEnc", IEncoder.Type.NORMAL);
-        getPosChange();
+        update();
         curPos = new double[] { 0, 0, 0 };
         odometryThread.setCode(odometryUpdateCode);
 
@@ -71,9 +72,11 @@ public class Odometry extends RobotPart {
     }
 
     public double[] getPosChange() {
-        double[] posChange = getPosChangeCenter();
-        posChange[0] *= cos(curPos[2]);
-        posChange[1] *= sin(curPos[2]);
+        lastChangePos = getPosChangeCenter();
+        double[] posChange = new double[3];
+        posChange[0] = lastChangePos[1] * sin(curPos[2] - PI/2);
+        posChange[1] = lastChangePos[1] * cos(curPos[2] - PI/2);
+        posChange[2] = lastChangePos[2];
         return posChange;
     }
 
