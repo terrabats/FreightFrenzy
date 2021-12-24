@@ -3,6 +3,9 @@ package teleutil.button;
 import teleutil.GamepadHandler;
 import util.codeseg.CodeSeg;
 
+/**
+ * Occurs (multiple times) when the toggler is off
+ */
 public class WhenOffEventHandler extends OnPressEventHandler {
     public boolean on = false;
     private final CodeSeg runWhenOn;

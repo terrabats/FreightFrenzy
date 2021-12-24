@@ -5,6 +5,9 @@ import java.util.Objects;
 import teleutil.GamepadHandler;
 import util.codeseg.CodeSeg;
 
+/**
+ * Occurs (multiple times) when the button is currently pressed
+ */
 public class ButtonEventHandler {
     protected CodeSeg codeSeg;
     public Button button;
