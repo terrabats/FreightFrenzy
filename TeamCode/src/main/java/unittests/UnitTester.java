@@ -38,7 +38,7 @@ public class UnitTester extends Tele {
 //        add(new AccessTest());
 //        add(new CoordinatePlaneTest());
 //        add(new FaultTest());
-        add(new GamepadTest());
+//        add(new GamepadTest());
         add(new LoggerTest());
 //        add(new RobotFunctionsTest());
 //        add(new ThreadTest());

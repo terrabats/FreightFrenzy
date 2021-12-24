@@ -197,6 +197,7 @@ public class RobotPart extends Electronic {
     private void forAllElectronics(ParameterCodeSeg<Electronic> run){ for(Electronic e: electronics.values()){ run.run(e); } }
 
     public Exit exitTime(double s){return new Exit(() -> bot.rfsHandler.timer.seconds() > s);}
+    public Exit exit(){return new Exit(() -> true);}
 
     public Initial usePart(){return new Initial(() -> switchUser(User.ROFU));}
     public Stop returnPart(){return new Stop(() -> switchUser(mainUser));}
