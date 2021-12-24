@@ -63,10 +63,6 @@ public class RobotFunctions {
         } else {
             robotFunctionsThread.setStatus(Status.IDLE);
         }
-        /**
-         * Update the telemetry
-         */
-        telemetry.update();
     };
 
     /**

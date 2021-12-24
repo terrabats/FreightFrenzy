@@ -10,9 +10,6 @@ import util.store.Item;
 import static global.General.*;
 
 public class Logger {
-
-    // TODO TEST
-    // Is logger being bad? (randomly not showing telementry (maybe updating telemetry multiple times)
     /**
      * Hashmap of logs
      * NOTE: Hashmaps preserve order unlike treemaps
