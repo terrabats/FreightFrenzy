@@ -113,11 +113,23 @@ public class RobotFramework {
     // TODO TEST
     // Might have been fixed – test
     public void cancelAutoModule(){
+        setUserMainAndHalt();
         rfsHandler.emptyQueue();
-        setUser(mainUser);
+    }
+
+    public void setUserMainAndHalt() {
+        forAllParts(part -> {
+            if (!part.getUser().equals(mainUser)){
+                part.switchUser(mainUser);
+                part.checkAccess(mainUser);
+                part.halt();
+            }
+        });
     }
 
     public void resumeAutoModule(){ rfsHandler.resume(); }
+
+    public void pauseAutoModuleNow() { rfsHandler.pauseNow(); }
 
     /**
      * This runs the specified code for all of the robot parts.

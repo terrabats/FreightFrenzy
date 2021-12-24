@@ -53,7 +53,7 @@ public class RobotFunctions {
              * If the stage should stop, then run on stop code, remove the stage, and reset the timer
              * Otherwise, set the thread to Status.IDLE to prevent unnecessary lag
              */
-            if (s.shouldStop()) {
+            if (s.shouldStop() && !s.isPause()) {
                 s.runOnStop();
                 rfsQueue.poll();
                 timer.reset();
@@ -111,6 +111,18 @@ public class RobotFunctions {
             robotFunctionsThread.setStatus(Status.ACTIVE);
         }
         rfsQueue.add(s);
+    }
+
+    public final void pauseNow() {
+        Queue<Stage> newStages = new LinkedList<>();
+        if (!rfsQueue.isEmpty()) {
+            newStages.add(rfsQueue.poll());
+        }
+        newStages.add(new Stage(true));
+        while (!rfsQueue.isEmpty()) {
+            newStages.add(rfsQueue.poll());
+        }
+        rfsQueue = newStages;
     }
 
     /**
