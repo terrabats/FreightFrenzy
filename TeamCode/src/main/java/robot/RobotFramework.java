@@ -116,6 +116,8 @@ public class RobotFramework {
         rfsHandler.emptyQueue();
     }
 
+    public void resumeAutoModule(){ rfsHandler.resume(); }
+
     /**
      * This runs the specified code for all of the robot parts.
      * The type parameter code segment will accept the current robotpart
