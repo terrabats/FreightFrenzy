@@ -87,7 +87,7 @@ public class RobotFunctions {
      * Make the first stage a pause so the thread doesn't start updating until resume is called
      */
     public void init(){
-        addPause();
+        addToQueue(new Stage(true));
         robotFunctionsThread.setCode(updateCode);
     }
 
@@ -124,12 +124,5 @@ public class RobotFunctions {
         if (!rfsQueue.isEmpty()) rfsQueue.peek().runOnStop();
         rfsQueue.clear();
         timer.reset();
-    }
-
-    /**
-     * Add a pause to the queue
-     */
-    public void addPause() {
-        addToQueue(new Stage(true));
     }
 }
