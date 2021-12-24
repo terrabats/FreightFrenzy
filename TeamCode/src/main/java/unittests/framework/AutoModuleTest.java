@@ -43,11 +43,16 @@ public class AutoModuleTest extends UnitTest {
 
     @Override
     protected void start() {
-        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(testPause));
-//        gph1.link(Button.A, OnPressEventHandler.class,() -> bot.addAutoModule(autoModules.Intake));
+//        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(testPause));
+        gph1.link(Button.A, OnPressEventHandler.class,() -> bot.addAutoModule(autoModules.Intake));
         gph1.link(Button.B, OnPressEventHandler.class,() -> bot.addAutoModule(autoModules.Backward));
         gph1.link(Button.Y, OnPressEventHandler.class,() -> bot.addAutoModule(autoModules.Forward));
 //        gph1.link(Button.X, OnPressEventHandler.class, () -> bot.resumeAutoModule());
-//        gph1.link(Button.X, OnPressEventHandler.class, () -> bot.cancelAutoModule());
+        gph1.link(Button.X, OnPressEventHandler.class, () -> bot.cancelAutoModule());
+    }
+
+    @Override
+    protected void loop() {
+        bot.intake.move(gamepad1.right_stick_y);
     }
 }

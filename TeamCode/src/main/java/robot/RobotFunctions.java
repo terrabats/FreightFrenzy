@@ -117,8 +117,13 @@ public class RobotFunctions {
      * Empty the queue and reset the timer
      */
     public final void emptyQueue(){
-        if (!rfsQueue.isEmpty()) rfsQueue.peek().runOnStop();
-        rfsQueue.clear();
+        if (!rfsQueue.isEmpty()) {
+            Stage s = rfsQueue.peek();
+            rfsQueue.clear();
+            s.runOnStop();
+        } else {
+            rfsQueue.clear();
+        }
         timer.reset();
     }
 }

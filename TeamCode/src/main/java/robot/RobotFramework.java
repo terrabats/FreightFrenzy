@@ -114,6 +114,7 @@ public class RobotFramework {
     // Might have been fixed – test
     public void cancelAutoModule(){
         rfsHandler.emptyQueue();
+        setUser(mainUser);
     }
 
     public void resumeAutoModule(){ rfsHandler.resume(); }
