@@ -1,8 +1,6 @@
 package global;
 
 public class Constants {
-    // TODO TEST
-    // Try different values for the thread refresh rate and see how it affects performance
     /**
      * Refresh rate for threads, tested at 100 and 60 hz
      */

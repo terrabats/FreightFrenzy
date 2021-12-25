@@ -9,8 +9,6 @@ import global.Constants;
 import robot.TerraBot;
 
 public class AutoModules{
-    // TODO TEST
-    // Test all of these
     public StageList Intake = new StageList(
         bot.lift.liftEncoder(0.4, 0),
         bot.intake.intakeUntilFreight(1),
@@ -27,6 +25,9 @@ public class AutoModules{
         bot.turret.turretEncoder(0.8, 0),
         bot.lift.liftEncoder(0.4, 10),
         bot.outtake.outtakeReset(0.7)
+    );
+    public StageList test = new StageList(
+        bot.lift.liftEncoder(0.6, 30)
     );
 
 }

@@ -202,7 +202,5 @@ public class RobotPart extends Electronic {
     public Initial usePart(){return new Initial(() -> switchUser(User.ROFU));}
     public Stop returnPart(){return new Stop(() -> switchUser(mainUser));}
 
-    // TODO TEST
-    // Test these please
     public Stage pause() {return new Stage(true);}
 }

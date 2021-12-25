@@ -17,7 +17,7 @@ import static global.General.bot;
 
 public class Lift extends RobotPart {
     private PMotor li;
-    private IEncoder liEnc;
+    public IEncoder liEnc;
 
     @Override
     public void init() {

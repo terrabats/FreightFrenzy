@@ -109,9 +109,6 @@ public class RobotFramework {
      */
     public void checkAccess(User potentialUser){ forAllParts(part -> part.checkAccess(potentialUser)); }
 
-
-    // TODO TEST
-    // Might have been fixed – test
     public void cancelAutoModule(){
         setUserMainAndHalt();
         rfsHandler.emptyQueue();

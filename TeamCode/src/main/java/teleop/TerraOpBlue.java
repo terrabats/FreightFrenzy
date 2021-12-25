@@ -28,10 +28,6 @@ import static global.General.log;
 
 @TeleOp(name = "TerraOpBlue", group = "TeleOp")
 public class TerraOpBlue extends Tele{
-    Timer aTimer = new Timer();
-    Timer bTimer = new Timer();
-    Timer xTimer = new Timer();
-    Timer yTimer = new Timer();
 
     @Override
     public void init() {
@@ -47,6 +43,12 @@ public class TerraOpBlue extends Tele{
 //        gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.moveTele(0.3));
 //        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.moveTele(0));
 
+//        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Intake));
+//        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Backward));
+//        gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Forward));
+        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.test));
+        gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModule);
+
         super.activate(FieldSide.BLUE);
     }
 
@@ -55,49 +57,18 @@ public class TerraOpBlue extends Tele{
         //bot.addAutoModule(new StageList(bot.lift.liftEncoder(0.4,10)));
 
         super.start();
-
-        aTimer.reset();
-        bTimer.reset();
-        yTimer.reset();
-        xTimer.reset();
     }
 
     @Override
     public void loop() {
-        if(gamepad1.a && aTimer.seconds() > 0.3){
-            bot.addAutoModule(autoModules.Intake);
-            aTimer.reset();
-        }
 
-        if(gamepad1.b && bTimer.seconds() > 0.3){
-            bot.addAutoModule(autoModules.Backward);
-            bTimer.reset();
-        }
-//
-        if(gamepad1.y && yTimer.seconds() > 0.3){
-            bot.addAutoModule(autoModules.Forward);
-            yTimer.reset();
-        }
-//        log.display("size", bot.rfsHandler.rfsQueue.size());
+        bot.intake.move(gamepad1.right_bumper ? 1 : (gamepad1.left_bumper ? -1 : 0));
 
-        if(gamepad1.x && xTimer.seconds() > 0.3){
-            bot.rfsHandler.emptyQueue();
-            xTimer.reset();
+        if(gamepad2.right_bumper){
+            bot.outtake.lockCubeTele();
+        }else if(gamepad2.left_bumper){
+            bot.outtake.startTele();
         }
-
-        if(gamepad1.right_bumper){
-            bot.intake.move(1);
-        }else if(gamepad1.left_bumper){
-            bot.intake.move(-1);
-        }else{
-            bot.intake.move(0);
-        }
-
-//        if(gamepad2.right_bumper){
-//            bot.outtake.lockCubeTele();
-//        }else if(gamepad2.left_bumper){
-//            bot.outtake.startTele();
-//        }
 
         // Gamepad1
         bot.tankDrive.moveSmooth(-gamepad1.right_stick_y, gamepad1.left_stick_x);
@@ -107,6 +78,8 @@ public class TerraOpBlue extends Tele{
         // Gamepad2
         bot.turret.move(gamepad2.left_stick_x);
         bot.lift.move(-gamepad2.right_stick_y+Constants.LIFT_REST_POW);
+
+        log.show(bot.lift.liEnc.getPos());
 
         super.loop();
     }
