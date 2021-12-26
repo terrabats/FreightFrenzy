@@ -6,6 +6,8 @@ import teleutil.GamepadHandler;
 import util.ExceptionCatcher;
 import util.codeseg.CodeSeg;
 
+import static global.General.*;
+
 public class ButtonHandler {
     private final Button button;
     private final ArrayList<ButtonEventHandler> eventHandlers = new ArrayList<>();
@@ -16,6 +18,7 @@ public class ButtonHandler {
     }
 
     public <T> void addEvent(Class<T> type, CodeSeg codeSegs) {
+        fault.check("YOU USED BUTTONHANDLER IN LOOP", eventHandlers.size() < 30);
         ExceptionCatcher.catchNewInstance(() -> {
             T obj = type
                 .getDeclaredConstructor(Button.class, CodeSeg.class, GamepadHandler.class)

@@ -40,6 +40,10 @@ public class Lift extends RobotPart {
         li.setPosition(h*Constants.LIFT_CM_TO_TICKS);
     }
 
+    public double getTarget() {
+        return li.getTarget();
+    }
+
     public void stopAndResetMode() {
         li.stopAndReset();
     }

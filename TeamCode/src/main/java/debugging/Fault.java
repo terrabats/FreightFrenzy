@@ -43,6 +43,8 @@ public class Fault {
      * @param msg
      * @param test
      */
+    // TODO NEW
+    // add third parameter of what the boolean SHOULD be
     public void check(String msg, boolean test) {
         createFault(" Msg: " + msg, test, true);
     }

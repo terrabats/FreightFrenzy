@@ -8,6 +8,7 @@ import teleutil.Selector;
 import unittests.framework.*;
 
 import teleutil.button.Button;
+import unittests.hardware.LiftTest;
 import unittests.sensor.OdometryTest;
 import util.condition.Status;
 import util.store.Item;
@@ -39,18 +40,18 @@ public class UnitTester extends Tele {
 //        add(new CoordinatePlaneTest());
 //        add(new FaultTest());
 //        add(new GamepadTest());
-        add(new LoggerTest());
+//        add(new LoggerTest());
 //        add(new RobotFunctionsTest());
 //        add(new ThreadTest());
 //        add(new StorageTest());
 //        add(new ModulesTest());
-        add(new AutoModuleTest());
+//        add(new AutoModuleTest());
 
         // Hardware
 //        add(new TankDriveTest());
 //        add(new IntakeTest());
 //        add(new TurretTest());
-//        add(new LiftTest());
+        add(new LiftTest());
 //        add(new OuttakeTest());
 //        add(new CarouselTest());
 

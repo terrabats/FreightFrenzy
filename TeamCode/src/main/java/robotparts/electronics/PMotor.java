@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import java.util.Base64;
 
 import global.Constants;
+import static global.General.*;
 import robotparts.Electronic;
 
 public class PMotor extends Electronic {
@@ -31,13 +32,17 @@ public class PMotor extends Electronic {
         motorEncoder.reset();
     }
 
-    public void setPower(double p){ if(access.isAllowed()){ motor.setPower(p); } }
+    public void setPower(double p){
+        if(access.isAllowed()){ motor.setPower(p); }
+    }
     public void setPosition(double pos){
-        if(access.isAllowed()){
-            motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            motor.setTargetPosition((int)(pos));
-            motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        }
+        motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor.setTargetPosition((int)(pos));
+        motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    public double getTarget() {
+        return motor.getTargetPosition();
     }
     public boolean hasReachedPosition(){
         return !motor.isBusy();
