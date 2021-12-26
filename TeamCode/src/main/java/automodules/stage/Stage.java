@@ -5,6 +5,8 @@ import org.checkerframework.checker.units.qual.A;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import util.codeseg.ParameterCodeSeg;
+
 public class Stage {
 
     private final ArrayList<StageComponent> components = new ArrayList<>();
@@ -22,15 +24,11 @@ public class Stage {
     }
 
     public void start(){
-        for(StageComponent sc: components){
-            sc.start();
-        }
+        runForAllStageComponents(StageComponent::start);
         hasStarted = true;
     }
     public void loop(){
-        for(StageComponent sc: components){
-            sc.loop();
-        }
+        runForAllStageComponents(StageComponent::loop);
     }
     public boolean shouldStop(){
         for(StageComponent sc: components){
@@ -41,13 +39,17 @@ public class Stage {
         return false;
     }
     public void runOnStop(){
-        for(StageComponent sc: components){
-            sc.runOnStop();
-        }
+        runForAllStageComponents(StageComponent::runOnStop);
         hasStarted = false;
     }
     public boolean isPause(){
         return isPause;
+    }
+
+    public void runForAllStageComponents(ParameterCodeSeg<StageComponent> code){
+        for(StageComponent sc: components){
+            code.run(sc);
+        }
     }
 
 }
