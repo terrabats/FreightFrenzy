@@ -46,9 +46,19 @@ public class Generator {
 
     private ArrayList<PathSegment> generateSeg(Pose p1, Pose p2) {
         ArrayList<PathSegment> ret = generateRelSeg(p1, p2);
+        p1.rotate(-PI/2);
+        if (ret.size() == 3) {
+            // Arcs + tangent line
+            ret.get(0).generatePoints(new Pose(new Point(0, 0), PI/2));
+            ret.get(1).generatePoints(p1); // TODO: FIX THIS
+            ret.get(2).generatePoints(p2.getRelativeTo(p1));
+        } else {
+            // Arcs
+            ret.get(0).generatePoints(new Pose(new Point(0, 0), PI/2));
+            ret.get(1).generatePoints(p2.getRelativeTo(p1));
+        }
+        p1.rotate(PI/2);
         for (PathSegment p : ret) {
-            p.generatePoints();
-            for (Pose pose : p.points) System.out.println(pose.ang);
             p.changePointsForPath(p1);
             for (int i = 0; i < p.points.size(); i++) {
                 if (p.points.get(i).ang > Math.PI) {
@@ -61,11 +71,11 @@ public class Generator {
         return ret;
     }
 
-    private ArrayList<PathSegment> generateRelSeg(Pose p1, Pose p2) {
+    private ArrayList<PathSegment> generateRelSeg(Pose p1, Pose p2_orig) {
         ArrayList<PathSegment> ret = new ArrayList<>();
 
         p1.rotate(-PI/2);
-        p2 = p2.getRelativeTo(p1);
+        Pose p2 = p2_orig.getRelativeTo(p1);
         p1.rotate(PI/2);
 
         p2.ang %= 2 * PI;

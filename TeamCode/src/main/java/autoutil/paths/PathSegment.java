@@ -20,7 +20,7 @@ public class PathSegment {
         }
     }
 
-    public void generatePoints() {}
+    public void generatePoints(Pose pose) {}
 
     public void flip(boolean x, boolean y) {}
 }

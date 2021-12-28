@@ -24,12 +24,19 @@ public class CircularArc extends Circle {
                 getThetaFromPoint(p) <= Math.max(arcSt, arcEnd);
     }
 
-    public ArrayList<Pose> getPoints(double angDivide) {
+    public ArrayList<Pose> getPoints(double angDivide, Pose pose) {
         ArrayList<Pose> ret = new ArrayList<>();
         double endOfArc = ((arcSt <= arcEnd) ? 0 : (2 * PI)) + arcEnd;
         for (double i = arcSt; i <= endOfArc; i += angDivide) {
             ret.add(getPositionFromTheta(i));
 //            System.out.println(i * 180/PI);
+        }
+        if (goingCW(pose)) {
+            ArrayList<Pose> ret2 = new ArrayList<>();
+            for (int i = ret.size() - 1; i >= 0; i--) {
+                ret2.add(ret.get(i));
+            }
+            return ret2;
         }
 //        System.out.println(arcSt + " " + arcEnd);
         return ret;

@@ -22,8 +22,8 @@ public class Arc extends PathSegment{
     }
 
     @Override
-    public void generatePoints() {
-        points.addAll(arc.getPoints(Constants.ANG_ACC_ARC));
+    public void generatePoints(Pose pose) {
+        points.addAll(arc.getPoints(Constants.ANG_ACC_ARC, pose));
     }
 
     public boolean goingCW(Pose p) {

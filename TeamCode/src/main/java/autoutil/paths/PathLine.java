@@ -14,7 +14,7 @@ public class PathLine extends PathSegment{
     }
 
     @Override
-    public void generatePoints() {
+    public void generatePoints(Pose pose) {
         for (double a = 0; a <= 1; a += Constants.LINE_ACC_PATH) {
             points.add(new Pose(getAt(a), Math.atan2(line.my, line.mx)));
         }
