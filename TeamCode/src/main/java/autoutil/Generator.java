@@ -20,15 +20,15 @@ public class Generator {
 
     private final ArrayList<Pose> poses = new ArrayList<>();
 
-    public void addNewPos(double x, double y, double ang) {
-        addNewPos(new Pose(new Point(x, y), ang));
-    }
-
-    private void addNewPos(Pose p) {
-        p.translate(poses.get(poses.size() - 1).p.x, poses.get(poses.size() - 1).p.y);
-        p.rotate(p.ang);
-        moveTo(p);
-    }
+//    public void addNewPos(double x, double y, double ang) {
+//        addNewPos(new Pose(new Point(x, y), ang));
+//    }
+//
+//    private void addNewPos(Pose p) {
+//        p.translate(poses.get(poses.size() - 1).p.x, poses.get(poses.size() - 1).p.y);
+//        p.rotate(p.ang);
+//        moveTo(p);
+//    }
 
     public void moveTo(double x, double y, double ang) {
         moveTo(new Pose(new Point(x, y), ang));
@@ -48,7 +48,15 @@ public class Generator {
         ArrayList<PathSegment> ret = generateRelSeg(p1, p2);
         for (PathSegment p : ret) {
             p.generatePoints();
+            for (Pose pose : p.points) System.out.println(pose.ang);
             p.changePointsForPath(p1);
+            for (int i = 0; i < p.points.size(); i++) {
+                if (p.points.get(i).ang > Math.PI) {
+                    p.points.get(i).ang -= 2 * Math.PI;
+                } else if (p.points.get(i).ang < -Math.PI) {
+                    p.points.get(i).ang += 2 * Math.PI;
+                }
+            }
         }
         return ret;
     }
@@ -111,7 +119,6 @@ public class Generator {
 
         if (cir1arc.goingCW(new Pose(new Point(0, 0), PI/2)) == cir2arc.goingCW(p2)) {
             // TAKE SHORTCUT
-            System.out.println("GOING THROUGH SHORTCUT");
             double mx = c2.center.x - c1.center.x;
             double my = c2.center.y - c1.center.y;
 
@@ -158,7 +165,6 @@ public class Generator {
                 ret.add(getShorterArc(c2, new Point(0, c2.center.y), p2.p));
             }
         } else {
-            System.out.println("NOT USING SHORTCUT");
             ret.add(cir1arc);
             ret.add(cir2arc);
         }
@@ -175,4 +181,6 @@ public class Generator {
         Arc arc2 = new Arc(c, p2, p1);
         return arc1.getArcLength() > arc2.getArcLength() ? arc2 : arc1;
     }
+
+    public boolean empty() { return poses.isEmpty(); }
 }

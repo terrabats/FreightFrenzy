@@ -20,7 +20,7 @@ public class Circle extends GeometryObject{
 
     public Pose getPositionFromTheta(double theta) {
         Point p = new Point(center.x + r * cos(theta), center.y + r * sin(theta));
-        double ang = -atan2(p.y - center.y, p.x - center.x);
+        double ang = PI/2 - atan2(p.y - center.y, center.x - p.x);
         return new Pose(p, ang);
     }
 

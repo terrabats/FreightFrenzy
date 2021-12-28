@@ -25,8 +25,9 @@ public class DisplayPath extends JPanel {
     public void genTestPlane(){
         Generator generator = new Generator();
         generator.moveTo(0,0, PI/2);
-        generator.moveTo(-60, 60, PI/2);
-        generator.moveTo(-1,33,-PI/4);
+        generator.moveTo(30, 20, 0);
+        generator.moveTo(-20,30,-PI/2);
+        generator.moveTo(-100, 40, PI);
 
         //(10, 5, pi) , (30, 5, pi), (30, 30, pi/2), (0, 0, -pi/2) , (25, 20, 3pi/2)
 
@@ -39,6 +40,7 @@ public class DisplayPath extends JPanel {
         for (PathSegment ps : pathToDisplay.segments) {
             for (Pose p : ps.points) {
                 g.fillOval(pX(p.p.x), pY(p.p.y), 5, 5);
+                System.out.println(p.ang);
             }
         }
     }
