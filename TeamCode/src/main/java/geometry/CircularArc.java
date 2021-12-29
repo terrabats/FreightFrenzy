@@ -37,7 +37,7 @@ public class CircularArc extends Circle {
             }
             ret = ret2;
         }
-        if (angDis(p, ret.get(0)) > angDis(p, ret.get(ret.size() - 1))) {
+        if (angDis(p, ret.get(0)) > 0.5) {
             for (Pose pose : ret) {
                 pose.ang += PI;
             }
