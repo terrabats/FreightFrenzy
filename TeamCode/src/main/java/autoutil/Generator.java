@@ -50,12 +50,12 @@ public class Generator {
         if (ret.size() == 3) {
             // Arcs + tangent line
             ret.get(0).generatePoints(new Pose(new Point(0, 0), PI/2));
-            ret.get(1).generatePoints(p1); // TODO: FIX THIS
-            ret.get(2).generatePoints(p2.getRelativeTo(p1));
+            ret.get(1).generatePoints(ret.get(0).points.get(ret.get(0).points.size() - 1)); // TODO: FIX THIS
+            ret.get(2).generatePoints(ret.get(1).points.get(ret.get(1).points.size() - 1));
         } else {
             // Arcs
             ret.get(0).generatePoints(new Pose(new Point(0, 0), PI/2));
-            ret.get(1).generatePoints(p2.getRelativeTo(p1));
+            ret.get(1).generatePoints(ret.get(0).points.get(ret.get(0).points.size() - 1));
         }
         p1.rotate(PI/2);
         for (PathSegment p : ret) {
@@ -146,7 +146,7 @@ public class Generator {
                 PathLine tangentLine1 = new PathLine(new Point(x1, y1), new Point(x2, y2));
 
                 Arc a11 = getShorterArc(c1, new Point(0, 0), new Point(x1, y1));
-                Arc a12 = getShorterArc(c2, p2.p, new Point(x2, y2));
+                Arc a12 = getShorterArc(c2, new Point(x2, y2), p2.p);
                 double arcLensPath1 = a11.getArcLength() + a12.getArcLength();
 
                 x1 = temp1 + c1.center.x;
@@ -158,7 +158,7 @@ public class Generator {
                 PathLine tangentLine2 = new PathLine(new Point(x1, y1), new Point(x2, y2));
 
                 Arc a21 = getShorterArc(c1, new Point(0, 0), new Point(x1, y1));
-                Arc a22 = getShorterArc(c2, p2.p, new Point(x2, y2));
+                Arc a22 = getShorterArc(c2, new Point(x2, y2), p2.p);
                 double arcLensPath2 = a21.getArcLength() + a22.getArcLength();
 
                 if (arcLensPath1 < arcLensPath2) {
@@ -187,8 +187,8 @@ public class Generator {
     }
 
     private Arc getShorterArc(Circle c, Point p1, Point p2) {
-        Arc arc1 = new Arc(c, p1, p2);
-        Arc arc2 = new Arc(c, p2, p1);
+        Arc arc1 = new Arc(c, p1, p2, true);
+        Arc arc2 = new Arc(c, p2, p1, false);
         return arc1.getArcLength() > arc2.getArcLength() ? arc2 : arc1;
     }
 

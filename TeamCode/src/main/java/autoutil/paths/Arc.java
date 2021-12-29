@@ -8,9 +8,11 @@ import global.Constants;
 
 public class Arc extends PathSegment{
     public CircularArc arc;
+    private boolean trueSt;
 
-    public Arc(Circle generated, Point startPoint, Point endPoint) {
+    public Arc(Circle generated, Point startPoint, Point endPoint, boolean trueSt) {
         arc = new CircularArc(generated.center, startPoint, endPoint, generated.r);
+        this.trueSt = trueSt;
     }
 
     public Arc(Circle generated, double st, double en) {
@@ -23,7 +25,7 @@ public class Arc extends PathSegment{
 
     @Override
     public void generatePoints(Pose pose) {
-        points.addAll(arc.getPoints(Constants.ANG_ACC_ARC, pose));
+        points.addAll(arc.getPoints(Constants.ANG_ACC_ARC, trueSt, pose));
     }
 
     public boolean goingCW(Pose p) {

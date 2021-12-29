@@ -30,6 +30,7 @@ public class Executor {
     public void addSetpoint(double x, double y, double h, AngleType angleType) {
         addWaypoint(x, y, h, angleType);
         generators.add(new Generator());
+        addWaypoint(x, y, h, angleType);
     }
 
     public void complete() {
