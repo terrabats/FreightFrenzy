@@ -28,7 +28,7 @@ public class UnitTester extends Tele {
      * Type of testing mode
      * @link TestType
      */
-    private final TestType testingMode = TestType.SELECTION;
+    private final TestType testingMode = TestType.TIME;
 
     /**
      * Creates all of the unit tests, comment in the ones you want
@@ -38,9 +38,9 @@ public class UnitTester extends Tele {
 //        add(new CommonTest());
 //        add(new AccessTest());
 //        add(new CoordinatePlaneTest());
-//        add(new FaultTest());
-//        add(new GamepadTest());
 //        add(new LoggerTest());
+        add(new FaultTest());
+//        add(new GamepadTest());
 //        add(new RobotFunctionsTest());
 //        add(new ThreadTest());
 //        add(new StorageTest());
@@ -51,7 +51,7 @@ public class UnitTester extends Tele {
 //        add(new TankDriveTest());
 //        add(new IntakeTest());
 //        add(new TurretTest());
-        add(new LiftTest());
+//        add(new LiftTest());
 //        add(new OuttakeTest());
 //        add(new CarouselTest());
 

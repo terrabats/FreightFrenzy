@@ -24,6 +24,7 @@ public class LoggerTest extends UnitTest{
         log.show("Boolean", b);
         log.show("log.display is working");
         log.showAndRecord("Status Now", s);
+        log.showAndRecord("Status Now 2", s);
         log.record("Last Status", s);
     }
 }

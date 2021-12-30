@@ -7,10 +7,6 @@ import static global.General.*;
 
 public class Fault {
     /**
-     * The number of faults that occurred since the start
-     */
-    private int faultNum = 0;
-    /**
      * Is the fault in unsafe mode (i.e. the fault will not throw exceptions even in check)
      * NOTE: this should only be set to true when the robot is being run in the competition
      */
@@ -23,7 +19,7 @@ public class Fault {
      * @param correct
      */
     public void warn(String msg, boolean test, boolean correct){
-        createFault(" Msg: " + msg, test, test != correct);
+        createFault("Msg: " + msg, test != correct, false);
     }
 
     /**
@@ -36,7 +32,7 @@ public class Fault {
      * @param correct
      */
     public void warn(String msg, Expectation e, Magnitude m, boolean test, boolean correct){
-        createFault(" Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString(), test != correct, false);
+        createFault("Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString(), test != correct, false);
     }
 
     /**
@@ -47,7 +43,7 @@ public class Fault {
      * @param correct
      */
     public void check(String msg, boolean test, boolean correct) {
-        createFault(" Msg: " + msg, test != correct, true);
+        createFault("Msg: " + msg, test != correct, true);
     }
 
     /**
@@ -60,7 +56,7 @@ public class Fault {
      * @param correct
      */
     public void check(String msg, Expectation e, Magnitude m, boolean test, boolean correct){
-        createFault(" Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString(), test != correct, true);
+        createFault("Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString(), test != correct, true);
     }
 
     /**
@@ -71,16 +67,11 @@ public class Fault {
      */
     private void createFault(String out, boolean failed, boolean createException){
         if(failed){
-            faultNum++;
-            if(unsafeMode){
-                log.showAndRecord( "Fault: " ,  faultNum + out);
-            }else{
-                log.showAndRecord( "Fault: " ,  out);
-                if(createException) {
-                    RuntimeException exception = new RuntimeException(out);
-                    exception.printStackTrace();
-                    throw exception;
-                }
+            log.showAndRecord(out,  "Please check your code for logical errors");
+            if(!unsafeMode && createException){
+                RuntimeException exception = new RuntimeException(" "+out);
+                exception.printStackTrace();
+                throw exception;
             }
         }
     }
