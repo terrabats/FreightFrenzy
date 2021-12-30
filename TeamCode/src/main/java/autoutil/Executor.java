@@ -77,7 +77,7 @@ public class Executor {
     //region BACKGROUND FUNCTIONS
 
     private void updateMovement() {
-        if (running) {
+        if (running && !finished()) {
             while (doneWithCurPoint()) {
                 curPose++;
                 if (paths.get(curPath).size() == curPose) {
@@ -110,10 +110,15 @@ public class Executor {
         }
     }
 
+    // TODO: TUNE THE CONSTANTS IN THIS METHOD
     private boolean doneWithCurPoint() {
-        Point nextPose = paths.get(curPath).get(curPose).p;
-        return sqrt(pow(bot.odometry.curPos[0] - nextPose.x, 2)
-                + pow(bot.odometry.curPos[1] - nextPose.y, 2)) < 0.05; // TODO: TUNE CONSTANT
+        Pose nextPose = paths.get(curPath).get(min(curPose, paths.get(curPath).size() - 1));
+        boolean addOn = true;
+        if (curPose == paths.get(curPath).size()) {
+            addOn = abs(reactor.turnPow(nextPose.ang)) < 0.1;
+        }
+        return addOn && sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
+                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 0.05;
     }
 
     //endregion

@@ -38,7 +38,16 @@ public class TankReactor {
         targetH -= 90; // change to make 0 in the positive y direction
         // now targetH and curPos[2] are counterclockwise > 0, 0 in +y direction, and in degrees
         // positive ROBOT turn is CW
+        while (targetH > PI) targetH -= 2 * PI;
+        while (targetH < PI) targetH += 2 * PI;
+
         double curH = bot.odometry.curPos[2];
+        if (abs(targetH - curH) > abs(targetH - curH + 2 * PI)) {
+            curH -= 2 * PI;
+        }
+        if (abs(targetH - curH) > abs(targetH - curH - 2 * PI)) {
+            curH += 2 * PI;
+        }
         return kt * (targetH - curH);
     }
 }
