@@ -34,17 +34,17 @@ public class ExceptionCatcher {
 
     public static void catchInterrupted(InterruptedExceptionRunnable runnable) {
         try { runnable.run(); } catch (InterruptedException ignored) {
-            fault.check("Illegal Access or Not Instantiated new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL, false);
+            fault.check("Illegal Access or Not Instantiated new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL, false, true);
         }
     }
     public static void catchNewInstance(NewInstanceRunnable runnable) {
         try {runnable.run(); } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException ignored) {
-            fault.check("Illegal Access or Not Instantiated new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL, false);
+            fault.check("Illegal Access or Not Instantiated new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL, false, true);
         }
     }
     public static void catchIO(IOExceptionRunnable runnable) {
         try {runnable.run(); } catch (IOException ignored) {
-            fault.check("IO exception, file does not exist?", Expectation.UNEXPECTED, Magnitude.CRITICAL, false);
+            fault.check("IO exception, file does not exist?", Expectation.UNEXPECTED, Magnitude.CRITICAL, false, true);
         }
     }
 }

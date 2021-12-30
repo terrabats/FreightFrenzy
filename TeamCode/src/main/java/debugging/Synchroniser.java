@@ -37,12 +37,12 @@ public class Synchroniser {
      * Logs the delay and warns if either sync was not updated or the robot is experiencing lag as determined by the minimum refresh rate
      */
     public void logDelay() {
-        fault.warn("Sync was never updated", Expectation.UNEXPECTED, Magnitude.CRITICAL, numUpdates != 0);
+        fault.warn("Sync was never updated", Expectation.UNEXPECTED, Magnitude.CRITICAL, numUpdates == 0, false);
         /**
          * The amount of delay between refreshes
          */
         double delay = (1000 * lagTimer.seconds()) / numUpdates;
         log.record("Delay (ms)", delay);
-        fault.warn("Robot is lagging", Expectation.EXPECTED, Magnitude.CRITICAL, delay < (1000/MINIMUM_REFRESH_RATE));
+        fault.warn("Robot is lagging", Expectation.EXPECTED, Magnitude.CRITICAL, delay < (1000/MINIMUM_REFRESH_RATE), true);
     }
 }

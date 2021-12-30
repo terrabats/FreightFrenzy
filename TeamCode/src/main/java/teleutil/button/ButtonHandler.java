@@ -18,7 +18,7 @@ public class ButtonHandler {
     }
 
     public <T> void addEvent(Class<T> type, CodeSeg codeSegs) {
-        fault.check("YOU USED BUTTONHANDLER IN LOOP", eventHandlers.size() < 30);
+        fault.check("YOU USED BUTTONHANDLER IN LOOP", eventHandlers.size() < 30, true);
         ExceptionCatcher.catchNewInstance(() -> {
             T obj = type
                 .getDeclaredConstructor(Button.class, CodeSeg.class, GamepadHandler.class)

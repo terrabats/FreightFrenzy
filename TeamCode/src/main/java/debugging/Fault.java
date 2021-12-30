@@ -17,12 +17,13 @@ public class Fault {
     private final boolean unsafeMode = false;
 
     /**
-     * Warn that something has gone wrong with a message if test is true
+     * Warn that something has gone wrong with a message if test does not match the correct value
      * @param msg
      * @param test
+     * @param correct
      */
-    public void warn(String msg, boolean test){
-        createFault(" Msg: " + msg, test, false);
+    public void warn(String msg, boolean test, boolean correct){
+        createFault(" Msg: " + msg, test, test != correct);
     }
 
     /**
@@ -32,9 +33,10 @@ public class Fault {
      * @param e
      * @param m
      * @param test
+     * @param correct
      */
-    public void warn(String msg, Expectation e, Magnitude m, boolean test){
-        createFault(" Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString(), test, false);
+    public void warn(String msg, Expectation e, Magnitude m, boolean test, boolean correct){
+        createFault(" Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString(), test != correct, false);
     }
 
     /**
@@ -42,11 +44,10 @@ public class Fault {
      * NOTE: Only use when something major has gone wrong or is important
      * @param msg
      * @param test
+     * @param correct
      */
-    // TODO NEW
-    // add third parameter of what the boolean SHOULD be
-    public void check(String msg, boolean test) {
-        createFault(" Msg: " + msg, test, true);
+    public void check(String msg, boolean test, boolean correct) {
+        createFault(" Msg: " + msg, test != correct, true);
     }
 
     /**
@@ -56,19 +57,20 @@ public class Fault {
      * @param e
      * @param m
      * @param test
+     * @param correct
      */
-    public void check(String msg, Expectation e, Magnitude m, boolean test){
-        createFault(" Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString(), test, true);
+    public void check(String msg, Expectation e, Magnitude m, boolean test, boolean correct){
+        createFault(" Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString(), test != correct, true);
     }
 
     /**
      * Create a fault using a message, display the faultNum if in unsafe mode
      * @param out
-     * @param test
+     * @param failed
      * @param createException
      */
-    private void createFault(String out, boolean test, boolean createException){
-        if(!test){
+    private void createFault(String out, boolean failed, boolean createException){
+        if(failed){
             faultNum++;
             if(unsafeMode){
                 log.showAndRecord( "Fault: " ,  faultNum + out);

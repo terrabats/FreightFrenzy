@@ -10,7 +10,7 @@ import static global.General.*;
 public class MechDriveTest extends UnitTest {
     @Override
     public void start() {
-        fault.check("robotPartsIsEmpty", Expectation.SURPRISING, Magnitude.MAJOR, TerraBot.allRobotParts.size() != 0);
+        fault.check("robotPartsIsEmpty", Expectation.SURPRISING, Magnitude.MAJOR, TerraBot.allRobotParts.size() == 0, false);
     }
 
     @Override
