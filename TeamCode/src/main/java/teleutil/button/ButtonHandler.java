@@ -8,6 +8,10 @@ import util.codeseg.CodeSeg;
 
 import static global.General.*;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class ButtonHandler {
     private final Button button;
     private final ArrayList<ButtonEventHandler> eventHandlers = new ArrayList<>();

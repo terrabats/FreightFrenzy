@@ -1,6 +1,9 @@
 package teleutil.button;
 
 public enum Button {
+    /**
+     * Enum of all of the buttons
+     */
     X,
     Y,
     A,
