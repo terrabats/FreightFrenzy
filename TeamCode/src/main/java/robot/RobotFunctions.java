@@ -84,7 +84,7 @@ public class RobotFunctions {
      */
     public void init(){
         addToQueue(new Stage(true));
-        robotFunctionsThread.setCode(updateCode);
+        robotFunctionsThread.setExecutionCode(updateCode);
     }
 
     /**

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import util.ExceptionCatcher;
+import util.condition.Expectation;
+import util.condition.Magnitude;
 
 import static global.General.*;
 
@@ -20,37 +22,40 @@ public class Storage {
     private ArrayList<Item<?>> items = new ArrayList<>();
 
     /**
-     * Add and item given a name and a value
+     * Add an item given a name and a value
      * @param name
      * @param value
-     * @param <T>
      */
     public <T> void addItem(String name, T value) { items.add(new Item<>(name, value));
     }
 
     /**
-     * Save the items currently in the arraylist
+     * Save the items currently in the arraylist of items
+     * NOTE: This generates a bunch of text files in the current directory with the name of the item
+     * as the name of the text file and the value in the file
      */
     public void saveItems(){
+        fault.warn("No items to save", Expectation.SURPRISING, Magnitude.MINOR, items.isEmpty(), false);
         for(Item<?> i: items) {
             saveText("current", i.getName(), i.toString());
         }
     }
 
     /**
-     * Empty all of the items in the list to store
+     * Removes all of the items in the arraylist of items
      */
     public void emptyItems(){
         items = new ArrayList<>();
     }
 
     /**
-     * Get the item using the ItemType
+     * Get the item using the name
+     * NOTE: This gets it from the storage not the arraylist so the arraylist could be empty when this is called
      * @param name
-     * @return
+     * @return itemValue
      */
-    public Object getItem(String name){
-        return Item.getObjectFromType(readText("current", name));
+    public Item<?> getItem(String name){
+        return Item.fromString(name, readText("current", name));
     }
 
     /**
@@ -72,7 +77,7 @@ public class Storage {
      * Read the text from the directory name, and the filename
      * @param dirname
      * @param filename
-     * @return
+     * @return text
      */
     private String readText(String dirname, String filename) {
         final String[] out = {""};
@@ -85,8 +90,9 @@ public class Storage {
 
     /**
      * Make the output folder from the specified directory name
+     * NOTE: All files and folders will be under the FTC_Files folder
      * @param dirname
-     * @return
+     * @return output directory
      */
     private File makeOutputFolder(String dirname){
         File filepath = Environment.getExternalStorageDirectory();

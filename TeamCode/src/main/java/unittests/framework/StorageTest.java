@@ -22,12 +22,12 @@ public class StorageTest extends UnitTest {
 
     @Override
     protected void loop() {
-        log.showAndRecord("St", storage.getItem("St"));
-        log.showAndRecord("In", storage.getItem("In"));
-        log.showAndRecord("Fl", storage.getItem("Fl"));
-        log.showAndRecord("Do", storage.getItem("Do"));
-        log.showAndRecord("Bo", storage.getItem("Bo"));
-        fieldSide = FieldSide.create((String) storage.getItem("FieldSide"));
+        log.showAndRecord("St", storage.getItem("St").getValue());
+        log.showAndRecord("In", storage.getItem("In").getValue());
+        log.showAndRecord("Fl", storage.getItem("Fl").getValue());
+        log.showAndRecord("Do", storage.getItem("Do").getValue());
+        log.showAndRecord("Bo", storage.getItem("Bo").getValue());
+        fieldSide = FieldSide.create((String) storage.getItem("FieldSide").getValue());
         log.showAndRecord("FieldSide", fieldSide);
         log.showAndRecord("FieldColor", fieldSide.name());
     }

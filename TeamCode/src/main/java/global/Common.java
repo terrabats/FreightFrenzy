@@ -23,13 +23,11 @@ public interface Common{
     default void reference(OpMode thisOpMode){
         /**
          * Initialize all of the objects from the opmode
-         * NOTE: the user is automatically set from the type of opMode
          */
         hardwareMap = thisOpMode.hardwareMap;
         telemetry = thisOpMode.telemetry;
         gamepad1 = thisOpMode.gamepad1;
         gamepad2 = thisOpMode.gamepad2;
-        mainUser = User.getUserFromTypeOfOpMode(thisOpMode);
         /**
          * Create the gamepadhanlders from the gamepads
          */
@@ -41,11 +39,19 @@ public interface Common{
         fault = new Fault();
         sync = new Synchroniser();
         log = new Logger();
-        storage = new Storage();
         /**
          * Create the gameTime
          */
         gameTime = new ElapsedTime();
+        /**
+         * Get the main user
+         * NOTE: the user is automatically set from the type of opMode
+         */
+        mainUser = User.getUserFromTypeOfOpMode(thisOpMode);
+        /**
+         * Create the storage
+         */
+        storage = new Storage();
         /**
          * Create the robot, and then the modules, stages, and automodules
          */

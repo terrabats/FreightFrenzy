@@ -11,12 +11,13 @@ import static global.General.*;
 public class TerraThread extends Thread {
     /**
      * Class for handling and creating thread
-     * NOTE: Thread should not be used raw without this class in most instances
+     * NOTE: Thread should not be used raw without this class
      */
+
 
     /**
      * currentStatus represnts the status of the thread
-     * NOTE: The thread status is active by default
+     * NOTE: The thread status is active by default which means it will run the moment it starts
      */
     private volatile Status currentStatus = Status.ACTIVE;
 
@@ -26,11 +27,11 @@ public class TerraThread extends Thread {
     private volatile CodeSeg updateCode = () -> {};
 
     /**
-     * Set the update code
+     * Set the update code (code which will be executed in this thread in a loop)
      * @link updateCode
      * @param cs
      */
-    public synchronized void setCode(CodeSeg cs){
+    public synchronized void setExecutionCode(CodeSeg cs){
         updateCode = cs;
     }
 
@@ -64,7 +65,7 @@ public class TerraThread extends Thread {
 
     /**
      * Get the status
-     * @return
+     * @return status
      */
     public synchronized Status getStatus(){
         return currentStatus;

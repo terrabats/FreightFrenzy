@@ -16,7 +16,7 @@ public class Timer {
      */
     private double startTime = 0;
     /**
-     * Has the timer ever been reset
+     * Has the timer ever been reset?
      */
     private boolean hasBeenReset = false;
     /**

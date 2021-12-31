@@ -10,7 +10,10 @@ import static global.General.*;
 public class ExceptionCatcher {
     /**
      * Class with static methods to catch exceptions
+     * Ex: for code that throws interrupted exception,
+     * Use by doing ExceptionCatcher.catchInterrupted(() -> <code to run>)
      */
+
 
     /**
      * Interfaces for different exceptions
@@ -27,24 +30,22 @@ public class ExceptionCatcher {
 
     /**
      * Methods to catch exceptions
-     * Use by doing ExceptionCatcher.catchInterrupted(() -> codeTorun)
-     * NOTE: Throws another exception if these happen through fault.check
+     * NOTE: This will show a warning if the exception is thrown
      * @param runnable
      */
-
     public static void catchInterrupted(InterruptedExceptionRunnable runnable) {
         try { runnable.run(); } catch (InterruptedException ignored) {
-            fault.check("Illegal Access or Not Instantiated new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL, false, true);
+            fault.warn("Illegal Access or Not Instantiated new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL);
         }
     }
     public static void catchNewInstance(NewInstanceRunnable runnable) {
         try {runnable.run(); } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException ignored) {
-            fault.check("Illegal Access or Not Instantiated new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL, false, true);
+            fault.warn("Illegal Access or Not Instantiated new Instance", Expectation.UNEXPECTED, Magnitude.CRITICAL);
         }
     }
     public static void catchIO(IOExceptionRunnable runnable) {
         try {runnable.run(); } catch (IOException ignored) {
-            fault.check("IO exception, file does not exist?", Expectation.UNEXPECTED, Magnitude.CRITICAL, false, true);
+            fault.warn("IO exception, file does not exist?", Expectation.UNEXPECTED, Magnitude.CRITICAL);
         }
     }
 }

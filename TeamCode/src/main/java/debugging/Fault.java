@@ -12,6 +12,14 @@ public class Fault {
      */
     private final boolean unsafeMode = false;
 
+    public void warn(String msg){
+        createFault(getName(msg), true, false);
+    }
+
+    public void warn(String msg, Expectation e, Magnitude m){
+        createFault(getName(msg, e, m), true, false);
+    }
+
     /**
      * Warn that something has gone wrong with a message if test does not match the correct value
      * @param msg
@@ -19,7 +27,7 @@ public class Fault {
      * @param correct
      */
     public void warn(String msg, boolean test, boolean correct){
-        createFault("Msg: " + msg, test != correct, false);
+        createFault(getName(msg), test != correct, false);
     }
 
     /**
@@ -32,7 +40,16 @@ public class Fault {
      * @param correct
      */
     public void warn(String msg, Expectation e, Magnitude m, boolean test, boolean correct){
-        createFault("Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString(), test != correct, false);
+        createFault(getName(msg, e, m), test != correct, false);
+    }
+
+
+    public void check(String msg) {
+        createFault(getName(msg), true, true);
+    }
+
+    public void check(String msg, Expectation e, Magnitude m) {
+        createFault(getName(msg, e, m), true, true);
     }
 
     /**
@@ -43,7 +60,7 @@ public class Fault {
      * @param correct
      */
     public void check(String msg, boolean test, boolean correct) {
-        createFault("Msg: " + msg, test != correct, true);
+        createFault(getName(msg), test != correct, true);
     }
 
     /**
@@ -56,7 +73,15 @@ public class Fault {
      * @param correct
      */
     public void check(String msg, Expectation e, Magnitude m, boolean test, boolean correct){
-        createFault("Msg: " + msg + " Exp: " + e.toString() + " Mag: " + m.toString(), test != correct, true);
+        createFault(getName(msg, e, m), test != correct, true);
+    }
+
+
+    private String getName(String msg){
+        return "Msg: " + msg;
+    }
+    private String getName(String msg, Expectation e, Magnitude m){
+        return getName(msg) + " Exp: " + e.toString() + " Mag: " + m.toString();
     }
 
     /**

@@ -2,14 +2,19 @@ package util.store;
 
 import java.util.Objects;
 
+import util.condition.Expectation;
+import util.condition.Magnitude;
+
+import static global.General.fault;
 import static global.General.log;
 
 public class Item<T> {
     /**
      * Item represents a item, should be created as follows
      * For example if creating an item with a int value then
-     * Item<Integer> item = new Item<>("yes", 1)
+     * Item item = new Item<>("yes", 1)
      */
+
     /**
      * Name of the item
      */
@@ -18,18 +23,31 @@ public class Item<T> {
      * Value of the item as a type T
      */
     private final T value;
-
+    /**
+     * The type of item (string, double, etc..)
+     */
     private final ItemType type;
 
     /**
      * Constructor, pass in the name and the value
+     * NOTE: This will automatically generate the type of the item from the value
      * @param name
      * @param value
      */
     public Item(String name, T value){
         this.name = name;
         this.value = value;
-        this.type = ItemType.STRING;
+        this.type = getTypeFromObject();
+    }
+
+    /**
+     * Static method to create a new item from a raw string
+     * @param name
+     * @param rawString
+     * @return item
+     */
+    public static Item<?> fromString(String name, String rawString){
+        return new Item<>(name, getObjectFromType(rawString));
     }
 
     /**
@@ -72,9 +90,15 @@ public class Item<T> {
      * @param rawString
      * @return
      */
-    public static Object getObjectFromType(String rawString){
+    private static Object getObjectFromType(String rawString){
+        /**
+         * Split the string at the :
+         */
         String rawType = rawString.split(":")[0];
         String rawValue = rawString.split(":")[1];
+        /**
+         * Using the type get the value in the appropriate format
+         */
         switch (Objects.requireNonNull(ItemType.fromString(rawType))){
             case STRING:
                 return rawValue;
@@ -87,11 +111,13 @@ public class Item<T> {
             case BOOLEAN:
                 return Boolean.valueOf(rawValue);
         }
+        fault.warn("Object does not match any known type", Expectation.EXPECTED, Magnitude.MINOR);
         return null;
     }
 
     /**
-     * String represntation of the object, has both the type and the value
+     * String representation of the object, has both the type and the value
+     * This is used to get the object back from a raw string
      * @return string of type and value
      */
     @Override
@@ -102,7 +128,6 @@ public class Item<T> {
     /**
      * The type of item
      */
-
     public enum ItemType {
         STRING,
         INT,
@@ -110,10 +135,17 @@ public class Item<T> {
         DOUBLE,
         BOOLEAN;
 
+        /**
+         * Gets the item type from a string by seeing if the toString of the itemtype equals
+         * the toString of the desired string
+         * @param s
+         * @return
+         */
         public static ItemType fromString(String s){
             for (ItemType t: ItemType.values()){
                 if(s.equals(t.toString())){ return t; }
             }
+            fault.warn("ItemType does not match any known type", Expectation.SURPRISING, Magnitude.MINOR);
             return null;
         }
     }

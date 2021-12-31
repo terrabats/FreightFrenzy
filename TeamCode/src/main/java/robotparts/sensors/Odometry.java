@@ -31,7 +31,7 @@ public class Odometry extends RobotPart {
         cEnc = createEncoder("bl", "cEnc", IEncoder.Type.NORMAL);
         update();
         curPos = new double[] { 0, 0, 0 };
-        odometryThread.setCode(odometryUpdateCode);
+        odometryThread.setExecutionCode(odometryUpdateCode);
 
     }
 

@@ -58,7 +58,7 @@ public class RobotFramework {
      */
     public void init(){
         forAllParts(RobotPart::init);
-        setUser(mainUser);
+        setUserMainAndHalt();
         robotFunctionsThread.start();
         odometryThread.start();
         gameTime.reset();
