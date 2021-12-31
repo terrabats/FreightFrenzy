@@ -10,7 +10,6 @@ import static global.General.*;
 public class ModulesTest extends UnitTest {
     @Override
     protected void start() {
-//        bot.rfsHandler.addToQueue(bot.intake.intakeUntilFreight(1));
         bot.rfsHandler.addToQueue(new Stage(
                 bot.intake.exitTime(1)
         ));
@@ -26,10 +25,5 @@ public class ModulesTest extends UnitTest {
     @Override
     protected void loop() {
         bot.tankDrive.move(-0.3, 0);
-    }
-
-    @Override
-    public void stop() {
-        bot.tankDrive.move(0,0);
     }
 }

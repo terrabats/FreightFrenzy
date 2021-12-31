@@ -8,7 +8,12 @@ import teleutil.Selector;
 import unittests.framework.*;
 
 import teleutil.button.Button;
+import unittests.hardware.CarouselTest;
+import unittests.hardware.IntakeTest;
 import unittests.hardware.LiftTest;
+import unittests.hardware.OuttakeTest;
+import unittests.hardware.TankDriveTest;
+import unittests.hardware.TurretTest;
 import unittests.sensor.OdometryTest;
 import util.condition.Status;
 import util.store.Item;
@@ -28,7 +33,7 @@ public class UnitTester extends Tele {
      * Type of testing mode
      * @link TestType
      */
-    private final TestType testingMode = TestType.TIME;
+    private final TestType testingMode = TestType.CONTROL;
 
     /**
      * Creates all of the unit tests, comment in the ones you want
@@ -39,7 +44,7 @@ public class UnitTester extends Tele {
 //        add(new AccessTest());
 //        add(new CoordinatePlaneTest());
 //        add(new LoggerTest());
-        add(new FaultTest());
+//        add(new FaultTest());
 //        add(new GamepadTest());
 //        add(new RobotFunctionsTest());
 //        add(new ThreadTest());
@@ -51,8 +56,8 @@ public class UnitTester extends Tele {
 //        add(new TankDriveTest());
 //        add(new IntakeTest());
 //        add(new TurretTest());
-//        add(new LiftTest());
-//        add(new OuttakeTest());
+        add(new LiftTest());
+        add(new OuttakeTest());
 //        add(new CarouselTest());
 
         // Sensor
@@ -91,6 +96,7 @@ public class UnitTester extends Tele {
          */
         selector.runOnNext(() -> {
             getCurrentTest().stop();
+            bot.halt();
             selector.idle();
             gph1.unlinkAll();
             gph2.unlinkAll();

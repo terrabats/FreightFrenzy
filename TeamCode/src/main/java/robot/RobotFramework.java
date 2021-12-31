@@ -109,7 +109,7 @@ public class RobotFramework {
      */
     public void checkAccess(User potentialUser){ forAllParts(part -> part.checkAccess(potentialUser)); }
 
-    public void cancelAutoModule(){
+    public void cancelAutoModules(){
         setUserMainAndHalt();
         rfsHandler.emptyQueue();
     }
@@ -124,9 +124,9 @@ public class RobotFramework {
         });
     }
 
-    public void resumeAutoModule(){ rfsHandler.resume(); }
+    public void resumeAutoModules(){ rfsHandler.resume(); }
 
-    public void pauseAutoModuleNow() { rfsHandler.pauseNow(); }
+    public void pauseAutoModules() { rfsHandler.pauseNow(); }
 
     /**
      * This runs the specified code for all of the robot parts.

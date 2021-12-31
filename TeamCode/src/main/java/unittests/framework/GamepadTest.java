@@ -27,6 +27,7 @@ public class GamepadTest extends UnitTest {
 
     @Override
     protected void loop() {
+        log.show("Click the A button to test");
         a++;
     }
 }

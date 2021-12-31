@@ -10,45 +10,19 @@ import unittests.UnitTest;
 import static global.General.*;
 
 public class AutoModuleTest extends UnitTest {
-
-    public StageList testPause;
     @Override
-    public void init() {
-        testPause = new StageList(
-                new Stage(
-                        bot.intake.usePart(),
-                        bot.intake.main(1),
-                        bot.intake.exitTime(1)
-//                        bot.intake.exitTime(1),
-//                        bot.intake.stop(),
-//                        bot.intake.returnPart()
-                )
-//                new Stage(
-//                        bot.intake.exitTime(1)
-//                ),
-//                new Stage(
-//                        bot.intake.exit(),
-//                        bot.intake.stop(),
-//                        bot.intake.returnPart()
-//                )
-//                new Stage(
-//                        bot.intake.exitTime(1)),
-////                bot.intake.pause(),
-//                new Stage(
-//                        bot.intake.stop(),
-//                        bot.intake.returnPart()
-//                )
-        );
+    protected void start() {
+        gph1.link(Button.A, OnPressEventHandler.class,() -> bot.addAutoModule(autoModules.Intake));
+        gph1.link(Button.B, OnPressEventHandler.class, bot::cancelAutoModules);
+        gph1.link(Button.RIGHT_BUMPER, OnPressEventHandler.class, bot::pauseAutoModules);
+        gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, bot::resumeAutoModules);
     }
 
     @Override
-    protected void start() {
-//        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(testPause));
-        gph1.link(Button.A, OnPressEventHandler.class,() -> bot.addAutoModule(autoModules.Intake));
-        gph1.link(Button.B, OnPressEventHandler.class,() -> bot.addAutoModule(autoModules.Backward));
-        gph1.link(Button.Y, OnPressEventHandler.class,() -> bot.addAutoModule(autoModules.Forward));
-        gph1.link(Button.X, OnPressEventHandler.class, () -> bot.cancelAutoModule());
-        gph1.link(Button.DPAD_LEFT, OnPressEventHandler.class, bot::pauseAutoModuleNow);
-        gph1.link(Button.DPAD_RIGHT, OnPressEventHandler.class, bot::resumeAutoModule);
+    protected void loop() {
+        log.show("Click a to start intake");
+        log.show("Click b to cancel the AutoModules");
+        log.show("Click right bumper to pause the AutoModules");
+        log.show("Click left bumper to resume the AutoModules");
     }
 }

@@ -18,7 +18,5 @@ public class FaultTest extends UnitTest {
     public void loop() {
         fault.warn("Is fault working?", false, true);
         fault.warn("Is fault really working?", Expectation.INCONCEIVABLE, Magnitude.CATASTROPHIC, false, true);
-//        fault.check("Is fault really really working?", false, true);
-//        fault.check("Is fault working?", Expectation.INCONCEIVABLE, Magnitude.CATASTROPHIC, false, true);
     }
 }
