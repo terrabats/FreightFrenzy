@@ -99,7 +99,7 @@ public class Executor {
             } else {
                 Pose nextPose = paths.get(curPath).get(curPose);
                 bot.tankDrive.move(
-                        reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y), // TODO: YOU KNOW
+                        reactor.forwardPowWaypoint(nextPose.p.x, nextPose.p.y),
 //                        reactor.turnPow(nextPose.ang, startH),
                         reactor.turnPow(nextPose.p.x, nextPose.p.y, startH)
                 );

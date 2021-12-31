@@ -17,9 +17,10 @@ public class TankReactor {
     public boolean moveForward(double targetX, double targetY) {
         double[] curPos = bot.odometry.curPos;
         if (abs(targetX - curPos[0]) > abs(targetY - curPos[1])) {
-            return ((targetX - curPos[0]) > 0) && (curPos[2] < 0);
+            return signum(targetX - curPos[0]) != signum(curPos[2]);
         } else {
-            return ((targetY - curPos[1]) > 0) && (abs(curPos[2]) < 90);
+            return (((targetY - curPos[1]) > 0) && (abs(curPos[2]) < 90))
+                    || (((targetY - curPos[1]) < 0) && (abs(curPos[2]) > 90));
         }
     }
 

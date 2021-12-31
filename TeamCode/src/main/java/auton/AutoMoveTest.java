@@ -20,7 +20,7 @@ public class AutoMoveTest extends Auto {
         activate(FieldSide.BLUE);
 
         Executor executor = new Executor(0, 0, PI/2, AngleType.RADIANS);
-        executor.addSetpoint(1, 1, PI/2, AngleType.RADIANS);
+        executor.addSetpoint(10, 10, PI/2, AngleType.RADIANS);
 //        executor.addSetpoint(0, 10, 0, AngleType.RADIANS);
         executor.complete();
 
