@@ -26,6 +26,10 @@ import static global.General.gph1;
 import static global.General.gph2;
 import static global.General.log;
 
+/**
+ * NOTE: Uncommented
+ */
+
 @TeleOp(name = "TerraOpBlue", group = "TeleOp")
 public class TerraOpBlue extends Tele{
 
@@ -47,7 +51,7 @@ public class TerraOpBlue extends Tele{
 //        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Backward));
 //        gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Forward));
 //        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.test));
-        gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModules);
+//        gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModules);
 
         super.activate(FieldSide.BLUE);
     }
