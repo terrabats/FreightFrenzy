@@ -50,7 +50,7 @@ public class Generator {
         if (ret.size() == 3) {
             // Arcs + tangent line
             ret.get(0).generatePoints(new Pose(new Point(0, 0), PI/2));
-            ret.get(1).generatePoints(ret.get(0).points.get(ret.get(0).points.size() - 1)); // TODO: FIX THIS
+            ret.get(1).generatePoints(ret.get(0).points.get(ret.get(0).points.size() - 1));
             ret.get(2).generatePoints(ret.get(1).points.get(ret.get(1).points.size() - 1));
         } else {
             // Arcs
@@ -192,5 +192,5 @@ public class Generator {
         return arc1.getArcLength() > arc2.getArcLength() ? arc2 : arc1;
     }
 
-    public boolean empty() { return poses.isEmpty(); }
+    public boolean empty() { return poses.size() < 2; }
 }

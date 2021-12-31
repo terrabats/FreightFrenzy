@@ -21,14 +21,14 @@ public class Executor {
     public ArrayList<ArrayList<Pose>> paths = new ArrayList<>();
 
     private ArrayList<Generator> generators = new ArrayList<>();
-    private TankReactor reactor = new TankReactor();
+    public TankReactor reactor = new TankReactor();
 
     private final double startH;
 
     private boolean running = false;
 
-    private int curPath = 0;
-    private int curPose = 0;
+    public int curPath = 0;
+    public int curPose = 0;
 
     //region PUBLIC FUNCTIONS
 
@@ -61,7 +61,6 @@ public class Executor {
         if (generators.get(generators.size() - 1).empty()) {
             paths.remove(paths.size() - 1);
         }
-        resume();
     }
 
     public void resume() { running = true; }
@@ -78,47 +77,61 @@ public class Executor {
 
     private void updateMovement() {
         if (running && !finished()) {
-            while (doneWithCurPoint()) {
-                curPose++;
-                if (paths.get(curPath).size() == curPose) {
-                    break;
-                } else if (paths.get(curPath).size() < curPose) {
-                    curPath++;
-                    curPose = 0;
-                    if (curPath == paths.size()) {
-                        bot.tankDrive.move(0, 0);
-                        running = false;
-                        return;
-                    }
+            updateCurPoint();
+            if (curPose > paths.get(curPath).size()) {
+                curPath++;
+                curPose = 0;
+                if (curPath == paths.size()) {
+                    running = false;
+                    return;
                 }
             }
             if (paths.get(curPath).size() == curPose) {
                 Pose nextPose = paths.get(curPath).get(curPose - 1);
                 bot.tankDrive.move(
                         reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y),
-                        reactor.turnPow(nextPose.ang)
+//                        reactor.turnPow(nextPose.ang, startH),
+                        reactor.turnPow(nextPose.p.x, nextPose.p.y, startH)
                 );
+                log.show(reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y));
+//                log.show(reactor.turnPow(nextPose.ang, startH));
+                log.show(reactor.turnPow(nextPose.p.x, nextPose.p.y, startH));
             } else {
                 Pose nextPose = paths.get(curPath).get(curPose);
                 bot.tankDrive.move(
-                        reactor.forwardPowWaypoint(nextPose.p.x, nextPose.p.y),
-                        reactor.turnPow(nextPose.ang)
+                        reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y), // TODO: YOU KNOW
+//                        reactor.turnPow(nextPose.ang, startH),
+                        reactor.turnPow(nextPose.p.x, nextPose.p.y, startH)
                 );
+                log.show(reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y));
+//                log.show(reactor.turnPow(nextPose.ang, startH));
+                log.show(reactor.turnPow(nextPose.p.x, nextPose.p.y, startH));
             }
         } else {
             bot.tankDrive.move(0, 0);
         }
     }
 
-    // TODO: TUNE THE CONSTANTS IN THIS METHOD
-    private boolean doneWithCurPoint() {
-        Pose nextPose = paths.get(curPath).get(min(curPose, paths.get(curPath).size() - 1));
-        boolean addOn = true;
-        if (curPose == paths.get(curPath).size()) {
-            addOn = abs(reactor.turnPow(nextPose.ang)) < 0.1;
+    private void updateCurPoint() {
+        for (int i = curPose; i < paths.get(curPath).size(); i++) {
+            if (doneWithPoint(i)) curPose = i + 1;
         }
-        return addOn && sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
-                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 0.05;
+        if (curPose == paths.get(curPath).size() && doneWithSetpoint()) {
+            curPose++;
+        }
+    }
+
+    private boolean doneWithSetpoint() {
+        Pose nextPose = paths.get(curPath).get(paths.get(curPath).size() - 1);
+        return abs(reactor.turnPow(nextPose.ang, startH)) < 0.2
+                && sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
+                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 1;
+    }
+
+    private boolean doneWithPoint(int i) {
+        Pose nextPose = paths.get(curPath).get(i);
+        return sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
+                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 1;
     }
 
     //endregion

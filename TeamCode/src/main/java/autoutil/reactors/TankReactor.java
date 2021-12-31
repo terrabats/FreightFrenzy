@@ -11,8 +11,8 @@ public class TankReactor {
     // the POINTS GENERATED are in radians
 
     // TODO: TUNE THESE CONSTANTS
-    private static final double kf = 5, kt = 5;
-    private static final double fPowWaypoint = 0.5;
+    private static final double kf = 3, kt = 3;
+    private static final double fPowWaypoint = 0.2;
 
     public boolean moveForward(double targetX, double targetY) {
         double[] curPos = bot.odometry.curPos;
@@ -33,9 +33,14 @@ public class TankReactor {
         return moveForward(targetX, targetY) ? fPowWaypoint : -fPowWaypoint;
     }
 
-    public double turnPow(double targetH) {
+    public double turnPow(double targetX, double targetY, double stPos) {
+        double[] curPos = bot.odometry.curPos;
+        return turnPow(atan2(targetY - curPos[1], targetX - curPos[0]), stPos);
+    }
+
+    public double turnPow(double targetH, double stPos) {
+        targetH -= stPos;
         targetH *= 180/PI; // convert to degrees
-        targetH -= 90; // change to make 0 in the positive y direction
         // now targetH and curPos[2] are counterclockwise > 0, 0 in +y direction, and in degrees
         // positive ROBOT turn is CW
         while (targetH > PI) targetH -= 2 * PI;
@@ -48,6 +53,6 @@ public class TankReactor {
         if (abs(targetH - curH) > abs(targetH - curH - 2 * PI)) {
             curH += 2 * PI;
         }
-        return kt * (targetH - curH);
+        return kt * (curH - targetH);
     }
 }

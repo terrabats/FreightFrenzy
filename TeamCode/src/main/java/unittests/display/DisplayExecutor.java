@@ -28,11 +28,7 @@ public class DisplayExecutor extends JPanel {
 
     public void genTestPlane(){
         executor = new Executor(0, 0, PI/2, AngleType.RADIANS);
-        executor.addWaypoint(10, 10, PI, AngleType.RADIANS);
-        executor.addWaypoint(0, 20, 0, AngleType.RADIANS);
-        executor.addSetpoint(20, 7, 45, AngleType.DEGREES);
-        executor.addWaypoint(0, 0, PI/4, AngleType.RADIANS);
-        executor.addSetpoint(-10, 0, -PI/8, AngleType.RADIANS);
+        executor.addSetpoint(10, 10, PI/2, AngleType.RADIANS);
         executor.complete();
     }
 
@@ -43,7 +39,10 @@ public class DisplayExecutor extends JPanel {
                 g.fillOval(pX(p.p.x), pY(p.p.y), 5, 5);
                 System.out.println(p.p.x + " " + p.p.y + " " + p.ang);
             }
+            System.out.println("---");
         }
+        System.out.println("---");
+        System.out.println("---");
     }
 
     private int pX(double x){
