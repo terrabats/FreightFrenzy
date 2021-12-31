@@ -7,6 +7,10 @@ import static global.General.*;
 
 
 public class ThreadTest extends UnitTest {
+    /**
+     * Tests the two threads on the robot by setting their execution code
+     * NOTE: This test will break other tests so run it alone or at the end
+     */
     @Override
     public void loop() {
         TerraBot.robotFunctionsThread.setExecutionCode(() -> {

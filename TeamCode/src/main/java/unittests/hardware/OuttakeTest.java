@@ -7,10 +7,18 @@ import unittests.UnitTest;
 import static global.General.*;
 
 public class OuttakeTest extends UnitTest {
+    /**
+     * Tests the outtake
+     */
     @Override
     protected void start() {
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.outtake.move("open"));
         gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.outtake.move("start"));
         showConfig(bot.outtake);
+    }
+
+    @Override
+    protected void loop() {
+        log.show("Use right bumper");
     }
 }

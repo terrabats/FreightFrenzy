@@ -18,7 +18,7 @@ public class Selector<T> {
     private int currentIndex;
     private final boolean wrapAround;
     private double delay = 0.2;
-    private Timer updateTimer = new Timer();
+    private final Timer updateTimer = new Timer();
     private CodeSeg next = () -> {};
     private CodeSeg end = () -> {};
     private Status status = Status.IDLE;
@@ -101,6 +101,8 @@ public class Selector<T> {
     public Item<T> getCurrentItem(){
         return items.get(currentIndex);
     }
+
+    public int getNumberOfItems(){ return items.size(); }
 
     public void runToAll(ParameterCodeSeg<T> seg){
         for(Item<T> item: items){

@@ -11,8 +11,14 @@ import util.User;
 import static global.General.*;
 
 public class RobotFunctionsTest extends UnitTest {
+    /**
+     * Tests robotfunctions directly
+     */
     @Override
     public void start() {
+        /**
+         * Move the robot forward, then backward, then turn but using custom stage components
+         */
         bot.rfsHandler.addToQueue(new Stage(
                 new Initial(() -> bot.tankDrive.switchUser(User.ROFU)),
                 new Main(() -> bot.tankDrive.move(0.3, 0)),

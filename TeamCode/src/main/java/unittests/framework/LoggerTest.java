@@ -7,6 +7,14 @@ import static global.General.*;
 
 
 public class LoggerTest extends UnitTest{
+    /**
+     * Used to test logger
+     */
+
+
+    /**
+     * Variables that are constantly changing
+     */
     private double d = 0;
     private boolean b = false;
     private Status s = Status.ACTIVE;
@@ -20,11 +28,20 @@ public class LoggerTest extends UnitTest{
         }else{
             s = Status.ACTIVE;
         }
+        /**
+         * Show should just show telemetry like normal
+         */
         log.show("Double", d);
         log.show("Boolean", b);
         log.show("log.display is working");
+        /**
+         * Show and record should show telemetry and record the values to the logcat
+         */
         log.showAndRecord("Status Now", s);
         log.showAndRecord("Status Now 2", s);
+        /**
+         * Record just records to logcat
+         */
         log.record("Last Status", s);
     }
 }

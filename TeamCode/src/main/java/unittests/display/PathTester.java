@@ -19,6 +19,9 @@ import geometry.Pose;
 import static java.lang.Math.PI;
 import static java.lang.Math.*;
 
+/**
+ * NOTE: Uncommented
+ */
 
 public class PathTester extends JPanel {
     private final int height = 800;

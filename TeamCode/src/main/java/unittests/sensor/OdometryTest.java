@@ -4,7 +4,9 @@ import static global.General.*;
 
 import unittests.UnitTest;
 
-//TOD: TEST THIS
+/**
+ * NOTE: Uncommented
+ */
 
 public class OdometryTest extends UnitTest {
     @Override

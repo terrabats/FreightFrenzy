@@ -26,11 +26,4 @@ public class AutoModules{
         bot.lift.liftEncoder(0.4, 10),
         bot.outtake.outtakeReset(0.7)
     );
-    public StageList test = new StageList(
-        bot.lift.liftEncoder(0.5, 30)
-    );
-    public StageList test2 = new StageList(
-        bot.lift.liftTime(0.6, 0.5)
-    );
-
 }

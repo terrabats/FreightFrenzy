@@ -15,6 +15,8 @@ import unittests.hardware.OuttakeTest;
 import unittests.hardware.TankDriveTest;
 import unittests.hardware.TurretTest;
 import unittests.sensor.OdometryTest;
+import util.condition.Expectation;
+import util.condition.Magnitude;
 import util.condition.Status;
 import util.store.Item;
 
@@ -24,6 +26,10 @@ import static global.General.*;
 @TeleOp(name = "UnitTester", group = "UnitTests")
 public class UnitTester extends Tele {
 
+    /**
+     * Status of this unit tester
+     * Used for stopping once all the tests are done
+     */
     private Status status = Status.ACTIVE;
     /**
      * Selector object to select the unit test for selection test type
@@ -37,6 +43,7 @@ public class UnitTester extends Tele {
 
     /**
      * Creates all of the unit tests, comment in the ones you want
+     * Use add(new <your unit test>) to add your own unit test
      */
     private void createUnitTests(){
         // Framework
@@ -56,8 +63,8 @@ public class UnitTester extends Tele {
 //        add(new TankDriveTest());
 //        add(new IntakeTest());
 //        add(new TurretTest());
-        add(new LiftTest());
-        add(new OuttakeTest());
+//        add(new LiftTest());
+//        add(new OuttakeTest());
 //        add(new CarouselTest());
 
         // Sensor
@@ -81,21 +88,31 @@ public class UnitTester extends Tele {
          */
         switch (testingMode){
             case TIME:
+                /**
+                 * Change the time between unit tests here
+                 */
                 selector.init(5);
                 break;
             case CONTROL:
+                /**
+                 * Change the button to move to the next test here
+                 */
                 selector.init(() -> gamepad1.x, () -> false);
                 break;
             case SELECTION:
+                /**
+                 * In selection mode, use the dpad to move up and down through the list of unit tests
+                 */
                 selector.init(gph1, Button.DPAD_DOWN, Button.DPAD_UP);
                 break;
         }
         /**
          * Run on the next test
-         * stop the current test, idle the selector, unlink gamepadhandlers, and clear telemetry
+         * stop the current test, halt the robot, idle the selector, unlink gamepadhandlers, and clear telemetry
          */
         selector.runOnNext(() -> {
             getCurrentTest().stop();
+            getCurrentTest().reset();
             bot.halt();
             selector.idle();
             gph1.unlinkAll();
@@ -121,8 +138,12 @@ public class UnitTester extends Tele {
         super.activate(FieldSide.UNKNOWN);
     }
 
+    /**
+     * Start method, reset the selctors update timer
+     */
     @Override
     public void start() {
+        fault.warn("No unit tests to be run", Expectation.OBVIOUS, Magnitude.NEGLIGIBLE, selector.getNumberOfItems() == 0, false);
         selector.resetUpdateTimer();
         super.start();
     }
@@ -137,6 +158,9 @@ public class UnitTester extends Tele {
             showSelection();
             runCurrentTest();
         }else{
+            /**
+             * If all the tests are done then show that they are done
+             */
             log.show("Done With All Tests");
         }
         super.update(true);
@@ -151,7 +175,7 @@ public class UnitTester extends Tele {
     }
 
     /**
-     * get the current test name
+     * Get the current test name
      * @return test name
      */
     private String getCurrentTestName(){
@@ -169,6 +193,7 @@ public class UnitTester extends Tele {
     /**
      * Run the current test
      * NOTE: Selector mode will only run the test if its active
+     * and when you are choosing it is idle
      */
     private void runCurrentTest(){
         if(!testingMode.equals(TestType.SELECTION)) {
@@ -186,9 +211,15 @@ public class UnitTester extends Tele {
     public void showSelection(){
         if(testingMode.equals(TestType.SELECTION)){
             if(selector.isInActive()){
+                /**
+                 * Run the test if x is pressed in selector mode
+                 */
                 if(gamepad1.x){
                     selector.active();
                 }
+                /**
+                 * List all the avaialble options
+                 */
                 log.list(selector.getItemClassNames(), selector.getCurrentIndex());
             }else{
                 log.showAndRecord("Testing " ,  getCurrentTestName());
@@ -206,10 +237,12 @@ public class UnitTester extends Tele {
          * Move to the next test by clicking x so you can control when the next test occurs
          */
         CONTROL,
+
         /**
-         * The next test will automaticall run after a certian interval (set in init)
+         * The next test will automatically run after a certian interval (set in init)
          */
         TIME,
+
         /**
          * A screen will pop up to show you all of the availible tests and you can select the ones you want from there
          */

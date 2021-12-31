@@ -1,6 +1,5 @@
 package robotparts.hardware;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import automodules.stage.Exit;
@@ -47,7 +46,7 @@ public class Turret extends RobotPart {
         return tr.hasReachedPosition();
     }
 
-    public double getTurretTargetPos(){
+    public double getTargetPos(){
         if(fieldSide != null) {
             if (fieldSide.equals(FieldSide.BLUE)) {
                 return Constants.BLUE_SIDE_TURRET_ANGLE;
@@ -63,7 +62,7 @@ public class Turret extends RobotPart {
     }
 
     public Initial initialSetTarget(double angle){return new Initial(() -> setTarget(angle));}
-    public Initial initialSetFieldSideTarget(){return new Initial(() -> setTarget(getTurretTargetPos()));}
+    public Initial initialSetFieldSideTarget(){return new Initial(() -> setTarget(getTargetPos()));}
 
     public Main main(double power){return new Main(()-> move(power));}
     public Exit exitReachedTarget(){return new Exit(this::hasReachedTarget);}

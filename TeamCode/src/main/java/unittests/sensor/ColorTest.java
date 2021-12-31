@@ -6,6 +6,10 @@ import java.util.Arrays;
 import unittests.UnitTest;
 import static global.General.*;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class ColorTest extends UnitTest {
     @Override
     protected void loop() {

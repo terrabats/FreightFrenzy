@@ -23,10 +23,18 @@ public class UnitTest {
     public void init() {}
     protected void start() {}
     protected void loop() {}
-    public void stop() {bot.halt();}
+    public void stop() {}
+
+    /**
+     * Reset the status to idle
+     */
+    public void reset(){
+        status = Status.IDLE;
+    }
 
     /**
      * Test by running start, setting the status to active, and then running loop
+     * This ensures that start runs once and then loop runs over and over
      */
     public void test(){
         if(status.equals(Status.IDLE)){

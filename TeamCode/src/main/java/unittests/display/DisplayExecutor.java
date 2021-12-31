@@ -16,6 +16,9 @@ import autoutil.paths.PathSegment;
 import geometry.AngleType;
 import geometry.Pose;
 
+/**
+ * NOTE: Uncommented
+ */
 
 public class DisplayExecutor extends JPanel {
 

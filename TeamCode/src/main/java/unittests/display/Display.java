@@ -13,6 +13,9 @@ import geometry.Pose;
 
 import static java.lang.Math.*;
 
+/**
+ * NOTE: Uncommented
+ */
 
 public class Display extends JPanel {
 

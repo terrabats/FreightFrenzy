@@ -8,8 +8,14 @@ import static global.General.log;
 import static global.General.storage;
 
 public class StorageTest extends UnitTest {
+    /**
+     * Tests storage by adding a set of items
+     */
     @Override
     protected void start() {
+        /**
+         * Items to be stored
+         */
         fieldSide = FieldSide.RED;
         storage.addItem("St", "Test");
         storage.addItem("In", 1);
@@ -22,6 +28,9 @@ public class StorageTest extends UnitTest {
 
     @Override
     protected void loop() {
+        /**
+         * Show the values of the items to be stored
+         */
         log.showAndRecord("St", storage.getItem("St").getValue());
         log.showAndRecord("In", storage.getItem("In").getValue());
         log.showAndRecord("Fl", storage.getItem("Fl").getValue());
@@ -34,6 +43,9 @@ public class StorageTest extends UnitTest {
 
     @Override
     public void stop() {
+        /**
+         * Empty the storage list
+         */
         storage.emptyItems();
     }
 }

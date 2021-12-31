@@ -10,6 +10,10 @@ import unittests.UnitTest;
 import static global.General.*;
 
 public class AutoModuleTest extends UnitTest {
+    /**
+     * Test automobiles using intake as an example
+     */
+
     @Override
     protected void start() {
         gph1.link(Button.A, OnPressEventHandler.class,() -> bot.addAutoModule(autoModules.Intake));

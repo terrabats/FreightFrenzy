@@ -5,8 +5,12 @@ import unittests.UnitTest;
 
 import static global.General.*;
 
+/**
+ * NOTE: Uncommented
+ */
 
 public class CoordinatePlaneTest extends UnitTest {
+
     public CoordinatePlane coordinatePlane = new CoordinatePlane();
 
     @Override

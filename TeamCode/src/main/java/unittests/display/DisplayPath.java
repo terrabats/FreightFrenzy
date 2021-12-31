@@ -13,6 +13,9 @@ import autoutil.paths.Path;
 import autoutil.paths.PathSegment;
 import geometry.Pose;
 
+/**
+ * NOTE: Uncommented
+ */
 
 public class DisplayPath extends JPanel {
 
