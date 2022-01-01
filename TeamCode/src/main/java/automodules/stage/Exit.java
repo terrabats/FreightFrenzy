@@ -3,6 +3,9 @@ package automodules.stage;
 import util.codeseg.ReturnCodeSeg;
 
 public class Exit extends StageComponent{
+    /**
+     * Tells the stage to exit
+     */
     private final ReturnCodeSeg<Boolean> shouldEnd;
 
     public Exit(ReturnCodeSeg<Boolean> endCode){
