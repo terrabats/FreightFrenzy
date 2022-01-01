@@ -12,10 +12,20 @@ public class Fault {
      */
     private final boolean unsafeMode = false;
 
+    /**
+     * Warn that something went wrong with a message
+     * @param msg
+     */
     public void warn(String msg){
         createFault(getName(msg), true, false);
     }
 
+    /**
+     * Warn with more details
+     * @param msg
+     * @param e
+     * @param m
+     */
     public void warn(String msg, Expectation e, Magnitude m){
         createFault(getName(msg, e, m), true, false);
     }
@@ -43,11 +53,20 @@ public class Fault {
         createFault(getName(msg, e, m), test != correct, false);
     }
 
-
+    /**
+     * Same as warn except throws exception
+     * @param msg
+     */
     public void check(String msg) {
         createFault(getName(msg), true, true);
     }
 
+    /**
+     * Same as above with more details
+     * @param msg
+     * @param e
+     * @param m
+     */
     public void check(String msg, Expectation e, Magnitude m) {
         createFault(getName(msg, e, m), true, true);
     }
@@ -76,10 +95,22 @@ public class Fault {
         createFault(getName(msg, e, m), test != correct, true);
     }
 
-
+    /**
+     * Gets the name given a message
+     * @param msg
+     * @return
+     */
     private String getName(String msg){
         return "Msg: " + msg;
     }
+
+    /**
+     * Gets the name given a message and expectation and magnitude
+     * @param msg
+     * @param e
+     * @param m
+     * @return
+     */
     private String getName(String msg, Expectation e, Magnitude m){
         return getName(msg) + " Exp: " + e.toString() + " Mag: " + m.toString();
     }
