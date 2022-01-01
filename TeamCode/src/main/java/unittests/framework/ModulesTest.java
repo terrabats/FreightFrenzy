@@ -36,4 +36,9 @@ public class ModulesTest extends UnitTest {
     protected void loop() {
         bot.tankDrive.move(-0.3, 0);
     }
+
+    @Override
+    public void stop() {
+        bot.tankDrive.move(0,0);
+    }
 }
