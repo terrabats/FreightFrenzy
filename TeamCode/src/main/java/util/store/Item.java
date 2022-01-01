@@ -81,8 +81,9 @@ public class Item<T> {
             return ItemType.DOUBLE;
         }else if(value instanceof Boolean){
             return ItemType.BOOLEAN;
+        }else{
+            return ItemType.OTHER;
         }
-        return null;
     }
 
     /**
@@ -110,6 +111,8 @@ public class Item<T> {
                 return Double.valueOf(rawValue);
             case BOOLEAN:
                 return Boolean.valueOf(rawValue);
+            case OTHER:
+                return rawValue;
         }
         fault.warn("Object does not match any known type", Expectation.EXPECTED, Magnitude.MINOR);
         return null;
@@ -133,7 +136,8 @@ public class Item<T> {
         INT,
         FLOAT,
         DOUBLE,
-        BOOLEAN;
+        BOOLEAN,
+        OTHER;
 
         /**
          * Gets the item type from a string by seeing if the toString of the itemtype equals

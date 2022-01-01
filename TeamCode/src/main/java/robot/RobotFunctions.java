@@ -1,6 +1,7 @@
 package robot;
 
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Queue;
 
 import automodules.StageList;
@@ -40,12 +41,11 @@ public class RobotFunctions {
              * Get the oldest stage
              */
             Stage s = rfsQueue.peek();
-            assert s != null;
             /**
              * If the stage has not started start it,
              * Then run the loop code
              */
-            if(!s.hasStarted()){
+            if(!Objects.requireNonNull(s).hasStarted()){
                 s.start();
             }
             s.loop();

@@ -66,6 +66,10 @@ public interface Common{
          * Initialize the robot
          */
         bot.init();
+        /**
+         * Tell sync that a method in common was run
+         */
+        sync.ranMethodInCommon();
     }
 
     /**
@@ -86,6 +90,7 @@ public interface Common{
         bot.start();
         sync.resetDelay();
         log.clearTelemetry();
+        sync.ranMethodInCommon();
     }
 
     /**
@@ -94,6 +99,9 @@ public interface Common{
      * @param showTelemetry
      */
     default void update(boolean showTelemetry){
+        if(sync.isFirstUpdate()){
+            sync.ranMethodInCommon();
+        }
         bot.checkAccess(mainUser);
         gph1.run();
         gph2.run();
@@ -109,5 +117,11 @@ public interface Common{
         sync.logDelay();
         log.showLogs();
         storage.saveItems();
+        sync.ranMethodInCommon();
+
+        log.showAndRecord("Num", sync.getNumberOfCommonMethodsRun());
+//        fault.check("You didn't call to super in one of the overriden methods for teleop",
+//                Expectation.EXPECTED, Magnitude.CRITICAL, numberOfMethodsRun == 3, true);
+
     }
 }
