@@ -9,6 +9,9 @@ import global.Constants;
 import robot.TerraBot;
 
 public class AutoModules{
+    /**
+     * Define automodules here as a stage list
+     */
     public StageList Intake = new StageList(
         bot.lift.liftEncoder(0.4, 0),
         bot.intake.intakeUntilFreight(1),
