@@ -9,10 +9,10 @@ public class Log {
      * Item containing name and values
      */
     private final Item<ArrayList<Object>> item;
-    /**
-     * Type of log
-     */
 
+    /**
+     * Current object (last one in the list)
+     */
     private Object currentObject = null;
 
     /**
@@ -40,6 +40,10 @@ public class Log {
         if(!o.equals(getCurrentObject())){ add(o); }
     }
 
+    /**
+     * Get the name of the log
+     * @return name
+     */
     public String getName(){
         return item.getName();
     }
