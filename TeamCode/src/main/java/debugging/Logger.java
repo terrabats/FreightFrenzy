@@ -43,6 +43,11 @@ public class Logger {
         Objects.requireNonNull(logs.get(name)).addNewOnly(val);
     }
 
+    /**
+     * Shows and records telemetry
+     * @param caption
+     * @param val
+     */
     public void showAndRecord(String caption, Object val){
         show(caption, val);
         record(caption, val);
