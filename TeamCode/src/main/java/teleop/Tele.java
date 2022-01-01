@@ -65,8 +65,8 @@ public abstract class Tele extends OpMode implements Common {
     @Override
     public final void stop() {
         finish();
-        fault.check("You didn't call to super in one of the overriden methods for teleop",
-                Expectation.EXPECTED, Magnitude.CRITICAL, numberOfMethodsRun == 3, true);
+//        fault.check("You didn't call to super in one of the overriden methods for teleop",
+//                Expectation.EXPECTED, Magnitude.CRITICAL, numberOfMethodsRun == 3, true);
 
         end();
         numberOfMethodsRun = 0;
