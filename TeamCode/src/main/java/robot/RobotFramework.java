@@ -34,9 +34,6 @@ public class RobotFramework {
      * rfsHandler is used for running rfs code. Stages can be added to the queue
      */
     public RobotFunctions rfsHandler;
-    /**
-     *  Represents if the robot is in slow mode
-     */
 
     /**
      * Constructor for creating a robotFramework, this should be overriden by terraBot by extending this class
@@ -73,7 +70,7 @@ public class RobotFramework {
 
     /**
      * the stop method stops updating threads, and halts the robot
-     * @link #halt
+     * @link halt
      */
     public void stop(){
         robotFunctionsThread.stopUpdating();
@@ -109,11 +106,17 @@ public class RobotFramework {
      */
     public void checkAccess(User potentialUser){ forAllParts(part -> part.checkAccess(potentialUser)); }
 
+    /**
+     * Cancel all of the automodules by emptying the robot functions queue
+     */
     public void cancelAutoModules(){
         setUserMainAndHalt();
         rfsHandler.emptyQueue();
     }
 
+    /**
+     * Set the user to main and halt all of the robot parts that aren't the main user
+     */
     public void setUserMainAndHalt() {
         forAllParts(part -> {
             if (!part.getUser().equals(mainUser)){
@@ -124,8 +127,14 @@ public class RobotFramework {
         });
     }
 
+    /**
+     * Resume the automodules
+     */
     public void resumeAutoModules(){ rfsHandler.resume(); }
 
+    /**
+     * Pause the automodules
+     */
     public void pauseAutoModules() { rfsHandler.pauseNow(); }
 
     /**

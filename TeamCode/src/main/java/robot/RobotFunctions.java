@@ -113,6 +113,9 @@ public class RobotFunctions {
         rfsQueue.add(s);
     }
 
+    /**
+     * Pause the robotfunction queue in the current state after the stage has ended
+     */
     public final void pauseNow() {
         Queue<Stage> newStages = new LinkedList<>();
         if (!rfsQueue.isEmpty()) {
