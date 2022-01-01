@@ -35,11 +35,18 @@ public abstract class Tele extends OpMode implements Common {
     @Override
     public void loop() { update(true); }
 
-
-
     /**
-     * Stop method, code that runs in stop
+     * Finish method runs when the program ends
+     */
+    public void finish(){
+
+    }
+    /**
+     * Internal stop method, do not override
      */
     @Override
-    public void stop() { end(); }
+    public final void stop() {
+        finish();
+        end();
+    }
 }

@@ -55,9 +55,9 @@ public class UnitTester extends Tele {
 //        add(new GamepadTest());
 //        add(new RobotFunctionsTest());
 //        add(new ThreadTest());
-        add(new StorageTest());
-//        add(new ModulesTest());
-//        add(new AutoModuleTest());
+//        add(new StorageTest());
+        add(new ModulesTest());
+        add(new AutoModuleTest());
 
         // Hardware
 //        add(new TankDriveTest());
