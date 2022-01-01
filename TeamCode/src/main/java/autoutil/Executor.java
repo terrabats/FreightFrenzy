@@ -5,7 +5,6 @@ import java.util.*;
 import autoutil.paths.PathSegment;
 import autoutil.reactors.TankReactor;
 import geometry.AngleType;
-import geometry.Point;
 import geometry.Pose;
 
 import static global.General.*;
@@ -90,22 +89,21 @@ public class Executor {
                 Pose nextPose = paths.get(curPath).get(curPose - 1);
                 bot.tankDrive.move(
                         reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y),
-//                        reactor.turnPow(nextPose.ang, startH),
-                        reactor.turnPow(nextPose.p.x, nextPose.p.y, startH)
+                        reactor.turnPow(nextPose.ang, startH)
                 );
-                log.show(reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y));
+                log.show("Forward pow", reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y));
 //                log.show(reactor.turnPow(nextPose.ang, startH));
-                log.show(reactor.turnPow(nextPose.p.x, nextPose.p.y, startH));
+                log.show("Turn pow", reactor.turnPow(nextPose.ang, startH));
             } else {
                 Pose nextPose = paths.get(curPath).get(curPose);
                 bot.tankDrive.move(
                         reactor.forwardPowWaypoint(nextPose.p.x, nextPose.p.y),
 //                        reactor.turnPow(nextPose.ang, startH),
-                        reactor.turnPow(nextPose.p.x, nextPose.p.y, startH)
+                        reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH)
                 );
-                log.show(reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y));
+                log.show("Forward pow", reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y));
 //                log.show(reactor.turnPow(nextPose.ang, startH));
-                log.show(reactor.turnPow(nextPose.p.x, nextPose.p.y, startH));
+                log.show("Turn pow", reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH));
             }
         } else {
             bot.tankDrive.move(0, 0);
@@ -123,15 +121,15 @@ public class Executor {
 
     private boolean doneWithSetpoint() {
         Pose nextPose = paths.get(curPath).get(paths.get(curPath).size() - 1);
-        return abs(reactor.turnPow(nextPose.ang, startH)) < 0.2
+        return abs(reactor.turnPow(nextPose.ang, startH)) < 0.3
                 && sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
-                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 1;
+                + 2 * pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 2;
     }
 
     private boolean doneWithPoint(int i) {
         Pose nextPose = paths.get(curPath).get(i);
         return sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
-                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 1;
+                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 4;
     }
 
     //endregion

@@ -20,7 +20,7 @@ public class AutoMoveTest extends Auto {
         activate(FieldSide.BLUE);
 
         Executor executor = new Executor(0, 0, PI/2, AngleType.RADIANS);
-        executor.addSetpoint(10, 10, PI/2, AngleType.RADIANS);
+        executor.addSetpoint(60, 60, PI/2, AngleType.RADIANS);
 //        executor.addSetpoint(0, 10, 0, AngleType.RADIANS);
         executor.complete();
 
@@ -33,13 +33,14 @@ public class AutoMoveTest extends Auto {
         while (opModeIsActive() && !executor.finished()) {
             executor.update();
 //            log.show(executor.reactor.moveForward(executor.));
-            log.show(executor.curPath + " " + executor.curPose);
-            log.show(executor.paths.size() + " " + executor.paths.get(executor.curPath).size());
-//            log.show(executor.paths.get(executor.curPath).get(executor.curPose));
+            log.showAndRecord("cur path index", executor.curPath + " " + executor.curPose);
+            log.showAndRecord("path length", executor.paths.size() + " " + executor.paths.get(executor.curPath).size());
+            log.showAndRecord("Curpos", Arrays.toString(bot.odometry.curPos));
+            log.showAndRecord("Target", executor.paths.get(executor.curPath).get(executor.paths.get(executor.curPath).size() - 1));
             update(true);
         }
-
-        bot.tankDrive.move(0, 0);
+//        while (opModeIsActive()) { bot.tankDrive.move(0, 0.5); update(true); }
+//        bot.tankDrive.move(0, 0);
 
         end();
     }

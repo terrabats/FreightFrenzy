@@ -13,8 +13,8 @@ public class Constants {
     /**
      * Accuracies for creating points in arc and line generations in Autonomous
      */
-    public static final double ANG_ACC_ARC = 0.01;
-    public static final double LINE_ACC_PATH = 0.005;
+    public static final double ANG_ACC_ARC = 0.05;
+    public static final double LINE_ACC_PATH = 0.05;
 
     /**
      * Constant for converting lift height to ticks for the motor to rotate
