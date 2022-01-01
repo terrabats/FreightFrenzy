@@ -10,6 +10,8 @@ import teleutil.GamepadHandler;
 import debugging.Fault;
 import debugging.Logger;
 import util.User;
+import util.condition.Expectation;
+import util.condition.Magnitude;
 import util.store.Storage;
 
 import static global.General.*;
@@ -66,6 +68,10 @@ public interface Common{
          * Initialize the robot
          */
         bot.init();
+        /**
+         * Tell sync that a method in common was run
+         */
+        sync.ranMethodInCommon();
     }
 
     /**
@@ -77,6 +83,7 @@ public interface Common{
         fieldSide = side;
         log.show("Ready");
         log.showTelemetry();
+        sync.ranMethodInCommon();
     }
 
     /**
@@ -86,6 +93,7 @@ public interface Common{
         bot.start();
         sync.resetDelay();
         log.clearTelemetry();
+        sync.ranMethodInCommon();
     }
 
     /**
@@ -94,6 +102,9 @@ public interface Common{
      * @param showTelemetry
      */
     default void update(boolean showTelemetry){
+        if(sync.isFirstUpdate()){
+            sync.ranMethodInCommon();
+        }
         bot.checkAccess(mainUser);
         gph1.run();
         gph2.run();
@@ -102,11 +113,14 @@ public interface Common{
     }
 
     /**
-     * Stops the robot, halts all of the motors (in stop), shows the logs, and saves the storage times
+     * Stops the robot, halts all of the motors (in stop), checks if common is used properly, shows the logs, and saves the storage times
      */
     default void end(){
         bot.stop();
         sync.logDelay();
+        sync.ranMethodInCommon();
+        boolean isCommonBeingUsedProperly = sync.getNumberOfCommonMethodsRun() >= 4 && sync.getNumberOfCommonMethodsRun() <= 5;
+        fault.check("You didn't call to super in one of the overriden methods for teleop", Expectation.EXPECTED, Magnitude.CRITICAL, isCommonBeingUsedProperly, true);
         log.showLogs();
         storage.saveItems();
     }

@@ -35,8 +35,6 @@ public class Storage {
      * as the name of the text file and the value in the file
      */
     public void saveItems(){
-        log.showAndRecord("Num", items.size());
-        log.showAndRecord("Num2", items.get(0) == null);
         fault.warn("No items to save", Expectation.SURPRISING, Magnitude.MINOR, items.isEmpty(), false);
         for(Item<?> i: items) {
             saveText("current", i.getName(), i.toString());
