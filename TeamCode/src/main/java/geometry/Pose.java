@@ -4,6 +4,10 @@ import static java.lang.Math.*;
 
 import global.Constants;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class Pose extends GeometryObject {
     public Point p;
     public double ang;

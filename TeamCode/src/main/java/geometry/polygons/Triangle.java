@@ -2,6 +2,10 @@ package geometry.polygons;
 
 import geometry.GeometryObject;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class Triangle extends Polygon {
     //Calculates law of cosines for C knowing a,b and the angle between them
     public static double lawOfCosinesC(double a, double b, double rad){

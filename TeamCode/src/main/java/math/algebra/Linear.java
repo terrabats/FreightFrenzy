@@ -2,6 +2,10 @@ package math.algebra;
 
 import geometry.Point;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class Linear extends Polynomial{
     public Point p1;
     public Point p2;

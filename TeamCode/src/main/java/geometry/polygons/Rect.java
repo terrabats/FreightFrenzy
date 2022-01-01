@@ -4,6 +4,10 @@ import geometry.GeometryObject;
 import geometry.Point;
 import geometry.Pose;
 
+/**
+ * NOTE: Uncommented
+ */
+
 //Rect class defines a rectagle object
 public class Rect extends Quadrilateral {
     //x, y, w, h are the x and y coords of the top left corner and w and h are width and height repectivly

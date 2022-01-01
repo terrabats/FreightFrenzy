@@ -2,6 +2,10 @@ package geometry;
 
 import static java.lang.Math.*;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class Point extends GeometryObject {
     public double x, y;
     public Point(double x, double y) {

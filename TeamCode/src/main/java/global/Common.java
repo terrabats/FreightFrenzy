@@ -57,6 +57,9 @@ public interface Common{
          */
         bot = new TerraBot();
 
+        /**
+         * Create the automodules
+         */
         autoModules = new AutoModules();
 
         /**

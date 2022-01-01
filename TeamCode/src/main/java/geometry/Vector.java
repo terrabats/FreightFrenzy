@@ -2,6 +2,10 @@ package geometry;
 
 import static java.lang.Math.*;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class Vector extends GeometryObject {
     //x and y coords of the tip of vector, theta is angle measured from the right horizontal
     public Point p;

@@ -1,5 +1,9 @@
 package math.algebra;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class Logistic extends Function{
     private final double m;
     private final double b;

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import static java.lang.Math.*;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class CircularArc extends Circle {
     public double arcSt, arcEnd; // radians
 

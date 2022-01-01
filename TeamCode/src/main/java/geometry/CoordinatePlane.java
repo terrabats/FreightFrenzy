@@ -7,6 +7,10 @@ import geometry.polygons.Rect;
 
 import static java.lang.Math.*;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class CoordinatePlane {
 
     // TODO3 NEW

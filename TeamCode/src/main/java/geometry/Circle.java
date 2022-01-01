@@ -3,6 +3,10 @@ package geometry;
 import static java.lang.Math.*;
 import static global.Constants.*;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class Circle extends GeometryObject{
     public Point center;
     public double r; // center is (h, k) and radius is r

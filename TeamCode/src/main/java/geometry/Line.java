@@ -2,6 +2,10 @@ package geometry;
 
 import static java.lang.Math.*;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class Line extends GeometryObject {
     //start coords (x1,y1) end coords (x2,y2) mx is slope in x dir from 0-1 and my is the same for y
     public Point p1;
