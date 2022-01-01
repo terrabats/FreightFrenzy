@@ -35,6 +35,8 @@ public class Storage {
      * as the name of the text file and the value in the file
      */
     public void saveItems(){
+        log.showAndRecord("Num", items.size());
+        log.showAndRecord("Num2", items.get(0) == null);
         fault.warn("No items to save", Expectation.SURPRISING, Magnitude.MINOR, items.isEmpty(), false);
         for(Item<?> i: items) {
             saveText("current", i.getName(), i.toString());
@@ -97,9 +99,9 @@ public class Storage {
     private File makeOutputFolder(String dirname){
         File filepath = Environment.getExternalStorageDirectory();
         File ftcDir = new File(filepath.getAbsolutePath()+"/FTC_Files/");
-        log.record("was ftcDir made?", ftcDir.mkdir());
+        //log.record("was ftcDir made?", ftcDir.mkdir());
         File outDir = new File(ftcDir.getAbsolutePath()+"/"+dirname+"/");
-        log.record("was outDir made?", outDir.mkdir());
+        //log.record("was outDir made?", outDir.mkdir());
         return outDir;
     }
 }

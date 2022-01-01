@@ -55,7 +55,7 @@ public class UnitTester extends Tele {
 //        add(new GamepadTest());
 //        add(new RobotFunctionsTest());
 //        add(new ThreadTest());
-//        add(new StorageTest());
+        add(new StorageTest());
 //        add(new ModulesTest());
 //        add(new AutoModuleTest());
 
@@ -130,6 +130,7 @@ public class UnitTester extends Tele {
          * Create all the unit tests and initialize them
          */
         createUnitTests();
+        fault.check("No unit tests to be run", Expectation.OBVIOUS, Magnitude.NEGLIGIBLE, selector.getNumberOfItems() == 0, false);
         selector.runToAll(UnitTest::init);
         /**
          * Display the testing mode
@@ -143,7 +144,6 @@ public class UnitTester extends Tele {
      */
     @Override
     public void start() {
-        fault.warn("No unit tests to be run", Expectation.OBVIOUS, Magnitude.NEGLIGIBLE, selector.getNumberOfItems() == 0, false);
         selector.resetUpdateTimer();
         super.start();
     }
