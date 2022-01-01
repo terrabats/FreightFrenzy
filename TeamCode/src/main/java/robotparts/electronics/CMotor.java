@@ -39,7 +39,7 @@ public class CMotor extends Electronic {
     }
 
     /**
-     * Sets the power of the motor if access is allowed?
+     * Sets the power of the motor if access is allowed
      * @param p
      */
     public void setPower(double p){ if(access.isAllowed()){ motor.setPower(p); } }

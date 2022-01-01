@@ -14,9 +14,18 @@ import robotparts.electronics.PServo;
 import static global.General.*;
 
 public class TankDrive extends RobotPart {
+    /**
+     * Contunous motors for drivetrain
+     */
     private CMotor fr,br,fl,bl;
+    /**
+     * Positional Servo for retracting odometer
+     */
     private PServo re;
 
+    /**
+     * Init method to create all of the motors and the servo
+     */
     @Override
     public void init(){
         fr = createCMotor("fr", DcMotorSimple.Direction.REVERSE);
@@ -26,11 +35,27 @@ public class TankDrive extends RobotPart {
         re = createPServo("re", Servo.Direction.FORWARD, 0, 1);
     }
 
+    /**
+     * Move the robot forward at power f and turn at power t
+     * @param f
+     * @param t
+     */
     public void move(double f, double t){
         fr.setPower(f-t);
         br.setPower(f-t);
         fl.setPower(f+t);
         bl.setPower(f+t);
+    }
+
+    /**
+     * Move the robot using logisitic curves (to make it easier to use in teleop)
+     * @param f
+     * @param t
+     */
+    public void moveSmooth(double f, double t){
+        Logistic movementCurveForward = new Logistic(10,5);
+        Logistic movementCurveTurn = new Logistic(30,6);
+        move(movementCurveForward.yr(f), movementCurveTurn.yr(t));
     }
 
     private double stAng = 0;
@@ -63,12 +88,6 @@ public class TankDrive extends RobotPart {
             move(0, t * Math.min(1, err/15));
             return moveForTime == 0 ? (Math.abs(err) < turnError) : (curTime >= moveForTime);
         }
-    }
-
-    public void moveSmooth(double f, double t){
-        Logistic movementCurveForward = new Logistic(10,5);
-        Logistic movementCurveTurn = new Logistic(30,6);
-        move(movementCurveForward.yr(f), movementCurveTurn.yr(t));
     }
 
     public Main main(double forward, double strafe){

@@ -12,25 +12,50 @@ import robotparts.electronics.CMotor;
 import static global.General.bot;
 
 public class Intake extends RobotPart {
+    /**
+     * Intake motor
+     */
     private CMotor in;
 
+    /**
+     * Init method creates the intake motor
+     */
     @Override
     public void init() {
         in = createCMotor("in", DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
+    /**
+     * Moves the intake motor at the given power
+     * @param power
+     */
     public void move(double power) {
         in.setPower(power);
     }
 
+    /**
+     * Moves the intake in a main (for automodules)
+     * @param power
+     * @return main
+     */
     public Main main(double power) {
         return new Main(() -> move(power));
     }
 
+    /**
+     * Stops the intake
+     * @return stop
+     */
     public Stop stop() {
         return new Stop(() -> move(0));
     }
 
+    /**
+     * Turns on the intake until a freight is detected
+     * NOTE: Uses the colorsensor to detect this
+     * @param power
+     * @return stage
+     */
     public Stage intakeUntilFreight(double power) { return new Stage(
                 usePart(),
                 main(power),

@@ -3,6 +3,10 @@ package robotparts.sensors;
 import robotparts.RobotPart;
 import robotparts.electronics.IGyro;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class GyroSensor extends RobotPart {
     private IGyro gsr, gsl;
 

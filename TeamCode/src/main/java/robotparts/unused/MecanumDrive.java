@@ -12,6 +12,10 @@ import java.util.Objects;
 import robotparts.RobotPart;
 import robotparts.electronics.CMotor;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class MecanumDrive extends RobotPart {
     private CMotor fr,br,fl,bl;
 

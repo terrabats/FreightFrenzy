@@ -7,6 +7,10 @@ import robotparts.electronics.IColor;
 
 import static global.General.bot;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class ColorSensors extends RobotPart {
     private IColor cso;
 

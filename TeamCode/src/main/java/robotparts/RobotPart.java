@@ -42,6 +42,7 @@ public class RobotPart extends Electronic {
      * then override the init method
      */
 
+
     /**
      * TreeMap to store the list of electronics
      */
@@ -149,7 +150,7 @@ public class RobotPart extends Electronic {
     }
 
     /**
-     * Halt of the cmotors and cservos (i.e. set the power to 0)
+     * Halt the cmotors and cservos (i.e. set the power to 0)
      */
     public void halt(){
         for(CMotor mot: getObjects(CMotor.class).values()){
@@ -179,7 +180,7 @@ public class RobotPart extends Electronic {
     /**
      * Check the access of the user if they match the current user
      * This means that only the currentUser has access and all other users will be denied
-     * In order to use a robotpart you must call switch user
+     * In order to use a robotpart you must call switch user and then checkAccess
      * @param potentialUser
      */
     public void checkAccess(User potentialUser){
@@ -196,11 +197,30 @@ public class RobotPart extends Electronic {
      */
     private void forAllElectronics(ParameterCodeSeg<Electronic> run){ for(Electronic e: electronics.values()){ run.run(e); } }
 
+    /**
+     * Exit based on time
+     * @param s
+     * @return exit
+     */
     public Exit exitTime(double s){return new Exit(() -> bot.rfsHandler.timer.seconds() > s);}
+
+    /**
+     * Exit always
+     * @return exit
+     */
     public Exit exit(){return new Exit(() -> true);}
 
+    /**
+     * Use this robot part
+     * NOTE: This must be called before the robot part can be used in a stage
+     * @return initial
+     */
     public Initial usePart(){return new Initial(() -> switchUser(User.ROFU));}
-    public Stop returnPart(){return new Stop(() -> switchUser(mainUser));}
 
-    public Stage pause() {return new Stage(true);}
+    /**
+     * Return the robot part to the main user
+     * NOTE: This must be called after the robot part is use in a stage
+     * @return stop
+     */
+    public Stop returnPart(){return new Stop(() -> switchUser(mainUser));}
 }

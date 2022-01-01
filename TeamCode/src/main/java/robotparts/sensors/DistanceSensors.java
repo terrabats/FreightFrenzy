@@ -3,6 +3,10 @@ package robotparts.sensors;
 import robotparts.RobotPart;
 import robotparts.electronics.IDistance;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class DistanceSensors extends RobotPart {
     private IDistance dsl,dsr,dsfl,dsfr,dso;
 

@@ -10,6 +10,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 
 import robotparts.Electronic;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class IGyro extends Electronic {
     private final BNO055IMU gyro;
     public IGyro(BNO055IMU gyro){

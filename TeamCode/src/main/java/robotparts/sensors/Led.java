@@ -6,6 +6,10 @@ import robotparts.electronics.OLed;
 import robotparts.electronics.OLed.*;
 
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class Led extends RobotPart {
     private OLed ledfr;
     private OLed ledfl;

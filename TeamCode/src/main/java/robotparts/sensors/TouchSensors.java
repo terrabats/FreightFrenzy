@@ -3,6 +3,10 @@ package robotparts.sensors;
 import robotparts.RobotPart;
 import robotparts.electronics.ITouch;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class TouchSensors extends RobotPart {
     private ITouch tso;
 

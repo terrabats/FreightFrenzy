@@ -69,9 +69,9 @@ public class TerraOpBlue extends Tele{
         bot.intake.move(gamepad1.right_bumper ? 1 : (gamepad1.left_bumper ? -1 : 0));
 
         if(gamepad2.right_bumper){
-            bot.outtake.lockCubeTele();
+            bot.outtake.lockCube();
         }else if(gamepad2.left_bumper){
-            bot.outtake.startTele();
+            bot.outtake.start();
         }
 
         // Gamepad1
@@ -83,7 +83,7 @@ public class TerraOpBlue extends Tele{
         bot.turret.move(gamepad2.left_stick_x);
         bot.lift.move(-gamepad2.right_stick_y+Constants.LIFT_REST_POW);
 
-        log.show(bot.lift.liEnc.getPos());
+        log.show(bot.lift.getLiftPos());
 
         super.loop();
     }

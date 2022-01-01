@@ -15,6 +15,7 @@ public class Electronic {
      * I -> input
      */
 
+
     /**
      * Status represents the current status of the electronic part
      * NOTE: This is volatile to prevent thread conflicts

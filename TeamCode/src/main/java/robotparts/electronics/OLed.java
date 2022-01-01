@@ -4,6 +4,10 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 import robotparts.Electronic;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class OLed extends Electronic {
     private DigitalChannel red;
     private DigitalChannel green;

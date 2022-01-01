@@ -7,7 +7,12 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import robotparts.Electronic;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class IColor extends Electronic {
+
     private final ColorSensor colorSensor;
     public IColor(ColorSensor colorSensor){
         this.colorSensor = colorSensor;

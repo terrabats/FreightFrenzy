@@ -17,35 +17,60 @@ import static global.General.bot;
 import static global.General.fieldSide;
 
 public class Turret extends RobotPart {
+    /**
+     * Turret positional motor
+     */
     private PMotor tr;
-    private IEncoder trEnc;
 
+    /**
+     * Create the turret motor and reset it (done internally)
+     */
     @Override
     public void init() {
         tr = createPMotor("tr", DcMotorSimple.Direction.FORWARD);
-        trEnc = createEncoder("tr", "trEnc", IEncoder.Type.MOTOR);
-        resetEncoder();
     }
 
+    /**
+     * Move the motor at a power
+     * @param power
+     */
     public void move(double power) {
         tr.setPower(power);
     }
 
+    /**
+     * Get the turret position
+     * @return position
+     */
     public double getTurretPos(){
-        return trEnc.getPos();
+        return tr.getPosition();
     }
 
+    /**
+     * Reset the turret encoder (motor encoder)
+     */
+    public void resetEncoder(){tr.resetPosition();}
 
-    public void resetEncoder(){trEnc.reset();}
-
+    /**
+     * Set the target angle for the turret
+     * @param angle
+     */
     public void setTarget(double angle){
         tr.setPosition(angle*Constants.TURRET_ANGLE_DEG_TO_TICKS);
     }
 
+    /**
+     * Has the turret reached the target position
+     * @return hasReached
+     */
     public boolean hasReachedTarget(){
         return tr.hasReachedPosition();
     }
 
+    /**
+     * Get the target position based on the fieldside
+     * @return
+     */
     public double getTargetPos(){
         if(fieldSide != null) {
             if (fieldSide.equals(FieldSide.BLUE)) {
@@ -57,10 +82,16 @@ public class Turret extends RobotPart {
         return 0;
     }
 
+    /**
+     * Stop and reset the mode
+     */
     public void stopAndResetMode() {
         tr.stopAndReset();
     }
 
+    /**
+     * Automobile methods
+     */
     public Initial initialSetTarget(double angle){return new Initial(() -> setTarget(angle));}
     public Initial initialSetFieldSideTarget(){return new Initial(() -> setTarget(getTargetPos()));}
 

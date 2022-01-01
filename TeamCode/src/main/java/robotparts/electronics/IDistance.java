@@ -7,6 +7,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 import robotparts.Electronic;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class IDistance extends Electronic {
     private final DistanceSensor distanceSensor;
 
