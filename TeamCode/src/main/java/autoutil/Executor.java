@@ -49,6 +49,11 @@ public class Executor extends MovementExecutor {
         nonNull(synchronizeWithMove.get(generators.size())).add(isSyncedWithMove);
     }
 
+    public boolean finished() {
+        return finishedMove() && (!codeSegs.containsKey(generators.size()) ||
+                nonNull(codeSegs.get(generators.size())).isEmpty());
+    }
+
     public void update() {
         if (!runningCodeSeg) {
             if (!moveRunning) {

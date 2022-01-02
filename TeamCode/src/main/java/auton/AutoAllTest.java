@@ -34,7 +34,7 @@ public class AutoAllTest extends Auto {
 
         executor.resumeMove();
 
-        while (opModeIsActive() && !executor.finishedMove()) {
+        while (opModeIsActive() && !executor.finished()) {
             executor.update();
             log.showAndRecord("cur path index", executor.curPath + " " + executor.curPose);
             log.showAndRecord("path length", executor.paths.size() + " " + executor.paths.get(executor.curPath).size());
