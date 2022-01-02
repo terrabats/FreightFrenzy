@@ -1,6 +1,6 @@
 package auton;
 
-import autoutil.Executor;
+import autoutil.MovementExecutor;
 import elements.FieldSide;
 import geometry.AngleType;
 
@@ -8,9 +8,11 @@ import static java.lang.Math.*;
 import static global.General.*;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import java.util.Arrays;
 
+@Disabled
 @Autonomous(name="AutoMoveTest")
 public class AutoMoveTest extends Auto {
     @Override
@@ -19,24 +21,24 @@ public class AutoMoveTest extends Auto {
 
         activate(FieldSide.BLUE);
 
-        Executor executor = new Executor(0, 0, PI/2, AngleType.RADIANS);
-        executor.addSetpoint(60, 60, PI/2, AngleType.RADIANS);
+        MovementExecutor movementExecutor = new MovementExecutor(0, 0, PI/2, AngleType.RADIANS);
+        movementExecutor.addSetpoint(60, 60, PI/2, AngleType.RADIANS);
 //        executor.addSetpoint(0, 10, 0, AngleType.RADIANS);
-        executor.complete();
+        movementExecutor.complete();
 
         waitForStart();
 
         ready();
 
-        executor.resume();
+        movementExecutor.resumeMove();
 
-        while (opModeIsActive() && !executor.finished()) {
-            executor.update();
+        while (opModeIsActive() && !movementExecutor.finishedMove()) {
+            movementExecutor.updateMovement();
 //            log.show(executor.reactor.moveForward(executor.));
-            log.showAndRecord("cur path index", executor.curPath + " " + executor.curPose);
-            log.showAndRecord("path length", executor.paths.size() + " " + executor.paths.get(executor.curPath).size());
+            log.showAndRecord("cur path index", movementExecutor.curPath + " " + movementExecutor.curPose);
+            log.showAndRecord("path length", movementExecutor.paths.size() + " " + movementExecutor.paths.get(movementExecutor.curPath).size());
             log.showAndRecord("Curpos", Arrays.toString(bot.odometry.curPos));
-            log.showAndRecord("Target", executor.paths.get(executor.curPath).get(executor.paths.get(executor.curPath).size() - 1));
+            log.showAndRecord("Target", movementExecutor.paths.get(movementExecutor.curPath).get(movementExecutor.paths.get(movementExecutor.curPath).size() - 1));
             update(true);
         }
 //        while (opModeIsActive()) { bot.tankDrive.move(0, 0.5); update(true); }

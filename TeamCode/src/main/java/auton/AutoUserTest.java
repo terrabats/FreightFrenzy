@@ -1,11 +1,13 @@
 package auton;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import util.Timer;
 
 import static global.General.mainUser;
 
+@Disabled
 @Autonomous(name="AutoUserTest")
 public class AutoUserTest extends Auto{
 

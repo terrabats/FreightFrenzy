@@ -4,6 +4,9 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import automodules.stage.Main;
+import automodules.stage.Stage;
+import automodules.stage.Stop;
 import robotparts.RobotPart;
 import robotparts.electronics.CServo;
 
@@ -24,12 +27,29 @@ public class Carousel extends RobotPart {
     }
 
     /**
-     * Move the carosels at the given power
-     * NOTE: Postive should be so that the right carosel spins clockwise
+     * Move the carousels at the given power
+     * NOTE: Positive should be so that the right carosel spins clockwise
      * @param p
      */
     public void move(double p){
         cl.setPower(p);
         cr.setPower(p);
+    }
+
+    private Main mainSpin() {
+        return new Main(() -> move(1));
+    }
+
+    private Stop mainStop() {
+        return new Stop(() -> move(0));
+    }
+
+    public Stage spin(double time) {
+        return new Stage(
+            usePart(),
+            mainSpin(),
+            exitTime(time),
+            mainStop()
+        );
     }
 }

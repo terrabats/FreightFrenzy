@@ -3,16 +3,15 @@ package unittests.display;
 
 import static java.lang.Math.PI;
 
+import static global.General.autoModules;
+
 import java.awt.Graphics;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import autoutil.Executor;
-import autoutil.Generator;
-import autoutil.paths.Path;
-import autoutil.paths.PathSegment;
+import autoutil.MovementExecutor;
 import geometry.AngleType;
 import geometry.Pose;
 
@@ -24,20 +23,21 @@ public class DisplayExecutor extends JPanel {
 
     private final int height = 1000;
     private final int width = 1000;
-    private final int xScale = 10;
-    private final int yScale = 10;
+    private final int xScale = 5;
+    private final int yScale = 5;
 
-    private Executor executor;
+    private MovementExecutor movementExecutor;
 
     public void genTestPlane(){
-        executor = new Executor(0, 0, 0, AngleType.RADIANS);
-        executor.addSetpoint(0, 0.1, PI/2, AngleType.RADIANS);
-        executor.complete();
+        movementExecutor = new MovementExecutor(0, 0, PI/2, AngleType.RADIANS);
+        movementExecutor.addSetpoint(60, 60, PI/2, AngleType.RADIANS);
+        movementExecutor.addSetpoint(0, 0, 0, AngleType.RADIANS);
+        movementExecutor.complete();
     }
 
     @Override
     public void paintComponent(Graphics g) {
-        for (ArrayList<Pose> poses : executor.paths) {
+        for (ArrayList<Pose> poses : movementExecutor.paths) {
             for (Pose p : poses) {
                 g.fillOval(pX(p.p.x), pY(p.p.y), 5, 5);
                 System.out.println(p.p.x + " " + p.p.y + " " + p.ang);

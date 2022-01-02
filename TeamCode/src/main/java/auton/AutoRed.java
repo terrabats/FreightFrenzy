@@ -3,9 +3,11 @@ package auton;
 import static global.General.bot;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import elements.FieldSide;
 
+@Disabled
 @Autonomous(name="AutoRed")
 public class AutoRed extends Auto{
 

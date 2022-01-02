@@ -90,11 +90,11 @@ public class TankDrive extends RobotPart {
         }
     }
 
-    public Main main(double forward, double strafe){
-        return new Main(() -> move(forward, strafe));
+    public Main main(double forward, double turn){
+        return new Main(() -> move(forward, turn));
     }
 
     public Stop stop(){
-        return new Stop(() -> {move(0,0);});
+        return new Stop(() -> move(0,0));
     }
 }

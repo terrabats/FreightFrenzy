@@ -1,12 +1,8 @@
 package automodules;
 
-import java.util.ArrayList;
 import static global.General.*;
 
-import automodules.stage.Stage;
 import elements.GameElement;
-import global.Constants;
-import robot.TerraBot;
 
 public class AutoModules{
     /**
@@ -28,5 +24,8 @@ public class AutoModules{
         bot.turret.turretEncoder(0.8, 0),
         bot.lift.liftEncoder(0.4, 10),
         bot.outtake.outtakeReset(0.7)
+    );
+    public StageList SpinCarousel = new StageList(
+        bot.carousel.spin(7)
     );
 }
