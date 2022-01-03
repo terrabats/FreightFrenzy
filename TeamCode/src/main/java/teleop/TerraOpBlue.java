@@ -38,41 +38,28 @@ public class TerraOpBlue extends Tele{
         super.init();
 
         //Gamepad 1
-//        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.intake.moveTele(1));
-//        gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.intake.moveTele(0));
-//        gph1.link(Button.LEFT_BUMPER, ButtonEventHandler.class, args -> bot.intake.moveTele(-1));
-//        gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, args -> bot.intake.moveTele(0));
+        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
+        gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.intake.move(0));
+        gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));
+        gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.intake.move(0));
 
         //Gamepad 2
-//        gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, args -> bot.outtake.moveTele(0.3));
-//        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, args -> bot.outtake.moveTele(0));
+        gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.outtake.open());
+        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.outtake.start());
 
 //        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Intake));
 //        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Backward));
 //        gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Forward));
-//        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.test));
 //        gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModules);
+//
+//        gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);
+//        gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot::resumeAutoModules);
 
         super.activate(FieldSide.BLUE);
     }
 
     @Override
-    public void start() {
-        //bot.addAutoModule(new StageList(bot.lift.liftEncoder(0.4,10)));
-
-        super.start();
-    }
-
-    @Override
     public void loop() {
-
-        bot.intake.move(gamepad1.right_bumper ? 1 : (gamepad1.left_bumper ? -1 : 0));
-
-        if(gamepad2.right_bumper){
-            bot.outtake.lockCube();
-        }else if(gamepad2.left_bumper){
-            bot.outtake.start();
-        }
 
         // Gamepad1
         bot.tankDrive.moveSmooth(-gamepad1.right_stick_y, gamepad1.left_stick_x);
@@ -81,9 +68,8 @@ public class TerraOpBlue extends Tele{
 
         // Gamepad2
         bot.turret.move(gamepad2.left_stick_x);
-        bot.lift.move(-gamepad2.right_stick_y+Constants.LIFT_REST_POW);
 
-        log.show(bot.lift.getLiftPos());
+        bot.lift.move(-gamepad2.right_stick_y + Constants.LIFT_REST_POW);
 
         super.loop();
     }
