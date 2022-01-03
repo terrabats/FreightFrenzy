@@ -58,14 +58,14 @@ public class UnitTester extends Tele {
 //        add(new StorageTest());
 //        add(new ModulesTest());
 //        add(new AutoModuleTest());
-          add(new LagTest());
+//          add(new LagTest());
 
         // Hardware
 //        add(new TankDriveTest());
 //        add(new IntakeTest());
 //        add(new TurretTest());
 //        add(new LiftTest());
-//        add(new OuttakeTest());
+        add(new OuttakeTest());
 //        add(new CarouselTest());
 
         // Sensor

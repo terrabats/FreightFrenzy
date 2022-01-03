@@ -21,7 +21,6 @@ public class LiftTest extends UnitTest {
 
     @Override
     protected void start() {
-        showConfig(bot.lift);
 
         gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(test));
         gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(test2));
@@ -29,6 +28,7 @@ public class LiftTest extends UnitTest {
 
     @Override
     public void loop() {
+//        showConfig(bot.lift);
         log.show("Use right stick y");
         bot.lift.move(-gamepad1.right_stick_y);
 

@@ -17,11 +17,11 @@ public class IntakeTest extends UnitTest {
     public void start() {
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
         gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.intake.move(0));
-        showConfig(bot.intake);
     }
 
     @Override
     protected void loop() {
+//        showConfig(bot.intake);
         log.show("Use right bumper");
     }
 }

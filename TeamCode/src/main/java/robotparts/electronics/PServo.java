@@ -36,7 +36,6 @@ public class PServo extends Electronic {
         direction = dir;
         servo.setDirection(direction);
         servo.scaleRange(lower, upper);
-        servo.setPosition(0);
         addPosition("lower", lower);
         addPosition("upper", upper);
     }
@@ -54,7 +53,7 @@ public class PServo extends Electronic {
      * Set the position to the pservo based on the name
      * @param name
      */
-    public void setPosition(String name){ if(access.isAllowed()){ servo.setPosition(Objects.requireNonNull(positions.get(name))); } }
+    public void setPosition(String name){ if(access.isAllowed()){ servo.setPosition(positions.get(name)); } }
 
     /**
      * Get the position that the servo is trying to move to

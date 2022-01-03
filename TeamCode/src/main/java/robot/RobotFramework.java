@@ -46,6 +46,8 @@ public class RobotFramework {
         robotFunctionsThread = new TerraThread();
         odometryThread = new TerraThread();
         rfsHandler.init();
+        setUser(mainUser);
+        checkAccess(mainUser);
     }
 
     /**
