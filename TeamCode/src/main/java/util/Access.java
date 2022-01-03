@@ -27,7 +27,7 @@ public class Access {
     /**
      * Allow, sets hasAccess to true in the thread from which it is called
      */
-    public void allow(){
+    public synchronized void allow(){
         hasAccess.set(true);
     }
 
@@ -35,19 +35,19 @@ public class Access {
      * Opposite of allow
      * @link allow
      */
-    public void deny(){
+    public synchronized void deny(){
         hasAccess.set(false);
     }
     /**
      * Is access allowed?
      */
-    public boolean isAllowed(){
+    public synchronized boolean isAllowed(){
         return hasAccess.get();
     }
     /**
      * Is access denied?
      */
-    public boolean isDenied(){
+    public synchronized boolean isDenied(){
         return !hasAccess.get();
     }
 

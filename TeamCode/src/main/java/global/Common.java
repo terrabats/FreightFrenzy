@@ -6,6 +6,7 @@ import automodules.AutoModules;
 import debugging.Synchroniser;
 import elements.FieldSide;
 import robot.TerraBot;
+import robotparts.electronics.PServo;
 import teleutil.GamepadHandler;
 import debugging.Fault;
 import debugging.Logger;
@@ -58,6 +59,11 @@ public interface Common{
          * Create the robot, and then the modules, stages, and automodules
          */
         bot = new TerraBot();
+
+        log.show("mainUser", mainUser);
+        log.show("current user", bot.outtake.getUser());
+        log.show("hasAccess", bot.outtake.checkAccess(mainUser));
+        log.show("allowed", bot.outtake.isAllowed());
 
         /**
          * Create the automodules

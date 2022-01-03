@@ -42,4 +42,12 @@ public class Electronic {
         this.status = status;
     }
 
+    /**
+     * Does the electronic have access?
+     * @return isAllowed
+     */
+    public synchronized boolean isAllowed(){
+        return access.isAllowed();
+    }
+
 }

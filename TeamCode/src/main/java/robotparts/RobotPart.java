@@ -178,11 +178,13 @@ public class RobotPart extends Electronic {
      * In order to use a robotpart you must call switch user and then checkAccess
      * @param potentialUser
      */
-    public void checkAccess(User potentialUser){
+    public boolean checkAccess(User potentialUser){
         if(potentialUser.equals(currentUser)) {
             forAllElectronics(e -> e.access.allow());
+            return true;
         }else{
             forAllElectronics(e -> e.access.deny());
+            return false;
         }
     }
 
