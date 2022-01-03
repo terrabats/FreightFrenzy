@@ -50,9 +50,9 @@ public class UnitTest {
      * @param part
      */
     protected void showConfig(RobotPart part){
-        for (Entry<String, CMotor> entry: part.getObjects(CMotor.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
-        for (Entry<String, PServo> entry: part.getObjects(PServo.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
-        for (Entry<String, CServo> entry: part.getObjects(CServo.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
+        for (Entry<String, CMotor> entry: part.getElectronicsOfType(CMotor.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
+        for (Entry<String, PServo> entry: part.getElectronicsOfType(PServo.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
+        for (Entry<String, CServo> entry: part.getElectronicsOfType(CServo.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
     }
 
     /**

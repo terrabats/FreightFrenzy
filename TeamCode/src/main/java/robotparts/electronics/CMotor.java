@@ -46,9 +46,15 @@ public class CMotor extends Electronic {
 
     /**
      * Gets the direction of the motor
-     * @return
+     * @return direction
      */
     public DcMotorSimple.Direction getDirection(){
         return direction;
     }
+
+    /**
+     * Sets the power of the motor to 0
+     * NOTE: This should only be called in a thread that has access to use the robot
+     */
+    public void halt(){ setPower(0); }
 }

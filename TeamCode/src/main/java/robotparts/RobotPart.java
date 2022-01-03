@@ -14,9 +14,6 @@ import java.util.TreeMap;
 
 import automodules.stage.Exit;
 import automodules.stage.Initial;
-import automodules.stage.Main;
-import automodules.stage.Stage;
-import automodules.stage.StageComponent;
 import automodules.stage.Stop;
 import robot.RobotFramework;
 import robotparts.electronics.CMotor;
@@ -139,10 +136,10 @@ public class RobotPart extends Electronic {
      * @return Electronic TreeMap
      */
     @SuppressWarnings("unchecked")
-    public <T> TreeMap<String, T> getObjects(Class<T> type) {
+    public <T> TreeMap<String, T> getElectronicsOfType(Class<T> type) {
         TreeMap<String, T> ret = new TreeMap<>();
         for (Map.Entry<String, Electronic> o : electronics.entrySet()) {
-            if (o.getClass() == type) {
+            if (o.getValue().getClass().equals(type)) {
                 ret.put(o.getKey(), (T) o.getValue());
             }
         }
@@ -151,14 +148,12 @@ public class RobotPart extends Electronic {
 
     /**
      * Halt the cmotors and cservos (i.e. set the power to 0)
+     * NOTE: This should only be called in a thread that has access to use the robot
      */
     public void halt(){
-        for(CMotor mot: getObjects(CMotor.class).values()){
-            mot.setPower(0);
-        }
-        for(CServo crs: getObjects(CServo.class).values()){
-            crs.setPower(0);
-        }
+        forAllElectronicsOfType(CMotor.class, CMotor::halt);
+        forAllElectronicsOfType(PMotor.class, PMotor::halt);
+        forAllElectronicsOfType(CServo.class, CServo::halt);
     }
 
     /**
@@ -196,6 +191,12 @@ public class RobotPart extends Electronic {
      * @param run
      */
     private void forAllElectronics(ParameterCodeSeg<Electronic> run){ for(Electronic e: electronics.values()){ run.run(e); } }
+
+    /**
+     * For all electonics of a certain type run...
+     * @param run
+     */
+    private <T extends Electronic> void forAllElectronicsOfType(Class<T> type, ParameterCodeSeg<T> run){ for(Electronic e: getElectronicsOfType(type).values()){ run.run((T) e); } }
 
     /**
      * Exit based on time

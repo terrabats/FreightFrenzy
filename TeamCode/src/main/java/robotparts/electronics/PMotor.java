@@ -97,4 +97,10 @@ public class PMotor extends Electronic {
     public void resetPosition(){
         motorEncoder.reset();
     }
+
+    /**
+     * Sets the power of the motor to 0
+     * NOTE: This should only be called in a thread that has access to use the robot
+     */
+    public void halt(){ setPower(0); }
 }

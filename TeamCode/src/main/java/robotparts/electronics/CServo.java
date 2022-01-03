@@ -37,9 +37,15 @@ public class CServo extends Electronic {
 
     /**
      * Get the logical direction of the cservo
-     * @return
+     * @return direction
      */
     public DcMotorSimple.Direction getDirection(){
         return direction;
     }
+
+    /**
+     * Sets the power of the servo to 0
+     * NOTE: This should only be called in a thread that has access to use the robot
+     */
+    public void halt(){ setPower(0); }
 }
