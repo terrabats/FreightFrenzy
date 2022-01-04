@@ -40,43 +40,47 @@ public class Executor extends MovementExecutor {
     }
 
     private void addCodeseg(CodeSeg cs, boolean isSyncedWithMove) {
-        if (!codeSegs.containsKey(generators.size() - 1)) {
-            codeSegs.put(generators.size() - 1, new LinkedList<>());
-            synchronizeWithMove.put(generators.size() - 1, new LinkedList<>());
+        if (!codeSegs.containsKey(curPath)) {
+            codeSegs.put(curPath, new LinkedList<>());
+            synchronizeWithMove.put(curPath, new LinkedList<>());
         }
 
-        nonNull(codeSegs.get(generators.size())).add(cs);
-        nonNull(synchronizeWithMove.get(generators.size())).add(isSyncedWithMove);
+        Objects.requireNonNull(codeSegs.get(curPath)).add(cs);
+        Objects.requireNonNull(synchronizeWithMove.get(curPath)).add(isSyncedWithMove);
     }
 
     public boolean finished() {
-        return finishedMove() && (!codeSegs.containsKey(generators.size()) ||
-                nonNull(codeSegs.get(generators.size())).isEmpty());
+        return finishedMove() && (!codeSegs.containsKey(curPath) ||
+                Objects.requireNonNull(codeSegs.get(curPath)).isEmpty())
+                && bot.rfsHandler.rfsQueue.isEmpty();
     }
 
     public void update() {
         if (!runningCodeSeg) {
             if (!moveRunning) {
                 if (codeSegs.containsKey(curPath)
-                        && !nonNull(codeSegs.get(curPath)).isEmpty()
-                        && !nonNull(synchronizeWithMove.get(curPath)).getFirst()) {
+                        && !Objects.requireNonNull(codeSegs.get(curPath)).isEmpty()
+                        && !Objects.requireNonNull(synchronizeWithMove.get(curPath)).getFirst()) {
+                    log.show("Running a CodeSeg");
                     runningCodeSeg = true;
-                    nonNull(nonNull(codeSegs.get(curPath)).poll()).run();
-                } else {
+                    Objects.requireNonNull(Objects.requireNonNull(codeSegs.get(curPath)).poll()).run();
+                } else if (!finishedMove()) {
                     resumeMove();
+                    log.show("Resumed Movement");
+                } else {
+                    log.show("Finished");
                 }
             } else {
+                log.show("Updating Movement");
                 updateMovement();
-                if (codeSegs.containsKey(curPath) && !nonNull(codeSegs.get(curPath)).isEmpty()) {
-                    nonNull(nonNull(codeSegs.get(curPath)).poll()).run();
+                if (codeSegs.containsKey(curPath) && !Objects.requireNonNull(codeSegs.get(curPath)).isEmpty()) {
+                    Objects.requireNonNull(Objects.requireNonNull(codeSegs.get(curPath)).poll()).run();
                 }
             }
         } else {
+            log.show("Running CodeSeg");
             runningCodeSeg = !bot.rfsHandler.rfsQueue.isEmpty();
         }
     }
 
-    public <T> T nonNull(T obj) {
-        return Objects.requireNonNull(obj);
-    }
 }
