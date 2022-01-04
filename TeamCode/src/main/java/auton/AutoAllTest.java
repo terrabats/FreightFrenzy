@@ -23,8 +23,8 @@ public class AutoAllTest extends Auto {
         Executor executor = new Executor();
         executor.addSetpoint(60, 60, PI/2, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.SpinCarousel);
-        executor.addSynchronizedRF(autoModules.Intake);
-        executor.addSetpoint(0, 0, 0, AngleType.RADIANS);
+//        executor.addSynchronizedRF(autoModules.Intake);
+//        executor.addSetpoint(0, 0, 0, AngleType.RADIANS);
 
         executor.complete();
 
@@ -36,12 +36,10 @@ public class AutoAllTest extends Auto {
 
         while (opModeIsActive() && !executor.finished()) {
             executor.update();
-            log.showAndRecord("cur path index", executor.curPath + " " + executor.curPose);
-            log.showAndRecord("path length", executor.paths.size() + " " + executor.paths.get(executor.curPath).size());
-            log.showAndRecord("Curpos", Arrays.toString(bot.odometry.curPos));
-            log.showAndRecord("Target", executor.paths.get(executor.curPath).get(executor.paths.get(executor.curPath).size() - 1));
             update(true);
         }
+
+        bot.tankDrive.move(0, 0);
 
         end();
     }

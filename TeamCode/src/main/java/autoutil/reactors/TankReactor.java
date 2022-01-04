@@ -13,7 +13,8 @@ public class TankReactor {
     // TODO: TUNE THESE CONSTANTS
     private static final double kf = 0.022, kt = 0.015;
     private static final double fPowWaypoint = 0.3; // 0.15;
-    private static final double fPowSetpoint = 0.2;
+    private static final double minPow = 0.2;
+    private static final double maxPow = 0.6;
 
     public boolean moveForward(double targetX, double targetY) {
         double[] curPos = bot.odometry.curPos;
@@ -59,6 +60,11 @@ public class TankReactor {
             curH += 360;
         }
         log.show("curH", curH);
+//        if (curH - targetH < 0) {
+//            return max(-maxPow, min(-minPow, kt * (curH - targetH)));
+//        } else {
+//            return min(maxPow, max(minPow, kt * (curH - targetH)));
+//        }
         return kt * (curH - targetH);
     }
 }

@@ -45,6 +45,7 @@ public class MovementExecutor {
     public void addSetpoint(double x, double y, double h, AngleType angleType) {
         addWaypoint(x, y, h, angleType);
         generators.add(new Generator());
+        curPath++;
         addWaypoint(x, y, h, angleType);
     }
 
@@ -60,6 +61,7 @@ public class MovementExecutor {
         if (generators.get(generators.size() - 1).empty()) {
             paths.remove(paths.size() - 1);
         }
+        curPath = 0;
     }
 
     public void resumeMove() { moveRunning = true; }
@@ -68,7 +70,7 @@ public class MovementExecutor {
 
 //    public void update() { updateMovement(); }
 
-    public boolean finishedMove() { return curPath == paths.size(); }
+    public boolean finishedMove() { return curPath >= paths.size(); }
 
     //endregion
 
@@ -94,7 +96,6 @@ public class MovementExecutor {
                         reactor.turnPow(nextPose.ang, startH)
                 );
                 log.show("Forward pow", reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y));
-//                log.show(reactor.turnPow(nextPose.ang, startH));
                 log.show("Turn pow", reactor.turnPow(nextPose.ang, startH));
             } else {
                 Pose nextPose = paths.get(curPath).get(curPose);
@@ -103,7 +104,6 @@ public class MovementExecutor {
                         reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH)
                 );
                 log.show("Forward pow", reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y));
-//                log.show(reactor.turnPow(nextPose.ang, startH));
                 log.show("Turn pow", reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH));
             }
         } else {
