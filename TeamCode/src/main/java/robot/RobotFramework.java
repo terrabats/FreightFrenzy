@@ -46,8 +46,6 @@ public class RobotFramework {
         robotFunctionsThread = new TerraThread();
         odometryThread = new TerraThread();
         rfsHandler.init();
-        setUser(mainUser);
-        checkAccess(mainUser);
     }
 
     /**
@@ -56,8 +54,8 @@ public class RobotFramework {
      * NOTE: Threads are started in init to prevent lag in start
      */
     public void init(){
+        setUser(mainUser);
         forAllParts(RobotPart::init);
-        setUserMainAndHalt();
         robotFunctionsThread.start();
         odometryThread.start();
         gameTime.reset();
@@ -99,14 +97,14 @@ public class RobotFramework {
      * NOTE: This does not change the access of the user which must be updated explicity with checkAccess
      * @param newUser
      */
-    public void setUser(User newUser){ forAllParts(part -> part.switchUser(newUser)); }
+    public synchronized void setUser(User newUser){ forAllParts(part -> part.switchUser(newUser)); }
 
     /**
      * Checks the access of the potential user to all of the robot parts
      * This should be called every time a user wants to use the robot, to check if the current user privileges are updated
      * @param potentialUser
      */
-    public void checkAccess(User potentialUser){ forAllParts(part -> part.checkAccess(potentialUser)); }
+    public synchronized void checkAccess(User potentialUser){ forAllParts(part -> part.checkAccess(potentialUser)); }
 
     /**
      * Cancel all of the automodules by emptying the robot functions queue

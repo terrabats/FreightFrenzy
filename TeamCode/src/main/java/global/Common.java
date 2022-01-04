@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import automodules.AutoModules;
 import debugging.Synchroniser;
 import elements.FieldSide;
+import robot.RobotFramework;
 import robot.TerraBot;
 import robotparts.electronics.PServo;
 import teleutil.GamepadHandler;
@@ -59,17 +60,10 @@ public interface Common{
          * Create the robot, and then the modules, stages, and automodules
          */
         bot = new TerraBot();
-
-        log.show("mainUser", mainUser);
-        log.show("current user", bot.outtake.getUser());
-        log.show("hasAccess", bot.outtake.checkAccess(mainUser));
-        log.show("allowed", bot.outtake.isAllowed());
-
         /**
          * Create the automodules
          */
         autoModules = new AutoModules();
-
         /**
          * Initialize the robot
          */

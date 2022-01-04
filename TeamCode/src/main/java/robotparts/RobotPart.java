@@ -32,7 +32,7 @@ import robotparts.electronics.ITouch;
 import util.User;
 import util.codeseg.ParameterCodeSeg;
 
-public class RobotPart extends Electronic {
+public class RobotPart {
     /**
      * Represents a part of the robot like the drivetrain or the intake
      * When making a new part of the robot part make sure to extend this class
@@ -67,69 +67,79 @@ public class RobotPart extends Electronic {
      */
     protected CMotor createCMotor(String name, DcMotor.Direction dir){
         CMotor cmotor = new CMotor(hardwareMap.get(DcMotor.class, name), dir, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        electronics.put(name, cmotor);
+        addElectronic(name, cmotor);
         return cmotor;
     }
 
     protected CMotor createCMotor(String name, DcMotor.Direction dir, DcMotor.ZeroPowerBehavior zpb, DcMotor.RunMode mode){
         CMotor cmotor = new CMotor(hardwareMap.get(DcMotor.class, name), dir, zpb, mode);
-        electronics.put(name, cmotor);
+        addElectronic(name, cmotor);
         return cmotor;
     }
 
     protected CServo createCServo(String name, CRServo.Direction dir){
         CServo cservo = new CServo(hardwareMap.get(CRServo.class, name), dir);
-        electronics.put(name, cservo);
+        addElectronic(name, cservo);
         return cservo;
     }
 
     protected PServo createPServo(String name, Servo.Direction dir, double startpos, double endpos){
         PServo pservo = new PServo(hardwareMap.get(Servo.class, name), dir, startpos, endpos);
-        electronics.put(name, pservo);
+        addElectronic(name, pservo);
         return pservo;
     }
 
     protected PMotor createPMotor(String name, DcMotor.Direction dir){
         PMotor pmotor = new PMotor(hardwareMap.get(DcMotor.class, name), dir, DcMotor.ZeroPowerBehavior.BRAKE, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        electronics.put(name, pmotor);
+        addElectronic(name, pmotor);
         return pmotor;
     }
 
     protected IGyro createGyro(String name){
         IGyro gyro = new IGyro(hardwareMap.get(BNO055IMU.class, name));
-        electronics.put(name, gyro);
+        addElectronic(name, gyro);
         return gyro;
     }
 
     protected IDistance createDistanceSensor(String name){
         IDistance distanceSensor = new IDistance(hardwareMap.get(ModernRoboticsI2cRangeSensor.class, name));
-        electronics.put(name, distanceSensor);
+        addElectronic(name, distanceSensor);
         return distanceSensor;
     }
 
     protected IColor createColorSensor(String name){
         IColor colorSensor = new IColor(hardwareMap.get(ColorSensor.class, name));
-        electronics.put(name, colorSensor);
+        addElectronic(name, colorSensor);
         return colorSensor;
     }
 
     protected ITouch createTouchSensor(String name){
         ITouch touchSensor = new ITouch(hardwareMap.get(TouchSensor.class, name));
-        electronics.put(name, touchSensor);
+        addElectronic(name, touchSensor);
         return touchSensor;
     }
 
     protected IEncoder createEncoder(String motor, String name, Type type){
         IEncoder encoder = new IEncoder(hardwareMap.get(DcMotor.class, motor), type);
-        electronics.put(name, encoder);
+        addElectronic(name, encoder);
         return encoder;
     }
 
     protected OLed createLED(String name){
         OLed led = new OLed(hardwareMap.get(DigitalChannel.class,  "g" + name), hardwareMap.get(DigitalChannel.class,  "r" + name));
-        electronics.put(name, led);
+        addElectronic(name, led);
         return led;
     }
+
+    /**
+     * Adds an electronic to the electronics arraylist
+     * and gives access to the electronic to the curret thread
+     */
+    private void addElectronic(String name, Electronic e){
+        e.access.allow();
+        electronics.put(name, e);
+    }
+
 
     /**
      * Gets treemap of specific electronics
@@ -168,7 +178,7 @@ public class RobotPart extends Electronic {
      * Switch the user to the new user,
      * @param newUser
      */
-    public void switchUser(User newUser){
+    public synchronized void switchUser(User newUser){
         currentUser = newUser;
     }
 
@@ -178,7 +188,7 @@ public class RobotPart extends Electronic {
      * In order to use a robotpart you must call switch user and then checkAccess
      * @param potentialUser
      */
-    public boolean checkAccess(User potentialUser){
+    public synchronized boolean checkAccess(User potentialUser){
         if(potentialUser.equals(currentUser)) {
             forAllElectronics(e -> e.access.allow());
             return true;
