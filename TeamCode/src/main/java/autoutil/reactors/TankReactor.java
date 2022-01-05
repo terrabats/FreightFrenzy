@@ -10,7 +10,7 @@ public class TankReactor {
     // finally the ODOMETRY is in degrees
     // the POINTS GENERATED are in radians
 
-    // TODO: TUNE THESE CONSTANTS
+    // TOD3: TUNE THESE CONSTANTS
     private static final double kf = 0.022, kt = 0.015;
     private static final double fPowWaypoint = 0.3; // 0.15;
     private static final double minPow = 0.2;
