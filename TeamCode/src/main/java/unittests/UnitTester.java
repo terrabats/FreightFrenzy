@@ -46,6 +46,17 @@ public class UnitTester extends Tele {
      * Use add(new <your unit test>) to add your own unit test
      */
     private void createUnitTests(){
+
+        // TODO TEST
+        // New unit tests to be created
+        // 1. Selector Test
+        // 2. Electronic Test
+        // 3. RobotPart Test
+        // 4. Mechnum Drive Test
+        // 5. RobotFramework Test
+        // 6. Synchroniser Test
+
+
         // Framework
 //        add(new CommonTest());
 //        add(new AccessTest());
@@ -56,7 +67,7 @@ public class UnitTester extends Tele {
 //        add(new RobotFunctionsTest());
 //        add(new ThreadTest());
 //        add(new StorageTest());
-//        add(new ModulesTest());
+//        add(new StageTest());
 //        add(new AutoModuleTest());
 //          add(new LagTest());
 

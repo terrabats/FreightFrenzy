@@ -7,7 +7,7 @@ import util.User;
 
 import static global.General.*;
 
-public class ModulesTest extends UnitTest {
+public class StageTest extends UnitTest {
     /**
      * Tests custom stages (or modules)
      */
