@@ -12,58 +12,66 @@ import util.codeseg.CodeSeg;
 
 public class Executor extends MovementExecutor {
 
-    private final TreeMap<Integer, LinkedList<CodeSeg>> codeSegs = new TreeMap<>();
-    private final TreeMap<Integer, LinkedList<Boolean>> synchronizeWithMove = new TreeMap<>();
+    private final boolean[] syncedSegsExist = new boolean[1000];
+    private final boolean[] unSyncedSegsExist = new boolean[1000];
+    private final TreeMap<Integer, LinkedList<CodeSeg>> syncedSegs = new TreeMap<>();
+    private final TreeMap<Integer, LinkedList<CodeSeg>> unSyncedSegs = new TreeMap<>();
 
     private boolean runningCodeSeg = false;
 
     //region CONSTRUCTORS
     public Executor() {
         super(0, 0, Math.PI/2, AngleType.RADIANS);
+        fillBoolArrs();
     }
 
     public Executor(double stH, AngleType angleType) {
         super(0, 0, stH, angleType);
+        fillBoolArrs();
     }
 
     public Executor(double stX, double stY, double stH, AngleType angleType) {
         super(stX, stY, stH, angleType);
+        fillBoolArrs();
+    }
+
+    private void fillBoolArrs() {
+        for (int i = 0; i < 1000; i++) {
+            syncedSegsExist[i] = false;
+            unSyncedSegsExist[i] = false;
+        }
     }
     //endregion
 
     public void addSynchronizedRF(StageList rf) {
-        addCodeseg(() -> bot.addAutoModule(rf), true);
+        if (!syncedSegsExist[curPath]) {
+            syncedSegsExist[curPath] = true;
+            syncedSegs.put(curPath, new LinkedList<>());
+        }
+        syncedSegs.get(curPath).add(() -> bot.addAutoModule(rf));
     }
 
     public void addUnsynchronizedRF(StageList rf) {
-        addCodeseg(() -> bot.addAutoModule(rf), false);
-    }
-
-    private void addCodeseg(CodeSeg cs, boolean isSyncedWithMove) {
-        if (!codeSegs.containsKey(curPath)) {
-            codeSegs.put(curPath, new LinkedList<>());
-            synchronizeWithMove.put(curPath, new LinkedList<>());
+        if (!unSyncedSegsExist[curPath]) {
+            unSyncedSegsExist[curPath] = true;
+            unSyncedSegs.put(curPath, new LinkedList<>());
         }
-
-        Objects.requireNonNull(codeSegs.get(curPath)).add(cs);
-        Objects.requireNonNull(synchronizeWithMove.get(curPath)).add(isSyncedWithMove);
+        unSyncedSegs.get(curPath).add(() -> bot.addAutoModule(rf));
     }
 
     public boolean finished() {
-        return finishedMove() && (!codeSegs.containsKey(curPath) ||
-                Objects.requireNonNull(codeSegs.get(curPath)).isEmpty())
+        return finishedMove() && !unSyncedSegsExist[curPath] && !syncedSegsExist[curPath]
                 && bot.rfsHandler.rfsQueue.isEmpty();
     }
 
     public void update() {
         if (!runningCodeSeg) {
             if (!moveRunning) {
-                if (codeSegs.containsKey(curPath)
-                        && !Objects.requireNonNull(codeSegs.get(curPath)).isEmpty()
-                        && !Objects.requireNonNull(synchronizeWithMove.get(curPath)).getFirst()) {
+                if (unSyncedSegsExist[curPath]) {
                     log.show("Running a CodeSeg");
                     runningCodeSeg = true;
-                    Objects.requireNonNull(Objects.requireNonNull(codeSegs.get(curPath)).poll()).run();
+                    unSyncedSegs.get(curPath).poll().run();
+                    unSyncedSegsExist[curPath] = !unSyncedSegs.get(curPath).isEmpty();
                 } else if (!finishedMove()) {
                     resumeMove();
                     log.show("Resumed Movement");
@@ -73,8 +81,9 @@ public class Executor extends MovementExecutor {
             } else {
                 log.show("Updating Movement");
                 updateMovement();
-                if (codeSegs.containsKey(curPath) && !Objects.requireNonNull(codeSegs.get(curPath)).isEmpty()) {
-                    Objects.requireNonNull(Objects.requireNonNull(codeSegs.get(curPath)).poll()).run();
+                if (syncedSegsExist[curPath]) {
+                    syncedSegs.get(curPath).poll().run();
+                    syncedSegsExist[curPath] = !syncedSegs.get(curPath).isEmpty();
                 }
             }
         } else {
