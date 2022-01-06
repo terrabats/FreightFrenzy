@@ -50,7 +50,7 @@ public class UnitTester extends Tele {
         // TODO TEST
         // New unit tests to be created
         // 1. Selector Test
-        // 2. Electronic Test
+        // 2. Electronics Test
         // 3. RobotPart Test
         // 4. Mechnum Drive Test
         // 5. RobotFramework Test
@@ -60,7 +60,7 @@ public class UnitTester extends Tele {
         // Hello from shuhul from shuhuls computer
         //  ee
         // Framework
-        add(new AccessTest());
+//        add(new AccessTest());
 //        add(new CommonTest());
 //        add(new AccessTest());
 //        add(new CoordinatePlaneTest());
@@ -73,13 +73,14 @@ public class UnitTester extends Tele {
 //        add(new StageTest());
 //        add(new AutoModuleTest());
 //          add(new LagTest());
+        add(new SelectorTest());
 
         // Hardware
 //        add(new TankDriveTest());
 //        add(new IntakeTest());
 //        add(new TurretTest());
 //        add(new LiftTest());
-        add(new OuttakeTest());
+//        add(new OuttakeTest());
 //        add(new CarouselTest());
 
         // Sensor

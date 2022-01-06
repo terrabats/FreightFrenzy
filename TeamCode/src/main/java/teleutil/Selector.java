@@ -80,7 +80,7 @@ public class Selector<T> {
      */
     private void init(){
         items = new ArrayList<>();
-        updateTimer.reset();
+        resetUpdateTimer();
     }
 
     /**
