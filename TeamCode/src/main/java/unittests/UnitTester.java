@@ -60,6 +60,7 @@ public class UnitTester extends Tele {
         // Hello from shuhul from shuhuls computer
         //  ee
         // Framework
+        add(new AccessTest());
 //        add(new CommonTest());
 //        add(new AccessTest());
 //        add(new CoordinatePlaneTest());
