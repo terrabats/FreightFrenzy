@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
-import java.util.Map;
+import java.util.Map.*;
 import java.util.TreeMap;
 
 import automodules.stage.Exit;
@@ -148,7 +148,7 @@ public class RobotPart {
     @SuppressWarnings("unchecked")
     public <T> TreeMap<String, T> getElectronicsOfType(Class<T> type) {
         TreeMap<String, T> ret = new TreeMap<>();
-        for (Map.Entry<String, Electronic> o : electronics.entrySet()) {
+        for (Entry<String, Electronic> o : electronics.entrySet()) {
             if (o.getValue().getClass().equals(type)) {
                 ret.put(o.getKey(), (T) o.getValue());
             }
@@ -186,6 +186,7 @@ public class RobotPart {
      * Check the access of the user if they match the current user
      * This means that only the currentUser has access and all other users will be denied
      * In order to use a robotpart you must call switch user and then checkAccess
+     * Returns true if the user access was granted
      * @param potentialUser
      */
     public synchronized boolean checkAccess(User potentialUser){
@@ -221,7 +222,13 @@ public class RobotPart {
      * Exit always
      * @return exit
      */
-    public Exit exit(){return new Exit(() -> true);}
+    public Exit exitAlways(){return new Exit(() -> true);}
+
+    /**
+     * Exit never
+     * @return exit
+     */
+    public Exit exitNever(){return new Exit(() -> false);}
 
     /**
      * Use this robot part

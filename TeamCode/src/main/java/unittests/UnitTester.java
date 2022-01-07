@@ -51,7 +51,6 @@ public class UnitTester extends Tele {
         // TODO TEST
         // New unit tests to be created
         // 2. Electronics Test
-        // 3. RobotPart Test
         // 5. RobotFramework Test
 
         // Hello from shuhul from snehils computer

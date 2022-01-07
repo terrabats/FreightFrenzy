@@ -1,9 +1,7 @@
-package unittests.display;
+package autoutil.display;
 
 
 import static java.lang.Math.PI;
-
-import static global.General.autoModules;
 
 import java.awt.Graphics;
 import java.util.ArrayList;

@@ -1,18 +1,13 @@
-package unittests.display;
+package autoutil.display;
 
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Stroke;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import autoutil.Generator;
-import autoutil.paths.Path;
-import autoutil.paths.PathSegment;
 import geometry.Point;
 import geometry.Pose;
 
