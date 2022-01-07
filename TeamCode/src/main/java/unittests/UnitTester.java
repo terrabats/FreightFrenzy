@@ -15,6 +15,7 @@ import unittests.hardware.OuttakeTest;
 import unittests.hardware.TankDriveTest;
 import unittests.hardware.TurretTest;
 import unittests.sensor.OdometryTest;
+import unittests.unused.MecanumDriveTest;
 import util.condition.Expectation;
 import util.condition.Magnitude;
 import util.condition.Status;
@@ -49,12 +50,9 @@ public class UnitTester extends Tele {
 
         // TODO TEST
         // New unit tests to be created
-        // 1. Selector Test
         // 2. Electronics Test
         // 3. RobotPart Test
-        // 4. Mechnum Drive Test
         // 5. RobotFramework Test
-        // 6. Synchroniser Test
 
         // Hello from shuhul from snehils computer
         // Hello from shuhul from shuhuls computer
@@ -74,6 +72,7 @@ public class UnitTester extends Tele {
 //        add(new AutoModuleTest());
 //          add(new LagTest());
         add(new SelectorTest());
+        add(new SynchroniserTest());
 
         // Hardware
 //        add(new TankDriveTest());
