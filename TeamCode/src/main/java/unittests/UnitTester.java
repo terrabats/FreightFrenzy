@@ -49,14 +49,6 @@ public class UnitTester extends Tele {
      * Use add(new <your unit test>) to add your own unit test
      */
     private void createUnitTests(){
-
-        // TODO TEST
-        // New unit tests to be created
-        // 2. Electronics Test
-
-        // Hello from shuhul from snehils computer
-        // Hello from shuhul from shuhuls computer
-        //  ee
         // Framework
 //        add(new AccessTest());
 //        add(new CommonTest());
