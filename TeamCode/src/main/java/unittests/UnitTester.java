@@ -9,9 +9,11 @@ import unittests.framework.*;
 
 import teleutil.button.Button;
 import unittests.hardware.CarouselTest;
+import unittests.hardware.ElectronicsTest;
 import unittests.hardware.IntakeTest;
 import unittests.hardware.LiftTest;
 import unittests.hardware.OuttakeTest;
+import unittests.hardware.RobotPartTest;
 import unittests.hardware.TankDriveTest;
 import unittests.hardware.TurretTest;
 import unittests.sensor.OdometryTest;
@@ -40,7 +42,7 @@ public class UnitTester extends Tele {
      * Type of testing mode
      * @link TestType
      */
-    private final TestType testingMode = TestType.CONTROL;
+    private final TestType testingMode = TestType.SELECTION;
 
     /**
      * Creates all of the unit tests, comment in the ones you want
@@ -51,7 +53,6 @@ public class UnitTester extends Tele {
         // TODO TEST
         // New unit tests to be created
         // 2. Electronics Test
-        // 5. RobotFramework Test
 
         // Hello from shuhul from snehils computer
         // Hello from shuhul from shuhuls computer
@@ -72,6 +73,9 @@ public class UnitTester extends Tele {
 //          add(new LagTest());
         add(new SelectorTest());
         add(new SynchroniserTest());
+        add(new RobotPartTest());
+        add(new RobotFrameworkTest());
+        add(new ElectronicsTest());
 
         // Hardware
 //        add(new TankDriveTest());

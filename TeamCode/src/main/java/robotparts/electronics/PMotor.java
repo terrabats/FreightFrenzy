@@ -84,6 +84,12 @@ public class PMotor extends Electronic {
     }
 
     /**
+     * Gets the logical direction of the pmotor
+     * @return direction
+     */
+    public DcMotorSimple.Direction getDirection(){return direction;}
+
+    /**
      * Stop and reset the mode of the pmotor
      */
     public void stopAndReset(){
