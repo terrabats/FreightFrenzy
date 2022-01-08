@@ -24,6 +24,9 @@ public class AutoAllTest extends Auto {
         executor.addSetpoint(60, 60, PI/2, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.SpinCarousel);
         executor.addSetpoint(120, 0, PI, AngleType.RADIANS);
+        executor.addUnsynchronizedRF(autoModules.Intake);
+        executor.addSetpoint(60, -60, 3 * PI/2, AngleType.RADIANS);
+        executor.addSetpoint(0, 0, 0, AngleType.RADIANS);
 
         executor.complete();
 

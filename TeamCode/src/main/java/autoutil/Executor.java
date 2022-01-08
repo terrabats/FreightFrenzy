@@ -68,18 +68,13 @@ public class Executor extends MovementExecutor {
         if (!runningCodeSeg) {
             if (!moveRunning) {
                 if (unSyncedSegsExist[curPath]) {
-                    log.show("Running a CodeSeg");
                     runningCodeSeg = true;
                     unSyncedSegs.get(curPath).poll().run();
                     unSyncedSegsExist[curPath] = !unSyncedSegs.get(curPath).isEmpty();
                 } else if (!finishedMove()) {
                     resumeMove();
-                    log.show("Resumed Movement");
-                } else {
-                    log.show("Finished");
                 }
             } else {
-                log.show("Updating Movement");
                 updateMovement();
                 if (syncedSegsExist[curPath]) {
                     syncedSegs.get(curPath).poll().run();
@@ -87,7 +82,6 @@ public class Executor extends MovementExecutor {
                 }
             }
         } else {
-            log.show("Running CodeSeg");
             runningCodeSeg = !bot.rfsHandler.rfsQueue.isEmpty();
         }
     }

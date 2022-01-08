@@ -91,20 +91,24 @@ public class MovementExecutor {
             }
             if (paths.get(curPath).size() == curPose) {
                 Pose nextPose = paths.get(curPath).get(curPose - 1);
-                bot.tankDrive.move(
-                        reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y),
+                double forwardPow = reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y);
+                if (abs(forwardPow) > 0.3) {
+                    bot.tankDrive.move(
+                        forwardPow,
+                        reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH)
+                    );
+                } else {
+                    bot.tankDrive.move(
+                        forwardPow,
                         reactor.turnPow(nextPose.ang, startH)
-                );
-                log.show("Forward pow", reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y));
-                log.show("Turn pow", reactor.turnPow(nextPose.ang, startH));
+                    );
+                }
             } else {
                 Pose nextPose = paths.get(curPath).get(curPose);
                 bot.tankDrive.move(
                         reactor.forwardPowWaypoint(nextPose.p.x, nextPose.p.y),
                         reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH)
                 );
-                log.show("Forward pow", reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y));
-                log.show("Turn pow", reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH));
             }
         } else {
             bot.tankDrive.move(0, 0);

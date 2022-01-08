@@ -27,7 +27,6 @@ public class Outtake extends RobotPart {
         lo.addPosition("aligned", 0.35);
         lo.addPosition("start", 0.41);
         lo.addPosition("open", 1.0);
-        lockCube();
     }
 
     /**
