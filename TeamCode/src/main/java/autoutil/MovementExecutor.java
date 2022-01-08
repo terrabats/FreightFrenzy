@@ -124,7 +124,7 @@ public class MovementExecutor {
         Pose nextPose = paths.get(curPath).get(paths.get(curPath).size() - 1);
         return abs(reactor.turnPow(nextPose.ang, startH)) < 0.2
                 && sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
-                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 2;
+                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 4;
     }
 
     private boolean doneWithPoint(int i) {

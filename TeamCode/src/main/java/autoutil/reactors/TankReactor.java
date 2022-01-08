@@ -14,19 +14,20 @@ public class TankReactor {
     private static final double kf = 0.022, kt = 0.015;
     private static final double fPowWaypoint = 0.3; // 0.15;
     private static final double maxTurnPow = 0.8;
+    private static final double minTurnPow = 0.4;
 
     public boolean moveForward(double targetX, double targetY) {
         double[] curPos = bot.odometry.curPos;
         if (abs(targetX - curPos[0]) > abs(targetY - curPos[1])) {
+            log.show("Using x");
             return signum(targetX - curPos[0]) != signum(curPos[2]);
         } else {
-            return (((targetY - curPos[1]) > 0) && (abs(curPos[2]) < 90))
-                    || (((targetY - curPos[1]) < 0) && (abs(curPos[2]) > 90));
+            return (((targetY - curPos[1]) > 0) && (abs(curPos[2]) < PI/2))
+                    || (((targetY - curPos[1]) < 0) && (abs(curPos[2]) > PI/2));
         }
     }
 
     public double forwardPowSetpoint(double targetX, double targetY) {
-//        return forwardPowWaypoint(targetX, targetY) * fPowSetpoint/fPowWaypoint;
         double[] curPos = bot.odometry.curPos;
         return kf * sqrt(pow(curPos[1] - targetY, 2) + pow(curPos[0] - targetX, 2))
                 * (moveForward(targetX, targetY) ? 1 : -1);
@@ -42,10 +43,8 @@ public class TankReactor {
     }
 
     public double turnPow(double targetH, double stPos) {
-        log.showAndRecord("TargetH1", targetH);
         targetH -= stPos;
         targetH *= 180/PI; // convert to degrees
-        log.showAndRecord("TargetH2", targetH);
         // now targetH and curPos[2] are counterclockwise > 0, 0 in +y direction, and in degrees
         // positive ROBOT turn is CW
         while (targetH > 180) targetH -= 360;
@@ -58,12 +57,13 @@ public class TankReactor {
         if (abs(targetH - curH) > abs(targetH - curH - 360)) {
             curH += 360;
         }
-        log.show("curH", curH);
-//        if (curH - targetH < 0) {
-//            return max(-maxPow, min(-minPow, kt * (curH - targetH)));
-//        } else {
-//            return min(maxPow, max(minPow, kt * (curH - targetH)));
+        double finalPow = kt * (curH - targetH);
+        if (abs(finalPow) < minTurnPow && abs(curH - targetH) > 3) {
+            finalPow = signum(finalPow) * minTurnPow;
+        }
+//        if (abs(finalPow) > maxTurnPow) {
+//            finalPow = signum(finalPow) * maxTurnPow;
 //        }
-        return min(maxTurnPow, max(-maxTurnPow, kt * (curH - targetH)));
+        return finalPow;
     }
 }

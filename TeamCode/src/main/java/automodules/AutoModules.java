@@ -26,6 +26,6 @@ public class AutoModules{
         bot.outtake.outtakeReset(0.7)
     );
     public StageList SpinCarousel = new StageList(
-        bot.carousel.spin(7)
+        bot.carousel.spin(3)
     );
 }
