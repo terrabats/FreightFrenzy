@@ -62,9 +62,9 @@ public class UnitTester extends Tele {
 //        add(new StorageTest());
 //        add(new StageTest());
 //        add(new AutoModuleTest());
-//          add(new LagTest());
+//        add(new LagTest());
 //        add(new SelectorTest());
-        add(new SynchroniserTest());
+//        add(new SynchroniserTest());
         add(new RobotPartTest());
 //        add(new RobotFrameworkTest());
 //        add(new ElectronicsTest());
