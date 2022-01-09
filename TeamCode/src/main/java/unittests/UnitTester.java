@@ -63,11 +63,11 @@ public class UnitTester extends Tele {
 //        add(new StageTest());
 //        add(new AutoModuleTest());
 //          add(new LagTest());
-        add(new SelectorTest());
+//        add(new SelectorTest());
         add(new SynchroniserTest());
         add(new RobotPartTest());
-        add(new RobotFrameworkTest());
-        add(new ElectronicsTest());
+//        add(new RobotFrameworkTest());
+//        add(new ElectronicsTest());
 
         // Hardware
 //        add(new TankDriveTest());
@@ -232,10 +232,10 @@ public class UnitTester extends Tele {
                  */
                 log.list(selector.getItemClassNames(), selector.getCurrentIndex());
             }else{
-                log.showAndRecord("Testing " ,  getCurrentTestName());
+                log.showAndRecord("Testing" ,  getCurrentTestName());
             }
         }else {
-            log.showAndRecord("Testing " ,  getCurrentTestName());
+            log.showAndRecord("Testing" ,  getCurrentTestName());
         }
     }
 

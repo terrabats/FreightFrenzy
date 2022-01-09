@@ -1,5 +1,7 @@
 package unittests.framework;
 
+import java.util.Arrays;
+
 import teleutil.Selector;
 import teleutil.button.Button;
 import unittests.UnitTest;
@@ -25,17 +27,17 @@ public class SelectorTest extends UnitTest {
     @Override
     public void init() {
         /**
-         * Add items to the selectors
-         */
-        addItemsToSelector(booleanSelector, "Boolean", new Boolean[]{false, true});
-        addItemsToSelector(stringSelector, "String", new String[]{"First", "Second", "Third", "Fourth"});
-        addItemsToSelector(integerSelector, "Integer", new Integer[]{1, 2, 3, 4});
-        /**
          * Initialize the selectors
          */
         booleanSelector.init(3);
         stringSelector.init(() -> gamepad1.right_bumper, () -> false);
         integerSelector.init(gph1, Button.Y, Button.B);
+        /**
+         * Add items to the selectors
+         */
+        addItemsToSelector(booleanSelector, "Boolean", new Boolean[]{false, true});
+        addItemsToSelector(stringSelector, "String", new String[]{"First", "Second", "Third", "Fourth"});
+        addItemsToSelector(integerSelector, "Integer", new Integer[]{1, 2, 3, 4});
 
     }
 
@@ -44,7 +46,7 @@ public class SelectorTest extends UnitTest {
         /**
          * Should be true, false until 3 secs has elapsed and then false, true, etc.
          */
-        log.show("Boolean selector is on first", new Boolean[]{booleanSelector.isOnFirst(), booleanSelector.isOnLast()});
+        log.show("Boolean selector is on first", Arrays.toString(new Boolean[]{booleanSelector.isOnFirst(), booleanSelector.isOnLast()}));
         /**
          * Should be String
          */

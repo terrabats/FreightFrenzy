@@ -68,6 +68,7 @@ public class Selector<T> {
 
     /**
      * Add a item to the list of items
+     * NOTE: Init must be called before this method
      * @param item
      */
     public void addItem(Item<T> item){
