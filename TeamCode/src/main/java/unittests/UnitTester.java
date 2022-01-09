@@ -16,7 +16,11 @@ import unittests.hardware.OuttakeTest;
 import unittests.hardware.RobotPartTest;
 import unittests.hardware.TankDriveTest;
 import unittests.hardware.TurretTest;
+import unittests.sensor.ColorTest;
+import unittests.sensor.DistanceTest;
+import unittests.sensor.GyroTest;
 import unittests.sensor.OdometryTest;
+import unittests.sensor.TouchTest;
 import unittests.unused.MecanumDriveTest;
 import util.condition.Expectation;
 import util.condition.Magnitude;
@@ -42,7 +46,7 @@ public class UnitTester extends Tele {
      * Type of testing mode
      * @link TestType
      */
-    private final TestType testingMode = TestType.SELECTION;
+    private final TestType testingMode = TestType.CONTROL;
 
     /**
      * Creates all of the unit tests, comment in the ones you want
@@ -50,40 +54,41 @@ public class UnitTester extends Tele {
      */
     private void createUnitTests(){
         // Framework
-//        add(new AccessTest());
-//        add(new CommonTest());
-//        add(new AccessTest());
-//        add(new CoordinatePlaneTest());
-//        add(new LoggerTest());
-//        add(new FaultTest());
-//        add(new GamepadTest());
-//        add(new RobotFunctionsTest());
-//        add(new ThreadTest());
-//        add(new StorageTest());
-//        add(new StageTest());
-//        add(new AutoModuleTest());
-//        add(new LagTest());
-//        add(new SelectorTest());
-//        add(new SynchroniserTest());
+        add(new AccessTest());
+        //Access Test doesn't work
+        add(new CommonTest());
+        add(new AccessTest());
+        add(new CoordinatePlaneTest());
+        add(new LoggerTest());
+        add(new FaultTest());
+        add(new GamepadTest());
+        add(new RobotFunctionsTest());
+        add(new ThreadTest());
+        add(new StorageTest());
+        add(new StageTest());
+        add(new AutoModuleTest());
+        add(new LagTest());
+        add(new SelectorTest());
+        add(new SynchroniserTest());
         add(new RobotPartTest());
-//        add(new RobotFrameworkTest());
-//        add(new ElectronicsTest());
+        add(new RobotFrameworkTest());
+        add(new ElectronicsTest());
 
         // Hardware
-//        add(new TankDriveTest());
-//        add(new IntakeTest());
-//        add(new TurretTest());
-//        add(new LiftTest());
-//        add(new OuttakeTest());
-//        add(new CarouselTest());
+        add(new TankDriveTest());
+        add(new IntakeTest());
+        add(new TurretTest());
+        add(new LiftTest());
+        add(new OuttakeTest());
+        add(new CarouselTest());
 
         // Sensor
-//        add(new ColorTest());
-//        add(new DistanceTest());
-//        add(new GyroTest());
-//        add(new OdometryTest());
-//        add(new TouchTest());
-//        add(new OdometryTest());
+        add(new ColorTest());
+        add(new DistanceTest());
+        add(new GyroTest());
+        add(new OdometryTest());
+        add(new TouchTest());
+        add(new OdometryTest());
     }
 
     /**
