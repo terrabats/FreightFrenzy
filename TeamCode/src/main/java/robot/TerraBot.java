@@ -5,7 +5,7 @@ import robotparts.hardware.Intake;
 import robotparts.hardware.Lift;
 import robotparts.sensors.ColorSensors;
 import robotparts.sensors.DistanceSensors;
-import robotparts.sensors.GyroSensor;
+import robotparts.sensors.GyroSensors;
 import robotparts.sensors.Led;
 import robotparts.sensors.Odometry;
 import robotparts.hardware.Outtake;
@@ -29,8 +29,8 @@ public class TerraBot extends RobotFramework {
     public Outtake outtake = new Outtake();
     public Carousel carousel = new Carousel();
     public ColorSensors colorSensors = new ColorSensors();
-//    public TouchSensors touchSensor = new TouchSensors();
-    public GyroSensor gyroSensor = new GyroSensor();
+//    public TouchSensors touchSensors = new TouchSensors();
+    public GyroSensors gyroSensors = new GyroSensors();
     public Odometry odometry = new Odometry();
 //    public Distance distance = new Distance();
 //    public Led led = new Led();
@@ -46,6 +46,7 @@ public class TerraBot extends RobotFramework {
 //    public Carousel carousel;
 //    public ColorSensors colorSensors;
     public TouchSensors touchSensor;
+//    public GyroSensors gyroSensors;
 //    public Odometry odometry;
     public DistanceSensors distanceSensors;
     public Led led;

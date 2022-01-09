@@ -7,7 +7,7 @@ import robotparts.electronics.IGyro;
  * NOTE: Uncommented
  */
 
-public class GyroSensor extends RobotPart {
+public class GyroSensors extends RobotPart {
     private IGyro gsr, gsl;
 
     @Override

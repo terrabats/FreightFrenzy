@@ -90,7 +90,7 @@ public class Odometry extends RobotPart {
     // NOTE: Odometry modules are to the left and to the back of the center of the robot
     public double[] getPosChangeCenter() {
         processTheta();
-        double gyroReading = bot.gyroSensor.getRightHeadingRad();
+        double gyroReading = bot.gyroSensors.getRightHeadingRad();
         double dtheta = gyroReading - curPos[2];
 
         while (abs(dtheta) > PI) {

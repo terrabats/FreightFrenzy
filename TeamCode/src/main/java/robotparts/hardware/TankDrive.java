@@ -64,13 +64,13 @@ public class TankDrive extends RobotPart {
     private final double turnError = 1;
 
     public void setAutonNewSegment(double changeAng, double forTime) {
-        stAng = bot.gyroSensor.getRightHeadingDeg();
+        stAng = bot.gyroSensors.getRightHeadingDeg();
         endAng = stAng - changeAng;
         moveForTime = forTime;
     }
 
     private double getAutonTurnError() {
-        return bot.gyroSensor.getRightHeadingDeg() - endAng;
+        return bot.gyroSensors.getRightHeadingDeg() - endAng;
     }
 
     public boolean moveAutonDone(double f, double t, double curTime) {
