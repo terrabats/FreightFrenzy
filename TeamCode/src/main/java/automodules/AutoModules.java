@@ -11,9 +11,8 @@ public class AutoModules{
     public StageList Intake = new StageList(
         bot.lift.liftEncoder(0.4, 0),
         bot.intake.intakeUntilFreight(1),
-        bot.outtake.outtakeLock(GameElement.BALL, 0.5),
-        bot.lift.liftEncoder(0.8, 10),
-        bot.outtake.outtakeLock(GameElement.CUBE, 0.5)
+        bot.outtake.outtakeLock(0.5),
+        bot.lift.liftEncoder(0.8, 15)
     );
     public StageList Backward = new StageList(
         bot.lift.liftEncoder(0.8, 55),
@@ -25,6 +24,9 @@ public class AutoModules{
         bot.lift.liftEncoder(0.4, 10),
         bot.outtake.outtakeReset(0.7)
     );
+
+
+
     public StageList SpinCarousel = new StageList(
         bot.carousel.spin(3)
     );

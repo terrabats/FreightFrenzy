@@ -23,7 +23,7 @@ public class Outtake extends RobotPart {
     public void init(){
         lo = createPServo("lo", Servo.Direction.FORWARD, 0.25, 0.5);
         lo.addPosition("cubeLock", 0.0);
-        lo.addPosition("ballLock", 0.27);
+        lo.addPosition("ballLock", 0.25);
         lo.addPosition("aligned", 0.35);
         lo.addPosition("start", 0.41);
         lo.addPosition("open", 1.0);
@@ -69,6 +69,20 @@ public class Outtake extends RobotPart {
         return new Stage(
                 usePart(),
                 lock,
+                exitTime(time),
+                returnPart()
+        );
+    }
+
+    /**
+     * Lock the outtake based on the type of freight from the color sensor
+     * @param time
+     * @return
+     */
+    public Stage outtakeLock(double time){ return new Stage(
+                usePart(),
+                mainLockIfBall(),
+                mainLockIfCube(),
                 exitTime(time),
                 returnPart()
         );
