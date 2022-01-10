@@ -1,24 +1,15 @@
 package teleutil.button;
 
 import teleutil.GamepadHandler;
-import util.codeseg.ParameterCodeSeg;
+import util.codeseg.CodeSeg;
 
-public class OnPressEventHandler extends ButtonEventHandler {
+/**
+ * Occurs (once) when the user presses the button
+ */
+public class OnPressEventHandler extends ChangeHoldEventHandler {
 
-    boolean wasPressed = false;
-
-    public OnPressEventHandler(Button b, ParameterCodeSeg cs, GamepadHandler gph) { super(b, cs, gph); }
-
-    @Override
-    protected boolean eventOccurred() {
-        return this.pressed() != wasPressed;
-    }
+    public OnPressEventHandler(Button button, CodeSeg codeSeg, GamepadHandler gph) { super(button, codeSeg, gph); }
 
     @Override
-    public void run() {
-        if (this.pressed()) {
-            super.run();
-        }
-        wasPressed = this.pressed();
-    }
+    protected boolean eventOccurred() { return super.eventOccurred() && this.pressed(); }
 }

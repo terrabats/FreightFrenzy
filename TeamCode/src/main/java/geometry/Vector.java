@@ -2,6 +2,10 @@ package geometry;
 
 import static java.lang.Math.*;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class Vector extends GeometryObject {
     //x and y coords of the tip of vector, theta is angle measured from the right horizontal
     public Point p;
@@ -22,8 +26,8 @@ public class Vector extends GeometryObject {
     //Gets a rotated vector of the current vector angle - positive is anticlockwise
 
     @Override
-    public GeometryObject getRotated(double angRad, Point origin) {
-        double ang = theta + angRad;
+    public GeometryObject getRelativeTo(Pose origin) {
+        double ang = theta + origin.ang;
         double radius = getLen();
         return new Vector(cos(ang) * radius, sin(ang) * radius);
     }

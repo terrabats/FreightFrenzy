@@ -1,0 +1,89 @@
+package unittests.hardware;
+
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
+
+import org.checkerframework.checker.units.qual.C;
+
+import robotparts.RobotPart;
+import robotparts.electronics.CMotor;
+import robotparts.electronics.CServo;
+import robotparts.electronics.PMotor;
+import robotparts.electronics.PServo;
+import teleutil.button.Button;
+import teleutil.button.OnPressEventHandler;
+import unittests.UnitTest;
+import util.User;
+
+import static global.General.bot;
+import static global.General.gph1;
+import static global.General.log;
+
+public class ElectronicsTest extends UnitTest {
+    /**
+     * Class to test all of the electronics
+     * NOTE: This does not test the actual electronic class since theres very few functions in that
+     * This class will not work if certain parts of the robot don't exist (like the lift and outtake lock)
+     */
+    CMotor in;
+    CServo cr;
+    PMotor li;
+    PServo lo;
+
+
+    @Override
+    protected void start() {
+
+        in = bot.intake.getElectronicsOfType(CMotor.class).get("in");
+        cr = bot.carousel.getElectronicsOfType(CServo.class).get("cr");
+        li = bot.lift.getElectronicsOfType(PMotor.class).get("li");
+        lo = bot.outtake.getElectronicsOfType(PServo.class).get("lo");
+        /**
+         * Link the gamepad handler
+         */
+        gph1.link(Button.A, OnPressEventHandler.class, () -> in.setPower(0.2));
+        gph1.link(Button.B, OnPressEventHandler.class, () -> cr.setPower(0.2));
+        gph1.link(Button.Y, OnPressEventHandler.class, () -> li.setPower(0.2));
+        gph1.link(Button.RIGHT_BUMPER, OnPressEventHandler.class, () -> lo.setPosition("start"));
+    }
+
+    @Override
+    protected void loop() {
+        /**
+         * Controls
+         */
+        log.show("Press A to move intake");
+        log.show("Press B to move carousel servo");
+        log.show("Press Y to move lift");
+        log.show("Press right bumper to move outtake lock");
+        /**
+         * All directions should be forward
+         */
+        log.show("Intake direction",in.getDirection());
+        log.show("Carousel Servo Direction",cr.getDirection());
+        log.show("Lift direction", li.getDirection());
+        log.show("Outtake lock direction",lo.getDirection());
+        /**
+         * Should change when lift moves
+         */
+        log.show("Lift position",li.getPosition());
+        /**
+         * Should be 0
+         */
+        log.show("Lift target",li.getTarget());
+        /**
+         * Should change when outtake lock moves
+         */
+        log.show("Outtake lock position",lo.getPosition());
+    }
+
+    @Override
+    public void stop() {
+        /**
+         * Halt the part
+         */
+        in.halt();
+        cr.halt();
+        li.halt();
+    }
+}

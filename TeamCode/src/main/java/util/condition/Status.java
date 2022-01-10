@@ -1,8 +1,23 @@
 package util.condition;
 
 public enum Status {
-    IDLE, // Waiting for commands and is ready to be used
-    ACTIVE, // Being used
-    DISABLED, // Not allowed to be used
-    INACTIVE // Is not being used or off
+    /**
+     * What is the status?
+     */
+
+
+    /**
+     * Waiting for commands or is ready to be used?
+     */
+    IDLE,
+
+    /**
+     * Being used or is about to be used?
+     */
+    ACTIVE,
+
+    /**
+     * Not allowed to be used anymore?
+     */
+    DISABLED
 }

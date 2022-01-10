@@ -2,38 +2,66 @@ package debugging;
 
 import java.util.ArrayList;
 
+import util.store.Item;
+
 public class Log {
-    public String name = "";
-    public LogType logType = LogType.NORMAL;
-    public boolean noTelemetry = false;
+    /**
+     * Item containing name and values
+     */
+    private final Item<ArrayList<Object>> item;
 
-    private final ArrayList<Object> values = new ArrayList<>();
+    /**
+     * Current object (last one in the list)
+     */
+    private Object currentObject = null;
 
+    /**
+     * Constructor for log
+     * @param name
+     */
     public Log(String name){
-        this.name = name;
-    }
-    public Log(String name, LogType logType){
-        this.name = name;
-        this.logType = logType;
+        item = new Item<>(name, new ArrayList<>());
     }
 
+    /**
+     * Add a value to the log
+     * @param o
+     */
     public void add(Object o){
-        values.add(o);
+        currentObject = o;
+        item.getValue().add(o);
     }
+
+    /**
+     * Add a value only if its different then the previous one
+     * @param
+     */
     public void addNewOnly(Object o){
-        if(!o.equals(getCurrentObject())){
-            values.add(o);
-        }
+        if(!o.equals(getCurrentObject())){ add(o); }
     }
+
+    /**
+     * Get the name of the log
+     * @return name
+     */
+    public String getName(){
+        return item.getName();
+    }
+
+    /**
+     * Get the current object, if values has nothing return null
+     * @return current object
+     */
     public Object getCurrentObject(){
-        if(values.size()>0) {
-            return values.get(values.size() - 1);
-        }else{
-            return null;
-        }
+        return currentObject;
     }
+
+    /**
+     * Get the list of values
+     * @return values
+     */
     public ArrayList<Object> getValues(){
-        return values;
+        return item.getValue();
     }
 
 }

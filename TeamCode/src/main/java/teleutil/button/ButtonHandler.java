@@ -3,7 +3,14 @@ package teleutil.button;
 import java.util.ArrayList;
 
 import teleutil.GamepadHandler;
-import util.codeseg.ParameterCodeSeg;
+import util.ExceptionCatcher;
+import util.codeseg.CodeSeg;
+
+import static global.General.*;
+
+/**
+ * NOTE: Uncommented
+ */
 
 public class ButtonHandler {
     private final Button button;
@@ -14,17 +21,20 @@ public class ButtonHandler {
         button = b; this.gph = gph;
     }
 
-    public void addEvent(ButtonEventType type, ParameterCodeSeg codeSeg) {
-        if (type == ButtonEventType.NORMAL) {
-            eventHandlers.add(new ButtonEventHandler(button, codeSeg, gph));
-        } else if (type == ButtonEventType.ON_PRESS) {
-            eventHandlers.add(new OnPressEventHandler(button, codeSeg, gph));
-        }
+    public <T> void addEvent(Class<T> type, CodeSeg codeSegs) {
+        fault.check("YOU USED BUTTONHANDLER IN LOOP", eventHandlers.size() < 50, true);
+        ExceptionCatcher.catchNewInstance(() -> {
+            T obj = type
+                .getDeclaredConstructor(Button.class, CodeSeg.class, GamepadHandler.class)
+                .newInstance(button, codeSegs, gph);
+            eventHandlers.add((ButtonEventHandler) obj);
+        });
+
     }
 
     public void run() {
         for (ButtonEventHandler handler : eventHandlers) {
-            handler.run();
+            handler.runAndUpdate();
         }
     }
 }

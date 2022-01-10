@@ -9,20 +9,61 @@ import static global.General.log;
 import static global.Constants.*;
 
 public class Synchroniser {
+    /**
+     * Was the ready method called in common?
+     */
+    private boolean wasReadyCalled = false;
+    /**
+     * Was the update method called in common?
+     */
+    private boolean wasUpdateCalled = false;
+    /**
+     * The number of updates since the start
+     */
     private int numUpdates = 0;
+    /**
+     * The timer to determine the lag
+     */
     private final Timer lagTimer = new Timer();
-    private double delay = 0;
+
+    /**
+     * Reset the delay to be updated
+     */
     public void resetDelay(){
         numUpdates = 0;
+        wasReadyCalled = true;
         lagTimer.reset();
     }
+
+    /**
+     * Add to the number of updates
+     */
     public void update(){
+        if(!wasUpdateCalled){
+            wasUpdateCalled = true;
+        }
         numUpdates++;
     }
+
+    public double getDelay(){
+        return (1000*lagTimer.seconds())/numUpdates;
+    }
+
+    /**
+     * Logs the delay and warns if either sync was not updated or the robot is experiencing lag as determined by the minimum refresh rate
+     */
     public void logDelay() {
-        fault.warn("Sync was never updated", Expectation.UNEXPECTED, Magnitude.CRITICAL, numUpdates != 0);
-        delay = (1000 * lagTimer.seconds()) / numUpdates;
-        log.save("Delay (ms)", delay);
-        fault.check("Robot is lagging", Expectation.EXPECTED, Magnitude.CRITICAL, delay < MAX_ALLOWED_DELAY);
+        if(wasReadyCalled) {
+            fault.warn("Sync was never updated", Expectation.UNEXPECTED, Magnitude.CRITICAL, numUpdates == 0, false);
+            /**
+             * The amount of delay between refreshes
+             */
+            log.record("Delay (ms)", getDelay());
+            fault.warn("Robot is lagging", Expectation.EXPECTED, Magnitude.CRITICAL, getDelay() < (1000 / MINIMUM_REFRESH_RATE), true);
+        }
+        /**
+         * If ready was called but update was not called in common then something is wrong
+         */
+        fault.check("Super.loop was not called", Expectation.EXPECTED, Magnitude.CRITICAL, wasReadyCalled && !wasUpdateCalled, false);
     }
 }

@@ -2,6 +2,10 @@ package geometry;
 
 import static java.lang.Math.*;
 
+/**
+ * NOTE: Uncommented
+ */
+
 public class Line extends GeometryObject {
     //start coords (x1,y1) end coords (x2,y2) mx is slope in x dir from 0-1 and my is the same for y
     public Point p1;
@@ -20,18 +24,18 @@ public class Line extends GeometryObject {
     }
 
     //Gets the position of the line at a certain t value
-    public double[] getAt(double t){
-        return new double[] { (p1.x)+(mx*t), (p1.y)+(my*t) };
+    public Point getAt(double t){
+        return new Point ((p1.x)+(mx*t), (p1.y)+(my*t));
     }
 
     //Gets the length of the line
-    public double getDis(){
+    public double getlength(){
         return sqrt(pow(mx, 2) + pow(my, 2));
     }
 
     @Override
-    public GeometryObject getRotated(double angRad, Point origin) {
-        return new Line(p1.rotate(angRad, origin), p2.rotate(angRad, origin));
+    public GeometryObject getRelativeTo(Pose origin) {
+        return new Line(p1.getRelativeTo(origin), p2.getRelativeTo(origin));
     }
 
     public String toString() {

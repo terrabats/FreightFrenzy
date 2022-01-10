@@ -1,6 +1,10 @@
 package util.codeseg;
 
-//Used to define and pass code
+/**
+ * Used to pass in code
+ * Created as follows: () -> <code to run> or
+ * () -> {<multiline code to run>}
+ */
 public interface CodeSeg {
     void run();
 }

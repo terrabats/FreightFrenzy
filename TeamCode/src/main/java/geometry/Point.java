@@ -2,18 +2,25 @@ package geometry;
 
 import static java.lang.Math.*;
 
-public class Point {
+/**
+ * NOTE: Uncommented
+ */
+
+public class Point extends GeometryObject {
     public double x, y;
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
-    public Point rotate(double angRad, Point origin) {
-        double sx = x - origin.x, sy = y - origin.y;
-        double nx = sx * cos(angRad) - sy * sin(angRad);
-        double ny = sx * sin(angRad) + sy * cos(angRad);
+
+    @Override
+    public Point getRelativeTo(Pose origin) {
+        double sx = x - origin.p.x, sy = y - origin.p.y;
+        double nx = sx * cos(origin.ang) + sy * sin(origin.ang);
+        double ny = sx * -sin(origin.ang) + sy * cos(origin.ang);
         return new Point(nx, ny);
     }
+
     public String toString() {
         return x + " " + y;
     }
