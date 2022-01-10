@@ -11,8 +11,7 @@ public class AccessTest extends UnitTest {
      * Test the access class
      * NOTE: This test should not be run more than once
      */
-//TODO fix this --> crashes app
-//hkrkr
+
     /**
      * Access object to be tested
      */
@@ -36,25 +35,23 @@ public class AccessTest extends UnitTest {
          * Give the main thread access
          */
         access.allow();
-        thread = new Thread(() -> {});
-
-//        thread = new Thread(() -> {
-//            access.allow();
-//            /**
-//             * After two seconds deny the thread access
-//             */
-//            timer.reset();
-//            while (timer.seconds() < 2){}
-//            access.deny();
-//            threadAccess = access.isAllowed();
-//            /**
-//             * After 2 more seconds give back access
-//             */
-//            timer.reset();
-//            while (timer.seconds() < 2){}
-//            access.allow();
-//            threadAccess = access.isAllowed();
-//        });
+        thread = new Thread(() -> {
+            access.allow();
+            /**
+             * After two seconds deny the thread access
+             */
+            timer.reset();
+            while (timer.seconds() < 2){}
+            access.deny();
+            threadAccess = access.isAllowed();
+            /**
+             * After 2 more seconds give back access
+             */
+            timer.reset();
+            while (timer.seconds() < 2){}
+            access.allow();
+            threadAccess = access.isAllowed();
+        });
     }
 
     @Override

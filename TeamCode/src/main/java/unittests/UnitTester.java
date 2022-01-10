@@ -54,41 +54,39 @@ public class UnitTester extends Tele {
      */
     private void createUnitTests(){
         // Framework
-        add(new AccessTest());
-        //Access Test doesn't work
-        add(new CommonTest());
-        add(new AccessTest());
-        add(new CoordinatePlaneTest());
-        add(new LoggerTest());
-        add(new FaultTest());
-        add(new GamepadTest());
-        add(new RobotFunctionsTest());
-        add(new ThreadTest());
-        add(new StorageTest());
-        add(new StageTest());
-        add(new AutoModuleTest());
-        add(new LagTest());
-        add(new SelectorTest());
-        add(new SynchroniserTest());
-        add(new RobotPartTest());
-        add(new RobotFrameworkTest());
+//        add(new AccessTest());
+//        add(new CommonTest());
+//        add(new CoordinatePlaneTest());
+//        add(new LoggerTest());
+//        add(new FaultTest());
+//        add(new GamepadTest());
+//        add(new RobotFunctionsTest());
+//        add(new ThreadTest());
+//        add(new StorageTest());
+//        add(new StageTest());
+//        add(new AutoModuleTest());
+//        add(new LagTest());
+//        add(new SelectorTest());
+//        add(new SynchroniserTest());
+//        add(new RobotPartTest());
+//        add(new RobotFrameworkTest());
         add(new ElectronicsTest());
+//
+//        // Hardware
+//        add(new TankDriveTest());
+//        add(new IntakeTest());
+//        add(new TurretTest());
+//        add(new LiftTest());
+//        add(new OuttakeTest());
+//        add(new CarouselTest());
 
-        // Hardware
-        add(new TankDriveTest());
-        add(new IntakeTest());
-        add(new TurretTest());
-        add(new LiftTest());
-        add(new OuttakeTest());
-        add(new CarouselTest());
-
-        // Sensor
-        add(new ColorTest());
-        add(new DistanceTest());
-        add(new GyroTest());
-        add(new OdometryTest());
-        add(new TouchTest());
-        add(new OdometryTest());
+//        // Sensor
+//        add(new ColorTest());
+//        add(new DistanceTest());
+//        add(new GyroTest());
+//        add(new OdometryTest());
+//        add(new TouchTest());
+//        add(new OdometryTest());
     }
 
     /**
