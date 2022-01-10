@@ -184,6 +184,11 @@ public class UnitTester extends Tele {
      * @param test
      */
     private void add(UnitTest test){
+        for(String testName: selector.getItemClassNames()){
+            if(test.getClass().getSimpleName().equals(testName)){
+                fault.check("Duplicate unit test found", Expectation.OBVIOUS, Magnitude.NEGLIGIBLE);
+            };
+        }
         selector.addItem(new Item<>(test.getClass().getSimpleName(), test));
     }
 

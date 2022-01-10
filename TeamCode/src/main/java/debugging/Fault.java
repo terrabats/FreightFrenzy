@@ -55,6 +55,7 @@ public class Fault {
 
     /**
      * Same as warn except throws exception
+     * NOTE: Only use when something major has gone wrong or is important
      * @param msg
      */
     public void check(String msg) {
@@ -72,8 +73,7 @@ public class Fault {
     }
 
     /**
-     * Same as warn except throws an exception (crashes the app)
-     * NOTE: Only use when something major has gone wrong or is important
+     * Same as warn except throws an exception if test does not match the correct value
      * @param msg
      * @param test
      * @param correct
