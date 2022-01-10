@@ -29,15 +29,18 @@ public class TerraBot extends RobotFramework {
     public Outtake outtake = new Outtake();
     public Carousel carousel = new Carousel();
     public ColorSensors colorSensors = new ColorSensors();
-//    public TouchSensors touchSensors = new TouchSensors();
     public GyroSensors gyroSensors = new GyroSensors();
     public Odometry odometry = new Odometry();
-//    public Distance distance = new Distance();
+//    public TouchSensors touchSensors = new TouchSensors();
+//    public DistanceSensors distance = new DistanceSensors();
 //    public Led led = new Led();
 //    public MecanumDrive mecDrive = new MecanumDrive();
 
 
-    // Empty Parts
+    /**
+     * Empty Parts
+     */
+
 //    public TankDrive tankDrive;
 //    public Intake intake;
 //    public Turret turret;
@@ -45,9 +48,9 @@ public class TerraBot extends RobotFramework {
 //    public Outtake outtake;
 //    public Carousel carousel;
 //    public ColorSensors colorSensors;
-    public TouchSensors touchSensor;
 //    public GyroSensors gyroSensors;
 //    public Odometry odometry;
+    public TouchSensors touchSensor;
     public DistanceSensors distanceSensors;
     public Led led;
     public MecanumDrive mecanumDrive;

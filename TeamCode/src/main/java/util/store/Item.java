@@ -143,7 +143,7 @@ public class Item<T> {
          * Gets the item type from a string by seeing if the toString of the itemtype equals
          * the toString of the desired string
          * @param s
-         * @return
+         * @return item type
          */
         public static ItemType fromString(String s){
             for (ItemType t: ItemType.values()){

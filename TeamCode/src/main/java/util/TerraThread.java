@@ -16,7 +16,7 @@ public class TerraThread extends Thread {
 
 
     /**
-     * currentStatus represnts the status of the thread
+     * currentStatus represents the status of the thread
      * NOTE: The thread status is active by default which means it will run the moment it starts
      */
     private volatile Status currentStatus = Status.ACTIVE;
