@@ -12,7 +12,7 @@ public class TurretTest extends UnitTest {
     public void loop() {
 //        showConfig(bot.turret);
         log.show("Use left stick x");
-        bot.turret.move(gamepad2.left_stick_x);
+        bot.turret.move(gamepad1.left_stick_x);
         log.show("target pos", bot.turret.getTargetPos());
         log.show("pos", bot.turret.getTurretPos());
     }

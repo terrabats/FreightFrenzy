@@ -13,7 +13,7 @@ public class OuttakeTest extends UnitTest {
      */
     @Override
     protected void start() {
-        bot.outtake.lockCube();
+        //bot.outtake.lockCube();
         gph1.link(Button.B, OnPressEventHandler.class, () -> bot.outtake.lockCube());
         gph1.link(Button.DPAD_UP, OnPressEventHandler.class, () -> bot.outtake.lockBall());
         gph1.link(Button.DPAD_RIGHT, OnPressEventHandler.class, () -> bot.outtake.align());

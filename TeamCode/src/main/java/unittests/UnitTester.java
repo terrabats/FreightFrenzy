@@ -70,13 +70,13 @@ public class UnitTester extends Tele {
 //        add(new SynchroniserTest());
 //        add(new RobotPartTest());
 //        add(new RobotFrameworkTest());
-        add(new ElectronicsTest());
+//        add(new ElectronicsTest());
 //
 //        // Hardware
 //        add(new TankDriveTest());
 //        add(new IntakeTest());
-//        add(new TurretTest());
 //        add(new LiftTest());
+//        add(new TurretTest());
 //        add(new OuttakeTest());
 //        add(new CarouselTest());
 
