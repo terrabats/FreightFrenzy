@@ -7,45 +7,19 @@ import unittests.UnitTest;
 import util.Timer;
 import util.User;
 
+import static global.General.bot;
 import static global.General.log;
 
 public class RobotFrameworkTest extends UnitTest {
     /**
-     * Class that tests robotframework by creating a test object
+     * Class that tests robotframework by running methods
      */
+
 
     /**
      * Test robot framework
-     * NOTE: Since allrobotparts is a static arraylist all of the parts in the normal terrabot will be in this too
+     * NOTE: Since allrobotparts is a static arraylist all of the parts terrabot should be here
      */
-    TerraBot testRobotFramework = new TerraBot();
-    /**
-     * Timer object
-     */
-    final Timer timer = new Timer();
-
-    @Override
-    protected void start() {
-        /**
-         * Reset the timer and init the robot framework
-         */
-        timer.reset();
-        testRobotFramework.init();
-        /**
-         * Move the intake at 0.2 power
-         */
-        testRobotFramework.intake.move(0.2);
-        /**
-         * Wait 0.5 seconds
-         */
-        while (timer.seconds() < 0.5){}
-        /**
-         * Halt the robot framework and set user to TELE
-         */
-        testRobotFramework.halt();
-        testRobotFramework.setUser(User.TELE);
-    }
-
     @Override
     protected void loop() {
         /**
@@ -55,6 +29,6 @@ public class RobotFrameworkTest extends UnitTest {
         /**
          * Should be TELE
          */
-        log.show("Test part current user", testRobotFramework.intake.getUser());
+        log.show("Test part current user", bot.intake.getUser());
     }
 }
