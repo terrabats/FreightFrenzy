@@ -68,7 +68,7 @@ public class RobotFunctions {
     /**
      * Resume the robotfunctions,
      * if the queue is not empty and the oldest stage is a pause then delete it and start the thread again
-     * (by seting the status to active)
+     * (by setting the status to active)
      */
     public void resume() {
         if (!rfsQueue.isEmpty() && rfsQueue.peek().isPause()) {
@@ -88,7 +88,7 @@ public class RobotFunctions {
     }
 
     /**
-     * Add the automodule by reseting the time and starting the thread
+     * Add the automodule by resetting the time and starting the thread
      * Add all of the stages in the automodule to the queue
      * @param autoModule
      */

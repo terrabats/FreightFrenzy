@@ -33,8 +33,8 @@ public class Log {
     }
 
     /**
-     * Add a value only if its different then the prevous one
-     * @param o
+     * Add a value only if its different then the previous one
+     * @param
      */
     public void addNewOnly(Object o){
         if(!o.equals(getCurrentObject())){ add(o); }

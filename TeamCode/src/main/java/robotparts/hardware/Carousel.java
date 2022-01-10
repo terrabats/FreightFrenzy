@@ -28,7 +28,7 @@ public class Carousel extends RobotPart {
 
     /**
      * Move the carousels at the given power
-     * NOTE: Positive should be so that the right carosel spins clockwise
+     * NOTE: Positive should be so that the right carousel spins clockwise
      * @param p
      */
     public void move(double p){

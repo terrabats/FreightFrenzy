@@ -48,7 +48,7 @@ public class TankDrive extends RobotPart {
     }
 
     /**
-     * Move the robot using logisitic curves (to make it easier to use in teleop)
+     * Move the robot using logistic curves (to make it easier to use in teleop)
      * @param f
      * @param t
      */

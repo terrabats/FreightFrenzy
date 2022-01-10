@@ -23,7 +23,7 @@ public class RobotFramework {
     public CoordinatePlane localPlane;
     /**
      * The terrathread robotFunctionsThread is used for running robotfunction related tasks,
-     * it is usually not neccessary to access this directly
+     * it is usually not necessary to access this directly
      */
     public static TerraThread robotFunctionsThread;
     /**
@@ -36,7 +36,7 @@ public class RobotFramework {
     public RobotFunctions rfsHandler;
 
     /**
-     * Constructor for creating a robotFramework, this should be overriden by terraBot by extending this class
+     * Constructor for creating a robotFramework, this should be overridden by terraBot by extending this class
      * Objects are instantiated here, and rfsHandler is also initialized, which sets the update code
      */
     protected RobotFramework(){
@@ -50,7 +50,7 @@ public class RobotFramework {
 
     /**
      * This method is run from TerraBot and this initializes all of the robotparts, sets the user to main user
-     * It then starts the robotfunctionsthread, odometry thread, and resets the gametimer
+     * It then starts the robotfunctionsthread, odometry thread, and resets the game timer
      * NOTE: Threads are started in init to prevent lag in start
      */
     public void init(){

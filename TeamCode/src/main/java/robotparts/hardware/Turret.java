@@ -68,7 +68,7 @@ public class Turret extends RobotPart {
     }
 
     /**
-     * Get the target position based on the fieldside
+     * Get the target position based on the field side
      * @return
      */
     public double getTargetPos(){
