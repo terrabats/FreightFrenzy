@@ -17,32 +17,19 @@ public class UnitTest {
     protected Status status = Status.IDLE;
 
     /**
-     * For init, start, loop, and stop see tele
+     * For init and stop see tele, run tests the UnitTest
      * @link Tele
      */
-    public void init() {}
-    protected void start() {}
-    protected void loop() {}
-    public void stop() {}
+    public void init(){}
+    public void run(){}
+    public void stop(){}
+
 
     /**
      * Reset the status to idle
      */
     public void reset(){
         status = Status.IDLE;
-    }
-
-    /**
-     * Test by running start, setting the status to active, and then running loop
-     * This ensures that start runs once and then loop runs over and over
-     */
-    public void test(){
-        if(status.equals(Status.IDLE)){
-            start();
-            status = Status.ACTIVE;
-        }else{
-            loop();
-        }
     }
 
     /**

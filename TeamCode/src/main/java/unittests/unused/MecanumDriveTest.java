@@ -1,6 +1,6 @@
 package unittests.unused;
 
-import unittests.UnitTest;
+import unittests.tele.TeleUnitTest;
 
 import static global.General.*;
 
@@ -8,7 +8,7 @@ import static global.General.*;
  * NOTE: Uncommented
  */
 
-public class MecanumDriveTest extends UnitTest {
+public class MecanumDriveTest extends TeleUnitTest {
 
     @Override
     protected void loop() {

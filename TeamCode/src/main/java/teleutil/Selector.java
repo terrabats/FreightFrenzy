@@ -29,6 +29,7 @@ public class Selector<T> {
      */
     private ReturnCodeSeg<Boolean> up;
     private ReturnCodeSeg<Boolean> down;
+    private ReturnCodeSeg<Boolean> select;
     /**
      * Current index of the selector
      */
@@ -90,8 +91,8 @@ public class Selector<T> {
      * @param upButton
      * @param downButton
      */
-    public void init(GamepadHandler gph, Button upButton, Button downButton){
-        up = gph.pressedMap.get(upButton); down = gph.pressedMap.get(downButton);
+    public void init(GamepadHandler gph, Button upButton, Button downButton, Button selectButton){
+        up = gph.pressedMap.get(upButton); down = gph.pressedMap.get(downButton); select = gph.pressedMap.get(selectButton);
         init();
     }
 
@@ -101,7 +102,7 @@ public class Selector<T> {
      * @param downSeg
      */
     public void init(ReturnCodeSeg<Boolean> upSeg, ReturnCodeSeg<Boolean> downSeg){
-        up = upSeg; down = downSeg;
+        up = upSeg; down = downSeg; select = () -> true;
         init();
     }
 
@@ -165,6 +166,9 @@ public class Selector<T> {
      */
     public void update(){
         if(updateTimer.seconds() > delay) {
+            if(select.run()){
+                active();
+            }
             if (up.run()) {
                 updateTimer.reset();
                 next.run();

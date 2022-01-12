@@ -14,18 +14,22 @@ import java.util.Arrays;
 
 @Autonomous(name="AutoAllTest")
 public class AutoAllTest extends Auto {
+
     @Override
-    public void runOpMode() throws InterruptedException {
-        reference(this);
-
+    public void initAuto() {
+        super.initAuto();
         activate(FieldSide.BLUE);
+    }
 
+    @Override
+    public void runAuto() {
+        super.runAuto();
         Executor executor = new Executor();
-        executor.addSetpoint(60, 60, PI/2, AngleType.RADIANS);
+        executor.addSetpoint(60, 60, PI / 2, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.SpinCarousel);
         executor.addSetpoint(120, 0, PI, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.Intake);
-        executor.addSetpoint(60, -60, 3 * PI/2, AngleType.RADIANS);
+        executor.addSetpoint(60, -60, 3 * PI / 2, AngleType.RADIANS);
         executor.addSetpoint(0, 0, 0, AngleType.RADIANS);
 
         executor.complete();
@@ -38,11 +42,8 @@ public class AutoAllTest extends Auto {
 
         while (opModeIsActive() && !executor.finished()) {
             executor.update();
-            update(true);
+            super.update(true);
         }
-
         bot.tankDrive.move(0, 0);
-
-        end();
     }
 }
