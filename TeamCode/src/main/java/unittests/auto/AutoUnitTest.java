@@ -1,21 +1,18 @@
 package unittests.auto;
 
+import unittests.UnitTest;
 import unittests.tele.TeleUnitTest;
 
-public class AutoUnitTest extends TeleUnitTest {
+public class AutoUnitTest extends UnitTest {
     /**
      * Unit test based on auto
      * For init and stop see UnitTest
      * @link UnitTest
      */
 
-
     /**
-     * Start runs once before run
-     */
-    public void start() {}
-    /**
-     * Run also runs once after start
+     * Run runs once after start
+     * NOTE: This is equivalent to loop in TeleUnitTest except it runs once
      */
     public void run() {}
 }
