@@ -71,8 +71,7 @@ public class TeleUnitTester extends Tele implements UnitTester{
      * Init method
      */
     @Override
-    public void init() {
-        super.init();
+    public void initTele() {
 
         /**
          * initialize the selector depending on the testing mode
@@ -107,29 +106,27 @@ public class TeleUnitTester extends Tele implements UnitTester{
 
         readyTestsAndSelector(testingMode);
 
-        super.activate(FieldSide.UNKNOWN);
+        activate(FieldSide.UNKNOWN);
     }
 
     /**
      * Start method, reset the selectors update timer
      */
     @Override
-    public void start() {
+    public void startTele() {
         selector.resetUpdateTimer();
-        super.start();
     }
 
     /**
      * Loop method, update the selector, and run the current test
      */
     @Override
-    public void loop() {
+    public void loopTele() {
         if(!status.equals(Status.DISABLED)) {
             selector.update();
             runCurrentTest(testingMode);
         }else{
             log.show("Done With All Tests");
         }
-        super.loop();
     }
 }

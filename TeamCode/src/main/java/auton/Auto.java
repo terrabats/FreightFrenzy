@@ -14,26 +14,34 @@ public abstract class Auto extends LinearOpMode implements Common {
      * this will generate by default if you use @Override
      */
 
+    /**
+     * Init method runs when the user clicks the init button to run a auton
+     */
+    public abstract void initAuto();
 
-    @CallSuper
-    public void initAuto(){
-        reference(this);
-    }
+    /**
+     * Run method runs when the user clicks the start button after init
+     */
+    public abstract void runAuto();
 
-    @CallSuper
-    public void runAuto(){ ready(); }
+    /**
+     * Stop method runs when the program ends
+     */
+    public void stopAuto() {}
 
-
+    /**
+     * Internal final auton method
+     * NOTE: Do not use or override this
+     */
     @Override
     public final void runOpMode() throws InterruptedException {
+        reference(this);
         initAuto();
         waitForStart();
+        ready();
+        update(true);
         runAuto();
         stopAuto();
-    }
-
-    @CallSuper
-    public void stopAuto() {
         end();
     }
 }

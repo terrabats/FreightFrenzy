@@ -75,16 +75,14 @@ public class AutoUnitTester extends Auto implements UnitTester {
 
     @Override
     public void initAuto() {
-        super.initAuto();
     }
 
     @Override
     public void runAuto() {
-        super.runAuto();
     }
 
     @Override
     public void stopAuto() {
-        super.stopAuto();
+
     }
 }

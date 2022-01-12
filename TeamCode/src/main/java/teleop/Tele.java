@@ -14,52 +14,57 @@ import static global.General.*;
 public abstract class Tele extends OpMode implements Common {
     /**
      * Base class for teleops
-     * NOTE: If the methods are overriden then make sure the call super.<method name>
-     * this will generate by default if you use @Override
+     * NOTE: If you are creating a real teleop then call activate in initTele
      */
 
 
     /**
      * Init method runs when the user clicks the init button to run a teleop
      */
-    @CallSuper
-    @Override
-    public void init() {
-        reference(this);
-    }
+    public abstract void initTele();
 
     /**
      * Start method runs when the user clicks the start button after init
      */
-    @CallSuper
-    @Override
-    public void start() {
-        ready();
-    }
+    public void startTele() {}
 
     /**
      * Loop method runs over and over after start
      */
-    @Override
-    public void loop() {
-        loop(true);
-    }
-
-    /**
-     * Method for updating
-     * NOTE: When you override loop make sure you call super.loop() inside it
-     * @param updateTelemetry
-     */
-    public void loop(boolean updateTelemetry){
-        update(updateTelemetry);
-    }
+    public abstract void loopTele();
 
     /**
      * Stop method runs when the program ends
      */
-    @CallSuper
+    public void stopTele(){}
+
+
+    /**
+     * Internal final teleop methods
+     * NOTE: Do not use or override these
+     */
+
     @Override
-    public void stop() {
+    public final void init() {
+        reference(this);
+        initTele();
+    }
+
+    @Override
+    public final void start(){
+        startTele();
+        ready();
+    }
+
+    @Override
+    public final void loop() {
+        loopTele();
+        update(true);
+    }
+
+    @Override
+    public final void stop() {
+        stopTele();
         end();
     }
 }

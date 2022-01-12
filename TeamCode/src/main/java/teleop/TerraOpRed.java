@@ -34,8 +34,7 @@ import static global.General.log;
 public class TerraOpRed extends Tele{
 
     @Override
-    public void init() {
-        super.init();
+    public void initTele() {
 
         //Gamepad 1
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
@@ -61,7 +60,7 @@ public class TerraOpRed extends Tele{
     }
 
     @Override
-    public void loop() {
+    public void loopTele() {
 
         // Gamepad1
         bot.tankDrive.moveSmooth(-gamepad1.right_stick_y, gamepad1.left_stick_x);
@@ -72,7 +71,5 @@ public class TerraOpRed extends Tele{
         bot.turret.move(gamepad2.left_stick_x);
 
         bot.lift.move(-gamepad2.right_stick_y + Constants.LIFT_REST_POW);
-
-        super.loop();
     }
 }

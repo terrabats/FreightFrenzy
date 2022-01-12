@@ -17,13 +17,11 @@ public class AutoAllTest extends Auto {
 
     @Override
     public void initAuto() {
-        super.initAuto();
         activate(FieldSide.BLUE);
     }
 
     @Override
     public void runAuto() {
-        super.runAuto();
         Executor executor = new Executor();
         executor.addSetpoint(60, 60, PI / 2, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.SpinCarousel);
@@ -42,7 +40,7 @@ public class AutoAllTest extends Auto {
 
         while (opModeIsActive() && !executor.finished()) {
             executor.update();
-            super.update(true);
+            update(true);
         }
         bot.tankDrive.move(0, 0);
     }
