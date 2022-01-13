@@ -55,6 +55,10 @@ public class Selector<T> {
      */
     private CodeSeg end = () -> {};
     /**
+     * Done running last
+     */
+    private boolean isDoneWithLast = false;
+    /**
      * Status of the selector
      */
     private Status status = Status.IDLE;
@@ -129,10 +133,13 @@ public class Selector<T> {
     public boolean isOnFirst(){ return currentIndex == 0; }
 
     /**
-     * Is teh selector on the last value?
+     * Is the selector on the last value?
      * @return isOnLast
      */
     public boolean isOnLast(){ return currentIndex == items.size()-1; }
+
+
+    public boolean isDoneWithLast(){ return isDoneWithLast; }
 
     /**
      * Go up on the selector list
@@ -140,6 +147,7 @@ public class Selector<T> {
     public void up(){
         if(isOnLast()) {
             end.run();
+            isDoneWithLast = true;
             if(wrapAround){
                 currentIndex = 0;
             }

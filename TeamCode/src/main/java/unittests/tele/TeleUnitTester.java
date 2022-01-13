@@ -17,11 +17,6 @@ import static global.General.gamepad1;
 @SuppressWarnings("ALL")
 @TeleOp(name = "TeleUnitTester", group = "UnitTests")
 public class TeleUnitTester extends Tele implements UnitTester{
-    /**
-     * Status of this unit tester
-     * Used for stopping once all the tests are done
-     */
-    private Status status = Status.ACTIVE;
 
     /**
      * Type of testing mode
@@ -72,40 +67,7 @@ public class TeleUnitTester extends Tele implements UnitTester{
      */
     @Override
     public void initTele() {
-
-        /**
-         * initialize the selector depending on the testing mode
-         */
-        switch (testingMode){
-            case TIME:
-                /**
-                 * Change the time between unit tests here
-                 */
-                selector.init(5);
-                break;
-            case CONTROL:
-                /**
-                 * Change the button to move to the next test here
-                 */
-                selector.init(() -> gamepad1.x, () -> false);
-                break;
-            case SELECTION:
-                /**
-                 * In selection mode, use the dpad to move up and down through the list of unit tests
-                 */
-                selector.init(gph1, Button.DPAD_DOWN, Button.DPAD_UP, Button.X);
-                break;
-        }
-
-        /**
-         * When the tests are done, set the status to disabled (except for selection mode)
-         */
-        if(!testingMode.equals(TestingMode.SELECTION)) {
-            selector.runOnEnd(() -> status = Status.DISABLED);
-        }
-
         readyTestsAndSelector(testingMode);
-
         activate(FieldSide.UNKNOWN);
     }
 
@@ -122,11 +84,13 @@ public class TeleUnitTester extends Tele implements UnitTester{
      */
     @Override
     public void loopTele() {
-        if(!status.equals(Status.DISABLED)) {
+        if(!isDoneWithAllTests(testingMode)) {
             selector.update();
             runCurrentTest(testingMode);
         }else{
             log.show("Done With All Tests");
         }
     }
+
+
 }

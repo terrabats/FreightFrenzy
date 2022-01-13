@@ -2,6 +2,7 @@ package unittests;
 
 import teleutil.Selector;
 
+import teleutil.button.Button;
 import unittests.tele.TeleUnitTest;
 import util.condition.Expectation;
 import util.condition.Magnitude;
@@ -15,7 +16,7 @@ public interface UnitTester {
     /**
      * Selector object to select the unit test for selection test type
      */
-    Selector<TeleUnitTest> selector = new Selector<>(true);
+    Selector<UnitTest> selector = new Selector<>(true);
 
     /**
      * Creates all of the unit tests, comment in the ones you want
@@ -24,6 +25,31 @@ public interface UnitTester {
     void createUnitTests();
 
     default void readyTestsAndSelector(TestingMode testingMode){
+        /**
+         * initialize the selector depending on the testing mode
+         */
+        switch (testingMode){
+            case TIME:
+                /**
+                 * Change the time between unit tests here
+                 */
+                selector.init(5);
+                break;
+            case CONTROL:
+                /**
+                 * Change the button to move to the next test here
+                 */
+                selector.init(() -> gamepad1.x, () -> false);
+                break;
+            case SELECTION:
+                /**
+                 * In selection mode, use the dpad to move up and down through the list of unit tests
+                 */
+                selector.init(gph1, Button.DPAD_DOWN, Button.DPAD_UP, Button.X);
+                break;
+        }
+
+
         /**
          * Run on the next test
          * stop the current test, halt the robot, idle the selector, unlink gamepadhandlers, and clear telemetry
@@ -42,7 +68,7 @@ public interface UnitTester {
          */
         createUnitTests();
         fault.check("No unit tests to be run", Expectation.OBVIOUS, Magnitude.NEGLIGIBLE, selector.getNumberOfItems() == 0, false);
-        selector.runToAll(TeleUnitTest::init);
+        selector.runToAll(UnitTest::init);
         /**
          * Display the testing mode
          */
@@ -54,7 +80,7 @@ public interface UnitTester {
      * NOTE: This also checks if the same test has been entered more than once
      * @param test
      */
-    default void add(TeleUnitTest test){
+    default void add(UnitTest test){
         for(String testName: selector.getItemClassNames()){
             if(test.getClass().getSimpleName().equals(testName)){
                 fault.check("Duplicate unit test found", Expectation.OBVIOUS, Magnitude.NEGLIGIBLE);
@@ -75,7 +101,7 @@ public interface UnitTester {
      * Get the current test
      * @return current test
      */
-    default TeleUnitTest getCurrentTest(){
+    default UnitTest getCurrentTest(){
         return selector.getCurrentItem().getValue();
     }
 
@@ -88,9 +114,13 @@ public interface UnitTester {
         if(testingMode.equals(TestingMode.SELECTION) && selector.isInActive()){
             log.list(selector.getItemClassNames(), selector.getCurrentIndex());
         }else if(selector.isActive()){
-            selector.runToCurrentItem(TeleUnitTest::run);
+            selector.runToCurrentItem(UnitTest::run);
             log.showAndRecord("Testing" ,  getCurrentTestName());
         }
+    }
+
+    default boolean isDoneWithAllTests(TestingMode testingMode){
+        return !testingMode.equals(TestingMode.SELECTION) && selector.isDoneWithLast();
     }
 
     /**

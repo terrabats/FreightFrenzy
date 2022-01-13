@@ -31,8 +31,7 @@ public class SelectorTest extends TeleUnitTest {
         booleanSelector.init(3);
         stringSelector.init(() -> gamepad1.right_bumper, () -> false);
         integerSelector.init(gph1, Button.Y, Button.B, Button.A);
-        // TODO FIX
-        // activating using button a
+
         /**
          * Add items to the selectors
          */
@@ -60,7 +59,8 @@ public class SelectorTest extends TeleUnitTest {
          * Integer selector current item, should be IntegerItem1, then IntegerItem2, etc.
          * This should also wrap around properly
          */
-        log.show("Press Y to go up and B to go down", integerSelector.getCurrentItem().getName());
+        log.show("Press Y to go up and B to go down and A to activate", integerSelector.getCurrentItem().getName());
+        log.show("Is active?", integerSelector.isActive());
 
 
 

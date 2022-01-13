@@ -14,6 +14,7 @@ import elements.FieldSide;
 import teleutil.Selector;
 import teleutil.button.Button;
 import unittests.UnitTester;
+import unittests.auto.framework.MoveTest;
 import unittests.tele.TeleUnitTest;
 import util.condition.Expectation;
 import util.condition.Magnitude;
@@ -38,47 +39,26 @@ public class AutoUnitTester extends Auto implements UnitTester {
     @Override
     public void createUnitTests(){
         // Framework
-//        add(new AccessTest());
-//        add(new CommonTest());
-//        add(new CoordinatePlaneTest());
-//        add(new LoggerTest());
-//        add(new FaultTest());
-//        add(new GamepadTest());
-//        add(new RobotFunctionsTest());
-//        add(new ThreadTest());
-//        add(new StorageTest());
-//        add(new StageTest());
-//        add(new AutoModuleTest());
-//        add(new LagTest());
-//        add(new SelectorTest());
-//        add(new SynchroniserTest());
-//        add(new RobotPartTest());
-//        add(new RobotFrameworkTest());
-//        add(new ElectronicsTest());
-//
-//        // Hardware
-//        add(new TankDriveTest());
-//        add(new IntakeTest());
-//        add(new LiftTest());
-//        add(new TurretTest());
-//        add(new OuttakeTest());
-//        add(new CarouselTest());
-
-//        // Sensor
-//        add(new ColorTest());
-//        add(new DistanceTest());
-//        add(new GyroTest());
-//        add(new OdometryTest());
-//        add(new TouchTest());
-//        add(new OdometryTest());
+        add(new MoveTest());
     }
 
     @Override
     public void initAuto() {
+        readyTestsAndSelector(testingMode);
+        activate(FieldSide.UNKNOWN);
     }
 
     @Override
     public void runAuto() {
+        selector.resetUpdateTimer();
+        while (opModeIsActive()){
+            if(!isDoneWithAllTests(testingMode)) {
+                selector.update();
+                runCurrentTest(testingMode);
+            }else{
+                log.show("Done With All Tests");
+            }
+        }
     }
 
     @Override
