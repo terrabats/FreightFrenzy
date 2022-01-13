@@ -1,5 +1,7 @@
 package math.algebra;
 
+import java.util.ArrayList;
+
 import geometry.Point;
 
 /**
@@ -7,14 +9,21 @@ import geometry.Point;
  */
 
 public class Linear extends Polynomial{
-    // Make these classes and add support for coefficents, derivatives, and parametric forms, and roots
-    double y(double x) {
-        return 0;
+    public final double m;
+    public final double b;
+    public Linear(double m, double b){
+        super(m, b);
+        this.m = m;
+        this.b = b;
     }
-    public Point p1;
-    public Point p2;
-    double m = (p2.y - p1.y) - (p2.x - p1.x);
-    double derivative = m;
-    
+    public Linear(Point p1, Point p2){
+        super((p2.y-p1.y)/(p2.x-p1.x) , p1.y - (p1.x*(p2.y-p1.y)/(p2.x-p1.x)));
+        this.m = a(0);
+        this.b = a(1);
+    }
 
+    @Override
+    public double[] roots() {
+        return new double[]{-b/m};
+    }
 }

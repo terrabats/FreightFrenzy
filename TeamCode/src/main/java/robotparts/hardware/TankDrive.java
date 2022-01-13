@@ -55,7 +55,7 @@ public class TankDrive extends RobotPart {
     public void moveSmooth(double f, double t){
         Logistic movementCurveForward = new Logistic(10,5);
         Logistic movementCurveTurn = new Logistic(30,6);
-        move(movementCurveForward.yr(f), movementCurveTurn.yr(t));
+        move(movementCurveForward.fodd(f), movementCurveTurn.fodd(t));
     }
 
     private double stAng = 0;

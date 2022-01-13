@@ -8,7 +8,7 @@ import geometry.Point;
 
 public class Quadratic extends Polynomial{
     @Override
-    double y(double x) {
+    public double f(double x) {
         return 0;
     }
 
