@@ -1,16 +1,13 @@
 package auton;
 
 import autoutil.Executor;
-import autoutil.MovementExecutor;
 import elements.FieldSide;
-import geometry.AngleType;
+import geometry.circles.AngleType;
 
 import static java.lang.Math.*;
 import static global.General.*;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-
-import java.util.Arrays;
 
 @Autonomous(name="AutoAllTest")
 public class AutoAllTest extends Auto {

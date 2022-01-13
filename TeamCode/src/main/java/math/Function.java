@@ -1,4 +1,4 @@
-package math.algebra;
+package math;
 
 
 public abstract class Function {

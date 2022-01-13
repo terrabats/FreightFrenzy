@@ -1,11 +1,9 @@
-package math.algebra;
-
-import com.sun.tools.javac.util.ArrayUtils;
+package math.polynomial;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 
+import math.Function;
 import util.condition.Expectation;
 import util.condition.Magnitude;
 
@@ -15,7 +13,7 @@ import static global.General.fault;
  * NOTE: Uncommented
  */
 
-public class Polynomial extends Function{
+public class Polynomial extends Function {
 
     public ArrayList<Double> coefficients;
 

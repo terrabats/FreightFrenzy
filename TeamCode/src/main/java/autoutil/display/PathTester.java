@@ -8,8 +8,8 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import geometry.Point;
-import geometry.Pose;
+import geometry.position.Point;
+import geometry.position.Pose;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.*;

@@ -1,4 +1,6 @@
-package geometry;
+package geometry.position;
+
+import geometry.GeometryObject;
 
 import static java.lang.Math.*;
 

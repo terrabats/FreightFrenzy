@@ -3,11 +3,10 @@ package autoutil;
 import static global.General.*;
 
 import java.util.LinkedList;
-import java.util.Objects;
 import java.util.TreeMap;
 
 import automodules.StageList;
-import geometry.AngleType;
+import geometry.circles.AngleType;
 import util.codeseg.CodeSeg;
 
 public class Executor extends MovementExecutor {

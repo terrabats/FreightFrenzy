@@ -1,8 +1,6 @@
-package math.algebra;
+package math.polynomial;
 
-import java.util.ArrayList;
-
-import geometry.Point;
+import geometry.position.Point;
 
 /**
  * NOTE: Uncommented

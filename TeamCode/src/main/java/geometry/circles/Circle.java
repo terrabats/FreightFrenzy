@@ -1,13 +1,16 @@
-package geometry;
+package geometry.circles;
+
+import geometry.GeometryObject;
+import geometry.position.Point;
+import geometry.position.Pose;
 
 import static java.lang.Math.*;
-import static global.Constants.*;
 
 /**
  * NOTE: Uncommented
  */
 
-public class Circle extends GeometryObject{
+public class Circle extends GeometryObject {
     public Point center;
     public double r; // center is (h, k) and radius is r
 

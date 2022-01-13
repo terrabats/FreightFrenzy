@@ -1,6 +1,11 @@
 package unittests.tele.framework;
 
 import geometry.*;
+import geometry.circles.AngleType;
+import geometry.position.Line;
+import geometry.position.Point;
+import geometry.position.Pose;
+import geometry.position.Vector;
 import unittests.tele.TeleUnitTest;
 
 import static global.General.*;

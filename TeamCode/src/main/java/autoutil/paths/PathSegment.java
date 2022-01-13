@@ -2,8 +2,8 @@ package autoutil.paths;
 
 import java.util.ArrayList;
 
-import geometry.Point;
-import geometry.Pose;
+import geometry.position.Point;
+import geometry.position.Pose;
 
 public class PathSegment {
     // A unit of a path, not just a geometric object

@@ -1,4 +1,7 @@
-package geometry;
+package geometry.position;
+
+import geometry.GeometryObject;
+import geometry.circles.AngleType;
 
 import static java.lang.Math.*;
 
@@ -18,15 +21,14 @@ public class Vector extends GeometryObject {
     }
     //Constructor to create vect using angle and length
     public Vector(double angle, double len, AngleType unit) {
-        if (unit.equals(AngleType.DEGREES)) {
-            angle *= PI/180;
-        }
+        angle = toRad(angle, unit);
         p = new Point(len * cos(angle), len * sin(angle));
+        theta = atan2(p.y, p.x);
     }
     //Gets a rotated vector of the current vector angle - positive is anticlockwise
 
     @Override
-    public GeometryObject getRelativeTo(Pose origin) {
+    public Vector getRelativeTo(Pose origin) {
         double ang = theta + origin.ang;
         double radius = getLen();
         return new Vector(cos(ang) * radius, sin(ang) * radius);
@@ -47,9 +49,9 @@ public class Vector extends GeometryObject {
     //Gets angle
     public double getAngle(AngleType type) {
         if (type == AngleType.RADIANS) {
-            return atan2(p.y,p.x);
+            return theta;
         } else {
-            return atan2(p.y,p.x) * 180/PI;
+            return radToDeg(theta);
         }
     }
     //Sets x and y coords
@@ -64,12 +66,14 @@ public class Vector extends GeometryObject {
     }
 
 
-    public Vector add(Vector in){
-        return new Vector(p.x+in.p.x, p.y+in.p.y);
+    public void add(Vector in){
+        p.x = p.x+in.p.x;
+        p.y = p.y+in.p.y;
     }
 
-    public Vector subtract(Vector in){
-        return new Vector(p.x-in.p.x, p.y-in.p.y);
+    public void subtract(Vector in){
+        p.x = p.x-in.p.x;
+        p.y = p.y-in.p.y;
     }
 
 }

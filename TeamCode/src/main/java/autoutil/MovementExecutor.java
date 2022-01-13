@@ -4,8 +4,8 @@ import java.util.*;
 
 import autoutil.paths.PathSegment;
 import autoutil.reactors.TankReactor;
-import geometry.AngleType;
-import geometry.Pose;
+import geometry.circles.AngleType;
+import geometry.position.Pose;
 
 import static global.General.*;
 import static java.lang.Math.*;

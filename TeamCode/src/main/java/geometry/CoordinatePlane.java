@@ -3,7 +3,12 @@ package geometry;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import geometry.circles.AngleType;
 import geometry.polygons.Rect;
+import geometry.position.Line;
+import geometry.position.Point;
+import geometry.position.Pose;
+import geometry.position.Vector;
 
 import static java.lang.Math.*;
 

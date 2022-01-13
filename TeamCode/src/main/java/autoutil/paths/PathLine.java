@@ -1,8 +1,8 @@
 package autoutil.paths;
 
-import geometry.Line;
-import geometry.Point;
-import geometry.Pose;
+import geometry.position.Line;
+import geometry.position.Point;
+import geometry.position.Pose;
 import global.Constants;
 
 public class PathLine extends PathSegment{

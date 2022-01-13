@@ -10,8 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import autoutil.MovementExecutor;
-import geometry.AngleType;
-import geometry.Pose;
+import geometry.circles.AngleType;
+import geometry.position.Pose;
 
 /**
  * NOTE: Uncommented

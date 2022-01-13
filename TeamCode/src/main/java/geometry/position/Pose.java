@@ -1,8 +1,6 @@
-package geometry;
+package geometry.position;
 
-import static java.lang.Math.*;
-
-import global.Constants;
+import geometry.GeometryObject;
 
 /**
  * NOTE: Uncommented

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import autoutil.Generator;
 import autoutil.paths.Path;
 import autoutil.paths.PathSegment;
-import geometry.Pose;
+import geometry.position.Pose;
 
 /**
  * NOTE: Uncommented

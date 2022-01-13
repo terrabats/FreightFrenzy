@@ -6,9 +6,9 @@ import autoutil.paths.Arc;
 import autoutil.paths.Path;
 import autoutil.paths.PathSegment;
 import autoutil.paths.PathLine;
-import geometry.Circle;
-import geometry.Point;
-import geometry.Pose;
+import geometry.circles.Circle;
+import geometry.position.Point;
+import geometry.position.Pose;
 
 import static java.lang.Math.*;
 

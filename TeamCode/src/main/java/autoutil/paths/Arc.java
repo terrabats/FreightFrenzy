@@ -1,9 +1,9 @@
 package autoutil.paths;
 
-import geometry.Circle;
-import geometry.CircularArc;
-import geometry.Point;
-import geometry.Pose;
+import geometry.circles.Circle;
+import geometry.circles.CircularArc;
+import geometry.position.Point;
+import geometry.position.Pose;
 import global.Constants;
 
 public class Arc extends PathSegment{
