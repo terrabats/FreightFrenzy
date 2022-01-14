@@ -36,6 +36,9 @@ public class AutoUnitTester extends Auto implements UnitTester {
      */
     TestingMode testingMode = TestingMode.CONTROL;
 
+    // TODO TEST
+    // Test this unit tester
+
     @Override
     public void createUnitTests(){
         // Framework
@@ -44,6 +47,7 @@ public class AutoUnitTester extends Auto implements UnitTester {
 
     @Override
     public void initAuto() {
+        AutoUnitTest.linearOpMode = this;
         readyTestsAndSelector(testingMode);
         activate(FieldSide.UNKNOWN);
     }

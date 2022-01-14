@@ -18,6 +18,10 @@ public class PMotor extends Electronic {
     private final DcMotor.ZeroPowerBehavior zeroPowerBehavior;
     private final IEncoder motorEncoder;
 
+
+    // TODO NEW
+    // Make this have functionality to use custom PID
+
     /**
      * Constructor to create a pmotor
      * @param m

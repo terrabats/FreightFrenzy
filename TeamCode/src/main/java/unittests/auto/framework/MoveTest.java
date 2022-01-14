@@ -14,7 +14,7 @@ public class MoveTest extends AutoUnitTest {
 
     @Override
     public void run() {
-        while (timer.seconds() < 1){
+        while (timer.seconds() < 1 && opModeIsActive()){
             bot.tankDrive.move(0.3, 0);
         }
     }

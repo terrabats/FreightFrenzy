@@ -8,6 +8,8 @@
 //import elements.FieldSide;
 //import util.Timer;
 //import util.codeseg.CodeSeg;
+// TODO FIX
+// Uncomment and convert to new format
 //
 //@Disabled
 //@Autonomous(name="AutoRed2")

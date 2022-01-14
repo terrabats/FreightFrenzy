@@ -2,7 +2,7 @@ package autoutil;
 
 import java.util.ArrayList;
 
-import autoutil.paths.Arc;
+import autoutil.paths.PathArc;
 import autoutil.paths.Path;
 import autoutil.paths.PathSegment;
 import autoutil.paths.PathLine;
@@ -122,8 +122,8 @@ public class Generator {
         PathLine betweenCenters = new PathLine(c1.center, c2.center);
         Point pointOfIntersection = betweenCenters.getAt(0.5);
 
-        Arc cir1arc = getShorterArc(c1, new Point(0, 0), pointOfIntersection);
-        Arc cir2arc = getShorterArc(c2, p2.p, pointOfIntersection);
+        PathArc cir1arc = getShorterArc(c1, new Point(0, 0), pointOfIntersection);
+        PathArc cir2arc = getShorterArc(c2, p2.p, pointOfIntersection);
 
         if (isNegPiBy2) p2.ang *= -1;
 
@@ -145,8 +145,8 @@ public class Generator {
 
                 PathLine tangentLine1 = new PathLine(new Point(x1, y1), new Point(x2, y2));
 
-                Arc a11 = getShorterArc(c1, new Point(0, 0), new Point(x1, y1));
-                Arc a12 = getShorterArc(c2, new Point(x2, y2), p2.p);
+                PathArc a11 = getShorterArc(c1, new Point(0, 0), new Point(x1, y1));
+                PathArc a12 = getShorterArc(c2, new Point(x2, y2), p2.p);
                 double arcLensPath1 = a11.getArcLength() + a12.getArcLength();
 
                 x1 = temp1 + c1.center.x;
@@ -157,8 +157,8 @@ public class Generator {
 
                 PathLine tangentLine2 = new PathLine(new Point(x1, y1), new Point(x2, y2));
 
-                Arc a21 = getShorterArc(c1, new Point(0, 0), new Point(x1, y1));
-                Arc a22 = getShorterArc(c2, new Point(x2, y2), p2.p);
+                PathArc a21 = getShorterArc(c1, new Point(0, 0), new Point(x1, y1));
+                PathArc a22 = getShorterArc(c2, new Point(x2, y2), p2.p);
                 double arcLensPath2 = a21.getArcLength() + a22.getArcLength();
 
                 if (arcLensPath1 < arcLensPath2) {
@@ -186,9 +186,9 @@ public class Generator {
         return ret;
     }
 
-    private Arc getShorterArc(Circle c, Point p1, Point p2) {
-        Arc arc1 = new Arc(c, p1, p2, true);
-        Arc arc2 = new Arc(c, p2, p1, false);
+    private PathArc getShorterArc(Circle c, Point p1, Point p2) {
+        PathArc arc1 = new PathArc(c, p1, p2, true);
+        PathArc arc2 = new PathArc(c, p2, p1, false);
         return arc1.getArcLength() > arc2.getArcLength() ? arc2 : arc1;
     }
 

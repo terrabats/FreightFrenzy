@@ -6,6 +6,8 @@
 //import util.Timer;
 //
 //import static global.General.mainUser;
+// TODO FIX
+// Uncomment and convert to new format also make this a unit test
 //
 //@Disabled
 //@Autonomous(name="AutoUserTest")

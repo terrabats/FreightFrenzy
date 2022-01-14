@@ -33,6 +33,9 @@ import static global.General.log;
 @TeleOp(name = "TerraOpBlue", group = "TeleOp")
 public class TerraOpBlue extends Tele{
 
+    // TODO TEST
+    // SOme changes were made see if this still works
+
     @Override
     public void initTele() {
         //Gamepad 1

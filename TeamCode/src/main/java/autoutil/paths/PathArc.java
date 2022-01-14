@@ -6,16 +6,16 @@ import geometry.position.Point;
 import geometry.position.Pose;
 import global.Constants;
 
-public class Arc extends PathSegment{
+public class PathArc extends PathSegment{
     public CircularArc arc;
     private boolean trueSt;
 
-    public Arc(Circle generated, Point startPoint, Point endPoint, boolean trueSt) {
+    public PathArc(Circle generated, Point startPoint, Point endPoint, boolean trueSt) {
         arc = new CircularArc(generated.center, startPoint, endPoint, generated.r);
         this.trueSt = trueSt;
     }
 
-    public Arc(Circle generated, double st, double en) {
+    public PathArc(Circle generated, double st, double en) {
         arc = new CircularArc(generated.center, st, en, generated.r);
     }
 

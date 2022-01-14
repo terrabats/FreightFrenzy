@@ -24,6 +24,9 @@ public class TeleUnitTester extends Tele implements UnitTester{
      */
     private TestingMode testingMode = TestingMode.CONTROL;
 
+    // TODO TEST
+    // Test this unit tester (it should still work after some changes were made to it)
+
     @Override
     public void createUnitTests(){
         // Framework

@@ -6,6 +6,11 @@
 //import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 //
 //import elements.FieldSide;
+
+// TODO FIX
+// Uncomment and convert to new format
+
+
 //
 //@Disabled
 //@Autonomous(name="AutoRed")
