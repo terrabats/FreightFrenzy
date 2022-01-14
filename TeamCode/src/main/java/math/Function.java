@@ -11,10 +11,11 @@ public abstract class Function {
 
     /**
      * Represents the derivative of the function at x
+     * NOTE: This method should only be called after it has been overriden
      * @param x
      * @return f'(x)
      */
-    public abstract double fprime(double x);
+    public double fprime(double x){return 0;}
 
     /**
      * Represents the even version of this function (i.e. f(x) = f(-x))
