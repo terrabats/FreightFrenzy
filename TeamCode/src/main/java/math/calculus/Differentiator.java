@@ -8,7 +8,7 @@ import util.codeseg.ReturnCodeSeg;
 public class Differentiator extends Operator {
     private double derivative;
     public void differentiate(double t, double step){
-        derivative = (function.f(t-step) + function.f(t+step)/(2*step));
+        derivative = (function.f(t+step)-function.f(t-step))/(2*step);
     }
     public void differentiate(Point f1, Point f2){
         derivative = (f2.y-f1.y)/(f2.x-f1.x);

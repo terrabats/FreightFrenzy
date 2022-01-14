@@ -1,6 +1,8 @@
 package global;
 
 public class Constants {
+
+    private Constants(){}
     /**
      * Refresh rate for threads, tested at 100 and 60 hz
      */

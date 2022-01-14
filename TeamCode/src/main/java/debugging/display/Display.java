@@ -1,8 +1,7 @@
-package autoutil.display;
-
-import javax.swing.JFrame;
+package debugging.display;
 
 import math.Function;
+import math.calculus.Differentiator;
 import math.calculus.Integrator;
 
 public class Display extends Drawer{
@@ -18,13 +17,17 @@ public class Display extends Drawer{
         };
         Integrator integrator = new Integrator();
         integrator.defineFunction(f);
+        Differentiator differentiator = new Differentiator();
+        differentiator.defineFunction(f);
         double step = 0.01;
         double x = 0;
         while (x < (3-step)){
             integrator.integrate(x, step);
             x += step;
         }
-        System.out.println("Integral: " + integrator.getIntegral());
+        differentiator.differentiate(3, 0.01);
+        System.out.println("Integral: " + Math.round(integrator.getIntegral()));
+        System.out.println("Derivative: " + Math.round(differentiator.getDerivative()));
 //        System.out.println("Integral: " + integrator.getIntegral());
         //drawWindow(width, height, "Display");
     }

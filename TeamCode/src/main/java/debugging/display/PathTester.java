@@ -1,4 +1,4 @@
-package autoutil.display;
+package debugging.display;
 
 
 import java.awt.BasicStroke;
