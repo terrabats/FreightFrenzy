@@ -20,7 +20,7 @@ public class Vector extends GeometryObject {
         theta = atan2(p.y, p.x);
     }
     //Constructor to create vect using angle and length
-    public Vector(double angle, double len, AngleType unit) {
+    public Vector(double len, double angle, AngleType unit) {
         angle = toRad(angle, unit);
         p = new Point(len * cos(angle), len * sin(angle));
         theta = atan2(p.y, p.x);

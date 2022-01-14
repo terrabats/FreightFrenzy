@@ -1,6 +1,7 @@
 package geometry.position;
 
 import geometry.GeometryObject;
+import geometry.circles.AngleType;
 
 /**
  * NOTE: Uncommented
@@ -11,6 +12,10 @@ public class Pose extends GeometryObject {
     public double ang;
 
     public Pose(Point p, double ang) { this.p = p; this.ang = ang; }
+    public Pose(Point p, double ang, AngleType angleType) {
+        this.p = p;
+        this.ang = toRad(ang, angleType);
+    }
 
     //public boolean angIsInf() { return ang == Constants.INF; }
 

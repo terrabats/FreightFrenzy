@@ -20,7 +20,7 @@ public class CoordinatePlaneTest extends TeleUnitTest {
 
     @Override
     public void init() {
-        coordinatePlane.add(new Vector(0, 10, AngleType.RADIANS));
+        coordinatePlane.add(new Vector(10, 0, AngleType.RADIANS));
         coordinatePlane.add(new Line(new Point(1, 10), new Point(5, 10)));
         coordinatePlane.add(new Pose(new Point(2,3), 0));
     }
