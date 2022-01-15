@@ -1,5 +1,9 @@
 package util.store;
 
+import com.sun.tools.javac.util.List;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 import util.condition.Expectation;
@@ -81,6 +85,8 @@ public class Item<T> {
             return ItemType.DOUBLE;
         }else if(value instanceof Boolean){
             return ItemType.BOOLEAN;
+        }else if(value instanceof ArrayList){
+            return ItemType.ARRAYLIST;
         }else{
             return ItemType.OTHER;
         }
@@ -111,6 +117,8 @@ public class Item<T> {
                 return Double.valueOf(rawValue);
             case BOOLEAN:
                 return Boolean.valueOf(rawValue);
+            case ARRAYLIST:
+                return Storage.gson.fromJson(rawValue, ArrayList.class);
             case OTHER:
                 return rawValue;
         }
@@ -125,7 +133,11 @@ public class Item<T> {
      */
     @Override
     public String toString(){
-        return type.toString() + ":" + value.toString();
+        if(!type.equals(ItemType.ARRAYLIST)) {
+            return type.toString() + ":" + value.toString();
+        }else{
+            return type.toString() + ":" + Storage.gson.toJson(value);
+        }
     }
 
     /**
@@ -137,6 +149,7 @@ public class Item<T> {
         FLOAT,
         DOUBLE,
         BOOLEAN,
+        ARRAYLIST,
         OTHER;
 
         /**

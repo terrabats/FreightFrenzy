@@ -1,5 +1,8 @@
 package unittests.tele.framework;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import elements.FieldSide;
 import unittests.tele.TeleUnitTest;
 
@@ -11,6 +14,9 @@ public class StorageTest extends TeleUnitTest {
     /**
      * Tests storage by adding a set of items
      */
+    // TODO TEST
+    // Test data has to work
+
     @Override
     protected void start() {
         /**
@@ -23,6 +29,15 @@ public class StorageTest extends TeleUnitTest {
         storage.addItem("Do", 2.0d);
         storage.addItem("Bo", true);
         storage.addItem("FieldSide", fieldSide);
+        ArrayList<Double> input = new ArrayList<>();
+        input.add(1.0);
+        input.add(2.0);
+        input.add(3.0);
+        ArrayList<Double> output = new ArrayList<>();
+        output.add(2.0);
+        output.add(4.0);
+        output.add(6.0);
+        storage.addData("Data", input, output);
         storage.saveItems();
     }
 
@@ -39,6 +54,8 @@ public class StorageTest extends TeleUnitTest {
         fieldSide = FieldSide.create((String) storage.getItem("FieldSide").getValue());
         log.showAndRecord("FieldSide", fieldSide);
         log.showAndRecord("FieldColor", fieldSide.name());
+        log.showAndRecord("DataInput", storage.getData("Data").getInput().getValue());
+        log.showAndRecord("DataOutput", storage.getData("Data").getOutput().getValue());
     }
 
     @Override

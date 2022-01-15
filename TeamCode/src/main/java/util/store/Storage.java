@@ -2,6 +2,8 @@ package util.store;
 
 import android.os.Environment;
 
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -23,12 +25,23 @@ public class Storage {
      */
     private ArrayList<Item<?>> items = new ArrayList<>();
 
+    public static Gson gson = new Gson();
+
     /**
      * Add an item given a name and a value
      * @param name
      * @param value
      */
     public <T> void addItem(String name, T value) { items.add(new Item<>(name, value));
+    }
+
+    public <T> void addItem(Item<T> item) { items.add(item);
+    }
+
+    public <X, Y> void addData(String name, ArrayList<X> input, ArrayList<Y> output) {
+        Data<X, Y> data = new Data<>(name, input, output);
+        addItem(data.getInput());
+        addItem(data.getOutput());
     }
 
     /**
@@ -58,6 +71,10 @@ public class Storage {
      */
     public Item<?> getItem(String name){
         return Item.fromString(name, readText("current", name));
+    }
+
+    public Data<?, ?> getData(String name){
+        return Data.fromString(name, readText("current", Data.getInputName(name)), readText("current", Data.getOutputName(name)));
     }
 
     /**
