@@ -1,4 +1,4 @@
-package robotparts.electronics;
+package robotparts.electronics.input;
 
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;

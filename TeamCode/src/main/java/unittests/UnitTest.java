@@ -3,9 +3,9 @@ package unittests;
 import java.util.Map.*;
 
 import robotparts.RobotPart;
-import robotparts.electronics.CMotor;
-import robotparts.electronics.CServo;
-import robotparts.electronics.PServo;
+import robotparts.electronics.continuous.CMotor;
+import robotparts.electronics.continuous.CServo;
+import robotparts.electronics.positional.PServo;
 import util.condition.Status;
 
 import static global.General.*;

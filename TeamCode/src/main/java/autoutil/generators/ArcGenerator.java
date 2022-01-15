@@ -1,4 +1,4 @@
-package autoutil;
+package autoutil.generators;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import geometry.position.Pose;
 
 import static java.lang.Math.*;
 
-public class Generator {
+public class ArcGenerator {
     // Generates a path for the robot to follow
     // based on a array of points or conditions
     // there should be one static generator

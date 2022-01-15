@@ -1,4 +1,4 @@
-package robotparts.electronics;
+package robotparts.electronics.continuous;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;

@@ -1,6 +1,5 @@
 package robotparts.hardware;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import automodules.stage.Exit;
@@ -10,8 +9,7 @@ import automodules.stage.Stage;
 import automodules.stage.Stop;
 import global.Constants;
 import robotparts.RobotPart;
-import robotparts.electronics.IEncoder;
-import robotparts.electronics.PMotor;
+import robotparts.electronics.positional.PMotor;
 
 import static global.General.bot;
 

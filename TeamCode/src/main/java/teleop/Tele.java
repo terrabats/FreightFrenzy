@@ -17,6 +17,10 @@ public abstract class Tele extends OpMode implements Common {
      * NOTE: If you are creating a real teleop then call activate in initTele
      */
 
+    // TODO FIX
+    // By default make this run activate with unknown
+    // Also add init messages?
+
 
     /**
      * Init method runs when the user clicks the init button to run a teleop

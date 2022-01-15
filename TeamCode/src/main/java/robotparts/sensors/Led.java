@@ -2,8 +2,8 @@ package robotparts.sensors;
 
 
 import robotparts.RobotPart;
-import robotparts.electronics.OLed;
-import robotparts.electronics.OLed.*;
+import robotparts.electronics.output.OLed;
+import robotparts.electronics.output.OLed.*;
 
 
 /**

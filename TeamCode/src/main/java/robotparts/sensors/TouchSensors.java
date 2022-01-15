@@ -1,7 +1,7 @@
 package robotparts.sensors;
 
 import robotparts.RobotPart;
-import robotparts.electronics.ITouch;
+import robotparts.electronics.input.ITouch;
 
 /**
  * NOTE: Uncommented

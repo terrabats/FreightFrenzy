@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import autoutil.Generator;
+import autoutil.generators.ArcGenerator;
 import autoutil.paths.Path;
 import autoutil.paths.PathSegment;
 import geometry.position.Pose;
@@ -29,18 +29,18 @@ public class DisplayOld extends JPanel {
     private Path pathToDisplay;
 
     public void genTestPlane(){
-        Generator generator = new Generator();
-        generator.moveTo(0,0, 0);
-        generator.moveTo(30, 0, PI);
-        generator.moveTo(10,5,PI);
-        generator.moveTo(30, 5, PI);
-        generator.moveTo(30,30, PI/2);
-        generator.moveTo(0, 0, -PI/2);
-        generator.moveTo(25, 20, 3 * PI/2);
+        ArcGenerator arcGenerator = new ArcGenerator();
+        arcGenerator.moveTo(0,0, 0);
+        arcGenerator.moveTo(30, 0, PI);
+        arcGenerator.moveTo(10,5,PI);
+        arcGenerator.moveTo(30, 5, PI);
+        arcGenerator.moveTo(30,30, PI/2);
+        arcGenerator.moveTo(0, 0, -PI/2);
+        arcGenerator.moveTo(25, 20, 3 * PI/2);
 
         //(10, 5, pi) , (30, 5, pi), (30, 30, pi/2), (0, 0, -pi/2) , (25, 20, 3pi/2)
 
-        pathToDisplay = generator.done();
+        pathToDisplay = arcGenerator.done();
 
     }
 

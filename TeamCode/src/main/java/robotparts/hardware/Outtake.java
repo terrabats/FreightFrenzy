@@ -6,7 +6,7 @@ import automodules.stage.Main;
 import automodules.stage.Stage;
 import elements.GameElement;
 import robotparts.RobotPart;
-import robotparts.electronics.PServo;
+import robotparts.electronics.positional.PServo;
 
 import static global.General.bot;
 

@@ -1,7 +1,7 @@
 package robotparts.sensors;
 
 import robotparts.RobotPart;
-import robotparts.electronics.IGyro;
+import robotparts.electronics.input.IGyro;
 
 /**
  * NOTE: Uncommented

@@ -1,7 +1,8 @@
-package autoutil;
+package autoutil.executors;
 
 import java.util.*;
 
+import autoutil.generators.ArcGenerator;
 import autoutil.paths.PathSegment;
 import autoutil.reactors.TankReactor;
 import geometry.circles.AngleType;
@@ -19,7 +20,7 @@ public class MovementExecutor {
 
     public ArrayList<ArrayList<Pose>> paths = new ArrayList<>();
 
-    protected ArrayList<Generator> generators = new ArrayList<>();
+    protected ArrayList<ArcGenerator> arcGenerators = new ArrayList<>();
     private final TankReactor reactor = new TankReactor();
 
     private final double startH;
@@ -32,25 +33,25 @@ public class MovementExecutor {
     //region PUBLIC FUNCTIONS
 
     public MovementExecutor(double startX, double startY, double startH, AngleType angleType) {
-        generators.add(new Generator());
+        arcGenerators.add(new ArcGenerator());
         this.startH = startH * (angleType == AngleType.DEGREES ? (Math.PI/180) : 1);
         addWaypoint(startX, startY, 0, AngleType.RADIANS);
     }
 
     public void addWaypoint(double x, double y, double h, AngleType angleType) {
         h *= angleType == AngleType.DEGREES ? (Math.PI/180) : 1;
-        generators.get(generators.size() - 1).moveTo(x, y, startH - h);
+        arcGenerators.get(arcGenerators.size() - 1).moveTo(x, y, startH - h);
     }
 
     public void addSetpoint(double x, double y, double h, AngleType angleType) {
         addWaypoint(x, y, h, angleType);
-        generators.add(new Generator());
+        arcGenerators.add(new ArcGenerator());
         curPath++;
         addWaypoint(x, y, h, angleType);
     }
 
     public void complete() {
-        for (Generator g : generators) {
+        for (ArcGenerator g : arcGenerators) {
             ArrayList<Pose> poses = new ArrayList<>();
             ArrayList<PathSegment> pss = g.done().segments;
             for (PathSegment ps : pss) {
@@ -58,7 +59,7 @@ public class MovementExecutor {
             }
             paths.add(poses);
         }
-        if (generators.get(generators.size() - 1).empty()) {
+        if (arcGenerators.get(arcGenerators.size() - 1).empty()) {
             paths.remove(paths.size() - 1);
         }
         curPath = 0;

@@ -1,7 +1,7 @@
 package robotparts.sensors;
 
 import robotparts.RobotPart;
-import robotparts.electronics.IEncoder;
+import robotparts.electronics.input.IEncoder;
 import util.codeseg.CodeSeg;
 
 import static java.lang.Math.*;

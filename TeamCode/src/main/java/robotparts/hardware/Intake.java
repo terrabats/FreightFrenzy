@@ -7,7 +7,7 @@ import automodules.stage.Main;
 import automodules.stage.Stage;
 import automodules.stage.Stop;
 import robotparts.RobotPart;
-import robotparts.electronics.CMotor;
+import robotparts.electronics.continuous.CMotor;
 
 import static global.General.bot;
 

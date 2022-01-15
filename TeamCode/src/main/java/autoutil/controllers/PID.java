@@ -1,8 +1,6 @@
 package autoutil.controllers;
 
-import autoutil.Profiler;
-import math.calculus.Differentiator;
-import math.calculus.Integrator;
+import autoutil.profilers.Profiler;
 import util.codeseg.ReturnCodeSeg;
 
 public class PID {

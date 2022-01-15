@@ -1,16 +1,9 @@
 package robotparts.unused;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
-import com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior;
-import com.qualcomm.robotcore.hardware.DcMotor.RunMode;
-
-import java.util.Objects;
 
 import robotparts.RobotPart;
-import robotparts.electronics.CMotor;
+import robotparts.electronics.continuous.CMotor;
 
 /**
  * NOTE: Uncommented

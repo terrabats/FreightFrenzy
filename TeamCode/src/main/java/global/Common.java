@@ -5,15 +5,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import automodules.AutoModules;
 import debugging.Synchroniser;
 import elements.FieldSide;
-import robot.RobotFramework;
 import robot.TerraBot;
-import robotparts.electronics.PServo;
 import teleutil.GamepadHandler;
 import debugging.Fault;
 import debugging.Logger;
 import util.User;
-import util.condition.Expectation;
-import util.condition.Magnitude;
 import util.store.Storage;
 
 import static global.General.*;

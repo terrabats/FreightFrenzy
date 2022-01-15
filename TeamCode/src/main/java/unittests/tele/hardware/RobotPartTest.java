@@ -1,6 +1,6 @@
 package unittests.tele.hardware;
 
-import robotparts.electronics.CMotor;
+import robotparts.electronics.continuous.CMotor;
 import unittests.tele.TeleUnitTest;
 
 import static global.General.*;

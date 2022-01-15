@@ -1,7 +1,7 @@
 package robotparts.sensors;
 
 import robotparts.RobotPart;
-import robotparts.electronics.IDistance;
+import robotparts.electronics.input.IDistance;
 
 /**
  * NOTE: Uncommented

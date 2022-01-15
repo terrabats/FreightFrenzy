@@ -1,13 +1,10 @@
-package robotparts.electronics;
+package robotparts.electronics.positional;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import java.util.Base64;
-
-import global.Constants;
-import static global.General.*;
 import robotparts.Electronic;
+import robotparts.electronics.input.IEncoder;
 
 public class PMotor extends Electronic {
     /**

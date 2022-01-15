@@ -1,4 +1,4 @@
-package robotparts.electronics;
+package robotparts.electronics.positional;
 
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.Servo.*;

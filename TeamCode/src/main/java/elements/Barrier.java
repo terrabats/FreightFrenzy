@@ -5,4 +5,6 @@ package elements;
  */
 
 public class Barrier {
+    // TODO FIX
+    // Add data about barrier here
 }

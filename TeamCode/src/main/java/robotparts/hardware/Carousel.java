@@ -1,14 +1,12 @@
 package robotparts.hardware;
 
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import automodules.stage.Main;
 import automodules.stage.Stage;
 import automodules.stage.Stop;
 import robotparts.RobotPart;
-import robotparts.electronics.CServo;
+import robotparts.electronics.continuous.CServo;
 
 public class Carousel extends RobotPart {
     /**

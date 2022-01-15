@@ -8,8 +8,8 @@ import automodules.stage.Stop;
 import elements.FieldSide;
 import math.Logistic;
 import robotparts.RobotPart;
-import robotparts.electronics.CMotor;
-import robotparts.electronics.PServo;
+import robotparts.electronics.continuous.CMotor;
+import robotparts.electronics.positional.PServo;
 
 import static global.General.*;
 

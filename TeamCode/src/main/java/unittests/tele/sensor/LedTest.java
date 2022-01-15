@@ -1,6 +1,6 @@
 package unittests.tele.sensor;
 
-import robotparts.electronics.OLed;
+import robotparts.electronics.output.OLed;
 import teleutil.button.Button;
 import teleutil.button.OnPressEventHandler;
 import unittests.tele.TeleUnitTest;

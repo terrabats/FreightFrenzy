@@ -1,4 +1,4 @@
-package robotparts.electronics;
+package robotparts.electronics.input;
 
 import static global.General.hardwareMap;
 

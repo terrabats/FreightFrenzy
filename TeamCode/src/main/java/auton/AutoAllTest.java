@@ -1,6 +1,6 @@
 package auton;
 
-import autoutil.Executor;
+import autoutil.executors.Executor;
 import elements.FieldSide;
 import geometry.circles.AngleType;
 

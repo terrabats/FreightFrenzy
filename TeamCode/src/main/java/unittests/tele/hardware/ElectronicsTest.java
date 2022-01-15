@@ -1,9 +1,9 @@
 package unittests.tele.hardware;
 
-import robotparts.electronics.CMotor;
-import robotparts.electronics.CServo;
-import robotparts.electronics.PMotor;
-import robotparts.electronics.PServo;
+import robotparts.electronics.continuous.CMotor;
+import robotparts.electronics.continuous.CServo;
+import robotparts.electronics.positional.PMotor;
+import robotparts.electronics.positional.PServo;
 import teleutil.button.Button;
 import teleutil.button.OnPressEventHandler;
 import unittests.tele.TeleUnitTest;

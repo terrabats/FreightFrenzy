@@ -3,9 +3,7 @@ package robotparts.sensors;
 import automodules.stage.Exit;
 import elements.GameElement;
 import robotparts.RobotPart;
-import robotparts.electronics.IColor;
-
-import static global.General.bot;
+import robotparts.electronics.input.IColor;
 
 /**
  * NOTE: Uncommented
@@ -13,6 +11,9 @@ import static global.General.bot;
 
 public class ColorSensors extends RobotPart {
     private IColor cso;
+
+    // TODO NEW
+    // Make all the sensor robot parts and make sure they work (also the servo for odometry fix)
 
     @Override
     public void init() {

@@ -1,4 +1,4 @@
-package robotparts.electronics;
+package robotparts.electronics.output;
 
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 

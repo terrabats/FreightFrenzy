@@ -10,8 +10,7 @@ import automodules.stage.Stop;
 import elements.FieldSide;
 import global.Constants;
 import robotparts.RobotPart;
-import robotparts.electronics.IEncoder;
-import robotparts.electronics.PMotor;
+import robotparts.electronics.positional.PMotor;
 
 import static global.General.bot;
 import static global.General.fieldSide;
