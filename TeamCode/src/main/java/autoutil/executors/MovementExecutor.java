@@ -93,7 +93,7 @@ public class MovementExecutor {
             if (paths.get(curPath).size() == curPose) {
                 Pose nextPose = paths.get(curPath).get(curPose - 1);
                 double forwardPow = reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y);
-                if (abs(forwardPow) > 0.3) {
+                if (abs(forwardPow) > 0.1) {
                     bot.tankDrive.move(
                         forwardPow,
                         reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH)
@@ -101,7 +101,7 @@ public class MovementExecutor {
                 } else {
                     bot.tankDrive.move(
                         forwardPow,
-                        reactor.turnPow(nextPose.ang, startH)
+                        reactor.turnPow(nextPose.ang, startH, true)
                     );
                 }
             } else {
@@ -127,15 +127,16 @@ public class MovementExecutor {
 
     private boolean doneWithSetpoint() {
         Pose nextPose = paths.get(curPath).get(paths.get(curPath).size() - 1);
-        return abs(reactor.turnPow(nextPose.ang, startH)) < 0.2
+        return abs(reactor.turnPow(nextPose.ang, startH, true)) < 0.2
                 && sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
-                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 4;
+                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 3;
     }
 
     private boolean doneWithPoint(int i) {
         Pose nextPose = paths.get(curPath).get(i);
-        return sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
-                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 4;
+        double dis = sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
+                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2));
+        return (dis < 3);
     }
 
     //endregion

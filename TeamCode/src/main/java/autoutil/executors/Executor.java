@@ -74,11 +74,11 @@ public class Executor extends MovementExecutor {
                     resumeMove();
                 }
             } else {
-                updateMovement();
                 if (syncedSegsExist[curPath]) {
                     syncedSegs.get(curPath).poll().run();
                     syncedSegsExist[curPath] = !syncedSegs.get(curPath).isEmpty();
                 }
+                updateMovement();
             }
         } else {
             runningCodeSeg = !bot.rfsHandler.rfsQueue.isEmpty();

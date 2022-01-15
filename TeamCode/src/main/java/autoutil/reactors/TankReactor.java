@@ -13,7 +13,6 @@ public class TankReactor {
     // TOD3: TUNE THESE CONSTANTS
     private static final double kf = 0.022, kt = 0.015;
     private static final double fPowWaypoint = 0.3; // 0.15;
-    private static final double maxTurnPow = 0.8;
     private static final double minTurnPow = 0.4;
 
     public boolean moveForward(double targetX, double targetY) {
@@ -39,10 +38,10 @@ public class TankReactor {
 
     public double turnPowWay(double targetX, double targetY, double stPos) {
         double[] curPos = bot.odometry.curPos;
-        return turnPow(atan2(targetY - curPos[1], targetX - curPos[0]), stPos);
+        return turnPow(atan2(targetY - curPos[1], targetX - curPos[0]), stPos, false);
     }
 
-    public double turnPow(double targetH, double stPos) {
+    public double turnPow(double targetH, double stPos, boolean isSetPoint) {
         targetH -= stPos;
         targetH *= 180/PI; // convert to degrees
         // now targetH and curPos[2] are counterclockwise > 0, 0 in +y direction, and in degrees
@@ -58,12 +57,9 @@ public class TankReactor {
             curH += 360;
         }
         double finalPow = kt * (curH - targetH);
-        if (abs(finalPow) < minTurnPow && abs(curH - targetH) > 3) {
+        if (isSetPoint && abs(finalPow) < minTurnPow && abs(curH - targetH) > 3) {
             finalPow = signum(finalPow) * minTurnPow;
         }
-//        if (abs(finalPow) > maxTurnPow) {
-//            finalPow = signum(finalPow) * maxTurnPow;
-//        }
         return finalPow;
     }
 }

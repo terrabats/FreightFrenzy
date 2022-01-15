@@ -28,8 +28,8 @@ public class DisplayExecutor extends JPanel {
 
     public void genTestPlane(){
         movementExecutor = new MovementExecutor(0, 0, PI/2, AngleType.RADIANS);
-        movementExecutor.addSetpoint(60, 60, PI/2, AngleType.RADIANS);
-        movementExecutor.addSetpoint(0, 0, 0, AngleType.RADIANS);
+        movementExecutor.addSetpoint(60, 30, PI/2, AngleType.RADIANS);
+        movementExecutor.addSetpoint(0, 30, -PI/2, AngleType.RADIANS);
         movementExecutor.complete();
     }
 
