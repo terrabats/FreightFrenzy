@@ -20,21 +20,13 @@ public class AutoAllTest extends Auto {
     @Override
     public void runAuto() {
         Executor executor = new Executor();
-//        executor.addSetpoint(60, 60, PI/2, AngleType.RADIANS);
-//        executor.addSetpoint(0, 60, -PI/2, AngleType.RADIANS);
-//        executor.addSetpoint(0,0, 0, AngleType.RADIANS);
-        executor.addSetpoint(60, 60, PI, AngleType.RADIANS);
-//        executor.addSetpoint(10,5, PI, AngleType.RADIANS);
-//        executor.addSetpoint(30, 5, PI, AngleType.RADIANS);
-//        executor.addSetpoint(30,30, PI/2, AngleType.RADIANS);
-//        executor.addSetpoint(0, 0, -PI/2, AngleType.RADIANS);
-//        executor.addSetpoint(25, 20, 3 * PI/2, AngleType.RADIANS);
-//        executor.addSetpoint(125, 42, PI/2, AngleType.RADIANS);
-//        executor.addUnsynchronizedRF(autoModules.SpinCarousel);
-//        executor.addSynchronizedRF(autoModules.Intake);
-//        executor.addSetpoint(0, 30, -PI / 2, AngleType.RADIANS);
-//        executor.addSetpoint(60, -60, 3 * PI / 2, AngleType.RADIANS);
-//        executor.addSetpoint(0, 0, 0, AngleType.RADIANS);
+        executor.addSetpoint(70, 28, PI/2, AngleType.RADIANS);
+        executor.addUnsynchronizedRF(autoModules.SpinCarousel);
+        executor.addSetpoint(-50, 28, -PI/2, AngleType.RADIANS);
+        executor.addSetpoint(-60, 28, -PI/2, AngleType.RADIANS);
+        executor.addUnsynchronizedRF(autoModules.Intake);
+        executor.addUnsynchronizedRF(autoModules.Backward);
+        executor.addUnsynchronizedRF(autoModules.Forward);
 
         executor.complete();
 
