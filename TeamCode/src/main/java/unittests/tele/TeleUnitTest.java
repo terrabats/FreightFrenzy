@@ -10,9 +10,6 @@ public class TeleUnitTest extends UnitTest {
      * @link UnitTest
      */
 
-    // TODO FIX
-    // Make all tele unit tests even sensors
-
 
     /**
      * Start method runs once

@@ -71,11 +71,11 @@ public class Profiler {
         return values.size()-1;
     }
 
-    private double getCurrentValue(){
+    public double getCurrentValue(){
         return getPreviousValue(0);
     }
 
-    private double getCurrentTime(){
+    public double getCurrentTime(){
         return getPreviousTime(0);
     }
 
