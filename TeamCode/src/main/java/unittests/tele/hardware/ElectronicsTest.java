@@ -26,7 +26,9 @@ public class ElectronicsTest extends TeleUnitTest {
 
     @Override
     protected void start() {
-
+        /**
+         * Get the electronics
+         */
         in = bot.intake.getElectronicsOfType(CMotor.class).get("in");
         cr = bot.carousel.getElectronicsOfType(CServo.class).get("cr");
         li = bot.lift.getElectronicsOfType(PMotor.class).get("li");

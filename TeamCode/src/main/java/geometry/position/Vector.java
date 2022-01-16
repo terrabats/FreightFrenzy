@@ -3,6 +3,7 @@ package geometry.position;
 import geometry.GeometryObject;
 import geometry.circles.AngleType;
 
+import static geometry.circles.AngleType.radToDeg;
 import static java.lang.Math.*;
 
 /**

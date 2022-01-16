@@ -17,7 +17,8 @@ public class RobotFunctionsTest extends TeleUnitTest {
     @Override
     public void start() {
         /**
-         * Move the robot forward, then backward, then turn but using custom stage components
+         * Move the robot forward (1s) , then backward (1s), then turn clockwise (1s)
+         * NOTE: This uses custom stage components
          */
         bot.rfsHandler.addToQueue(new Stage(
                 new Initial(() -> bot.tankDrive.switchUser(User.ROFU)),

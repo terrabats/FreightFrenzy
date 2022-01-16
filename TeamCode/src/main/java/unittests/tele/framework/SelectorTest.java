@@ -60,7 +60,10 @@ public class SelectorTest extends TeleUnitTest {
          * This should also wrap around properly
          */
         log.show("Press Y to go up and B to go down and A to activate", integerSelector.getCurrentItem().getName());
-        log.show("Is active?", integerSelector.isActive());
+        /**
+         * Is the selector active? Should be true when A is pressed
+         */
+        log.show("Press A to turn selector active", integerSelector.isActive());
 
 
 

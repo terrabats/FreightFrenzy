@@ -11,7 +11,9 @@ public class OuttakeTest extends TeleUnitTest {
      */
     @Override
     protected void start() {
-        //bot.outtake.lockCube();
+        /**
+         * Link the gamepad handlers
+         */
         gph1.link(Button.B, OnPressEventHandler.class, () -> bot.outtake.lockCube());
         gph1.link(Button.DPAD_UP, OnPressEventHandler.class, () -> bot.outtake.lockBall());
         gph1.link(Button.DPAD_RIGHT, OnPressEventHandler.class, () -> bot.outtake.align());
@@ -21,7 +23,10 @@ public class OuttakeTest extends TeleUnitTest {
 
     @Override
     protected void loop() {
-//        showConfig(bot.outtake);
+        showConfig(bot.outtake);
+        /**
+         * Should move the outtake servo
+         */
         log.show("B for lock cube");
         log.show("Dpad up for lock ball");
         log.show("Dpad right for align");

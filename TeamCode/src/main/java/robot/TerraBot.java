@@ -52,6 +52,6 @@ public class TerraBot extends RobotFramework {
 //    public Odometry odometry;
     public TouchSensors touchSensor;
     public DistanceSensors distanceSensors;
-    public Led led;
+    public Led leds;
     public MecanumDrive mecanumDrive;
 }

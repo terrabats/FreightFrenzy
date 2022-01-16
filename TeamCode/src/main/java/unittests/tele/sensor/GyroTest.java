@@ -3,15 +3,16 @@ package unittests.tele.sensor;
 import unittests.tele.TeleUnitTest;
 import static global.General.*;
 
-/**
- * NOTE: Uncommented
- */
-
 public class GyroTest extends TeleUnitTest {
-
+    /**
+     * Tests gyro sensors
+     */
     @Override
     protected void loop() {
-        log.show("gyro right", bot.gyroSensors.getRightHeadingDeg());
-//        log.watch("gyro left", bot.gyro.getLeftHeading());
+        /**
+         * These should range from -180 to 180 and are in degrees
+         */
+        log.show("Right gyro reading", bot.gyroSensors.getRightHeadingDeg());
+        log.show("Left gyro reading", bot.gyroSensors.getLeftHeadingDeg());
     }
 }

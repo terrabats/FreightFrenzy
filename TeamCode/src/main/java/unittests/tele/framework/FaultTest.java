@@ -14,6 +14,9 @@ public class FaultTest extends TeleUnitTest {
      */
     @Override
     public void loop() {
+        /**
+         * Should all be displayed properly
+         */
         fault.warn("Is fault working?");
         fault.warn("Is fault really working?", Expectation.INCONCEIVABLE, Magnitude.CATASTROPHIC);
         fault.warn("Is fault really really really working?", false, true);

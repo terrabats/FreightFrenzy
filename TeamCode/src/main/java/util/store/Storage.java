@@ -18,8 +18,6 @@ import util.condition.Magnitude;
 import static global.General.*;
 
 public class Storage {
-    // TODO NEW
-    // Add time data back in
     /**
      * List of items to store
      */

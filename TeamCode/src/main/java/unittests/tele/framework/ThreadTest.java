@@ -13,6 +13,9 @@ public class ThreadTest extends TeleUnitTest {
      */
     @Override
     public void loop() {
+        /**
+         * Should show telemetry
+         */
         TerraBot.robotFunctionsThread.setExecutionCode(() -> {
             log.showAndRecord("Robot Functions Code", "is running");
             log.record("Robot Functions Status", TerraBot.robotFunctionsThread.getStatus());

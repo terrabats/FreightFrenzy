@@ -26,19 +26,6 @@ public class ColorSensors extends RobotPart {
         return color;
     }
 
-//    public float[] getOutakeColorRGB(){
-//        return new float[]{(float)cso.red()*255/800, (float)cso.green()*255/800, (float)cso.blue()*255/800};
-//    }
-
-    public boolean isBall(){
-        return getFreightType().equals(GameElement.BALL);
-    }
-    public boolean isCube(){
-        return getFreightType().equals(GameElement.CUBE);
-    }
-
-    public boolean isFreight(){ GameElement element = getFreightType(); return element.equals(GameElement.BALL) || element.equals(GameElement.CUBE); }
-
     public GameElement getFreightType(){
         float h = getOuttakeColorHSV()[0];
         if(155 < h && h < 170){
@@ -49,6 +36,15 @@ public class ColorSensors extends RobotPart {
             return GameElement.NONE;
         }
     }
+
+    public boolean isBall(){
+        return getFreightType().equals(GameElement.BALL);
+    }
+    public boolean isCube(){
+        return getFreightType().equals(GameElement.CUBE);
+    }
+
+    public boolean isFreight(){ GameElement element = getFreightType(); return element.equals(GameElement.BALL) || element.equals(GameElement.CUBE); }
     public Exit exitFreight(){return new Exit(this::isFreight);}
 
 }

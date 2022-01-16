@@ -21,11 +21,18 @@ public class CommonTest extends TeleUnitTest {
 
     @Override
     public void loop() {
+        /**
+         * If you can see this common is working
+         */
         log.show("Common is Working");
         /**
          * Check the main user (should be TELE)
          */
-        fault.warn("Main user is not TELE", mainUser.toString().equals(User.TELE.toString()), true);
         log.show("Current User", mainUser.toString());
+        /**
+         * Throws a fault if the main user is not tele
+         * NOTE: If this test does not crash, this works
+         */
+        fault.warn("Main user is not TELE", mainUser.toString().equals(User.TELE.toString()), true);
     }
 }

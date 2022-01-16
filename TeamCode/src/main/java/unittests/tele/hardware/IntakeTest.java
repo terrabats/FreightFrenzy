@@ -13,13 +13,19 @@ public class IntakeTest extends TeleUnitTest {
      */
     @Override
     public void start() {
+        /**
+         * Link the gamepad handlers
+         */
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
         gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.intake.move(0));
     }
 
     @Override
     protected void loop() {
-//        showConfig(bot.intake);
+        showConfig(bot.intake);
+        /**
+         * Intake should move when right bumper is pressed (toggle control)
+         */
         log.show("Use right bumper");
     }
 }

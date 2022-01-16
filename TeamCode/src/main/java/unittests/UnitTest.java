@@ -34,12 +34,15 @@ public class UnitTest {
 
     /**
      * Method to show the configuration of the motors and servos in a robotpart
+     * NOTE: This also displays separators
      * @param part
      */
     protected void showConfig(RobotPart part){
+        log.show("------------CONFIG-------------");
         for (Entry<String, CMotor> entry: part.getElectronicsOfType(CMotor.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
         for (Entry<String, PServo> entry: part.getElectronicsOfType(PServo.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
         for (Entry<String, CServo> entry: part.getElectronicsOfType(CServo.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
+        log.show("------------TEST-------------");
     }
 
     /**

@@ -6,5 +6,8 @@ package geometry.circles;
 
 public enum AngleType {
     DEGREES,
-    RADIANS
+    RADIANS;
+
+    public static double radToDeg(double rads){return Math.toDegrees(rads);}
+    public static double degToRad(double degs){return Math.toRadians(degs);}
 }

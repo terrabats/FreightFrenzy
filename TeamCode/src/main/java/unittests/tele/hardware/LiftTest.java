@@ -20,18 +20,28 @@ public class LiftTest extends TeleUnitTest {
 
     @Override
     protected void start() {
-
+        /**
+         * Link the gamepad handlers
+         */
         gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(test));
         gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(test2));
     }
 
     @Override
     public void loop() {
-//        showConfig(bot.lift);
+        showConfig(bot.lift);
+        /**
+         * Lift should move
+         */
         log.show("Use right stick y");
         bot.lift.move(-gamepad1.right_stick_y);
-
-        log.show("target pos", bot.lift.getTarget());
-        log.show("pos", bot.lift.getLiftPos());
+        /**
+         * Should change when lift moves
+         */
+        log.show("Lift pos", bot.lift.getLiftPos());
+        /**
+         * Should not change when lift moves
+         */
+        log.show("Lift target pos", bot.lift.getTarget());
     }
 }

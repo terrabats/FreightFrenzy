@@ -21,6 +21,9 @@ public class LoggerTest extends TeleUnitTest {
 
     @Override
     public void loop() {
+        /**
+         * Update variables
+         */
         d += 0.1;
         b = !b;
         if(s.equals(Status.ACTIVE)){
@@ -28,6 +31,8 @@ public class LoggerTest extends TeleUnitTest {
         }else{
             s = Status.ACTIVE;
         }
+
+
         /**
          * Show should just show telemetry like normal
          */

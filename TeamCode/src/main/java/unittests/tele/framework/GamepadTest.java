@@ -25,6 +25,9 @@ public class GamepadTest extends TeleUnitTest {
 
     @Override
     protected void start() {
+        /**
+         * Should change as the a button is pressed
+         */
         gph1.link(Button.A, ButtonEventHandler.class, () -> log.show("Held"));
         gph1.link(Button.A, OnPressEventHandler.class, () -> log.showAndRecord("Now Pressed" , i));
         gph1.link(Button.A, ChangeHoldEventHandler.class, () -> log.showAndRecord("Changed Hold" , i));

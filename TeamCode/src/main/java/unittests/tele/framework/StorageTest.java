@@ -14,8 +14,9 @@ public class StorageTest extends TeleUnitTest {
     /**
      * Tests storage by adding a set of items
      */
+
     // TODO TEST
-    // Test data has to work
+    // Test data and see if saving data works
 
     @Override
     protected void start() {
@@ -45,17 +46,17 @@ public class StorageTest extends TeleUnitTest {
     protected void loop() {
         /**
          * Show the values of the items to be stored
+         * Should match with the values in parenthesis
          */
-        log.showAndRecord("St", storage.getItem("St").getValue());
-        log.showAndRecord("In", storage.getItem("In").getValue());
-        log.showAndRecord("Fl", storage.getItem("Fl").getValue());
-        log.showAndRecord("Do", storage.getItem("Do").getValue());
-        log.showAndRecord("Bo", storage.getItem("Bo").getValue());
-        fieldSide = FieldSide.create((String) storage.getItem("FieldSide").getValue());
-        log.showAndRecord("FieldSide", fieldSide);
-        log.showAndRecord("FieldColor", fieldSide.name());
-        log.showAndRecord("DataInput", storage.getData("Data").getInput().getValue());
-        log.showAndRecord("DataOutput", storage.getData("Data").getOutput().getValue());
+        log.showAndRecord("St (Test)", storage.getItem("St").getValue());
+        log.showAndRecord("In (1)", storage.getItem("In").getValue());
+        log.showAndRecord("Fl (1.0)", storage.getItem("Fl").getValue());
+        log.showAndRecord("Do (2.0)", storage.getItem("Do").getValue());
+        log.showAndRecord("Bo (true)", storage.getItem("Bo").getValue());
+        log.showAndRecord("FieldSide (Right)", FieldSide.create((String) storage.getItem("FieldSide").getValue()));
+        log.showAndRecord("FieldColor (Red)", fieldSide.name());
+        log.showAndRecord("DataInput ([1,2,3])", storage.getData("Data").getInput().getValue());
+        log.showAndRecord("DataOutput ([2,4,6])", storage.getData("Data").getOutput().getValue());
     }
 
     @Override

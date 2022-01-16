@@ -6,15 +6,24 @@ import java.util.Arrays;
 import unittests.tele.TeleUnitTest;
 import static global.General.*;
 
-/**
- * NOTE: Uncommented
- */
-
 public class ColorTest extends TeleUnitTest {
+    /**
+     * Tests color sensors
+     */
+
     @Override
     protected void loop() {
-        log.show("hsv", Arrays.toString(bot.colorSensors.getOuttakeColorHSV()));
-        log.show("isBall", bot.colorSensors.isBall());
-        log.show("isCube", bot.colorSensors.isCube());
+        /**
+         * In HSV, should seem reasonable,
+         * h is the hue or color
+         * s is the saturation
+         * v is the value or brightness
+         */
+        log.show("Color sensor reading", Arrays.toString(bot.colorSensors.getOuttakeColorHSV()));
+        /**
+         * These should turn true depending on the type of freight
+         */
+        log.show("Put a ball in the intake", bot.colorSensors.isBall());
+        log.show("Put a cube in the intake", bot.colorSensors.isCube());
     }
 }

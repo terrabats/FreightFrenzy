@@ -45,6 +45,10 @@ public class Synchroniser {
         numUpdates++;
     }
 
+    /**
+     * Gets the delay in milliseconds
+     * @return delay
+     */
     public double getDelay(){
         return (1000*lagTimer.seconds())/numUpdates;
     }

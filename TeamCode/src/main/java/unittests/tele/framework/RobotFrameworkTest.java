@@ -13,7 +13,7 @@ public class RobotFrameworkTest extends TeleUnitTest {
 
 
     /**
-     * Test robot framework
+     * Test robot framework (not directly but through Terrabot)
      * NOTE: Since allrobotparts is a static arraylist all of the parts terrabot should be here
      */
     @Override
