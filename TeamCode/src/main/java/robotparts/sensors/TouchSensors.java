@@ -3,11 +3,10 @@ package robotparts.sensors;
 import robotparts.RobotPart;
 import robotparts.electronics.input.ITouch;
 
-/**
- * NOTE: Uncommented
- */
-
 public class TouchSensors extends RobotPart {
+    /**
+     * Touch sensor for outtake
+     */
     private ITouch tso;
 
     @Override
@@ -15,6 +14,10 @@ public class TouchSensors extends RobotPart {
         tso = createTouchSensor("tso");
     }
 
+    /**
+     * Is the outtake pressing the touch sensor (i.e. all the way down)
+     * @return pressed
+     */
     public boolean isOuttakePressingTouchSensor(){
         return tso.isPressed();
     }

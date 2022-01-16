@@ -5,12 +5,10 @@ import robotparts.RobotPart;
 import robotparts.electronics.output.OLed;
 import robotparts.electronics.output.OLed.*;
 
-
-/**
- * NOTE: Uncommented
- */
-
 public class Led extends RobotPart {
+    /**
+     * Leds
+     */
     private OLed ledfr;
     private OLed ledfl;
     private OLed ledbr;
@@ -24,6 +22,10 @@ public class Led extends RobotPart {
         ledbl = createLED("ledbl");
     }
 
+    /**
+     * Sets the color of all the leds at once
+     * @param color
+     */
     public void setColorOfLEDs(LEDColor color){
         ledfr.setColor(color);
         ledbr.setColor(color);

@@ -3,11 +3,12 @@ package robotparts.sensors;
 import robotparts.RobotPart;
 import robotparts.electronics.input.IDistance;
 
-/**
- * NOTE: Uncommented
- */
 
 public class DistanceSensors extends RobotPart {
+    /**
+     * Distance sensors,
+     * left, right, front left, front right, and outtake
+     */
     private IDistance dsl,dsr,dsfl,dsfr,dso;
 
     @Override
@@ -19,6 +20,10 @@ public class DistanceSensors extends RobotPart {
         dso = createDistanceSensor("cso");
     }
 
+    /**
+     * Get distances
+     * @return distances
+     */
     public double getLeftDistance(){
         return dsl.getDistance();
     }
