@@ -20,9 +20,17 @@ public class AutoAllTest extends Auto {
     @Override
     public void runAuto() {
         Executor executor = new Executor();
-        executor.addSetpoint(42, 41, PI / 2, AngleType.RADIANS);
-        executor.addSetpoint(125, 42, PI/2, AngleType.RADIANS);
-        executor.addUnsynchronizedRF(autoModules.SpinCarousel);
+//        executor.addSetpoint(60, 60, PI/2, AngleType.RADIANS);
+//        executor.addSetpoint(0, 60, -PI/2, AngleType.RADIANS);
+//        executor.addSetpoint(0,0, 0, AngleType.RADIANS);
+        executor.addSetpoint(60, 60, PI, AngleType.RADIANS);
+//        executor.addSetpoint(10,5, PI, AngleType.RADIANS);
+//        executor.addSetpoint(30, 5, PI, AngleType.RADIANS);
+//        executor.addSetpoint(30,30, PI/2, AngleType.RADIANS);
+//        executor.addSetpoint(0, 0, -PI/2, AngleType.RADIANS);
+//        executor.addSetpoint(25, 20, 3 * PI/2, AngleType.RADIANS);
+//        executor.addSetpoint(125, 42, PI/2, AngleType.RADIANS);
+//        executor.addUnsynchronizedRF(autoModules.SpinCarousel);
 //        executor.addSynchronizedRF(autoModules.Intake);
 //        executor.addSetpoint(0, 30, -PI / 2, AngleType.RADIANS);
 //        executor.addSetpoint(60, -60, 3 * PI / 2, AngleType.RADIANS);
@@ -38,7 +46,7 @@ public class AutoAllTest extends Auto {
 
         while (opModeIsActive() && !executor.finished()) {
             executor.update();
-            update(false);
+            update(true);
         }
         bot.tankDrive.move(0, 0);
     }

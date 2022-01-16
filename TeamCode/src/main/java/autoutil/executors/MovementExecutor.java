@@ -93,10 +93,12 @@ public class MovementExecutor {
             if (paths.get(curPath).size() == curPose) {
                 Pose nextPose = paths.get(curPath).get(curPose - 1);
                 double forwardPow = reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y);
-                if (abs(forwardPow) > 0.1) {
+                double dis = sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
+                        + pow(bot.odometry.curPos[1] - nextPose.p.y, 2));
+                if (dis > 10) {
                     bot.tankDrive.move(
                         forwardPow,
-                        reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH)
+                        reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH, true)
                     );
                 } else {
                     bot.tankDrive.move(
@@ -108,7 +110,7 @@ public class MovementExecutor {
                 Pose nextPose = paths.get(curPath).get(curPose);
                 bot.tankDrive.move(
                         reactor.forwardPowWaypoint(nextPose.p.x, nextPose.p.y),
-                        reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH)
+                        reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH, true)
                 );
             }
         } else {
@@ -119,6 +121,7 @@ public class MovementExecutor {
     private void updateCurPoint() {
         for (int i = curPose; i < paths.get(curPath).size(); i++) {
             if (doneWithPoint(i)) curPose = i + 1;
+            else break;
         }
         if (curPose == paths.get(curPath).size() && doneWithSetpoint()) {
             curPose++;
@@ -127,16 +130,16 @@ public class MovementExecutor {
 
     private boolean doneWithSetpoint() {
         Pose nextPose = paths.get(curPath).get(paths.get(curPath).size() - 1);
-        return abs(reactor.turnPow(nextPose.ang, startH, true)) < 0.2
+        return abs(reactor.turnPow(nextPose.ang, startH, true)) < 0.4
                 && sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
-                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 3;
+                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 4;
     }
 
     private boolean doneWithPoint(int i) {
         Pose nextPose = paths.get(curPath).get(i);
         double dis = sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
                 + pow(bot.odometry.curPos[1] - nextPose.p.y, 2));
-        return (dis < 3);
+        return dis < 10;
     }
 
     //endregion

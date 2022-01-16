@@ -11,14 +11,13 @@ public class TankReactor {
     // the POINTS GENERATED are in radians
 
     // TOD3: TUNE THESE CONSTANTS
-    private static final double kf = 0.022, kt = 0.015;
-    private static final double fPowWaypoint = 0.3; // 0.15;
+    private static final double kf = 0.022, kt = 0.035;
+    private static final double fPowWaypoint = 0.3;
     private static final double minTurnPow = 0.4;
 
     public boolean moveForward(double targetX, double targetY) {
         double[] curPos = bot.odometry.curPos;
         if (abs(targetX - curPos[0]) > abs(targetY - curPos[1])) {
-            log.show("Using x");
             return signum(targetX - curPos[0]) != signum(curPos[2]);
         } else {
             return (((targetY - curPos[1]) > 0) && (abs(curPos[2]) < PI/2))
@@ -36,9 +35,13 @@ public class TankReactor {
         return moveForward(targetX, targetY) ? fPowWaypoint : -fPowWaypoint;
     }
 
-    public double turnPowWay(double targetX, double targetY, double stPos) {
+    public double turnPowWay(double targetX, double targetY, double stPos, boolean doBackMath) {
         double[] curPos = bot.odometry.curPos;
-        return turnPow(atan2(targetY - curPos[1], targetX - curPos[0]), stPos, false);
+        double ang = atan2(targetY - curPos[1], targetX - curPos[0]);
+        if (doBackMath && !moveForward(targetX, targetY)) {
+            ang += PI;
+        }
+        return turnPow(ang, stPos, false);
     }
 
     public double turnPow(double targetH, double stPos, boolean isSetPoint) {
@@ -57,7 +60,7 @@ public class TankReactor {
             curH += 360;
         }
         double finalPow = kt * (curH - targetH);
-        if (isSetPoint && abs(finalPow) < minTurnPow && abs(curH - targetH) > 3) {
+        if (isSetPoint && abs(finalPow) < minTurnPow && abs(curH - targetH) > 5) {
             finalPow = signum(finalPow) * minTurnPow;
         }
         return finalPow;
