@@ -2,6 +2,7 @@ package robotparts.unused;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
 
+import math.Logistic;
 import robotparts.RobotPart;
 import robotparts.electronics.continuous.CMotor;
 
@@ -15,9 +16,9 @@ public class MecanumDrive extends RobotPart {
     @Override
     public void init(){
         fr = createCMotor("fr", Direction.REVERSE);
-        br = createCMotor("br", Direction.FORWARD);
+        br = createCMotor("br", Direction.REVERSE);
         fl = createCMotor("fl", Direction.FORWARD);
-        bl = createCMotor("bl", Direction.REVERSE);
+        bl = createCMotor("bl", Direction.FORWARD);
     }
 
     public void move(double f, double s, double t){
@@ -25,6 +26,13 @@ public class MecanumDrive extends RobotPart {
         br.setPower(-f-s+t);
         fl.setPower(f+s+t);
         bl.setPower(-f+s-t);
+    }
+
+    public void moveSmooth(double f, double s, double t){
+        Logistic movementCurveForward = new Logistic(10,5);
+        Logistic movementCurveStrafe = new Logistic(30,6);
+        Logistic movementCurveTurn = new Logistic(30,6);
+        move(movementCurveForward.fodd(f), movementCurveStrafe.fodd(s), movementCurveTurn.fodd(t));
     }
 
 

@@ -8,6 +8,8 @@ public class AutoModules{
     /**
      * Define automodules here as a stage list
      */
+    // TODO FIX
+    // Make something that checks if the robotpart exists before creating an automodule...
     public StageList Intake = new StageList(
         bot.lift.liftEncoder(0.4, 0),
         bot.intake.intakeUntilFreight(1),

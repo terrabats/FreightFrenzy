@@ -9,6 +9,9 @@ public class TouchSensors extends RobotPart {
      */
     private ITouch tso;
 
+    // TODO DESIGN FIX
+    // Remove the touch sensor or move it to a different place
+
     @Override
     public void init() {
         tso = createTouchSensor("tso");
