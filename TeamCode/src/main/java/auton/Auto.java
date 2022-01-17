@@ -36,6 +36,7 @@ public abstract class Auto extends LinearOpMode implements Common {
     @Override
     public final void runOpMode() throws InterruptedException {
         reference(this);
+        activate(FieldSide.UNKNOWN);
         initAuto();
         waitForStart();
         ready();
