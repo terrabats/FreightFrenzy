@@ -67,6 +67,6 @@ public class AutoUnitTester extends Auto implements UnitTester {
 
     @Override
     public void stopAuto() {
-
+        selector.reset();
     }
 }

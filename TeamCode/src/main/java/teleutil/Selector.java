@@ -23,7 +23,7 @@ public class Selector<T> {
     /**
      * List of the names of the items
      */
-    private final ArrayList<String> itemClassNames = new ArrayList<>();
+    private ArrayList<String> itemClassNames = new ArrayList<>();
     /**
      * Code segs for moving up and down the selector
      */
@@ -117,6 +117,17 @@ public class Selector<T> {
     public void init(double timeBetweenUpdates){
         this.delay = timeBetweenUpdates;
         init(() -> true, () -> false);
+    }
+
+    /**
+     * Resets the selector
+     */
+    public void reset() {
+        init();
+        itemClassNames = new ArrayList<>();
+        currentIndex = 0;
+        isDoneWithLast = false;
+        status = Status.IDLE;
     }
 
     /**
