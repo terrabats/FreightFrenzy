@@ -28,9 +28,9 @@ public class DisplayPath extends JPanel {
     public void genTestPlane(){
         ArcGenerator arcGenerator = new ArcGenerator();
         arcGenerator.moveTo(0,0, PI/2);
-        arcGenerator.moveTo(30, 20, 0);
-        arcGenerator.moveTo(-20,30,-PI/2);
-        arcGenerator.moveTo(-100, 40, PI);
+        arcGenerator.moveTo(70, 30, 0);
+        arcGenerator.moveTo(-50,30, PI);
+        arcGenerator.moveTo(-70, 30, PI/4);
 
         //(10, 5, pi) , (30, 5, pi), (30, 30, pi/2), (0, 0, -pi/2) , (25, 20, 3pi/2)
 

@@ -45,7 +45,7 @@ public class TankReactor {
     }
 
     public double turnPow(double targetH, double stPos, boolean isSetPoint) {
-        targetH -= stPos;
+        targetH -= PI/2;
         targetH *= 180/PI; // convert to degrees
         // now targetH and curPos[2] are counterclockwise > 0, 0 in +y direction, and in degrees
         // positive ROBOT turn is CW

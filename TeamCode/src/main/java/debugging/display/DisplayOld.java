@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import autoutil.generators.ArcGenerator;
 import autoutil.paths.Path;
 import autoutil.paths.PathSegment;
+import geometry.circles.AngleType;
 import geometry.position.Pose;
 
 import static java.lang.Math.*;
@@ -30,13 +31,13 @@ public class DisplayOld extends JPanel {
 
     public void genTestPlane(){
         ArcGenerator arcGenerator = new ArcGenerator();
-        arcGenerator.moveTo(0,0, 0);
-        arcGenerator.moveTo(30, 0, PI);
-        arcGenerator.moveTo(10,5,PI);
-        arcGenerator.moveTo(30, 5, PI);
-        arcGenerator.moveTo(30,30, PI/2);
-        arcGenerator.moveTo(0, 0, -PI/2);
-        arcGenerator.moveTo(25, 20, 3 * PI/2);
+        arcGenerator.moveTo(0,0, PI/2);
+        arcGenerator.moveTo(70, 30, 0);
+        arcGenerator.moveTo(-50,30, PI);
+        arcGenerator.moveTo(-70, 30, PI/4);
+//        arcGenerator.moveTo(30,30, PI/2);
+//        arcGenerator.moveTo(0, 0, -PI/2);
+//        arcGenerator.moveTo(25, 20, 3 * PI/2);
 
         //(10, 5, pi) , (30, 5, pi), (30, 30, pi/2), (0, 0, -pi/2) , (25, 20, 3pi/2)
 

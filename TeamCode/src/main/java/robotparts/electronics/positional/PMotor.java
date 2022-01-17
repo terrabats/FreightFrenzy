@@ -69,6 +69,12 @@ public class PMotor extends Electronic {
     }
 
     /**
+     * Get the power of the motor
+     * @return power
+     */
+    public double getPower() { return motor.getPower(); }
+
+    /**
      * Has the motor reached the target
      * @return if the motor is busy
      */

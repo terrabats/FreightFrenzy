@@ -70,6 +70,6 @@ public class TerraOpRed extends Tele{
         // Gamepad2
         bot.turret.move(gamepad2.left_stick_x);
 
-        bot.lift.move(-gamepad2.right_stick_y + Constants.LIFT_REST_POW);
+        bot.lift.move(-gamepad2.right_stick_y);
     }
 }

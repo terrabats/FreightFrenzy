@@ -32,7 +32,7 @@ public class Lift extends RobotPart {
      * @param p
      */
     public void move(double p){
-        li.setPower(p);
+        li.setPower(p + Constants.LIFT_REST_POW);
     }
 
     /**

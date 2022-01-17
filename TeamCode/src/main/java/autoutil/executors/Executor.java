@@ -1,5 +1,6 @@
 package autoutil.executors;
 
+import static java.lang.Math.PI;
 import static global.General.*;
 
 import java.util.LinkedList;
@@ -20,7 +21,7 @@ public class Executor extends MovementExecutor {
 
     //region CONSTRUCTORS
     public Executor() {
-        super(0, 0, Math.PI/2, AngleType.RADIANS);
+        super(0, 0, 0, AngleType.RADIANS);
         fillBoolArrs();
     }
 
