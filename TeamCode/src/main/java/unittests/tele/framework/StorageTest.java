@@ -15,9 +15,6 @@ public class StorageTest extends TeleUnitTest {
      * Tests storage by adding a set of items
      */
 
-    // TODO TEST
-    // Test data and see if saving data works
-
     @Override
     protected void start() {
         /**

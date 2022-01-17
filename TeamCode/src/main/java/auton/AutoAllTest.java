@@ -4,6 +4,7 @@ import autoutil.executors.Executor;
 import elements.FieldSide;
 import geometry.circles.AngleType;
 import robotparts.electronics.positional.PMotor;
+import util.Timer;
 
 import static java.lang.Math.*;
 import static global.General.*;
@@ -44,9 +45,13 @@ public class AutoAllTest extends Auto {
             }
             update(true);
         }
-        // TODO DESIGN: ADD ODOMETRY RETRACTING HERE
-        while (opModeIsActive()) {
-            // TODO NEW: ADD PARK HERE
+        bot.tankDrive.raise();
+        Timer timer = new Timer();
+        timer.reset();
+        while (opModeIsActive() && timer.seconds() < 1) {
+            // TODO NEW
+            // ADD PARK HERE
+            bot.tankDrive.move(0.2,0.0);
         }
         bot.tankDrive.move(0, 0);
     }
