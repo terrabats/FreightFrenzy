@@ -11,12 +11,14 @@ import elements.FieldSide;
 import global.Constants;
 import robotparts.RobotPart;
 import robotparts.electronics.positional.PMotor;
+import util.User;
 import util.condition.Expectation;
 import util.condition.Magnitude;
 
 import static global.General.bot;
 import static global.General.fault;
 import static global.General.fieldSide;
+import static global.General.mainUser;
 
 public class Turret extends RobotPart {
     /**
@@ -73,12 +75,22 @@ public class Turret extends RobotPart {
      * Get the target position based on the field side
      * @return target pos
      */
+    // TODO TEST
+    // Test this
     public double getTargetPos(){
         if(fieldSide != null) {
-            if (fieldSide.equals(FieldSide.BLUE)) {
-                return Constants.BLUE_SIDE_TURRET_ANGLE;
-            } else if (fieldSide.equals(FieldSide.RED)) {
-                return Constants.RED_SIDE_TURRET_ANGLE;
+            if(mainUser.equals(User.TELE)) {
+                if (fieldSide.equals(FieldSide.BLUE)) {
+                    return Constants.BLUE_TURRET_TARGET_TELE;
+                } else if (fieldSide.equals(FieldSide.RED)) {
+                    return Constants.RED_TURRET_ANGLE_TELE;
+                }
+            }else if(mainUser.equals(User.AUTO)){
+                if (fieldSide.equals(FieldSide.BLUE)) {
+                    return Constants.BLUE_TURRET_TARGET_AUTO;
+                } else if (fieldSide.equals(FieldSide.RED)) {
+                    return Constants.RED_TURRET_ANGLE_AUTO;
+                }
             }
         }else{
             fault.warn("Fieldside was not defined so target pos is not defined", Expectation.SURPRISING, Magnitude.MAJOR);
