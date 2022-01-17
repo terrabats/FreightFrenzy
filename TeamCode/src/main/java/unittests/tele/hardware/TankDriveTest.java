@@ -38,8 +38,10 @@ public class TankDriveTest extends TeleUnitTest {
         log.show("Press Y to switch between smooth and normal mode");
         if(!smooth){
             bot.tankDrive.move(-gamepad1.right_stick_y, gamepad1.left_stick_x);
+            log.show("Current mode","Smooth");
         }else{
             bot.tankDrive.moveSmooth(-gamepad1.right_stick_y, gamepad1.left_stick_x);
+            log.show("Current mode","Default");
         }
     }
 }

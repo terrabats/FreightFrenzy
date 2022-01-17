@@ -6,7 +6,15 @@ import elements.FieldSide;
 import teleop.Tele;
 
 import unittests.UnitTester;
+import unittests.tele.framework.*;
+import unittests.tele.framework.CommonTest;
+import unittests.tele.framework.FaultTest;
+import unittests.tele.framework.GamepadTest;
+import unittests.tele.framework.LoggerTest;
+import unittests.tele.framework.StorageTest;
 import unittests.tele.hardware.OdometryServoTest;
+import unittests.tele.hardware.*;
+import unittests.unused.CoordinatePlaneTest;
 
 import static global.General.*;
 
@@ -20,13 +28,10 @@ public class TeleUnitTester extends Tele implements UnitTester{
      */
     private TestingMode testingMode = TestingMode.CONTROL;
 
-    // TODO TEST
-    // Test this unit tester (it should still work after some changes were made to it)
-
     @Override
     public void createUnitTests(){
         // Framework
-        add(new OdometryServoTest());
+//        add(new OdometryServoTest());
 //        add(new AccessTest());
 //        add(new CommonTest());
 //        add(new CoordinatePlaneTest());
@@ -44,8 +49,8 @@ public class TeleUnitTester extends Tele implements UnitTester{
 //        add(new RobotPartTest());
 //        add(new RobotFrameworkTest());
 //        add(new ElectronicsTest());
-//
-//        // Hardware
+
+        // Hardware
 //        add(new TankDriveTest());
 //        add(new IntakeTest());
 //        add(new LiftTest());
