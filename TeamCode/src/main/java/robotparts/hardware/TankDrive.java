@@ -32,7 +32,10 @@ public class TankDrive extends RobotPart {
         br = createCMotor("br", DcMotorSimple.Direction.REVERSE);
         fl = createCMotor("fl", DcMotorSimple.Direction.FORWARD);
         bl = createCMotor("bl", DcMotorSimple.Direction.FORWARD);
-        re = createPServo("re", Servo.Direction.FORWARD, 0, 1);
+        re = createPServo("re", Servo.Direction.REVERSE, 0, 1);
+        re.addPosition("moveup", 1);
+        re.addPosition("movedown", 0.3);
+        re.setPosition("movedown");
     }
 
     /**
@@ -46,6 +49,11 @@ public class TankDrive extends RobotPart {
         fl.setPower(f+t);
         bl.setPower(f+t);
     }
+
+    public void moveup(String m){ re.setPosition(m);}
+    public void up(){ moveup("moveup");}
+    public void movedown(String n){ re.setPosition(n);}
+    public void down(){ movedown("movedown");}
 
     /**
      * Move the robot using logistic curves (to make it easier to use in teleop)

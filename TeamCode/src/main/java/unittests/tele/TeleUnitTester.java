@@ -5,14 +5,10 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import elements.FieldSide;
 import teleop.Tele;
 
-import teleutil.button.Button;
 import unittests.UnitTester;
-import util.condition.Expectation;
-import util.condition.Magnitude;
-import util.condition.Status;
+import unittests.tele.hardware.OdometryServoTest;
 
 import static global.General.*;
-import static global.General.gamepad1;
 
 @SuppressWarnings("ALL")
 @TeleOp(name = "TeleUnitTester", group = "UnitTests")
@@ -30,6 +26,7 @@ public class TeleUnitTester extends Tele implements UnitTester{
     @Override
     public void createUnitTests(){
         // Framework
+        add(new OdometryServoTest());
 //        add(new AccessTest());
 //        add(new CommonTest());
 //        add(new CoordinatePlaneTest());
