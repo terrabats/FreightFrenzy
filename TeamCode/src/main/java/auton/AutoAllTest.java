@@ -39,7 +39,7 @@ public class AutoAllTest extends Auto {
 
         while (opModeIsActive() && !executor.finished()) {
             executor.update();
-            if (bot.lift.getElectronicsOfType(PMotor.class).get("li").getPower() == 0) {
+            if (bot.lift.getPower() == 0) {
                 bot.lift.move(0);
             }
             update(true);

@@ -44,6 +44,12 @@ public class Lift extends RobotPart {
     }
 
     /**
+     * Gets the current power of the motor
+     * @return power
+     */
+    public double getPower() { return li.getPower(); }
+
+    /**
      * Resets the lift encoder
      */
     public void resetEncoder(){li.resetPosition();}
