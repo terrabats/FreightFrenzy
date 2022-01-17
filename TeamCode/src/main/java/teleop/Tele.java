@@ -51,6 +51,7 @@ public abstract class Tele extends OpMode implements Common {
     @Override
     public final void init() {
         reference(this);
+        activate(FieldSide.UNKNOWN);
         initTele();
     }
 

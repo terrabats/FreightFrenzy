@@ -5,6 +5,7 @@ import util.condition.Expectation;
 import util.condition.Magnitude;
 
 import static global.General.fault;
+import static global.General.fieldSide;
 import static global.General.log;
 import static global.Constants.*;
 
@@ -17,6 +18,8 @@ public class Synchroniser {
      * Was the update method called in common?
      */
     private boolean wasUpdateCalled = false;
+
+    private boolean wasActivateCalled = false;
     /**
      * The number of updates since the start
      */
@@ -33,6 +36,14 @@ public class Synchroniser {
         numUpdates = 0;
         wasReadyCalled = true;
         lagTimer.reset();
+    }
+
+    public void logReady(){
+        if(!wasActivateCalled){
+            log.show("Ready");
+            log.showTelemetry();
+            wasActivateCalled = true;
+        }
     }
 
     /**

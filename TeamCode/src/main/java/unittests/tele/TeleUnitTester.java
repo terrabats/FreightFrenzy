@@ -95,5 +95,8 @@ public class TeleUnitTester extends Tele implements UnitTester{
         }
     }
 
-
+    @Override
+    public void stopTele() {
+        selector.reset();
+    }
 }
