@@ -6,7 +6,6 @@ import static global.General.*;
 import teleutil.button.Button;
 import teleutil.button.OnPressEventHandler;
 import unittests.UnitTest;
-import util.condition.Status;
 
 public class OdometryServoTest extends UnitTest {
     /**
@@ -15,29 +14,18 @@ public class OdometryServoTest extends UnitTest {
      * @link UnitTest
      */
 
+    // TODO COMMENT
 
     /**
      * Start method runs once
      */
     protected void start() {
-        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.tankDrive.up());
-        gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.tankDrive.down());
+        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.tankDrive.lower());
+        gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.tankDrive.raise());
     }
 
     protected void loop() {
-    }
-
-    /**
-     * Run by running start, setting the status to active, and then running loop
-     * This ensures that start runs once and then loop runs over and over
-     */
-    @Override
-    public void run(){
-        if(status.equals(Status.IDLE)){
-            start();
-            status = Status.ACTIVE;
-        }else{
-            loop();
-        }
+        log.show("Press B to lower odometry");
+        log.show("Press Y to raise odometry");
     }
 }

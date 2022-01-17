@@ -46,7 +46,7 @@ public class StageList {
      * @return part nonnull
      */
     private boolean usedPartsExist(){
-        for(RobotPart part: robotPartsUsed){
+        for(RobotPart part: getRobotPartsUsed()){
             if(part == null){ return false; }
         }
         return true;

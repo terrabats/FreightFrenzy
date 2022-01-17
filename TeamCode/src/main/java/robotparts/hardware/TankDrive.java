@@ -10,6 +10,7 @@ import math.Logistic;
 import robotparts.RobotPart;
 import robotparts.electronics.continuous.CMotor;
 import robotparts.electronics.positional.PServo;
+import util.User;
 
 import static global.General.*;
 
@@ -33,9 +34,13 @@ public class TankDrive extends RobotPart {
         fl = createCMotor("fl", DcMotorSimple.Direction.FORWARD);
         bl = createCMotor("bl", DcMotorSimple.Direction.FORWARD);
         re = createPServo("re", Servo.Direction.REVERSE, 0, 1);
-        re.addPosition("moveup", 1);
-        re.addPosition("movedown", 0.3);
-        re.setPosition("movedown");
+        re.addPosition("up", 1);
+        re.addPosition("down", 0.3);
+        if(mainUser.equals(User.AUTO)){
+            re.setPosition("down");
+        }else if(mainUser.equals(User.TELE)){
+            re.setPosition("up");
+        }
     }
 
     /**
@@ -50,10 +55,9 @@ public class TankDrive extends RobotPart {
         bl.setPower(f+t);
     }
 
-    public void moveup(String m){ re.setPosition(m);}
-    public void up(){ moveup("moveup");}
-    public void movedown(String n){ re.setPosition(n);}
-    public void down(){ movedown("movedown");}
+    public void moveOdometry(String m){ re.setPosition(m);}
+    public void raise(){ moveOdometry("up");}
+    public void lower(){ moveOdometry("down");}
 
     /**
      * Move the robot using logistic curves (to make it easier to use in teleop)
