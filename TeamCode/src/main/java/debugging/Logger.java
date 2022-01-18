@@ -97,8 +97,8 @@ public class Logger {
     public void showLogs(){
         for(Entry<String, Log> entry: logs.entrySet()){
             String name = entry.getValue().getName();
-            String arr = entry.getValue().getValues().toString();
-            android.util.Log.println(android.util.Log.ASSERT, name, arr);
+            String value = entry.getValue().getValues().toString();
+            android.util.Log.println(android.util.Log.ASSERT, name, value);
         }
         android.util.Log.println(android.util.Log.ASSERT, "Number of logs", Integer.toString(logNum));
     }

@@ -14,6 +14,7 @@ import elements.FieldSide;
 import teleutil.Selector;
 import teleutil.button.Button;
 import unittests.UnitTester;
+import unittests.auto.framework.EmptyTest;
 import unittests.auto.framework.MoveTest;
 import unittests.tele.TeleUnitTest;
 import util.condition.Expectation;
@@ -42,7 +43,7 @@ public class AutoUnitTester extends Auto implements UnitTester {
     @Override
     public void createUnitTests(){
         // Framework
-        add(new MoveTest());
+        add(new EmptyTest());
     }
 
     @Override
@@ -61,6 +62,7 @@ public class AutoUnitTester extends Auto implements UnitTester {
                 runCurrentTest(testingMode);
             }else{
                 log.show("Done With All Tests");
+                log.showTelemetry();
             }
         }
     }

@@ -18,9 +18,8 @@ public class AutoUnitTest extends UnitTest {
      * Run runs once after start
      * NOTE: This is equivalent to loop in TeleUnitTest except it runs once
      */
-    protected void run(){
+    protected void run(){}
 
-    }
     @Override
     public final void test() {
         if(status.equals(Status.IDLE)){
@@ -28,7 +27,6 @@ public class AutoUnitTest extends UnitTest {
             status = Status.ACTIVE;
         }
     }
-    // TODO TEST
-    // Test if this really works?
+
     protected final boolean opModeIsActive(){return linearOpMode.opModeIsActive();}
 }
