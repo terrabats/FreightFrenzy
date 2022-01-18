@@ -2,6 +2,7 @@ package debugging;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map.*;
 import java.util.Objects;
 
 import teleutil.Selector;
@@ -94,8 +95,10 @@ public class Logger {
      * To see the logs go to logcat and then the assert tab
      */
     public void showLogs(){
-        for(String key: logs.keySet()){
-            android.util.Log.println(android.util.Log.ASSERT, Objects.requireNonNull(logs.get(key)).getName(), String.valueOf(Objects.requireNonNull(logs.get(key)).getValues()));
+        for(Entry<String, Log> entry: logs.entrySet()){
+            String name = entry.getValue().getName();
+            String arr = entry.getValue().getValues().toString();
+            android.util.Log.println(android.util.Log.ASSERT, name, arr);
         }
         android.util.Log.println(android.util.Log.ASSERT, "Number of logs", Integer.toString(logNum));
     }

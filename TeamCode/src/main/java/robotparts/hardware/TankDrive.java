@@ -35,7 +35,7 @@ public class TankDrive extends RobotPart {
         bl = createCMotor("bl", DcMotorSimple.Direction.FORWARD);
         re = createPServo("re", Servo.Direction.REVERSE, 0, 1);
         re.addPosition("up", 1);
-        re.addPosition("down", 0.3);
+        re.addPosition("down", 0.2);
         if(mainUser.equals(User.AUTO)){
             re.setPosition("down");
         }else if(mainUser.equals(User.TELE)){

@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import unittests.UnitTest;
 import unittests.tele.TeleUnitTest;
+import util.condition.Status;
 
 public class AutoUnitTest extends UnitTest {
     public static LinearOpMode linearOpMode;
@@ -17,7 +18,16 @@ public class AutoUnitTest extends UnitTest {
      * Run runs once after start
      * NOTE: This is equivalent to loop in TeleUnitTest except it runs once
      */
-    public void run() {}
+    protected void run(){
+
+    }
+    @Override
+    public final void test() {
+        if(status.equals(Status.IDLE)){
+            run();
+            status = Status.ACTIVE;
+        }
+    }
     // TODO TEST
     // Test if this really works?
     protected final boolean opModeIsActive(){return linearOpMode.opModeIsActive();}

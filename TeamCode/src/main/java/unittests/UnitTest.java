@@ -21,7 +21,7 @@ public class UnitTest {
      * @link Tele
      */
     public void init(){}
-    public void run(){}
+    public void test(){}
     public void stop(){}
 
 

@@ -14,7 +14,7 @@ public class PIDTest extends AutoUnitTest {
     PID movePID = new PID(0.01,0,0);
 
     @Override
-    public void run() {
+    protected void run() {
         log.show("Coefficients (1,0,0)", Arrays.toString(movePID.getCoefficients()));
         log.showTelemetry();
 
@@ -31,7 +31,7 @@ public class PIDTest extends AutoUnitTest {
             log.show("Error", movePID.getError());
             log.show("Output", movePID.getOutput());
             log.showTelemetry();
-            bot.tankDrive.move(movePID.getOutput(),0);
+//            bot.tankDrive.move(movePID.getOutput(),0);
         }
 
         movePID.reset();

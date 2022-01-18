@@ -26,7 +26,7 @@ public class TeleUnitTest extends UnitTest {
      * This ensures that start runs once and then loop runs over and over
      */
     @Override
-    public void run(){
+    public final void test(){
         if(status.equals(Status.IDLE)){
             start();
             status = Status.ACTIVE;

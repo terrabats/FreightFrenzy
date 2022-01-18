@@ -3,10 +3,8 @@ package unittests;
 import teleutil.Selector;
 
 import teleutil.button.Button;
-import unittests.tele.TeleUnitTest;
 import util.condition.Expectation;
 import util.condition.Magnitude;
-import util.condition.Status;
 import util.store.Item;
 
 import static global.General.*;
@@ -114,7 +112,7 @@ public interface UnitTester {
         if(testingMode.equals(TestingMode.SELECTION) && selector.isInActive()){
             log.list(selector.getItemClassNames(), selector.getCurrentIndex());
         }else if(selector.isActive()){
-            selector.runToCurrentItem(UnitTest::run);
+            selector.runToCurrentItem(UnitTest::test);
             log.showAndRecord("Testing" ,  getCurrentTestName());
         }
     }
