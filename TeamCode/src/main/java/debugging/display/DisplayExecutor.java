@@ -24,19 +24,21 @@ public class DisplayExecutor extends JPanel {
     private final int xScale = 5;
     private final int yScale = 5;
 
-    private MovementExecutor movementExecutor;
+    private MovementExecutor executor;
 
     public void genTestPlane(){
-        movementExecutor = new MovementExecutor(0, 0, 0, AngleType.RADIANS);
-        movementExecutor.addSetpoint(70, 30, 0, AngleType.RADIANS);
-        movementExecutor.addSetpoint(-50, 30, PI, AngleType.RADIANS);
-        movementExecutor.addSetpoint(-65, 30, PI, AngleType.RADIANS);
-        movementExecutor.complete();
+        executor = new MovementExecutor(0, 0, PI/2, AngleType.RADIANS);
+        executor.addSetpoint(70, 29, PI/2, AngleType.RADIANS);
+        executor.addSetpoint(-50, 40, -PI/2, AngleType.RADIANS);
+        executor.addSetpoint(-65, 40, -PI/2, AngleType.RADIANS);
+//        executor.addSetpoint(-60, 40, -3 * PI/4, AngleType.RADIANS);
+        executor.addSetpoint(-75, 35, -PI/2, AngleType.RADIANS);
+        executor.complete();
     }
 
     @Override
     public void paintComponent(Graphics g) {
-        for (ArrayList<Pose> poses : movementExecutor.paths) {
+        for (ArrayList<Pose> poses : executor.paths) {
             for (Pose p : poses) {
                 g.fillOval(pX(p.p.x), pY(p.p.y), 5, 5);
                 System.out.println(p.p.x + " " + p.p.y + " " + p.ang);

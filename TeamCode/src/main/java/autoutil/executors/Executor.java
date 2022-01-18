@@ -21,7 +21,7 @@ public class Executor extends MovementExecutor {
 
     //region CONSTRUCTORS
     public Executor() {
-        super(0, 0, 0, AngleType.RADIANS);
+        super(0, 0, PI/2, AngleType.RADIANS);
         fillBoolArrs();
     }
 

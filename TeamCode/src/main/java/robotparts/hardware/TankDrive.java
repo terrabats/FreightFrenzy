@@ -3,7 +3,9 @@ package robotparts.hardware;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import automodules.stage.Initial;
 import automodules.stage.Main;
+import automodules.stage.Stage;
 import automodules.stage.Stop;
 import elements.FieldSide;
 import math.Logistic;
@@ -70,36 +72,8 @@ public class TankDrive extends RobotPart {
         move(movementCurveForward.fodd(f), movementCurveTurn.fodd(t));
     }
 
-    private double stAng = 0;
-    private double endAng = 0;
-    private double moveForTime = 0;
-    private final double turnError = 1;
-
-    public void setAutonNewSegment(double changeAng, double forTime) {
-        stAng = bot.gyroSensors.getRightHeadingDeg();
-        endAng = stAng - changeAng;
-        moveForTime = forTime;
-    }
-
-    private double getAutonTurnError() {
-        return bot.gyroSensors.getRightHeadingDeg() - endAng;
-    }
-
-    public boolean moveAutonDone(double f, double t, double curTime) {
-        if (fieldSide == FieldSide.BLUE) {
-            t *= -1;
-        }
-        if (Math.abs(f) > 0) {
-            // move forward/backward
-            t = getAutonTurnError() * 0.01;
-            move(f, t);
-            return curTime * 1000 >= moveForTime;
-        } else {
-            // turn
-            double err = getAutonTurnError();
-            move(0, t * Math.min(1, err/15));
-            return moveForTime == 0 ? (Math.abs(err) < turnError) : (curTime >= moveForTime);
-        }
+    public Initial initial() {
+        return new Initial(this::raise);
     }
 
     public Main main(double forward, double turn){
@@ -108,5 +82,15 @@ public class TankDrive extends RobotPart {
 
     public Stop stop(){
         return new Stop(() -> move(0,0));
+    }
+
+    public Stage moveTime(double forward, double turn, double time) {
+        return new Stage(
+            usePart(),
+            initial(),
+            main(forward, turn),
+            exitTime(time),
+            stop()
+        );
     }
 }

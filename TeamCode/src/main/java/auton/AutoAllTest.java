@@ -23,13 +23,15 @@ public class AutoAllTest extends Auto {
     @Override
     public void runAuto() {
         Executor executor = new Executor();
-        executor.addSetpoint(70, 29, 0, AngleType.RADIANS);
+        executor.addSetpoint(70, 29, PI/2, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.SpinCarousel);
         executor.addSynchronizedRF(autoModules.Intake);
-        executor.addSetpoint(-50, 40, PI, AngleType.RADIANS);
-        executor.addSetpoint(-65, 40, PI, AngleType.RADIANS);
+        executor.addSetpoint(-50, 40, -PI/2, AngleType.RADIANS);
+        executor.addSetpoint(-65, 40, -PI/2, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.Backward);
         executor.addUnsynchronizedRF(autoModules.Forward);
+        executor.addSetpoint(-75, 35, -PI/2, AngleType.RADIANS);
+        executor.addUnsynchronizedRF(autoModules.MoveForwardTime(3));
 
         executor.complete();
 
@@ -46,21 +48,21 @@ public class AutoAllTest extends Auto {
             }
             update(true);
         }
-        bot.tankDrive.raise();
-        moveTime(-0.3, 0.0, 1);
-        moveTime(0.0, -0.5, 0.8);
-        moveTime(0.3, 0.0, 1);
-        moveTime(0.0, 0.5, 0.7);
-        moveTime(1, 0.0, 1.3);
-
-        bot.tankDrive.move(0, 0);
+//        bot.tankDrive.raise();
+//        moveTime(-0.3, 0.0, 1);
+//        moveTime(0.0, -0.5, 0.8);
+//        moveTime(0.3, 0.0, 1);
+//        moveTime(0.0, 0.5, 0.7);
+//        moveTime(1, 0.0, 1.3);
+//
+//        bot.tankDrive.move(0, 0);
     }
 
-    private void moveTime(double f, double t, double time){
-        timer.reset();
-        while (opModeIsActive() && timer.seconds() < time) {
-            bot.lift.move(0);
-            bot.tankDrive.move(f,t);
-        }
-    }
+//    private void moveTime(double f, double t, double time){
+//        timer.reset();
+//        while (opModeIsActive() && timer.seconds() < time) {
+//            bot.lift.move(0);
+//            bot.tankDrive.move(f,t);
+//        }
+//    }
 }

@@ -30,4 +30,26 @@ public class AutoModules{
     public StageList SpinCarousel = new StageList(bot.carousel).define(
         bot.carousel.spin(3)
     );
+
+    public StageList MoveForwardTime(double time) {
+        return MoveTime(0.5, 0, time);
+    }
+
+    public StageList MoveBackwardTime(double time) {
+        return MoveTime(-0.5, 0, time);
+    }
+
+    public StageList MoveCWTime(double time) {
+        return MoveTime(0, 0.5, time);
+    }
+
+    public StageList MoveCCWTime(double time) {
+        return MoveTime(0, -0.5, time);
+    }
+
+    public StageList MoveTime(double forward, double turn, double time) {
+        return new StageList(bot.tankDrive).define(
+            bot.tankDrive.moveTime(forward, turn, time)
+        );
+    }
 }

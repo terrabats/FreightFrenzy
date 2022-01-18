@@ -34,14 +34,18 @@ public class MovementExecutor {
 
     public MovementExecutor(double startX, double startY, double startH, AngleType angleType) {
         arcGenerators.add(new ArcGenerator());
-        this.startH = 0;
-        addWaypoint(startX, startY, PI/2, AngleType.RADIANS);
+        this.startH = startH * (angleType == AngleType.DEGREES ? PI/180 : 1);
+        addWaypoint(startX, startY, 0, AngleType.RADIANS);
     }
 
     public void addWaypoint(double x, double y, double h, AngleType angleType) {
-        h *= angleType == AngleType.DEGREES ? (Math.PI/180) : 1;
-        if ((h > PI || h < 0) && h != 3 * PI/2 && h != -PI/2) { h += PI; }
-        arcGenerators.get(arcGenerators.size() - 1).moveTo(x, y, startH + h);
+        h *= -1;
+        h *= angleType == AngleType.DEGREES ? (PI/180) : 1;
+        h += startH;
+        while (h > 2 * PI) h -= 2 * PI;
+        while (h < 0) h += 2 * PI;
+        if ((h > PI || h < 0) && h != 3 * PI/2) { h += PI; }
+        arcGenerators.get(arcGenerators.size() - 1).moveTo(x, y, h);
     }
 
     public void addSetpoint(double x, double y, double h, AngleType angleType) {
