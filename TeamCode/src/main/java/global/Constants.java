@@ -29,11 +29,11 @@ public class Constants {
     /**
      * Rest power for the lift to prevent gravity from bringing it down
      */
-    public static final double LIFT_REST_POW = 0.06;
+    public static final double LIFT_REST_POW = 0.07;
     /**
      * Turret Angles for the robot to move (note that 0 is facing the front of the robot)
      */
-    public static final double BLUE_TURRET_TARGET_TELE = 135;
+    public static final double BLUE_TURRET_TARGET_TELE = 100;
     public static final double RED_TURRET_ANGLE_TELE = -BLUE_TURRET_TARGET_TELE;
     public static final double BLUE_TURRET_TARGET_AUTO = 90;
     public static final double RED_TURRET_ANGLE_AUTO = -BLUE_TURRET_TARGET_AUTO;

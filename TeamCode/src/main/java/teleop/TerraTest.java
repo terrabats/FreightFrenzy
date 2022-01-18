@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import elements.FieldSide;
 import static global.General.bot;
 
-@TeleOp(name = "TerraTest", group = "TeleOp")
+//@TeleOp(name = "TerraTest", group = "TeleOp")
 public class TerraTest extends Tele{
     @Override
     public void initTele() {

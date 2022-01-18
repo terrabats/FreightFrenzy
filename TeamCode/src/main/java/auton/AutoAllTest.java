@@ -13,6 +13,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous(name="AutoAllTest")
 public class AutoAllTest extends Auto {
+    Timer timer = new Timer();
 
     @Override
     public void initAuto() {
@@ -35,7 +36,7 @@ public class AutoAllTest extends Auto {
         waitForStart();
 
         ready();
-
+        bot.outtake.lockCube();
         executor.resumeMove();
 
         while (opModeIsActive() && !executor.finished()) {
@@ -46,13 +47,20 @@ public class AutoAllTest extends Auto {
             update(true);
         }
         bot.tankDrive.raise();
-        Timer timer = new Timer();
-        timer.reset();
-        while (opModeIsActive() && timer.seconds() < 1) {
-            // TODO NEW
-            // ADD PARK HERE
-            bot.tankDrive.move(0.2,0.0);
-        }
+        moveTime(-0.3, 0.0, 1);
+        moveTime(0.0, -0.5, 0.8);
+        moveTime(0.3, 0.0, 1);
+        moveTime(0.0, 0.5, 0.7);
+        moveTime(1, 0.0, 1.3);
+
         bot.tankDrive.move(0, 0);
+    }
+
+    private void moveTime(double f, double t, double time){
+        timer.reset();
+        while (opModeIsActive() && timer.seconds() < time) {
+            bot.lift.move(0);
+            bot.tankDrive.move(f,t);
+        }
     }
 }
