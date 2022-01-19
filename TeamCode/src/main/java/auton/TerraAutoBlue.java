@@ -11,8 +11,8 @@ import static global.General.*;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous(name="AutoAllTest")
-public class AutoAllTest extends Auto {
+@Autonomous(name="TerraAutoBlue")
+public class TerraAutoBlue extends Auto {
     Timer timer = new Timer();
 
     @Override
@@ -30,8 +30,8 @@ public class AutoAllTest extends Auto {
         executor.addSetpoint(-65, 40, -PI/2, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.Backward);
         executor.addUnsynchronizedRF(autoModules.Forward);
-        executor.addSetpoint(-75, 35, -PI/2, AngleType.RADIANS);
-        executor.addUnsynchronizedRF(autoModules.MoveForwardTime(3));
+//        executor.addSetpoint(-75, 35, -PI/2, AngleType.RADIANS);
+//        executor.addUnsynchronizedRF(autoModules.MoveForwardTime(3));
 
         executor.complete();
 
@@ -48,21 +48,20 @@ public class AutoAllTest extends Auto {
             }
             update(true);
         }
-//        bot.tankDrive.raise();
-//        moveTime(-0.3, 0.0, 1);
-//        moveTime(0.0, -0.5, 0.8);
-//        moveTime(0.3, 0.0, 1);
-//        moveTime(0.0, 0.5, 0.7);
-//        moveTime(1, 0.0, 1.3);
-//
-//        bot.tankDrive.move(0, 0);
+        bot.tankDrive.raise();
+        moveTime(-0.3, 0.0, 1);
+        moveTime(0.0, -0.5, 0.8);
+        moveTime(0.3, 0.0, 1);
+        moveTime(0.0, 0.5, 0.7);
+        moveTime(1, 0.0, 1.3);
+        bot.tankDrive.move(0, 0);
     }
 
-//    private void moveTime(double f, double t, double time){
-//        timer.reset();
-//        while (opModeIsActive() && timer.seconds() < time) {
-//            bot.lift.move(0);
-//            bot.tankDrive.move(f,t);
-//        }
-//    }
+    private void moveTime(double f, double t, double time){
+        timer.reset();
+        while (opModeIsActive() && timer.seconds() < time) {
+            bot.lift.move(0);
+            bot.tankDrive.move(f,t);
+        }
+    }
 }
