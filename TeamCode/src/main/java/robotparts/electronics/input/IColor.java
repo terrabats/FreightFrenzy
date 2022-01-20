@@ -3,7 +3,10 @@ package robotparts.electronics.input;
 import static global.General.hardwareMap;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.robotcore.hardware.ColorRangeSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 import robotparts.Electronic;
 
@@ -13,8 +16,8 @@ import robotparts.Electronic;
 
 public class IColor extends Electronic {
 
-    private final ColorSensor colorSensor;
-    public IColor(ColorSensor colorSensor){
+    private final ColorRangeSensor colorSensor;
+    public IColor(ColorRangeSensor colorSensor){
         this.colorSensor = colorSensor;
     }
 
@@ -27,5 +30,6 @@ public class IColor extends Electronic {
     public int getBlue(){
         return colorSensor.blue();
     }
+    public double getDis() { return colorSensor.getDistance(DistanceUnit.CM); }
 
 }

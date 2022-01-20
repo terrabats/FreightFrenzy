@@ -19,10 +19,11 @@ public class AutoModules{
     );
 
     public StageList IntakeTele = new StageList(bot.lift, bot.intake, bot.outtake).define(
+        bot.turret.turretEncoder(0.6, 0),
+        waitStage(0.3),
         bot.lift.liftEncoder(0.4, 0),
         bot.intake.intakeUntilFreightLiftDown(1),
-        bot.outtake.outtakeLock(1),
-        bot.lift.liftEncoder(1, 15)
+        bot.outtake.outtakeLock(1)
     );
 
     public StageList Backward = new StageList(bot.lift, bot.turret).define(
@@ -69,7 +70,10 @@ public class AutoModules{
 
     public StageList Wait(double time) {
         return new StageList().define(
-            new Stage(RobotPart.exitTime(time))
+            waitStage(time)
         );
+    }
+    public Stage waitStage(double time) {
+        return new Stage(RobotPart.exitTime(time));
     }
 }

@@ -26,6 +26,11 @@ public class Turret extends RobotPart {
      */
     private PMotor tr;
 
+    private double targetBlueTele = Constants.BLUE_TURRET_TARGET_TELE_1;
+    private double targetRedTele = Constants.RED_TURRET_TARGET_TELE_1;
+
+    private int freightPlaced = 0;
+
     /**
      * Create the turret motor and reset it (done internally)
      */
@@ -81,21 +86,41 @@ public class Turret extends RobotPart {
         if(fieldSide != null) {
             if(mainUser.equals(User.TELE)) {
                 if (fieldSide.equals(FieldSide.BLUE)) {
-                    return Constants.BLUE_TURRET_TARGET_TELE;
+                    return targetBlueTele;
                 } else if (fieldSide.equals(FieldSide.RED)) {
-                    return Constants.RED_TURRET_ANGLE_TELE;
+                    return targetRedTele;
                 }
             }else if(mainUser.equals(User.AUTO)){
                 if (fieldSide.equals(FieldSide.BLUE)) {
                     return Constants.BLUE_TURRET_TARGET_AUTO;
                 } else if (fieldSide.equals(FieldSide.RED)) {
-                    return Constants.RED_TURRET_ANGLE_AUTO;
+                    return Constants.RED_TURRET_TARGET_AUTO;
                 }
             }
         }else{
             fault.warn("Fieldside was not defined so target pos is not defined", Expectation.SURPRISING, Magnitude.MAJOR);
         }
         return 0;
+    }
+
+    public void swapTargetsTeleIfReady() {
+        freightPlaced++;
+        if (freightPlaced == 5) {
+            swapTargetsTele();
+        }
+    }
+
+    public void swapTargetsTele() {
+        if (targetBlueTele == Constants.BLUE_TURRET_TARGET_TELE_1) {
+            targetBlueTele = Constants.BLUE_TURRET_TARGET_TELE_2;
+        } else {
+            targetBlueTele = Constants.BLUE_TURRET_TARGET_TELE_1;
+        }
+        if (targetRedTele == Constants.RED_TURRET_TARGET_TELE_1) {
+            targetRedTele = Constants.RED_TURRET_TARGET_TELE_2;
+        } else {
+            targetRedTele = Constants.RED_TURRET_TARGET_TELE_1;
+        }
     }
 
     /**
@@ -115,6 +140,7 @@ public class Turret extends RobotPart {
     public Exit exitReachedTarget(){return new Exit(this::hasReachedTarget);}
 
     public Stop stop(){return new Stop(()-> bot.turret.move(0));}
+    public Stop swapTurretTargetsTele() { return new Stop(this::swapTargetsTeleIfReady); }
 
     public Stop stopEncoder(){return new Stop(this::stopAndResetMode);}
 
@@ -133,6 +159,7 @@ public class Turret extends RobotPart {
             main(power),
             exitReachedTarget(),
             stopEncoder(),
+            swapTurretTargetsTele(),
             returnPart()
     );}
 }

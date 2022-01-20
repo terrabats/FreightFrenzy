@@ -4,6 +4,7 @@ import automodules.stage.Exit;
 import elements.GameElement;
 import robotparts.RobotPart;
 import robotparts.electronics.input.IColor;
+import static global.General.*;
 
 
 public class ColorSensors extends RobotPart {
@@ -62,7 +63,11 @@ public class ColorSensors extends RobotPart {
      * Is there a freight at all?
      * @return is freight
      */
-    public boolean isFreight(){ GameElement element = getFreightType(); return element.equals(GameElement.BALL) || element.equals(GameElement.CUBE); }
+    public boolean isFreight(){
+        GameElement element = getFreightType();
+        boolean hasFreightNear = element.equals(GameElement.BALL) || element.equals(GameElement.CUBE);
+        return hasFreightNear && cso.getDis() < 3;
+    }
     public Exit exitFreight(){return new Exit(this::isFreight);}
 
 }

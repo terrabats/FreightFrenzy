@@ -13,11 +13,11 @@ public class DistanceSensors extends RobotPart {
 
     @Override
     public void init() {
-        dsl = createDistanceSensor("dsl");
-        dsr = createDistanceSensor("dsr");
-        dsfl = createDistanceSensor("dsfl");
-        dsfr = createDistanceSensor("dsfr");
-        dso = createDistanceSensor("cso");
+//        dsl = createDistanceSensor("dsl");
+//        dsr = createDistanceSensor("dsr");
+//        dsfl = createDistanceSensor("dsfl");
+//        dsfr = createDistanceSensor("dsfr");
+//        dso = createDistanceSensor("cso");
     }
 
     /**

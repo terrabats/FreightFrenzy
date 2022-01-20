@@ -50,7 +50,6 @@ public class TerraOpBlue extends Tele{
 
         gph1.link(Button.A, OnPressEventHandler.class, () -> {
             bot.addAutoModule(autoModules.IntakeTele);
-            bot.addAutoModule(autoModules.Wait(1));
             bot.addAutoModule(autoModules.Backward);
         });
         gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Backward));

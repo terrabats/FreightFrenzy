@@ -2,10 +2,13 @@ package robotparts;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorRangeSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
@@ -102,13 +105,13 @@ public class RobotPart {
     }
 
     protected IDistance createDistanceSensor(String name){
-        IDistance distanceSensor = new IDistance(hardwareMap.get(ModernRoboticsI2cRangeSensor.class, name));
+        IDistance distanceSensor = new IDistance(hardwareMap.get(DistanceSensor.class, name));
         addElectronic(name, distanceSensor);
         return distanceSensor;
     }
 
     protected IColor createColorSensor(String name){
-        IColor colorSensor = new IColor(hardwareMap.get(ColorSensor.class, name));
+        IColor colorSensor = new IColor(hardwareMap.get(ColorRangeSensor.class, name));
         addElectronic(name, colorSensor);
         return colorSensor;
     }
