@@ -216,7 +216,7 @@ public class RobotPart {
      * @param s
      * @return exit
      */
-    public Exit exitTime(double s){return new Exit(() -> bot.rfsHandler.timer.seconds() > s);}
+    public static Exit exitTime(double s){return new Exit(() -> bot.rfsHandler.timer.seconds() > s);}
 
     /**
      * Exit always

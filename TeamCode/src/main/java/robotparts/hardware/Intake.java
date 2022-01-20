@@ -57,10 +57,21 @@ public class Intake extends RobotPart {
      * @return stage
      */
     public Stage intakeUntilFreight(double power) { return new Stage(
-                usePart(),
-                main(power),
-                bot.colorSensors.exitFreight(),
-                stop(),
-                returnPart()
+        usePart(),
+        main(power),
+        bot.colorSensors.exitFreight(),
+        stop(),
+        returnPart()
+    );}
+
+    public Stage intakeUntilFreightLiftDown(double power) { return new Stage(
+            usePart(),
+            bot.lift.usePart(),
+            bot.lift.main(-0.2),
+            main(power),
+            bot.colorSensors.exitFreight(),
+            stop(),
+            bot.lift.returnPart(),
+            returnPart()
     );}
 }

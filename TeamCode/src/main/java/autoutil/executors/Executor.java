@@ -59,6 +59,10 @@ public class Executor extends MovementExecutor {
         unSyncedSegs.get(curPath).add(() -> bot.addAutoModule(rf));
     }
 
+    public void addPause(double time) {
+        addUnsynchronizedRF(autoModules.Wait(time));
+    }
+
     public boolean finished() {
         return finishedMove() && !unSyncedSegsExist[curPath] && !syncedSegsExist[curPath]
                 && bot.rfsHandler.rfsQueue.isEmpty();

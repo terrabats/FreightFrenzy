@@ -2,7 +2,10 @@ package automodules;
 
 import static global.General.*;
 
+import automodules.stage.Exit;
+import automodules.stage.Stage;
 import elements.GameElement;
+import robotparts.RobotPart;
 
 public class AutoModules{
     /**
@@ -11,6 +14,13 @@ public class AutoModules{
     public StageList Intake = new StageList(bot.lift, bot.intake, bot.outtake).define(
         bot.lift.liftEncoder(0.4, 0),
         bot.intake.intakeUntilFreight(1),
+        bot.outtake.outtakeLock(1),
+        bot.lift.liftEncoder(1, 15)
+    );
+
+    public StageList IntakeTele = new StageList(bot.lift, bot.intake, bot.outtake).define(
+        bot.lift.liftEncoder(0.4, 0),
+        bot.intake.intakeUntilFreightLiftDown(1),
         bot.outtake.outtakeLock(1),
         bot.lift.liftEncoder(1, 15)
     );
@@ -40,7 +50,7 @@ public class AutoModules{
     }
 
     public StageList MoveCWTime(double time) {
-        return MoveTime(0, 0.5, time);
+        return MoveTime(0, 0.4, time);
     }
 
     public StageList MoveCCWTime(double time) {
@@ -50,6 +60,16 @@ public class AutoModules{
     public StageList MoveTime(double forward, double turn, double time) {
         return new StageList(bot.tankDrive).define(
             bot.tankDrive.moveTime(forward, turn, time)
+        );
+    }
+
+    public StageList LiftOdometry = new StageList(bot.tankDrive).define(
+        bot.tankDrive.liftOdo()
+    );
+
+    public StageList Wait(double time) {
+        return new StageList().define(
+            new Stage(RobotPart.exitTime(time))
         );
     }
 }

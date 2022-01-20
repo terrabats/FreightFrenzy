@@ -35,6 +35,6 @@ public class Constants {
      */
     public static final double BLUE_TURRET_TARGET_TELE = 100;
     public static final double RED_TURRET_ANGLE_TELE = -BLUE_TURRET_TARGET_TELE;
-    public static final double BLUE_TURRET_TARGET_AUTO = 90;
+    public static final double BLUE_TURRET_TARGET_AUTO = 85;
     public static final double RED_TURRET_ANGLE_AUTO = -BLUE_TURRET_TARGET_AUTO;
 }

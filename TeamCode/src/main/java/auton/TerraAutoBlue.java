@@ -23,15 +23,20 @@ public class TerraAutoBlue extends Auto {
     @Override
     public void runAuto() {
         Executor executor = new Executor();
-        executor.addSetpoint(70, 29, PI/2, AngleType.RADIANS);
+        executor.addSetpoint(70, 30, PI/2, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.SpinCarousel);
         executor.addSynchronizedRF(autoModules.Intake);
-        executor.addSetpoint(-50, 40, -PI/2, AngleType.RADIANS);
-        executor.addSetpoint(-65, 40, -PI/2, AngleType.RADIANS);
+        executor.addSetpoint(-50, 43, -PI/2, AngleType.RADIANS);
+        executor.addSetpoint(-65, 43, -PI/2, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.Backward);
+        executor.addPause(2);
         executor.addUnsynchronizedRF(autoModules.Forward);
-//        executor.addSetpoint(-75, 35, -PI/2, AngleType.RADIANS);
-//        executor.addUnsynchronizedRF(autoModules.MoveForwardTime(3));
+        executor.addSetpoint(-40, 43, -PI/2, AngleType.RADIANS);
+        executor.addSetpoint(-70, 15, -PI/2, AngleType.RADIANS);
+        executor.addSetpoint(-90, 15, -PI/2, AngleType.RADIANS);
+        executor.addUnsynchronizedRF(autoModules.LiftOdometry);
+        executor.addUnsynchronizedRF(autoModules.MoveCWTime(0.5));
+        executor.addUnsynchronizedRF(autoModules.MoveForwardTime(2));
 
         executor.complete();
 

@@ -72,8 +72,8 @@ public class TankDrive extends RobotPart {
         move(movementCurveForward.fodd(f), movementCurveTurn.fodd(t));
     }
 
-    public Initial initial() {
-        return new Initial(this::raise);
+    public Main liftOdoMain() {
+        return new Main(this::raise);
     }
 
     public Main main(double forward, double turn){
@@ -84,10 +84,16 @@ public class TankDrive extends RobotPart {
         return new Stop(() -> move(0,0));
     }
 
+    public Stage liftOdo() {
+        return new Stage(
+            liftOdoMain(),
+            exitAlways()
+        );
+    }
+
     public Stage moveTime(double forward, double turn, double time) {
         return new Stage(
             usePart(),
-            initial(),
             main(forward, turn),
             exitTime(time),
             stop()
