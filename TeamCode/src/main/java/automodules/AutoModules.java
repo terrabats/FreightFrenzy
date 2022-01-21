@@ -11,24 +11,24 @@ public class AutoModules{
     /**
      * Define automodules here as a stage list
      */
-    public StageList Intake = new StageList(bot.lift, bot.intake, bot.outtake).define(
+    public StageList IntakeAuto = new StageList(bot.lift, bot.intake, bot.outtake).define(
         bot.lift.liftEncoder(0.4, 0),
+        //RobotPart.pause(0.3),
         bot.intake.intakeUntilFreight(1),
-        bot.outtake.outtakeLock(1),
-        bot.lift.liftEncoder(1, 15)
+        bot.outtake.outtakeLock(1)
+//        bot.lift.liftEncoder(1, 15)
     );
 
     public StageList IntakeTele = new StageList(bot.lift, bot.intake, bot.outtake).define(
         bot.turret.turretEncoder(0.6, 0),
-        waitStage(0.3),
         bot.lift.liftEncoder(0.4, 0),
         bot.intake.intakeUntilFreightLiftDown(1),
         bot.outtake.outtakeLock(1)
     );
 
     public StageList Backward = new StageList(bot.lift, bot.turret).define(
-        bot.lift.liftEncoder(1, 48),
-        bot.turret.turretEncoderTarget(1)
+//        bot.lift.liftEncoder(1, 48),
+//        bot.turret.turretEncoderTarget(1)
     );
 
     public StageList Forward = new StageList(bot.outtake, bot.turret, bot.lift).define(
@@ -68,12 +68,9 @@ public class AutoModules{
         bot.tankDrive.liftOdo()
     );
 
-    public StageList Wait(double time) {
+    public StageList pause(double time) {
         return new StageList().define(
-            waitStage(time)
+            RobotPart.pause(time)
         );
-    }
-    public Stage waitStage(double time) {
-        return new Stage(RobotPart.exitTime(time));
     }
 }

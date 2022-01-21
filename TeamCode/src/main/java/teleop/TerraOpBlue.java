@@ -33,8 +33,18 @@ import static global.General.log;
 @TeleOp(name = "TerraOpBlue", group = "TeleOp")
 public class TerraOpBlue extends Tele{
 
-    // TODO TEST
-    // SOme changes were made see if this still works
+    // Target
+
+    // Auton 46 points
+    //    Carousel - 10 points
+    //    Alliance hub - 26 points
+    //    Park - 10 points
+    // Tele 64 points
+    //    Shared hub - 15s - 4 points
+    //    Alliance hub - 75s - 8s/cycle - 54 points - 6 points/cycle - 9 cycles
+    // Endgame 80 points
+    //    Ducks - 60 points
+    //    Tipped shared hub - 20 points
 
     @Override
     public void initTele() {

@@ -30,6 +30,6 @@ public class IColor extends Electronic {
     public int getBlue(){
         return colorSensor.blue();
     }
-    public double getDis() { return colorSensor.getDistance(DistanceUnit.CM); }
+    public double getDistance() { return colorSensor.getDistance(DistanceUnit.CM); }
 
 }

@@ -17,6 +17,7 @@ import java.util.TreeMap;
 
 import automodules.stage.Exit;
 import automodules.stage.Initial;
+import automodules.stage.Stage;
 import automodules.stage.Stop;
 import robot.RobotFramework;
 import robotparts.electronics.continuous.CMotor;
@@ -225,13 +226,13 @@ public class RobotPart {
      * Exit always
      * @return exit
      */
-    public Exit exitAlways(){return new Exit(() -> true);}
+    public static Exit exitAlways(){return new Exit(() -> true);}
 
     /**
      * Exit never
      * @return exit
      */
-    public Exit exitNever(){return new Exit(() -> false);}
+    public static Exit exitNever(){return new Exit(() -> false);}
 
     /**
      * Use this robot part
@@ -246,4 +247,10 @@ public class RobotPart {
      * @return stop
      */
     public Stop returnPart(){return new Stop(() -> switchUser(mainUser));}
+
+
+
+    public static Stage pause(double time){
+        return new Stage(exitTime(time));
+    }
 }

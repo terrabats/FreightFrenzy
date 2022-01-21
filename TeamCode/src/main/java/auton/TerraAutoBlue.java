@@ -3,7 +3,6 @@ package auton;
 import autoutil.executors.Executor;
 import elements.FieldSide;
 import geometry.circles.AngleType;
-import robotparts.electronics.positional.PMotor;
 import util.Timer;
 
 import static java.lang.Math.*;
@@ -25,7 +24,7 @@ public class TerraAutoBlue extends Auto {
         Executor executor = new Executor();
         executor.addSetpoint(70, 30, PI/2, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.SpinCarousel);
-        executor.addSynchronizedRF(autoModules.Intake);
+        executor.addSynchronizedRF(autoModules.IntakeAuto);
         executor.addSetpoint(-50, 43, -PI/2, AngleType.RADIANS);
         executor.addSetpoint(-65, 43, -PI/2, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.Backward);

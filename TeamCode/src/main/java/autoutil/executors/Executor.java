@@ -60,7 +60,7 @@ public class Executor extends MovementExecutor {
     }
 
     public void addPause(double time) {
-        addUnsynchronizedRF(autoModules.Wait(time));
+        addUnsynchronizedRF(autoModules.pause(time));
     }
 
     public boolean finished() {
