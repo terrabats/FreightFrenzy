@@ -36,6 +36,7 @@ public class TerraAutoBlue extends Auto {
         executor.addUnsynchronizedRF(autoModules.LiftOdometry);
         executor.addUnsynchronizedRF(autoModules.MoveCWTime(0.5));
         executor.addUnsynchronizedRF(autoModules.MoveForwardTime(2));
+        executor.addUnsynchronizedRF(autoModules.ResetTurretAndLift);
 
         executor.complete();
 

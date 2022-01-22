@@ -33,8 +33,8 @@ public class Constants {
     /**
      * Turret Angles for the robot to move (note that 0 is facing the front of the robot)
      */
-    public static final double BLUE_TURRET_TARGET_TELE_1 = 100;
-    public static final double BLUE_TURRET_TARGET_TELE_2 = 175;
+    public static final double BLUE_TURRET_TARGET_TELE_1 = 120;
+    public static final double BLUE_TURRET_TARGET_TELE_2 = 135;
     public static final double RED_TURRET_TARGET_TELE_1 = -BLUE_TURRET_TARGET_TELE_1;
     public static final double RED_TURRET_TARGET_TELE_2 = -BLUE_TURRET_TARGET_TELE_2;
     public static final double BLUE_TURRET_TARGET_AUTO = 85;

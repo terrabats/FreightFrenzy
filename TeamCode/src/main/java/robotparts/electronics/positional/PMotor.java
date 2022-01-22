@@ -4,7 +4,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import robotparts.Electronic;
+import robotparts.electronics.StallDetector;
 import robotparts.electronics.input.IEncoder;
+import util.Timer;
 
 public class PMotor extends Electronic {
     /**
@@ -14,6 +16,9 @@ public class PMotor extends Electronic {
     private final DcMotorSimple.Direction direction;
     private final DcMotor.ZeroPowerBehavior zeroPowerBehavior;
     private final IEncoder motorEncoder;
+
+    private final StallDetector stallDetector = new StallDetector();
+    private final Timer time = new Timer();
 
 
     // TODO NEW
@@ -40,6 +45,8 @@ public class PMotor extends Electronic {
         motorEncoder = new IEncoder(motor, IEncoder.Type.MOTOR);
 
         motorEncoder.reset();
+
+        time.reset();
     }
 
     /**
@@ -49,6 +56,17 @@ public class PMotor extends Electronic {
     public void setPower(double p){
         if(access.isAllowed()){ motor.setPower(p); }
     }
+
+//    public void setPower(double p, double restPow, double lowPowRange) {
+//        if (Math.abs(p - restPow) > lowPowRange && isStalling(0)) {
+//            time.reset();
+//        }
+//        if (time.seconds() > 1) {
+//            setPower(p);
+//        } else {
+//            setPower(restPow);
+//        }
+//    }
 
     /**
      * Set the position in ticks to move to
@@ -95,6 +113,10 @@ public class PMotor extends Electronic {
      * @return direction
      */
     public DcMotorSimple.Direction getDirection(){return direction;}
+
+    public boolean isStalling(double range) {
+        return stallDetector.isStalling(getPosition(), range);
+    }
 
     /**
      * Stop and reset the mode of the pmotor

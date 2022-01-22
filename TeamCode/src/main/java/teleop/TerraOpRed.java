@@ -35,8 +35,8 @@ public class TerraOpRed extends Tele{
         gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.outtake.start());
 
         gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.IntakeAuto));
-        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Backward));
-        gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Forward));
+        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.BackwardTele()));
+        gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.ForwardTele()));
         gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModules);
 
         gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);

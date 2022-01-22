@@ -1,30 +1,18 @@
 package teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Gamepad;
 
-import automodules.StageList;
-import automodules.stage.Stage;
 import elements.FieldSide;
-import global.Constants;
-import teleutil.GamepadHandler;
 import teleutil.button.Button;
-import teleutil.button.ButtonEventHandler;
-import teleutil.button.NotHeldEventHandler;
 import teleutil.button.OnNotHeldEventHandler;
 import teleutil.button.OnPressEventHandler;
 import teleutil.button.OnTurnOffEventHandler;
 import teleutil.button.OnTurnOnEventHandler;
-import util.Timer;
 
 import static global.General.autoModules;
 import static global.General.bot;
-import static global.General.fieldSide;
-import static global.General.gamepad1;
-import static global.General.gamepad2;
 import static global.General.gph1;
 import static global.General.gph2;
-import static global.General.log;
 
 /**
  * NOTE: Uncommented
@@ -59,14 +47,16 @@ public class TerraOpBlue extends Tele{
         gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.outtake.start());
 
         gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.IntakeTele));
-        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Backward));
-        gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Forward));
+        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.BackwardTele()));
+        gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.ForwardTele()));
         gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModules);
 
         gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);
         gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot::resumeAutoModules);
 
         bot.outtake.start();
+
+        bot.lift.move(0);
 
         activate(FieldSide.BLUE);
     }
@@ -83,5 +73,12 @@ public class TerraOpBlue extends Tele{
         bot.turret.move(gamepad2.left_stick_x);
 
         bot.lift.move(-gamepad2.right_stick_y);
+
+//        if (Math.abs(gamepad2.right_stick_y) > 0.02 && bot.lift.isStalling()) {
+//            log.show("Lift stalling");
+//            bot.lift.move(0);
+//        } else {
+//            bot.lift.move(-gamepad2.right_stick_y);
+//        }
     }
 }

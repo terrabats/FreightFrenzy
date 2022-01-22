@@ -29,7 +29,7 @@ public class Turret extends RobotPart {
     private double targetBlueTele = Constants.BLUE_TURRET_TARGET_TELE_1;
     private double targetRedTele = Constants.RED_TURRET_TARGET_TELE_1;
 
-    private int freightPlaced = 0;
+    public int freightPlaced = 0;
 
     /**
      * Create the turret motor and reset it (done internally)
@@ -105,7 +105,7 @@ public class Turret extends RobotPart {
 
     public void swapTargetsTeleIfReady() {
         freightPlaced++;
-        if (freightPlaced == 5) {
+        if (freightPlaced == 1) {
             swapTargetsTele();
         }
     }
