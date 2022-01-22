@@ -70,7 +70,6 @@ public class Intake extends RobotPart {
             bot.lift.main(-0.2),
             main(power),
             bot.colorSensors.exitFreight(),
-            stop(),
             bot.lift.returnPart(),
             returnPart()
     );}

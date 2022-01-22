@@ -13,17 +13,15 @@ public class AutoModules{
      */
     public StageList IntakeAuto = new StageList(bot.lift, bot.intake, bot.outtake).define(
         bot.lift.liftEncoder(0.4, 0),
-        //RobotPart.pause(0.3),
         bot.intake.intakeUntilFreight(1),
         bot.outtake.outtakeLock(1)
-//        bot.lift.liftEncoder(1, 15)
     );
 
     public StageList IntakeTele = new StageList(bot.lift, bot.intake, bot.outtake).define(
         bot.turret.turretEncoder(0.6, 0),
         bot.lift.liftEncoder(0.4, 0),
         bot.intake.intakeUntilFreightLiftDown(1),
-        bot.outtake.outtakeLock(1)
+        bot.outtake.outtakeLockAndIntake(1)
     );
 
     public StageList Backward = new StageList(bot.lift, bot.turret).define(

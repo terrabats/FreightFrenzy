@@ -88,6 +88,19 @@ public class Outtake extends RobotPart {
         );
     }
 
+    public Stage outtakeLockAndIntake(double time){ return new Stage(
+            usePart(),
+            bot.intake.usePart(),
+            bot.intake.main(1),
+            mainLockIfBall(),
+            mainLockIfCube(),
+            exitTime(time),
+            bot.intake.stop(),
+            bot.intake.returnPart(),
+            returnPart()
+        );
+    }
+
     /**
      * Drop the freight
      * @param time

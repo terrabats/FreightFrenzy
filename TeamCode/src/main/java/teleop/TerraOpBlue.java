@@ -58,10 +58,7 @@ public class TerraOpBlue extends Tele{
         gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.outtake.open());
         gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.outtake.start());
 
-        gph1.link(Button.A, OnPressEventHandler.class, () -> {
-            bot.addAutoModule(autoModules.IntakeTele);
-            bot.addAutoModule(autoModules.Backward);
-        });
+        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.IntakeTele));
         gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Backward));
         gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.Forward));
         gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModules);
