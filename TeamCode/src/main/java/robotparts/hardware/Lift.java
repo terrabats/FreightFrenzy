@@ -115,7 +115,7 @@ public class Lift extends RobotPart {
      * NOTE: Uses the touch sensor
      * @return
      */
-    public Exit exitDown(){return new Exit(() -> bot.touchSensor.isOuttakePressingTouchSensor());}
+    public Exit exitDown(){return new Exit(() -> bot.touchSensors.isOuttakePressingTouchSensor());}
 
     /**
      * Exit when the lift reached the target

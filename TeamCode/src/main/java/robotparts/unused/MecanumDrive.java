@@ -23,9 +23,9 @@ public class MecanumDrive extends RobotPart {
 
     public void move(double f, double s, double t){
         fr.setPower(f-s-t);
-        br.setPower(-f-s+t);
+        br.setPower(f+s-t);
         fl.setPower(f+s+t);
-        bl.setPower(-f+s-t);
+        bl.setPower(f-s+t);
     }
 
     public void moveSmooth(double f, double s, double t){

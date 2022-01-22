@@ -12,6 +12,6 @@ public class TouchTest extends TeleUnitTest {
         /**
          * This should change when the touch sensor is touched
          */
-        log.show("Touch sensor reading, is pressed?", bot.touchSensor.isOuttakePressingTouchSensor());
+        log.show("Touch sensor reading, is pressed?", bot.touchSensors.isOuttakePressingTouchSensor());
     }
 }

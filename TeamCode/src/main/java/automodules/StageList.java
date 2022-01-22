@@ -45,7 +45,7 @@ public class StageList {
      * Do used parts exist? (i.e. all parts are non null)
      * @return part nonnull
      */
-    private boolean usedPartsExist(){
+    public boolean usedPartsExist(){
         for(RobotPart part: getRobotPartsUsed()){
             if(part == null){ return false; }
         }
