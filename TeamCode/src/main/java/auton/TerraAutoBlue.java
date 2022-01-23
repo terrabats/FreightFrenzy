@@ -1,6 +1,7 @@
 package auton;
 
 import autoutil.executors.Executor;
+import autoutil.executors.TankExecutor;
 import elements.FieldSide;
 import geometry.circles.AngleType;
 import util.Timer;
@@ -21,7 +22,7 @@ public class TerraAutoBlue extends Auto {
 
     @Override
     public void runAuto() {
-        Executor executor = new Executor();
+        TankExecutor executor = new TankExecutor();
         executor.addSetpoint(70, 30, PI/2, AngleType.RADIANS);
         executor.addUnsynchronizedRF(autoModules.SpinCarousel);
         executor.addSynchronizedRF(autoModules.IntakeAuto);

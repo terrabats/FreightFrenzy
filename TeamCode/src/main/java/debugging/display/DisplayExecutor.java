@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import autoutil.executors.MovementExecutor;
+import autoutil.executors.TankExecutor;
 import geometry.circles.AngleType;
 import geometry.position.Pose;
 
@@ -24,10 +25,10 @@ public class DisplayExecutor extends JPanel {
     private final int xScale = 5;
     private final int yScale = 5;
 
-    private MovementExecutor executor;
+    private TankExecutor executor;
 
     public void genTestPlane(){
-        executor = new MovementExecutor(0, 0, PI/2, AngleType.RADIANS);
+        executor = new TankExecutor();
         executor.addSetpoint(70, 29, PI/2, AngleType.RADIANS);
         executor.addSetpoint(-50, 40, -PI/2, AngleType.RADIANS);
         executor.addSetpoint(-65, 40, -PI/2, AngleType.RADIANS);

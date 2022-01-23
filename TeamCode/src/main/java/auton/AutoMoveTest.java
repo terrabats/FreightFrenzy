@@ -1,6 +1,7 @@
 package auton;
 
 import autoutil.executors.MovementExecutor;
+import autoutil.executors.TankExecutor;
 import elements.FieldSide;
 import geometry.circles.AngleType;
 
@@ -27,7 +28,7 @@ public class AutoMoveTest extends Auto {
     @Override
     public void runAuto() {
 
-        MovementExecutor movementExecutor = new MovementExecutor(0, 0, PI/2, AngleType.RADIANS);
+        TankExecutor movementExecutor = new TankExecutor();
         movementExecutor.addSetpoint(60, 60, PI/2, AngleType.RADIANS);
 //        executor.addSetpoint(0, 10, 0, AngleType.RADIANS);
         movementExecutor.complete();

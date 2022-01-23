@@ -10,7 +10,7 @@ import automodules.StageList;
 import geometry.circles.AngleType;
 import util.codeseg.CodeSeg;
 
-public class Executor extends MovementExecutor {
+public abstract class Executor extends MovementExecutor {
 
     private final boolean[] syncedSegsExist = new boolean[1000];
     private final boolean[] unSyncedSegsExist = new boolean[1000];
@@ -25,15 +25,15 @@ public class Executor extends MovementExecutor {
         fillBoolArrs();
     }
 
-    public Executor(double stH, AngleType angleType) {
-        super(0, 0, stH, angleType);
-        fillBoolArrs();
-    }
-
-    public Executor(double stX, double stY, double stH, AngleType angleType) {
-        super(stX, stY, stH, angleType);
-        fillBoolArrs();
-    }
+//    public Executor(double stH, AngleType angleType) {
+//        super(0, 0, stH, angleType);
+//        fillBoolArrs();
+//    }
+//
+//    public Executor(double stX, double stY, double stH, AngleType angleType) {
+//        super(stX, stY, stH, angleType);
+//        fillBoolArrs();
+//    }
 
     private void fillBoolArrs() {
         for (int i = 0; i < 1000; i++) {

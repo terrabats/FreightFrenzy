@@ -11,7 +11,7 @@ import geometry.position.Pose;
 import static global.General.*;
 import static java.lang.Math.*;
 
-public class MovementExecutor {
+public abstract class MovementExecutor {
 
     // Uses the desired motion predictor and reactor to move the robot along the desired path
     // There should be one static executor
@@ -74,8 +74,6 @@ public class MovementExecutor {
 
     public void pauseMove() { moveRunning = false; }
 
-//    public void update() { updateMovement(); }
-
     public boolean finishedMove() { return curPath >= paths.size(); }
 
     //endregion
@@ -89,7 +87,7 @@ public class MovementExecutor {
                 curPath++;
                 curPose = 0;
                 pauseMove();
-                bot.tankDrive.move(0, 0);
+                move(0, 0);
                 return;
 //                if (curPath == paths.size()) {
 //                    return;
@@ -101,25 +99,25 @@ public class MovementExecutor {
                 double dis = sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
                         + pow(bot.odometry.curPos[1] - nextPose.p.y, 2));
                 if (dis > 10) {
-                    bot.tankDrive.move(
+                    move(
                         forwardPow,
                         reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH, true)
                     );
                 } else {
-                    bot.tankDrive.move(
+                    move(
                         forwardPow,
                         reactor.turnPow(nextPose.ang, startH, true)
                     );
                 }
             } else {
                 Pose nextPose = paths.get(curPath).get(curPose);
-                bot.tankDrive.move(
-                        reactor.forwardPowWaypoint(nextPose.p.x, nextPose.p.y),
-                        reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH, true)
+                move(
+                    reactor.forwardPowWaypoint(nextPose.p.x, nextPose.p.y),
+                    reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH, true)
                 );
             }
         } else {
-            bot.tankDrive.move(0, 0);
+            move(0, 0);
         }
     }
 
@@ -146,6 +144,12 @@ public class MovementExecutor {
                 + pow(bot.odometry.curPos[1] - nextPose.p.y, 2));
         return dis < 10;
     }
+
+    //endregion
+
+    //region METHODS TO OVERRIDE
+
+    public abstract void move(double f, double t);
 
     //endregion
 
