@@ -14,8 +14,7 @@ import static robot.RobotFramework.*;
 
 public class Odometry extends RobotPart {
 
-    private static final double R = 4.1;
-    private static final double ODO1_TO_CENTER_X = 4.6;
+    private final double ODO1_TO_CENTER_X;
 //    private static final double ODO1_TO_CENTER_Y = 0.92;
 
     private double prevOdoOnePos = 0;
@@ -28,6 +27,8 @@ public class Odometry extends RobotPart {
 
     public double[] curPos = new double[] { 0, 0, 0 };
     public double[] lastChangePos = new double[] { 0, 0, 0 };
+
+    public Odometry(double odo_to_center_x) { ODO1_TO_CENTER_X = odo_to_center_x; }
 
     @Override
     public void init() {

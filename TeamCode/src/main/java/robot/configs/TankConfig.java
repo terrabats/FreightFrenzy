@@ -31,5 +31,6 @@ public class TankConfig extends RobotConfig{
         carousel = new Carousel();
         colorSensors = new ColorSensors();
         gyroSensors = new GyroSensors();
+        odometry = new Odometry(4.6);
     }
 }
