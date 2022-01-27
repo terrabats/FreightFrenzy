@@ -60,7 +60,7 @@ public interface Common{
         /**
          * Create the automodules
          */
-//        autoModules = new AutoModules();
+        autoModules = new AutoModules();
         /**
          * Initialize the robot
          */

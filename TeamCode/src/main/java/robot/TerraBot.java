@@ -16,4 +16,4 @@ import robotparts.hardware.Turret;
 import robotparts.sensors.TouchSensors;
 import robotparts.unused.MecanumDrive;
 
-public class TerraBot extends OldMecanumConfig {}
+public class TerraBot extends TankConfig {}

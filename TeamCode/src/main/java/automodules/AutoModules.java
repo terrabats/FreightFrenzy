@@ -19,11 +19,13 @@ public class AutoModules{
         bot.outtake.outtakeLock(1)
     );
 
-    public StageList IntakeTele = new StageList(bot.lift, bot.intake, bot.outtake).define(
+    public StageList IntakeTele = new StageList(bot.turret, bot.lift, bot.intake, bot.outtake).define(
+        bot.outtake.outtakeReset(0.05),
         bot.turret.turretEncoder(1, 0),
         bot.lift.liftEncoder(0.4, 0),
         bot.intake.intakeUntilFreightLiftDown(1),
-        bot.outtake.outtakeLockAndIntake(1)
+        bot.outtake.outtakeLockAndIntake(1),
+        bot.intake.intakeTime(-1, 0.8)
     );
 
     public StageList Forward = new StageList(bot.outtake, bot.turret, bot.lift).define(
@@ -39,13 +41,13 @@ public class AutoModules{
     );
 
     public StageList BackwardTele() {
-        if (bot.turret.freightPlaced == 0) {
-            return new StageList(bot.lift, bot.turret).define(
-                bot.lift.liftEncoder(1, 48),
-                bot.turret.turretEncoderTarget(1),
-                bot.lift.liftEncoder(0.4, 20)
-            );
-        }
+//        if (bot.turret.freightPlaced == 0) {
+//            return new StageList(bot.lift, bot.turret).define(
+//                bot.lift.liftEncoder(1, 48),
+//                bot.turret.turretEncoderTarget(1),
+//                bot.lift.liftEncoder(0.4, 20)
+//            );
+//        }
         return new StageList(bot.lift, bot.turret).define(
             bot.lift.liftEncoder(1, 48),
             bot.turret.turretEncoderTarget(1)
@@ -53,15 +55,15 @@ public class AutoModules{
     }
 
     public StageList ForwardTele() {
-        if (bot.turret.freightPlaced == 1) {
-            return new StageList(bot.outtake, bot.turret, bot.lift).define(
-                bot.outtake.outtakeDrop(0.6),
-                bot.lift.liftEncoder(1, 48),
-                bot.turret.turretEncoder(1, 0),
-                bot.lift.liftEncoder(0.4, 10),
-                bot.outtake.outtakeReset(0.7)
-            );
-        }
+//        if (bot.turret.freightPlaced == 1) {
+//            return new StageList(bot.outtake, bot.turret, bot.lift).define(
+//                bot.outtake.outtakeDrop(0.6),
+//                bot.lift.liftEncoder(1, 48),
+//                bot.turret.turretEncoder(1, 0),
+//                bot.lift.liftEncoder(0.4, 10),
+//                bot.outtake.outtakeReset(0.7)
+//            );
+//        }
         return new StageList(bot.outtake, bot.turret, bot.lift).define(
             bot.outtake.outtakeDrop(0.6),
             bot.turret.turretEncoder(1, 0),

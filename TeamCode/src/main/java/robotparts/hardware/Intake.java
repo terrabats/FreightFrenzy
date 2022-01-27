@@ -73,4 +73,13 @@ public class Intake extends RobotPart {
             bot.lift.returnPart(),
             returnPart()
     );}
+
+
+    public Stage intakeTime(double power, double time) { return new Stage(
+            usePart(),
+            main(power),
+            exitTime(time),
+            stop(),
+            returnPart()
+    );}
 }
