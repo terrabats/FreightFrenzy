@@ -54,8 +54,8 @@ public class TankDrive extends RobotPart {
 
         // TODO REMOVE
         // Super sketch remove later
-        f *= 1.05;
-        t *= 1.05;
+//        f *= 1.05;
+//        t *= 1.05;
         fr.setPower(f-t);
         br.setPower(f-t);
         fl.setPower(f+t);

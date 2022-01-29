@@ -16,21 +16,23 @@ import robotparts.unused.MecanumDrive;
 
 public class TankConfig extends RobotConfig{
     // TODO FIX
-    // Make the config system better
+    // Make the config even system better
     /**
      *  Define RobotPart objects here. If you are not using a specific robot part
      *  define the object but don't instantiate it. All other methods related to the robot
      *  should go in robot framework.
      */
-    public void create(){
-        tankDrive = new TankDrive();
-        intake = new Intake();
-        turret = new Turret();
-        lift = new Lift();
-        outtake = new Outtake();
-        carousel = new Carousel();
-        colorSensors = new ColorSensors();
-        gyroSensors = new GyroSensors();
-        odometry = new Odometry(4.6);
+    {
+        define(
+                tankDrive,
+                intake,
+                turret,
+                lift,
+                outtake,
+                carousel,
+                colorSensors,
+                gyroSensors,
+                odometry
+        );
     }
 }

@@ -57,8 +57,12 @@ public class RobotPart {
      * Constructor to create the robot part
      * NOTE: This automatically adds itself to the robotparts list
      */
-    public RobotPart(){
-       RobotFramework.allRobotParts.add(this);
+//    public RobotPart(){
+//       RobotFramework.allRobotParts.add(this);
+//    }
+
+    public void instantiate(){
+        RobotFramework.allRobotParts.add(this);
     }
 
     /**

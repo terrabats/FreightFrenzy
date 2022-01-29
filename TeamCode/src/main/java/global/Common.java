@@ -56,7 +56,6 @@ public interface Common{
          * Create the robot, and then the modules, stages, and automodules
          */
         bot = new TerraBot();
-        bot.create();
         /**
          * Create the automodules
          */
