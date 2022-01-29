@@ -14,6 +14,8 @@ public class TerraThread extends Thread {
      * NOTE: Thread should not be used raw without this class
      */
 
+    // TODO NEW
+    // Make thread exception catching better
 
     /**
      * currentStatus represents the status of the thread

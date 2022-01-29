@@ -21,7 +21,7 @@ public abstract class Tele extends OpMode implements Common {
     /**
      * Init method runs when the user clicks the init button to run a teleop
      */
-    public abstract void initTele();
+    public void initTele(){}
 
     /**
      * Start method runs when the user clicks the start button after init
