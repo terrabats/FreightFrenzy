@@ -4,10 +4,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import unittests.UnitTest;
 import unittests.tele.TeleUnitTest;
+import util.Timer;
 import util.condition.Status;
 
 public class AutoUnitTest extends UnitTest {
     public static LinearOpMode linearOpMode;
+    private Timer timer = new Timer();
     /**
      * Unit test based on auto
      * For init and stop see UnitTest
@@ -26,6 +28,11 @@ public class AutoUnitTest extends UnitTest {
             run();
             status = Status.ACTIVE;
         }
+    }
+
+    protected void pause(double secs){
+        timer.reset();
+        while (opModeIsActive() && timer.seconds() < secs){linearOpMode.idle();}
     }
 
     protected final boolean opModeIsActive(){return linearOpMode.opModeIsActive();}

@@ -1,5 +1,6 @@
 package robot;
 
+import robot.configs.NewConfig;
 import robot.configs.OldMecanumConfig;
 import robot.configs.TankConfig;
 import robotparts.hardware.Carousel;
@@ -16,4 +17,4 @@ import robotparts.hardware.Turret;
 import robotparts.sensors.TouchSensors;
 import robotparts.unused.MecanumDrive;
 
-public class TerraBot extends TankConfig {}
+public class TerraBot extends TankConfig{}

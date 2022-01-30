@@ -15,7 +15,9 @@ import teleutil.Selector;
 import teleutil.button.Button;
 import unittests.UnitTester;
 import unittests.auto.framework.EmptyTest;
+import unittests.auto.framework.EmptyTest2;
 import unittests.auto.framework.MoveTest;
+import unittests.auto.framework.PIDTest;
 import unittests.tele.TeleUnitTest;
 import util.condition.Expectation;
 import util.condition.Magnitude;
@@ -43,7 +45,9 @@ public class AutoUnitTester extends Auto implements UnitTester {
     @Override
     public void createUnitTests(){
         // Framework
+//        add(new PIDTest());
         add(new EmptyTest());
+        add(new EmptyTest2());
     }
 
     @Override
@@ -60,6 +64,7 @@ public class AutoUnitTester extends Auto implements UnitTester {
             if(!isDoneWithAllTests(testingMode)) {
                 selector.update();
                 runCurrentTest(testingMode);
+                log.showTelemetry();
             }else{
                 log.show("Done With All Tests");
                 log.showTelemetry();
