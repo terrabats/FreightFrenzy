@@ -29,6 +29,8 @@ public class TerraThread extends Thread {
      */
     private volatile ExceptionCodeSeg<RuntimeException> updateCode = () -> {};
 
+    private volatile boolean wasExceptionThrown = false;
+
     /**
      * Set the update code (code which will be executed in this thread in a loop)
      * @link updateCode
@@ -56,7 +58,7 @@ public class TerraThread extends Thread {
             try {
                 updateCode.run();
             } catch (RuntimeException r){
-                fault.check("Exception thrown from inside thread", Expectation.SURPRISING, Magnitude.CATASTROPHIC);
+                wasExceptionThrown = true;
                 stopUpdating();
             }
             ExceptionCatcher.catchInterrupted(()-> sleep(1000/Constants.THREAD_REFRESH_RATE));
@@ -77,6 +79,13 @@ public class TerraThread extends Thread {
      */
     public synchronized Status getStatus(){
         return currentStatus;
+    }
+
+
+    public synchronized void checkForException(String threadName){
+        if(wasExceptionThrown){
+            fault.check("Exception thrown from inside thread " + threadName, Expectation.SURPRISING, Magnitude.CATASTROPHIC);
+        }
     }
 
 }

@@ -91,7 +91,7 @@ public interface Common{
      * @param showTelemetry
      */
     default void update(boolean showTelemetry){
-        bot.checkAccess(mainUser);
+        bot.update();
         gph1.run();
         gph2.run();
         sync.update();

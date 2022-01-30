@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import robot.TerraBot;
 import unittests.tele.TeleUnitTest;
+import util.condition.Expectation;
+import util.condition.Magnitude;
 
 import static global.General.*;
 
@@ -29,7 +31,7 @@ public class ThreadTest extends TeleUnitTest {
 //            log.showAndRecord("Odometry Code", "is running");
 //            log.record("Odometry Thread Status", TerraBot.odometryThread.getStatus());
         });
-
-
     }
+
+
 }

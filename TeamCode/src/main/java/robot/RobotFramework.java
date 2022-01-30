@@ -68,6 +68,11 @@ public class RobotFramework {
         rfsHandler.resume();
     }
 
+    public void update(){
+        checkAccess(mainUser);
+        robotFunctionsThread.checkForException("robotFunctionsThread");
+        odometryThread.checkForException("odometryThread");
+    }
     /**
      * the stop method stops updating threads, and halts the robot
      * @link halt

@@ -39,7 +39,7 @@ public class TeleUnitTester extends Tele implements UnitTester{
 //        add(new FaultTest());
 //        add(new GamepadTest());
 //        add(new RobotFunctionsTest());
-//        add(new ThreadTest());
+        add(new ThreadTest());
 //        add(new StorageTest());
 //        add(new StageTest());
 //        add(new AutoModuleTest());
