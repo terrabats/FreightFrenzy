@@ -3,6 +3,7 @@ package robotparts.sensors;
 import robotparts.RobotPart;
 import robotparts.electronics.input.IEncoder;
 import util.codeseg.CodeSeg;
+import util.codeseg.ExceptionCodeSeg;
 
 import static java.lang.Math.*;
 import static global.General.*;
@@ -20,7 +21,7 @@ public class Odometry extends RobotPart {
     private double prevOdoOnePos = 0;
 //    private double prevOdoTwoPos = 0;
 
-    private final CodeSeg odometryUpdateCode = this::update;
+    private final ExceptionCodeSeg<RuntimeException> odometryUpdateCode = this::update;
 
 //    private IEncoder rEnc;
     private IEncoder cEnc;

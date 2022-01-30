@@ -7,6 +7,7 @@ import java.util.Queue;
 import automodules.StageList;
 import util.User;
 import util.codeseg.CodeSeg;
+import util.codeseg.ExceptionCodeSeg;
 import util.condition.Status;
 import util.Timer;
 import automodules.stage.Stage;
@@ -28,7 +29,7 @@ public class RobotFunctions {
     /**
      * Define the updateCode codeseg to contain the code that will run in the Thread
      */
-    public CodeSeg updateCode = () -> {
+    public ExceptionCodeSeg<RuntimeException> updateCode = () -> {
         /**
          * Check if the robot has access to move for robotfunctions user or ROFU
          */

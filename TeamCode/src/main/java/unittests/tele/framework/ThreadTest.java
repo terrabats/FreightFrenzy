@@ -1,5 +1,7 @@
 package unittests.tele.framework;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 import robot.TerraBot;
 import unittests.tele.TeleUnitTest;
 
@@ -17,12 +19,17 @@ public class ThreadTest extends TeleUnitTest {
          * Should show telemetry
          */
         TerraBot.robotFunctionsThread.setExecutionCode(() -> {
-            log.showAndRecord("Robot Functions Code", "is running");
-            log.record("Robot Functions Status", TerraBot.robotFunctionsThread.getStatus());
+            throw new RuntimeException();
+//            log.showAndRecord("Robot Functions Code", "is running");
+//            log.record("Robot Functions Status", TerraBot.robotFunctionsThread.getStatus());
         });
         TerraBot.odometryThread.setExecutionCode(() -> {
-            log.showAndRecord("Odometry Code", "is running");
-            log.record("Odometry Thread Status", TerraBot.odometryThread.getStatus());
+            DcMotor mot = null;
+            mot.setPower(1);
+//            log.showAndRecord("Odometry Code", "is running");
+//            log.record("Odometry Thread Status", TerraBot.odometryThread.getStatus());
         });
+
+
     }
 }

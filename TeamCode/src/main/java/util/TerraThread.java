@@ -3,6 +3,7 @@ package util;
 
 import global.Constants;
 import util.codeseg.CodeSeg;
+import util.codeseg.ExceptionCodeSeg;
 import util.condition.Expectation;
 import util.condition.Magnitude;
 import util.condition.Status;
@@ -14,8 +15,8 @@ public class TerraThread extends Thread {
      * NOTE: Thread should not be used raw without this class
      */
 
-    // TODO NEW
-    // Make thread exception catching better
+    // TODO TEST
+    // RUN THE THREAD TEST AGAIN
 
     /**
      * currentStatus represents the status of the thread
@@ -26,14 +27,14 @@ public class TerraThread extends Thread {
     /**
      * Code that will run in a loop in the update method, nothing by default
      */
-    private volatile CodeSeg updateCode = () -> {};
+    private volatile ExceptionCodeSeg<RuntimeException> updateCode = () -> {};
 
     /**
      * Set the update code (code which will be executed in this thread in a loop)
      * @link updateCode
      * @param cs
      */
-    public synchronized void setExecutionCode(CodeSeg cs){
+    public synchronized void setExecutionCode(ExceptionCodeSeg<RuntimeException> cs){
         updateCode = cs;
     }
 
@@ -52,7 +53,12 @@ public class TerraThread extends Thread {
     @Override
     public void run() {
         while (!currentStatus.equals(Status.DISABLED)){
-            updateCode.run();
+            try {
+                updateCode.run();
+            } catch (RuntimeException r){
+                fault.check("Exception thrown from inside thread", Expectation.SURPRISING, Magnitude.CATASTROPHIC);
+                stopUpdating();
+            }
             ExceptionCatcher.catchInterrupted(()-> sleep(1000/Constants.THREAD_REFRESH_RATE));
         }
     }
