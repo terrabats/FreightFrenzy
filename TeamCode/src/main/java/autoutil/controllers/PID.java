@@ -9,6 +9,8 @@ public class PID {
     private final double kd;
     private double minimumOutput;
     private double maximumTime;
+    private double maximumDerivative;
+    private double maximumIntegralRange;
 
     private double currentValue = 0;
     private double targetValue = 0;
@@ -25,8 +27,10 @@ public class PID {
         this.kp = kp;
         this.ki = ki;
         this.kd = kd;
-        this.minimumOutput = 0.05;
+        this.minimumOutput = 0;
         this.maximumTime = 0.05;
+        this.maximumDerivative = 1000000;
+        this.maximumIntegralRange = 1000000;
         profiler = new Profiler(this::getError);
     }
 
@@ -38,16 +42,21 @@ public class PID {
         this.minimumOutput = minimumOutput;
     }
 
-    public void setMaximumTime(double maximumTime){
-        this.maximumTime = maximumTime;
-    }
+    public void setMaximumTime(double maximumTime){ this.maximumTime = maximumTime; }
+
+    public void setMaximumIntegralRange(double range){this.maximumIntegralRange = range;}
+
+    public void setMaximumDerivative(double maximumDerivative){this.maximumDerivative = maximumDerivative;}
 
     public void update(){
         currentValue = processVariable.run();
         profiler.update();
+        if(Math.abs(getError()) > maximumIntegralRange){
+            profiler.resetIntegral();
+        }
         output = (kp * getError()) + (ki * profiler.getIntegral()) + (kd * profiler.getDerivative());
         if(Math.abs(getOutput()) < minimumOutput){
-            isAtTarget = (profiler.getCurrentTime() - currentTime) > maximumTime;
+            isAtTarget = ((profiler.getCurrentTime() - currentTime) > maximumTime) && (Math.abs(profiler.getDerivative()) < maximumDerivative);
         }else{
             currentTime = profiler.getCurrentTime();
         }

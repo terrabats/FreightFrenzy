@@ -67,6 +67,10 @@ public class Profiler {
         timer.reset();
     }
 
+    public void resetIntegral(){
+        integrator.reset();
+    }
+
     private int getUpdateNumber(){
         return values.size()-1;
     }

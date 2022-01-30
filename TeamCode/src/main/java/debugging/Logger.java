@@ -21,15 +21,27 @@ public class Logger {
      */
     private int logNum = 0;
 
+    private boolean shouldUpdateOnShow = false;
+
+    public void setShouldUpdateOnShow(boolean value){
+        shouldUpdateOnShow = value;
+    }
+
+    private void updateOnShow(){
+        if(shouldUpdateOnShow){telemetry.update();}
+    }
+
     /**
      * Shows the output on telemetry
      * @param val
      */
     public void show(Object val){
         telemetry.addData("Show", val);
+        updateOnShow();
     }
     public void show(String caption, Object val){
         telemetry.addData(caption, val);
+        updateOnShow();
     }
 
     /**

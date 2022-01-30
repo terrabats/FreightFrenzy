@@ -3,6 +3,7 @@ package unittests;
 import teleutil.Selector;
 
 import teleutil.button.Button;
+import util.User;
 import util.condition.Expectation;
 import util.condition.Magnitude;
 import util.store.Item;
@@ -113,7 +114,11 @@ public interface UnitTester {
             log.list(selector.getItemClassNames(), selector.getCurrentIndex());
         }else if(selector.isActive()){
             selector.runToCurrentItem(UnitTest::test);
-            log.showAndRecord("Testing" ,  getCurrentTestName());
+            if(mainUser.equals(User.TELE)) {
+                log.showAndRecord("Testing", getCurrentTestName());
+            }else if(mainUser.equals(User.AUTO)){
+                log.showAndRecord("Tested", getCurrentTestName());
+            }
         }
     }
 

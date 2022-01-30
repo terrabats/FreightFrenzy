@@ -39,15 +39,12 @@ public class AutoUnitTester extends Auto implements UnitTester {
      */
     TestingMode testingMode = TestingMode.CONTROL;
 
-    // TODO TEST
-    // Test this unit tester
-
     @Override
     public void createUnitTests(){
         // Framework
-//        add(new PIDTest());
-        add(new EmptyTest());
-        add(new EmptyTest2());
+        add(new PIDTest());
+//        add(new EmptyTest());
+//        add(new EmptyTest2());
     }
 
     @Override
@@ -60,6 +57,7 @@ public class AutoUnitTester extends Auto implements UnitTester {
     @Override
     public void runAuto() {
         selector.resetUpdateTimer();
+        log.setShouldUpdateOnShow(true);
         while (opModeIsActive()){
             if(!isDoneWithAllTests(testingMode)) {
                 selector.update();

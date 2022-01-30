@@ -17,10 +17,6 @@ public class EmptyTest extends AutoUnitTest {
 
     @Override
     protected void run() {
-        timer.reset();
-        while (opModeIsActive() && timer.seconds() < 1) {
-            log.showAndRecord("run", timer.seconds());
-            log.showTelemetry();
-        }
+        whileTime(() -> log.showAndRecord("run", timer.seconds()), 1);
     }
 }
