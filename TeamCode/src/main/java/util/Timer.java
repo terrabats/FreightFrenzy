@@ -9,7 +9,19 @@ public class Timer {
     /**
      * Timer class, to use create a timer object in your code as follows:
      * Timer timerName = new Timer();
+     *
+     * NOTE: Do NOT do this
+     * Timer timerName = new timerName();
+     * or this
+     * timerName Timer = new Timer();
+     * or this
+     * Timer Timer = new Timer();
+     * or this
+     * timer timerName = new timer();
+     *
+     * Use by calling timerName.reset(); and then timerName.seconds() to get the time in seconds
      */
+
 
     /**
      * Start time in seconds (when the timer was last reset)
@@ -26,7 +38,6 @@ public class Timer {
         startTime = gameTime.seconds();
         hasBeenReset = true;
     }
-
     /**
      * Gets the seconds since last time the timer was reset
      * NOTE: If the timer has never been reset and seconds is called then an warning will be issued

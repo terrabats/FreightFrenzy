@@ -72,6 +72,7 @@ public class Item<T> {
 
     /**
      * Get the itemtype from the object given
+     * NOTE: If the type does not match any known types other will be returned
      * @return itemtype
      */
     private ItemType getTypeFromObject(){
@@ -95,7 +96,7 @@ public class Item<T> {
     /**
      * Get the object from the rawString
      * @param rawString
-     * @return
+     * @return object
      */
     private static Object getObjectFromType(String rawString){
         /**
@@ -120,6 +121,7 @@ public class Item<T> {
             case ARRAYLIST:
                 return Storage.gson.fromJson(rawValue, ArrayList.class);
             case OTHER:
+                fault.log("Are you sure you want the raw value of an object of type other?");
                 return rawValue;
         }
         fault.warn("Object does not match any known type", Expectation.EXPECTED, Magnitude.MINOR);

@@ -32,7 +32,7 @@ public enum Magnitude{
     CRITICAL,
 
     /**
-     * Dangerous code that will injure if not kill the robot
+     * Dangerous code that will injure if not destroy the robot
      */
     CATASTROPHIC
 }

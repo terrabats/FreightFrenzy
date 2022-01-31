@@ -32,7 +32,7 @@ public enum Expectation{
     UNEXPECTED,
 
     /**
-     * This cannot happen
+     * This cannot happen (less than 0.01% probability)
      */
     INCONCEIVABLE
 }

@@ -27,6 +27,9 @@ public class TerraThread extends Thread {
      */
     private volatile ExceptionCodeSeg<RuntimeException> updateCode = () -> {};
 
+    /**
+     * Was an exception thrown inside the thread?
+     */
     private volatile boolean wasExceptionThrown = false;
 
     /**
@@ -52,13 +55,23 @@ public class TerraThread extends Thread {
 
     @Override
     public void run() {
+        /**
+         * Run until the currentStatus is disabled
+         */
         while (!currentStatus.equals(Status.DISABLED)){
+            /**
+             * Run the update code in a loop
+             * NOTE: If the code throws a runtime exception that will be handled and the thread will stop
+             */
             try {
                 updateCode.run();
             } catch (RuntimeException r){
                 wasExceptionThrown = true;
                 stopUpdating();
             }
+            /**
+             * Wait according to the thread refresh rate
+             */
             ExceptionCatcher.catchInterrupted(()-> sleep(1000/Constants.THREAD_REFRESH_RATE));
         }
     }
@@ -79,7 +92,11 @@ public class TerraThread extends Thread {
         return currentStatus;
     }
 
-
+    /**
+     * Check if this thread had an exception thrown inside it
+     * NOTE: This will throw another exception but in the main thread so it is visible and will not just crash the app
+     * @param threadName
+     */
     public synchronized void checkForException(String threadName){
         if(wasExceptionThrown){
             fault.check("Exception thrown from inside thread " + threadName, Expectation.SURPRISING, Magnitude.CATASTROPHIC);

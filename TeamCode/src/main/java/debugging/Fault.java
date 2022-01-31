@@ -13,87 +13,63 @@ public class Fault {
     private final boolean unsafeMode = false;
 
     /**
-     * Warn that something went wrong with a message
+     * 1. Warn that something went wrong with a message
+     * 2. Warn with more details
+     * 3. Warn that something has gone wrong with a message if test does not match the correct value
+     * 4. Same as above except more detailed
      * @param msg
      */
     public void warn(String msg){
-        createFault(getName(msg), true, false);
+        createFault(getName(msg), true, false, false);
     }
-
-    /**
-     * Warn with more details
-     * @param msg
-     * @param e
-     * @param m
-     */
     public void warn(String msg, Expectation e, Magnitude m){
-        createFault(getName(msg, e, m), true, false);
+        createFault(getName(msg, e, m), true, false, false);
     }
-
-    /**
-     * Warn that something has gone wrong with a message if test does not match the correct value
-     * @param msg
-     * @param test
-     * @param correct
-     */
     public void warn(String msg, boolean test, boolean correct){
-        createFault(getName(msg), test != correct, false);
+        createFault(getName(msg), test != correct, false, false);
     }
-
-    /**
-     * Same as above except more detailed
-     * @link warn
-     * @param msg
-     * @param e
-     * @param m
-     * @param test
-     * @param correct
-     */
     public void warn(String msg, Expectation e, Magnitude m, boolean test, boolean correct){
-        createFault(getName(msg, e, m), test != correct, false);
+        createFault(getName(msg, e, m), test != correct, false, false);
     }
 
     /**
-     * Same as warn except throws exception
-     * NOTE: Only use when something major has gone wrong or is important
+     * 1. Same as warn except throws exception, NOTE: Only use when something major has gone wrong or is important
+     * 2. Same as above with more details
+     * 3. Same as warn except throws an exception if test does not match the correct value
+     * 4. Same as above with more details
      * @param msg
      */
     public void check(String msg) {
-        createFault(getName(msg), true, true);
+        createFault(getName(msg), true, true, false);
     }
-
-    /**
-     * Same as above with more details
-     * @param msg
-     * @param e
-     * @param m
-     */
     public void check(String msg, Expectation e, Magnitude m) {
-        createFault(getName(msg, e, m), true, true);
+        createFault(getName(msg, e, m), true, true, false);
     }
-
-    /**
-     * Same as warn except throws an exception if test does not match the correct value
-     * @param msg
-     * @param test
-     * @param correct
-     */
     public void check(String msg, boolean test, boolean correct) {
-        createFault(getName(msg), test != correct, true);
+        createFault(getName(msg), test != correct, true, false);
+    }
+    public void check(String msg, Expectation e, Magnitude m, boolean test, boolean correct){
+        createFault(getName(msg, e, m), test != correct, true, false);
     }
 
     /**
-     * Same as above with more details
-     * @link check
+     * 1. Same as warn except logs instead of telemetry
+     * 2,3,4 see warn
      * @param msg
-     * @param e
-     * @param m
-     * @param test
-     * @param correct
      */
-    public void check(String msg, Expectation e, Magnitude m, boolean test, boolean correct){
-        createFault(getName(msg, e, m), test != correct, true);
+    public void log(String msg){
+        createFault(getName(msg), true, false, true);
     }
+    public void log(String msg, Expectation e, Magnitude m){
+        createFault(getName(msg, e, m), true, false, true);
+    }
+    public void log(String msg, boolean test, boolean correct){
+        createFault(getName(msg), test != correct, false, true);
+    }
+    public void log(String msg, Expectation e, Magnitude m, boolean test, boolean correct){
+        createFault(getName(msg, e, m), test != correct, false, true);
+    }
+
 
     /**
      * Gets the name given a message
@@ -121,9 +97,13 @@ public class Fault {
      * @param failed
      * @param createException
      */
-    private void createFault(String out, boolean failed, boolean createException){
+    private void createFault(String out, boolean failed, boolean createException, boolean logOnly){
         if(failed){
-            log.showAndRecord(out,  "Please check your code for logical errors");
+            if(logOnly) {
+                log.record(out, "Please check your code for logical errors");
+            }else {
+                log.showAndRecord(out, "Please check your code for logical errors");
+            }
             if(!unsafeMode && createException){
                 RuntimeException exception = new RuntimeException(" "+out);
                 exception.printStackTrace();

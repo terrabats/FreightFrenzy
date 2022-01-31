@@ -3,6 +3,7 @@ package util;
 public class Access {
     /**
      * Used to store the access that something has to something else
+     * This is used for robotfunctions so that different threads can use the robot without interfering
      */
 
 

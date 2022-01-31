@@ -23,6 +23,9 @@ public class Storage {
      */
     private ArrayList<Item<?>> items = new ArrayList<>();
 
+    /**
+     * Gson object used for parsing json
+     */
     public static Gson gson = new Gson();
 
     /**
@@ -30,12 +33,23 @@ public class Storage {
      * @param name
      * @param value
      */
-    public <T> void addItem(String name, T value) { items.add(new Item<>(name, value));
-    }
+    public <T> void addItem(String name, T value) { items.add(new Item<>(name, value)); }
 
-    public <T> void addItem(Item<T> item) { items.add(item);
-    }
+    /**
+     * Add item given an item object
+     * @param item
+     * @param <T>
+     */
+    public <T> void addItem(Item<T> item) { items.add(item); }
 
+    /**
+     * Add data by giving an array of inputs (x values) and outputs (y values)
+     * @param name
+     * @param input
+     * @param output
+     * @param <X>
+     * @param <Y>
+     */
     public <X, Y> void addData(String name, ArrayList<X> input, ArrayList<Y> output) {
         Data<X, Y> data = new Data<>(name, input, output);
         addItem(data.getInput());
@@ -48,7 +62,7 @@ public class Storage {
      * as the name of the text file and the value in the file
      */
     public void saveItems(){
-        fault.warn("No items to save", Expectation.SURPRISING, Magnitude.MINOR, items.isEmpty(), false);
+        fault.log("No items to save", Expectation.SURPRISING, Magnitude.MINOR, items.isEmpty(), false);
         for(Item<?> i: items) {
             saveText("current", i.getName(), i.toString());
         }
@@ -71,6 +85,11 @@ public class Storage {
         return Item.fromString(name, readText("current", name));
     }
 
+    /**
+     * Get the data using the name
+     * @param name
+     * @return data
+     */
     public Data<?, ?> getData(String name){
         return Data.fromString(name, readText("current", Data.getInputName(name)), readText("current", Data.getOutputName(name)));
     }
@@ -114,9 +133,7 @@ public class Storage {
     private File makeOutputFolder(String dirname){
         File filepath = Environment.getExternalStorageDirectory();
         File ftcDir = new File(filepath.getAbsolutePath()+"/FTC_Files/");
-        //log.record("was ftcDir made?", ftcDir.mkdir());
         File outDir = new File(ftcDir.getAbsolutePath()+"/"+dirname+"/");
-        //log.record("was outDir made?", outDir.mkdir());
         return outDir;
     }
 }
