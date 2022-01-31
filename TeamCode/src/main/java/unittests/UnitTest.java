@@ -24,7 +24,6 @@ public class UnitTest {
     public void test(){}
     public void stop(){}
 
-
     /**
      * Reset the status to idle
      */
@@ -38,11 +37,11 @@ public class UnitTest {
      * @param part
      */
     protected void showConfig(RobotPart part){
-        log.show("------------CONFIG-------------");
+        log.header("config start");
         for (Entry<String, CMotor> entry: part.getElectronicsOfType(CMotor.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
         for (Entry<String, PServo> entry: part.getElectronicsOfType(PServo.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
         for (Entry<String, CServo> entry: part.getElectronicsOfType(CServo.class).entrySet()) { showConfig(entry.getKey(), entry.getValue()); }
-        log.show("------------TEST-------------");
+        log.header("config end");
     }
 
     /**

@@ -66,7 +66,7 @@ public interface UnitTester {
          * Create all the unit tests and initialize them
          */
         createUnitTests();
-        fault.check("No unit tests to be run", Expectation.OBVIOUS, Magnitude.NEGLIGIBLE, selector.getNumberOfItems() == 0, false);
+        fault.warn("No unit tests to be run", Expectation.OBVIOUS, Magnitude.NEGLIGIBLE, selector.getNumberOfItems() == 0, false);
         selector.runToAll(UnitTest::init);
         /**
          * Display the testing mode
@@ -82,10 +82,20 @@ public interface UnitTester {
     default void add(UnitTest test){
         for(String testName: selector.getItemClassNames()){
             if(test.getClass().getSimpleName().equals(testName)){
-                fault.check("Duplicate unit test found", Expectation.OBVIOUS, Magnitude.NEGLIGIBLE);
+                fault.warn("Duplicate unit test found", Expectation.OBVIOUS, Magnitude.NEGLIGIBLE);
             };
         }
         selector.addItem(new Item<>(test.getClass().getSimpleName(), test));
+    }
+
+    /**
+     * Add all the unit tests
+     * @param tests
+     */
+    default void addAll(UnitTest... tests){
+        for(UnitTest test : tests){
+            add(test);
+        }
     }
 
     /**
@@ -111,17 +121,27 @@ public interface UnitTester {
      */
     default void runCurrentTest(TestingMode testingMode){
         if(testingMode.equals(TestingMode.SELECTION) && selector.isInActive()){
+            /**
+             * In selector mode list all the different options and wait for the selector to activate
+             */
             log.list(selector.getItemClassNames(), selector.getCurrentIndex());
         }else if(selector.isActive()){
+            /**
+             * If the selector is active then run the current test
+             */
+            log.showAndRecord("Testing", getCurrentTestName());
             selector.runToCurrentItem(UnitTest::test);
-            if(mainUser.equals(User.TELE)) {
-                log.showAndRecord("Testing", getCurrentTestName());
-            }else if(mainUser.equals(User.AUTO)){
-                log.showAndRecord("Tested", getCurrentTestName());
+            if(mainUser.equals(User.AUTO)){
+                log.showAndRecord("Done testing", getCurrentTestName());
             }
         }
     }
 
+    /**
+     * Is the tester done with all of the test?
+     * @param testingMode
+     * @return done
+     */
     default boolean isDoneWithAllTests(TestingMode testingMode){
         return !testingMode.equals(TestingMode.SELECTION) && selector.isDoneWithLast();
     }

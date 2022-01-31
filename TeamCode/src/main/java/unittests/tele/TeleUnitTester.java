@@ -14,7 +14,12 @@ import unittests.tele.framework.LoggerTest;
 import unittests.tele.framework.StorageTest;
 import unittests.tele.hardware.OdometryServoTest;
 import unittests.tele.hardware.*;
+import unittests.tele.sensor.ColorTest;
+import unittests.tele.sensor.DistanceTest;
+import unittests.tele.sensor.GyroTest;
+import unittests.tele.sensor.TouchTest;
 import unittests.unused.CoordinatePlaneTest;
+import unittests.unused.OdometryTest;
 
 import static global.General.*;
 
@@ -30,41 +35,49 @@ public class TeleUnitTester extends Tele implements UnitTester{
 
     @Override
     public void createUnitTests(){
-        // Framework
-//        add(new OdometryServoTest());
-//        add(new AccessTest());
-        add(new CommonTest());
-//        add(new CoordinatePlaneTest());
-        add(new LoggerTest());
-//        add(new FaultTest());
-//        add(new GamepadTest());
-//        add(new RobotFunctionsTest());
-//        add(new ThreadTest());
-        add(new StorageTest());
-//        add(new StageTest());
-//        add(new AutoModuleTest());
-//        add(new LagTest());
-//        add(new SelectorTest());
-//        add(new SynchroniserTest());
-//        add(new RobotPartTest());
-//        add(new RobotFrameworkTest());
-//        add(new ElectronicsTest());
-
-        // Hardware
-//        add(new TankDriveTest());
-//        add(new IntakeTest());
-//        add(new LiftTest());
-//        add(new TurretTest());
-//        add(new OuttakeTest());
-//        add(new CarouselTest());
-
-//        // Sensor
-//        add(new ColorTest());
-//        add(new DistanceTest());
-//        add(new GyroTest());
-//        add(new OdometryTest());
-//        add(new TouchTest());
-//        add(new OdometryTest());
+        /**
+         * Framework
+         */
+        addAll(
+//            new OdometryServoTest(),
+//            new AccessTest(),
+//            new CommonTest(),
+//            new CoordinatePlaneTest(),
+//            new LoggerTest(),
+//            new FaultTest(),
+//            new GamepadTest(),
+//            new RobotFunctionsTest(),
+//            new ThreadTest(),
+//            new StorageTest(),
+//            new AutoModuleTest(),
+//            new LagTest(),
+//            new SelectorTest(),
+//            new SynchroniserTest(),
+//            new RobotPartTest(),
+//            new RobotFrameworkTest(),
+//            new ElectronicsTest()
+        );
+        /**
+         * Hardware
+         */
+        addAll(
+//            new TankDriveTest(),
+//            new IntakeTest(),
+//            new LiftTest(),
+//            new TurretTest(),
+//            new OuttakeTest(),
+//            new CarouselTest()
+        );
+        /**
+         * Sensors
+         */
+        addAll(
+//            new ColorTest(),
+//            new DistanceTest(),
+//            new GyroTest(),
+//            new OdometryTest(),
+//            new TouchTest()
+        );
     }
 
     /**
@@ -97,6 +110,9 @@ public class TeleUnitTester extends Tele implements UnitTester{
         }
     }
 
+    /**
+     * Reset the selector
+     */
     @Override
     public void stopTele() {
         selector.reset();

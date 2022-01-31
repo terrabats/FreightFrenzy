@@ -24,13 +24,11 @@ public class PIDTest extends AutoUnitTest {
         movePID.setMaximumDerivative(10);
 
         log.show("Target (20)", movePID.getTarget());
-//        pause(1);
 
-        whileActive(() -> {
+        whileActive(() -> !movePID.isAtTarget(), () -> {
             movePID.update();
             log.show("Error, Output", "\n"+movePID.getError()+", \n"+ movePID.getOutput());
             bot.tankDrive.move(movePID.getOutput(),0);
-            return !movePID.isAtTarget();
         });
 
         movePID.reset();

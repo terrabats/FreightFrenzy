@@ -51,10 +51,6 @@ public class Selector<T> {
      */
     private CodeSeg next = () -> {};
     /**
-     * Code to be run when the selector reaches the end
-     */
-    private CodeSeg end = () -> {};
-    /**
      * Done running last
      */
     private boolean isDoneWithLast = false;
@@ -149,7 +145,10 @@ public class Selector<T> {
      */
     public boolean isOnLast(){ return currentIndex == items.size()-1; }
 
-
+    /**
+     * Is the selector done with the last test
+     * @return isDoneWithLast
+     */
     public boolean isDoneWithLast(){ return isDoneWithLast; }
 
     /**
@@ -157,7 +156,10 @@ public class Selector<T> {
      */
     public void up(){
         if(isOnLast()) {
-            end.run();
+            /**
+             * If its on the last index
+             * Set done with last true
+             */
             isDoneWithLast = true;
             if(wrapAround){
                 currentIndex = 0;
@@ -186,6 +188,9 @@ public class Selector<T> {
     public void update(){
         if(updateTimer.seconds() > delay) {
             if(select.run()){
+                /**
+                 * If the selector is selected activate it
+                 */
                 active();
             }
             if (up.run()) {
@@ -247,15 +252,6 @@ public class Selector<T> {
      */
     public void runOnNext(CodeSeg seg){
          next = seg;
-    }
-
-    /**
-     * Define the end codeseg
-     * @param seg
-     * @link end
-     */
-    public void runOnEnd(CodeSeg seg){
-        end = seg;
     }
 
     /**

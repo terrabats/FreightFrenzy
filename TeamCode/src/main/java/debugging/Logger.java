@@ -67,6 +67,14 @@ public class Logger {
     }
 
     /**
+     * Creates a header to separate different parts of telemetry
+     * @param name
+     */
+    public void header(String name){
+        show("--------" + name.toUpperCase() + "--------");
+    }
+
+    /**
      * Create a list and show what is the current value being selected
      * @param values
      * @param currentIndex

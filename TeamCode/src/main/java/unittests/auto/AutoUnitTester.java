@@ -41,12 +41,20 @@ public class AutoUnitTester extends Auto implements UnitTester {
 
     @Override
     public void createUnitTests(){
-        // Framework
-        add(new PIDTest());
-//        add(new EmptyTest());
-//        add(new EmptyTest2());
+        /**
+         * Framework
+         */
+        addAll(
+//                new PIDTest(),
+//                new EmptyTest(),
+//                new MoveTest(),
+                new EmptyTest2()
+        );
     }
 
+    /**
+     * Initialize by setting the linear op mode, and reading the selector
+     */
     @Override
     public void initAuto() {
         AutoUnitTest.linearOpMode = this;
@@ -54,22 +62,29 @@ public class AutoUnitTester extends Auto implements UnitTester {
         activate(FieldSide.UNKNOWN);
     }
 
+    /**
+     * Run the tests
+     */
     @Override
     public void runAuto() {
+        /**
+         * Reset the update timer and set update on show to true so that logs dont need to be updated manualy
+         */
         selector.resetUpdateTimer();
         log.setShouldUpdateOnShow(true);
         while (opModeIsActive()){
             if(!isDoneWithAllTests(testingMode)) {
                 selector.update();
                 runCurrentTest(testingMode);
-                log.showTelemetry();
             }else{
                 log.show("Done With All Tests");
-                log.showTelemetry();
             }
         }
     }
 
+    /**
+     * Reset the selector
+     */
     @Override
     public void stopAuto() {
         selector.reset();
