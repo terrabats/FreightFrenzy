@@ -113,4 +113,8 @@ public class AutoModules{
             RobotPart.pause(time)
         );
     }
+
+    public StageList RiseLift = new StageList(bot.riseLift).define(
+        bot.riseLift.liftEncoder(0.5, 135)
+    );
 }

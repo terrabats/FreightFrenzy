@@ -9,18 +9,15 @@ import automodules.stage.Stage;
 import automodules.stage.Stop;
 import global.Constants;
 import robotparts.RobotPart;
-import robotparts.electronics.StallDetector;
 import robotparts.electronics.positional.PMotor;
 
-import static global.General.bot;
-import static global.General.fault;
+import static global.General.*;
 
 public class Lift extends RobotPart {
     /**
      * Lift positional motor
      */
     private PMotor li;
-    private StallDetector stallDetector = new StallDetector();
 
     /**
      * Init method creates the lift motor and resets the encoder (done internally)
@@ -35,7 +32,6 @@ public class Lift extends RobotPart {
      * @param p
      */
     public void move(double p){
-//        li.setPower(p + Constants.LIFT_REST_POW, Constants.LIFT_REST_POW, 0.02);
         li.setPower(p + Constants.LIFT_REST_POW);
     }
 
@@ -89,8 +85,6 @@ public class Lift extends RobotPart {
         return li.hasReachedPosition();
     }
 
-    public boolean isStalling() { return li.isStalling(0); }
-
     /**
      * Initial to set the target
      * @param height
@@ -106,7 +100,6 @@ public class Lift extends RobotPart {
     public Main main(double power){
         return new Main(() -> {
             move(power);
-//            if (isStalling()) fault.check("STALLING");
         });
     }
 
