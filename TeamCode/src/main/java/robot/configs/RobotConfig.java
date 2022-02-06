@@ -6,8 +6,6 @@ import robotparts.hardware.Carousel;
 import robotparts.hardware.Intake;
 import robotparts.hardware.Lift;
 import robotparts.hardware.Outtake;
-import robotparts.hardware.RiseCarousel;
-import robotparts.hardware.RiseLift;
 import robotparts.hardware.TankDrive;
 import robotparts.hardware.Turret;
 import robotparts.sensors.ColorSensors;
@@ -16,8 +14,7 @@ import robotparts.sensors.GyroSensors;
 import robotparts.sensors.Led;
 import robotparts.sensors.Odometry;
 import robotparts.sensors.TouchSensors;
-import robotparts.unused.MecanumDrive;
-import util.ExceptionCatcher;
+import robotparts.hardware.MecanumDrive;
 
 public abstract class RobotConfig extends RobotFramework {
 
@@ -34,8 +31,6 @@ public abstract class RobotConfig extends RobotFramework {
     public DistanceSensors distanceSensors = new DistanceSensors();
     public Led leds = new Led();
     public MecanumDrive mecanumDrive = new MecanumDrive();
-    public RiseLift riseLift = new RiseLift();
-    public RiseCarousel riseCarousel = new RiseCarousel();
 
     protected final void define(RobotPart... parts){
         for(RobotPart part:parts){ part.instantiate(); }

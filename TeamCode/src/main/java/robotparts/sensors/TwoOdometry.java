@@ -1,44 +1,48 @@
 package robotparts.sensors;
 
+import static java.lang.Math.PI;
+import static java.lang.Math.abs;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+import static global.General.bot;
+import static robot.RobotFramework.odometryThread;
+
 import robotparts.RobotPart;
 import robotparts.electronics.input.IEncoder;
 import util.codeseg.ExceptionCodeSeg;
-
-import static java.lang.Math.*;
-import static global.General.*;
-import static robot.RobotFramework.*;
 
 /**
  * NOTE: Uncommented
  */
 
-public class Odometry extends RobotPart {
+public class TwoOdometry extends Odometry {
 
-    private final double ODO1_TO_CENTER_X;
+    private final double ODO2_TO_CENTER_Y;
 
-    private double prevOdoOnePos = 0;
+    private double prevOdoTwoPos = 0;
 
     private final ExceptionCodeSeg<RuntimeException> odometryUpdateCode = this::update;
 
-    private IEncoder yEnc;
+    private IEncoder rEnc;
 
-    public double[] curPos = new double[] { 0, 0, 0 };
-    public double[] lastChangePos = new double[] { 0, 0, 0 };
-
-    public Odometry(double odo_to_center_x) { ODO1_TO_CENTER_X = odo_to_center_x; }
+    public TwoOdometry(double odo1_to_center_x, double odo2_to_center_y) {
+        super(odo1_to_center_x);
+        ODO2_TO_CENTER_Y = odo2_to_center_y;
+    }
 
     @Override
     public void init() {
-        yEnc = createEncoder("bl", "cEnc", IEncoder.Type.NORMAL);
+        super.init();
+        rEnc = createEncoder("br", "rEnc", IEncoder.Type.NORMAL);
         update();
         curPos = new double[] { 0, 0, 0 };
         odometryThread.setExecutionCode(odometryUpdateCode);
 
     }
 
-    private double getDeltaOdoOne() {
-        double delta = -yEnc.getPos() - prevOdoOnePos;
-        prevOdoOnePos += delta;
+    private double getDeltaOdoTwo() {
+        double delta = -rEnc.getPos() - prevOdoTwoPos;
+        prevOdoTwoPos += delta;
         return ticksToCm(delta);
     }
 
@@ -69,34 +73,21 @@ public class Odometry extends RobotPart {
         curPos[2] += change[2];
     }
 
+    // TODO: TEST THIS
     public double[] getPosChange() {
         lastChangePos = getPosChangeCenter();
         double[] posChange = new double[3];
-        posChange[0] = lastChangePos[1] * cos(curPos[2] + PI/2);
-        posChange[1] = lastChangePos[1] * sin(curPos[2] + PI/2);
+        posChange[0] = lastChangePos[0] * cos(curPos[2]) + lastChangePos[1] * cos(curPos[2] + PI/2);
+        posChange[1] = lastChangePos[0] * sin(curPos[2]) + lastChangePos[1] * sin(curPos[2] + PI/2);
         posChange[2] = lastChangePos[2];
         return posChange;
     }
 
     // NOTE: Odometry modules are to the left and to the back of the center of the robot
     public double[] getPosChangeCenter() {
-        processTheta();
-        double gyroReading = bot.gyroSensors.getRightHeadingRad();
-        double dtheta = gyroReading - curPos[2];
-
-        while (abs(dtheta) > PI) {
-            if (gyroReading < 0) {
-                gyroReading += 2 * PI;
-            } else {
-                gyroReading -= 2 * PI;
-            }
-            dtheta = gyroReading - curPos[2];
-        }
-
-        double dt = getDeltaOdoOne() - dtheta * ODO1_TO_CENTER_X;
-//        double d2 = getDeltaOdoTwo() - theta * (ODO1_TO_CENTER_X + R);
-
-        return new double[] { 0, dt, dtheta };
+        double[] posChangeNoStrafe = super.getPosChangeCenter();
+        double dx = getDeltaOdoTwo() - posChangeNoStrafe[2] * ODO2_TO_CENTER_Y;
+        return new double[] { dx, posChangeNoStrafe[1], posChangeNoStrafe[2] };
 
     }
 }
