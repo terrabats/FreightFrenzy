@@ -22,7 +22,7 @@ public class Intake extends RobotPart {
      */
     @Override
     public void init() {
-        in = createCMotor("in", DcMotorSimple.Direction.FORWARD, DcMotor.ZeroPowerBehavior.FLOAT, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        in = createCMotor("in", DcMotorSimple.Direction.REVERSE, DcMotor.ZeroPowerBehavior.FLOAT, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     /**
