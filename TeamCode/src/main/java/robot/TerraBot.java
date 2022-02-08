@@ -1,6 +1,5 @@
 package robot;
 
-import robot.configs.RobotConfig;
-import robot.configs.TankConfig;
+import robot.configs.TwoConfig;
 
-public class TerraBot extends TankConfig {}
+public class TerraBot extends TwoConfig {}

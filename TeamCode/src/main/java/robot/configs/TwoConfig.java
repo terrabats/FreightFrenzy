@@ -1,6 +1,6 @@
 package robot.configs;
 
-public class NewConfig extends RobotConfig{
+public class TwoConfig extends RobotConfig{
     {
         define(
                 intake,
