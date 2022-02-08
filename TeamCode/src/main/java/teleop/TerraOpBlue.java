@@ -1,5 +1,6 @@
 package teleop;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import elements.FieldSide;
@@ -18,6 +19,7 @@ import static global.General.gph2;
  * NOTE: Uncommented
  */
 
+@Disabled
 @TeleOp(name = "TerraOpBlue", group = "TeleOp")
 public class TerraOpBlue extends Tele{
 

@@ -33,9 +33,9 @@ public class ColorSensors extends RobotPart {
      */
     public GameElement getFreightType(){
         float h = getOuttakeColorHSV()[0];
-        if(155 < h && h < 170){
+        if(140 <= h && h <= 175){
             return GameElement.BALL;
-        }else if(60 < h && h < 90){
+        }else if(55 <= h && h <= 95){
             return GameElement.CUBE;
         }else{
             return GameElement.NONE;

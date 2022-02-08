@@ -2,6 +2,7 @@ package robotparts.sensors;
 
 import robotparts.RobotPart;
 import robotparts.electronics.input.IEncoder;
+import util.codeseg.CodeSeg;
 import util.codeseg.ExceptionCodeSeg;
 
 import static java.lang.Math.*;
@@ -15,12 +16,15 @@ import static robot.RobotFramework.*;
 public class Odometry extends RobotPart {
 
     private final double ODO1_TO_CENTER_X;
+//    private static final double ODO1_TO_CENTER_Y = 0.92;
 
     private double prevOdoOnePos = 0;
+//    private double prevOdoTwoPos = 0;
 
     private final ExceptionCodeSeg<RuntimeException> odometryUpdateCode = this::update;
 
-    private IEncoder yEnc;
+    //    private IEncoder rEnc;
+    protected IEncoder cEnc;
 
     public double[] curPos = new double[] { 0, 0, 0 };
     public double[] lastChangePos = new double[] { 0, 0, 0 };
@@ -29,7 +33,8 @@ public class Odometry extends RobotPart {
 
     @Override
     public void init() {
-        yEnc = createEncoder("bl", "cEnc", IEncoder.Type.NORMAL);
+//        rEnc = createEncoder("br", "rEnc", IEncoder.Type.NORMAL);
+        cEnc = createEncoder("bl", "cEnc", IEncoder.Type.NORMAL);
         update();
         curPos = new double[] { 0, 0, 0 };
         odometryThread.setExecutionCode(odometryUpdateCode);
@@ -37,10 +42,16 @@ public class Odometry extends RobotPart {
     }
 
     private double getDeltaOdoOne() {
-        double delta = -yEnc.getPos() - prevOdoOnePos;
+        double delta = -cEnc.getPos() - prevOdoOnePos;
         prevOdoOnePos += delta;
         return ticksToCm(delta);
     }
+
+//    private double getDeltaOdoTwo() {
+//        double delta = rEnc.getPos() - prevOdoTwoPos;
+//        prevOdoTwoPos += delta;
+//        return ticksToCm(delta);
+//    }
 
     private double ticksToCm(double ticks) {
         return ticks/8192 * 3.5 * Math.PI;

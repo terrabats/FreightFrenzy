@@ -15,6 +15,7 @@ import robotparts.sensors.Led;
 import robotparts.sensors.Odometry;
 import robotparts.sensors.TouchSensors;
 import robotparts.hardware.MecanumDrive;
+import robotparts.sensors.TwoOdometry;
 
 public abstract class RobotConfig extends RobotFramework {
 
@@ -26,11 +27,12 @@ public abstract class RobotConfig extends RobotFramework {
     public Carousel carousel = new Carousel();
     public ColorSensors colorSensors = new ColorSensors();
     public GyroSensors gyroSensors = new GyroSensors();
-    public Odometry odometry = new Odometry(4.6);
     public TouchSensors touchSensors = new TouchSensors();
     public DistanceSensors distanceSensors = new DistanceSensors();
     public Led leds = new Led();
     public MecanumDrive mecanumDrive = new MecanumDrive();
+
+    public TwoOdometry odometry = new TwoOdometry(4, 0);
 
     protected final void define(RobotPart... parts){
         for(RobotPart part:parts){ part.instantiate(); }

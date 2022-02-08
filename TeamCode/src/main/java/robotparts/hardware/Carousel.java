@@ -1,28 +1,26 @@
 package robotparts.hardware;
 
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import automodules.stage.Main;
 import automodules.stage.Stage;
 import automodules.stage.Stop;
 import robotparts.RobotPart;
+import robotparts.electronics.continuous.CMotor;
 import robotparts.electronics.continuous.CServo;
 
 public class Carousel extends RobotPart {
     /**
      * Carousel left and right (cl and cr respectively)
      */
-    public CServo cl;
-    public CServo cr;
+    public CMotor cr;
 
     /**
      * Init method creates the cservos (or continuous servos)
      */
     @Override
-    public void init() {
-        cl = createCServo("cl", CRServo.Direction.REVERSE);
-        cr = createCServo("cr", CRServo.Direction.FORWARD);
-    }
+    public void init() { cr = createCMotor("cr", DcMotor.Direction.FORWARD); }
 
     /**
      * Move the carousels at the given power
@@ -30,7 +28,6 @@ public class Carousel extends RobotPart {
      * @param p
      */
     public void move(double p){
-        cl.setPower(p);
         cr.setPower(p);
     }
 
@@ -44,10 +41,10 @@ public class Carousel extends RobotPart {
 
     public Stage spin(double time) {
         return new Stage(
-            usePart(),
-            mainSpin(),
-            exitTime(time),
-            mainStop()
+                usePart(),
+                mainSpin(),
+                exitTime(time),
+                mainStop()
         );
     }
 }

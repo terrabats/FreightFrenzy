@@ -14,6 +14,7 @@ import elements.FieldSide;
 import teleutil.Selector;
 import teleutil.button.Button;
 import unittests.UnitTester;
+import unittests.auto.framework.AutoMoveTest;
 import unittests.auto.framework.EmptyTest;
 import unittests.auto.framework.EmptyTest2;
 import unittests.auto.framework.MoveTest;
@@ -48,7 +49,8 @@ public class AutoUnitTester extends Auto implements UnitTester {
 //                new PIDTest(),
 //                new EmptyTest(),
 //                new MoveTest(),
-                new EmptyTest2()
+//                new EmptyTest2()
+                new AutoMoveTest()
         );
     }
 

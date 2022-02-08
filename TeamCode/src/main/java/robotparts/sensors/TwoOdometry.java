@@ -1,13 +1,10 @@
 package robotparts.sensors;
 
 import static java.lang.Math.PI;
-import static java.lang.Math.abs;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
-import static global.General.bot;
 import static robot.RobotFramework.odometryThread;
 
-import robotparts.RobotPart;
 import robotparts.electronics.input.IEncoder;
 import util.codeseg.ExceptionCodeSeg;
 
@@ -32,7 +29,7 @@ public class TwoOdometry extends Odometry {
 
     @Override
     public void init() {
-        super.init();
+        cEnc = createEncoder("bl", "cEnc", IEncoder.Type.NORMAL);
         rEnc = createEncoder("br", "rEnc", IEncoder.Type.NORMAL);
         update();
         curPos = new double[] { 0, 0, 0 };

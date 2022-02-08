@@ -1,10 +1,16 @@
 package robot.configs;
 
-public class RiseConfig extends RobotConfig{
+public class RiseConfig extends RobotConfig {
     {
         define(
+                mecanumDrive,
+                lift,
+                carousel,
                 intake,
-                mecanumDrive
+                gyroSensors,
+                outtake,
+                colorSensors,
+                odometry
         );
     }
 }
