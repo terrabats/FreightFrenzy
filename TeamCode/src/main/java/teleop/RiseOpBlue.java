@@ -20,8 +20,14 @@ public class RiseOpBlue extends Tele{
         gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));
         gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.intake.move(0));
 
+        gph1.link(Button.RIGHT_TRIGGER, OnPressEventHandler.class, () -> bot.carousel.move(1));
+        gph1.link(Button.RIGHT_TRIGGER, OnNotHeldEventHandler.class, () -> bot.carousel.move(0));
+
+        gph1.link(Button.X, OnPressEventHandler.class, () -> bot.cancelAutoModules());
         gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.IntakeRiseTele));
-        gph1.link(Button.X, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.ReleaseRiseTele));
+        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.ForwardRiseTele));
+
+        gph1.link(Button.LEFT_TRIGGER, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.DuckRiseTele));
     }
 
     @Override

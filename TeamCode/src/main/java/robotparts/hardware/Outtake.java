@@ -26,7 +26,7 @@ public class Outtake extends RobotPart {
         lo.addPosition("ballLock", 0.2);
         lo.addPosition("aligned", 0.35);
         lo.addPosition("start", 1.0);
-        lo.addPosition("open", 1.0);
+        lo.addPosition("open", 0.9);
     }
 
     /**
@@ -53,23 +53,45 @@ public class Outtake extends RobotPart {
     public Main mainLockIfBall(){return new Main(() -> {if (bot.colorSensors.isBall()) {lockBall();}});}
     public Main mainLockIfCube(){return new Main(() -> {if (bot.colorSensors.isCube()) {lockCube();}});}
 
+    public Main mainLock(){return new Main(this::lockCube);}
     public Main mainDrop(){return new Main(this::open);}
     public Main mainReset(){return new Main(this::start);}
 
-    /**
-     * Lock the outtake based on the type of freight
-     * @param freightType
-     * @param time
-     * @return
-     */
-    public Stage outtakeLock(GameElement freightType, double time){
-        Main lock = null;
-        if(freightType.equals(GameElement.CUBE)){lock = mainLockIfCube();}
-        else if(freightType.equals(GameElement.BALL)){lock = mainLockIfBall();}
+//    /**
+//     * Lock the outtake based on the type of freight
+//     * @param freightType
+//     * @param time
+//     * @return
+//     */
+//    public Stage outtakeLock(GameElement freightType, double time){
+////        Main lock = null;
+////        if(freightType.equals(GameElement.CUBE)){lock = mainLockIfCube();}
+////        else if(freightType.equals(GameElement.BALL)){lock = mainLockIfBall();}
+//        return new Stage(
+//                usePart(),
+//                mainLock(),
+//                exitTime(time),
+//                returnPart()
+//        );
+//    }
+
+    public Stage outtakeLockNew(double time){
         return new Stage(
                 usePart(),
-                lock,
+                mainLock(),
                 exitTime(time),
+                returnPart()
+        );
+    }
+
+    public Stage outtakeLockAndIntake(double time){
+        return new Stage(
+                usePart(),
+                bot.intake.usePart(),
+                bot.intake.main(1),
+                mainLock(),
+                exitTime(time),
+                bot.intake.returnPart(),
                 returnPart()
         );
     }
@@ -84,19 +106,6 @@ public class Outtake extends RobotPart {
             mainLockIfBall(),
             mainLockIfCube(),
             exitTime(time),
-            returnPart()
-    );
-    }
-
-    public Stage outtakeLockAndIntake(double time){ return new Stage(
-            usePart(),
-            bot.intake.usePart(),
-            bot.intake.main(1),
-            mainLockIfBall(),
-            mainLockIfCube(),
-            exitTime(time),
-            bot.intake.stop(),
-            bot.intake.returnPart(),
             returnPart()
     );
     }

@@ -95,9 +95,6 @@ public class AutoModules{
 
 
 
-
-
-
     public StageList ResetRiseAuto = new StageList(bot.lift).define(
             bot.turret.turretEncoder(1, 0),
             RobotPart.pause(1),
@@ -110,17 +107,26 @@ public class AutoModules{
             bot.outtake.outtakeLock(1)
     );
 
+
+
+
+
+
+
     public StageList IntakeRiseTele = new StageList(bot.lift, bot.intake, bot.outtake).define(
             bot.outtake.outtakeReset(0.05),
-            bot.lift.liftEncoder(0.4, 0),
-            bot.intake.intakeUntilFreightLiftDown(1),
-            bot.lift.liftEncoderAndIntake(0.2, 90),
-            bot.outtake.outtakeLock(1),
-            bot.lift.liftEncoder(0.1, 170)
+            bot.lift.liftEncoder(0.8, 0),
+            bot.intake.intakeTime(1,1.5),
+            bot.outtake.outtakeLockAndIntake(0.05),
+            bot.lift.liftEncoderAndIntake(0.8, 115)
+    );
+    public StageList ForwardRiseTele = new StageList(bot.lift, bot.outtake).define(
+            bot.lift.liftEncoderAndIntake(0.8, 135),
+            bot.outtake.outtakeDrop(0.5),
+            bot.lift.liftEncoder(0.8, 0)
     );
 
-    public StageList ReleaseRiseTele = new StageList(bot.lift, bot.outtake).define(
-            bot.outtake.outtakeDrop(1),
-            bot.lift.liftEncoder(0.4, 0)
+    public StageList DuckRiseTele = new StageList(bot.carousel).define(
+            bot.carousel.spinOneDuck(2,0.4,0.7)
     );
 }

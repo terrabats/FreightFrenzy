@@ -21,6 +21,11 @@ public class Linear extends Polynomial{
     }
 
     @Override
+    public double f(double x) {
+        return  (m*x) + b;
+    }
+
+    @Override
     public double[] roots() {
         return new double[]{-b/m};
     }
