@@ -133,6 +133,9 @@ public interface UnitTester {
             selector.runToCurrentItem(UnitTest::test);
             if(mainUser.equals(User.AUTO)){
                 log.showAndRecord("Done testing", getCurrentTestName());
+                if(selector.isOnLast()){
+                    selector.up();
+                }
             }
         }
     }

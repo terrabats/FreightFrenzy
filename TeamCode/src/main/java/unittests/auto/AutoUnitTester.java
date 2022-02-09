@@ -17,6 +17,7 @@ import unittests.UnitTester;
 import unittests.auto.framework.AutoMoveTest;
 import unittests.auto.framework.EmptyTest;
 import unittests.auto.framework.EmptyTest2;
+import unittests.auto.framework.ExecutorTest;
 import unittests.auto.framework.MoveTest;
 import unittests.auto.framework.PIDTest;
 import unittests.tele.TeleUnitTest;
@@ -49,8 +50,8 @@ public class AutoUnitTester extends Auto implements UnitTester {
 //                new PIDTest(),
 //                new EmptyTest(),
 //                new MoveTest(),
-//                new EmptyTest2()
-                new AutoMoveTest()
+                new EmptyTest2(),
+                new ExecutorTest()
         );
     }
 

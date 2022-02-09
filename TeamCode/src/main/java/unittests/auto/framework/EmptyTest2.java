@@ -10,6 +10,7 @@ public class EmptyTest2 extends AutoUnitTest {
     @Override
     public void init() {
         log.showAndRecord("init", "");
+        timer.reset();
     }
 
     @Override

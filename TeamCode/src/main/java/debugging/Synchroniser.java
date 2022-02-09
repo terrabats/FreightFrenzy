@@ -1,6 +1,7 @@
 package debugging;
 
 import util.Timer;
+import util.User;
 import util.condition.Expectation;
 import util.condition.Magnitude;
 
@@ -8,6 +9,7 @@ import static global.General.fault;
 import static global.General.fieldSide;
 import static global.General.log;
 import static global.Constants.*;
+import static global.General.mainUser;
 
 public class Synchroniser {
     /**
@@ -74,7 +76,9 @@ public class Synchroniser {
              * The amount of delay between refreshes
              */
             log.record("Delay (ms)", getDelay());
-            fault.warn("Robot is lagging", Expectation.EXPECTED, Magnitude.CRITICAL, getDelay() < (1000 / MINIMUM_REFRESH_RATE), true);
+            if(mainUser.equals(User.TELE)) {
+                fault.warn("Robot is lagging", Expectation.EXPECTED, Magnitude.CRITICAL, getDelay() < (1000 / MINIMUM_REFRESH_RATE), true);
+            }
         }
         /**
          * If ready was called but update was not called in common then something is wrong
