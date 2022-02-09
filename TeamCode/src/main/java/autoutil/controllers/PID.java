@@ -3,7 +3,7 @@ package autoutil.controllers;
 import autoutil.profilers.Profiler;
 import util.codeseg.ReturnCodeSeg;
 
-public class PID {
+public class PID extends Controller{
     private final double kp;
     private final double ki;
     private final double kd;
@@ -24,13 +24,14 @@ public class PID {
     private boolean isAtTarget = false;
 
     public PID(double kp, double ki, double kd){
-        this.kp = kp;
-        this.ki = ki;
-        this.kd = kd;
-        this.minimumOutput = 0;
-        this.maximumTime = 0.05;
-        this.maximumDerivative = 1000000;
-        this.maximumIntegralRange = 1000000;
+        this.kp = kp; this.ki = ki; this.kd = kd;
+        this.minimumOutput = 0; this.maximumTime = 0.05; this.maximumDerivative = 1000000; this.maximumIntegralRange = 1000000;
+        profiler = new Profiler(this::getError);
+    }
+
+    public PID(double kp, double ki, double kd, double minimumOutputBeforeNext, double maximumTimeBeforeNext){
+        this.kp = kp; this.ki = ki; this.kd = kd;
+        this.minimumOutput = minimumOutputBeforeNext; this.maximumTime = maximumTimeBeforeNext; this.maximumDerivative = 1000000; this.maximumIntegralRange = 1000000;
         profiler = new Profiler(this::getError);
     }
 

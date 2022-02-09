@@ -3,7 +3,7 @@ package autoutil.generators;
 import java.util.ArrayList;
 
 import autoutil.paths.PathArc;
-import autoutil.paths.Path;
+import autoutil.paths.PathOld;
 import autoutil.paths.PathSegment;
 import autoutil.paths.PathLine;
 import geometry.circles.Circle;
@@ -36,10 +36,10 @@ public class ArcGenerator {
 
     private void moveTo(Pose p) { poses.add(p); }
 
-    public Path done() {
-        Path path = new Path();
+    public PathOld done() {
+        PathOld path = new PathOld();
         for (int i = 0; i < poses.size() - 1; i++) {
-            path.addSegs(generateSeg(poses.get(i), poses.get(i + 1)));
+            path.addSegments(generateSeg(poses.get(i), poses.get(i + 1)));
         }
         return path;
     }

@@ -1,25 +1,22 @@
 package unittests.auto.framework;
 
-import java.util.Arrays;
-
 import autoutil.controllers.PID;
 import unittests.auto.AutoUnitTest;
 
 import static global.General.bot;
-import static global.General.log;
 
 public class AutoMoveTest extends AutoUnitTest {
 
-    PID xPID = new PID(0.05,0.005,0.005);
-    PID yPID = new PID(0.05,0.005,0.005);
-//    PID hPID = new PID(0.05,0.005,0.005);
+    PID xPID = new PID(0.05,0.005,0.005, 0.05, 0.05);
+    PID yPID = new PID(0.05,0.005,0.005, 0.05, 0.05);
+    PID hPID = new PID(0.05,0.005,0.005, 0.05 , 0.05);
 
     @Override
     protected void run() {
 //        log.show("Coefficients ", Arrays.toString(yPID.getCoefficients()));
 
-        yPID.setProcessVariable(() -> bot.odometry.getCurY());
-        xPID.setProcessVariable(() -> bot.odometry.getCurX());
+        yPID.setProcessVariable(() -> bot.odometry2.getCurY());
+        xPID.setProcessVariable(() -> bot.odometry2.getCurX());
 
         yPID.setMinimumOutput(0.05);
         yPID.setMaximumTime(0.05);

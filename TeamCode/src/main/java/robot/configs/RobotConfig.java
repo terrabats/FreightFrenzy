@@ -32,7 +32,7 @@ public abstract class RobotConfig extends RobotFramework {
     public Led leds = new Led();
     public MecanumDrive mecanumDrive = new MecanumDrive();
 
-    public TwoOdometry odometry = new TwoOdometry(4, 0);
+    public TwoOdometry odometry2 = new TwoOdometry(4, 0);
 
     protected final void define(RobotPart... parts){
         for(RobotPart part:parts){ part.instantiate(); }

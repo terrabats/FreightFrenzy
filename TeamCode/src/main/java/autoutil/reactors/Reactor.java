@@ -1,7 +1,23 @@
 package autoutil.reactors;
 
-public class Reactor {
-    // A base class for a reactor
-    // A reactor reacts and gives the powers of the motors based on the curent error
-    // This could be something like a PID
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import autoutil.controllers.Controller;
+
+public abstract class Reactor {
+
+    protected ArrayList<Controller> controllers;
+
+    public abstract double[] getPose();
+    public abstract void setTarget(double[] target);
+    public abstract void nextTarget();
+    public abstract boolean isAtTarget();
+    public abstract void moveToTarget();
+
+
+    protected void addControllers(Controller... newControllers){
+        controllers.addAll(Arrays.asList(newControllers));
+    }
+
 }

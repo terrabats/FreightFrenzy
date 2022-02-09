@@ -4,7 +4,7 @@ import java.util.*;
 
 import autoutil.generators.ArcGenerator;
 import autoutil.paths.PathSegment;
-import autoutil.reactors.TankReactor;
+import autoutil.reactors.tank.TankReactor;
 import geometry.circles.AngleType;
 import geometry.position.Pose;
 
@@ -96,8 +96,8 @@ public abstract class MovementExecutor {
             if (paths.get(curPath).size() == curPose) {
                 Pose nextPose = paths.get(curPath).get(curPose - 1);
                 double forwardPow = reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y);
-                double dis = sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
-                        + pow(bot.odometry.curPos[1] - nextPose.p.y, 2));
+                double dis = sqrt(pow(bot.odometry2.curPos[0] - nextPose.p.x, 2)
+                        + pow(bot.odometry2.curPos[1] - nextPose.p.y, 2));
                 if (dis > 10) {
                     move(
                         forwardPow,
@@ -134,14 +134,14 @@ public abstract class MovementExecutor {
     private boolean doneWithSetpoint() {
         Pose nextPose = paths.get(curPath).get(paths.get(curPath).size() - 1);
         return abs(reactor.turnPow(nextPose.ang, startH, true)) < 0.4
-                && sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
-                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2)) < 4;
+                && sqrt(pow(bot.odometry2.curPos[0] - nextPose.p.x, 2)
+                + pow(bot.odometry2.curPos[1] - nextPose.p.y, 2)) < 4;
     }
 
     private boolean doneWithPoint(int i) {
         Pose nextPose = paths.get(curPath).get(i);
-        double dis = sqrt(pow(bot.odometry.curPos[0] - nextPose.p.x, 2)
-                + pow(bot.odometry.curPos[1] - nextPose.p.y, 2));
+        double dis = sqrt(pow(bot.odometry2.curPos[0] - nextPose.p.x, 2)
+                + pow(bot.odometry2.curPos[1] - nextPose.p.y, 2));
         return dis < 10;
     }
 

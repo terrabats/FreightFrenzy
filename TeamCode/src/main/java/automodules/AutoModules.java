@@ -11,8 +11,7 @@ public class AutoModules{
     /**
      * Define automodules here as a stage list
      */
-    // TODO FIX
-            // DOenst work properly
+
     public StageList IntakeAuto = new StageList(bot.lift, bot.intake, bot.outtake).define(
         bot.lift.liftEncoder(0.4, 0),
         bot.intake.intakeUntilFreight(1),

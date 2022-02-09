@@ -18,7 +18,7 @@ public class TankConfig extends RobotConfig{
                 carousel,
                 colorSensors,
                 gyroSensors,
-                odometry
+                odometry2
         );
     }
 }
