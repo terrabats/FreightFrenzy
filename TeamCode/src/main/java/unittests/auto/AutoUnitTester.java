@@ -50,7 +50,7 @@ public class AutoUnitTester extends Auto implements UnitTester {
 //                new PIDTest(),
 //                new EmptyTest(),
 //                new MoveTest(),
-                new EmptyTest2(),
+//                new EmptyTest2(),
                 new ExecutorTest()
         );
     }

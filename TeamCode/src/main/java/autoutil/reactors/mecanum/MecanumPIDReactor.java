@@ -17,6 +17,8 @@ public class MecanumPIDReactor extends MecanumReactor{
         addControllers(xPID, yPID, hPID);
     }
 
+
+
     @Override
     public void setTarget(double[] target) {
         xPID.setTarget(target[0]); yPID.setTarget(target[1]); hPID.setTarget(target[2]);
@@ -34,6 +36,7 @@ public class MecanumPIDReactor extends MecanumReactor{
 
     @Override
     public void moveToTarget() {
+        xPID.update(); yPID.update(); hPID.update();
         bot.mecanumDrive.move(yPID.getOutput(), xPID.getOutput(), hPID.getOutput());
     }
 }

@@ -7,7 +7,7 @@ import autoutil.controllers.Controller;
 
 public abstract class Reactor {
 
-    protected ArrayList<Controller> controllers;
+    protected ArrayList<Controller> controllers = new ArrayList<>();
 
     public abstract double[] getPose();
     public abstract void setTarget(double[] target);
