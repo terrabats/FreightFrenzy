@@ -44,7 +44,8 @@ public class MecanumPIDReactor extends MecanumReactor{
     @Override
     public void moveToTarget() {
         xPID.update(); yPID.update(); hPID.update();
-        bot.mecanumDrive.move(yPID.getOutput(), xPID.getOutput(), hPID.getOutput());
-        log.show("Error", Arrays.toString(getError()));
+        bot.mecanumDrive.move(yPID.getOutput(), xPID.getOutput(), -hPID.getOutput());
+//        log.show("Error", Arrays.toString(getError()));
+//        log.show("Gyro", bot.gyroSensors.getRightHeadingDeg());
     }
 }

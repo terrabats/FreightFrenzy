@@ -59,7 +59,7 @@ public class TwoOdometry extends Odometry {
     public double getCurX() { return curPos[1]; }
     public double getCurY() { return curPos[0]; }
     public double getCurThetaRad() {
-        return -curPos[2];
+        return curPos[2];
     }
 
     public void processTheta() {
