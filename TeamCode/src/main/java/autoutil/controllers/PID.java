@@ -35,6 +35,12 @@ public class PID extends Controller{
         profiler = new Profiler(this::getError);
     }
 
+    public PID(double kp, double ki, double kd, double minimumOutputBeforeNext, double maximumTimeBeforeNext, double maximumDerivative, double maximumIntegralRange){
+        this.kp = kp; this.ki = ki; this.kd = kd;
+        this.minimumOutput = minimumOutputBeforeNext; this.maximumTime = maximumTimeBeforeNext; this.maximumDerivative = maximumDerivative; this.maximumIntegralRange = maximumIntegralRange;
+        profiler = new Profiler(this::getError);
+    }
+
     public void setProcessVariable(ReturnCodeSeg<Double> processVariable){
         this.processVariable = processVariable;
     }

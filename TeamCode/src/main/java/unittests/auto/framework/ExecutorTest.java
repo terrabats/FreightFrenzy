@@ -4,6 +4,7 @@ import autoutil.executors.MecanumExecutor;
 import autoutil.generators.PoseToPoseGenerator;
 import autoutil.reactors.mecanum.MecanumPIDReactor;
 import unittests.auto.AutoUnitTest;
+import static global.General.*;
 
 public class ExecutorTest extends AutoUnitTest {
 
@@ -14,7 +15,9 @@ public class ExecutorTest extends AutoUnitTest {
     @Override
     protected void run() {
 
-        generator.addPose(0,0,90);
+        generator.addAutoModule(autoModules.DuckRiseTele);
+        generator.addPose(20,20,0);
+        generator.addPose(40,40,0);
 
 
 
