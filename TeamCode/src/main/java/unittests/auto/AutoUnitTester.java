@@ -19,6 +19,7 @@ import unittests.auto.framework.EmptyTest;
 import unittests.auto.framework.EmptyTest2;
 import unittests.auto.framework.ExecutorTest;
 import unittests.auto.framework.MoveTest;
+import unittests.auto.framework.OdometryTest;
 import unittests.auto.framework.PIDTest;
 import unittests.tele.TeleUnitTest;
 import util.condition.Expectation;
@@ -51,6 +52,8 @@ public class AutoUnitTester extends Auto implements UnitTester {
 //                new EmptyTest(),
 //                new MoveTest(),
 //                new EmptyTest2(),
+//                new ExecutorTest(),
+//                new OdometryTest()
                 new ExecutorTest()
         );
     }

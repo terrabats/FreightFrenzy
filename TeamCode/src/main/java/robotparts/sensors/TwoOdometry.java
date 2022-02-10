@@ -29,28 +29,37 @@ public class TwoOdometry extends Odometry {
 
     @Override
     public void init() {
-        cEnc = createEncoder("bl", "cEnc", IEncoder.Type.NORMAL);
-        rEnc = createEncoder("br", "rEnc", IEncoder.Type.NORMAL);
+        cEnc = createEncoder("br", "cEnc", IEncoder.Type.NORMAL);
+        rEnc = createEncoder("bl", "rEnc", IEncoder.Type.NORMAL);
         update();
         curPos = new double[] { 0, 0, 0 };
         odometryThread.setExecutionCode(odometryUpdateCode);
 
     }
 
+    public double hEncPos(){
+        return cEnc.getPos();
+    }
+
+    public double vEncPos(){
+        return rEnc.getPos();
+    }
+
     private double getDeltaOdoTwo() {
-        double delta = -rEnc.getPos() - prevOdoTwoPos;
+        double delta = vEncPos() - prevOdoTwoPos;
         prevOdoTwoPos += delta;
         return ticksToCm(delta);
     }
 
-    private double ticksToCm(double ticks) {
+    public double ticksToCm(double ticks) {
         return ticks/8192 * 3.5 * Math.PI;
     }
 
-    public double getCurX() { return curPos[0]; }
-    public double getCurY() { return curPos[1]; }
+    // TODO SKETCH These should be reversed
+    public double getCurX() { return curPos[1]; }
+    public double getCurY() { return curPos[0]; }
     public double getCurThetaRad() {
-        return curPos[2];
+        return -curPos[2];
     }
 
     public void processTheta() {
@@ -86,5 +95,9 @@ public class TwoOdometry extends Odometry {
         double dx = getDeltaOdoTwo() - posChangeNoStrafe[2] * ODO2_TO_CENTER_Y;
         return new double[] { dx, posChangeNoStrafe[1], posChangeNoStrafe[2] };
 
+    }
+
+    public double[] getCurPos(){
+        return new double[]{getCurX(), getCurY(), getCurThetaRad()};
     }
 }

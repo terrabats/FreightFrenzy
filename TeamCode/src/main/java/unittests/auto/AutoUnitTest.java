@@ -9,6 +9,8 @@ import util.codeseg.CodeSeg;
 import util.codeseg.ReturnCodeSeg;
 import util.condition.Status;
 
+import static global.General.log;
+
 public class AutoUnitTest extends UnitTest {
     /**
      * Unit test based on auto
@@ -59,9 +61,12 @@ public class AutoUnitTest extends UnitTest {
      */
     protected void whileTime(CodeSeg code, double secs){
         timer.reset();
+        log.setShouldUpdateOnShow(false);
         while (linearOpMode.opModeIsActive() && timer.seconds() < secs){
             code.run();
+            log.showTelemetry();
         }
+        log.setShouldUpdateOnShow(true);
     }
 
     /**
@@ -69,9 +74,12 @@ public class AutoUnitTest extends UnitTest {
      * @param code
      */
     protected void whileActive(CodeSeg code){
+        log.setShouldUpdateOnShow(false);
         while (linearOpMode.opModeIsActive()){
             code.run();
+            log.showTelemetry();
         }
+        log.setShouldUpdateOnShow(true);
     }
 
     /**
@@ -79,6 +87,11 @@ public class AutoUnitTest extends UnitTest {
      * @param code
      */
     protected void whileActive(ReturnCodeSeg<Boolean> active, CodeSeg code){
-        while (linearOpMode.opModeIsActive() && active.run()){code.run();}
+        log.setShouldUpdateOnShow(false);
+        while (linearOpMode.opModeIsActive() && active.run()){
+            code.run();
+            log.showTelemetry();
+        }
+        log.setShouldUpdateOnShow(true);
     }
 }

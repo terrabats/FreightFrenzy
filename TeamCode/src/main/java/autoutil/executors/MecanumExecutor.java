@@ -24,7 +24,6 @@ public class MecanumExecutor extends ExecutorReal{
     public void followPath() {
         for(PathSegment2 pathSegment: path.getSegments()){
             for(Pose pose: pathSegment.getPoses()){
-//                log.show("Array", Arrays.toString(pose.asArray()));
                 reactor.setTarget(pose.asArray());
                 while (whileOpModeIsActive.run() && !reactor.isAtTarget()){
                     reactor.moveToTarget();

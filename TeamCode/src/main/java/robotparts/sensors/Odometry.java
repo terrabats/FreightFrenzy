@@ -42,7 +42,7 @@ public class Odometry extends RobotPart {
     }
 
     private double getDeltaOdoOne() {
-        double delta = -cEnc.getPos() - prevOdoOnePos;
+        double delta = cEnc.getPos() - prevOdoOnePos;
         prevOdoOnePos += delta;
         return ticksToCm(delta);
     }
@@ -60,7 +60,7 @@ public class Odometry extends RobotPart {
     public double getCurX() { return curPos[0]; }
     public double getCurY() { return curPos[1]; }
     public double getCurThetaRad() {
-        return curPos[2];
+        return -curPos[2];
     }
 
     public void processTheta() {

@@ -14,6 +14,7 @@ public abstract class Reactor {
     public abstract void nextTarget();
     public abstract boolean isAtTarget();
     public abstract void moveToTarget();
+    public abstract double[] getError();
 
 
     protected void addControllers(Controller... newControllers){

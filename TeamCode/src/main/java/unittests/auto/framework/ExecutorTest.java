@@ -14,7 +14,7 @@ public class ExecutorTest extends AutoUnitTest {
     @Override
     protected void run() {
 
-        generator.addPose(0,10,0);
+        generator.addPose(0,0,90);
 
 
 
