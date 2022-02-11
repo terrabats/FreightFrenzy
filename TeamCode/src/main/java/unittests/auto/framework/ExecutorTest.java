@@ -2,6 +2,7 @@ package unittests.auto.framework;
 
 import autoutil.executors.MecanumExecutor;
 import autoutil.generators.PoseToPoseGenerator;
+import autoutil.reactors.mecanum.MecanumPARReactor;
 import autoutil.reactors.mecanum.MecanumPIDReactor;
 import unittests.auto.AutoUnitTest;
 import static global.General.*;
@@ -10,6 +11,7 @@ public class ExecutorTest extends AutoUnitTest {
 
     PoseToPoseGenerator generator = new PoseToPoseGenerator();
     MecanumPIDReactor reactor = new MecanumPIDReactor();
+//    MecanumPARReactor reactor = new MecanumPARReactor();
     MecanumExecutor executor = new MecanumExecutor(linearOpMode);
 
     @Override
