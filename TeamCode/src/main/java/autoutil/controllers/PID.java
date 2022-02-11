@@ -14,10 +14,13 @@ public class PID extends Controller{
     private double maximumTime;
     private double maximumDerivative;
     private double maximumIntegralRange;
+    private double restOutput = 0;
 
     private double currentValue = 0;
     private double targetValue = 0;
     private double currentTime = 0;
+
+    private double accuracy = 1000000;
 
     private final Profiler profiler;
 
@@ -51,6 +54,14 @@ public class PID extends Controller{
         this.kd = kp*td;
     }
 
+    public void setRestOutput(double restOutput){
+        this.restOutput = restOutput;
+    }
+
+    public void setAccuracy(double accuracy){
+        this.accuracy = accuracy;
+    }
+
 
     public void setProcessVariable(ReturnCodeSeg<Double> processVariable){
         this.processVariable = processVariable;
@@ -76,9 +87,9 @@ public class PID extends Controller{
         if(Math.abs(getError()) > maximumIntegralRange){
             profiler.resetIntegral();
         }
-        output = (kp * getError()) + (ki * profiler.getIntegral()) + (kd * profiler.getDerivative());
+        output = ((kp * getError()) + (ki * profiler.getIntegral()) + (kd * profiler.getDerivative())) + (Math.signum(getError())*restOutput);
         if(Math.abs(getOutput()) < minimumOutput){
-            isAtTarget = ((profiler.getCurrentTime() - currentTime) > maximumTime) && (Math.abs(profiler.getDerivative()) < maximumDerivative);
+            isAtTarget = ((profiler.getCurrentTime() - currentTime) > maximumTime) && (Math.abs(profiler.getDerivative()) < maximumDerivative) && (Math.abs(getError()) < accuracy);
         }else{
             currentTime = profiler.getCurrentTime();
         }

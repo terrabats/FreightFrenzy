@@ -26,8 +26,16 @@ public class MecanumPIDReactor extends MecanumReactor{
 //        });
 //
 //        xPID.setToStandardForm(0.04, 0.5, 0.5);
-//        xPID.setToStandardForm(0.04, 0.5, 0.5);
-//        xPID.setToStandardForm(0.7, 0.5, 0.5);
+//        yPID.setToStandardForm(0.04, 0.5, 0.5);
+//        hPID.setToStandardForm(0.7, 0.5, 0.5);
+//
+//        xPID.setRestOutput(0.05);
+//        yPID.setRestOutput(0.05);
+//        hPID.setRestOutput(0.05);
+
+//        xPID.setAccuracy(1);
+//        yPID.setAccuracy(1);
+//        hPID.setAccuracy(1);
 
         addControllers(xPID, yPID, hPID);
     }
