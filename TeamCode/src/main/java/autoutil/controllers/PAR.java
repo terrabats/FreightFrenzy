@@ -11,16 +11,16 @@ public class PAR extends Controller{
     //3. Then calculate v(g(x)) which is v(x)
 
     //Rest pow
-    public double restPow = 0;
+    public double restOutput = 0;
     //Approach rate [0,1] lower means stops farther away
     public double approachRate = 0;
     //Proportional
     public double proportional = 0;
 
-    public void setPAR(double p, double a, double r){
-        proportional = p;
-        approachRate = a;
-        restPow = r;
+    public PAR(double proportional, double approachRate, double restOutput) {
+        this.proportional = proportional;
+        this.approachRate = approachRate;
+        this.restOutput = restOutput;
     }
 
     public double VofS(){
@@ -30,7 +30,7 @@ public class PAR extends Controller{
     @Override
     public void update(){
         updateProfilers();
-        output = (proportional * (VofS() - processVariableProfiler.getDerivative())) + (Math.signum(getError())*restPow);
+        output = (proportional * (VofS() - processVariableProfiler.getDerivative())) + (Math.signum(getError())*restOutput);
         isAtTarget = isWithinAccuracyRange();
     }
 }
