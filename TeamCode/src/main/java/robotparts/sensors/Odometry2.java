@@ -21,19 +21,17 @@ public class Odometry2 extends RobotPart {
 
     private final Vector2 positionOdometryCenter = new Vector2(0,0);
     private Vector2 positionRobotCenter = new Vector2(0,0);
-    private final Vector2 localOdometryCenterOffset = new Vector2(10,10);
+    private final Vector2 localOdometryCenterOffset = new Vector2(3,-0.5);
     private double heading = 0;
-
-    private final ExceptionCodeSeg<RuntimeException> odometryUpdateCode = this::update;
 
 
     @Override
     public void init() {
-        horizontalEncoder = createEncoder("bl", "cEnc", IEncoder.Type.NORMAL);
+        horizontalEncoder = createEncoder("br", "cEnc", IEncoder.Type.NORMAL);
         verticalEncoder = createEncoder("bl", "rEnc", IEncoder.Type.NORMAL);
         lastHorizontalEncoderPos = horizontalEncoder.getPos();
         lastVerticalEncoderPos = verticalEncoder.getPos();
-        odometryThread.setExecutionCode(odometryUpdateCode);
+        odometryThread.setExecutionCode(this::update);
     }
 
     public double getHorizontalEncoderPosition(){
@@ -61,15 +59,15 @@ public class Odometry2 extends RobotPart {
     }
 
     private void updateHeading(){
-        heading = bot.gyroSensors.getLeftHeadingRad();
+        heading = bot.gyroSensors.getRightHeadingRad();
     }
 
     public void updatePosition(){
         Vector2 localDelta = new Vector2(getLocalHorizontalDelta(), getLocalVerticalDelta());
-        Vector2 globalDelta = localDelta.rotate(-heading);
+        Vector2 globalDelta = localDelta.getRotated(-heading);
         positionOdometryCenter.add(globalDelta);
-        Vector2 globalOdometryCenterOffset = localOdometryCenterOffset.rotate(heading);
-        positionRobotCenter = positionOdometryCenter.add(globalOdometryCenterOffset);
+        Vector2 globalOdometryCenterOffset = localOdometryCenterOffset.getRotated(heading);
+        positionRobotCenter = positionOdometryCenter.getAdded(globalOdometryCenterOffset).getAdded(localOdometryCenterOffset.getNegative());
     }
 
     public void update(){

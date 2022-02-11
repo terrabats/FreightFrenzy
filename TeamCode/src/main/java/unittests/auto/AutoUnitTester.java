@@ -56,7 +56,8 @@ public class AutoUnitTester extends Auto implements UnitTester {
 //                new ExecutorTest(),
 //                new OdometryTest()
 //                new ExecutorTest()
-                new GyroTest()
+//                new GyroTest()
+                new OdometryTest()
         );
     }
 

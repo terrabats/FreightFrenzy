@@ -12,18 +12,32 @@ public class Vector2 {
         this.y = y;
     }
 
-    public Vector2 rotate(double phi){
+    public void rotate(double phi){
         double newX = x * cos(phi) - y * sin(phi);
         double newY = x * sin(phi) + y * cos(phi);
         x = newX;
         y = newY;
-        return copy();
     }
 
-    public Vector2 add(Vector2 toAdd){
-        x += toAdd.x;
-        y += toAdd.y;
-        return copy();
+    public Vector2 getRotated(double phi){
+        Vector2 copy = copy();
+        copy.rotate(phi);
+        return copy;
+    }
+
+    public void add(Vector2 vectorToAdd){
+        x += vectorToAdd.x;
+        y += vectorToAdd.y;
+    }
+
+    public Vector2 getAdded(Vector2 vectorToAdd){
+        Vector2 copy = copy();
+        copy.add(vectorToAdd);
+        return copy;
+    }
+
+    public Vector2 getNegative(){
+        return new Vector2(-x,-y);
     }
 
     public Vector2 copy(){

@@ -21,7 +21,7 @@ public class GyroSensors extends RobotPart {
      * Get headings in radians and degrees
      * @return heading
      */
-    public double getRightHeadingDeg() { return gsr.getHeading(); }
+    public double getRightHeadingDeg() { return -gsr.getHeading(); }
     public double getRightHeadingRad() { return AngleType.degToRad(getRightHeadingDeg()); }
     public double getLeftHeadingDeg() { return gsl.getHeading(); }
     public double getLeftHeadingRad() { return AngleType.degToRad(getRightHeadingDeg()); }
