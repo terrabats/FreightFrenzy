@@ -16,7 +16,7 @@ public class PIDTest extends AutoUnitTest {
     protected void run() {
         log.show("Coefficients ", Arrays.toString(movePID.getCoefficients()));
 
-        movePID.setProcessVariable(() -> bot.odometry2.getCurY());
+        movePID.setProcessVariable(() -> bot.odometry2.getY());
         movePID.setTarget(-20);
         movePID.setMinimumOutput(0.05);
         movePID.setMaximumTime(0.05);

@@ -14,9 +14,9 @@ public class OdometryTest extends AutoUnitTest {
     @Override
     protected void run() {
         whileActive(() -> {
-            log.show("Horizontal Enc Pos",bot.odometry2.ticksToCm(bot.odometry2.hEncPos()));
-            log.show("Vertical Enc Pos",bot.odometry2.ticksToCm(bot.odometry2.vEncPos()));
-            log.show("Pos", Arrays.toString(bot.odometry2.getCurPos()));
+            log.show("Horizontal Enc Pos",bot.odometry2.ticksToCm(bot.odometry2.getHorizontalEncoderPosition()));
+            log.show("Vertical Enc Pos",bot.odometry2.ticksToCm(bot.odometry2.getVerticalEncoderPosition()));
+            log.show("Pos", Arrays.toString(bot.odometry2.getPose()));
             bot.mecanumDrive.move(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
         });
     }

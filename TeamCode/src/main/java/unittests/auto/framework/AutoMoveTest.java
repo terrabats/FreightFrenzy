@@ -15,8 +15,8 @@ public class AutoMoveTest extends AutoUnitTest {
     protected void run() {
 //        log.show("Coefficients ", Arrays.toString(yPID.getCoefficients()));
 
-        yPID.setProcessVariable(() -> bot.odometry2.getCurY());
-        xPID.setProcessVariable(() -> bot.odometry2.getCurX());
+        yPID.setProcessVariable(() -> bot.odometry2.getY());
+        xPID.setProcessVariable(() -> bot.odometry2.getX());
 
         yPID.setMinimumOutput(0.05);
         yPID.setMaximumTime(0.05);

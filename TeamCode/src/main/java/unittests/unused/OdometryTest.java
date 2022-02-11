@@ -29,8 +29,8 @@ public class OdometryTest extends TeleUnitTest {
     protected void loop() {
 //        bot.tankDrive.moveSmooth(-gamepad1.right_stick_y, gamepad1.left_stick_x);
 
-        log.show("x", bot.odometry2.getCurX());
-        log.show("y", bot.odometry2.getCurY());
-        log.show("h", bot.odometry2.getCurThetaDeg());
+        log.show("x", bot.odometry2.getX());
+        log.show("y", bot.odometry2.getY());
+        log.show("h", bot.odometry2.getHeading());
     }
 }

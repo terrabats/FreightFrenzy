@@ -18,6 +18,7 @@ import unittests.auto.framework.AutoMoveTest;
 import unittests.auto.framework.EmptyTest;
 import unittests.auto.framework.EmptyTest2;
 import unittests.auto.framework.ExecutorTest;
+import unittests.auto.framework.GyroTest;
 import unittests.auto.framework.MoveTest;
 import unittests.auto.framework.OdometryTest;
 import unittests.auto.framework.PIDTest;
@@ -54,7 +55,8 @@ public class AutoUnitTester extends Auto implements UnitTester {
 //                new EmptyTest2(),
 //                new ExecutorTest(),
 //                new OdometryTest()
-                new ExecutorTest()
+//                new ExecutorTest()
+                new GyroTest()
         );
     }
 
