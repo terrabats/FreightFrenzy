@@ -6,12 +6,9 @@ import geometry.position.Vector2;
 import static global.General.bot;
 
 public class MecanumPIDReactor extends MecanumReactor{
-//    public PID xPID = new PID(0.05,0.005,0.005, 0.05, 0.05, 10, 5);
-//    public PID yPID = new PID(0.05,0.005,0.005, 0.05, 0.05, 10, 5);
-//    public PID hPID = new PID(0.3,0.005,0.005, 0.05 , 0.05, 10, 5);
-    public PID xPID = new PID(0.04,0.0,-0.005, 0.05, 0.5, 50, 5);
-    public PID yPID = new PID(0.04,0.0,-0.005, 0.05, 0.5, 50, 5);
-    public PID hPID = new PID(0.4,0.0,0.0, 0.05 , 0.5, 5, Math.toRadians(5));
+    public PID xPID = new PID(0.04,0.005,0.005, 0.05, 0.5, 50, 5);
+    public PID yPID = new PID(0.04,0.005,0.005, 0.05, 0.5, 50, 5);
+    public PID hPID = new PID(0.7,0,0.11, 0.07 , 0.5, 4, Math.toRadians(20));
 
     public MecanumPIDReactor(){
         xPID.setProcessVariable(() -> getPose()[0]); yPID.setProcessVariable(() -> getPose()[1]); hPID.setProcessVariable(() -> getPose()[2]);
