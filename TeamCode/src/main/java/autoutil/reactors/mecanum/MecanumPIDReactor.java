@@ -1,9 +1,12 @@
 package autoutil.reactors.mecanum;
 
+import java.util.Arrays;
+
 import autoutil.controllers.PID;
 import geometry.position.Vector2;
 
 import static global.General.bot;
+import static global.General.log;
 
 public class MecanumPIDReactor extends MecanumReactor{
     public PID xPID = new PID(0.04,0.005,0.005, 0.05, 0.5, 50, 5);
@@ -21,6 +24,10 @@ public class MecanumPIDReactor extends MecanumReactor{
 //            Vector2 errorVector = new Vector2(xPID.getRawError(), yPID.getRawError());
 //            return errorVector.getRotated(getPose()[2]).getY();
 //        });
+//
+//        xPID.setToStandardForm(0.04, 0.5, 0.5);
+//        xPID.setToStandardForm(0.04, 0.5, 0.5);
+//        xPID.setToStandardForm(0.7, 0.5, 0.5);
 
         addControllers(xPID, yPID, hPID);
     }
@@ -55,6 +62,9 @@ public class MecanumPIDReactor extends MecanumReactor{
         double xOut = powerVector.getX();
         double yOut = powerVector.getY();
         bot.mecanumDrive.move(yOut, xOut, hPID.getOutput());
+        log.show("yPID state (Err, Int, Der)", Arrays.toString(yPID.getState()));
+        log.show("xPID state (Err, Int, Der)", Arrays.toString(xPID.getState()));
+        log.show("hPID state (Err, Int, Der)", Arrays.toString(hPID.getState()));
 //        bot.mecanumDrive.move(yPID.getOutput(), xPID.getOutput(), hPID.getOutput());
 //        log.show("Error", Arrays.toString(getError()));
 //        log.show("Gyro", bot.gyroSensors.getRightHeadingDeg());

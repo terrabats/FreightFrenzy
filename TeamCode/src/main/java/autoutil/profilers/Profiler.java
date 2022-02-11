@@ -59,7 +59,7 @@ public class Profiler {
     }
 
     public void reset(){
-        integrator.reset();
+        resetIntegral();
         values = new ArrayList<>();
         times = new ArrayList<>();
         values.add(0.0);

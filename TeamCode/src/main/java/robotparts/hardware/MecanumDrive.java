@@ -29,10 +29,15 @@ public class MecanumDrive extends RobotPart {
     }
 
     public void moveSmooth(double f, double s, double t){
-        Logistic movementCurveForward = new Logistic(10,5);
-        Logistic movementCurveStrafe = new Logistic(30,6);
-        Logistic movementCurveTurn = new Logistic(30,6);
+        Logistic movementCurveForward = new Logistic(40,7);
+        Logistic movementCurveStrafe = new Logistic(40,7);
+        Logistic movementCurveTurn = new Logistic(40,7);
         move(movementCurveForward.fodd(f), movementCurveStrafe.fodd(s), movementCurveTurn.fodd(t));
+    }
+
+    public void moveTeleop(double f, double s, double t){
+        double toffset = -Math.signum(s)*0.3;
+        moveSmooth(f,s,t+toffset);
     }
 
 

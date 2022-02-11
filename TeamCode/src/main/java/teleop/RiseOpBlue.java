@@ -32,7 +32,7 @@ public class RiseOpBlue extends Tele{
 
     @Override
     public void loopTele() {
-        bot.mecanumDrive.moveSmooth(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
+        bot.mecanumDrive.moveTeleop(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
         bot.intake.move(-gamepad2.right_stick_y);
         bot.lift.setToRestPow();
     }

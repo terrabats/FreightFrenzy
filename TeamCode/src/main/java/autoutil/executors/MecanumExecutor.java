@@ -26,6 +26,7 @@ public class MecanumExecutor extends ExecutorReal{
 
     @Override
     public void followPath() {
+        reactor.nextTarget();
         for(PathSegment2 pathSegment: path.getSegments()){
             if(pathSegment instanceof PathPose) {
                 for (Pose pose : pathSegment.getPoses()) {

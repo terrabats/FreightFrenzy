@@ -42,7 +42,7 @@ public class Lift extends RobotPart {
     public void setToRestPow() {
         double liftPos = getLiftPos()/Constants.TURRET_ANGLE_DEG_TO_TICKS - 45;
         liftPos *= Math.PI/180;
-        move(Math.cos(liftPos) * 0.13);
+        move(Math.cos(liftPos) * 0.12);
     }
 
     /**

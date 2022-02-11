@@ -7,9 +7,9 @@ import util.codeseg.ReturnParameterCodeSeg;
 import static global.General.log;
 
 public class PID extends Controller{
-    private final double kp;
-    private final double ki;
-    private final double kd;
+    private double kp;
+    private double ki;
+    private double kd;
     private double minimumOutput;
     private double maximumTime;
     private double maximumDerivative;
@@ -44,6 +44,13 @@ public class PID extends Controller{
         this.minimumOutput = minimumOutputBeforeNext; this.maximumTime = maximumTimeBeforeNext; this.maximumDerivative = maximumDerivative; this.maximumIntegralRange = maximumIntegralRange;
         profiler = new Profiler(this::getError);
     }
+
+    public void setToStandardForm(double kp, double ti, double td){
+        this.kp = kp;
+        this.ki = kp/ti;
+        this.kd = kp*td;
+    }
+
 
     public void setProcessVariable(ReturnCodeSeg<Double> processVariable){
         this.processVariable = processVariable;
@@ -107,6 +114,10 @@ public class PID extends Controller{
         targetValue = 0;
         profiler.reset();
         isAtTarget = false;
+    }
+
+    public double[] getState(){
+        return new double[]{getError(), profiler.getIntegral(), profiler.getDerivative()};
     }
 
 }
