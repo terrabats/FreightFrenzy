@@ -2,6 +2,9 @@ package autoutil.controllers;
 
 import autoutil.profilers.Profiler;
 import util.codeseg.ReturnCodeSeg;
+import util.codeseg.ReturnParameterCodeSeg;
+
+import static global.General.log;
 
 public class PID extends Controller{
     private final double kp;
@@ -19,6 +22,7 @@ public class PID extends Controller{
     private final Profiler profiler;
 
     private ReturnCodeSeg<Double> processVariable;
+    private ReturnCodeSeg<Double> processError = this::getRawError;
 
     private double output = 0;
     private boolean isAtTarget = false;
@@ -43,6 +47,10 @@ public class PID extends Controller{
 
     public void setProcessVariable(ReturnCodeSeg<Double> processVariable){
         this.processVariable = processVariable;
+    }
+
+    public void setProcessError(ReturnCodeSeg<Double> processError){
+        this.processError = processError;
     }
 
     public void setMinimumOutput(double minimumOutput){
@@ -85,8 +93,12 @@ public class PID extends Controller{
         return targetValue;
     }
 
-    public double getError(){
+    public double getRawError(){
         return targetValue-currentValue;
+    }
+
+    public double getError(){
+        return processError.run();
     }
 
     public boolean isAtTarget(){ return isAtTarget;}

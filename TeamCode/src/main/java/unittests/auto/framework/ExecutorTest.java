@@ -17,7 +17,7 @@ public class ExecutorTest extends AutoUnitTest {
 
 //        generator.addAutoModule(autoModules.DuckRiseTele);
 
-        generator.addPose(20,20,0);
+        generator.addPose(0,20,0);
 //        generator.addPose(40,40,0);
 
 
