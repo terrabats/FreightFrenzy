@@ -70,9 +70,9 @@ public class MecanumPIDReactor extends MecanumReactor{
         double xOut = powerVector.getX();
         double yOut = powerVector.getY();
         bot.mecanumDrive.move(yOut, xOut, hPID.getOutput());
-        log.show("yPID state (Err, Int, Der)", Arrays.toString(yPID.getState()));
-        log.show("xPID state (Err, Int, Der)", Arrays.toString(xPID.getState()));
-        log.show("hPID state (Err, Int, Der)", Arrays.toString(hPID.getState()));
+        log.show("yPID state (Err, Int, Der)", Arrays.toString(yPID.getErrorState()));
+        log.show("xPID state (Err, Int, Der)", Arrays.toString(xPID.getErrorState()));
+        log.show("hPID state (Err, Int, Der)", Arrays.toString(hPID.getErrorState()));
 //        bot.mecanumDrive.move(yPID.getOutput(), xPID.getOutput(), hPID.getOutput());
 //        log.show("Error", Arrays.toString(getError()));
 //        log.show("Gyro", bot.gyroSensors.getRightHeadingDeg());
