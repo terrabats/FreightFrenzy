@@ -9,7 +9,9 @@ import static java.lang.Math.*;
 import static global.General.*;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
+@Disabled
 @Autonomous(name="TerraAutoBlue")
 public class TerraAutoBlue extends Auto {
     Timer timer = new Timer();

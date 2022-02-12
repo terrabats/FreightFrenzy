@@ -11,11 +11,11 @@ public class PAR extends Controller{
     //3. Then calculate v(g(x)) which is v(x)
 
     //Rest pow
-    public double restOutput = 0;
+    public double restOutput;
     //Approach rate [0,1] lower means stops farther away
-    public double approachRate = 0;
+    public double approachRate;
     //Proportional
-    public double proportional = 0;
+    public double proportional;
 
     public PAR(double proportional, double approachRate, double restOutput) {
         this.proportional = proportional;

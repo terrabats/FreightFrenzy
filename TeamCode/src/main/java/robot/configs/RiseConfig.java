@@ -9,7 +9,7 @@ public class RiseConfig extends RobotConfig {
                 intake,
                 gyroSensors,
                 outtake,
-                colorSensors,
+//                colorSensors,
                 odometry2
         );
     }

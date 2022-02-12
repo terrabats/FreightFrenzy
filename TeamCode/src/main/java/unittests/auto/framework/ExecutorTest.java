@@ -11,7 +11,6 @@ public class ExecutorTest extends AutoUnitTest {
 
     PoseToPoseGenerator generator = new PoseToPoseGenerator();
     MecanumPIDReactor reactor = new MecanumPIDReactor();
-//    MecanumPARReactor reactor = new MecanumPARReactor();
     MecanumExecutor executor = new MecanumExecutor(linearOpMode);
 
     @Override
@@ -19,7 +18,7 @@ public class ExecutorTest extends AutoUnitTest {
 
 //        generator.addAutoModule(autoModules.DuckRiseTele);
 
-        generator.addPose(20,20,90);
+        generator.addPose(0,0,90);
 //        generator.addPose(40,40,0);
 
 

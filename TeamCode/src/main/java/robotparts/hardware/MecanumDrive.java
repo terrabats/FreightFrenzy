@@ -36,8 +36,13 @@ public class MecanumDrive extends RobotPart {
     }
 
     public void moveTeleop(double f, double s, double t){
-        double toffset = -Math.signum(s)*0.3;
-        moveSmooth(f,s,t+toffset);
+        if(s > 0.05) {
+            moveSmooth(0, s, 0.65*s);
+        }else if (s < -0.05){
+            moveSmooth(0, s, 0.5*s);
+        }else{
+            moveSmooth(f, 0, t);
+        }
     }
 
 

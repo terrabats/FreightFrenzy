@@ -7,7 +7,7 @@ public abstract class Controller {
 
     protected ReturnCodeSeg<Double> processVariable;
     protected ReturnCodeSeg<Double> processError = this::getRawError;
-    protected Profiler processVariableProfiler;
+    protected Profiler processVariableProfiler = new Profiler(() -> 0.0);
     protected Profiler errorProfiler = new Profiler(this::getError);
 
     protected double output = 0;
