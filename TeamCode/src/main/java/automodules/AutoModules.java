@@ -123,7 +123,7 @@ public class AutoModules{
             bot.lift.liftEncoderAndIntake(0.8, 115)
     );
     public StageList ForwardRiseTele = new StageList(bot.lift, bot.outtake).define(
-            bot.lift.liftEncoderAndIntake(0.8, 150),
+            bot.lift.liftEncoderAndIntake(0.8, 160),
             bot.outtake.outtakeDrop(0.5),
             bot.lift.liftEncoder(0.8, 0)
     );
