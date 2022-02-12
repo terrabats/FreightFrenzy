@@ -72,8 +72,8 @@ public class Odometry extends RobotPart {
     public double[] getPosChange() {
         lastChangePos = getPosChangeCenter();
         double[] posChange = new double[3];
-        posChange[0] = lastChangePos[1] * cos(curPos[2] + PI/2);
-        posChange[1] = lastChangePos[1] * sin(curPos[2] + PI/2);
+        posChange[0] = lastChangePos[0] * cos(curPos[2]) + lastChangePos[1] * cos(curPos[2] + PI/2);
+        posChange[1] = lastChangePos[0] * sin(curPos[2]) + lastChangePos[1] * sin(curPos[2] + PI/2);
         posChange[2] = lastChangePos[2];
         return posChange;
     }

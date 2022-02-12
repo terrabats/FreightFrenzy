@@ -66,22 +66,22 @@ public class TwoOdometry extends Odometry {
         return getCurThetaRad() * 180/PI;
     }
 
-    public void update() {
-        double[] change = getPosChange();
-        curPos[0] += change[0];
-        curPos[1] += change[1];
-        curPos[2] += change[2];
-    }
-
-    // TODO: TEST THIS
-    public double[] getPosChange() {
-        lastChangePos = getPosChangeCenter();
-        double[] posChange = new double[3];
-        posChange[0] = lastChangePos[0] * cos(curPos[2]) + lastChangePos[1] * cos(curPos[2] + PI/2);
-        posChange[1] = lastChangePos[0] * sin(curPos[2]) + lastChangePos[1] * sin(curPos[2] + PI/2);
-        posChange[2] = lastChangePos[2];
-        return posChange;
-    }
+//    public void update() {
+//        double[] change = getPosChange();
+//        curPos[0] += change[0];
+//        curPos[1] += change[1];
+//        curPos[2] += change[2];
+//    }
+//
+//    // TODO: TEST THIS
+//    public double[] getPosChange() {
+//        lastChangePos = getPosChangeCenter();
+//        double[] posChange = new double[3];
+//        posChange[0] = lastChangePos[0] * cos(curPos[2]) + lastChangePos[1] * cos(curPos[2] + PI/2);
+//        posChange[1] = lastChangePos[0] * sin(curPos[2]) + lastChangePos[1] * sin(curPos[2] + PI/2);
+//        posChange[2] = lastChangePos[2];
+//        return posChange;
+//    }
 
     // NOTE: Odometry modules are to the left and to the back of the center of the robot
     public double[] getPosChangeCenter() {
