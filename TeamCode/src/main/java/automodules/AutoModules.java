@@ -104,7 +104,7 @@ public class AutoModules{
             bot.outtake.outtakeReset(0.05),
             bot.lift.liftEncoder(0.8, 0),
             bot.intake.intakeTime(1,0.5),
-            bot.mecanumDrive.moveTime(0.5, -0.4, 0.0, 0.0),
+            bot.mecanumDrive.moveTime(0.3, -0.8, 0.0, 0.0),
             bot.outtake.outtakeLockAndIntake(0.05),
             bot.lift.liftEncoderAndIntake(0.8, 115)
     );

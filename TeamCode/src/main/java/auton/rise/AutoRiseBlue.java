@@ -71,8 +71,8 @@ public class AutoRiseBlue extends Auto {
 
         g4.addPose(-100,50,-135);
         g4.addAutoModule(autoModules.ForwardRiseTele);
-        g4.addPose(-115,30,-90);
-        g4.addPose(-120,-5,-90);
+        g4.addPose(-120,30,-90);
+        g4.addPose(-122,-5,-90);
 
 
 
@@ -99,21 +99,21 @@ public class AutoRiseBlue extends Auto {
 
         e2.followPath();
 
-        moveTime(0.8, 0, -0.5, -0.5);
+        moveTime(0.5, 0, -0.7, -0.5);
 
-        moveTime(1.1, 0.8, -0.4, 0.0);
+        moveTime(0.9, 1, -0.4, 0.0);
 
         e3.followPath();
 
-        moveTime(0.7, -0.8, -0.4, 0.0);
+        moveTime(0.6, -1, -0.4, 0.0);
 
         moveTime(0.3, 0, 0.4, 0.0);
 
         e4.followPath();
 
-        moveTime(0.8, 0, -0.5, -0.5);
+        moveTime(0.5, 0, -0.7, -0.5);
 
-        moveTime(1, 0.8, -0.4, 0.0);
+        moveTime(1, 1, -0.4, 0.0);
 
     }
 
