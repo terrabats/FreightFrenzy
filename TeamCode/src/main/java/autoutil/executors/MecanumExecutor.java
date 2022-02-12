@@ -35,6 +35,7 @@ public class MecanumExecutor extends ExecutorReal{
                     reactor.nextTarget();
                 }
             }else if(pathSegment instanceof PathAutoModule){
+                bot.mecanumDrive.move(0,0,0);
                 ((PathAutoModule) pathSegment).runAutoModule();
                 whileActive(() -> !((PathAutoModule) pathSegment).isDoneWithAutoModule(), ()-> {});
             }

@@ -101,9 +101,12 @@ public class AutoModules{
     );
 
     public StageList IntakeRiseAuto = new StageList(bot.lift, bot.intake, bot.outtake).define(
-            bot.lift.liftEncoder(0.4, 0),
-            bot.intake.intakeUntilFreight(1),
-            bot.outtake.outtakeLock(1)
+            bot.outtake.outtakeReset(0.05),
+            bot.lift.liftEncoder(0.8, 0),
+            bot.intake.intakeTime(1,0.5),
+            bot.mecanumDrive.moveTime(0.5, -0.4, 0.0, 0.0),
+            bot.outtake.outtakeLockAndIntake(0.05),
+            bot.lift.liftEncoderAndIntake(0.8, 115)
     );
 
 

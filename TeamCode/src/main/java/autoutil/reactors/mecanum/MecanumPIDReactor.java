@@ -13,9 +13,9 @@ public class MecanumPIDReactor extends MecanumReactor{
 //    public PID yPID = new PID(0.04,0.005,0.005, 0.05, 0.5, 50, 5);
 //    public PID hPID = new PID(0.7,0,0.11, 0.07 , 0.5, 4, Math.toRadians(20));
 
-    public PID xPID = new PID(0.04,0.005,0.0, 0.08, 0.5, 50, 5);
-    public PID yPID = new PID(0.04,0.005,0.0, 0.08, 0.5, 50, 5);
-    public PID hPID = new PID(0.4,0,0.0, 0.08 , 0.5, 50, Math.toRadians(20));
+    public PID xPID = new PID(0.04,0.005,0.0, 0.2, 0.05, 50, 5);
+    public PID yPID = new PID(0.04,0.005,0.0, 0.2, 0.05, 50, 5);
+    public PID hPID = new PID(0.4,0,0.0, 0.2 , 0.05, 50, Math.toRadians(20));
 
     public MecanumPIDReactor(){
 //        xPID.setProcessError(() -> {
@@ -33,10 +33,10 @@ public class MecanumPIDReactor extends MecanumReactor{
 
         xPID.setRestOutput(0.05);
         yPID.setRestOutput(0.05);
-        hPID.setRestOutput(0.06);
+        hPID.setRestOutput(0.08);
 //
-        xPID.setAccuracy(1);
-        yPID.setAccuracy(1);
+        xPID.setAccuracy(2);
+        yPID.setAccuracy(2);
         hPID.setAccuracy(4);
 
         addControllers(xPID, yPID, hPID);

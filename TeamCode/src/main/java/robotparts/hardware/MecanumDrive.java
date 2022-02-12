@@ -2,6 +2,11 @@ package robotparts.hardware;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
 
+import automodules.StageList;
+import automodules.stage.Initial;
+import automodules.stage.Main;
+import automodules.stage.Stage;
+import automodules.stage.Stop;
 import math.Logistic;
 import robotparts.RobotPart;
 import robotparts.electronics.continuous.CMotor;
@@ -43,6 +48,17 @@ public class MecanumDrive extends RobotPart {
         }else{
             moveSmooth(f, 0, t);
         }
+    }
+
+
+    public Stage moveTime(double time, double f, double s, double t){
+        return new Stage(
+                usePart(),
+                new Main(() -> moveSmooth(f, s, t)),
+                exitTime(time),
+                new Stop(() -> moveSmooth(0,0,0)),
+                returnPart()
+        );
     }
 
 
