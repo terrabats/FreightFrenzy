@@ -26,6 +26,7 @@ public class RiseOpBlue extends Tele{
         gph1.link(Button.X, OnPressEventHandler.class, () -> bot.cancelAutoModules());
         gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.IntakeRiseTele));
         gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.ForwardRiseTele));
+        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.SharedRiseTele));
 
         gph1.link(Button.LEFT_TRIGGER, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.DuckRiseTele));
     }

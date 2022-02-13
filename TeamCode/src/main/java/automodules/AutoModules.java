@@ -55,6 +55,7 @@ public class AutoModules{
         );
     }
 
+
     public StageList SpinCarousel = new StageList(bot.carousel).define(
         bot.carousel.spin(3)
     );
@@ -110,7 +111,11 @@ public class AutoModules{
     );
 
 
-
+    public StageList SharedRiseTele = new StageList().define(
+            bot.lift.liftEncoderAndIntake(0.8, 210),
+            bot.outtake.outtakeDrop(0.5),
+            bot.lift.liftEncoder(0.8, 0)
+    );
 
 
 
