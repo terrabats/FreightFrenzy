@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import autoutil.generators.ArcGenerator;
 import autoutil.paths.Path;
+import autoutil.paths.PathOld;
 import autoutil.paths.PathSegment;
 import geometry.circles.AngleType;
 import geometry.position.Pose;
@@ -27,7 +28,7 @@ public class DisplayOld extends JPanel {
     private final int width = 700;
     private final int xScale = 5;
     private final int yScale = 5;
-    private Path pathToDisplay;
+    private PathOld pathToDisplay;
 
     public void genTestPlane(){
         ArcGenerator arcGenerator = new ArcGenerator();

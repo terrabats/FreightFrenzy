@@ -101,24 +101,29 @@ public abstract class MovementExecutor {
                 if (dis > 10) {
                     move(
                         forwardPow,
-                        reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH, true)
+                        reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH)
                     );
                 } else {
-                    move(
-                        forwardPow,
-                        reactor.turnPow(nextPose.ang, startH, true)
-                    );
+                    moveSetpoint(nextPose);
                 }
             } else {
                 Pose nextPose = paths.get(curPath).get(curPose);
                 move(
                     reactor.forwardPowWaypoint(nextPose.p.x, nextPose.p.y),
-                    reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH, true)
+                    reactor.turnPowWay(nextPose.p.x, nextPose.p.y, startH)
                 );
             }
         } else {
             move(0, 0);
         }
+    }
+
+    public void moveSetpoint(Pose nextPose) {
+        double forwardPow = reactor.forwardPowSetpoint(nextPose.p.x, nextPose.p.y);
+        move(
+                forwardPow,
+                reactor.turnPow(nextPose.ang, startH, true)
+        );
     }
 
     private void updateCurPoint() {

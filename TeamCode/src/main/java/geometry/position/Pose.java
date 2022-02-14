@@ -17,6 +17,9 @@ public class Pose extends GeometryObject {
         this.ang = toRad(ang, angleType);
     }
 
+    public double[] asArray(){
+        return new double[]{p.x, p.y, ang};
+    }
     //public boolean angIsInf() { return ang == Constants.INF; }
 
     @Override

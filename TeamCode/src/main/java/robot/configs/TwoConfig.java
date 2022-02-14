@@ -4,7 +4,9 @@ public class TwoConfig extends RobotConfig{
     {
         define(
                 intake,
-                mecanumDrive
+                mecanumDrive,
+                odometry2,
+                gyroSensors
         );
     }
 }

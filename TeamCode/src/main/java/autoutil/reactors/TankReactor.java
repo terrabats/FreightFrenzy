@@ -35,10 +35,10 @@ public class TankReactor {
         return moveForward(targetX, targetY) ? fPowWaypoint : -fPowWaypoint;
     }
 
-    public double turnPowWay(double targetX, double targetY, double stPos, boolean doBackMath) {
+    public double turnPowWay(double targetX, double targetY, double stPos) {
         double[] curPos = bot.odometry.curPos;
         double ang = atan2(targetY - curPos[1], targetX - curPos[0]);
-        if (doBackMath && !moveForward(targetX, targetY)) {
+        if (!moveForward(targetX, targetY)) {
             ang += PI;
         }
         return turnPow(ang, stPos, false);

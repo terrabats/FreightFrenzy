@@ -15,6 +15,7 @@ import robotparts.sensors.Led;
 import robotparts.sensors.Odometry;
 import robotparts.sensors.TouchSensors;
 import robotparts.hardware.MecanumDrive;
+import robotparts.sensors.TwoOdometry;
 
 public abstract class RobotConfig extends RobotFramework {
 
@@ -31,6 +32,7 @@ public abstract class RobotConfig extends RobotFramework {
     public DistanceSensors distanceSensors = new DistanceSensors();
     public Led leds = new Led();
     public MecanumDrive mecanumDrive = new MecanumDrive();
+    public TwoOdometry odometry2 = new TwoOdometry();
 
     protected final void define(RobotPart... parts){
         for(RobotPart part:parts){ part.instantiate(); }
