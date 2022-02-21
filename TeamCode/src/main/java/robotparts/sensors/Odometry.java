@@ -99,4 +99,8 @@ public class Odometry extends RobotPart {
         return new double[] { 0, dt, dtheta };
 
     }
+
+    public double[] getPose() {
+        return curPos;
+    }
 }

@@ -6,8 +6,7 @@ import static global.General.bot;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-import autoutil.executors.MecanumExecutor;
-import autoutil.executors.MecanumExecutorPID;
+import autoutil.executors.MecanumExecutorArcs;
 import elements.FieldSide;
 import geometry.circles.AngleType;
 
@@ -21,7 +20,7 @@ public class AutoMoveTestMec extends CompleteAuto {
 
     @Override
     public void defineExecutor() {
-        executor = new MecanumExecutor();
+        executor = new MecanumExecutorArcs();
     }
 
     @Override

@@ -7,7 +7,7 @@ import robotparts.electronics.input.IEncoder;
 import static global.General.bot;
 import static robot.RobotFramework.odometryThread;
 
-public class TwoOdometry extends RobotPart {
+public class TwoOdometry extends Odometry {
 
     private IEncoder horizontalEncoder;
     private IEncoder verticalEncoder;
@@ -19,8 +19,13 @@ public class TwoOdometry extends RobotPart {
 
     private final Vector2 positionOdometryCenter = new Vector2(0,0);
     private Vector2 positionRobotCenter = new Vector2(0,0);
-    private final Vector2 localOdometryCenterOffset = new Vector2(3,-0.5);
+    private final Vector2 localOdometryCenterOffset; // = new Vector2(3,-0.5);
     private double heading = 0;
+
+    public TwoOdometry(double odo1_to_center_x, double odo2_to_center_y) {
+        super(odo1_to_center_x);
+        localOdometryCenterOffset = new Vector2(odo1_to_center_x, odo2_to_center_y);
+    }
 
 
     @Override
@@ -83,6 +88,7 @@ public class TwoOdometry extends RobotPart {
         return heading;
     }
 
+    @Override
     public double[] getPose(){
         return new double[]{getX(), getY(), getHeading()};
     }

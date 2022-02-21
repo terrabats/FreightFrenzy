@@ -3,7 +3,6 @@ package autoutil.executors;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import autoutil.paths.Path;
-import autoutil.paths.PathOld;
 import autoutil.reactors.Reactor;
 import util.codeseg.ReturnCodeSeg;
 

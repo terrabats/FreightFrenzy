@@ -19,20 +19,20 @@ import robotparts.sensors.TwoOdometry;
 
 public abstract class RobotConfig extends RobotFramework {
 
-    public TankDrive tankDrive = new TankDrive();
-    public Intake intake = new Intake();
-    public Turret turret = new Turret();
-    public Lift lift = new Lift();
-    public Outtake outtake = new Outtake();
-    public Carousel carousel = new Carousel();
-    public ColorSensors colorSensors = new ColorSensors();
-    public GyroSensors gyroSensors = new GyroSensors();
-    public Odometry odometry = new Odometry(4.6);
-    public TouchSensors touchSensors = new TouchSensors();
-    public DistanceSensors distanceSensors = new DistanceSensors();
-    public Led leds = new Led();
-    public MecanumDrive mecanumDrive = new MecanumDrive();
-    public TwoOdometry odometry2 = new TwoOdometry();
+    public final TankDrive tankDrive = new TankDrive();
+    public final Intake intake = new Intake();
+    public final Turret turret = new Turret();
+    public final Lift lift = new Lift();
+    public final Outtake outtake = new Outtake();
+    public final Carousel carousel = new Carousel();
+    public final ColorSensors colorSensors = new ColorSensors();
+    public final GyroSensors gyroSensors = new GyroSensors();
+    public Odometry odometry;
+    public final TouchSensors touchSensors = new TouchSensors();
+    public final DistanceSensors distanceSensors = new DistanceSensors();
+    public final Led leds = new Led();
+    public final MecanumDrive mecanumDrive = new MecanumDrive();
+//    public TwoOdometry odometry2 = new TwoOdometry(3, -0.5);
 
     protected final void define(RobotPart... parts){
         for(RobotPart part:parts){ part.instantiate(); }

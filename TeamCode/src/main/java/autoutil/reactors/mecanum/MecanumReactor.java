@@ -16,12 +16,22 @@ public abstract class MecanumReactor extends Reactor {
         controllers.get(0).setProcessVariable(() -> getPose()[0]);
         controllers.get(1).setProcessVariable(() -> getPose()[1]);
         controllers.get(2).setProcessVariable(() -> getPose()[2]);
+        controllers.get(2).setProcessError(() -> {
+            double newError = controllers.get(2).getRawError();
+            while (newError < -180) {
+                newError += 360;
+            }
+            while (newError > 180) {
+                newError -= 360;
+            }
+            return newError;
+        });
         nextTarget();
     }
 
     @Override
     public double[] getPose() {
-        return bot.odometry2.getPose();
+        return bot.odometry.getPose();
     }
 
     @Override

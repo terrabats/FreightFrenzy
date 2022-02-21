@@ -9,8 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import autoutil.generators.ArcGenerator;
-import autoutil.paths.Path;
-import autoutil.paths.PathOld;
+import autoutil.paths.FinalPathArc;
 import autoutil.paths.PathSegment;
 import geometry.position.Pose;
 
@@ -24,7 +23,7 @@ public class DisplayPath extends JPanel {
     private final int width = 1000;
     private final int xScale = 3;
     private final int yScale = 3;
-    private PathOld pathToDisplay;
+    private FinalPathArc pathToDisplay;
 
     public void genTestPlane(){
         ArcGenerator arcGenerator = new ArcGenerator();

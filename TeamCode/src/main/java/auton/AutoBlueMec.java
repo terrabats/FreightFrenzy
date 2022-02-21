@@ -1,7 +1,6 @@
 package auton;
 
-import autoutil.executors.MecanumExecutor;
-import autoutil.executors.MecanumExecutorPID;
+import autoutil.executors.MecanumExecutorArcs;
 import elements.FieldSide;
 import geometry.circles.AngleType;
 
@@ -20,7 +19,7 @@ public class AutoBlueMec extends CompleteAuto {
 
     @Override
     public void defineExecutor() {
-        executor = new MecanumExecutor();
+        executor = new MecanumExecutorArcs();
     }
 
     @Override

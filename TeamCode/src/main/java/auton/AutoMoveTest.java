@@ -44,7 +44,7 @@ public class AutoMoveTest extends Auto {
 //            log.show(executor.reactor.moveForward(executor.));
             log.showAndRecord("cur path index", movementExecutor.curPath + " " + movementExecutor.curPose);
             log.showAndRecord("path length", movementExecutor.paths.size() + " " + movementExecutor.paths.get(movementExecutor.curPath).size());
-            log.showAndRecord("Curpos", Arrays.toString(bot.odometry.curPos));
+            log.showAndRecord("Curpos", Arrays.toString(bot.odometry.getPose()));
             log.showAndRecord("Target", movementExecutor.paths.get(movementExecutor.curPath).get(movementExecutor.paths.get(movementExecutor.curPath).size() - 1));
             update(true);
         }
