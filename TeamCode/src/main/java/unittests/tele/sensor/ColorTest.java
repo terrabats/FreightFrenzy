@@ -11,6 +11,9 @@ public class ColorTest extends TeleUnitTest {
      * Tests color sensors
      */
 
+    // TODO NEW
+    // Make sensor calibration code to do that
+
     @Override
     protected void loop() {
         /**

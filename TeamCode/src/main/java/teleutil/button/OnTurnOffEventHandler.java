@@ -11,7 +11,7 @@ public class OnTurnOffEventHandler extends OnPressEventHandler {
 
     public OnTurnOffEventHandler(Button button, CodeSeg cs, GamepadHandler gph) {
         super(button, cs, gph);
-        this.codeSeg = () -> {
+        this.codeToRun = () -> {
             on = !on;
             if (!on) {
                 cs.run();

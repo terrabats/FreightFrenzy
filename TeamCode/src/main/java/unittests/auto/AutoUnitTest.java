@@ -25,6 +25,8 @@ public class AutoUnitTest extends UnitTest implements Iterator {
     // TODO FIX
     // Randomly at the end of auto test it says there are no items in arraylist?
 
+    // TODO FIX
+    // Make new auto tests
 
     /**
      * Run runs once after start

@@ -13,7 +13,7 @@ public class WhenOffEventHandler extends OnPressEventHandler {
     public WhenOffEventHandler(Button button, CodeSeg cs, GamepadHandler gph) {
         super(button, cs, gph);
         runWhenOn = cs;
-        this.codeSeg = () -> on = !on;
+        this.codeToRun = () -> on = !on;
     }
 
     @Override

@@ -1,11 +1,13 @@
-package unittests.auto.framework;
+package unittests.auto.movement;
 
 import unittests.auto.AutoUnitTest;
 import util.Timer;
 
 import static global.General.bot;
 
+@Deprecated
 public class MoveTest extends AutoUnitTest {
+
     Timer timer = new Timer();
     @Override
     public void init() {

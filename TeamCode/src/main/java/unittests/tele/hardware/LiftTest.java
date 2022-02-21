@@ -17,6 +17,9 @@ public class LiftTest extends TeleUnitTest {
             bot.lift.liftTime(0.6, 0.5)
     );
 
+    // TODO NEW
+    // Make something that detects when encoders are disconnected or something is stalling
+
 
     @Override
     protected void start() {

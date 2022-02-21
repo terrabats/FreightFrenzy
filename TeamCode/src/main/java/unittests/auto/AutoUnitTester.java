@@ -8,7 +8,7 @@ import auton.Auto;
 import elements.FieldSide;
 import unittests.UnitTester;
 import unittests.auto.framework.IteratorTest;
-import unittests.auto.framework.MoveTest;
+import unittests.auto.movement.MoveTest;
 import unittests.auto.framework.PIDTest;
 import util.condition.Status;
 
