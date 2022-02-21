@@ -5,14 +5,20 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import androidx.annotation.CallSuper;
 import elements.FieldSide;
 import global.Common;
+import util.Timer;
+import util.codeseg.CodeSeg;
+import util.codeseg.ReturnCodeSeg;
+import util.condition.Iterator;
+
 import static global.General.*;
 
-public abstract class Auto extends LinearOpMode implements Common {
+public abstract class Auto extends LinearOpMode implements Common, Iterator {
     /**
      * Base class for autons
      * NOTE: If the methods are overriden then make sure the call super.<method name>
      * this will generate by default if you use @Override
      */
+
 
     /**
      * Init method runs when the user clicks the init button to run a auton
@@ -44,5 +50,11 @@ public abstract class Auto extends LinearOpMode implements Common {
         runAuto();
         stopAuto();
         end();
+    }
+
+
+    @Override
+    public boolean condition() {
+        return opModeIsActive();
     }
 }
