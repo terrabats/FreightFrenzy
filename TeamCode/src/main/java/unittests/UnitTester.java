@@ -62,12 +62,18 @@ public interface UnitTester {
             gph2.unlinkAll();
             log.clearTelemetry();
         });
+
         /**
          * Create all the unit tests and initialize them
          */
         createUnitTests();
+
+        /**
+         * Check if there are no unit tests to be run
+         */
         fault.warn("No unit tests to be run", Expectation.OBVIOUS, Magnitude.NEGLIGIBLE, selector.getNumberOfItems() == 0, false);
         selector.runToAll(UnitTest::init);
+
         /**
          * Display the testing mode
          */
@@ -80,12 +86,20 @@ public interface UnitTester {
      * @param test
      */
     default void add(UnitTest test){
+        checkForDuplicates(test);
+        selector.addItem(new Item<>(test.getClass().getSimpleName(), test));
+    }
+
+    /**
+     * Checks for duplicate tests in the selector
+     * @param test
+     */
+    default void checkForDuplicates(UnitTest test){
         for(String testName: selector.getItemClassNames()){
             if(test.getClass().getSimpleName().equals(testName)){
                 fault.warn("Duplicate unit test found", Expectation.OBVIOUS, Magnitude.NEGLIGIBLE);
-            };
+            }
         }
-        selector.addItem(new Item<>(test.getClass().getSimpleName(), test));
     }
 
     /**
@@ -127,10 +141,16 @@ public interface UnitTester {
             log.list(selector.getItemClassNames(), selector.getCurrentIndex());
         }else if(selector.isActive()){
             /**
-             * If the selector is active then run the current test
+             * Add telemetry to say testing the current test
              */
             log.showAndRecord("Testing", getCurrentTestName());
+            /**
+             * If the selector is active then run the current test
+             */
             selector.runToCurrentItem(UnitTest::test);
+            /**
+             * If in autonomous mode tell when the test is done
+             */
             if(mainUser.equals(User.AUTO)){
                 log.showAndRecord("Done testing", getCurrentTestName());
             }
@@ -139,6 +159,7 @@ public interface UnitTester {
 
     /**
      * Is the tester done with all of the test?
+     * If the testing mode is not selection (only ends when program stops) and the selector is done with last
      * @param testingMode
      * @return done
      */

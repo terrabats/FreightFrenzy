@@ -7,7 +7,7 @@ import unittests.tele.TeleUnitTest;
 /**
  * NOTE: Uncommented
  */
-
+@Deprecated
 public class OdometryTest extends TeleUnitTest {
     @Override
     public void init() {

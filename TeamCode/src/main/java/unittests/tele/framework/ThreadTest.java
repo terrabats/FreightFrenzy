@@ -9,7 +9,8 @@ import util.condition.Magnitude;
 
 import static global.General.*;
 
-
+// TODO FIX
+// Make this better
 public class ThreadTest extends TeleUnitTest {
     /**
      * Tests the two threads on the robot by setting their execution code

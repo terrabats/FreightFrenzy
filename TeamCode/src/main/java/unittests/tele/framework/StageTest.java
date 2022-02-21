@@ -1,5 +1,6 @@
 package unittests.tele.framework;
 import automodules.stage.Stage;
+import robotparts.RobotPart;
 import unittests.tele.TeleUnitTest;
 
 import static global.General.*;
@@ -15,12 +16,12 @@ public class StageTest extends TeleUnitTest {
          * NOTE: The robotfunction waits for 1 second and then moves the robot forward at 0.3 power for 1 second
          */
         bot.rfsHandler.addToQueue(new Stage(
-                bot.intake.exitTime(1)
+                RobotPart.exitTime(1)
         ));
         bot.rfsHandler.addToQueue(new Stage(
                 bot.tankDrive.usePart(),
                 bot.tankDrive.main(0.3, 0),
-                bot.tankDrive.exitTime(1),
+                RobotPart.exitTime(1),
                 bot.tankDrive.stop(),
                 bot.tankDrive.returnPart()
         ));
