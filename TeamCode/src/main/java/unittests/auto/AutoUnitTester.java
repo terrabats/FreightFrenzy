@@ -1,28 +1,16 @@
 package unittests.auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import static global.General.bot;
-import static global.General.fault;
-import static global.General.gph1;
-import static global.General.gph2;
 import static global.General.log;
 
 import auton.Auto;
 import elements.FieldSide;
-import teleutil.Selector;
-import teleutil.button.Button;
 import unittests.UnitTester;
-import unittests.auto.framework.EmptyTest;
-import unittests.auto.framework.EmptyTest2;
+import unittests.auto.framework.IteratorTest;
 import unittests.auto.framework.MoveTest;
 import unittests.auto.framework.PIDTest;
-import unittests.tele.TeleUnitTest;
-import util.condition.Expectation;
-import util.condition.Magnitude;
 import util.condition.Status;
-import util.store.Item;
 
 @SuppressWarnings("ALL")
 @Autonomous(name = "AutoUnitTester", group = "UnitTests")
@@ -45,10 +33,9 @@ public class AutoUnitTester extends Auto implements UnitTester {
          * Framework
          */
         addAll(
-//                new PIDTest(),
-//                new EmptyTest(),
-//                new MoveTest(),
-                new EmptyTest2()
+                new IteratorTest(),
+                new PIDTest(),
+                new MoveTest()
         );
     }
 
