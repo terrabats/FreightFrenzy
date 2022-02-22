@@ -1,7 +1,15 @@
 package unittests.auto;
 
+import static global.General.fault;
+
+import androidx.annotation.NonNull;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import automodules.StageList;
+import autoutil.executors.Executor;
+import geometry.circles.AngleType;
+import global.Common;
 import unittests.UnitTest;
 import unittests.tele.TeleUnitTest;
 import util.Timer;
@@ -10,7 +18,7 @@ import util.codeseg.ReturnCodeSeg;
 import util.condition.Iterator;
 import util.condition.Status;
 
-public class AutoUnitTest extends UnitTest implements Iterator {
+public class AutoUnitTest extends UnitTest implements Iterator, Common {
     /**
      * Unit test based on auto
      * For init and stop see UnitTest
@@ -22,17 +30,106 @@ public class AutoUnitTest extends UnitTest implements Iterator {
      */
     public static LinearOpMode linearOpMode;
 
+    protected static Executor executor;
+
+    private static boolean hasTelemetry = true;
+
     // TODO FIX
     // Randomly at the end of auto test it says there are no items in arraylist?
 
     // TODO FIX
     // Make new auto tests
 
+    public void defineExecutorAndAddPoints() {}
+
+    @Override
+    public void init() {
+        defineExecutorAndAddPoints();
+        if (executor != null) executor.complete();
+    }
+
+    public void onStart() {}
+
+    public void duringLoop() {}
+
+    public void addTelemetry() { hasTelemetry = false; }
+
+    public void onEnd() {}
+
+    private void checkHeadingWrong(double h) {
+        fault.check("Using degrees or wrong range of heading ( correct is (-PI, PI] ) in default point?",
+                Math.abs(h) > Math.PI || h == -Math.PI, false);
+    }
+
+    public double[] wayPoint(double x, double y, double h) {
+        checkHeadingWrong(h);
+        return new double[] { x, y, h, 1 };
+    }
+
+    public double[] setPoint(double x, double y, double h) {
+        checkHeadingWrong(h);
+        return new double[] { x, y, h, 0 };
+    }
+
+    public Object[] unsyncedRF(StageList rf) {
+        return new Object[] { rf, 0 };
+    }
+
+    public Object[] syncedRF(StageList rf) {
+        return new Object[] { rf, 1 };
+    }
+
+    public CodeSeg custom(CodeSeg in) {
+        return in;
+    }
+
+    public void addExecutorFuncs(@NonNull Object... funcs) {
+        for (Object func : funcs) {
+            if (func instanceof CodeSeg) {
+                ((CodeSeg) func).run();
+            } else if (func instanceof double[]) {
+                double[] point = (double[]) func;
+                fault.check("Incorrect Point Syntax", point.length != 4, false);
+                if (point[3] == 0) {
+                    executor.addSetpoint(point[0], point[1], point[2], AngleType.RADIANS);
+                } else {
+                    executor.addWaypoint(point[0], point[1], point[2], AngleType.RADIANS);
+                }
+            } else if (func instanceof Object[]) {
+                Object[] newObj = (Object[]) func;
+
+                int type = (int) newObj[1];
+                StageList rf = (StageList) newObj[0];
+
+                if (type == 0) {
+                    executor.addUnsynchronizedRF(rf);
+                } else {
+                    executor.addSynchronizedRF(rf);
+                }
+            }
+        }
+    }
+
     /**
      * Run runs once after start
      * NOTE: This is equivalent to loop in TeleUnitTest except it runs once
      */
-    protected void run(){}
+    protected void run() {
+        if (executor != null) {
+            onStart();
+
+            executor.resumeMove();
+
+            whileActive(() -> {
+                executor.update();
+                addTelemetry();
+                duringLoop();
+                update(hasTelemetry);
+            });
+
+            onEnd();
+        }
+    }
 
     /**
      * Test runs the test
@@ -47,6 +144,6 @@ public class AutoUnitTest extends UnitTest implements Iterator {
 
     @Override
     public boolean condition() {
-        return linearOpMode.opModeIsActive();
+        return linearOpMode.opModeIsActive() && (executor == null || executor.finished());
     }
 }

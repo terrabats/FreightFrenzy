@@ -18,27 +18,40 @@ public class AutoBlueMec extends CompleteAuto {
     }
 
     @Override
-    public void defineExecutor() {
+    public void defineExecutorAndAddPoints() {
         executor = new MecanumExecutorArcs();
-    }
-
-    @Override
-    public void setPoints() {
-        executor.addSetpoint(70, 30, PI/2, AngleType.RADIANS);
-        executor.addUnsynchronizedRF(autoModules.SpinCarousel);
-        executor.addSynchronizedRF(autoModules.IntakeAuto);
-        executor.addSetpoint(-50, 43, -PI/2, AngleType.RADIANS);
-        executor.addSetpoint(-65, 43, -PI/2, AngleType.RADIANS);
-        executor.addUnsynchronizedRF(autoModules.Backward);
-        executor.addPause(2);
-        executor.addUnsynchronizedRF(autoModules.Forward);
-        executor.addSetpoint(-40, 43, -PI/2, AngleType.RADIANS);
-        executor.addSetpoint(-70, 15, -PI/2, AngleType.RADIANS);
-        executor.addSetpoint(-90, 15, -PI/2, AngleType.RADIANS);
-        executor.addUnsynchronizedRF(autoModules.LiftOdometry);
-        executor.addUnsynchronizedRF(autoModules.MoveCWTime(0.5));
-        executor.addUnsynchronizedRF(autoModules.MoveForwardTime(2));
-        executor.addUnsynchronizedRF(autoModules.ResetTurretAndLift);
+        addExecutorFuncs(
+                setPoint(70, 30, PI/2),
+                unsyncedRF(autoModules.SpinCarousel),
+                syncedRF(autoModules.IntakeAuto),
+                setPoint(-50, 43, -PI/2),
+                setPoint(-65, 43, -PI/2),
+                unsyncedRF(autoModules.Backward),
+                custom(() -> executor.addPause(2)),
+                unsyncedRF(autoModules.Forward),
+                setPoint(-40, 43, -PI/2),
+                setPoint(-70, 15, -PI/2),
+                setPoint(-90, 15, -PI/2),
+                unsyncedRF(autoModules.LiftOdometry),
+                unsyncedRF(autoModules.MoveCWTime(0.5)),
+                unsyncedRF(autoModules.MoveForwardTime(2)),
+                unsyncedRF(autoModules.ResetTurretAndLift)
+        );
+//        executor.addSetpoint(70, 30, PI/2, AngleType.RADIANS);
+//        executor.addUnsynchronizedRF(autoModules.SpinCarousel);
+//        executor.addSynchronizedRF(autoModules.IntakeAuto);
+//        executor.addSetpoint(-50, 43, -PI/2, AngleType.RADIANS);
+//        executor.addSetpoint(-65, 43, -PI/2, AngleType.RADIANS);
+//        executor.addUnsynchronizedRF(autoModules.Backward);
+//        executor.addPause(2);
+//        executor.addUnsynchronizedRF(autoModules.Forward);
+//        executor.addSetpoint(-40, 43, -PI/2, AngleType.RADIANS);
+//        executor.addSetpoint(-70, 15, -PI/2, AngleType.RADIANS);
+//        executor.addSetpoint(-90, 15, -PI/2, AngleType.RADIANS);
+//        executor.addUnsynchronizedRF(autoModules.LiftOdometry);
+//        executor.addUnsynchronizedRF(autoModules.MoveCWTime(0.5));
+//        executor.addUnsynchronizedRF(autoModules.MoveForwardTime(2));
+//        executor.addUnsynchronizedRF(autoModules.ResetTurretAndLift);
     }
 
     @Override
