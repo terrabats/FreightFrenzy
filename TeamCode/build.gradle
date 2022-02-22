@@ -30,5 +30,5 @@ dependencies {
 
     // User defined implementations
     //implementation 'org.reflections:reflections:0.10.2'
-//    implementation 'org.openftc:easyopencv:1.5.1'
+    implementation 'org.openftc:easyopencv:1.5.1'
 }

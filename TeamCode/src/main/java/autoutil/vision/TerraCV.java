@@ -1,4 +1,8 @@
-//package autoutil.vision;
+package autoutil.vision;
+
+import org.opencv.core.Mat;
+import org.openftc.easyopencv.OpenCvPipeline;
+
 //
 //import org.opencv.core.Core;
 //import org.opencv.core.Mat;
@@ -15,7 +19,13 @@
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//public class TerraCV extends OpenCvPipeline
+public class TerraCV extends OpenCvPipeline {
+
+    @Override
+    public Mat processFrame(Mat input) {
+        return null;
+    }
+}
 //{
 //    // TODO NEW
 //    // Make this something that acutally works
