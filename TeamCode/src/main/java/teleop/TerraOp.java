@@ -18,30 +18,34 @@ import static global.General.gph2;
  * NOTE: Uncommented
  */
 
-@TeleOp(name = "TerraOpBlue", group = "TeleOp")
-public class TerraOpBlue extends Tele{
+@Deprecated
+public class TerraOp extends Tele{
+    /**
+     * Main teleop file
+     */
 
-    // Target
+    // TODO FIX
+    // Make this for the new robot
 
-    // Auton 46 points
-    //    Carousel - 10 points
-    //    Alliance hub - 26 points
-    //    Park - 10 points
-    // Tele 64 points
-    //    Shared hub - 15s - 4 points
-    //    Alliance hub - 75s - 8s/cycle - 54 points - 6 points/cycle - 9 cycles
-    // Endgame 80 points
-    //    Ducks - 60 points
-    //    Tipped shared hub - 20 points
+    /**
+     * The field side (Used to create teleops for different sides)
+     */
+    protected FieldSide fieldSide;
 
     @Override
     public void initTele() {
+        /**
+         * Set the button handlers for the intake
+         */
         //Gamepad 1
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
         gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.intake.move(0));
         gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));
         gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.intake.move(0));
 
+        /**
+         * Set the button handlers for the outtake
+         */
         //Gamepad 2
         gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.outtake.open());
         gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.outtake.start());
@@ -58,7 +62,7 @@ public class TerraOpBlue extends Tele{
 
         bot.lift.move(0);
 
-        activate(FieldSide.BLUE);
+        activate(fieldSide);
     }
 
     @Override
@@ -74,11 +78,26 @@ public class TerraOpBlue extends Tele{
 
         bot.lift.move(-gamepad2.right_stick_y);
 
-//        if (Math.abs(gamepad2.right_stick_y) > 0.02 && bot.lift.isStalling()) {
-//            log.show("Lift stalling");
-//            bot.lift.move(0);
-//        } else {
-//            bot.lift.move(-gamepad2.right_stick_y);
-//        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Define the two teleops for each side
+     */
+    @TeleOp(name = "TerraOpBlue", group = "TeleOp")
+    public static class TerraOpBlue extends TerraOp{{ fieldSide = FieldSide.BLUE; }}
+    @TeleOp(name = "TerraOpRed", group = "TeleOp")
+    public static class TerraOpRed extends TerraOpBlue{{ fieldSide = FieldSide.RED; }}
 }
+
+

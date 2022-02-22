@@ -54,13 +54,9 @@ public class RobotPart {
     private volatile User currentUser = User.NONE;
 
     /**
-     * Constructor to create the robot part
-     * NOTE: This automatically adds itself to the robotparts list
+     * Method to "instantiate" the robot part
+     * This automatically adds itself to the robotparts list
      */
-//    public RobotPart(){
-//       RobotFramework.allRobotParts.add(this);
-//    }
-
     public void instantiate(){
         RobotFramework.allRobotParts.add(this);
     }
@@ -208,13 +204,13 @@ public class RobotPart {
     }
 
     /**
-     * For all electonics run...
+     * For all electronics run...
      * @param run
      */
     private void forAllElectronics(ParameterCodeSeg<Electronic> run){ for(Electronic e: electronics.values()){ run.run(e); } }
 
     /**
-     * For all electonics of a certain type run...
+     * For all electronics of a certain type run...
      * @param run
      */
     private <T extends Electronic> void forAllElectronicsOfType(Class<T> type, ParameterCodeSeg<T> run){ for(Electronic e: getElectronicsOfType(type).values()){ run.run((T) e); } }
@@ -252,8 +248,11 @@ public class RobotPart {
      */
     public Stop returnPart(){return new Stop(() -> switchUser(mainUser));}
 
-
-
+    /**
+     * Pause for some amount of time
+     * @param time
+     * @return
+     */
     public static Stage pause(double time){
         return new Stage(exitTime(time));
     }

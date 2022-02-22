@@ -6,7 +6,6 @@ import util.Access;
 import util.condition.Status;
 
 public class Electronic {
-
     /**
      * Naming conventions for electronics
      * C -> continuous
@@ -49,5 +48,4 @@ public class Electronic {
     public synchronized boolean isAllowed(){
         return access.isAllowed();
     }
-
 }
