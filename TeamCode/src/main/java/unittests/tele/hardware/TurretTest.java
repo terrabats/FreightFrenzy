@@ -10,19 +10,19 @@ public class TurretTest extends TeleUnitTest {
 
     @Override
     public void loop() {
-        showConfig(bot.turret);
+        showConfig(bot.tankTurret);
         /**
          * Should move the turret
          */
         log.show("Use left stick x");
-        bot.turret.move(gamepad1.left_stick_x);
+        bot.tankTurret.move(gamepad1.left_stick_x);
         /**
          * Should change when the turret moves
          */
-        log.show("Turret pos", bot.turret.getTurretPos());
+        log.show("Turret pos", bot.tankTurret.getTurretPos());
         /**
          * Should not change when the turret moves
          */
-        log.show("Turret target pos", bot.turret.getTargetPos());
+        log.show("Turret target pos", bot.tankTurret.getTargetPos());
     }
 }

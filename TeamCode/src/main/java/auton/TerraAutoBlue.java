@@ -1,6 +1,5 @@
 package auton;
 
-import autoutil.executors.Executor;
 import autoutil.executors.TankExecutor;
 import elements.FieldSide;
 import geometry.circles.AngleType;
@@ -48,13 +47,13 @@ public class TerraAutoBlue extends Auto {
         waitForStart();
 
         ready();
-        bot.outtake.lockCube();
+        bot.tankOuttake.lockCube();
         executor.resumeMove();
 
         while (opModeIsActive() && !executor.finished()) {
             executor.update();
-            if (bot.lift.getPower() == 0) {
-                bot.lift.move(0);
+            if (bot.tankLift.getPower() == 0) {
+                bot.tankLift.move(0);
             }
             update(true);
         }
@@ -70,7 +69,7 @@ public class TerraAutoBlue extends Auto {
     private void moveTime(double f, double t, double time){
         timer.reset();
         while (opModeIsActive() && timer.seconds() < time) {
-            bot.lift.move(0);
+            bot.tankLift.move(0);
             bot.tankDrive.move(f,t);
         }
     }

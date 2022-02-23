@@ -10,11 +10,11 @@ public class LiftTest extends TeleUnitTest {
     /**
      * Tests the lift
      */
-    public StageList test = new StageList(bot.lift).define(
-            bot.lift.liftEncoder(0.5, 30)
+    public StageList test = new StageList(bot.tankLift).define(
+            bot.tankLift.liftEncoder(0.5, 30)
     );
-    public StageList test2 = new StageList(bot.lift).define(
-            bot.lift.liftTime(0.6, 0.5)
+    public StageList test2 = new StageList(bot.tankLift).define(
+            bot.tankLift.liftTime(0.6, 0.5)
     );
 
     // TODO NEW
@@ -32,19 +32,19 @@ public class LiftTest extends TeleUnitTest {
 
     @Override
     public void loop() {
-        showConfig(bot.lift);
+        showConfig(bot.tankLift);
         /**
          * Lift should move
          */
         log.show("Use right stick y");
-        bot.lift.move(-gamepad1.right_stick_y);
+        bot.tankLift.move(-gamepad1.right_stick_y);
         /**
          * Should change when lift moves
          */
-        log.show("Lift pos", bot.lift.getLiftPos());
+        log.show("Lift pos", bot.tankLift.getLiftPos());
         /**
          * Should not change when lift moves
          */
-        log.show("Lift target pos", bot.lift.getTarget());
+        log.show("Lift target pos", bot.tankLift.getTarget());
     }
 }

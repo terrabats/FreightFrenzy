@@ -20,7 +20,7 @@ import static global.General.fault;
 import static global.General.fieldSide;
 import static global.General.mainUser;
 
-public class Turret extends RobotPart {
+public class TankTurret extends RobotPart {
     /**
      * Turret positional motor
      */
@@ -139,7 +139,7 @@ public class Turret extends RobotPart {
     public Main main(double power){return new Main(()-> move(power));}
     public Exit exitReachedTarget(){return new Exit(this::hasReachedTarget);}
 
-    public Stop stop(){return new Stop(()-> bot.turret.move(0));}
+    public Stop stop(){return new Stop(()-> bot.tankTurret.move(0));}
     public Stop swapTurretTargetsTele() { return new Stop(this::swapTargetsTeleIfReady); }
 
     public Stop stopEncoder(){return new Stop(this::stopAndResetMode);}

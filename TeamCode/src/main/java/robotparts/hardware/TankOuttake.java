@@ -10,7 +10,7 @@ import robotparts.electronics.positional.PServo;
 
 import static global.General.bot;
 
-public class Outtake extends RobotPart {
+public class TankOuttake extends RobotPart {
     /**
      * Positional servo for outtake
      */
@@ -90,13 +90,13 @@ public class Outtake extends RobotPart {
 
     public Stage outtakeLockAndIntake(double time){ return new Stage(
             usePart(),
-            bot.intake.usePart(),
-            bot.intake.main(1),
+            bot.tankIntake.usePart(),
+            bot.tankIntake.main(1),
             mainLockIfBall(),
             mainLockIfCube(),
             exitTime(time),
-            bot.intake.stop(),
-            bot.intake.returnPart(),
+            bot.tankIntake.stop(),
+            bot.tankIntake.returnPart(),
             returnPart()
         );
     }

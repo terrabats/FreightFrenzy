@@ -11,7 +11,7 @@ import robotparts.electronics.continuous.CMotor;
 
 import static global.General.bot;
 
-public class Intake extends RobotPart {
+public class TankIntake extends RobotPart {
     /**
      * Intake motor
      */
@@ -66,11 +66,11 @@ public class Intake extends RobotPart {
 
     public Stage intakeUntilFreightLiftDown(double power) { return new Stage(
             usePart(),
-            bot.lift.usePart(),
-            bot.lift.main(-0.2),
+            bot.tankLift.usePart(),
+            bot.tankLift.main(-0.2),
             main(power),
             bot.colorSensors.exitFreight(),
-            bot.lift.returnPart(),
+            bot.tankLift.returnPart(),
             returnPart()
     );}
 

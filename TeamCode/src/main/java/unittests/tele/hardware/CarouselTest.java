@@ -9,11 +9,11 @@ public class CarouselTest extends TeleUnitTest {
      */
     @Override
     public void loop() {
-        showConfig(bot.carousel);
+        showConfig(bot.tankCarousel);
         /**
          * Carousel should move
          */
         log.show("Use right trigger");
-        bot.carousel.move(gamepad1.right_trigger);
+        bot.tankCarousel.move(gamepad1.right_trigger);
     }
 }

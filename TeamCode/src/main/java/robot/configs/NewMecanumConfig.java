@@ -2,11 +2,11 @@ package robot.configs;
 
 import robotparts.sensors.TwoOdometry;
 
-public class TwoConfig extends RobotConfig{
+public class NewMecanumConfig extends RobotConfig{
     {
         odometry = new TwoOdometry(3, -0.5);
         define(
-                intake,
+                tankIntake,
                 mecanumDrive,
                 odometry,
                 gyroSensors

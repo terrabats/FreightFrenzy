@@ -12,11 +12,11 @@ public class TankConfig extends RobotConfig{
         odometry = new Odometry(4.6);
         define(
                 tankDrive,
-                intake,
-                turret,
-                lift,
-                outtake,
-                carousel,
+                tankIntake,
+                tankTurret,
+                tankLift,
+                tankOuttake,
+                tankCarousel,
                 colorSensors,
                 gyroSensors,
                 odometry

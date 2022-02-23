@@ -25,6 +25,6 @@ public class RobotFrameworkTest extends TeleUnitTest {
         /**
          * Should be TELE
          */
-        log.show("Test part current user", bot.intake.getUser());
+        log.show("Test part current user", bot.tankIntake.getUser());
     }
 }

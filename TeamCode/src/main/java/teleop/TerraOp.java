@@ -38,17 +38,17 @@ public class TerraOp extends Tele{
          * Set the button handlers for the intake
          */
         //Gamepad 1
-        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
-        gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.intake.move(0));
-        gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));
-        gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.intake.move(0));
+        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.tankIntake.move(1));
+        gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.tankIntake.move(0));
+        gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.tankIntake.move(-1));
+        gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.tankIntake.move(0));
 
         /**
          * Set the button handlers for the outtake
          */
         //Gamepad 2
-        gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.outtake.open());
-        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.outtake.start());
+        gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.tankOuttake.open());
+        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.tankOuttake.start());
 
         gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.IntakeTele));
         gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.BackwardTele()));
@@ -58,9 +58,9 @@ public class TerraOp extends Tele{
         gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);
         gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot::resumeAutoModules);
 
-        bot.outtake.start();
+        bot.tankOuttake.start();
 
-        bot.lift.move(0);
+        bot.tankLift.move(0);
 
         activate(fieldSide);
     }
@@ -71,12 +71,12 @@ public class TerraOp extends Tele{
         // Gamepad1
         bot.tankDrive.moveSmooth(-gamepad1.right_stick_y, gamepad1.left_stick_x);
 
-        bot.carousel.move(gamepad1.right_trigger);
+        bot.tankCarousel.move(gamepad1.right_trigger);
 
         // Gamepad2
-        bot.turret.move(gamepad2.left_stick_x);
+        bot.tankTurret.move(gamepad2.left_stick_x);
 
-        bot.lift.move(-gamepad2.right_stick_y);
+        bot.tankLift.move(-gamepad2.right_stick_y);
 
     }
 

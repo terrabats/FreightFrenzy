@@ -2,9 +2,6 @@ package automodules;
 
 import static global.General.*;
 
-import automodules.stage.Exit;
-import automodules.stage.Stage;
-import elements.GameElement;
 import robotparts.RobotPart;
 
 public class AutoModules{
@@ -13,31 +10,31 @@ public class AutoModules{
      */
     // TODO FIX
             // DOenst work properly
-    public StageList IntakeAuto = new StageList(bot.lift, bot.intake, bot.outtake).define(
-        bot.lift.liftEncoder(0.4, 0),
-        bot.intake.intakeUntilFreight(1),
-        bot.outtake.outtakeLock(1)
+    public StageList IntakeAuto = new StageList(bot.tankLift, bot.tankIntake, bot.tankOuttake).define(
+        bot.tankLift.liftEncoder(0.4, 0),
+        bot.tankIntake.intakeUntilFreight(1),
+        bot.tankOuttake.outtakeLock(1)
     );
 
-    public StageList IntakeTele = new StageList(bot.turret, bot.lift, bot.intake, bot.outtake).define(
-        bot.outtake.outtakeReset(0.05),
-        bot.turret.turretEncoder(1, 0),
-        bot.lift.liftEncoder(0.4, 0),
-        bot.intake.intakeUntilFreightLiftDown(1),
-        bot.outtake.outtakeLockAndIntake(1),
-        bot.intake.intakeTime(-1, 0.8)
+    public StageList IntakeTele = new StageList(bot.tankTurret, bot.tankLift, bot.tankIntake, bot.tankOuttake).define(
+        bot.tankOuttake.outtakeReset(0.05),
+        bot.tankTurret.turretEncoder(1, 0),
+        bot.tankLift.liftEncoder(0.4, 0),
+        bot.tankIntake.intakeUntilFreightLiftDown(1),
+        bot.tankOuttake.outtakeLockAndIntake(1),
+        bot.tankIntake.intakeTime(-1, 0.8)
     );
 
-    public StageList Forward = new StageList(bot.outtake, bot.turret, bot.lift).define(
-        bot.outtake.outtakeDrop(0.6),
-        bot.turret.turretEncoder(1, 0),
-        bot.lift.liftEncoder(0.4, 10),
-        bot.outtake.outtakeReset(0.7)
+    public StageList Forward = new StageList(bot.tankOuttake, bot.tankTurret, bot.tankLift).define(
+        bot.tankOuttake.outtakeDrop(0.6),
+        bot.tankTurret.turretEncoder(1, 0),
+        bot.tankLift.liftEncoder(0.4, 10),
+        bot.tankOuttake.outtakeReset(0.7)
     );
 
-    public StageList Backward = new StageList(bot.lift, bot.turret).define(
-        bot.lift.liftEncoder(1, 48),
-        bot.turret.turretEncoderTarget(1)
+    public StageList Backward = new StageList(bot.tankLift, bot.tankTurret).define(
+        bot.tankLift.liftEncoder(1, 48),
+        bot.tankTurret.turretEncoderTarget(1)
     );
 
     public StageList BackwardTele() {
@@ -48,9 +45,9 @@ public class AutoModules{
 //                bot.lift.liftEncoder(0.4, 20)
 //            );
 //        }
-        return new StageList(bot.lift, bot.turret).define(
-            bot.lift.liftEncoder(1, 48),
-            bot.turret.turretEncoderTarget(1)
+        return new StageList(bot.tankLift, bot.tankTurret).define(
+            bot.tankLift.liftEncoder(1, 48),
+            bot.tankTurret.turretEncoderTarget(1)
         );
     }
 
@@ -64,22 +61,22 @@ public class AutoModules{
 //                bot.outtake.outtakeReset(0.7)
 //            );
 //        }
-        return new StageList(bot.outtake, bot.turret, bot.lift).define(
-            bot.outtake.outtakeDrop(0.6),
-            bot.turret.turretEncoder(1, 0),
-            bot.lift.liftEncoder(0.4, 10),
-            bot.outtake.outtakeReset(0.7)
+        return new StageList(bot.tankOuttake, bot.tankTurret, bot.tankLift).define(
+            bot.tankOuttake.outtakeDrop(0.6),
+            bot.tankTurret.turretEncoder(1, 0),
+            bot.tankLift.liftEncoder(0.4, 10),
+            bot.tankOuttake.outtakeReset(0.7)
         );
     }
 
-    public StageList SpinCarousel = new StageList(bot.carousel).define(
-        bot.carousel.spin(3)
+    public StageList SpinCarousel = new StageList(bot.tankCarousel).define(
+        bot.tankCarousel.spin(3)
     );
 
-    public StageList ResetTurretAndLift = new StageList(bot.lift).define(
-        bot.turret.turretEncoder(1, 0),
+    public StageList ResetTurretAndLift = new StageList(bot.tankLift).define(
+        bot.tankTurret.turretEncoder(1, 0),
         RobotPart.pause(1),
-        bot.lift.liftTime(-0.2, 3)
+        bot.tankLift.liftTime(-0.2, 3)
     );
 
     public StageList MoveForwardTime(double time) {

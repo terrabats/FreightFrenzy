@@ -14,16 +14,16 @@ public class OuttakeTest extends TeleUnitTest {
         /**
          * Link the gamepad handlers
          */
-        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.outtake.lockCube());
-        gph1.link(Button.DPAD_UP, OnPressEventHandler.class, () -> bot.outtake.lockBall());
-        gph1.link(Button.DPAD_RIGHT, OnPressEventHandler.class, () -> bot.outtake.align());
-        gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, () -> bot.outtake.start());
-        gph1.link(Button.DPAD_LEFT, OnPressEventHandler.class, () -> bot.outtake.open());
+        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.tankOuttake.lockCube());
+        gph1.link(Button.DPAD_UP, OnPressEventHandler.class, () -> bot.tankOuttake.lockBall());
+        gph1.link(Button.DPAD_RIGHT, OnPressEventHandler.class, () -> bot.tankOuttake.align());
+        gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, () -> bot.tankOuttake.start());
+        gph1.link(Button.DPAD_LEFT, OnPressEventHandler.class, () -> bot.tankOuttake.open());
     }
 
     @Override
     protected void loop() {
-        showConfig(bot.outtake);
+        showConfig(bot.tankOuttake);
         /**
          * Should move the outtake servo
          */

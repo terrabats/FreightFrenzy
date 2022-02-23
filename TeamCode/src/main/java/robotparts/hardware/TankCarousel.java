@@ -8,7 +8,7 @@ import automodules.stage.Stop;
 import robotparts.RobotPart;
 import robotparts.electronics.continuous.CServo;
 
-public class Carousel extends RobotPart {
+public class TankCarousel extends RobotPart {
     /**
      * Carousel left and right (cl and cr respectively)
      */

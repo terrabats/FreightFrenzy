@@ -2,7 +2,6 @@ package auton;
 
 import autoutil.executors.MecanumExecutorArcs;
 import elements.FieldSide;
-import geometry.circles.AngleType;
 
 import static java.lang.Math.*;
 import static global.General.*;
@@ -14,7 +13,7 @@ public class AutoBlueMec extends CompleteAuto {
     @Override
     public void initAuto() {
         activate(FieldSide.BLUE);
-        bot.outtake.lockCube();
+        bot.tankOuttake.lockCube();
     }
 
     @Override
@@ -56,7 +55,7 @@ public class AutoBlueMec extends CompleteAuto {
 
     @Override
     public void duringLoop() {
-        if (bot.lift.getPower() == 0) bot.lift.move(0);
+        if (bot.tankLift.getPower() == 0) bot.tankLift.move(0);
     }
 
     @Override

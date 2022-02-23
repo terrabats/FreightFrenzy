@@ -1,5 +1,5 @@
 package robot;
 
-import robot.configs.TwoConfig;
+import robot.configs.NewMecanumConfig;
 
-public class TerraBot extends TwoConfig {}
+public class TerraBot extends NewMecanumConfig {}

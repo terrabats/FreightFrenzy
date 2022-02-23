@@ -13,7 +13,7 @@ import robotparts.electronics.positional.PMotor;
 
 import static global.General.*;
 
-public class Lift extends RobotPart {
+public class TankLift extends RobotPart {
     /**
      * Lift positional motor
      */

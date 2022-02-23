@@ -20,15 +20,15 @@ public class RobotPartTest extends TeleUnitTest {
         /**
          * Should show config of test part properly (i.e. directions correct, run without encoder, etc.)
          */
-        showConfig(bot.intake);
+        showConfig(bot.tankIntake);
         /**
          * Should be 1
          */
-        log.show("Test part electronics size", bot.intake.getElectronicsOfType(CMotor.class).size());
+        log.show("Test part electronics size", bot.tankIntake.getElectronicsOfType(CMotor.class).size());
         /**
          * Should be TELE
          */
-        log.show("Test part current user", bot.intake.getUser());
+        log.show("Test part current user", bot.tankIntake.getUser());
     }
 
     /**
