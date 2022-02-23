@@ -1,4 +1,4 @@
-package robotparts.hardware;
+package robotparts.hardware.Tank;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 

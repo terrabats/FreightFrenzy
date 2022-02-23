@@ -13,11 +13,18 @@ import robotparts.electronics.positional.PMotor;
 
 import static global.General.*;
 
-public class TankLift extends RobotPart {
+public abstract class Lift extends RobotPart {
     /**
      * Lift positional motor
      */
     private PMotor li;
+
+    /**
+     * Gets angle of the lift (overwritten by child classes)
+     * Vertical lift is PI/2
+     * @return angle in radians
+     */
+    protected abstract double getAngle();
 
     /**
      * Init method creates the lift motor and resets the encoder (done internally)
@@ -90,7 +97,7 @@ public class TankLift extends RobotPart {
      * @param height
      * @return
      */
-    public Initial initialSetTarget(double height){return new Initial(() -> setTarget(height));}
+    public Initial initialSetTarget(double height){return new Initial(() -> setTarget(height/Math.sin(getAngle())));}
 
     /**
      * Set the power of the lift in a main

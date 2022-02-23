@@ -1,7 +1,10 @@
-package robotparts.hardware;
+package robotparts.hardware.Mecanum;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
 
+import automodules.stage.Main;
+import automodules.stage.Stage;
+import automodules.stage.Stop;
 import math.Logistic;
 import robotparts.RobotPart;
 import robotparts.electronics.continuous.CMotor;
@@ -35,5 +38,7 @@ public class MecanumDrive extends RobotPart {
         move(movementCurveForward.fodd(f), movementCurveStrafe.fodd(s), movementCurveTurn.fodd(t));
     }
 
+    public Main mainMoveForward(double pow) { return new Main(() -> move(pow, 0, 0)); }
 
+    public Stop stopMove() { return new Stop(() -> move(0, 0, 0)); }
 }

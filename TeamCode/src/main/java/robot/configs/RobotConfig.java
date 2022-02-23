@@ -2,19 +2,19 @@ package robot.configs;
 
 import robot.RobotFramework;
 import robotparts.RobotPart;
-import robotparts.hardware.TankCarousel;
-import robotparts.hardware.TankIntake;
-import robotparts.hardware.TankLift;
-import robotparts.hardware.TankOuttake;
-import robotparts.hardware.TankDrive;
-import robotparts.hardware.TankTurret;
+import robotparts.hardware.Tank.TankCarousel;
+import robotparts.hardware.Tank.TankIntake;
+import robotparts.hardware.Tank.TankLift;
+import robotparts.hardware.Tank.TankOuttake;
+import robotparts.hardware.Tank.TankDrive;
+import robotparts.hardware.Tank.TankTurret;
 import robotparts.sensors.ColorSensors;
 import robotparts.sensors.DistanceSensors;
 import robotparts.sensors.GyroSensors;
 import robotparts.sensors.Led;
 import robotparts.sensors.Odometry;
 import robotparts.sensors.TouchSensors;
-import robotparts.hardware.MecanumDrive;
+import robotparts.hardware.Mecanum.MecanumDrive;
 
 public abstract class RobotConfig extends RobotFramework {
 

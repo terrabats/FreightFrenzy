@@ -41,6 +41,16 @@ public class StageList {
         return this;
     }
 
+    public StageList add(StageList other) {
+        robotPartsUsed.addAll(other.robotPartsUsed);
+        if (usedPartsExist()) {
+            stages.addAll(other.stages);
+        } else {
+            log.record("Some parts were missing for combined stagelist of length", other.stages.size());
+        }
+        return this;
+    }
+
     /**
      * Do used parts exist? (i.e. all parts are non null)
      * @return part nonnull
