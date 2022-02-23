@@ -3,6 +3,7 @@ package elements;
 public enum FieldSide {
     /**
      * Enum to represent which side of the field we are on
+     * The directions are from the audience perspective
      * Note that toString will return the side as in left or right
      */
     BLUE("Left"), RED("Right"), UNKNOWN("Unknown");
@@ -34,14 +35,15 @@ public enum FieldSide {
      * @return
      */
     public static FieldSide create(String side){
-        if(side.equals("Left")){
-            return BLUE;
-        }else if(side.equals("Right")){
-            return RED;
-        }else if(side.equals("Middle")){
-            return UNKNOWN;
-        }else{
-            return null;
+        switch (side) {
+            case "Left":
+                return BLUE;
+            case "Right":
+                return RED;
+            case "Middle":
+                return UNKNOWN;
+            default:
+                return null;
         }
     }
 
