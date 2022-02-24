@@ -21,20 +21,20 @@ public class AutoBlueMec extends CompleteAuto {
         executor = new MecanumExecutorArcs();
         addExecutorFuncs(
                 setPoint(70, 30, PI/2),
-                unsyncedRF(autoModules.SpinCarousel),
-                syncedRF(autoModules.IntakeAuto),
+                unsyncedRF(tankAutoModules.SpinCarousel),
+                syncedRF(tankAutoModules.IntakeAuto),
                 setPoint(-50, 43, -PI/2),
                 setPoint(-65, 43, -PI/2),
-                unsyncedRF(autoModules.Backward),
+                unsyncedRF(tankAutoModules.Backward),
                 custom(() -> executor.addPause(2)),
-                unsyncedRF(autoModules.Forward),
+                unsyncedRF(tankAutoModules.Forward),
                 setPoint(-40, 43, -PI/2),
                 setPoint(-70, 15, -PI/2),
                 setPoint(-90, 15, -PI/2),
-                unsyncedRF(autoModules.LiftOdometry),
-                unsyncedRF(autoModules.MoveCWTime(0.5)),
-                unsyncedRF(autoModules.MoveForwardTime(2)),
-                unsyncedRF(autoModules.ResetTurretAndLift)
+                unsyncedRF(tankAutoModules.LiftOdometry),
+                unsyncedRF(tankAutoModules.MoveCWTime(0.5)),
+                unsyncedRF(tankAutoModules.MoveForwardTime(2)),
+                unsyncedRF(tankAutoModules.ResetTurretAndLift)
         );
 //        executor.addSetpoint(70, 30, PI/2, AngleType.RADIANS);
 //        executor.addUnsynchronizedRF(autoModules.SpinCarousel);

@@ -9,7 +9,7 @@ import teleutil.button.OnPressEventHandler;
 import teleutil.button.OnTurnOffEventHandler;
 import teleutil.button.OnTurnOnEventHandler;
 
-import static global.General.autoModules;
+import static global.General.tankAutoModules;
 import static global.General.bot;
 import static global.General.gph1;
 import static global.General.gph2;
@@ -50,9 +50,9 @@ public class TerraOp extends Tele{
         gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.tankOuttake.open());
         gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.tankOuttake.start());
 
-        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.IntakeTele));
-        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.BackwardTele()));
-        gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(autoModules.ForwardTele()));
+        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(tankAutoModules.IntakeTele));
+        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(tankAutoModules.BackwardTele()));
+        gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(tankAutoModules.ForwardTele()));
         gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModules);
 
         gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);

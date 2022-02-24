@@ -4,12 +4,12 @@ import static global.General.*;
 
 import robotparts.RobotPart;
 
-public class AutoModules{
+public class TankAutoModules {
     /**
-     * Define automodules here as a stage list
+     * Define AutoModules here as a stage list
      */
     // TODO FIX
-            // DOenst work properly
+            // Remove the inputted RobotParts
     public StageList IntakeAuto = new StageList(bot.tankLift, bot.tankIntake, bot.tankOuttake).define(
         bot.tankLift.liftEncoder(0.4, 0),
         bot.tankIntake.intakeUntilFreight(1),

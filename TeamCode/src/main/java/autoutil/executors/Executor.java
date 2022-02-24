@@ -60,7 +60,7 @@ public abstract class Executor extends MovementExecutor {
     }
 
     public void addPause(double time) {
-        addUnsynchronizedRF(autoModules.pause(time));
+        addUnsynchronizedRF(tankAutoModules.pause(time));
     }
 
     public boolean finished() {

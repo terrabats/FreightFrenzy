@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-import automodules.AutoModules;
+import automodules.TankAutoModules;
 import debugging.Synchroniser;
 import elements.FieldSide;
 import robot.TerraBot;
@@ -61,13 +61,13 @@ public class General {
      */
     public static Storage storage;
     /**
-     * Fieldside object to represent which side of the field we are on (red or blue)
+     * FieldSide object to represent which side of the field we are on (red or blue)
      */
     public static FieldSide fieldSide;
     /**
-     * Automodles (exectues series of steps to make driving easier)
+     * AutoModules (executes series of steps to make driving easier)
      */
-    public static AutoModules autoModules;
+    public static TankAutoModules tankAutoModules;
     /**
      * The main user
      * NOTE: This should either be TELE or AUTO

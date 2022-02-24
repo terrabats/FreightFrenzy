@@ -27,20 +27,20 @@ public class TerraAutoBlue extends Auto {
     public void runAuto() {
         TankExecutor executor = new TankExecutor();
         executor.addSetpoint(70, 30, PI/2, AngleType.RADIANS);
-        executor.addUnsynchronizedRF(autoModules.SpinCarousel);
-        executor.addSynchronizedRF(autoModules.IntakeAuto);
+        executor.addUnsynchronizedRF(tankAutoModules.SpinCarousel);
+        executor.addSynchronizedRF(tankAutoModules.IntakeAuto);
         executor.addSetpoint(-50, 43, -PI/2, AngleType.RADIANS);
         executor.addSetpoint(-65, 43, -PI/2, AngleType.RADIANS);
-        executor.addUnsynchronizedRF(autoModules.Backward);
+        executor.addUnsynchronizedRF(tankAutoModules.Backward);
         executor.addPause(2);
-        executor.addUnsynchronizedRF(autoModules.Forward);
+        executor.addUnsynchronizedRF(tankAutoModules.Forward);
         executor.addSetpoint(-40, 43, -PI/2, AngleType.RADIANS);
         executor.addSetpoint(-70, 15, -PI/2, AngleType.RADIANS);
         executor.addSetpoint(-90, 15, -PI/2, AngleType.RADIANS);
-        executor.addUnsynchronizedRF(autoModules.LiftOdometry);
-        executor.addUnsynchronizedRF(autoModules.MoveCWTime(0.5));
-        executor.addUnsynchronizedRF(autoModules.MoveForwardTime(2));
-        executor.addUnsynchronizedRF(autoModules.ResetTurretAndLift);
+        executor.addUnsynchronizedRF(tankAutoModules.LiftOdometry);
+        executor.addUnsynchronizedRF(tankAutoModules.MoveCWTime(0.5));
+        executor.addUnsynchronizedRF(tankAutoModules.MoveForwardTime(2));
+        executor.addUnsynchronizedRF(tankAutoModules.ResetTurretAndLift);
 
         executor.complete();
 

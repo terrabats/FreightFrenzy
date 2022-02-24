@@ -2,7 +2,7 @@ package global;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import automodules.AutoModules;
+import automodules.TankAutoModules;
 import debugging.Synchroniser;
 import elements.FieldSide;
 import robot.TerraBot;
@@ -59,7 +59,7 @@ public interface Common{
         /**
          * Create the automodules
          */
-        autoModules = new AutoModules();
+        tankAutoModules = new TankAutoModules();
         /**
          * Initialize the robot
          */
