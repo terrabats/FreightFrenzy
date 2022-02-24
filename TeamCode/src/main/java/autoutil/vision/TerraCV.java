@@ -29,13 +29,12 @@ public class TerraCV extends OpenCvPipeline {
 
 //    private Mat hsv = new Mat();
 
-    private boolean shouldShow = false;
-
-    private VisionProcessor processor = new VisionProcessor();
+    private final VisionProcessor processor = new VisionProcessor();
 
     @Override
     public Mat processFrame(Mat input) {
-        return null;
+        input.copyTo(output);
+        return output;
     }
 }
 

@@ -10,13 +10,13 @@ public class TankAutoModules {
      */
     // TODO FIX
             // Remove the inputted RobotParts
-    public StageList IntakeAuto = new StageList(bot.tankLift, bot.tankIntake, bot.tankOuttake).define(
+    public StageList IntakeAuto = new StageList(
         bot.tankLift.liftEncoder(0.4, 0),
         bot.tankIntake.intakeUntilFreight(1),
         bot.tankOuttake.outtakeLock(1)
     );
 
-    public StageList IntakeTele = new StageList(bot.tankTurret, bot.tankLift, bot.tankIntake, bot.tankOuttake).define(
+    public StageList IntakeTele = new StageList(
         bot.tankOuttake.outtakeReset(0.05),
         bot.tankTurret.turretEncoder(1, 0),
         bot.tankLift.liftEncoder(0.4, 0),
@@ -25,14 +25,14 @@ public class TankAutoModules {
         bot.tankIntake.intakeTime(-1, 0.8)
     );
 
-    public StageList Forward = new StageList(bot.tankOuttake, bot.tankTurret, bot.tankLift).define(
+    public StageList Forward = new StageList(
         bot.tankOuttake.outtakeDrop(0.6),
         bot.tankTurret.turretEncoder(1, 0),
         bot.tankLift.liftEncoder(0.4, 10),
         bot.tankOuttake.outtakeReset(0.7)
     );
 
-    public StageList Backward = new StageList(bot.tankLift, bot.tankTurret).define(
+    public StageList Backward = new StageList(
         bot.tankLift.liftEncoder(1, 48),
         bot.tankTurret.turretEncoderTarget(1)
     );
@@ -45,7 +45,7 @@ public class TankAutoModules {
 //                bot.lift.liftEncoder(0.4, 20)
 //            );
 //        }
-        return new StageList(bot.tankLift, bot.tankTurret).define(
+        return new StageList(
             bot.tankLift.liftEncoder(1, 48),
             bot.tankTurret.turretEncoderTarget(1)
         );
@@ -61,7 +61,7 @@ public class TankAutoModules {
 //                bot.outtake.outtakeReset(0.7)
 //            );
 //        }
-        return new StageList(bot.tankOuttake, bot.tankTurret, bot.tankLift).define(
+        return new StageList(
             bot.tankOuttake.outtakeDrop(0.6),
             bot.tankTurret.turretEncoder(1, 0),
             bot.tankLift.liftEncoder(0.4, 10),
@@ -69,11 +69,11 @@ public class TankAutoModules {
         );
     }
 
-    public StageList SpinCarousel = new StageList(bot.tankCarousel).define(
+    public StageList SpinCarousel = new StageList(
         bot.tankCarousel.spin(3)
     );
 
-    public StageList ResetTurretAndLift = new StageList(bot.tankLift).define(
+    public StageList ResetTurretAndLift = new StageList(
         bot.tankTurret.turretEncoder(1, 0),
         RobotPart.pause(1),
         bot.tankLift.liftTime(-0.2, 3)
@@ -96,12 +96,12 @@ public class TankAutoModules {
     }
 
     public StageList MoveTime(double forward, double turn, double time) {
-        return new StageList(bot.tankDrive).define(
+        return new StageList(
             bot.tankDrive.moveTime(forward, turn, time)
         );
     }
 
-    public StageList LiftOdometry = new StageList(bot.tankDrive).define(
+    public StageList LiftOdometry = new StageList(
         bot.tankDrive.liftOdo()
     );
 

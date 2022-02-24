@@ -132,7 +132,7 @@ public class MecanumOuttake extends RobotPart {
      * @return StageList to reset
      */
     public StageList reset() {
-        return new StageList(this).define(
+        return new StageList(
             stageResetHorizontal(),
             stageLock(),
             stageLockVertical()
@@ -144,7 +144,7 @@ public class MecanumOuttake extends RobotPart {
      * @return StageList to move for alliance shipping hub
      */
     public StageList moveForAlliance() {
-        return new StageList(this).define(
+        return new StageList(
             stageReleaseVertical(),
             stageRelease()
         );
@@ -155,7 +155,7 @@ public class MecanumOuttake extends RobotPart {
      * @return StageList to move for shared shipping hub
      */
     public StageList moveForShared() {
-        return new StageList(this).define(
+        return new StageList(
             stageReleaseVertical(),
             stageSharedHorizontal()
         );
@@ -166,7 +166,7 @@ public class MecanumOuttake extends RobotPart {
      * @return StageList to release
      */
     public StageList release() {
-        return new StageList(this).define(
+        return new StageList(
             stageRelease()
         );
     }

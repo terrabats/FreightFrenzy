@@ -10,10 +10,10 @@ public class LiftTest extends TeleUnitTest {
     /**
      * Tests the lift
      */
-    public StageList test = new StageList(bot.tankLift).define(
+    public StageList test = new StageList(
             bot.tankLift.liftEncoder(0.5, 30)
     );
-    public StageList test2 = new StageList(bot.tankLift).define(
+    public StageList test2 = new StageList(
             bot.tankLift.liftTime(0.6, 0.5)
     );
 
