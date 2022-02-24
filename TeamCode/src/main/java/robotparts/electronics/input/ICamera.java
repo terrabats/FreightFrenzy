@@ -25,10 +25,6 @@ public class ICamera extends Electronic {
         terraCV = new TerraCV();
 
         camera.setPipeline(terraCV);
-
-
-
-
     }
 
     public void start(){
@@ -50,7 +46,7 @@ public class ICamera extends Electronic {
     }
 
     public enum CameraType{
-        NORMAL,
+        INTERNAL,
         EXTERNAL
     }
 }

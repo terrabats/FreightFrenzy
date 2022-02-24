@@ -7,10 +7,7 @@ import static global.General.log;
 import auton.Auto;
 import elements.FieldSide;
 import unittests.UnitTester;
-import unittests.auto.framework.IteratorTest;
-import unittests.auto.framework.VisionTest;
-import unittests.auto.movement.MoveTest;
-import unittests.auto.framework.PIDTest;
+import unittests.auto.framework.InternalCameraTest;
 import util.condition.Status;
 
 @SuppressWarnings("ALL")
@@ -37,7 +34,7 @@ public class AutoUnitTester extends Auto implements UnitTester {
 //                new IteratorTest(),
 //                new PIDTest(),
 //                new MoveTest()
-                new VisionTest()
+                new InternalCameraTest()
         );
     }
 

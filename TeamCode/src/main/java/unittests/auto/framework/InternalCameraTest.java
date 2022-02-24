@@ -6,20 +6,21 @@ import unittests.auto.AutoUnitTest;
 import static global.General.bot;
 import static global.General.log;
 
-public class VisionTest extends AutoUnitTest {
+public class InternalCameraTest extends AutoUnitTest {
     @Override
     public void init() {
-        bot.cameras.startExternalCamera();
+        bot.cameras.startInternalCamera();
     }
+
     @Override
     protected void run() {
         whileActive(() -> {
-            log.show("FPS", bot.cameras.getFPS());
+            log.show("Internal Camera FPS", bot.cameras.getInternalFPS());
         });
     }
 
     @Override
     public void stop() {
-        bot.cameras.stopExternalCamera();
+        bot.cameras.stopInternalCamera();
     }
 }

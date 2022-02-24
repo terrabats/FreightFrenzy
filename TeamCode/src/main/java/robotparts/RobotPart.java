@@ -138,22 +138,22 @@ public class RobotPart {
         return led;
     }
 
-    protected ICamera createCamera(String name, ICamera.CameraType cameraType, OpenCvCameraRotation orientation, boolean turnOnDisplay){
+    protected ICamera createExternalCamera(String name, OpenCvCameraRotation orientation, boolean turnOnDisplay){
         if(turnOnDisplay) {
             int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-            if(cameraType.equals(ICamera.CameraType.NORMAL)){
-                return new ICamera(OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId), cameraType, orientation);
-            }else if(cameraType.equals(ICamera.CameraType.EXTERNAL)) {
-                return new ICamera(OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, name), cameraMonitorViewId), cameraType, orientation);
-            }
+            return new ICamera(OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, name), cameraMonitorViewId), ICamera.CameraType.EXTERNAL, orientation);
         }else{
-            if(cameraType.equals(ICamera.CameraType.NORMAL)){
-                return new ICamera(OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK), cameraType, orientation);
-            }else if(cameraType.equals(ICamera.CameraType.EXTERNAL)) {
-                return new ICamera(OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, name)), cameraType, orientation);
-            }
+            return new ICamera(OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, name)), ICamera.CameraType.EXTERNAL, orientation);
         }
-        return null;
+    }
+
+    protected ICamera createInternalCamera(OpenCvCameraRotation orientation, boolean turnOnDisplay){
+        if(turnOnDisplay) {
+            int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+            return new ICamera(OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId), ICamera.CameraType.INTERNAL, orientation);
+        }else{
+            return new ICamera(OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK), ICamera.CameraType.INTERNAL, orientation);
+        }
     }
 
     /**

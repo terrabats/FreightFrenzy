@@ -7,20 +7,28 @@ import robotparts.electronics.input.ICamera;
 
 public class Cameras extends RobotPart {
     private ICamera ecam;
+    private ICamera icam;
 
     @Override
     public void init() {
-        ecam = createCamera("camera1", ICamera.CameraType.NORMAL, OpenCvCameraRotation.UPRIGHT, true);
+//        ecam = createExternalCamera("cam", OpenCvCameraRotation.UPRIGHT, true);
+        icam = createInternalCamera(OpenCvCameraRotation.UPRIGHT, true);
     }
 
-    public void startExternalCamera(){
-        ecam.start();
-    }
+    public void startExternalCamera(){ ecam.start(); }
 
     public void stopExternalCamera(){ ecam.halt(); }
 
-    public double getFPS(){
-        return ecam.getFramesPerSecond();
+    public double getExternalFPS(){ return ecam.getFramesPerSecond(); }
+
+    public void startInternalCamera(){
+        icam.start();
+    }
+
+    public void stopInternalCamera(){ icam.halt(); }
+
+    public double getInternalFPS(){
+        return icam.getFramesPerSecond();
     }
 
 }
