@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvInternalCamera;
 
 import java.util.Map.*;
 import java.util.TreeMap;
@@ -35,7 +36,6 @@ import robotparts.electronics.positional.PServo;
 import static global.General.*;
 
 import robotparts.electronics.input.ITouch;
-import robotparts.sensors.Camera;
 import util.User;
 import util.codeseg.ParameterCodeSeg;
 
@@ -139,14 +139,21 @@ public class RobotPart {
     }
 
     protected ICamera createCamera(String name, ICamera.CameraType cameraType, OpenCvCameraRotation orientation, boolean turnOnDisplay){
-        ICamera camera;
         if(turnOnDisplay) {
             int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-            camera = new ICamera(OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, name), cameraMonitorViewId), cameraType, orientation);
+            if(cameraType.equals(ICamera.CameraType.NORMAL)){
+                return new ICamera(OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId), cameraType, orientation);
+            }else if(cameraType.equals(ICamera.CameraType.EXTERNAL)) {
+                return new ICamera(OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, name), cameraMonitorViewId), cameraType, orientation);
+            }
         }else{
-            camera = new ICamera(OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, name)), cameraType, orientation);
+            if(cameraType.equals(ICamera.CameraType.NORMAL)){
+                return new ICamera(OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK), cameraType, orientation);
+            }else if(cameraType.equals(ICamera.CameraType.EXTERNAL)) {
+                return new ICamera(OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, name)), cameraType, orientation);
+            }
         }
-        return camera;
+        return null;
     }
 
     /**

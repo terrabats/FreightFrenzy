@@ -10,28 +10,34 @@ import autoutil.vision.TerraCV;
 import robotparts.Electronic;
 
 public class ICamera extends Electronic {
-    private final OpenCvWebcam camera;
+    private final OpenCvCamera camera;
     private final TerraCV terraCV;
     private final CameraType cameraType;
+    private final OpenCvCameraRotation orientation;
+    private final int width = 320;
+    private final int height = 240;
 
-    public ICamera(OpenCvWebcam cam, CameraType t, OpenCvCameraRotation rotation){
-        this.camera = cam;
+    public ICamera(OpenCvCamera cam, CameraType t, OpenCvCameraRotation rotation){
+        this.camera =  cam;
         this.cameraType = t;
+        this.orientation = rotation;
 
         terraCV = new TerraCV();
 
         camera.setPipeline(terraCV);
 
-        camera.setMillisecondsPermissionTimeout(2500);
+
+
+
+    }
+
+    public void start(){
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener(){
             @Override
-            public void onOpened() {camera.startStreaming(640, 480, rotation); }
+            public void onOpened() {camera.startStreaming(width, height, orientation); }
             @Override
             public void onError(int errorCode) {}
         });
-
-
-
     }
 
     public double getFramesPerSecond(){

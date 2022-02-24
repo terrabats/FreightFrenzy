@@ -8,6 +8,7 @@ import auton.Auto;
 import elements.FieldSide;
 import unittests.UnitTester;
 import unittests.auto.framework.IteratorTest;
+import unittests.auto.framework.VisionTest;
 import unittests.auto.movement.MoveTest;
 import unittests.auto.framework.PIDTest;
 import util.condition.Status;
@@ -33,9 +34,10 @@ public class AutoUnitTester extends Auto implements UnitTester {
          * Framework
          */
         addAll(
-                new IteratorTest(),
-                new PIDTest(),
-                new MoveTest()
+//                new IteratorTest(),
+//                new PIDTest(),
+//                new MoveTest()
+                new VisionTest()
         );
     }
 

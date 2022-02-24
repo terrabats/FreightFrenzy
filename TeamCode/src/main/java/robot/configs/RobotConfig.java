@@ -12,6 +12,7 @@ import robotparts.hardware.Tank.TankLift;
 import robotparts.hardware.Tank.TankOuttake;
 import robotparts.hardware.Tank.TankDrive;
 import robotparts.hardware.Tank.TankTurret;
+import robotparts.sensors.Cameras;
 import robotparts.sensors.ColorSensors;
 import robotparts.sensors.DistanceSensors;
 import robotparts.sensors.GyroSensors;
@@ -50,6 +51,7 @@ public abstract class RobotConfig extends RobotFramework {
     public final TouchSensors touchSensors = new TouchSensors();
     public final DistanceSensors distanceSensors = new DistanceSensors();
     public final Leds leds = new Leds();
+    public final Cameras cameras = new Cameras();
 
     protected final void define(RobotPart... parts){
         for(RobotPart part:parts){ part.instantiate(); }
