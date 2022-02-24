@@ -1,17 +1,13 @@
 package robotparts.electronics.input;
 
-import com.qualcomm.robotcore.hardware.ColorRangeSensor;
-
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraRotation;
-import org.openftc.easyopencv.OpenCvWebcam;
 
-import autoutil.vision.TerraCV;
+import autoutil.vision.Scanner;
 import robotparts.Electronic;
 
 public class ICamera extends Electronic {
     private final OpenCvCamera camera;
-    private final TerraCV terraCV;
     private final CameraType cameraType;
     private final OpenCvCameraRotation orientation;
     private final int width = 320;
@@ -21,10 +17,10 @@ public class ICamera extends Electronic {
         this.camera =  cam;
         this.cameraType = t;
         this.orientation = rotation;
+    }
 
-        terraCV = new TerraCV();
-
-        camera.setPipeline(terraCV);
+    public void setScanner(Scanner scanner){
+        camera.setPipeline(scanner);
     }
 
     public void start(){
