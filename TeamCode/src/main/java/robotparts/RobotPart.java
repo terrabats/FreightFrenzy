@@ -1,16 +1,17 @@
 package robotparts;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
-import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
-import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorRangeSensor;
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
+
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.Map.*;
 import java.util.TreeMap;
@@ -22,6 +23,7 @@ import automodules.stage.Stop;
 import robot.RobotFramework;
 import robotparts.electronics.continuous.CMotor;
 import robotparts.electronics.continuous.CServo;
+import robotparts.electronics.input.ICamera;
 import robotparts.electronics.input.IColor;
 import robotparts.electronics.input.IDistance;
 import robotparts.electronics.input.IEncoder;
@@ -31,8 +33,9 @@ import robotparts.electronics.positional.PMotor;
 import robotparts.electronics.positional.PServo;
 
 import static global.General.*;
-import robotparts.electronics.input.IEncoder.Type;
+
 import robotparts.electronics.input.ITouch;
+import robotparts.sensors.Camera;
 import util.User;
 import util.codeseg.ParameterCodeSeg;
 
@@ -123,8 +126,8 @@ public class RobotPart {
         return touchSensor;
     }
 
-    protected IEncoder createEncoder(String motor, String name, Type type){
-        IEncoder encoder = new IEncoder(hardwareMap.get(DcMotor.class, motor), type);
+    protected IEncoder createEncoder(String motor, String name, IEncoder.EncoderType encoderType){
+        IEncoder encoder = new IEncoder(hardwareMap.get(DcMotor.class, motor), encoderType);
         addElectronic(name, encoder);
         return encoder;
     }
@@ -133,6 +136,17 @@ public class RobotPart {
         OLed led = new OLed(hardwareMap.get(DigitalChannel.class,  "g" + name), hardwareMap.get(DigitalChannel.class,  "r" + name));
         addElectronic(name, led);
         return led;
+    }
+
+    protected ICamera createCamera(String name, ICamera.CameraType cameraType, OpenCvCameraRotation orientation, boolean turnOnDisplay){
+        ICamera camera;
+        if(turnOnDisplay) {
+            int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+            camera = new ICamera(OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, name), cameraMonitorViewId), cameraType, orientation);
+        }else{
+            camera = new ICamera(OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, name)), cameraType, orientation);
+        }
+        return camera;
     }
 
     /**
@@ -150,10 +164,10 @@ public class RobotPart {
      * @return Electronic TreeMap
      */
     @SuppressWarnings("unchecked")
-    public <T> TreeMap<String, T> getElectronicsOfType(Class<T> type) {
+    public <T> TreeMap<String, T> getElectronicsOfType(Class<T> encoderType) {
         TreeMap<String, T> ret = new TreeMap<>();
         for (Entry<String, Electronic> o : electronics.entrySet()) {
-            if (o.getValue().getClass().equals(type)) {
+            if (o.getValue().getClass().equals(encoderType)) {
                 ret.put(o.getKey(), (T) o.getValue());
             }
         }
@@ -165,9 +179,7 @@ public class RobotPart {
      * NOTE: This should only be called in a thread that has access to use the robot
      */
     public void halt(){
-        forAllElectronicsOfType(CMotor.class, CMotor::halt);
-        forAllElectronicsOfType(PMotor.class, PMotor::halt);
-        forAllElectronicsOfType(CServo.class, CServo::halt);
+        forAllElectronics(Electronic::halt);
     }
 
     /**
@@ -210,10 +222,10 @@ public class RobotPart {
     private void forAllElectronics(ParameterCodeSeg<Electronic> run){ for(Electronic e: electronics.values()){ run.run(e); } }
 
     /**
-     * For all electronics of a certain type run...
+     * For all electronics of a certain encoderType run...
      * @param run
      */
-    private <T extends Electronic> void forAllElectronicsOfType(Class<T> type, ParameterCodeSeg<T> run){ for(Electronic e: getElectronicsOfType(type).values()){ run.run((T) e); } }
+    private <T extends Electronic> void forAllElectronicsOfType(Class<T> encoderType, ParameterCodeSeg<T> run){ for(Electronic e: getElectronicsOfType(encoderType).values()){ run.run((T) e); } }
 
     /**
      * Exit based on time

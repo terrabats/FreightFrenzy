@@ -40,7 +40,7 @@ public class PMotor extends Electronic {
 
         motor.setPower(0);
 
-        motorEncoder = new IEncoder(motor, IEncoder.Type.MOTOR);
+        motorEncoder = new IEncoder(motor, IEncoder.EncoderType.MOTOR);
 
         motorEncoder.reset();
 
@@ -120,5 +120,6 @@ public class PMotor extends Electronic {
      * Sets the power of the motor to 0
      * NOTE: This should only be called in a thread that has access to use the robot
      */
+    @Override
     public void halt(){ setPower(0); }
 }

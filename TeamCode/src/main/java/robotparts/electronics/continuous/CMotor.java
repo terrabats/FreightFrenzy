@@ -15,7 +15,7 @@ public class CMotor extends Electronic {
      */
     private final DcMotorSimple.Direction direction;
     /**
-     * What is the zero power behavior (i.e. should the robot activlt try to stop BRAKE, or coast FLOAT)
+     * What is the zero power behavior (i.e. should the robot actively try to stop BRAKE, or coast FLOAT)
      */
     private final DcMotor.ZeroPowerBehavior zeroPowerBehavior;
 

@@ -11,7 +11,7 @@ import robotparts.hardware.Tank.TankTurret;
 import robotparts.sensors.ColorSensors;
 import robotparts.sensors.DistanceSensors;
 import robotparts.sensors.GyroSensors;
-import robotparts.sensors.Led;
+import robotparts.sensors.Leds;
 import robotparts.sensors.Odometry;
 import robotparts.sensors.TouchSensors;
 import robotparts.hardware.Mecanum.MecanumDrive;
@@ -29,7 +29,7 @@ public abstract class RobotConfig extends RobotFramework {
     public Odometry odometry;
     public final TouchSensors touchSensors = new TouchSensors();
     public final DistanceSensors distanceSensors = new DistanceSensors();
-    public final Led leds = new Led();
+    public final Leds leds = new Leds();
     public final MecanumDrive mecanumDrive = new MecanumDrive();
 
     protected final void define(RobotPart... parts){

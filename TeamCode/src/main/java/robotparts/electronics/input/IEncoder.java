@@ -13,16 +13,16 @@ public class IEncoder extends Electronic {
      * Type of encoder
      * @link Type
      */
-    private Type type;
+    private EncoderType encoderType;
 
     /**
      * Constructor to create the encoder
      * @param m
      * @param t
      */
-    public IEncoder(DcMotor m, Type t) {
+    public IEncoder(DcMotor m, EncoderType t) {
         motor = m;
-        type = t;
+        encoderType = t;
     }
 
     /**
@@ -37,8 +37,8 @@ public class IEncoder extends Electronic {
      * Get the type of encoder
      * @return
      */
-    public Type getType(){
-        return type;
+    public EncoderType getType(){
+        return encoderType;
     }
 
     /**
@@ -52,7 +52,7 @@ public class IEncoder extends Electronic {
     /**
      * Normal a separate encoder module and motor is a motor encoder
      */
-    public enum Type{
+    public enum EncoderType {
         NORMAL,
         MOTOR
     }

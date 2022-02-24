@@ -5,7 +5,7 @@ import robotparts.RobotPart;
 import robotparts.electronics.output.OLed;
 import robotparts.electronics.output.OLed.*;
 
-public class Led extends RobotPart {
+public class Leds extends RobotPart {
     /**
      * Leds
      */

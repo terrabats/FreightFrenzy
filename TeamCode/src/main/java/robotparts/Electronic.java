@@ -48,4 +48,9 @@ public class Electronic {
     public synchronized boolean isAllowed(){
         return access.isAllowed();
     }
+
+    /**
+     * Halt the electronic (Used to stop motors)
+     */
+    public void halt(){}
 }

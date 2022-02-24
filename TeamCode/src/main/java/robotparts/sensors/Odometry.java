@@ -29,7 +29,7 @@ public class Odometry extends RobotPart {
 
     @Override
     public void init() {
-        yEnc = createEncoder("bl", "cEnc", IEncoder.Type.NORMAL);
+        yEnc = createEncoder("bl", "cEnc", IEncoder.EncoderType.NORMAL);
         update();
         curPos = new double[] { 0, 0, 0 };
         odometryThread.setExecutionCode(odometryUpdateCode);
