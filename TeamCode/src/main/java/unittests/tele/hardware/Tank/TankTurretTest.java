@@ -1,9 +1,9 @@
-package unittests.tele.hardware;
+package unittests.tele.hardware.Tank;
 
 import unittests.tele.TeleUnitTest;
 import static global.General.*;
 
-public class TurretTest extends TeleUnitTest {
+public class TankTurretTest extends TeleUnitTest {
     /**
      * Tests the turret
      */

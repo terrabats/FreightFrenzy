@@ -1,4 +1,4 @@
-package unittests.tele.hardware;
+package unittests.tele.hardware.Tank;
 
 import automodules.StageList;
 import teleutil.button.Button;
@@ -6,7 +6,7 @@ import teleutil.button.OnPressEventHandler;
 import unittests.tele.TeleUnitTest;
 import static global.General.*;
 
-public class LiftTest extends TeleUnitTest {
+public class TankLiftTest extends TeleUnitTest {
     /**
      * Tests the lift
      */

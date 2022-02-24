@@ -106,7 +106,7 @@ public class TankAutoModules {
     );
 
     public StageList pause(double time) {
-        return new StageList().define(
+        return new StageList(
             RobotPart.pause(time)
         );
     }

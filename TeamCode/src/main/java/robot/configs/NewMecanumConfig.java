@@ -8,7 +8,11 @@ public class NewMecanumConfig extends RobotConfig{
         define(
                 mecanumDrive,
                 odometry,
-                gyroSensors
+                gyroSensors,
+                mecanumCarousel,
+                mecanumIntake,
+                mecanumLift,
+                mecanumOuttake
         );
     }
 }

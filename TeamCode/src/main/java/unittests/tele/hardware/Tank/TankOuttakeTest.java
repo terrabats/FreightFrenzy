@@ -1,11 +1,11 @@
-package unittests.tele.hardware;
+package unittests.tele.hardware.Tank;
 
 import teleutil.button.Button;
 import teleutil.button.OnPressEventHandler;
 import unittests.tele.TeleUnitTest;
 import static global.General.*;
 
-public class OuttakeTest extends TeleUnitTest {
+public class TankOuttakeTest extends TeleUnitTest {
     /**
      * Tests the outtake
      */

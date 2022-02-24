@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import automodules.stage.Stage;
-import robotparts.RobotPart;
-
-import static global.General.log;
 
 public class StageList {
     /**
@@ -22,14 +19,23 @@ public class StageList {
         stages.addAll(Arrays.asList(stageArray));
     }
 
-    public StageList define(Stage... stageArray){
-        stages.addAll(Arrays.asList(stageArray));
-        return this;
+    public StageList add(Stage... stageArray){
+        ArrayList<Stage> newStages = new ArrayList<>();
+        newStages.addAll(stages);
+        newStages.addAll(Arrays.asList(stageArray));
+        return new StageList((Stage[]) newStages.toArray());
     }
 
     public StageList add(StageList other) {
-        stages.addAll(other.getStages());
-        return this;
+        return add((Stage[]) other.stages.toArray());
+    }
+
+    public StageList add(StageList... other) {
+        StageList newStageList = new StageList().add(this);
+        for (StageList list : other) {
+            add(list);
+        }
+        return newStageList;
     }
 
     /**

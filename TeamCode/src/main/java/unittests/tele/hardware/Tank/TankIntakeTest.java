@@ -1,4 +1,4 @@
-package unittests.tele.hardware;
+package unittests.tele.hardware.Tank;
 
 import static global.General.*;
 
@@ -7,7 +7,7 @@ import teleutil.button.OnTurnOffEventHandler;
 import teleutil.button.OnTurnOnEventHandler;
 import unittests.tele.TeleUnitTest;
 
-public class IntakeTest extends TeleUnitTest {
+public class TankIntakeTest extends TeleUnitTest {
     /**
      * Tests intake
      */

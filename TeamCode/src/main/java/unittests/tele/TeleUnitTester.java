@@ -6,20 +6,6 @@ import elements.FieldSide;
 import teleop.Tele;
 
 import unittests.UnitTester;
-import unittests.tele.framework.*;
-import unittests.tele.framework.CommonTest;
-import unittests.tele.framework.FaultTest;
-import unittests.tele.framework.GamepadTest;
-import unittests.tele.framework.LoggerTest;
-import unittests.tele.framework.StorageTest;
-import unittests.tele.hardware.OdometryServoTest;
-import unittests.tele.hardware.*;
-import unittests.tele.sensor.ColorTest;
-import unittests.tele.sensor.DistanceTest;
-import unittests.tele.sensor.GyroTest;
-import unittests.tele.sensor.TouchTest;
-import unittests.unused.CoordinatePlaneTest;
-import unittests.unused.OdometryTest;
 
 import static global.General.*;
 

@@ -1,4 +1,4 @@
-package unittests.tele.hardware;
+package unittests.tele.hardware.Tank;
 
 import static global.General.bot;
 import static global.General.*;
@@ -7,7 +7,7 @@ import teleutil.button.Button;
 import teleutil.button.OnPressEventHandler;
 import unittests.UnitTest;
 
-public class OdometryServoTest extends UnitTest {
+public class TankOdometryServoTest extends UnitTest {
     /**
      * Tests odometry servo (used to retract for tank)
      */

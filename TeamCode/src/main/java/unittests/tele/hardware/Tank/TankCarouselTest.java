@@ -1,9 +1,9 @@
-package unittests.tele.hardware;
+package unittests.tele.hardware.Tank;
 
 import unittests.tele.TeleUnitTest;
 import static global.General.*;
 
-public class CarouselTest extends TeleUnitTest {
+public class TankCarouselTest extends TeleUnitTest {
     /**
      * Tests carousel
      */
