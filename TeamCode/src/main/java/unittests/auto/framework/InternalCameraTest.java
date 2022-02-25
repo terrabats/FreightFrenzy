@@ -21,6 +21,7 @@ public class InternalCameraTest extends AutoUnitTest {
     protected void run() {
         whileActive(() -> {
             log.show("Internal Camera FPS", bot.cameras.getInternalFPS());
+            log.show("Detected Case", teamElementScanner.getCase());
         });
     }
 
