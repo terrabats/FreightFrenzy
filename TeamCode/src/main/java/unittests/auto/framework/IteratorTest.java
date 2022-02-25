@@ -22,9 +22,9 @@ public class IteratorTest extends AutoUnitTest {
     @Override
     public void init() {
         /**
-         * Display and log init
+         * Reset the timer
          */
-        log.showAndRecord("init", "");
+        timer.reset();
     }
 
     @Override

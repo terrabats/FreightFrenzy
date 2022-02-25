@@ -8,6 +8,7 @@ import auton.Auto;
 import elements.FieldSide;
 import unittests.UnitTester;
 import unittests.auto.framework.InternalCameraTest;
+import unittests.auto.framework.IteratorTest;
 import util.condition.Status;
 
 @SuppressWarnings("ALL")
@@ -31,10 +32,10 @@ public class AutoUnitTester extends Auto implements UnitTester {
          * Framework
          */
         addAll(
-//                new IteratorTest(),
+                new IteratorTest()
 //                new PIDTest(),
 //                new MoveTest()
-                new InternalCameraTest()
+//                new InternalCameraTest()
         );
     }
 
@@ -46,6 +47,7 @@ public class AutoUnitTester extends Auto implements UnitTester {
         AutoUnitTest.linearOpMode = this;
         readyTestsAndSelector(testingMode);
         activate(FieldSide.UNKNOWN);
+        log.showTelemetry();
     }
 
     /**

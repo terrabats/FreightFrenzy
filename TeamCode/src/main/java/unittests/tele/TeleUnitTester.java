@@ -6,6 +6,7 @@ import elements.FieldSide;
 import teleop.Tele;
 
 import unittests.UnitTester;
+import unittests.tele.framework.LagTest;
 
 import static global.General.*;
 
@@ -36,7 +37,7 @@ public class TeleUnitTester extends Tele implements UnitTester{
 //            new ThreadTest(),
 //            new StorageTest(),
 //            new AutoModuleTest(),
-//            new LagTest(),
+            new LagTest()
 //            new SelectorTest(),
 //            new SynchroniserTest(),
 //            new RobotPartTest(),

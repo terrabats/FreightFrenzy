@@ -141,9 +141,11 @@ public interface UnitTester {
             log.list(selector.getItemClassNames(), selector.getCurrentIndex());
         }else if(selector.isActive()){
             /**
-             * Add telemetry to say testing the current test
+             * Add telemetry to say testing the current test if not in autonomous mode
              */
-            log.showAndRecord("Testing", getCurrentTestName());
+            if(!mainUser.equals(User.AUTO)) {
+                log.showAndRecord("Testing", getCurrentTestName());
+            }
             /**
              * If the selector is active then run the current test
              */
