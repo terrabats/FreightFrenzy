@@ -3,12 +3,16 @@ package debugging.display;
 
 import static java.lang.Math.PI;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
 import java.awt.Graphics;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import autoutil.executors.Executor;
+import autoutil.executors.MecanumExecutorArcsPID;
 import autoutil.executors.MovementExecutor;
 import autoutil.executors.TankExecutor;
 import geometry.circles.AngleType;
@@ -25,15 +29,22 @@ public class DisplayExecutor extends JPanel {
     private final int xScale = 5;
     private final int yScale = 5;
 
-    private TankExecutor executor;
+    private Executor executor;
 
     public void genTestPlane(){
-        executor = new TankExecutor();
-        executor.addSetpoint(70, 29, PI/2, AngleType.RADIANS);
-        executor.addSetpoint(-50, 40, -PI/2, AngleType.RADIANS);
-        executor.addSetpoint(-65, 40, -PI/2, AngleType.RADIANS);
-//        executor.addSetpoint(-60, 40, -3 * PI/4, AngleType.RADIANS);
-        executor.addSetpoint(-75, 35, -PI/2, AngleType.RADIANS);
+        executor = new MecanumExecutorArcsPID(new LinearOpMode() {
+            @Override
+            public void runOpMode() {}
+        });
+//        executor.addSetpoint(70, 29, PI/2, AngleType.RADIANS);
+//        executor.addSetpoint(-50, 40, -PI/2, AngleType.RADIANS);
+//        executor.addSetpoint(-65, 40, -PI/2, AngleType.RADIANS);
+////        executor.addSetpoint(-60, 40, -3 * PI/4, AngleType.RADIANS);
+//        executor.addSetpoint(-75, 35, -PI/2, AngleType.RADIANS);
+        executor.addSetpoint(70, 30, PI/2, AngleType.RADIANS);
+        executor.addSetpoint(-50, 43, -PI/2, AngleType.RADIANS);
+        executor.addSetpoint(-60, 30, PI, AngleType.RADIANS);
+        executor.addSetpoint(-90, 0, -PI/2, AngleType.RADIANS);
         executor.complete();
     }
 

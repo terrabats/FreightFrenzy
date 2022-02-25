@@ -1,13 +1,17 @@
 package teleutil;
 
+import static global.General.bot;
+
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import java.util.Objects;
 import java.util.TreeMap;
 
+import automodules.StageList;
 import teleutil.button.Button;
 import teleutil.button.ButtonEventHandler;
 import teleutil.button.ButtonHandler;
+import teleutil.button.OnPressEventHandler;
 import util.codeseg.CodeSeg;
 import util.codeseg.ReturnCodeSeg;
 
@@ -75,6 +79,10 @@ public class GamepadHandler {
      */
     public void link(Button b, Class<? extends ButtonEventHandler> type, CodeSeg codeSeg) {
         Objects.requireNonNull(handlerMap.get(b)).addEvent(type, codeSeg);
+    }
+
+    public void link(Button b, StageList list) {
+        link(b, OnPressEventHandler.class, () -> bot.addAutoModule(list));
     }
 
     /**

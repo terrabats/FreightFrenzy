@@ -14,8 +14,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 // TODO FIX: CONVERT TO COMPLETE AUTO
 
 @Disabled
-@Autonomous(name="TerraAutoBlue")
-public class TerraAutoBlue extends Auto {
+@Autonomous(name="TerraAutoBlueTank")
+public class TerraAutoBlueTank extends Auto {
     Timer timer = new Timer();
 
     @Override
