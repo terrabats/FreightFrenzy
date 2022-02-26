@@ -3,9 +3,14 @@ package robotparts.electronics.positional;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+import debugging.StallDetector;
 import robotparts.Electronic;
 import robotparts.electronics.input.IEncoder;
 import util.Timer;
+import util.condition.Expectation;
+import util.condition.Magnitude;
+
+import static global.General.fault;
 
 public class PMotor extends Electronic {
     /**
@@ -15,9 +20,7 @@ public class PMotor extends Electronic {
     private final DcMotorSimple.Direction direction;
     private final DcMotor.ZeroPowerBehavior zeroPowerBehavior;
     private final IEncoder motorEncoder;
-
-    private final Timer time = new Timer();
-
+    private final StallDetector detector;
 
     // TODO NEW
     // Make this have functionality to use custom PID
@@ -31,6 +34,7 @@ public class PMotor extends Electronic {
      */
     public PMotor(DcMotor m, DcMotor.Direction dir, DcMotor.ZeroPowerBehavior zpb, DcMotor.RunMode mode){
         motor = m;
+        detector = new StallDetector(motor);
         direction = dir;
         zeroPowerBehavior = zpb;
 
@@ -43,8 +47,6 @@ public class PMotor extends Electronic {
         motorEncoder = new IEncoder(motor, IEncoder.EncoderType.MOTOR);
 
         motorEncoder.reset();
-
-        time.reset();
     }
 
     /**
@@ -52,7 +54,14 @@ public class PMotor extends Electronic {
      * @param p
      */
     public void setPower(double p){
-        if(access.isAllowed()){ motor.setPower(p); }
+        if(access.isAllowed()){
+            if(!detector.isStalling()){
+                motor.setPower(p);
+            }else{
+                motor.setPower(0);
+                fault.warn("Motor is stalling", Expectation.EXPECTED, Magnitude.CRITICAL);
+            }
+        }
     }
 
     /**
@@ -114,6 +123,14 @@ public class PMotor extends Electronic {
      */
     public void resetPosition(){
         motorEncoder.reset();
+    }
+
+    public void useStallDetector(double maxPower, double powerOffset, double minSpeed, double minTime, double disableTime){
+        detector.init(maxPower, powerOffset, minSpeed, minTime, disableTime);
+    }
+
+    public double getStallDerivative(){
+        return detector.getCurrentDerivative();
     }
 
     /**

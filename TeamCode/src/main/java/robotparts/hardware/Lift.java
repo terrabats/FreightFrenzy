@@ -17,7 +17,7 @@ public abstract class Lift extends RobotPart {
     /**
      * Lift positional motor
      */
-    private PMotor li;
+    protected PMotor li;
 
     /**
      * Gets angle of the lift (overwritten by child classes)

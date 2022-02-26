@@ -1,4 +1,4 @@
-package debugging.display;
+package display;
 
 import math.Function;
 import math.calculus.Differentiator;

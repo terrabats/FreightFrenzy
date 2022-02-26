@@ -1,4 +1,4 @@
-package debugging.display;
+package display;
 
 
 import static java.lang.Math.PI;
@@ -13,8 +13,6 @@ import javax.swing.JPanel;
 
 import autoutil.executors.Executor;
 import autoutil.executors.MecanumExecutorArcsPID;
-import autoutil.executors.MovementExecutor;
-import autoutil.executors.TankExecutor;
 import geometry.circles.AngleType;
 import geometry.position.Pose;
 

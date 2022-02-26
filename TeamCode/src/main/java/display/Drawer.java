@@ -1,4 +1,4 @@
-package debugging.display;
+package display;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

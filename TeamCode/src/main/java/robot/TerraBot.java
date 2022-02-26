@@ -1,7 +1,6 @@
 package robot;
 
-import robot.configs.CameraConfig;
-import robot.configs.NewMecanumConfig;
-import robot.configs.TankConfig;
+import robot.configs.LiftConfig;
 
-public class TerraBot extends CameraConfig {}
+
+public class TerraBot extends LiftConfig {}

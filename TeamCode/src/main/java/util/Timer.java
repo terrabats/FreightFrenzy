@@ -38,6 +38,10 @@ public class Timer {
         startTime = gameTime.seconds();
         hasBeenReset = true;
     }
+    public void set(double time){
+        startTime = gameTime.seconds()-time;
+        hasBeenReset = true;
+    }
     /**
      * Gets the seconds since last time the timer was reset
      * NOTE: If the timer has never been reset and seconds is called then an warning will be issued
