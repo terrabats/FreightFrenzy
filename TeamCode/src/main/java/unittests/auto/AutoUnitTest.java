@@ -11,11 +11,8 @@ import autoutil.executors.Executor;
 import geometry.circles.AngleType;
 import global.Common;
 import unittests.UnitTest;
-import unittests.tele.TeleUnitTest;
-import util.Timer;
 import util.codeseg.CodeSeg;
-import util.codeseg.ReturnCodeSeg;
-import util.condition.Iterator;
+import util.templates.Iterator;
 import util.condition.Status;
 
 public class AutoUnitTest extends UnitTest implements Iterator, Common {
@@ -33,12 +30,6 @@ public class AutoUnitTest extends UnitTest implements Iterator, Common {
     protected static Executor executor;
 
     private static boolean hasTelemetry = true;
-
-    // TODO FIX
-    // Randomly at the end of auto test it says there are no items in arraylist?
-
-    // TODO FIX
-    // Make new auto tests
 
     public void defineExecutorAndAddPoints() {}
 

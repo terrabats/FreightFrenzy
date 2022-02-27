@@ -2,7 +2,7 @@ package debugging;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import util.condition.Precision;
+import util.templates.Precision;
 import autoutil.profilers.Profiler;
 
 public class StallDetector implements Precision {

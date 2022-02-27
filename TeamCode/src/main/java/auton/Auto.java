@@ -2,15 +2,9 @@ package auton;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import androidx.annotation.CallSuper;
 import elements.FieldSide;
 import global.Common;
-import util.Timer;
-import util.codeseg.CodeSeg;
-import util.codeseg.ReturnCodeSeg;
-import util.condition.Iterator;
-
-import static global.General.*;
+import util.templates.Iterator;
 
 public abstract class Auto extends LinearOpMode implements Common, Iterator {
     /**

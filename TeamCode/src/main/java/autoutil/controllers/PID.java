@@ -1,12 +1,9 @@
 package autoutil.controllers;
 
-import autoutil.profilers.Profiler;
-import util.codeseg.ReturnCodeSeg;
-import util.codeseg.ReturnParameterCodeSeg;
+import util.templates.ParameterConstructor;
+import util.templates.ParameterType;
 
-import static global.General.log;
-
-public class PID extends Controller{
+public class PID extends Controller implements ParameterConstructor<Double> {
     private double kp;
     private double ki;
     private double kd;
@@ -16,21 +13,26 @@ public class PID extends Controller{
     private double maximumIntegralRange;
     private double restOutput = 0;
 
-    public PID(double kp, double ki, double kd){
-        init(kp, ki, kd, 100000, 0.01, 100000, 100000);
+    /**
+     * Constructor for PID
+     * Input 1: Proportional coefficient
+     * Input 2: Integral coefficient
+     * Input 3: Derivative coefficent
+     * @param parameterType
+     * @param parameters
+     */
+    public PID(PIDParameterType parameterType, Double... parameters){
+        addConstructor(PIDParameterType.DEFAULT, 3);
+        addConstructor(PIDParameterType.DEFAULT_ALL, 7);
+        addConstructor(PIDParameterType.STANDARD_FORM, 3, in -> new Double[]{in[0], in[0]/in[1], in[0]*in[2]});
+        addConstructor(PIDParameterType.STANDARD__FORM_ALL, 7, in -> new Double[]{in[0], in[0]/in[1], in[0]*in[2], in[3], in[4], in[5], in[6]});
+        createConstructors(parameterType, parameters, new Double[]{0.0,0.0,0.0,100000.0,0.01, 100000.0, 100000.0});
     }
 
-    public PID(double kp, double ki, double kd, double minimumOutputBeforeNext, double maximumTimeBeforeNext){
-        init(kp, ki, kd, minimumOutputBeforeNext, maximumTimeBeforeNext, 100000, 100000);
-    }
-
-    public PID(double kp, double ki, double kd, double minimumOutputBeforeNext, double maximumTimeBeforeNext, double maximumDerivative, double maximumIntegralRange){
-        init(kp, ki, kd, minimumOutputBeforeNext, maximumTimeBeforeNext, maximumDerivative, maximumIntegralRange);
-    }
-
-    private void init(double kp, double ki, double kd, double mo, double mt, double md, double mi){
-        this.kp = kp; this.ki = ki; this.kd = kd;
-        this.minimumOutput = mo; this.maximumTime = mt; this.maximumDerivative = md; this.maximumIntegralRange = mi;
+    @Override
+    public void construct(Double[] in){
+        this.kp = in[0]; this.ki = in[1]; this.kd = in[2];
+        this.minimumOutput = in[3]; this.maximumTime = in[4]; this.maximumDerivative = in[5]; this.maximumIntegralRange = in[6];
     }
 
     public void setToStandardForm(double kp, double ti, double td){
@@ -67,6 +69,19 @@ public class PID extends Controller{
 
     public double[] getCoefficients(){
         return new double[]{kp, ki, kd};
+    }
+
+
+    public enum PIDParameterType implements ParameterType {
+        DEFAULT,
+        DEFAULT_ALL,
+        STANDARD_FORM,
+        STANDARD__FORM_ALL;
+
+        @Override
+        public String getName() {
+            return "PIDParameters";
+        }
     }
 
 }

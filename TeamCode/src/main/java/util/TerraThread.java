@@ -99,7 +99,7 @@ public class TerraThread extends Thread {
      */
     public synchronized void checkForException(String threadName){
         if(wasExceptionThrown){
-            fault.check("Exception thrown from inside thread " + threadName, Expectation.SURPRISING, Magnitude.CATASTROPHIC);
+            fault.warn("Exception thrown from inside thread " + threadName, Expectation.SURPRISING, Magnitude.CATASTROPHIC);
         }
     }
 

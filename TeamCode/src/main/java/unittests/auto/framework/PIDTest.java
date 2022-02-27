@@ -13,20 +13,18 @@ public class PIDTest extends AutoUnitTest {
      * Tests PID (Proportional Integral Derivative)
      */
 
-    // TODO FIX
-    // Make this better
 
     /**
-     * PID oject to test
+     * PID object to test
      */
-    PID testPID = new PID(0.05,0.005,0.005);
+    PID testPID = new PID(PID.PIDParameterType.DEFAULT_ALL, .05,0.005,0.005, 0.2, 0.05, 50.0, 5.0);
 
     @Override
     protected void run() {
         log.show("Coefficients ", Arrays.toString(testPID.getCoefficients()));
 
         testPID.setProcessVariable(() -> bot.odometry.getCurY());
-        testPID.setTarget(-20);
+        testPID.setTarget(20);
         testPID.setMinimumOutput(0.05);
         testPID.setMaximumTime(0.05);
         testPID.setMaximumDerivative(10);

@@ -18,7 +18,7 @@ public class TankLift extends Lift {
     @Override
     public void init() {
         super.init();
-        li.useStallDetector(0.1, Constants.LIFT_REST_POW,200,0.03, 2);
+        li.useStallDetector(0.2, Constants.LIFT_REST_POW,200,0.03, 2);
     }
 
     @Override

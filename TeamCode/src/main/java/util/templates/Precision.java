@@ -1,4 +1,4 @@
-package util.condition;
+package util.templates;
 
 import util.Timer;
 
