@@ -11,8 +11,9 @@ public class ColorTest extends TeleUnitTest {
      * Tests color sensors
      */
 
-    // TODO NEW
-    // Make sensor calibration code to do that
+    // TODO NEW ARNAV
+    // Make sensor calibration code
+    // For all the values of a distance sensor should be recorded, the actual values passed in, and a line of best fit created
 
     @Override
     protected void loop() {

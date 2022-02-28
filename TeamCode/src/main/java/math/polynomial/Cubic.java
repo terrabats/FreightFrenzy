@@ -20,8 +20,8 @@ public class Cubic extends Polynomial{
 
     @Override
     public double[] roots() {
-        // TODO FIX
-        // Either dont do this or use newtons method or something
+        // TODO FIX ARNAV
+        // Use newtons method to find roots of cubic
         return new double[]{0,0,0};
     }
 }

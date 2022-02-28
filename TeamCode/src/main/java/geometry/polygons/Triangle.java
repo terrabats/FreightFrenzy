@@ -17,6 +17,7 @@ public class Triangle extends Polygon {
         this.p2 = p2;
         this.p3 = p3;
     }
-    // TODO FIX
+    // TODO FIX VARINI
     // Make this class have other methods
+    // two important ones, area, and bounding box
 }

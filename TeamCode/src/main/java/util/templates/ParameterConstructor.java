@@ -15,14 +15,15 @@ import util.condition.Magnitude;
 
 import static global.General.fault;
 
-// TODO TEST
-// Does this acurally work?
-// TODO FIX
-// Make this parameterized
+// TODO TEST VARINI
+// Does this actually work?
+// Make a unit test for this class
 public interface ParameterConstructor<T> {
     HashMap<ParameterType, Integer> constructorMap = new HashMap<>();
     HashMap<ParameterType, ReturnParameterCodeSeg<Double[], Double[]>> preprocessorMap = new HashMap<>();
 
+    // TODO FIX
+// Make this parameterized
     void construct(Double[] in);
 
     default void addConstructor(ParameterType parameterType, int numberOfParameters){

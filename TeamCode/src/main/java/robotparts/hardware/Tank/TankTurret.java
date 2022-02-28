@@ -80,7 +80,7 @@ public class TankTurret extends RobotPart {
      * Get the target position based on the field side
      * @return target pos
      */
-    // TODO TEST
+    // TODO TEST VARINI
     // Test this
     public double getTargetPos(){
         if(fieldSide != null) {

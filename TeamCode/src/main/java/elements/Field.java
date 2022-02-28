@@ -7,6 +7,6 @@ import geometry.CoordinatePlane;
  */
 
 public class Field {
-    // TODO NEW
+    // TODO NEW VARINI
     // Have geometric represntation of everything in here
 }

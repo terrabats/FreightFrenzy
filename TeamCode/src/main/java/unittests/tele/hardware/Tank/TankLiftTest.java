@@ -18,7 +18,7 @@ public class TankLiftTest extends TeleUnitTest {
     );
 
     // TODO NEW
-    // Make something that detects when encoders are disconnected or something is stalling
+    // Make something that detects when encoders are disconnected
 
 
     @Override
