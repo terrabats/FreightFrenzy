@@ -13,6 +13,9 @@ import robotparts.electronics.continuous.CMotor;
  * NOTE: Uncommented
  */
 
+/**
+ * Create Motors
+ */
 public class MecanumDrive extends RobotPart {
     private CMotor fr,br,fl,bl;
 
@@ -24,6 +27,12 @@ public class MecanumDrive extends RobotPart {
         bl = createCMotor("bl", Direction.FORWARD);
     }
 
+    /**
+     * Raw movement
+     * @param f Forward Power
+     * @param s Strafe Power
+     * @param t Turn Power
+     */
     public void move(double f, double s, double t){
         fr.setPower(f-s-t);
         br.setPower(f+s-t);
@@ -31,6 +40,12 @@ public class MecanumDrive extends RobotPart {
         bl.setPower(f-s+t);
     }
 
+    /**
+     * Move the robot smoothly
+     * @param f Forward Power
+     * @param s Strafe Power
+     * @param t Turn Power
+     */
     public void moveSmooth(double f, double s, double t){
         Logistic movementCurveForward = new Logistic(10,5);
         Logistic movementCurveStrafe = new Logistic(30,6);
@@ -39,6 +54,11 @@ public class MecanumDrive extends RobotPart {
     }
 
     public Main mainMoveForward(double pow) { return new Main(() -> move(pow, 0, 0)); }
+
+    /**
+     * Stop the robot
+     * @return
+     */
 
     public Stop stopMove() { return new Stop(() -> move(0, 0, 0)); }
 }

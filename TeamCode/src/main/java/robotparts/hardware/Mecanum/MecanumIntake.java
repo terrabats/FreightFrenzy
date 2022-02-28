@@ -13,6 +13,9 @@ import robotparts.electronics.continuous.CMotor;
 public class MecanumIntake extends RobotPart {
     private CMotor in;
 
+    /**
+     * Create Intake Motor
+     */
     @Override
     public void init() {
         in = createCMotor("in", DcMotorSimple.Direction.FORWARD);
@@ -48,6 +51,10 @@ public class MecanumIntake extends RobotPart {
         );
     }
 
+    /**
+     * Robot keeps on running intake until color sensor detects freight
+     * @return
+     */
     public Stage intakeUntilFreight() {
         return new Stage(
             usePart(),
