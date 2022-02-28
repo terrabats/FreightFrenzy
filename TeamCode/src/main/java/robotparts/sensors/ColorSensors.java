@@ -13,7 +13,7 @@ public class ColorSensors extends RobotPart {
     private IColor cso;
 
     // TODO NEW
-    // Make all sensors more reliable code
+    // Make more methods
 
     @Override
     public void init() {

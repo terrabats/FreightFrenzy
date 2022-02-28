@@ -10,7 +10,7 @@ import util.condition.Magnitude;
 
 import static global.General.*;
 
-// TODO TEST
+// TODO TEST VARINI
 // Test this
 public class ThreadTest extends TeleUnitTest {
     /**

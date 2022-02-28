@@ -11,7 +11,8 @@ import static global.General.*;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-// TODO FIX: CONVERT TO COMPLETE AUTO
+// TODO FIX
+// CONVERT TO COMPLETE AUTO
 
 @Disabled
 @Autonomous(name="TerraAutoBlueTank")
