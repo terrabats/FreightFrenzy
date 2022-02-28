@@ -114,6 +114,6 @@ public class AutoUnitTest extends UnitTest implements Iterator, Common {
 
     @Override
     public boolean condition() {
-        return linearOpMode.opModeIsActive() && (executor == null || executor.finished());
+        return linearOpMode.opModeIsActive() && (executor == null || !executor.finished());
     }
 }

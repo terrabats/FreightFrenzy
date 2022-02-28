@@ -27,7 +27,8 @@ public class MecanumLift extends Lift {
     @Override
     public void init() {
         super.init();
-        li.useStallDetector(0.2, Constants.LIFT_REST_POW,200,0.03, 2);
+        motors[0].useStallDetector(0.2, 0,200,0.03, 2);
+        motors[1].useStallDetector(0.2, 0,200,0.03, 2);
     }
 
     @Override

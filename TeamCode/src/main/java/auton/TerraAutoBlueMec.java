@@ -31,7 +31,7 @@ public class TerraAutoBlueMec extends CompleteAuto {
                 setPoint(-90, 0, -PI/2),
                 unsyncedRF(MecanumAutoModules.IntakeAndMoveForwardUntilFreight)
         );
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             addExecutorFuncs(
                 syncedRF(MecanumAutoModules.SetUpForAllianceShippingHub),
                 setPoint(-90, 0, -PI/2),
