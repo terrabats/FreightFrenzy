@@ -9,6 +9,7 @@ import elements.FieldSide;
 import unittests.UnitTester;
 import unittests.auto.framework.InternalCameraTest;
 import unittests.auto.framework.IteratorTest;
+import unittests.auto.movement.OdometryTest;
 import util.condition.Status;
 
 @SuppressWarnings("ALL")
@@ -32,7 +33,8 @@ public class AutoUnitTester extends Auto implements UnitTester {
          * Framework
          */
         addAll(
-                new IteratorTest()
+                new OdometryTest()
+//                new IteratorTest(),
 //                new PIDTest(),
 //                new MoveTest()
 //                new InternalCameraTest()

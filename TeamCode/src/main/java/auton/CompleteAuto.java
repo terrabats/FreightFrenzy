@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import automodules.StageList;
 import autoutil.executors.Executor;
+import elements.FieldSide;
 import geometry.circles.AngleType;
 import util.codeseg.CodeSeg;
 import util.codeseg.ParameterCodeSeg;
@@ -58,10 +59,16 @@ public abstract class CompleteAuto extends Auto {
         }
     }
 
+    public abstract FieldSide getSide();
+
+    public void onInit() {}
+
     @Override
     public void initAuto() {
         defineExecutorAndAddPoints();
         executor.complete();
+        activate(getSide());
+        onInit();
     }
 
     @Override

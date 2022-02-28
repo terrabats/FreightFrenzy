@@ -29,8 +29,8 @@ public class TwoOdometry extends Odometry {
 
     @Override
     public void init() {
-        horizontalEncoder = createEncoder("br", "cEnc", IEncoder.EncoderType.NORMAL);
-        verticalEncoder = createEncoder("bl", "rEnc", IEncoder.EncoderType.NORMAL);
+        horizontalEncoder = createEncoder("bl", "cEnc", IEncoder.EncoderType.NORMAL);
+        verticalEncoder = createEncoder("fl", "rEnc", IEncoder.EncoderType.NORMAL);
         lastHorizontalEncoderPos = horizontalEncoder.getPos();
         lastVerticalEncoderPos = verticalEncoder.getPos();
         odometryThread.setExecutionCode(this::update);

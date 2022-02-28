@@ -53,7 +53,7 @@ public class TerraAutoBlueTank extends Auto {
 
         while (opModeIsActive() && !executor.finished()) {
             executor.update();
-            if (bot.tankLift.getPower() == 0) {
+            if (bot.tankLift.getPower()[0] == 0) {
                 bot.tankLift.move(0);
             }
             update(true);

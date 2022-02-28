@@ -16,10 +16,7 @@ public class TerraAutoBlueMec extends CompleteAuto {
     boolean inEndMode = false;
 
     @Override
-    public void initAuto() {
-        activate(FieldSide.BLUE);
-        bot.tankOuttake.lockCube();
-    }
+    public FieldSide getSide() { return FieldSide.BLUE; }
 
     @Override
     public void defineExecutorAndAddPoints() {
@@ -48,9 +45,7 @@ public class TerraAutoBlueMec extends CompleteAuto {
 
     @Override
     public void duringLoop() {
-        if (bot.tankLift.getPower() == 0) bot.tankLift.move(0);
-
-        if (gameTime.seconds() > 25) {
+        if (!inEndMode && gameTime.seconds() > 25) {
             inEndMode = true;
             executor = new MecanumExecutorArcsPID(this);
             addExecutorFuncs(

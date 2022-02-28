@@ -1,103 +1,37 @@
 package robotparts.hardware;
 
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-
 import automodules.stage.Exit;
 import automodules.stage.Initial;
 import automodules.stage.Main;
 import automodules.stage.Stage;
 import automodules.stage.Stop;
 import global.Constants;
-import robotparts.RobotPart;
 import robotparts.electronics.positional.PMotor;
+import util.codeseg.ReturnParameterCodeSeg;
 
 import static global.General.*;
 
-public abstract class Lift extends RobotPart {
-    /**
-     * Lift positional motor
-     */
-    protected PMotor li;
-
-    /**
-     * Gets angle of the lift (overwritten by child classes)
-     * Vertical lift is PI/2
-     * @return angle in radians
-     */
-    protected abstract double getAngle();
-
-    /**
-     * Init method creates the lift motor and resets the encoder (done internally)
-     */
-    @Override
-    public void init() {
-        li = createPMotor("li", DcMotorSimple.Direction.FORWARD);
-    }
-
+public abstract class Lift extends PMotorRobotPart {
     /**
      * Move the lift motor at a certain power
      * @param p
      */
+    @Override
     public void move(double p){
-        li.setPower(p + Constants.LIFT_REST_POW);
+        for (PMotor li : motors) {
+            li.setPower(p + getRestPow());
+        }
     }
 
-    /**
-     * Gets the position of the lift (in ticks)
-     * @return ticks
-     */
-    public double getLiftPos(){
-        return li.getPosition();
+    @Override
+    public double getOverallTarget(double in) {
+        return in/Math.sin(getAngle());
     }
 
-    /**
-     * Gets the current power of the motor
-     * @return power
-     */
-    public double getPower() { return li.getPower(); }
-
-    /**
-     * Resets the lift encoder
-     */
-    public void resetEncoder(){li.resetPosition();}
-
-    /**
-     * Sets the lift target in cm
-     * @param h
-     */
-    public void setTarget(double h){
-        li.setPosition(h*Constants.LIFT_CM_TO_TICKS);
+    @Override
+    public double CM_PER_TICK() {
+        return 1 / Constants.LIFT_CM_TO_TICKS;
     }
-
-    /**
-     * Gets the target of the lift (in cm)
-     * @return
-     */
-    public double getTarget() {
-        return li.getTarget()/Constants.LIFT_CM_TO_TICKS;
-    }
-
-    /**
-     * Stops and resets the mode of the positional motor
-     */
-    public void stopAndResetMode() {
-        li.stopAndReset();
-    }
-
-    /**
-     * Has the positional motor reached the target position?
-     * @return hasReachedTarget
-     */
-    public boolean hasReachedTarget(){
-        return li.hasReachedPosition();
-    }
-
-    /**
-     * Initial to set the target
-     * @param height
-     * @return
-     */
-    public Initial initialSetTarget(double height){return new Initial(() -> setTarget(height/Math.sin(getAngle())));}
 
     /**
      * Set the power of the lift in a main
@@ -105,9 +39,7 @@ public abstract class Lift extends RobotPart {
      * @return
      */
     public Main main(double power){
-        return new Main(() -> {
-            move(power);
-        });
+        return new Main(() -> move(power));
     }
 
     /**
@@ -116,24 +48,6 @@ public abstract class Lift extends RobotPart {
      * @return
      */
     public Exit exitDown(){return new Exit(() -> bot.touchSensors.isOuttakePressingTouchSensor());}
-
-    /**
-     * Exit when the lift reached the target
-     * @return
-     */
-    public Exit exitReachedTarget(){return new Exit(this::hasReachedTarget);}
-
-    /**
-     * Stop the lift motor
-     * @return
-     */
-    public Stop stop(){return new Stop(() -> move(0));}
-
-    /**
-     * Stop the lift and reset the mode
-     * @return
-     */
-    public Stop stopEncoder(){return new Stop(this::stopAndResetMode);}
 
     /**
      * Lift for a certain time

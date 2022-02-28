@@ -1,4 +1,4 @@
-package unittests.unused;
+package unittests.auto.movement;
 
 import static global.General.*;
 
@@ -7,7 +7,6 @@ import unittests.tele.TeleUnitTest;
 /**
  * NOTE: Uncommented
  */
-@Deprecated
 public class OdometryTest extends TeleUnitTest {
     @Override
     public void init() {

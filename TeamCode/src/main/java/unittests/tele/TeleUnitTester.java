@@ -7,7 +7,12 @@ import teleop.Tele;
 
 import unittests.UnitTester;
 import unittests.tele.framework.LagTest;
-import unittests.tele.hardware.StallDetectorTest;
+import unittests.tele.hardware.Mecanum.MecanumCarouselTest;
+import unittests.tele.hardware.Mecanum.MecanumDriveTest;
+import unittests.tele.hardware.Mecanum.MecanumIntakeTest;
+import unittests.tele.hardware.Mecanum.MecanumLiftAndOuttakeTest;
+import unittests.tele.hardware.Mecanum.MecanumLiftTest;
+import unittests.tele.hardware.Mecanum.MecanumOuttakeTest;
 
 import static global.General.*;
 
@@ -27,6 +32,12 @@ public class TeleUnitTester extends Tele implements UnitTester{
          * Framework
          */
         addAll(
+            new MecanumCarouselTest(),
+            new MecanumDriveTest(),
+            new MecanumIntakeTest(),
+            new MecanumLiftAndOuttakeTest(),
+            new MecanumLiftTest(),
+            new MecanumOuttakeTest()
 //            new OdometryServoTest(),
 //            new AccessTest(),
 //            new CommonTest(),
@@ -44,7 +55,6 @@ public class TeleUnitTester extends Tele implements UnitTester{
 //            new RobotPartTest(),
 //            new RobotFrameworkTest(),
 //            new ElectronicsTest()
-                new StallDetectorTest()
         );
         /**
          * Hardware

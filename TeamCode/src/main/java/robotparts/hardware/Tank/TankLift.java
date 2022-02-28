@@ -11,10 +11,14 @@ import global.Constants;
 import robotparts.RobotPart;
 import robotparts.electronics.positional.PMotor;
 import robotparts.hardware.Lift;
+import util.codeseg.ReturnParameterCodeSeg;
 
 import static global.General.*;
 
 public class TankLift extends Lift {
+    @Override
+    protected double getRestPow() { return Constants.LIFT_REST_POW; }
+
     @Override
     public void init() {
         super.init();
@@ -25,4 +29,20 @@ public class TankLift extends Lift {
     protected double getAngle() {
         return Math.PI/2;
     }
+
+    @Override
+    public PMotor[] getMotors() {
+        return new PMotor[] {
+            createPMotor("li", DcMotorSimple.Direction.FORWARD)
+        };
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public ReturnParameterCodeSeg<Double, Double>[] getTargetConvertors() {
+        return new ReturnParameterCodeSeg[] {
+                h -> (Double)h * Constants.LIFT_CM_TO_TICKS
+        };
+    }
+
 }

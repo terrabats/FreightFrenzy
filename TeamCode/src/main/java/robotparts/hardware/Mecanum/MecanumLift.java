@@ -14,10 +14,16 @@ import robotparts.RobotPart;
 import robotparts.electronics.positional.PMotor;
 import robotparts.hardware.Lift;
 import robotparts.hardware.Tank.TankLift;
+import util.codeseg.ReturnParameterCodeSeg;
 
 import static global.General.*;
 
 public class MecanumLift extends Lift {
+    @Override
+    protected double getRestPow() {
+        return 0;
+    }
+
     @Override
     public void init() {
         super.init();
@@ -26,6 +32,23 @@ public class MecanumLift extends Lift {
 
     @Override
     protected double getAngle() {
-        return PI/4;
+        return Math.PI/4;
+    }
+
+    @Override
+    public PMotor[] getMotors() {
+        return new PMotor[] {
+            createPMotor("lil", DcMotorSimple.Direction.FORWARD),
+            createPMotor("lir", DcMotorSimple.Direction.REVERSE)
+        };
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public ReturnParameterCodeSeg<Double, Double>[] getTargetConvertors() {
+        return new ReturnParameterCodeSeg[] {
+            h -> (Double) h * Constants.LIFT_CM_TO_TICKS,
+            h -> (Double) h * Constants.LIFT_CM_TO_TICKS
+        };
     }
 }

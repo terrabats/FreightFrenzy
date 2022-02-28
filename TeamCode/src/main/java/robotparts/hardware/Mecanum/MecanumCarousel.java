@@ -16,7 +16,7 @@ public class MecanumCarousel extends RobotPart {
 
     @Override
     public void init() {
-        carousel = createCMotor("carousel", DcMotorSimple.Direction.FORWARD);
+        carousel = createCMotor("car", DcMotorSimple.Direction.FORWARD);
     }
 
     public void move(double power) {

@@ -41,7 +41,7 @@ public class TankLiftTest extends TeleUnitTest {
         /**
          * Should change when lift moves
          */
-        log.show("Lift pos", bot.tankLift.getLiftPos());
+        log.show("Lift pos", bot.tankLift.getPos()[0]);
         /**
          * Should not change when lift moves
          */

@@ -52,52 +52,31 @@ public class AutoUnitTest extends UnitTest implements Iterator, Common {
                 Math.abs(h) > Math.PI || h == -Math.PI, false);
     }
 
-    public double[] wayPoint(double x, double y, double h) {
+    public CodeSeg wayPoint(double x, double y, double h) {
         checkHeadingWrong(h);
-        return new double[] { x, y, h, 1 };
+        return () -> executor.addWaypoint(x, y, h, AngleType.RADIANS);
     }
 
-    public double[] setPoint(double x, double y, double h) {
+    public CodeSeg setPoint(double x, double y, double h) {
         checkHeadingWrong(h);
-        return new double[] { x, y, h, 0 };
+        return () -> executor.addSetpoint(x, y, h, AngleType.RADIANS);
     }
 
-    public Object[] unsyncedRF(StageList rf) {
-        return new Object[] { rf, 0 };
+    public CodeSeg unsyncedRF(StageList rf) {
+        return () -> executor.addUnsynchronizedRF(rf);
     }
 
-    public Object[] syncedRF(StageList rf) {
-        return new Object[] { rf, 1 };
+    public CodeSeg syncedRF(StageList rf) {
+        return () -> executor.addSynchronizedRF(rf);
     }
 
     public CodeSeg custom(CodeSeg in) {
         return in;
     }
 
-    public void addExecutorFuncs(@NonNull Object... funcs) {
-        for (Object func : funcs) {
-            if (func instanceof CodeSeg) {
-                ((CodeSeg) func).run();
-            } else if (func instanceof double[]) {
-                double[] point = (double[]) func;
-                fault.check("Incorrect Point Syntax", point.length != 4, false);
-                if (point[3] == 0) {
-                    executor.addSetpoint(point[0], point[1], point[2], AngleType.RADIANS);
-                } else {
-                    executor.addWaypoint(point[0], point[1], point[2], AngleType.RADIANS);
-                }
-            } else if (func instanceof Object[]) {
-                Object[] newObj = (Object[]) func;
-
-                int type = (int) newObj[1];
-                StageList rf = (StageList) newObj[0];
-
-                if (type == 0) {
-                    executor.addUnsynchronizedRF(rf);
-                } else {
-                    executor.addSynchronizedRF(rf);
-                }
-            }
+    public void addExecutorFuncs(@NonNull CodeSeg... funcs) {
+        for (CodeSeg func : funcs) {
+            func.run();
         }
     }
 
