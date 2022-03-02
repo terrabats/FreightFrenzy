@@ -4,6 +4,8 @@ import util.Timer;
 import util.codeseg.CodeSeg;
 import util.codeseg.ReturnCodeSeg;
 
+import static global.General.log;
+
 public interface Iterator {
     /**
      * Iterator interface, used for making loops with conditions
@@ -26,9 +28,13 @@ public interface Iterator {
      * @param code
      */
     default void whileActive(CodeSeg code){
+        boolean oldShouldUpdate = log.getShouldUpdateOnShow();
+        log.setShouldUpdateOnShow(false);
         while (condition()){
             code.run();
+            log.showTelemetry();
         }
+        log.setShouldUpdateOnShow(oldShouldUpdate);
     }
 
     /**
@@ -36,7 +42,13 @@ public interface Iterator {
      * @param code
      */
     default void whileActive(ReturnCodeSeg<Boolean> active, CodeSeg code){
-        while (condition() && active.run()){code.run();}
+        boolean oldShouldUpdate = log.getShouldUpdateOnShow();
+        log.setShouldUpdateOnShow(false);
+        while (condition() && active.run()){
+            code.run();
+            log.showTelemetry();
+        }
+        log.setShouldUpdateOnShow(oldShouldUpdate);
     }
 
     /**
@@ -45,10 +57,14 @@ public interface Iterator {
      * @param secs
      */
     default void whileTime(CodeSeg code, double secs){
+        boolean oldShouldUpdate = log.getShouldUpdateOnShow();
+        log.setShouldUpdateOnShow(false);
         timer.reset();
         while (condition() && timer.seconds() < secs){
             code.run();
+            log.showTelemetry();
         }
+        log.setShouldUpdateOnShow(oldShouldUpdate);
     }
 
     /**

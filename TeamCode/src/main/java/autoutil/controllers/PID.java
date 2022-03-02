@@ -17,7 +17,11 @@ public class PID extends Controller implements ParameterConstructor<Double> {
      * Constructor for PID
      * Input 1: Proportional coefficient
      * Input 2: Integral coefficient
-     * Input 3: Derivative coefficent
+     * Input 3: Derivative coefficient
+     * Input 4: Minimum Output
+     * Input 5: Maximum Time
+     * Input 6: Maximum Derivative
+     * Input 7: Maximum Integral Range
      * @param parameterType
      * @param parameters
      */
@@ -77,11 +81,6 @@ public class PID extends Controller implements ParameterConstructor<Double> {
         DEFAULT_ALL,
         STANDARD_FORM,
         STANDARD__FORM_ALL;
-
-        @Override
-        public String getName() {
-            return "PIDParameters";
-        }
     }
 
 }

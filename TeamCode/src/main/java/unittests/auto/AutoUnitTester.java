@@ -9,6 +9,7 @@ import elements.FieldSide;
 import unittests.UnitTester;
 import unittests.auto.framework.InternalCameraTest;
 import unittests.auto.framework.IteratorTest;
+import unittests.auto.framework.ParameterConstructorTest;
 import unittests.auto.movement.ArcTest;
 import unittests.auto.movement.OdometryTest;
 import util.condition.Status;
@@ -34,12 +35,13 @@ public class AutoUnitTester extends Auto implements UnitTester {
          * Framework
          */
         addAll(
-                new ArcTest()
+//                new ArcTest()
 //                new OdometryTest()
 //                new IteratorTest(),
 //                new PIDTest(),
 //                new MoveTest()
 //                new InternalCameraTest()
+                new ParameterConstructorTest()
         );
     }
 
