@@ -61,9 +61,9 @@ public class ParameterConstructorTest extends AutoUnitTest {
             /**
              * Display the expected and actual values for each
              */
-            log.show("Default Test Values, should be {2.0, 2.0, 3.0}", Arrays.toString(testDefault.getValues()));
-            log.show("Second Test Values, should be {1.5, 2.0, 4.0}", Arrays.toString(testSecond.getValues()));
-            log.show("All Test Values, should be {4.0, 5.0, 6.0}", Arrays.toString(testAll.getValues()));
+            log.show("Default Values, should be {2.0, 2.0, 3.0}", Arrays.toString(testDefault.getValues()));
+            log.show("Second Values, should be {1.5, 2.0, 3.0}", Arrays.toString(testSecond.getValues()));
+            log.show("All Values, should be {4.0, 5.0, 6.0}", Arrays.toString(testAll.getValues()));
         });
     }
 }

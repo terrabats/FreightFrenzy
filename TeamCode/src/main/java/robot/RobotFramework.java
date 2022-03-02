@@ -41,10 +41,11 @@ public class RobotFramework {
      */
     protected RobotFramework(){
         allRobotParts = new ArrayList<>();
+        TerraThread.init();
         localPlane = new CoordinatePlane();
         rfsHandler = new RobotFunctions();
-        robotFunctionsThread = new TerraThread();
-        odometryThread = new TerraThread();
+        robotFunctionsThread = new TerraThread("RobotFunctionsThread");
+        odometryThread = new TerraThread("OdometryThread");
         rfsHandler.init();
     }
 
@@ -70,16 +71,14 @@ public class RobotFramework {
 
     public void update(){
         checkAccess(mainUser);
-        robotFunctionsThread.checkForException("robotFunctionsThread");
-        odometryThread.checkForException("odometryThread");
+        TerraThread.checkAllThreadsForExceptions();
     }
     /**
      * the stop method stops updating threads, and halts the robot
      * @link halt
      */
     public void stop(){
-        robotFunctionsThread.stopUpdating();
-        odometryThread.stopUpdating();
+        TerraThread.stopUpdatingAllThreads();
         halt();
     }
 

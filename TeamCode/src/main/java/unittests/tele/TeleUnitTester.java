@@ -7,6 +7,7 @@ import teleop.Tele;
 
 import unittests.UnitTester;
 import unittests.tele.framework.LagTest;
+import unittests.tele.framework.ThreadTest;
 import unittests.tele.hardware.Mecanum.MecanumCarouselTest;
 import unittests.tele.hardware.Mecanum.MecanumDriveTest;
 import unittests.tele.hardware.Mecanum.MecanumIntakeTest;
@@ -32,12 +33,13 @@ public class TeleUnitTester extends Tele implements UnitTester{
          * Framework
          */
         addAll(
-            new MecanumCarouselTest(),
-            new MecanumDriveTest(),
-            new MecanumIntakeTest(),
-            new MecanumLiftAndOuttakeTest(),
-            new MecanumLiftTest(),
-            new MecanumOuttakeTest()
+            new ThreadTest()
+//            new MecanumCarouselTest(),
+//            new MecanumDriveTest(),
+//            new MecanumIntakeTest(),
+//            new MecanumLiftAndOuttakeTest(),
+//            new MecanumLiftTest(),
+//            new MecanumOuttakeTest()
 //            new OdometryServoTest(),
 //            new AccessTest(),
 //            new CommonTest(),
