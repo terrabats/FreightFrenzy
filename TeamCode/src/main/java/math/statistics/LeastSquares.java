@@ -1,6 +1,6 @@
 package math.statistics;
 
 public class LeastSquares {
-    // TODO NEW ARNAV
+    // TOD4 NEW ARNAV
     // Make this, given set of points it finds line of least squares
 }

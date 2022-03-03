@@ -17,7 +17,7 @@ public class TankLiftTest extends TeleUnitTest {
             bot.tankLift.liftTime(0.6, 0.5)
     );
 
-    // TODO NEW
+    // TOD4 NEW
     // Make something that detects when encoders are disconnected
 
 

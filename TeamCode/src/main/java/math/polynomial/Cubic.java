@@ -20,7 +20,7 @@ public class Cubic extends Polynomial{
 
     @Override
     public double[] roots() {
-        // TODO FIX ARNAV
+        // TOD4 FIX ARNAV
         // Use newtons method to find roots of cubic
         double x1 = 0;
         double x2 = 0;

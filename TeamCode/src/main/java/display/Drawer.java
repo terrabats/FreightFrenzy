@@ -27,7 +27,7 @@ public class Drawer extends JPanel {
     protected final int circleWidth = 2;
     protected final Color circleColor = new Color(72, 76, 3);
 
-    // TODO NEW
+    // TOD4 NEW
     // Finish this
 
 

@@ -5,7 +5,7 @@ package elements;
  */
 
 public class Barrier {
-    // TODO FIX ARNAV
+    // TOD4 FIX ARNAV
     // Add data about barrier here
     // Length radius, geometric representation
 }

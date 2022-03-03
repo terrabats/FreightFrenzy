@@ -12,7 +12,7 @@ public class ColorSensors extends RobotPart {
      */
     private IColor cso;
 
-    // TODO NEW
+    // TODO4 NEW
     // Make more methods
 
     @Override

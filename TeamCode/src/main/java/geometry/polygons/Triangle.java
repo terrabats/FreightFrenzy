@@ -45,4 +45,7 @@ public class Triangle extends Polygon {
         lb.x = x[0];
         lb.y = y[0];
     }
+    // TOD4 FIX VARINI
+    // Make this class have other methods
+    // two important ones, area, and bounding box
 }
