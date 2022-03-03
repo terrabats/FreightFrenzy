@@ -9,58 +9,28 @@ import teleutil.button.OnPressEventHandler;
 import teleutil.button.OnTurnOffEventHandler;
 import teleutil.button.OnTurnOnEventHandler;
 
-import static global.General.tankAutoModules;
 import static global.General.bot;
 import static global.General.gph1;
-import static global.General.gph2;
-
-/**
- * NOTE: Uncommented
- */
+import static global.General.*;
 
 
 public class TerraOp extends Tele{
-    /**
-     * Main teleop file
-     */
-    // TODO FIX
-    // Make Teleop
 
-    /**
-     * The field side (Used to create teleops for different sides)
-     */
+    // TODO FIX
+    // Make Rest of Teleop
+
     protected FieldSide fieldSide;
 
     @Override
     public void initTele() {
-        /**
-         * Set the button handlers for the intake
-         */
-        //Gamepad 1
-        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.tankIntake.move(1));
-        gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.tankIntake.move(0));
-        gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.tankIntake.move(-1));
-        gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.tankIntake.move(0));
-
-        /**
-         * Set the button handlers for the outtake
-         */
-        //Gamepad 2
-        gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.tankOuttake.open());
-        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.tankOuttake.start());
-
-        gph1.link(Button.A, OnPressEventHandler.class, () -> bot.addAutoModule(tankAutoModules.IntakeTele));
-        gph1.link(Button.B, OnPressEventHandler.class, () -> bot.addAutoModule(tankAutoModules.BackwardTele()));
-        gph1.link(Button.Y, OnPressEventHandler.class, () -> bot.addAutoModule(tankAutoModules.ForwardTele()));
+        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
+        gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.intake.move(0));
+        gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));
+        gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.intake.move(0));
         gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModules);
-
+        gph1.link(Button.RIGHT_TRIGGER, automodules.DuckTele);
         gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);
         gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot::resumeAutoModules);
-
-        bot.tankOuttake.start();
-
-        bot.tankLift.move(0);
-
         activate(fieldSide);
     }
 
@@ -68,15 +38,12 @@ public class TerraOp extends Tele{
     public void loopTele() {
 
         // Gamepad1
-        bot.tankDrive.moveSmooth(-gamepad1.right_stick_y, gamepad1.left_stick_x);
-
-        bot.tankCarousel.move(gamepad1.right_trigger);
+        bot.drive.moveSmooth(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
+        bot.carousel.move(gamepad1.left_trigger);
 
         // Gamepad2
-        bot.tankTurret.move(gamepad2.left_stick_x);
 
-        bot.tankLift.move(-gamepad2.right_stick_y);
-
+//        bot.lift.move(-gamepad2.right_stick_y);
     }
 
 
