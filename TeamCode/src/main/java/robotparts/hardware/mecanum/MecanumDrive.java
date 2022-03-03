@@ -1,9 +1,8 @@
-package robotparts.hardware.Mecanum;
+package robotparts.hardware.mecanum;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
 
 import automodules.stage.Main;
-import automodules.stage.Stage;
 import automodules.stage.Stop;
 import math.Logistic;
 import robotparts.RobotPart;

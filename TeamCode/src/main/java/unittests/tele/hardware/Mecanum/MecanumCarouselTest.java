@@ -16,6 +16,6 @@ public class MecanumCarouselTest extends TeleUnitTest {
 
     @Override
     protected void loop() {
-        bot.mecanumCarousel.move(-gamepad1.right_stick_y);
+        bot.carousel.move(-gamepad1.right_stick_y);
     }
 }

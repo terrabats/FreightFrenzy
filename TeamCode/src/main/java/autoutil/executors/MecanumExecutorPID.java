@@ -29,12 +29,12 @@ public class MecanumExecutorPID extends ExecutorPID {
                     reactor.nextTarget();
                 }
             }else if(pathSegment instanceof PathAutoModule){
-                bot.mecanumDrive.move(0,0,0);
+                bot.drive.move(0,0,0);
                 ((PathAutoModule) pathSegment).runAutoModule();
                 whileActive(() -> !((PathAutoModule) pathSegment).isDoneWithAutoModule(), ()-> {});
             }
         }
-        bot.mecanumDrive.move(0,0,0);
+        bot.drive.move(0,0,0);
     }
 
     protected void whileActive(ReturnCodeSeg<Boolean> active, CodeSeg code){

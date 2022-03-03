@@ -60,6 +60,6 @@ public class TerraAutoBlueMec extends CompleteAuto {
 
     @Override
     public void onEnd() {
-        bot.mecanumDrive.move(0, 0, 0);
+        bot.drive.move(0, 0, 0);
     }
 }

@@ -1,13 +1,11 @@
-package robotparts.hardware.Tank;
+package robotparts.unused.tank;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import automodules.stage.Initial;
 import automodules.stage.Main;
 import automodules.stage.Stage;
 import automodules.stage.Stop;
-import elements.FieldSide;
 import math.Logistic;
 import robotparts.RobotPart;
 import robotparts.electronics.continuous.CMotor;

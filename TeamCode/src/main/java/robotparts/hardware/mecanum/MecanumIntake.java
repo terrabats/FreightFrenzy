@@ -1,4 +1,4 @@
-package robotparts.hardware.Mecanum;
+package robotparts.hardware.mecanum;
 
 import static global.General.bot;
 
@@ -59,7 +59,7 @@ public class MecanumIntake extends RobotPart {
         return new Stage(
             usePart(),
             mainIntake(),
-            bot.colorSensors.exitFreight(),
+            bot.color.exitFreight(),
             stopIntake(),
             returnPart()
         );
@@ -67,14 +67,14 @@ public class MecanumIntake extends RobotPart {
 
     public Stage intakeAndMoveForwardUntilFreight() {
         return new Stage(
-            bot.mecanumDrive.usePart(),
+            bot.drive.usePart(),
             usePart(),
-            bot.mecanumDrive.mainMoveForward(0.2),
+            bot.drive.mainMoveForward(0.2),
             mainIntake(),
-            bot.colorSensors.exitFreight(),
-            bot.mecanumDrive.stopMove(),
+            bot.color.exitFreight(),
+            bot.drive.stopMove(),
             stopIntake(),
-            bot.mecanumDrive.returnPart(),
+            bot.drive.returnPart(),
             returnPart()
         );
     }

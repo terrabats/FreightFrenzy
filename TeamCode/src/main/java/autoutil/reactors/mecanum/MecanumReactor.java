@@ -60,7 +60,7 @@ public abstract class MecanumReactor extends Reactor {
         powerVector.rotate(getPose()[2]);
         double xOut = powerVector.getX();
         double yOut = powerVector.getY();
-        bot.mecanumDrive.move(yOut, xOut, controllers.get(2).getOutput());
+        bot.drive.move(yOut, xOut, controllers.get(2).getOutput());
         log.show("yPID state (Err, Int, Der)", Arrays.toString(controllers.get(1).getErrorState()));
         log.show("xPID state (Err, Int, Der)", Arrays.toString(controllers.get(0).getErrorState()));
         log.show("hPID state (Err, Int, Der)", Arrays.toString(controllers.get(2).getErrorState()));

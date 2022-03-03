@@ -1,4 +1,4 @@
-package robotparts.sensors;
+package robotparts.unused;
 
 import robotparts.RobotPart;
 import robotparts.electronics.input.ITouch;

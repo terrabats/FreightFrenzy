@@ -1,4 +1,4 @@
-package robotparts.sensors;
+package robotparts.unused;
 
 import robotparts.RobotPart;
 import robotparts.electronics.input.IEncoder;
@@ -12,7 +12,7 @@ import static robot.RobotFramework.*;
  * NOTE: Uncommented
  */
 
-public class Odometry extends RobotPart {
+public class TankOdometry extends RobotPart {
 
     private final double ODO1_TO_CENTER_X;
 
@@ -25,7 +25,13 @@ public class Odometry extends RobotPart {
     public double[] curPos = new double[] { 0, 0, 0 };
     public double[] lastChangePos = new double[] { 0, 0, 0 };
 
-    public Odometry(double odo_to_center_x) { ODO1_TO_CENTER_X = odo_to_center_x; }
+    public TankOdometry() {
+        ODO1_TO_CENTER_X = 4.6;
+    }
+
+    public TankOdometry(double dis) {
+        ODO1_TO_CENTER_X = dis;
+    }
 
     @Override
     public void init() {
@@ -81,7 +87,7 @@ public class Odometry extends RobotPart {
     // NOTE: Odometry modules are to the left and to the back of the center of the robot
     public double[] getPosChangeCenter() {
         processTheta();
-        double gyroReading = bot.gyroSensors.getRightHeadingRad();
+        double gyroReading = bot.gyro.getRightHeadingRad();
         double dtheta = gyroReading - curPos[2];
 
         while (abs(dtheta) > PI) {

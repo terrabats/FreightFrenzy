@@ -1,4 +1,4 @@
-package robotparts.hardware.Mecanum;
+package robotparts.hardware.mecanum;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 

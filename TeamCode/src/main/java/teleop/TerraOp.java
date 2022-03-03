@@ -18,14 +18,13 @@ import static global.General.gph2;
  * NOTE: Uncommented
  */
 
-@Deprecated
+
 public class TerraOp extends Tele{
     /**
      * Main teleop file
      */
-
-    // TOD4 FIX
-    // Make this for the new robot
+    // TODO FIX
+    // Make Teleop
 
     /**
      * The field side (Used to create teleops for different sides)

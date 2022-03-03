@@ -1,4 +1,4 @@
-package robotparts.hardware.Tank;
+package robotparts.unused.tank;
 
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -50,8 +50,8 @@ public class TankOuttake extends RobotPart {
      * Mains to move the outtake
      * @return
      */
-    public Main mainLockIfBall(){return new Main(() -> {if (bot.colorSensors.isBall()) {lockBall();}});}
-    public Main mainLockIfCube(){return new Main(() -> {if (bot.colorSensors.isCube()) {lockCube();}});}
+    public Main mainLockIfBall(){return new Main(() -> {if (bot.color.isBall()) {lockBall();}});}
+    public Main mainLockIfCube(){return new Main(() -> {if (bot.color.isCube()) {lockCube();}});}
 
     public Main mainDrop(){return new Main(this::open);}
     public Main mainReset(){return new Main(this::start);}

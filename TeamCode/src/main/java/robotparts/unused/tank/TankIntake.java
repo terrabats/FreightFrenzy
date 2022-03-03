@@ -1,4 +1,4 @@
-package robotparts.hardware.Tank;
+package robotparts.unused.tank;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -59,7 +59,7 @@ public class TankIntake extends RobotPart {
     public Stage intakeUntilFreight(double power) { return new Stage(
         usePart(),
         main(power),
-        bot.colorSensors.exitFreight(),
+        bot.color.exitFreight(),
         stop(),
         returnPart()
     );}
@@ -69,7 +69,7 @@ public class TankIntake extends RobotPart {
             bot.tankLift.usePart(),
             bot.tankLift.main(-0.2),
             main(power),
-            bot.colorSensors.exitFreight(),
+            bot.color.exitFreight(),
             bot.tankLift.returnPart(),
             returnPart()
     );}
