@@ -19,7 +19,7 @@ public class Triangle extends Polygon {
         this.lb = lb;
         this.rt = rt;
     }
-    public double area(Point p1, Point p2, Point p3)
+    public double area()
     {
         //finding the distance between the 2 out of the 3 points
         double side1 = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
@@ -31,7 +31,7 @@ public class Triangle extends Polygon {
         return area;
 
     }
-    public void boundingbox(Point p1, Point p2, Point p3)
+    public Rect boundingbox()
     {
         //creating an array to store the x and y values
         double[] x = {p1.x, p2.x, p3.x};
@@ -40,12 +40,6 @@ public class Triangle extends Polygon {
         Arrays.sort(x);
         Arrays.sort(y);
         //finding the greatest and the least x and y values then assigning them to points
-        rt.x = x[2];
-        rt.y = y[2];
-        lb.x = x[0];
-        lb.y = y[0];
+        return new Rect(new Point(x[0], y[0]), new Point(x[2], y[2]));
     }
-    // TOD4 FIX VARINI
-    // Make this class have other methods
-    // two important ones, area, and bounding box
 }
