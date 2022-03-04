@@ -25,7 +25,7 @@ public class MecanumExecutorArcsPID extends Executor {
     @Override
     public void moveSetpoint(Pose nextPose) {
         PoseGenerator generator = new PoseGenerator();
-        MecanumExecutorPID executor = new MecanumExecutorPID(opMode);
+        MecanumExecutor executor = new MecanumExecutor(opMode);
 
         double ang = -nextPose.ang; // Make CW Positive
         ang -= Math.PI/2; // Make +y 0

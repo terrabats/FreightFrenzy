@@ -3,6 +3,7 @@ package autoutil.executors;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import autoutil.paths.PathAutoModule;
+import autoutil.paths.PathLine;
 import autoutil.paths.PathPose;
 import autoutil.paths.PathSegment2;
 import geometry.position.Pose;
@@ -12,9 +13,9 @@ import util.codeseg.ReturnCodeSeg;
 import static global.General.bot;
 import static global.General.log;
 
-public class MecanumExecutorPID extends ExecutorPID {
+public class MecanumExecutor extends ExecutorNew {
 
-    public MecanumExecutorPID(LinearOpMode opMode) {
+    public MecanumExecutor(LinearOpMode opMode) {
         super(opMode);
     }
 
