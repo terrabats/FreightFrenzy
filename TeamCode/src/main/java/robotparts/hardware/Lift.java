@@ -12,16 +12,6 @@ import util.codeseg.ReturnParameterCodeSeg;
 import static global.General.*;
 
 public abstract class Lift extends PMotorRobotPart {
-    /**
-     * Move the lift motor at a certain power
-     * @param p
-     */
-    @Override
-    public void move(double p){
-        for (PMotor li : motors) {
-            li.setPower(p + getRestPow());
-        }
-    }
 
     @Override
     public double getOverallTarget(double in) {
@@ -42,12 +32,12 @@ public abstract class Lift extends PMotorRobotPart {
         return new Main(() -> move(power));
     }
 
-    /**
-     * Exit when the lift is down
-     * NOTE: Uses the touch sensor
-     * @return
-     */
-    public Exit exitDown(){return new Exit(() -> bot.touchSensors.isOuttakePressingTouchSensor());}
+//    /**
+//     * Exit when the lift is down
+//     * NOTE: Uses the touch sensor
+//     * @return
+//     */
+//    public Exit exitDown(){return new Exit(() -> bot.touchSensors.isOuttakePressingTouchSensor());}
 
     /**
      * Lift for a certain time

@@ -14,74 +14,94 @@ public class MecanumOuttake extends RobotPart {
      * over is Outtake Vertical Controller
      * ohor is Outtake Horizontal Controller
      */
-    private PServo orel, over, ohor;
+    private PServo od, or, ol, ot;
 
     @Override
     public void init() {
-        orel = createPServo("orel", Servo.Direction.FORWARD, 0, 1);
-        over = createPServo("over", Servo.Direction.FORWARD, 0, 1);
-        ohor = createPServo("ohor", Servo.Direction.FORWARD, 0, 1);
+        od = createPServo("od", Servo.Direction.FORWARD, 0, 1);
+        or = createPServo("or", Servo.Direction.FORWARD, 0, 1);
+        ol = createPServo("ol", Servo.Direction.REVERSE, 0, 1);
+        ot = createPServo("ot", Servo.Direction.FORWARD, 0, 1);
 
-        orel.addPosition("released", 1);
-        orel.addPosition("locked", 0);
+        od.addPosition("releaseLeft", 0.0);
+        od.addPosition("lock", 0.53);
+        od.addPosition("releaseRight", 0.9);
 
-        over.addPosition("locked", 0);
-        over.addPosition("released", 1);
+        or.addPosition("start", 0.1);
+        or.addPosition("horizontal", 1);
+        ol.addPosition("start", 0.05);
+        ol.addPosition("horizontal", 0.92);
 
-        ohor.addPosition("default", 0);
-        ohor.addPosition("shared", 1);
+        ot.addPosition("sharedLeft", 0.18);
+        ot.addPosition("center", 0.53);
+        ot.addPosition("sharedRight", 0.9);
+
+        lock();
+        centerTurret();
+//        turnToStart();
     }
 
     /**
      * Releases the release servo
      */
-    public void releaseRelease() { orel.setPosition("released"); }
+    public void drop() { od.setPosition("releaseRight"); }
 
     /**
      * Locks the release servo
      */
-    public void lockRelease() { orel.setPosition("locked"); }
+    public void lock() { od.setPosition("lock"); }
 
     /**
      * Moves the horizontal servo for shared shipping hub
      */
-    public void moveHorizontalForShared() { ohor.setPosition("shared"); }
+    public void sharedTurretRight() { ot.setPosition("sharedRight"); }
+
+    /**
+     * Moves the horizontal servo for shared shipping hub
+     */
+    public void sharedTurretLeft() { ot.setPosition("sharedLeft"); }
 
     /**
      * Moves the horizontal servo for everything except shared shipping hub
      */
-    public void resetHorizontal() { ohor.setPosition("default"); }
+    public void centerTurret() { ot.setPosition("center"); }
 
     /**
      * Moves the vertical servo for locking
      */
-    public void lockVertical() { over.setPosition("locked"); }
+    public void turnToStart() {
+        or.setPosition("start");
+        ol.setPosition("start");
+    }
 
     /**
      * Moves the vertical servo for releasing
      */
-    public void releaseVertical() { over.setPosition("released"); }
+    public void turnToHorizontal() {
+        or.setPosition("horizontal");
+        ol.setPosition("horizontal");
+    }
 
     /**
      * Mains for all of the above functions
      * @return Main for related function
      */
-    private Main mainReleaseRelease() { return new Main(this::releaseRelease); }
-    private Main mainLockRelease() { return new Main(this::lockRelease); }
-    private Main mainSharedHorizontal() { return new Main(this::moveHorizontalForShared); }
-    private Main mainResetHorizontal() { return new Main(this::resetHorizontal); }
-    private Main mainLockVertical() { return new Main(this::lockVertical); }
-    private Main mainReleaseVertical() { return new Main(this::releaseVertical); }
+    private Main mainDrop() { return new Main(this::drop); }
+    private Main mainLock() { return new Main(this::lock); }
+    private Main mainCenterTurret() { return new Main(this::centerTurret); }
+    private Main mainSharedTurret() { return new Main(this::sharedTurretRight); }
+    private Main mainTurnToStart() { return new Main(this::turnToStart); }
+    private Main mainTurnToHorizontal() { return new Main(this::turnToHorizontal); }
 
     /**
      * Stages for all of the above mains
      * Exit condition is 1 second
      * @return Stage for related main
      */
-    private Stage stageRelease() {
+    private Stage stageDrop() {
         return new Stage(
                 usePart(),
-                mainReleaseRelease(),
+                mainDrop(),
                 exitTime(1),
                 returnPart()
         );
@@ -89,40 +109,39 @@ public class MecanumOuttake extends RobotPart {
     private Stage stageLock() {
         return new Stage(
                 usePart(),
-                mainLockRelease(),
+                mainLock(),
                 exitTime(1),
                 returnPart()
         );
     }
-    private Stage stageSharedHorizontal() {
+    private Stage stageCenterTurret() {
         return new Stage(
                 usePart(),
-                mainSharedHorizontal(),
+                mainCenterTurret(),
                 exitTime(1),
                 returnPart()
         );
     }
-    private Stage stageResetHorizontal() {
+    private Stage stageSharedTurret() {
         return new Stage(
                 usePart(),
-                mainResetHorizontal(),
+                mainSharedTurret(),
                 exitTime(1),
                 returnPart()
         );
     }
-    private Stage stageLockVertical() {
+    private Stage stageTurnToStart() {
         return new Stage(
                 usePart(),
-                mainLockVertical(),
+                mainTurnToStart(),
                 exitTime(1),
                 returnPart()
         );
     }
-    private Stage stageReleaseVertical() {
+    private Stage stageTurnToHorizontal() {
         return new Stage(
                 usePart(),
-                mainReleaseVertical(),
-                exitTime(1),
+                mainTurnToHorizontal(),
                 returnPart()
         );
     }
@@ -131,11 +150,11 @@ public class MecanumOuttake extends RobotPart {
      * Resets the outtake after shared or alliance shipping hub
      * @return StageList to reset
      */
-    public StageList reset() {
+    public StageList moveForReset() {
         return new StageList(
-            stageResetHorizontal(),
-            stageLock(),
-            stageLockVertical()
+            stageCenterTurret(),
+            stageTurnToStart(),
+            stageDrop()
         );
     }
 
@@ -145,8 +164,8 @@ public class MecanumOuttake extends RobotPart {
      */
     public StageList moveForAlliance() {
         return new StageList(
-            stageReleaseVertical(),
-            stageRelease()
+            stageTurnToHorizontal(),
+            stageCenterTurret()
         );
     }
 
@@ -156,8 +175,8 @@ public class MecanumOuttake extends RobotPart {
      */
     public StageList moveForShared() {
         return new StageList(
-            stageReleaseVertical(),
-            stageSharedHorizontal()
+            stageTurnToHorizontal(),
+            stageSharedTurret()
         );
     }
 
@@ -165,9 +184,9 @@ public class MecanumOuttake extends RobotPart {
      * Releases the game element
      * @return StageList to release
      */
-    public StageList release() {
+    public StageList moveForDrop() {
         return new StageList(
-            stageRelease()
+            stageDrop()
         );
     }
 }

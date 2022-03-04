@@ -12,7 +12,7 @@ public class MecanumAutoModules {
 
     public static StageList OuttakeAlliance = bot.outtake.moveForAlliance();
     public static StageList OuttakeShared = bot.outtake.moveForShared();
-    public static StageList ResetOuttake = bot.outtake.reset();
+    public static StageList ResetOuttake = bot.outtake.moveForReset();
 
     /**
      * High-Usage StageLists – Will be used everywhere
@@ -20,7 +20,7 @@ public class MecanumAutoModules {
      */
     public static StageList SetUpForAllianceShippingHub = new StageList().add(LiftLift, OuttakeAlliance);
     public static StageList SetUpForSharedShippingHub = new StageList().add(LiftLift, OuttakeShared);
-    public static StageList Release = new StageList().add(bot.outtake.release());
+    public static StageList Release = new StageList().add(bot.outtake.moveForDrop());
 
     public static StageList ResetLiftAndOuttake = new StageList().add(ResetOuttake, ResetLift);
 

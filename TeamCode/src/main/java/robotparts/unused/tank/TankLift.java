@@ -8,13 +8,17 @@ import robotparts.hardware.Lift;
 import util.codeseg.ReturnParameterCodeSeg;
 
 public class TankLift extends Lift {
-    @Override
-    protected double getRestPow() { return Constants.LIFT_REST_POW; }
+
 
     @Override
     public void init() {
         super.init();
         motors[0].useStallDetector(0.2, Constants.LIFT_REST_POW,200,0.03, 2);
+    }
+
+    @Override
+    protected Double[] getRestPows() {
+        return new Double[]{Constants.LIFT_REST_POW};
     }
 
     @Override
@@ -35,6 +39,13 @@ public class TankLift extends Lift {
         return new ReturnParameterCodeSeg[] {
                 h -> (Double)h * Constants.LIFT_CM_TO_TICKS
         };
+    }
+
+    @Override
+    public void move(double pow) {
+        for(PMotor p: motors){
+            p.setPower(pow);
+        }
     }
 
 }

@@ -8,9 +8,9 @@ public class NewMecanumConfig extends RobotConfig{
 //                gyro,
 //                camera,
                 carousel,
-                intake
-//                lift,
-//                outtake
+                intake,
+                lift,
+                outtake
         );
     }
 }

@@ -31,6 +31,16 @@ public class TerraOp extends Tele{
         gph1.link(Button.RIGHT_TRIGGER, automodules.DuckTele);
         gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);
         gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot::resumeAutoModules);
+
+
+        gph2.link(Button.RIGHT_TRIGGER, OnPressEventHandler.class, () -> bot.outtake.lock());
+        gph2.link(Button.LEFT_TRIGGER, OnPressEventHandler.class, () -> bot.outtake.drop());
+        gph2.link(Button.RIGHT_BUMPER, OnPressEventHandler.class, () -> bot.outtake.turnToHorizontal());
+        gph2.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.outtake.turnToStart());
+        gph2.link(Button.DPAD_RIGHT, OnPressEventHandler.class, () -> bot.outtake.sharedTurretRight());
+        gph2.link(Button.DPAD_DOWN, OnPressEventHandler.class, () -> bot.outtake.centerTurret());
+        gph2.link(Button.DPAD_LEFT, OnPressEventHandler.class, () -> bot.outtake.sharedTurretLeft());
+
         activate(fieldSide);
     }
 
@@ -41,21 +51,12 @@ public class TerraOp extends Tele{
         bot.drive.moveSmooth(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
         bot.carousel.move(gamepad1.left_trigger);
 
+        bot.lift.move(-gamepad2.right_stick_y);
+
         // Gamepad2
 
 //        bot.lift.move(-gamepad2.right_stick_y);
     }
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Define the two teleops for each side

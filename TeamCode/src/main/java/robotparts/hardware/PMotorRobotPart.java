@@ -12,7 +12,7 @@ public abstract class PMotorRobotPart extends RobotPart {
 
     protected ReturnParameterCodeSeg<Double, Double>[] getTargets;
 
-    protected abstract double getRestPow();
+    protected abstract Double[] getRestPows();
 
     /**
      * Gets angle of the lift (overwritten by child classes)
@@ -28,6 +28,7 @@ public abstract class PMotorRobotPart extends RobotPart {
     public void init() {
         motors = getMotors();
         getTargets = getTargetConvertors();
+        resetEncoder();
     }
 
     public abstract PMotor[] getMotors();
