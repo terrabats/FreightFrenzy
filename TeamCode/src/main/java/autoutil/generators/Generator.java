@@ -3,6 +3,7 @@ package autoutil.generators;
 import automodules.StageList;
 import autoutil.paths.Path;
 import autoutil.paths.PathAutoModule;
+import autoutil.paths.PathPose;
 
 public abstract class Generator {
 
