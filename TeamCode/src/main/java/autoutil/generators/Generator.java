@@ -1,6 +1,8 @@
 package autoutil.generators;
 
+import automodules.StageList;
 import autoutil.paths.Path;
+import autoutil.paths.PathAutoModule;
 
 public abstract class Generator {
 
@@ -8,6 +10,10 @@ public abstract class Generator {
 
     public Path getPath() {
         return path;
+    }
+
+    public void addAutoModule(StageList automodule){
+        path.addSegment(new PathAutoModule(automodule));
     }
 
 }
