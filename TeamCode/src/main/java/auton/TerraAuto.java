@@ -17,6 +17,6 @@ public class TerraAuto extends MecanumAuto<MecanumPIDReactor, LineGenerator>{
 
         generator.addAutoModule(automodules.DuckTele);
         generator.addLine(0,20,0);
-        generator.addLine(20,20,0);
+//        generator.addLine(20,20,0);
     }
 }
