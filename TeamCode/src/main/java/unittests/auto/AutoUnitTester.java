@@ -7,6 +7,7 @@ import static global.General.log;
 import auton.Auto;
 import elements.FieldSide;
 import unittests.UnitTester;
+import unittests.auto.framework.AutoModuleInitialTest;
 import unittests.auto.framework.InternalCameraTest;
 import unittests.auto.framework.IteratorTest;
 import unittests.auto.framework.ParameterConstructorTest;
@@ -43,7 +44,8 @@ public class AutoUnitTester extends Auto implements UnitTester {
 //                new MoveTest()
 //                new InternalCameraTest()
 //                new ParameterConstructorTest()
-                new PurePursuitTest()
+//                new PurePursuitTest()
+                new AutoModuleInitialTest()
         );
     }
 

@@ -3,14 +3,14 @@ package autoutil.controllers;
 import autoutil.profilers.Profiler;
 import util.codeseg.ReturnCodeSeg;
 
-public abstract class Controller {
+public abstract class Controller1D {
 
     protected ReturnCodeSeg<Double> processVariable;
     protected ReturnCodeSeg<Double> processError = this::getRawError;
     protected Profiler processVariableProfiler = new Profiler(() -> 0.0);
     protected Profiler errorProfiler = new Profiler(this::getError);
 
-    protected double output = 0;
+    private double output = 0;
     protected boolean isAtTarget = false;
 
     protected double currentValue = 0;
@@ -39,6 +39,8 @@ public abstract class Controller {
     public double getOutput(){
         return output;
     }
+
+    public void setOutput(double output){this.output = output;}
 
     public void setTarget(double targetValue){
         this.targetValue = targetValue;
