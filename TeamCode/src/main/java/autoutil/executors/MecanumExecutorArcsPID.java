@@ -35,5 +35,7 @@ public class MecanumExecutorArcsPID extends Executor {
 
         executor.setPath(generator.getPath());
         executor.setReactor(new MecanumPIDReactor());
+
+        executor.followPath();
     }
 }

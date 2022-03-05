@@ -10,13 +10,31 @@ import automodules.StageList;
 import geometry.circles.AngleType;
 import util.codeseg.CodeSeg;
 
+/**
+ * An executor for movement and RobotFunctions, combined
+ */
 public abstract class Executor extends MovementExecutor {
 
+    /**
+     * Stores whether there are synced RFs to do during each movement
+     */
     private final boolean[] syncedSegsExist = new boolean[1000];
+    /**
+     * Stores whether there are unsynced RFs to do during each movement
+     */
     private final boolean[] unSyncedSegsExist = new boolean[1000];
+    /**
+     * Stores the synced RFs to do during each movement
+     */
     private final TreeMap<Integer, LinkedList<CodeSeg>> syncedSegs = new TreeMap<>();
+    /**
+     * Stores the unsynced RFs to do during each movement
+     */
     private final TreeMap<Integer, LinkedList<CodeSeg>> unSyncedSegs = new TreeMap<>();
 
+    /**
+     * Stores whether a codeSeg is currently running or not
+     */
     private boolean runningCodeSeg = false;
 
     //region CONSTRUCTORS
@@ -25,16 +43,9 @@ public abstract class Executor extends MovementExecutor {
         fillBoolArrs();
     }
 
-//    public Executor(double stH, AngleType angleType) {
-//        super(0, 0, stH, angleType);
-//        fillBoolArrs();
-//    }
-//
-//    public Executor(double stX, double stY, double stH, AngleType angleType) {
-//        super(stX, stY, stH, angleType);
-//        fillBoolArrs();
-//    }
-
+    /**
+     * Initially populates the boolean arrays
+     */
     private void fillBoolArrs() {
         for (int i = 0; i < 1000; i++) {
             syncedSegsExist[i] = false;
@@ -43,6 +54,11 @@ public abstract class Executor extends MovementExecutor {
     }
     //endregion
 
+    /**
+     * Adds a synchronized RF for the current movement
+     * Put before the movement you want it synchronized with
+     * @param rf SyncedRF to add
+     */
     public void addSynchronizedRF(StageList rf) {
         if (!syncedSegsExist[curPath]) {
             syncedSegsExist[curPath] = true;
@@ -51,6 +67,11 @@ public abstract class Executor extends MovementExecutor {
         syncedSegs.get(curPath).add(() -> bot.addAutoModule(rf));
     }
 
+    /**
+     * Adds an unsynced RF for the break between these two movements
+     * Put it between the two movements you want to put it between
+     * @param rf RobotFunction to execute
+     */
     public void addUnsynchronizedRF(StageList rf) {
         if (!unSyncedSegsExist[curPath]) {
             unSyncedSegsExist[curPath] = true;
@@ -59,18 +80,31 @@ public abstract class Executor extends MovementExecutor {
         unSyncedSegs.get(curPath).add(() -> bot.addAutoModule(rf));
     }
 
+    /**
+     * Adds a pause between two movements/RFs
+     * @param time duration
+     */
     public void addPause(double time) {
         addUnsynchronizedRF(tankAutoModules.pause(time));
     }
 
+    /**
+     * Is the executor completely finished (movement + RFs)
+     * @return
+     */
     public boolean finished() {
         return finishedMove() && !unSyncedSegsExist[curPath] && !syncedSegsExist[curPath]
                 && bot.rfsHandler.rfsQueue.isEmpty();
     }
 
+    /**
+     * Updates RFs and Movement
+     */
     public void update() {
         if (!runningCodeSeg) {
+            // Not doing an unsynced RF
             if (!moveRunning) {
+                // Updating unsynced RFs
                 if (unSyncedSegsExist[curPath]) {
                     runningCodeSeg = true;
                     unSyncedSegs.get(curPath).poll().run();
@@ -79,6 +113,7 @@ public abstract class Executor extends MovementExecutor {
                     resumeMove();
                 }
             } else {
+                // Updating synced RFs and movement
                 if (syncedSegsExist[curPath]) {
                     syncedSegs.get(curPath).poll().run();
                     syncedSegsExist[curPath] = !syncedSegs.get(curPath).isEmpty();
@@ -86,6 +121,7 @@ public abstract class Executor extends MovementExecutor {
                 updateMovement();
             }
         } else {
+            // Waiting for unsynced RF to finish
             runningCodeSeg = !bot.rfsHandler.rfsQueue.isEmpty();
         }
     }
