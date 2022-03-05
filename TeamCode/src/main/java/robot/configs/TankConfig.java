@@ -1,7 +1,5 @@
 package robot.configs;
 
-import robotparts.sensors.Odometry;
-
 public class TankConfig extends RobotConfig{
     /**
      *  Define RobotPart objects here. If you are not using a specific robot part
@@ -9,7 +7,6 @@ public class TankConfig extends RobotConfig{
      *  should go in robot framework.
      */
     {
-        odometry = new Odometry(4.6);
         define(
                 tankDrive,
                 tankIntake,
@@ -17,10 +14,10 @@ public class TankConfig extends RobotConfig{
                 tankLift,
                 tankOuttake,
                 tankCarousel,
-                colorSensors,
-                gyroSensors,
+                color,
+                gyro,
                 odometry,
-                cameras
+                camera
         );
     }
 }

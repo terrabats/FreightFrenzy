@@ -1,4 +1,4 @@
-package robotparts.hardware.Tank;
+package robotparts.unused.tank;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
@@ -80,7 +80,7 @@ public class TankTurret extends RobotPart {
      * Get the target position based on the field side
      * @return target pos
      */
-    // TODO TEST VARINI
+    // TOD4 TEST VARINI
     // Test this
     public double getTargetPos(){
         if(fieldSide != null) {

@@ -17,6 +17,6 @@ public class MecanumLiftTest extends TeleUnitTest {
 
     @Override
     protected void loop() {
-        bot.mecanumLift.move(-gamepad1.right_stick_y);
+        bot.lift.move(-gamepad1.right_stick_y);
     }
 }

@@ -1,6 +1,5 @@
 package unittests.auto.framework;
 
-import autoutil.vision.Scanner;
 import autoutil.vision.TeamElementScanner;
 import unittests.auto.AutoUnitTest;
 
@@ -12,19 +11,19 @@ public class ExternalCameraTest extends AutoUnitTest {
 
     @Override
     public void init() {
-        bot.cameras.setExternalScanner(teamElementScanner);
-        bot.cameras.startExternalCamera();
+        bot.camera.setExternalScanner(teamElementScanner);
+        bot.camera.startExternalCamera();
     }
 
     @Override
     protected void run() {
         whileActive(() -> {
-            log.show("External Camera FPS", bot.cameras.getInternalFPS());
+            log.show("External Camera FPS", bot.camera.getInternalFPS());
         });
     }
 
     @Override
     public void stop() {
-        bot.cameras.stopExternalCamera();
+        bot.camera.stopExternalCamera();
     }
 }

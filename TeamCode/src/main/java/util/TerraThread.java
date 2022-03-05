@@ -1,9 +1,13 @@
 package util;
 
 
+import java.util.ArrayList;
+import java.util.TreeMap;
+
 import global.Constants;
 import util.codeseg.CodeSeg;
 import util.codeseg.ExceptionCodeSeg;
+import util.codeseg.ParameterCodeSeg;
 import util.condition.Expectation;
 import util.condition.Magnitude;
 import util.condition.Status;
@@ -31,6 +35,21 @@ public class TerraThread extends Thread {
      * Was an exception thrown inside the thread?
      */
     private volatile boolean wasExceptionThrown = false;
+
+    public static ArrayList<TerraThread> allTerraThreads = new ArrayList<>();
+
+    private final String name;
+
+
+    public TerraThread(String name){
+        this.name = name;
+        allTerraThreads.add(this);
+    }
+
+
+    public static void init(){
+        allTerraThreads = new ArrayList<>();
+    }
 
     /**
      * Set the update code (code which will be executed in this thread in a loop)
@@ -95,12 +114,39 @@ public class TerraThread extends Thread {
     /**
      * Check if this thread had an exception thrown inside it
      * NOTE: This will throw another exception but in the main thread so it is visible and will not just crash the app
-     * @param threadName
      */
-    public synchronized void checkForException(String threadName){
+    private synchronized void checkForException(){
         if(wasExceptionThrown){
-            fault.warn("Exception thrown from inside thread " + threadName, Expectation.SURPRISING, Magnitude.CATASTROPHIC);
+            fault.warn("Exception thrown from inside thread " + name, Expectation.SURPRISING, Magnitude.CATASTROPHIC);
         }
     }
 
+    public static synchronized void checkAllThreadsForExceptions(){
+        forAllThreads(TerraThread::checkForException);
+    }
+
+    public static synchronized int getNumberOfStartedThreads(){
+        return allTerraThreads.size();
+    }
+
+    public static synchronized int getNumberOfActiveThreads(){
+        int count = 0;
+        for(TerraThread thread: allTerraThreads){
+            if(!thread.wasExceptionThrown){
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    public static void stopUpdatingAllThreads(){
+        forAllThreads(TerraThread::stopUpdating);
+    }
+
+    public static synchronized void forAllThreads(ParameterCodeSeg<TerraThread> code){
+        for(TerraThread thread: allTerraThreads){
+           code.run(thread);
+        }
+    }
 }

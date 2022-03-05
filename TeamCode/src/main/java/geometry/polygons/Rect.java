@@ -52,6 +52,6 @@ public class Rect extends Quadrilateral {
 
     //Creates a string representation
     public String toString() {
-        return getX1() + ", " + getY1() + ", " + getX2() + ", " + getY2();
+        return "X1: " + getX1() + ", Y1: " + getY1() + ", X2: " + getX2() + ", Y2: " + getY2();
     }
 }

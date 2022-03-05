@@ -1,7 +1,6 @@
 package unittests.auto.framework;
 
 import autoutil.vision.TeamElementScanner;
-import unittests.UnitTest;
 import unittests.auto.AutoUnitTest;
 
 import static global.General.bot;
@@ -13,20 +12,20 @@ public class InternalCameraTest extends AutoUnitTest {
 
     @Override
     public void init() {
-        bot.cameras.setInternalScanner(teamElementScanner);
-        bot.cameras.startInternalCamera();
+        bot.camera.setInternalScanner(teamElementScanner);
+        bot.camera.startInternalCamera();
     }
 
     @Override
     protected void run() {
         whileActive(() -> {
-            log.show("Internal Camera FPS", bot.cameras.getInternalFPS());
+            log.show("Internal Camera FPS", bot.camera.getInternalFPS());
             log.show("Detected Case", teamElementScanner.getCase());
         });
     }
 
     @Override
     public void stop() {
-        bot.cameras.stopInternalCamera();
+        bot.camera.stopInternalCamera();
     }
 }

@@ -2,26 +2,49 @@ package robot.configs;
 
 import robot.RobotFramework;
 import robotparts.RobotPart;
-import robotparts.hardware.Mecanum.MecanumCarousel;
-import robotparts.hardware.Mecanum.MecanumIntake;
-import robotparts.hardware.Mecanum.MecanumLift;
-import robotparts.hardware.Mecanum.MecanumOuttake;
-import robotparts.hardware.Tank.TankCarousel;
-import robotparts.hardware.Tank.TankIntake;
-import robotparts.hardware.Tank.TankLift;
-import robotparts.hardware.Tank.TankOuttake;
-import robotparts.hardware.Tank.TankDrive;
-import robotparts.hardware.Tank.TankTurret;
+import robotparts.hardware.mecanum.MecanumCarousel;
+import robotparts.hardware.mecanum.MecanumIntake;
+import robotparts.hardware.mecanum.MecanumLift;
+import robotparts.hardware.mecanum.MecanumOuttake;
+import robotparts.sensors.TwoOdometry;
+import robotparts.unused.tank.TankCarousel;
+import robotparts.unused.tank.TankIntake;
+import robotparts.unused.tank.TankLift;
+import robotparts.unused.tank.TankOuttake;
+import robotparts.unused.tank.TankDrive;
+import robotparts.unused.tank.TankTurret;
 import robotparts.sensors.Cameras;
 import robotparts.sensors.ColorSensors;
-import robotparts.sensors.DistanceSensors;
+import robotparts.unused.DistanceSensors;
 import robotparts.sensors.GyroSensors;
-import robotparts.sensors.Leds;
-import robotparts.sensors.Odometry;
-import robotparts.sensors.TouchSensors;
-import robotparts.hardware.Mecanum.MecanumDrive;
+import robotparts.unused.Leds;
+import robotparts.unused.TankOdometry;
+import robotparts.unused.TouchSensors;
+import robotparts.hardware.mecanum.MecanumDrive;
 
 public abstract class RobotConfig extends RobotFramework {
+
+    /**
+     * USED
+     */
+    public final MecanumDrive drive = new MecanumDrive();
+    public final MecanumCarousel carousel = new MecanumCarousel();
+    public final MecanumIntake intake = new MecanumIntake();
+    public final MecanumLift lift = new MecanumLift();
+    public final MecanumOuttake outtake = new MecanumOuttake();
+    public final ColorSensors color = new ColorSensors();
+    public final GyroSensors gyro = new GyroSensors();
+    public final Cameras camera = new Cameras();
+    public final TwoOdometry odometry = new TwoOdometry();
+
+
+
+
+
+
+    /**
+     * UNUSED
+     */
 
     /**
      * All of the tank-specific robot parts
@@ -32,26 +55,15 @@ public abstract class RobotConfig extends RobotFramework {
     public final TankLift tankLift = new TankLift();
     public final TankOuttake tankOuttake = new TankOuttake();
     public final TankCarousel tankCarousel = new TankCarousel();
-
-    /**
-     * All of the mecanum-specific robot parts
-     */
-    public final MecanumDrive mecanumDrive = new MecanumDrive();
-    public final MecanumCarousel mecanumCarousel = new MecanumCarousel();
-    public final MecanumIntake mecanumIntake = new MecanumIntake();
-    public final MecanumLift mecanumLift = new MecanumLift();
-    public final MecanumOuttake mecanumOuttake = new MecanumOuttake();
+    public final TankOdometry tankOdometry = new TankOdometry();
 
     /**
      * All of the robot parts in both tank and mecanum
      */
-    public final ColorSensors colorSensors = new ColorSensors();
-    public final GyroSensors gyroSensors = new GyroSensors();
-    public Odometry odometry;
     public final TouchSensors touchSensors = new TouchSensors();
     public final DistanceSensors distanceSensors = new DistanceSensors();
     public final Leds leds = new Leds();
-    public final Cameras cameras = new Cameras();
+
 
     protected final void define(RobotPart... parts){
         for(RobotPart part:parts){ part.instantiate(); }

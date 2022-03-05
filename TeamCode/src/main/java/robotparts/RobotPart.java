@@ -102,6 +102,12 @@ public class RobotPart {
         return pmotor;
     }
 
+    protected PMotor createPMotor(String name, DcMotor.Direction dir, DcMotor.ZeroPowerBehavior zph){
+        PMotor pmotor = new PMotor(hardwareMap.get(DcMotor.class, name), dir, zph, DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        addElectronic(name, pmotor);
+        return pmotor;
+    }
+
     protected IGyro createGyro(String name){
         IGyro gyro = new IGyro(hardwareMap.get(BNO055IMU.class, name));
         addElectronic(name, gyro);

@@ -1,5 +1,4 @@
 package math.polynomial;
-
 import geometry.position.Point;
 
 /**
@@ -18,6 +17,11 @@ public class Linear extends Polynomial{
         super((p2.y-p1.y)/(p2.x-p1.x) , p1.y - (p1.x*(p2.y-p1.y)/(p2.x-p1.x)));
         this.m = a(0);
         this.b = a(1);
+    }
+
+    @Override
+    public double f(double x) {
+        return  (m*x) + b;
     }
 
     @Override

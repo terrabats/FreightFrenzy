@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import geometry.circles.AngleType;
+import geometry.polygons.Rect;
+import geometry.polygons.Triangle;
 import geometry.position.Line;
 import geometry.position.Point;
 import geometry.position.Pose;
@@ -17,9 +19,9 @@ import geometry.position.Vector;
 public class Drawer extends JPanel {
     protected Graphics2D g;
     protected final int pointSize = 5;
-    protected final Color pointColor = Color.BLACK;
+    protected Color pointColor = Color.BLACK;
     protected final int lineWidth = 2;
-    protected final Color lineColor = Color.GRAY;
+    protected Color lineColor = Color.GRAY;
     protected final int poseLength = 10;
     protected final Color poseColor = Color.DARK_GRAY;
     protected final int arcWidth = 2;
@@ -27,7 +29,7 @@ public class Drawer extends JPanel {
     protected final int circleWidth = 2;
     protected final Color circleColor = new Color(72, 76, 3);
 
-    // TODO NEW
+    // TOD4 NEW
     // Finish this
 
 
@@ -61,14 +63,42 @@ public class Drawer extends JPanel {
         g.drawOval((int) c.x, (int) c.y, (int) r,(int) r);
     }
 
+    public void whatToDraw(){
+        Triangle triangle = new Triangle(new Point(200,240), new Point(300,180), new Point(260,160));
+        double area = triangle.area();
+        Rect bbox = triangle.boundingbox();
+        System.out.println(area);
+        System.out.println(bbox.toString());
+        Point p1 = triangle.points.get(0);
+        Point p2 = triangle.points.get(1);
+        Point p3 = triangle.points.get(2);
+        drawLine(new Line(p1, p2));
+        drawLine(new Line(p2, p3));
+        drawLine(new Line(p1, p3));
+        drawPoint(p1);
+        drawPoint(p2);
+        drawPoint(p3);
+        Point r1 = new Point(bbox.getX1(), bbox.getY1());
+        Point r2 = new Point(bbox.getX1(), bbox.getY2());
+        Point r3 = new Point(bbox.getX2(), bbox.getY2());
+        Point r4 = new Point(bbox.getX2(), bbox.getY1());
+        pointColor = Color.RED;
+        lineColor = Color.BLUE;
+        drawLine(new Line(r1, r2));
+        drawLine(new Line(r2, r3));
+        drawLine(new Line(r3, r4));
+        drawLine(new Line(r4, r1));
+        drawPoint(r1);
+        drawPoint(r2);
+        drawPoint(r3);
+        drawPoint(r4);
+    }
+
+
     @Override
     public void paintComponent(Graphics g) {
         this.g = (Graphics2D) g;
-        drawPoint(new Point(100,100));
-        drawLine(new Line(new Point(0,0), new Point(60,60)));
-        drawPose(new Pose(new Point(200,200),90, AngleType.DEGREES));
-        drawCircularArc(new Point(100,200),40, 0,90, AngleType.DEGREES);
-        drawCircle(new Point(200, 200), 100);
+        whatToDraw();
     }
 
 

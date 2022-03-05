@@ -6,13 +6,13 @@ import autoutil.paths.Path;
 import autoutil.reactors.Reactor;
 import util.codeseg.ReturnCodeSeg;
 
-public abstract class ExecutorPID {
+public abstract class ExecutorNew {
 
     protected Path path;
     protected Reactor reactor;
     protected ReturnCodeSeg<Boolean> whileOpModeIsActive;
 
-    public ExecutorPID(LinearOpMode opMode){
+    public ExecutorNew(LinearOpMode opMode){
         whileOpModeIsActive = opMode::opModeIsActive;
     }
 

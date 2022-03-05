@@ -1,34 +1,45 @@
-package robotparts.hardware.Mecanum;
+package robotparts.hardware.mecanum;
 
-import static java.lang.Math.PI;
-
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import automodules.stage.Exit;
-import automodules.stage.Initial;
-import automodules.stage.Main;
-import automodules.stage.Stage;
-import automodules.stage.Stop;
 import global.Constants;
-import robotparts.RobotPart;
 import robotparts.electronics.positional.PMotor;
 import robotparts.hardware.Lift;
-import robotparts.hardware.Tank.TankLift;
 import util.codeseg.ReturnParameterCodeSeg;
 
-import static global.General.*;
-
 public class MecanumLift extends Lift {
+
+    /**
+     * Move the lift motor at a certain power
+     * @param p
+     */
     @Override
-    protected double getRestPow() {
-        return 0;
+    public void move(double p){
+        if(p > 0){
+            motors[0].setPower(p + getRestPows()[0]);
+            motors[1].setPower((0.7 * p) + getRestPows()[1]);
+        }else if (p < 0){
+            motors[0].setPower((0.9 * p) + getRestPows()[0]);
+            motors[1].setPower(p + getRestPows()[1]);
+        }else{
+            motors[0].setPower(getRestPows()[0]);
+            motors[1].setPower(getRestPows()[1]);
+        }
     }
+
 
     @Override
     public void init() {
         super.init();
+
         motors[0].useStallDetector(0.2, 0,200,0.03, 2);
         motors[1].useStallDetector(0.2, 0,200,0.03, 2);
+    }
+
+    @Override
+    protected Double[] getRestPows() {
+        return new Double[]{0.07, -0.05};
     }
 
     @Override
@@ -39,8 +50,8 @@ public class MecanumLift extends Lift {
     @Override
     public PMotor[] getMotors() {
         return new PMotor[] {
-            createPMotor("lil", DcMotorSimple.Direction.FORWARD),
-            createPMotor("lir", DcMotorSimple.Direction.REVERSE)
+            createPMotor("lil", DcMotorSimple.Direction.REVERSE),
+            createPMotor("lir", DcMotorSimple.Direction.REVERSE, DcMotor.ZeroPowerBehavior.FLOAT)
         };
     }
 

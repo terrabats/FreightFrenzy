@@ -11,7 +11,7 @@ public class ColorTest extends TeleUnitTest {
      * Tests color sensors
      */
 
-    // TODO NEW ARNAV
+    // TOD4 NEW ARNAV
     // Make sensor calibration code
     // For all the values of a distance sensor should be recorded, the actual values passed in, and a line of best fit created
 
@@ -23,11 +23,11 @@ public class ColorTest extends TeleUnitTest {
          * s is the saturation
          * v is the value or brightness
          */
-        log.show("Color sensor reading", Arrays.toString(bot.colorSensors.getOuttakeColorHSV()));
+        log.show("Color sensor reading", Arrays.toString(bot.color.getOuttakeColorHSV()));
         /**
          * These should turn true depending on the type of freight
          */
-        log.show("Put a ball in the intake", bot.colorSensors.isBall());
-        log.show("Put a cube in the intake", bot.colorSensors.isCube());
+        log.show("Put a ball in the intake", bot.color.isBall());
+        log.show("Put a cube in the intake", bot.color.isCube());
     }
 }

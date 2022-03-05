@@ -27,6 +27,8 @@ public class Logger {
         shouldUpdateOnShow = value;
     }
 
+    public boolean getShouldUpdateOnShow(){ return shouldUpdateOnShow; }
+
     private void updateOnShow(){
         if(shouldUpdateOnShow){telemetry.update();}
     }

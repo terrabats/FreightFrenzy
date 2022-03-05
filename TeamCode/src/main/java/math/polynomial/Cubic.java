@@ -20,7 +20,7 @@ public class Cubic extends Polynomial{
 
     @Override
     public double[] roots() {
-        // TODO FIX ARNAV
+        // TOD4 FIX ARNAV
         // Use newtons method to find roots of cubic
         double x1 = 0;
         double x2 = 0;
@@ -29,8 +29,6 @@ public class Cubic extends Polynomial{
         double b = (double) C / A;
         double c = (double) D / A;
 
-        System.out.println("Double values: ");
-        System.out.println(a + " " + b + " " + c);
         double p = b - ((a * a) / 3.0);
 
         double q = (2 * Math.pow(a, 3) / 27.0) - (a * b / 3.0) + c;
@@ -73,7 +71,6 @@ public class Cubic extends Polynomial{
 
         } else {
 
-            System.out.println("here");
             x1 = (2.0 / Math.sqrt(3)) * (Math.sqrt(-p) * Math.sin((1 / 3.0) * Math.asin(((3 * Math.sqrt(3) * q) / (2 * Math.pow(Math.pow(-p, (double) 1 / 2), 3)))))) - (a / 3.0);
             x2 = (-2.0 / Math.sqrt(3)) * (Math.sqrt(-p) * Math.sin((1 / 3.0) * Math.asin(((3 * Math.sqrt(3) * q) / (2 * Math.pow(Math.pow(-p, (double) 1 / 2), 3)))) + (Math.PI / 3))) - (a / 3.0);
             x3 = (2.0 / Math.sqrt(3)) * (Math.sqrt(-p) * Math.cos((1 / 3.0) * Math.asin(((3 * Math.sqrt(3) * q) / (2 * Math.pow(Math.pow(-p, (double) 1 / 2), 3)))) + (Math.PI / 6))) - (a / 3.0);

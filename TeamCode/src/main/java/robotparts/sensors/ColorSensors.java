@@ -12,7 +12,7 @@ public class ColorSensors extends RobotPart {
      */
     private IColor cso;
 
-    // TODO NEW
+    // TODO4 NEW
     // Make more methods
 
     @Override
@@ -70,6 +70,8 @@ public class ColorSensors extends RobotPart {
         boolean hasFreightNear = element.equals(GameElement.BALL) || element.equals(GameElement.CUBE);
         return hasFreightNear && cso.getDistance() < 4;
     }
+
+
     public Exit exitFreight(){return new Exit(this::isFreight);}
 
 }

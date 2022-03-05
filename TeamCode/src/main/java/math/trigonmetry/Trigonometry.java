@@ -1,7 +1,7 @@
 package math.trigonmetry;
 
 public class Trigonometry {
-    // TODO NEW
+    // TOD4 NEW
     // Add classes here for trig related stuffs
 
     /**
