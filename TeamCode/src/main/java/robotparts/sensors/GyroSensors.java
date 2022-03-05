@@ -26,4 +26,14 @@ public class GyroSensors extends RobotPart {
     public double getLeftHeadingDeg() { return gsl.getHeading(); }
     public double getLeftHeadingRad() { return AngleType.degToRad(getRightHeadingDeg()); }
 
+    public static double processThetaError(double error){
+        while (error < -180) {
+            error += 360;
+        }
+        while (error > 180) {
+            error -= 360;
+        }
+        return error;
+    }
+
 }

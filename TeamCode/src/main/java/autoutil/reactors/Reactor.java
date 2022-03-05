@@ -10,7 +10,6 @@ import geometry.position.Pose;
 
 public abstract class Reactor {
 
-//    protected ArrayList<Controller1D> controllers = new ArrayList<>();
     protected Controller2D movementController;
     protected Controller1D headingController;
     protected PathSegment2 pathSegment;

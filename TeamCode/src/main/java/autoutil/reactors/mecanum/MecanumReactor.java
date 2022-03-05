@@ -5,6 +5,7 @@ import java.util.Arrays;
 import autoutil.reactors.Reactor;
 import geometry.position.Pose;
 import geometry.position.Vector2;
+import robotparts.sensors.GyroSensors;
 
 import static global.General.bot;
 import static global.General.log;
@@ -16,18 +17,8 @@ public abstract class MecanumReactor extends Reactor {
         movementController.xController.setProcessError(() -> getPose().p.x);
         movementController.yController.setProcessError(() -> getPose().p.y);
         headingController.setProcessError(() -> getPose().ang);
-        headingController.setProcessError(() -> processThetaError(headingController.getRawError()));
+        headingController.setProcessError(() -> GyroSensors.processThetaError(headingController.getRawError()));
         nextTarget();
-    }
-
-    public double processThetaError(double error){
-        while (error < -180) {
-            error += 360;
-        }
-        while (error > 180) {
-            error -= 360;
-        }
-        return error;
     }
 
     @Override

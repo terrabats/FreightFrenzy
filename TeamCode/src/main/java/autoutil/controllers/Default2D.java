@@ -17,6 +17,7 @@ public class Default2D extends Controller2D{
         powerVector.rotate(pose.ang);
         setOutputX(powerVector.getX());
         setOutputY(powerVector.getY());
+        isAtTarget =  xController.isAtTarget() && yController.isAtTarget();
     }
 
 }

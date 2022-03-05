@@ -3,6 +3,7 @@ package autoutil.controllers;
 import autoutil.paths.PathLine;
 import autoutil.paths.PathLine2;
 import autoutil.paths.PathSegment2;
+import geometry.polygons.Triangle;
 import geometry.position.Line;
 import geometry.position.Point;
 import geometry.position.Pose;
@@ -10,6 +11,8 @@ import geometry.position.Vector;
 import geometry.position.Vector2;
 import math.misc.Exponential;
 import math.misc.Logistic;
+import math.polynomial.Quadratic;
+import math.trigonmetry.Trigonometry;
 import util.condition.Expectation;
 import util.condition.Magnitude;
 
@@ -18,7 +21,6 @@ import static global.General.fault;
 public class PurePursuit extends Controller2D {
     public double maxRadius = 15;
     public double currentRadius = 5;
-    public boolean isDone = false;
 
     private final Exponential radiusLogistic;
 
@@ -34,10 +36,8 @@ public class PurePursuit extends Controller2D {
         if(pathSegment instanceof PathLine2){
             currentLine = ((PathLine2) pathSegment).getLine();
         }else{
-            fault.check("Use LineGenerator for Pure Pursuit", Expectation.UNEXPECTED, Magnitude.CATASTROPHIC);
+            fault.check("Use Line Generator for Pure Pursuit", Expectation.UNEXPECTED, Magnitude.CATASTROPHIC);
         }
-        // TODO TEST
-        // CHECK ending case
         Point targetPos = getTargetPos(pose.p, currentLine);
         xController.setTarget(targetPos.x);
         yController.setTarget(targetPos.y);
@@ -52,23 +52,21 @@ public class PurePursuit extends Controller2D {
         currentRadius = radiusLogistic.f(dis);
     }
 
+    public Point getTargetPos(Point currentPos, Line currentLine){
+        return currentLine.getAt(solve(currentPos, currentLine));
+    }
+
     public double solve(Point currentPos, Line currentLine){
-        double x1 = currentLine.p1.x;
-        double y1 = currentLine.p1.y;
-        double mx = currentLine.mx;
-        double my = currentLine.my;
-        double xr = currentPos.x;
-        double yr = currentPos.y;
-        double dx = x1-xr;
-        double dy = y1-yr;
-        double a = (mx*mx)+(my*my);
-        double b = 2*((dx*mx)+(dy*my));
-        double c = (dx*dx)+(dy*dy)-(currentRadius*currentRadius);
-        double disc = (b * b) - (4 * a * c);
-        double ans = (-1)*((b - Math.sqrt(disc)) / (2 * a));
+        double dx = currentLine.p1.x-currentPos.x;
+        double dy = currentLine.p1.y-currentPos.y;
+        double a = Math.pow(Trigonometry.pythag(currentLine.mx, currentLine.my),2);
+        double b = 2*((dx*currentLine.mx)+(dy*currentLine.my));
+        double c = Math.pow(Trigonometry.pythag(dx, dy),2)-Math.pow(currentRadius,2);
+        Quadratic quadratic = new Quadratic(a, b, c);
+        double ans = quadratic.roots()[0];
         if(!Double.isNaN(ans)) {
             if(ans > 0.99){
-                isDone = true;
+                isAtTarget = true;
                 return 1;
             }else {
                 return ans;
@@ -76,10 +74,6 @@ public class PurePursuit extends Controller2D {
         }else{
             return 1;
         }
-    }
-
-    public Point getTargetPos(Point currentPos, Line currentLine){
-        return currentLine.getAt(solve(currentPos, currentLine));
     }
 
 }
