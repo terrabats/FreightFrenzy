@@ -1,5 +1,7 @@
 package unittests.auto.framework;
 
+import android.annotation.SuppressLint;
+
 import automodules.StageList;
 import automodules.stage.Initial;
 import automodules.stage.Stage;
@@ -25,10 +27,12 @@ public class AutoModuleInitialTest extends AutoUnitTest {
     @Override
     protected void run() {
         lastInitial = 0;
-        for (int i = 0; i < 5; i++) {
+        int numTrials = 5;
+        for (int i = 0; i < numTrials; i++) {
             bot.addAutoModule(testAutoModule);
-            log.show("Last Initial Number {5}", lastInitial);
             pause(2);
+            log.show("Trial #" + (i+1) + " of " + numTrials + " Last Initial Number {5}", lastInitial);
         }
+        pause(2);
     }
 }

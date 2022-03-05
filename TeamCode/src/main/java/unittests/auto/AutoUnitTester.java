@@ -10,9 +10,9 @@ import unittests.UnitTester;
 import unittests.auto.framework.AutoModuleInitialTest;
 import unittests.auto.framework.InternalCameraTest;
 import unittests.auto.framework.IteratorTest;
+import unittests.auto.framework.OdometryTest;
 import unittests.auto.framework.ParameterConstructorTest;
 import unittests.auto.movement.ArcTest;
-import unittests.auto.movement.OdometryTest;
 import unittests.auto.movement.PurePursuitTest;
 import util.condition.Status;
 
@@ -46,6 +46,8 @@ public class AutoUnitTester extends Auto implements UnitTester {
 //                new ParameterConstructorTest()
 //                new PurePursuitTest()
                 new AutoModuleInitialTest()
+//                ,
+//                new OdometryTest()
         );
     }
 
