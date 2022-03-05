@@ -1,9 +1,8 @@
 package autoutil.controllers;
 
 import util.templates.ParameterConstructor;
-import util.templates.ParameterType;
 
-public class PID extends Controller implements ParameterConstructor<Double> {
+public class PID extends Controller1D implements ParameterConstructor<Double> {
     private double kp;
     private double ki;
     private double kd;
@@ -63,7 +62,7 @@ public class PID extends Controller implements ParameterConstructor<Double> {
         if(Math.abs(getError()) > maximumIntegralRange){
             errorProfiler.resetIntegral();
         }
-        output = ((kp * getError()) + (ki * errorProfiler.getIntegral()) + (kd * errorProfiler.getDerivative())) + (Math.signum(getError())*restOutput);
+        setOutput(((kp * getError()) + (ki * errorProfiler.getIntegral()) + (kd * errorProfiler.getDerivative())) + (Math.signum(getError())*restOutput));
         if(Math.abs(getOutput()) < minimumOutput){
             isAtTarget = ((errorProfiler.getCurrentTime() - currentTime) > maximumTime)
                     && (Math.abs(errorProfiler.getDerivative()) < maximumDerivative)
@@ -76,7 +75,6 @@ public class PID extends Controller implements ParameterConstructor<Double> {
     public double[] getCoefficients(){
         return new double[]{kp, ki, kd};
     }
-
 
     public enum PIDParameterType implements ParameterType {
         DEFAULT,

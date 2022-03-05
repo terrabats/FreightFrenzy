@@ -1,6 +1,6 @@
 package autoutil.controllers;
 
-public class BangBang extends Controller{
+public class BangBang extends Controller1D {
 
     private double s;
     private double maximumTime;
@@ -16,15 +16,15 @@ public class BangBang extends Controller{
     public void update() {
         if(!isWithinAccuracyRange()) {
             if (getError() > 0) {
-                output = s;
+                setOutput(s);
             } else {
-                output = -s;
+                setOutput(-s);
             }
         }else{
             if((errorProfiler.getCurrentTime() - currentTime) > maximumTime){
                 isAtTarget = true;
             }else{
-                output = 0;
+                setOutput(0);
                 currentTime = errorProfiler.getCurrentTime();
             }
         }

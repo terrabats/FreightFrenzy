@@ -2,6 +2,8 @@ package autoutil.reactors.mecanum;
 
 import java.util.Arrays;
 
+import autoutil.controllers.Controller2D;
+import autoutil.controllers.Default2D;
 import autoutil.controllers.PID;
 import geometry.position.Vector2;
 
@@ -32,6 +34,6 @@ public class MecanumPIDReactor extends MecanumReactor{
         yPID.setAccuracy(2);
         hPID.setAccuracy(4);
 
-        addControllers(xPID, yPID, hPID);
+        setControllers(new Default2D(xPID, yPID), hPID);
     }
 }
