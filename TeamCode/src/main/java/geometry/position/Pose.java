@@ -16,6 +16,10 @@ public class Pose extends GeometryObject {
         this.p = p;
         this.ang = toRad(ang, angleType);
     }
+    public Pose(double x, double y, double ang) {
+        this.p = new Point(x, y);
+        this.ang = ang;
+    }
 
     public double[] asArray(){
         return new double[]{p.x, p.y, ang};

@@ -19,6 +19,10 @@ public class MecanumExecutor extends ExecutorNew {
         super(opMode);
     }
 
+    public MecanumExecutor(ReturnCodeSeg<Boolean> active) {
+        super(active);
+    }
+
     @Override
     public void followPath() {
         reactor.init();

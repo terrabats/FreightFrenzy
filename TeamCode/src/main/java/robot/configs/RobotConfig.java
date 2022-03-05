@@ -3,6 +3,7 @@ package robot.configs;
 import robot.RobotFramework;
 import robotparts.RobotPart;
 import robotparts.hardware.mecanum.MecanumCarousel;
+import robotparts.hardware.mecanum.MecanumDrive;
 import robotparts.hardware.mecanum.MecanumIntake;
 import robotparts.hardware.mecanum.MecanumLift;
 import robotparts.hardware.mecanum.MecanumOuttake;
@@ -20,7 +21,6 @@ import robotparts.sensors.GyroSensors;
 import robotparts.unused.Leds;
 import robotparts.unused.TankOdometry;
 import robotparts.unused.TouchSensors;
-import robotparts.hardware.mecanum.MecanumDrive;
 
 public abstract class RobotConfig extends RobotFramework {
 

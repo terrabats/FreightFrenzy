@@ -1,6 +1,9 @@
 package automodules;
 
+import static java.lang.Math.PI;
 import static global.General.*;
+
+import geometry.position.Pose;
 
 public class MecanumAutoModules {
 
@@ -28,5 +31,10 @@ public class MecanumAutoModules {
 
     public static StageList IntakeUntilFreight = new StageList(bot.intake.intakeUntilFreight());
     public static StageList IntakeAndMoveForwardUntilFreight = new StageList(bot.intake.intakeAndMoveForwardUntilFreight());
+
+    // TODO TEST/FIX
+    public static StageList moveToBarrierOpening = new StageList(
+        bot.drive.moveToPoint(new Pose[] { new Pose(-122, 0, -PI/2) })
+    );
 
 }

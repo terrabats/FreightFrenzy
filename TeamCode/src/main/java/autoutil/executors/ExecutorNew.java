@@ -1,6 +1,7 @@
 package autoutil.executors;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import autoutil.paths.Path;
 import autoutil.reactors.Reactor;
@@ -15,6 +16,8 @@ public abstract class ExecutorNew {
     public ExecutorNew(LinearOpMode opMode){
         whileOpModeIsActive = opMode::opModeIsActive;
     }
+
+    public ExecutorNew(ReturnCodeSeg<Boolean> active) { whileOpModeIsActive = active; }
 
     public void setPath(Path path){
         this.path = path;

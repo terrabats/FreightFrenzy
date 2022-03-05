@@ -78,19 +78,19 @@ public class TwoOdometry extends TankOdometry {
         updatePosition();
     }
 
-    public double getX(){
+    public double getCurX(){
         return positionRobotCenter.getX();
     }
-    public double getY(){
+    public double getCurY(){
         return positionRobotCenter.getY();
     }
-    public double getHeading(){
+    public double getCurThetaRad(){
         return heading;
     }
 
     @Override
     public double[] getPose(){
-        return new double[]{getX(), getY(), getHeading()};
+        return new double[]{getCurX(), getCurY(), getCurThetaRad()};
     }
 
 }
