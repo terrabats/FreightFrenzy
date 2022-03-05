@@ -20,6 +20,11 @@ public class Pose extends GeometryObject {
         this.p = new Point(x, y);
         this.ang = ang;
     }
+    public Pose(double[] pose){
+        this.p = new Point(pose[0], pose[1]);
+        this.ang = pose[2];
+    }
+
 
     public double[] asArray(){
         return new double[]{p.x, p.y, ang};

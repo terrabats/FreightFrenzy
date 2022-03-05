@@ -1,6 +1,10 @@
 package autoutil.controllers;
 
+import autoutil.paths.PathPose;
+import autoutil.paths.PathSegment2;
 import autoutil.profilers.Profiler;
+import geometry.position.Point;
+import geometry.position.Pose;
 import util.codeseg.ReturnCodeSeg;
 
 public abstract class Controller1D {
@@ -28,7 +32,11 @@ public abstract class Controller1D {
         return (Math.abs(getError()) < accuracy);
     }
 
-    public abstract void update();
+
+    public abstract void update(Pose pose, PathSegment2 pathSegment);
+    public final void update(){
+        update(new Pose(new Point(0,0),0), new PathPose(0,0,0));
+    }
 
     public void updateProfilers(){
         currentValue = processVariable.run();

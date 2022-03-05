@@ -1,5 +1,7 @@
 package autoutil.controllers;
 
+import autoutil.paths.PathSegment2;
+import geometry.position.Pose;
 import util.templates.ParameterConstructor;
 
 public class PID extends Controller1D implements ParameterConstructor<Double> {
@@ -55,9 +57,9 @@ public class PID extends Controller1D implements ParameterConstructor<Double> {
     public void setMaximumIntegralRange(double range){this.maximumIntegralRange = range;}
 
     public void setMaximumDerivative(double maximumDerivative){this.maximumDerivative = maximumDerivative;}
-
+    
     @Override
-    public void update(){
+    public void update(Pose pose, PathSegment2 pathSegment){
         updateProfilers();
         if(Math.abs(getError()) > maximumIntegralRange){
             errorProfiler.resetIntegral();

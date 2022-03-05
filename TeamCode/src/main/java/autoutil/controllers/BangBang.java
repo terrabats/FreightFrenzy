@@ -1,5 +1,8 @@
 package autoutil.controllers;
 
+import autoutil.paths.PathSegment2;
+import geometry.position.Pose;
+
 public class BangBang extends Controller1D {
 
     private double s;
@@ -13,7 +16,7 @@ public class BangBang extends Controller1D {
     public void setMaximumTime(double maximumTime){ this.maximumTime = maximumTime; }
 
     @Override
-    public void update() {
+    public void update(Pose pose, PathSegment2 pathSegment) {
         if(!isWithinAccuracyRange()) {
             if (getError() > 0) {
                 setOutput(s);

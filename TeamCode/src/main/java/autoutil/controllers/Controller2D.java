@@ -1,6 +1,8 @@
 package autoutil.controllers;
 
+import autoutil.paths.PathSegment2;
 import autoutil.profilers.Profiler;
+import geometry.position.Pose;
 import util.codeseg.ReturnCodeSeg;
 
 public abstract class Controller2D extends Controller1D {
@@ -15,12 +17,7 @@ public abstract class Controller2D extends Controller1D {
         this.xController = xController;
         this.yController = yController;
     }
-
-    public abstract void update(double heading);
-
-    @Override
-    public void update(){}
-
+    
     public void setOutputX(double xOutput){
         this.xOutput = xOutput;
     }

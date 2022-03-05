@@ -1,5 +1,8 @@
 package autoutil.controllers;
 
+import autoutil.paths.PathLine;
+import autoutil.paths.PathLine2;
+import autoutil.paths.PathSegment2;
 import geometry.position.Line;
 import geometry.position.Point;
 import geometry.position.Pose;
@@ -7,6 +10,10 @@ import geometry.position.Vector;
 import geometry.position.Vector2;
 import math.misc.Exponential;
 import math.misc.Logistic;
+import util.condition.Expectation;
+import util.condition.Magnitude;
+
+import static global.General.fault;
 
 public class PurePursuit extends Controller2D {
     public double maxRadius = 15;
@@ -22,13 +29,21 @@ public class PurePursuit extends Controller2D {
     }
 
     @Override
-    public void update(double heading) {
-        // TODO FIX
-        // Set target pos
-//        double[] localTarget = getTargetPos(currentPos, currentLine);
-//        updateRadius(currentLine.getDis());
+    public void update(Pose pose, PathSegment2 pathSegment) {
+        Line currentLine = new Line(new Point(0,0), new Point(0,0));
+        if(pathSegment instanceof PathLine2){
+            currentLine = ((PathLine2) pathSegment).getLine();
+        }else{
+            fault.check("Use LineGenerator for Pure Pursuit", Expectation.UNEXPECTED, Magnitude.CATASTROPHIC);
+        }
+        // TODO TEST
+        // CHECK ending case
+        Point targetPos = getTargetPos(pose.p, currentLine);
+        xController.setTarget(targetPos.x);
+        yController.setTarget(targetPos.y);
+        updateRadius(currentLine.getlength());
         Vector2 powerVector = new Vector2(xController.getOutput(), yController.getOutput());
-        powerVector.rotate(heading);
+        powerVector.rotate(pose.ang);
         setOutputX(powerVector.getX());
         setOutputY(powerVector.getY());
     }

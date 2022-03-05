@@ -27,6 +27,7 @@ public class MecanumExecutor extends ExecutorNew {
     public void followPath() {
         reactor.init();
         for(PathSegment2 pathSegment: path.getSegments()){
+            reactor.setPathSegment(pathSegment);
             if(pathSegment instanceof PathPose) {
                 for (Pose pose : pathSegment.getPoses()) {
                     reactor.setTarget(pose.asArray());

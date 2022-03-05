@@ -16,8 +16,9 @@ public class PathLine2 extends PathPose{
         line = new Line(poses.get(poses.size()-2).p,poses.get(poses.size()-1).p);
     }
 
-
-    public Point getAt(double t) { return line.getAt(t); }
+    public Line getLine(){
+        return line;
+    }
 
 
 }
