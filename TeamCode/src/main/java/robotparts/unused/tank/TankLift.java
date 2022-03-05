@@ -17,8 +17,8 @@ public class TankLift extends Lift {
     }
 
     @Override
-    protected Double[] getRestPows() {
-        return new Double[]{Constants.LIFT_REST_POW};
+    protected double[] getRestPows() {
+        return new double[]{Constants.LIFT_REST_POW};
     }
 
     @Override

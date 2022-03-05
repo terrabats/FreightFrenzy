@@ -1,5 +1,7 @@
 package robotparts.hardware;
 
+import java.util.Arrays;
+
 import automodules.stage.Exit;
 import automodules.stage.Initial;
 import automodules.stage.Stop;
@@ -12,7 +14,9 @@ public abstract class PMotorRobotPart extends RobotPart {
 
     protected ReturnParameterCodeSeg<Double, Double>[] getTargets;
 
-    protected abstract Double[] getRestPows();
+    protected boolean[] disabled = new boolean[3000];
+
+    protected abstract double[] getRestPows();
 
     /**
      * Gets angle of the lift (overwritten by child classes)
@@ -29,6 +33,8 @@ public abstract class PMotorRobotPart extends RobotPart {
         motors = getMotors();
         getTargets = getTargetConvertors();
         resetEncoder();
+
+        Arrays.fill(disabled, false);
     }
 
     public abstract PMotor[] getMotors();
@@ -65,8 +71,8 @@ public abstract class PMotorRobotPart extends RobotPart {
      * Resets the lift encoder
      */
     public void resetEncoder(){
-        for (PMotor li : motors) {
-            li.resetPosition();
+        for (int i = 0; i < motors.length; i++) if (!disabled[i]) {
+            motors[i].resetPosition();
         }
     }
 
@@ -75,7 +81,7 @@ public abstract class PMotorRobotPart extends RobotPart {
      * @param h
      */
     public void setTarget(double h){
-        for (int i = 0; i < motors.length; i++) {
+        for (int i = 0; i < motors.length; i++) if (!disabled[i]) {
             motors[i].setPosition(getTargets[i].run(h));
         }
     }
@@ -113,8 +119,9 @@ public abstract class PMotorRobotPart extends RobotPart {
     }
 
     public boolean hasReachedTarget() {
-        for (boolean b : hasReachedTargetEach()) {
-            if (!b) return false;
+        boolean[] hasReachedEach = hasReachedTargetEach();
+        for (int i = 0; i < motors.length; i++) if (!disabled[i]) {
+            if (!hasReachedEach[i]) return false;
         }
         return true;
     }

@@ -1,14 +1,20 @@
 package robotparts.hardware.mecanum;
 
+import static global.General.fault;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+import automodules.stage.Stage;
 import global.Constants;
+import robotparts.electronics.continuous.CMotor;
 import robotparts.electronics.positional.PMotor;
 import robotparts.hardware.Lift;
 import util.codeseg.ReturnParameterCodeSeg;
 
 public class MecanumLift extends Lift {
+
+    private CMotor upMotor, downMotor;
 
     /**
      * Move the lift motor at a certain power
@@ -38,8 +44,8 @@ public class MecanumLift extends Lift {
     }
 
     @Override
-    protected Double[] getRestPows() {
-        return new Double[]{0.07, -0.05};
+    protected double[] getRestPows() {
+        return new double[]{0.07, -0.05};
     }
 
     @Override
@@ -59,8 +65,25 @@ public class MecanumLift extends Lift {
     @Override
     public ReturnParameterCodeSeg<Double, Double>[] getTargetConvertors() {
         return new ReturnParameterCodeSeg[] {
-            h -> (Double) h * Constants.LIFT_CM_TO_TICKS,
             h -> (Double) h * Constants.LIFT_CM_TO_TICKS
         };
+    }
+
+    @Override
+    public Stage liftEncoder(double power, double height) {
+        fault.check("Used liftEncoder in Mecanum Lift!! Use liftEncoderUp or liftEncoderDown");
+        return super.liftEncoder(power, height);
+    }
+
+    public Stage liftEncoderUp(double power, double height) {
+        disabled[0] = false;
+        disabled[1] = true;
+        return super.liftEncoder(power, height);
+    }
+
+    public Stage liftEncoderDown(double power, double height) {
+        disabled[0] = true;
+        disabled[1] = false;
+        return super.liftEncoder(power, height);
     }
 }
