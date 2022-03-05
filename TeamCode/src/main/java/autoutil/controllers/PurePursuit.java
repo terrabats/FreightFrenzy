@@ -2,33 +2,48 @@ package autoutil.controllers;
 
 import geometry.position.Line;
 import geometry.position.Point;
+import geometry.position.Pose;
+import geometry.position.Vector;
+import geometry.position.Vector2;
+import math.misc.Exponential;
+import math.misc.Logistic;
 
 public class PurePursuit extends Controller2D {
-
-
-    @Override
-    public void update() {
-        updateProfilers();
-
-    }
-
-    public BangBang control = new BangBang(0.3, 0.3);
-
     public double maxRadius = 15;
     public double currentRadius = 5;
     public boolean isDone = false;
 
-    public void updateRadius(double dis){
-        currentRadius = maxRadius*(1-Math.exp(-(1/maxRadius)*(dis)));
+    private final Exponential radiusLogistic;
+
+    public PurePursuit(){
+        xController = new BangBang(0.3, 0.3);
+        yController = new BangBang(0.3, 0.3);
+        radiusLogistic = new Exponential(1, 1, (1.0/maxRadius));
     }
 
-    public double solve(double[] currentPose, Line currentLine){
+    @Override
+    public void update(double heading) {
+        // TODO FIX
+        // Set target pos
+//        double[] localTarget = getTargetPos(currentPos, currentLine);
+//        updateRadius(currentLine.getDis());
+        Vector2 powerVector = new Vector2(xController.getOutput(), yController.getOutput());
+        powerVector.rotate(heading);
+        setOutputX(powerVector.getX());
+        setOutputY(powerVector.getY());
+    }
+
+    public void updateRadius(double dis){
+        currentRadius = radiusLogistic.f(dis);
+    }
+
+    public double solve(Point currentPos, Line currentLine){
         double x1 = currentLine.p1.x;
         double y1 = currentLine.p1.y;
         double mx = currentLine.mx;
         double my = currentLine.my;
-        double xr = currentPose[0];
-        double yr = currentPose[1];
+        double xr = currentPos.x;
+        double yr = currentPos.y;
         double dx = x1-xr;
         double dy = y1-yr;
         double a = (mx*mx)+(my*my);
@@ -48,8 +63,8 @@ public class PurePursuit extends Controller2D {
         }
     }
 
-    public Point getTargetPos(double[] currentPose, Line currentLine){
-        return currentLine.getAt(solve(currentPose, currentLine));
+    public Point getTargetPos(Point currentPos, Line currentLine){
+        return currentLine.getAt(solve(currentPos, currentLine));
     }
 
 }

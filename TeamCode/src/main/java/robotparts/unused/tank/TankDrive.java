@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import automodules.stage.Main;
 import automodules.stage.Stage;
 import automodules.stage.Stop;
-import math.Logistic;
+import math.misc.Logistic;
 import robotparts.RobotPart;
 import robotparts.electronics.continuous.CMotor;
 import robotparts.electronics.positional.PServo;

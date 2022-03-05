@@ -13,7 +13,7 @@ import autoutil.executors.Executor;
 import autoutil.executors.MecanumExecutorArcsPID;
 import geometry.circles.AngleType;
 import geometry.position.Pose;
-import math.Logistic;
+import math.misc.Logistic;
 import robotparts.RobotPart;
 import robotparts.electronics.continuous.CMotor;
 

@@ -55,12 +55,9 @@ public abstract class MecanumReactor extends Reactor {
 
     @Override
     public void moveToTarget() {
-//        controllers.get(0).update(); controllers.get(1).update(); controllers.get(2).update();
-//        Vector2 powerVector = new Vector2(controllers.get(0).getOutput(), controllers.get(1).getOutput());
-//        powerVector.rotate(getPose()[2]);
-//        double xOut = powerVector.getX();
-//        double yOut = powerVector.getY();
-//        bot.drive.move(yOut, xOut, controllers.get(2).getOutput());
+        movementController.update(getPose()[2]);
+        headingController.update();
+        bot.drive.move(movementController.getOutputY(), movementController.getOutputX(), headingController.getOutput());
 //        log.show("yPID state (Err, Int, Der)", Arrays.toString(controllers.get(1).getErrorState()));
 //        log.show("xPID state (Err, Int, Der)", Arrays.toString(controllers.get(0).getErrorState()));
 //        log.show("hPID state (Err, Int, Der)", Arrays.toString(controllers.get(2).getErrorState()));

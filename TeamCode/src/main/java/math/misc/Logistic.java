@@ -1,7 +1,9 @@
-package math;
+package math.misc;
 
 
-public class Logistic extends Function{
+import math.Function;
+
+public class Logistic extends Function {
     private final double m;
     private final double b;
     private final double k;
