@@ -70,6 +70,8 @@ public class ColorSensors extends RobotPart {
         boolean hasFreightNear = element.equals(GameElement.BALL) || element.equals(GameElement.CUBE);
         return hasFreightNear && cso.getDistance() < 4;
     }
+
+
     public Exit exitFreight(){return new Exit(this::isFreight);}
 
 }

@@ -14,14 +14,14 @@ public class PID extends Controller implements ParameterConstructor<Double> {
     private double restOutput = 0;
 
     /**
-     * Constructor for PID
-     * Input 1: Proportional coefficient
-     * Input 2: Integral coefficient
-     * Input 3: Derivative coefficient
-     * Input 4: Minimum Output
-     * Input 5: Maximum Time
-     * Input 6: Maximum Derivative
-     * Input 7: Maximum Integral Range
+     * Constructor for PID <br>
+     * Input 1: Proportional coefficient <br>
+     * Input 2: Integral coefficient <br>
+     * Input 3: Derivative coefficient <br>
+     * Input 4: Minimum Output <br>
+     * Input 5: Maximum Time <br>
+     * Input 6: Maximum Derivative <br>
+     * Input 7: Maximum Integral Range <br>
      * @param parameterType
      * @param parameters
      */
@@ -29,14 +29,16 @@ public class PID extends Controller implements ParameterConstructor<Double> {
         addConstructor(PIDParameterType.DEFAULT, 3);
         addConstructor(PIDParameterType.DEFAULT_ALL, 7);
         addConstructor(PIDParameterType.STANDARD_FORM, 3, in -> new Double[]{in[0], in[0]/in[1], in[0]*in[2]});
-        addConstructor(PIDParameterType.STANDARD__FORM_ALL, 7, in -> new Double[]{in[0], in[0]/in[1], in[0]*in[2], in[3], in[4], in[5], in[6]});
-        createConstructors(parameterType, parameters, new Double[]{0.0,0.0,0.0,100000.0,0.01, 100000.0, 100000.0});
+        addConstructor(PIDParameterType.STANDARD_FORM_ALL, 7, in -> new Double[]{in[0], in[0]/in[1], in[0]*in[2], in[3], in[4], in[5], in[6]});
+        addConstructor(PIDParameterType.STANDARD_FORM_EXTRA, 9, in -> new Double[]{in[0], in[0]/in[1], in[0]*in[2], in[3], in[4], in[5], in[6], in[7], in[8]});
+        createConstructors(parameterType, parameters, new Double[]{0.0,0.0,0.0,100000.0,0.01, 100000.0, 100000.0, 0.0, 100000.0});
     }
 
     @Override
     public void construct(Double[] in){
         this.kp = in[0]; this.ki = in[1]; this.kd = in[2];
         this.minimumOutput = in[3]; this.maximumTime = in[4]; this.maximumDerivative = in[5]; this.maximumIntegralRange = in[6];
+        this.restOutput = in[7]; this.accuracy = in[8];
     }
 
     public void setToStandardForm(double kp, double ti, double td){
@@ -80,7 +82,8 @@ public class PID extends Controller implements ParameterConstructor<Double> {
         DEFAULT,
         DEFAULT_ALL,
         STANDARD_FORM,
-        STANDARD__FORM_ALL;
+        STANDARD_FORM_ALL,
+        STANDARD_FORM_EXTRA;
     }
 
 }

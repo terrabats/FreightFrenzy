@@ -10,7 +10,8 @@ public class NewMecanumConfig extends RobotConfig{
                 carousel,
                 intake,
                 lift,
-                outtake
+                outtake,
+                color
         );
     }
 }
