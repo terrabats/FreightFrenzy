@@ -24,7 +24,7 @@ public class TwoOdometry extends TankOdometry {
 
     public TwoOdometry() {
         super(0.0);
-        localOdometryCenterOffset = new Vector2(0.0, -12.6);
+        localOdometryCenterOffset = new Vector2(0.0, 12.6);
     }
 
 
@@ -42,7 +42,7 @@ public class TwoOdometry extends TankOdometry {
     }
 
     public double getVerticalEncoderPosition(){
-        return verticalEncoder.getPos();
+        return -verticalEncoder.getPos();
     }
 
     private double getLocalHorizontalDelta(){
