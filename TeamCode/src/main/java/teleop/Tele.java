@@ -18,6 +18,9 @@ public abstract class Tele extends OpMode implements Common {
      */
 
 
+    protected FieldSide fieldSide = FieldSide.UNKNOWN;
+
+
     /**
      * Init method runs when the user clicks the init button to run a teleop
      */
@@ -47,7 +50,7 @@ public abstract class Tele extends OpMode implements Common {
     @Override
     public final void init() {
         reference(this);
-        activate(FieldSide.UNKNOWN);
+        activate(fieldSide);
         initTele();
     }
 

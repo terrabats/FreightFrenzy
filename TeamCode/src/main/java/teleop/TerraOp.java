@@ -19,8 +19,6 @@ public class TerraOp extends Tele{
     // TODO FIX
     // Make Rest of Teleop
 
-    protected FieldSide fieldSide;
-
     @Override
     public void initTele() {
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
@@ -42,8 +40,6 @@ public class TerraOp extends Tele{
         gph2.link(Button.DPAD_RIGHT, OnPressEventHandler.class, () -> bot.outtake.sharedTurretRight());
         gph2.link(Button.DPAD_DOWN, OnPressEventHandler.class, () -> bot.outtake.centerTurret());
         gph2.link(Button.DPAD_LEFT, OnPressEventHandler.class, () -> bot.outtake.sharedTurretLeft());
-
-        activate(fieldSide);
     }
 
     @Override

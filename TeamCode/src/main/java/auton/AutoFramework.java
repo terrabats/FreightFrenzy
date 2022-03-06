@@ -13,11 +13,15 @@ import autoutil.reactors.Reactor;
 import autoutil.reactors.mecanum.MecanumPIDReactor;
 import autoutil.reactors.mecanum.MecanumPurePursuitReactor;
 import autoutil.reactors.mecanum.MecanumReactor;
+import elements.FieldSide;
 import geometry.position.Point;
 import geometry.position.Pose;
+import util.codeseg.CodeSeg;
 import util.codeseg.ParameterCodeSeg;
 
 public abstract class AutoFramework extends Auto{
+
+    protected FieldSide fieldSide = FieldSide.UNKNOWN;
 
     public abstract ExecutorNew getExecutor();
 
@@ -32,6 +36,18 @@ public abstract class AutoFramework extends Auto{
     public abstract Reactor getWaypointReactor();
     public abstract Generator getSetpointGenerator();
     public abstract Generator getWaypointGenerator();
+
+    public boolean isFlipped(){
+        return fieldSide.equals(FieldSide.RED);
+    }
+
+    public void customSide(CodeSeg blue, CodeSeg red){
+        if(fieldSide.equals(FieldSide.BLUE)){
+            blue.run();
+        }else if(fieldSide.equals(FieldSide.RED)){
+            red.run();
+        }
+    }
 
     @Override
     public void initAuto() {
@@ -49,10 +65,18 @@ public abstract class AutoFramework extends Auto{
     }
 
     public void addSetpoint(double x, double y, double h){
+        if(isFlipped()){
+            x = -x;
+            h = -h;
+        }
         addSegment(getSetpointReactor(), getSetpointGenerator(), x, y, h);
     }
 
     public void addWaypoint(double x, double y, double h){
+        if(isFlipped()){
+            x = -x;
+            h = -h;
+        }
         addSegment(getWaypointReactor(), getWaypointGenerator(), x, y, h);
     }
 
