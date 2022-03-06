@@ -15,21 +15,37 @@ import math.polynomial.Quadratic;
 import math.trigonmetry.Trigonometry;
 import util.condition.Expectation;
 import util.condition.Magnitude;
+import util.templates.ParameterConstructor;
 
 import static global.General.fault;
 import static global.General.log;
 import static global.General.telemetry;
 
-public class PurePursuit extends Controller2D {
+public class PurePursuit extends Controller2D implements ParameterConstructor<Double> {
     public double maxRadius = 15;
     public double currentRadius = 5;
+    private double xPower;
+    private double yPower;
+    private double maximumTime;
+    private double radiusK;
+    private double accuracy;
 
     private final Exponential radiusLogistic;
 
-    public PurePursuit(){
-        xController = new BangBang(0.5, 100);
-        yController = new BangBang(0.5, 100);
-        radiusLogistic = new Exponential(1, 1, (1.0/maxRadius));
+    public PurePursuit(PurePursuitParameterType parameterType, Double... input){
+        addConstructor(PurePursuitParameterType.DEFAULT, 2);
+        addConstructor(PurePursuitParameterType.ALL, 5);
+        createConstructors(parameterType, input, new Double[]{0.5, 0.5, 100.0, 0.0, 1.0});
+        xController = new BangBang(xPower, maximumTime, accuracy);
+        yController = new BangBang(yPower, maximumTime, accuracy);
+        radiusLogistic = new Exponential(1, 1, (radiusK/maxRadius));
+
+    }
+
+    @Override
+    public void construct(Double[] in) {
+        xPower = in[0]; yPower = in[1];
+        maximumTime = in[2]; accuracy = in[3]; radiusK = in[4];
     }
 
     @Override
@@ -80,4 +96,8 @@ public class PurePursuit extends Controller2D {
         }
     }
 
+    public enum PurePursuitParameterType implements ParameterType {
+        DEFAULT,
+        ALL
+    }
 }

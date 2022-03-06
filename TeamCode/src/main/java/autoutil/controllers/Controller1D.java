@@ -21,7 +21,7 @@ public abstract class Controller1D {
     protected double  targetValue = 0;
     protected double currentTime = 0;
 
-    protected double accuracy = 1000000;
+    protected double accuracy = 0;
 
 
     public void setAccuracy(double accuracy){

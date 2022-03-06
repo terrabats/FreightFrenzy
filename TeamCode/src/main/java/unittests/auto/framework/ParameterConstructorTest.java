@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import unittests.auto.AutoUnitTest;
 import util.templates.ParameterConstructor;
-import util.templates.ParameterType;
 
 import static global.General.log;
 

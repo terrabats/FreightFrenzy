@@ -17,5 +17,4 @@ public class PathLine2 extends PathPose{
         return line;
     }
 
-
 }
