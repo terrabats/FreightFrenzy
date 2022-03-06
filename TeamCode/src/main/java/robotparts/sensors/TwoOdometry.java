@@ -32,6 +32,8 @@ public class TwoOdometry extends TankOdometry {
     public void init() {
         horizontalEncoder = createEncoder("bl", "cEnc", IEncoder.EncoderType.NORMAL);
         verticalEncoder = createEncoder("fl", "rEnc", IEncoder.EncoderType.NORMAL);
+        horizontalEncoder.reset();
+        verticalEncoder.reset();
         lastHorizontalEncoderPos = horizontalEncoder.getPos();
         lastVerticalEncoderPos = verticalEncoder.getPos();
         odometryThread.setExecutionCode(this::update);

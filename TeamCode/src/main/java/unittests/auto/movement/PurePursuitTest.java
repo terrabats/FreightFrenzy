@@ -10,15 +10,20 @@ import static global.General.*;
 
 public class PurePursuitTest extends AutoUnitTest {
 
-    LineGenerator generator = new LineGenerator();
-    MecanumPurePursuitReactor reactor = new MecanumPurePursuitReactor();
-    MecanumExecutor executor = new MecanumExecutor(linearOpMode);
+    LineGenerator generator;
+    MecanumPurePursuitReactor reactor;
+    MecanumExecutor executor;
 
     @Override
     protected void run() {
+        generator = new LineGenerator();
+        reactor = new MecanumPurePursuitReactor();
+        executor = new MecanumExecutor(linearOpMode);
+
 //        generator.addAutoModule(automodules.DuckTele);
 
-        generator.addLine(0,40,0);
+        generator.addLine(40,0,0);
+        generator.addLine(40,40,0);
 
         executor.setPath(generator.getPath());
         executor.setReactor(reactor);

@@ -49,7 +49,7 @@ public abstract class MecanumReactor extends Reactor {
         headingController.update(getPose(), pathSegment);
         // TODO FIX
         // SOmehitng wrong with movement x?
-        bot.drive.move(movementController.getOutputY(), 0, headingController.getOutput());
+        bot.drive.move(movementController.getOutputY(), movementController.getOutputX(), headingController.getOutput());
         log.show("Ypow", movementController.getOutputY());
         log.show("errr", movementController.yController.getError());
 //        log.show("yPID state (Err, Int, Der)", Arrays.toString(controllers.get(1).getErrorState()));

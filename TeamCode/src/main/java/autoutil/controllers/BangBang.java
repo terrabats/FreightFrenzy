@@ -18,6 +18,7 @@ public class BangBang extends Controller1D {
 
     @Override
     public void update(Pose pose, PathSegment2 pathSegment) {
+        updateProfilers();
         if(!isWithinAccuracyRange()) {
             if (getError() > 0) {
                 setOutput(s);

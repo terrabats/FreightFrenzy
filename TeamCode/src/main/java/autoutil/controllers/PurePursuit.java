@@ -24,8 +24,8 @@ import static global.General.telemetry;
 public class PurePursuit extends Controller2D implements ParameterConstructor<Double> {
     public double maxRadius = 15;
     public double currentRadius = 5;
-    private double xPower;
-    private double yPower;
+    private double kx;
+    private double ky;
     private double maximumTime;
     private double radiusK;
     private double accuracy;
@@ -34,18 +34,17 @@ public class PurePursuit extends Controller2D implements ParameterConstructor<Do
 
     public PurePursuit(PurePursuitParameterType parameterType, Double... input){
         addConstructor(PurePursuitParameterType.DEFAULT, 2);
-        addConstructor(PurePursuitParameterType.ALL, 5);
-        createConstructors(parameterType, input, new Double[]{0.5, 0.5, 100.0, 0.0, 1.0});
-        xController = new BangBang(xPower, maximumTime, accuracy);
-        yController = new BangBang(yPower, maximumTime, accuracy);
+        addConstructor(PurePursuitParameterType.ALL, 4);
+        createConstructors(parameterType, input, new Double[]{0.5, 0.5, 0.05, 15.0});
+        xController = new PID(PID.PIDParameterType.DEFAULT, kx, 0.0, 0.0);
+        yController = new PID(PID.PIDParameterType.DEFAULT, ky, 0.0, 0.0);
         radiusLogistic = new Exponential(1, 1, (radiusK/maxRadius));
 
     }
 
     @Override
     public void construct(Double[] in) {
-        xPower = in[0]; yPower = in[1];
-        maximumTime = in[2]; accuracy = in[3]; radiusK = in[4];
+        kx = in[0]; ky = in[1]; radiusK = in[2]; maxRadius = in[3];
     }
 
     @Override
@@ -59,6 +58,11 @@ public class PurePursuit extends Controller2D implements ParameterConstructor<Do
         Point targetPos = getTargetPos(pose.p, currentLine);
         xController.setTarget(targetPos.x);
         yController.setTarget(targetPos.y);
+//        log.show("targetpos", targetPos.toString());
+//        log.show("ytarget",  yController.getTarget());
+//        log.show("yerr", yController.getError());
+        log.show("Current raduis", currentRadius);
+        log.show("Current length", currentLine.getlength());
         xController.update(pose, pathSegment);
         yController.update(pose, pathSegment);
         updateRadius(currentLine.getlength());
@@ -69,7 +73,7 @@ public class PurePursuit extends Controller2D implements ParameterConstructor<Do
     }
 
     public void updateRadius(double dis){
-//        currentRadius = radiusLogistic.f(dis);
+        currentRadius = maxRadius*radiusLogistic.f(dis);
     }
 
     public Point getTargetPos(Point currentPos, Line currentLine){
