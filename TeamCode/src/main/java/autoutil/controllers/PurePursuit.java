@@ -17,6 +17,8 @@ import util.condition.Expectation;
 import util.condition.Magnitude;
 
 import static global.General.fault;
+import static global.General.log;
+import static global.General.telemetry;
 
 public class PurePursuit extends Controller2D {
     public double maxRadius = 15;
@@ -25,8 +27,8 @@ public class PurePursuit extends Controller2D {
     private final Exponential radiusLogistic;
 
     public PurePursuit(){
-        xController = new BangBang(0.3, 0.3);
-        yController = new BangBang(0.3, 0.3);
+        xController = new BangBang(0.5, 100);
+        yController = new BangBang(0.5, 100);
         radiusLogistic = new Exponential(1, 1, (1.0/maxRadius));
     }
 
@@ -41,6 +43,8 @@ public class PurePursuit extends Controller2D {
         Point targetPos = getTargetPos(pose.p, currentLine);
         xController.setTarget(targetPos.x);
         yController.setTarget(targetPos.y);
+        xController.update(pose, pathSegment);
+        yController.update(pose, pathSegment);
         updateRadius(currentLine.getlength());
         Vector2 powerVector = new Vector2(xController.getOutput(), yController.getOutput());
         powerVector.rotate(pose.ang);
@@ -49,7 +53,7 @@ public class PurePursuit extends Controller2D {
     }
 
     public void updateRadius(double dis){
-        currentRadius = radiusLogistic.f(dis);
+//        currentRadius = radiusLogistic.f(dis);
     }
 
     public Point getTargetPos(Point currentPos, Line currentLine){

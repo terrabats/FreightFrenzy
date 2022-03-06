@@ -3,6 +3,7 @@ package autoutil.reactors.mecanum;
 import java.util.Arrays;
 
 import autoutil.reactors.Reactor;
+import geometry.position.Point;
 import geometry.position.Pose;
 import geometry.position.Vector2;
 import robotparts.sensors.GyroSensors;
@@ -14,9 +15,8 @@ public abstract class MecanumReactor extends Reactor {
 
     @Override
     public void init() {
-        movementController.xController.setProcessError(() -> getPose().p.x);
-        movementController.yController.setProcessError(() -> getPose().p.y);
-        headingController.setProcessError(() -> getPose().ang);
+        movementController.setProcessVariable(() -> getPose().p.x, () -> getPose().p.y);
+        headingController.setProcessVariable(() -> getPose().ang);
         headingController.setProcessError(() -> GyroSensors.processThetaError(headingController.getRawError()));
         nextTarget();
     }
@@ -28,28 +28,30 @@ public abstract class MecanumReactor extends Reactor {
 
     @Override
     public void setTarget(double[] target) {
-        movementController.xController.setTarget(target[0]);
-        movementController.yController.setTarget(target[1]);
+        movementController.setTarget(target);
         headingController.setTarget(target[2]);
     }
 
     @Override
     public void nextTarget() {
-        movementController.xController.reset();
-        movementController.yController.reset();
+        movementController.reset();
         headingController.reset();
     }
 
     @Override
     public boolean isAtTarget() {
-        return movementController.xController.isAtTarget() && movementController.yController.isAtTarget() && headingController.isAtTarget();
+        return movementController.isAtTarget() && headingController.isAtTarget();
     }
 
     @Override
     public void moveToTarget() {
         movementController.update(getPose(), pathSegment);
         headingController.update(getPose(), pathSegment);
-        bot.drive.move(movementController.getOutputY(), movementController.getOutputX(), headingController.getOutput());
+        // TODO FIX
+        // SOmehitng wrong with movement x?
+        bot.drive.move(movementController.getOutputY(), 0, headingController.getOutput());
+        log.show("Ypow", movementController.getOutputY());
+        log.show("errr", movementController.yController.getError());
 //        log.show("yPID state (Err, Int, Der)", Arrays.toString(controllers.get(1).getErrorState()));
 //        log.show("xPID state (Err, Int, Der)", Arrays.toString(controllers.get(0).getErrorState()));
 //        log.show("hPID state (Err, Int, Der)", Arrays.toString(controllers.get(2).getErrorState()));

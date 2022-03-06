@@ -9,11 +9,12 @@ import autoutil.paths.PathSegment2;
 import geometry.position.Pose;
 import util.codeseg.CodeSeg;
 import util.codeseg.ReturnCodeSeg;
+import util.templates.Iterator;
 
 import static global.General.bot;
 import static global.General.log;
 
-public class MecanumExecutor extends ExecutorNew {
+public class MecanumExecutor extends ExecutorNew implements Iterator {
 
     public MecanumExecutor(LinearOpMode opMode) {
         super(opMode);
@@ -31,7 +32,9 @@ public class MecanumExecutor extends ExecutorNew {
             if(pathSegment instanceof PathPose) {
                 for (Pose pose : pathSegment.getPoses()) {
                     reactor.setTarget(pose.asArray());
-                    whileActive(() -> !reactor.isAtTarget(), ()-> reactor.moveToTarget());
+                    whileActive(() -> !reactor.isAtTarget(), ()-> {
+                        reactor.moveToTarget();
+                    });
                     reactor.nextTarget();
                 }
             }else if(pathSegment instanceof PathAutoModule){
@@ -43,12 +46,8 @@ public class MecanumExecutor extends ExecutorNew {
         bot.drive.move(0,0,0);
     }
 
-    protected void whileActive(ReturnCodeSeg<Boolean> active, CodeSeg code){
-        log.setShouldUpdateOnShow(false);
-        while (whileOpModeIsActive.run() && active.run()){
-            code.run();
-            log.showTelemetry();
-        }
-        log.setShouldUpdateOnShow(true);
+    @Override
+    public boolean condition() {
+        return whileOpModeIsActive.run();
     }
 }

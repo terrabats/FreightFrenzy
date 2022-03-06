@@ -11,6 +11,7 @@ public class BangBang extends Controller1D {
     public BangBang(double s, double maximumTime){
         this.s = s;
         this.maximumTime = maximumTime;
+        this.accuracy = 0;
     }
 
     public void setMaximumTime(double maximumTime){ this.maximumTime = maximumTime; }

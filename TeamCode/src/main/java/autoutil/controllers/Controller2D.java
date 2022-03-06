@@ -17,6 +17,22 @@ public abstract class Controller2D extends Controller1D {
         this.xController = xController;
         this.yController = yController;
     }
+
+    public void setTarget(double[] target){
+        xController.setTarget(target[0]);
+        yController.setTarget(target[1]);
+    }
+
+    public void setProcessVariable(ReturnCodeSeg<Double> processVariableX, ReturnCodeSeg<Double> processVariableY){
+        xController.setProcessVariable(processVariableX);
+        yController.setProcessVariable(processVariableY);
+    }
+
+    public void reset(){
+        super.reset();
+        xController.reset();
+        yController.reset();
+    }
     
     public void setOutputX(double xOutput){
         this.xOutput = xOutput;

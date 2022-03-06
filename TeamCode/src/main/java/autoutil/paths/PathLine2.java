@@ -5,15 +5,13 @@ import geometry.position.Point;
 import geometry.position.Pose;
 
 public class PathLine2 extends PathPose{
-    {
-        poses.add(new Pose(new Point(0,0),0));
-    }
 
     private final Line line;
 
-    public PathLine2(double x, double y, double h){
-        super(x,y,h);
-        line = new Line(poses.get(poses.size()-2).p,poses.get(poses.size()-1).p);
+    public PathLine2(Pose start, Pose end){
+        poses.add(start);
+        poses.add(end);
+        line = new Line(start.p,end.p);
     }
 
     public Line getLine(){
