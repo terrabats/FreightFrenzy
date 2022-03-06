@@ -1,5 +1,6 @@
-package auton;
+package auton.old;
 
+import auton.Auto;
 import autoutil.executors.TankExecutor;
 import elements.FieldSide;
 import geometry.circles.AngleType;

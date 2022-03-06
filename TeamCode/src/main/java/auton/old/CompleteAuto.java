@@ -1,10 +1,11 @@
-package auton;
+package auton.old;
 
 import static global.General.fault;
 
 import androidx.annotation.NonNull;
 
 import automodules.StageList;
+import auton.Auto;
 import autoutil.executors.Executor;
 import elements.FieldSide;
 import geometry.circles.AngleType;

@@ -6,8 +6,10 @@ import static global.General.bot;
 
 public class PathAutoModule extends PathSegment2{
     private final StageList automodule;
-    public PathAutoModule(StageList automodule){
+    private boolean isConcurrent;
+    public PathAutoModule(StageList automodule, boolean isConcurrent){
         this.automodule = automodule;
+        this.isConcurrent = isConcurrent;
     }
     public void runAutoModule(){
         bot.addAutoModule(automodule);
@@ -15,5 +17,6 @@ public class PathAutoModule extends PathSegment2{
     public boolean isDoneWithAutoModule(){
         return bot.rfsHandler.rfsQueue.isEmpty();
     }
+    public boolean isConcurrent(){return isConcurrent;}
 
 }

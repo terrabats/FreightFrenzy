@@ -11,4 +11,8 @@ public abstract class PathSegment2{
     public ArrayList<Pose> getPoses(){
         return poses;
     }
+
+    public Pose getLast(){
+        return poses.get(poses.size()-1);
+    }
 }

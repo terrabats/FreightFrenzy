@@ -4,6 +4,7 @@ import automodules.StageList;
 import autoutil.paths.Path;
 import autoutil.paths.PathAutoModule;
 import autoutil.paths.PathPose;
+import geometry.position.Pose;
 
 public abstract class Generator {
 
@@ -14,7 +15,15 @@ public abstract class Generator {
     }
 
     public void addAutoModule(StageList automodule){
-        path.addSegment(new PathAutoModule(automodule));
+        path.addSegment(new PathAutoModule(automodule, false));
+    }
+
+    public void addConcurrentAutoModule(StageList automodule){
+        path.addSegment(new PathAutoModule(automodule, true));
+    }
+
+    public Pose getLastPose(){
+        return path.getLast().getLast();
     }
 
 }

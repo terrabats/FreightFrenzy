@@ -9,7 +9,13 @@ import geometry.position.Point;
 import geometry.position.Pose;
 
 public class LineGenerator extends Generator{
-    private Pose oldPose = new Pose(new Point(0,0),0);
+    private Pose oldPose;
+    public LineGenerator(Pose start){
+        oldPose = start;
+    }
+    public LineGenerator(){
+        oldPose = new Pose(new Point(0,0), 0);
+    }
     public void addLine(double x, double y, double heading){
         Pose newPose = new Pose(new Point(x, y), Math.toRadians(heading));
         path.addSegment(new PathLine2(oldPose, newPose));
