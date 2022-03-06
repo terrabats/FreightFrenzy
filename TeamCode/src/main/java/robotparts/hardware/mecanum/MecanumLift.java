@@ -14,8 +14,6 @@ import util.codeseg.ReturnParameterCodeSeg;
 
 public class MecanumLift extends Lift {
 
-    private CMotor upMotor, downMotor;
-
     /**
      * Move the lift motor at a certain power
      * @param p
@@ -38,7 +36,6 @@ public class MecanumLift extends Lift {
     @Override
     public void init() {
         super.init();
-
         motors[0].useStallDetector(0.2, 0,200,0.03, 2);
         motors[1].useStallDetector(0.2, 0,200,0.03, 2);
     }
@@ -69,21 +66,22 @@ public class MecanumLift extends Lift {
         };
     }
 
+//    @Override
+//    public Stage liftEncoder(double power, double height) {
+//        fault.check("Used liftEncoder in Mecanum Lift!! Use liftEncoderUp or liftEncoderDown");
+//        return super.liftEncoder(power, height);
+//    }
+
     @Override
     public Stage liftEncoder(double power, double height) {
-        fault.check("Used liftEncoder in Mecanum Lift!! Use liftEncoderUp or liftEncoderDown");
-        return super.liftEncoder(power, height);
-    }
-
-    public Stage liftEncoderUp(double power, double height) {
-        disabled[0] = false;
-        disabled[1] = true;
-        return super.liftEncoder(power, height);
-    }
-
-    public Stage liftEncoderDown(double power, double height) {
-        disabled[0] = true;
-        disabled[1] = false;
-        return super.liftEncoder(power, height);
+        return super.liftEncoderCustom(power, height, () -> {
+            if(power > 0) {
+                disabled[0] = false;
+                disabled[1] = true;
+            }else{
+                disabled[0] = true;
+                disabled[1] = false;
+            }
+        });
     }
 }

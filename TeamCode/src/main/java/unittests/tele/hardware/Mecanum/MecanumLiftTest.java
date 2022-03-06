@@ -11,7 +11,7 @@ import unittests.tele.TeleUnitTest;
 public class MecanumLiftTest extends TeleUnitTest {
     @Override
     public void init() {
-        gph1.link(Button.A, MecanumAutoModules.LiftLift);
+        gph1.link(Button.A, MecanumAutoModules.UpLift);
         gph1.link(Button.B, MecanumAutoModules.ResetLift);
     }
 

@@ -7,6 +7,7 @@ import automodules.stage.Stage;
 import automodules.stage.Stop;
 import global.Constants;
 import robotparts.electronics.positional.PMotor;
+import util.codeseg.CodeSeg;
 import util.codeseg.ReturnParameterCodeSeg;
 
 import static global.General.*;
@@ -62,6 +63,17 @@ public abstract class Lift extends PMotorRobotPart {
     public Stage liftEncoder(double power, double height){return new Stage(
             usePart(),
             initialSetTarget(height),
+            main(power),
+            exitReachedTarget(),
+            stopEncoder(),
+            returnPart()
+    );}
+
+
+    public Stage liftEncoderCustom(double power, double height, CodeSeg custom){return new Stage(
+            usePart(),
+            initialSetTarget(height),
+            new Initial(custom),
             main(power),
             exitReachedTarget(),
             stopEncoder(),

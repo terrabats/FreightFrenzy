@@ -27,7 +27,8 @@ public class ColorTest extends TeleUnitTest {
         /**
          * These should turn true depending on the type of freight
          */
-        log.show("Put a ball in the intake", bot.color.isBall());
-        log.show("Put a cube in the intake", bot.color.isCube());
+        log.show("Is a ball in the intake?", bot.color.isBall());
+        log.show("Is a cube in the intake?", bot.color.isCube());
+        log.show("Is a freight in the intake?", bot.color.isFreight());
     }
 }

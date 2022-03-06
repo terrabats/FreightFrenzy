@@ -14,6 +14,7 @@ import unittests.tele.hardware.Mecanum.MecanumIntakeTest;
 import unittests.tele.hardware.Mecanum.MecanumLiftAndOuttakeTest;
 import unittests.tele.hardware.Mecanum.MecanumLiftTest;
 import unittests.tele.hardware.Mecanum.MecanumOuttakeTest;
+import unittests.tele.sensor.ColorTest;
 import unittests.tele.sensor.GyroTest;
 
 import static global.General.*;
@@ -34,7 +35,7 @@ public class TeleUnitTester extends Tele implements UnitTester{
          * Framework
          */
         addAll(
-              new GyroTest()
+//              new GyroTest()
 //            new ThreadTest()
 //            new MecanumCarouselTest(),
 //            new MecanumDriveTest(),
@@ -75,7 +76,7 @@ public class TeleUnitTester extends Tele implements UnitTester{
          * Sensors
          */
         addAll(
-//            new ColorTest(),
+            new ColorTest()
 //            new DistanceTest(),
 //            new GyroTest(),
 //            new OdometryTest(),
