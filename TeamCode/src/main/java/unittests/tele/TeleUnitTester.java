@@ -14,6 +14,7 @@ import unittests.tele.hardware.Mecanum.MecanumIntakeTest;
 import unittests.tele.hardware.Mecanum.MecanumLiftAndOuttakeTest;
 import unittests.tele.hardware.Mecanum.MecanumLiftTest;
 import unittests.tele.hardware.Mecanum.MecanumOuttakeTest;
+import unittests.tele.sensor.GyroTest;
 
 import static global.General.*;
 
@@ -33,7 +34,8 @@ public class TeleUnitTester extends Tele implements UnitTester{
          * Framework
          */
         addAll(
-            new ThreadTest()
+              new GyroTest()
+//            new ThreadTest()
 //            new MecanumCarouselTest(),
 //            new MecanumDriveTest(),
 //            new MecanumIntakeTest(),

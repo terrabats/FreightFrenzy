@@ -23,8 +23,8 @@ public class TwoOdometry extends TankOdometry {
     private double heading = 0;
 
     public TwoOdometry() {
-        super(3.0);
-        localOdometryCenterOffset = new Vector2(3.0, -0.5);
+        super(0.0);
+        localOdometryCenterOffset = new Vector2(0.0, -12.6);
     }
 
 

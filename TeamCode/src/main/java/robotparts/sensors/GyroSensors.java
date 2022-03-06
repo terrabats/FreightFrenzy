@@ -13,8 +13,8 @@ public class GyroSensors extends RobotPart {
 
     @Override
     public void init() {
-        gsr = createGyro("gsr");
-        gsl = createGyro("gsl");
+        gsr = createGyro("gsl");
+//        gsl = createGyro("gsl");
     }
 
     /**

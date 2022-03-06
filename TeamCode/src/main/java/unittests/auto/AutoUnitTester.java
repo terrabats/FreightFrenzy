@@ -45,9 +45,8 @@ public class AutoUnitTester extends Auto implements UnitTester {
 //                new InternalCameraTest()
 //                new ParameterConstructorTest()
 //                new PurePursuitTest()
-                new AutoModuleInitialTest()
-//                ,
-//                new OdometryTest()
+//                new AutoModuleInitialTest()
+                new OdometryTest()
         );
     }
 
