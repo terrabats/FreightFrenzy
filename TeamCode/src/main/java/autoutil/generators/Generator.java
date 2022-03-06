@@ -21,9 +21,4 @@ public abstract class Generator {
     public void addConcurrentAutoModule(StageList automodule){
         path.addSegment(new PathAutoModule(automodule, true));
     }
-
-    public Pose getLastPose(){
-        return path.getLast().getLast();
-    }
-
 }
