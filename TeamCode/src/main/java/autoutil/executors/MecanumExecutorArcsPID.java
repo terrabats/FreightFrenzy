@@ -43,7 +43,7 @@ public class MecanumExecutorArcsPID extends Executor {
         ang -= Math.PI/2; // Make +y 0
         ang *= 180/Math.PI; // Make it degrees
 
-        generator.addPose(nextPose.p.x, nextPose.p.y, ang);
+        generator.add(nextPose.p.x, nextPose.p.y, ang);
 
         executor.setPath(generator.getPath());
         executor.setReactor(new MecanumPIDReactor());

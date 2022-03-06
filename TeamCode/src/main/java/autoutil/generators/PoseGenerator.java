@@ -5,7 +5,8 @@ import autoutil.paths.PathAutoModule;
 import autoutil.paths.PathPose;
 
 public class PoseGenerator extends Generator{
-    public void addPose(double x, double y, double heading){
+    @Override
+    public void add(double x, double y, double heading) {
         path.addSegment(new PathPose(x, y, Math.toRadians(heading)));
     }
 }

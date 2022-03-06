@@ -24,8 +24,8 @@ public class PurePursuitTest extends AutoUnitTest {
 
 //        generator.addAutoModule(automodules.DuckTele);
 
-        generator.addLine(40,0,0);
-        generator.addLine(40,40,0);
+        generator.add(40,0,0);
+        generator.add(40,40,0);
 
         executor.setPath(generator.getPath());
         executor.setReactor(reactor);

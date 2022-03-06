@@ -16,7 +16,9 @@ public class LineGenerator extends Generator{
     public LineGenerator(){
         oldPose = new Pose(new Point(0,0), 0);
     }
-    public void addLine(double x, double y, double heading){
+
+    @Override
+    public void add(double x, double y, double heading) {
         Pose newPose = new Pose(new Point(x, y), Math.toRadians(heading));
         path.addSegment(new PathLine2(oldPose, newPose));
         oldPose = newPose;

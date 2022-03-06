@@ -14,6 +14,8 @@ public abstract class Generator {
         return path;
     }
 
+    public abstract void add(double x, double y, double heading);
+
     public void addAutoModule(StageList automodule){
         path.addSegment(new PathAutoModule(automodule, false));
     }

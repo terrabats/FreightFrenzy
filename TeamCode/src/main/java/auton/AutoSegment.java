@@ -4,11 +4,20 @@ import autoutil.generators.Generator;
 import autoutil.reactors.Reactor;
 
 public class AutoSegment<R extends Reactor, G extends Generator> {
-    public final R reactor;
-    public final G generator;
+    private final R reactor;
+    private final G generator;
+
     public AutoSegment(R r, G g){
         reactor = r;
         generator = g;
+    }
+
+    public Reactor getReactor(){
+        return reactor;
+    }
+
+    public Generator getGenerator(){
+        return generator;
     }
 
 }
