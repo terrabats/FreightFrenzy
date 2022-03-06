@@ -9,8 +9,7 @@ public class PathLine2 extends PathPose{
     private final Line line;
 
     public PathLine2(Pose start, Pose end){
-        poses.add(start);
-        poses.add(end);
+        super(end.p.x, end.p.y, end.ang);
         line = new Line(start.p,end.p);
     }
 
