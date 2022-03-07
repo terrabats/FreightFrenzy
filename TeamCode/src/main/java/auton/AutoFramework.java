@@ -20,6 +20,7 @@ import geometry.position.Point;
 import geometry.position.Pose;
 import util.codeseg.CodeSeg;
 import util.codeseg.ParameterCodeSeg;
+import util.condition.Decision;
 
 import static global.General.bot;
 import static global.General.log;
@@ -49,6 +50,10 @@ public abstract class AutoFramework extends Auto{
 
     public boolean isFlipped(){
         return fieldSide.equals(FieldSide.RED);
+    }
+
+    public void addDecision(Decision decision){
+        decision.check(fieldSide);
     }
 
     public void customSide(FieldSide sideOne, CodeSeg one, FieldSide sideTwo, CodeSeg two){

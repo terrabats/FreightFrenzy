@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import elements.Case;
 import elements.FieldSide;
+import util.condition.Decision;
 
 import static global.General.*;
 
@@ -19,6 +20,16 @@ public class TerraAuto extends MecanumAuto{
     public void define() {
         addWaypoint(0,30,45);
         addWaypoint(30,30,90);
+        addDecision(new Decision(
+            FieldSide.BLUE, () -> {
+
+            }
+        ).addOption(
+            FieldSide.BLUE, () -> {
+
+            }
+        ));
+
         customSide(FieldSide.BLUE,() -> {
             customCase(Case.RIGHT, () -> {
                 addSetpoint(50,30,0);

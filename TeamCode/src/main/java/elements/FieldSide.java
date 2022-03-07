@@ -1,6 +1,7 @@
 package elements;
+import util.condition.Decision.DecisionList;
 
-public enum FieldSide {
+public enum FieldSide implements DecisionList{
     /**
      * Enum to represent which side of the field we are on
      * The directions are from the audience perspective
