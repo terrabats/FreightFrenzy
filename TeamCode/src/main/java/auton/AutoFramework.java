@@ -52,26 +52,16 @@ public abstract class AutoFramework extends Auto{
         return fieldSide.equals(FieldSide.RED);
     }
 
-    public void addDecision(Decision decision){
-        decision.check(fieldSide);
+    public void addDecision(Decision decision, Decision.DecisionList decisionToCheck){
+        decision.check(decisionToCheck);
     }
 
     public void customSide(FieldSide sideOne, CodeSeg one, FieldSide sideTwo, CodeSeg two){
-        if(fieldSide.equals(sideOne)){
-            one.run();
-        }else if(fieldSide.equals(sideTwo)){
-            two.run();
-        }
+        addDecision(new Decision(sideOne, one).addOption(sideTwo, two), fieldSide);
     }
 
     public void customCase(Case caseOne, CodeSeg one, Case caseTwo, CodeSeg two, Case caseThree, CodeSeg three){
-        if(caseDetected.equals(caseOne)){
-            one.run();
-        }else if(caseDetected.equals(caseTwo)){
-            two.run();
-        }else if(caseDetected.equals(caseThree)){
-            three.run();
-        }
+        addDecision(new Decision(caseOne, one).addOption(caseTwo, two).addOption(caseThree, three), caseDetected);
     }
 
     public void scan(){

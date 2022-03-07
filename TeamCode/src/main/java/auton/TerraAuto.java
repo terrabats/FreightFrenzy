@@ -20,15 +20,6 @@ public class TerraAuto extends MecanumAuto{
     public void define() {
         addWaypoint(0,30,45);
         addWaypoint(30,30,90);
-        addDecision(new Decision(
-            FieldSide.BLUE, () -> {
-
-            }
-        ).addOption(
-            FieldSide.BLUE, () -> {
-
-            }
-        ));
 
         customSide(FieldSide.BLUE,() -> {
             customCase(Case.RIGHT, () -> {
