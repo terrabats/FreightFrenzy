@@ -6,7 +6,7 @@ public class NewMecanumConfig extends RobotConfig{
                 drive,
                 gyro,
                 odometry,
-//                camera,
+                camera,
                 carousel,
                 intake,
                 lift,

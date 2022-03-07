@@ -12,6 +12,8 @@ import autoutil.reactors.Reactor;
 import autoutil.reactors.mecanum.MecanumPIDReactor;
 import autoutil.reactors.mecanum.MecanumPurePursuitReactor;
 import autoutil.reactors.mecanum.MecanumReactor;
+import autoutil.vision.CaseScanner;
+import autoutil.vision.TeamElementScanner;
 import geometry.position.Point;
 import geometry.position.Pose;
 import util.codeseg.ParameterCodeSeg;
@@ -41,4 +43,7 @@ public abstract class MecanumAuto extends AutoFramework{
     public Generator getWaypointGenerator() {
         return new LineGenerator(lastPose);
     }
+
+    @Override
+    public CaseScanner getCaseScanner() { return new TeamElementScanner(); }
 }

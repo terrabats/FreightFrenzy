@@ -12,8 +12,8 @@ public class Cameras extends RobotPart {
 
     @Override
     public void init() {
-//        ecam = createExternalCamera("cam", OpenCvCameraRotation.UPRIGHT, true);
-        icam = createInternalCamera(OpenCvCameraRotation.UPRIGHT, false);
+        ecam = createExternalCamera("ecam", OpenCvCameraRotation.UPRIGHT, true);
+//        icam = createInternalCamera(OpenCvCameraRotation.UPRIGHT, false);
     }
 
     public void startExternalCamera(){ ecam.start(); }

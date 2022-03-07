@@ -13,11 +13,16 @@ import autoutil.reactors.Reactor;
 import autoutil.reactors.mecanum.MecanumPIDReactor;
 import autoutil.reactors.mecanum.MecanumPurePursuitReactor;
 import autoutil.reactors.mecanum.MecanumReactor;
+import autoutil.vision.CaseScanner;
+import elements.Case;
 import elements.FieldSide;
 import geometry.position.Point;
 import geometry.position.Pose;
 import util.codeseg.CodeSeg;
 import util.codeseg.ParameterCodeSeg;
+
+import static global.General.bot;
+import static global.General.log;
 
 public abstract class AutoFramework extends Auto{
 
@@ -31,31 +36,56 @@ public abstract class AutoFramework extends Auto{
 
     protected ArrayList<AutoSegment<? extends Reactor, ? extends Generator>> segments = new ArrayList<>();
 
+    protected boolean scanning = false;
+    protected CaseScanner caseScanner;
+    protected Case caseDetected;
+
     public abstract void define();
     public abstract Reactor getSetpointReactor();
     public abstract Reactor getWaypointReactor();
     public abstract Generator getSetpointGenerator();
     public abstract Generator getWaypointGenerator();
+    public abstract CaseScanner getCaseScanner();
 
     public boolean isFlipped(){
         return fieldSide.equals(FieldSide.RED);
     }
 
-    public void customSide(CodeSeg blue, CodeSeg red){
-        if(fieldSide.equals(FieldSide.BLUE)){
-            blue.run();
-        }else if(fieldSide.equals(FieldSide.RED)){
-            red.run();
+    public void customSide(FieldSide sideOne, CodeSeg one, FieldSide sideTwo, CodeSeg two){
+        if(fieldSide.equals(sideOne)){
+            one.run();
+        }else if(fieldSide.equals(sideTwo)){
+            two.run();
         }
     }
 
-    @Override
-    public void initAuto() {
-        define();
+    public void customCase(Case caseOne, CodeSeg one, Case caseTwo, CodeSeg two, Case caseThree, CodeSeg three){
+        if(caseDetected.equals(caseOne)){
+            one.run();
+        }else if(caseDetected.equals(caseTwo)){
+            two.run();
+        }else if(caseDetected.equals(caseThree)){
+            three.run();
+        }
+    }
+
+    public void scan(){
+        scanning = true;
+        caseScanner = getCaseScanner();
+        bot.camera.setExternalScanner(caseScanner);
+        bot.camera.startExternalCamera();
+        whileActive(() -> !isStarted(), () -> {
+            caseDetected = caseScanner.getCase();
+            log.show("Case Detected: ", caseDetected);
+        });
     }
 
     @Override
     public void runAuto() {
+        define();
+        if(scanning) {
+            bot.camera.stopExternalCamera();
+        }
         for(AutoSegment<? extends Reactor, ? extends Generator> autoSegment: segments){
             executor = getExecutor();
             executor.setReactor(autoSegment.getReactor());
