@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import elements.Case;
 import elements.FieldSide;
-import util.condition.Decision;
 
 import static global.General.*;
 

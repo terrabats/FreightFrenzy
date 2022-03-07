@@ -7,6 +7,7 @@ import automodules.stage.Main;
 import automodules.stage.Stage;
 import robotparts.RobotPart;
 import robotparts.electronics.positional.PServo;
+import teleutil.Modes;
 
 public class MecanumOuttake extends RobotPart {
     /**
@@ -15,6 +16,9 @@ public class MecanumOuttake extends RobotPart {
      * ohor is Outtake Horizontal Controller
      */
     private PServo od, or, ol, ot;
+
+    private Modes.OuttakeMode outtakeMode = Modes.OuttakeMode.ALLIANCE;
+
 
     @Override
     public void init() {
@@ -189,5 +193,14 @@ public class MecanumOuttake extends RobotPart {
         return new StageList(
             stageDrop()
         );
+    }
+
+
+    public void setOuttakeMode(Modes.OuttakeMode outtakeMode){
+        this.outtakeMode = outtakeMode;
+    }
+
+    public Modes.OuttakeMode getOuttakeMode(){
+        return outtakeMode;
     }
 }

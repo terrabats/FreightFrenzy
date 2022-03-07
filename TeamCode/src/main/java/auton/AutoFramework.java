@@ -3,24 +3,18 @@ package auton;
 import java.util.ArrayList;
 
 import automodules.StageList;
-import autoutil.executors.Executor;
 import autoutil.executors.ExecutorNew;
-import autoutil.executors.MecanumExecutor;
 import autoutil.generators.Generator;
-import autoutil.generators.LineGenerator;
 import autoutil.generators.PoseGenerator;
 import autoutil.reactors.Reactor;
 import autoutil.reactors.mecanum.MecanumPIDReactor;
-import autoutil.reactors.mecanum.MecanumPurePursuitReactor;
-import autoutil.reactors.mecanum.MecanumReactor;
 import autoutil.vision.CaseScanner;
 import elements.Case;
 import elements.FieldSide;
 import geometry.position.Point;
 import geometry.position.Pose;
 import util.codeseg.CodeSeg;
-import util.codeseg.ParameterCodeSeg;
-import util.condition.Decision;
+import util.condition.DecisionList;
 
 import static global.General.bot;
 import static global.General.log;
@@ -52,16 +46,16 @@ public abstract class AutoFramework extends Auto{
         return fieldSide.equals(FieldSide.RED);
     }
 
-    public void addDecision(Decision decision, Decision.DecisionList decisionToCheck){
-        decision.check(decisionToCheck);
+    public void addDecision(DecisionList decisionList){
+        decisionList.check();
     }
 
     public void customSide(FieldSide sideOne, CodeSeg one, FieldSide sideTwo, CodeSeg two){
-        addDecision(new Decision(sideOne, one).addOption(sideTwo, two), fieldSide);
+        addDecision(new DecisionList(() -> fieldSide).addOption(sideOne, one).addOption(sideTwo, two));
     }
 
     public void customCase(Case caseOne, CodeSeg one, Case caseTwo, CodeSeg two, Case caseThree, CodeSeg three){
-        addDecision(new Decision(caseOne, one).addOption(caseTwo, two).addOption(caseThree, three), caseDetected);
+        addDecision(new DecisionList(() -> caseDetected).addOption(caseOne, one).addOption(caseTwo, two).addOption(caseThree, three));
     }
 
     public void scan(){

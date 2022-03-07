@@ -1,6 +1,12 @@
 package automodules;
 
+import teleutil.Modes.OuttakeMode;
+import util.condition.DecisionList;
+
+import static global.General.automodules;
 import static global.General.bot;
+import static teleutil.Modes.OuttakeMode.ALLIANCE;
+import static teleutil.Modes.OuttakeMode.SHARED;
 
 public class AutoModules {
 
@@ -16,6 +22,10 @@ public class AutoModules {
 
     public StageList SetUpForAllianceShippingHub = new StageList().add(LiftUpAlliance, OuttakeAlliance);
     public StageList SetUpForSharedShippingHub = new StageList().add(LiftUpShared, OuttakeShared);
+
+    public DecisionList SetUpForBoth = new DecisionList(bot.outtake::getOuttakeMode)
+            .addOption(ALLIANCE, () -> bot.addAutoModule(SetUpForAllianceShippingHub))
+            .addOption(SHARED, () -> bot.addAutoModule(SetUpForSharedShippingHub));
 
     public StageList ResetLiftAndOuttake = new StageList().add(ResetOuttake, LiftReset);
     public StageList IntakeUntilFreight = new StageList(bot.intake.intakeUntilFreight());

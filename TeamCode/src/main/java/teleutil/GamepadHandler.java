@@ -14,6 +14,7 @@ import teleutil.button.ButtonHandler;
 import teleutil.button.OnPressEventHandler;
 import util.codeseg.CodeSeg;
 import util.codeseg.ReturnCodeSeg;
+import util.condition.DecisionList;
 
 public class GamepadHandler {
     /**
@@ -83,6 +84,10 @@ public class GamepadHandler {
 
     public void link(Button b, StageList list) {
         link(b, OnPressEventHandler.class, () -> bot.addAutoModule(list));
+    }
+
+    public void link(Button b, DecisionList decisionList){
+        link(b, OnPressEventHandler.class, decisionList::check);
     }
 
     /**

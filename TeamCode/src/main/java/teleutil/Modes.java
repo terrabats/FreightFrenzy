@@ -1,9 +1,9 @@
 package teleutil;
 
-import util.condition.Decision.DecisionList;
+import util.condition.DecisionList.Decision;
 
 public class Modes {
-    public enum OuttakeMode implements DecisionList {
+    public enum OuttakeMode implements Decision {
         SHARED,
         ALLIANCE
     }

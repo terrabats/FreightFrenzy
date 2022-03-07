@@ -1,8 +1,8 @@
 package elements;
 
-import util.condition.Decision.DecisionList;
+import util.condition.DecisionList.Decision;
 
-public enum GameElement implements DecisionList {
+public enum GameElement implements Decision {
     /**
      * Enum to represent different game elements like the balls and cubes
      */

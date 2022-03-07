@@ -1,7 +1,7 @@
 package elements;
-import util.condition.Decision.DecisionList;
+import util.condition.DecisionList.Decision;
 
-public enum Case implements DecisionList{
+public enum Case implements Decision {
     LEFT(Level.BOTTOM),
     CENTER(Level.MIDDLE),
     RIGHT(Level.TOP);
