@@ -33,7 +33,7 @@ public class MecanumOuttake extends RobotPart {
         ol.addPosition("horizontal", 0.92);
 
         ot.addPosition("sharedLeft", 0.18);
-        ot.addPosition("center", 0.53);
+        ot.addPosition("center", 0.555);
         ot.addPosition("sharedRight", 0.9);
 
         lock();
