@@ -142,6 +142,7 @@ public class MecanumOuttake extends RobotPart {
         return new Stage(
                 usePart(),
                 mainTurnToHorizontal(),
+                exitTime(1),
                 returnPart()
         );
     }
@@ -152,9 +153,9 @@ public class MecanumOuttake extends RobotPart {
      */
     public StageList moveForReset() {
         return new StageList(
+            stageDrop(),
             stageCenterTurret(),
-            stageTurnToStart(),
-            stageDrop()
+            stageTurnToStart()
         );
     }
 

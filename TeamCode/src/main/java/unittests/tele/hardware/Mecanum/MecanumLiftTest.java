@@ -2,21 +2,19 @@ package unittests.tele.hardware.Mecanum;
 
 import static global.General.automodules;
 import static global.General.bot;
-import static global.General.gamepad1;
 import static global.General.gamepad2;
 import static global.General.gph1;
 import static global.General.gph2;
 import static global.General.log;
 
-import automodules.MecanumAutoModules;
 import teleutil.button.Button;
 import unittests.tele.TeleUnitTest;
 
 public class MecanumLiftTest extends TeleUnitTest {
     @Override
     public void init() {
-        gph1.link(Button.Y, automodules.LiftUp);
-        gph2.link(Button.Y, automodules.DownLift);
+        gph1.link(Button.Y, automodules.LiftUpAlliance);
+        gph2.link(Button.Y, automodules.LiftReset);
     }
 
     @Override

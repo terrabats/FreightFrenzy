@@ -26,9 +26,8 @@ public class TerraOp extends Tele{
         gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));
         gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.intake.move(0));
         gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModules);
-//        gph1.link(Button.Y, automodules.LiftUp);
-//        gph1.link(Button.B, automodules.ResetLift);
-        gph1.link(Button.RIGHT_TRIGGER, automodules.DuckTele);
+
+        gph1.link(Button.RIGHT_TRIGGER, automodules.OneDuck);
         gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);
         gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot::resumeAutoModules);
 
@@ -40,6 +39,13 @@ public class TerraOp extends Tele{
         gph2.link(Button.DPAD_RIGHT, OnPressEventHandler.class, () -> bot.outtake.sharedTurretRight());
         gph2.link(Button.DPAD_DOWN, OnPressEventHandler.class, () -> bot.outtake.centerTurret());
         gph2.link(Button.DPAD_LEFT, OnPressEventHandler.class, () -> bot.outtake.sharedTurretLeft());
+
+        // TODO FIX
+        // Add mode switching
+        gph1.link(Button.A, automodules.IntakeUntilFreight);
+        gph1.link(Button.B, automodules.LiftUpShared);
+        gph1.link(Button.B, automodules.LiftUpAlliance);
+        gph1.link(Button.Y, automodules.ResetLiftAndOuttake);
     }
 
     @Override
