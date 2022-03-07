@@ -6,8 +6,8 @@ public class AutoModules {
 
     public StageList DuckTele = new StageList(bot.carousel.spinOneDuck(2,0.4,0.7));
 
-//    public StageList UpLift = new StageList(bot.lift.liftEncoder(0.2, 20));
-//    public StageList ResetLift = new StageList(bot.lift.liftEncoder(-0.2, 0));
+    public StageList LiftUp = new StageList(bot.lift.liftEncoderUp(0.5, 20));
+    public StageList DownLift = new StageList(bot.lift.liftEncoderDown(-0.2, 0));
 //
 //    public static StageList OuttakeAlliance = bot.outtake.moveForAlliance();
 //    public static StageList OuttakeShared = bot.outtake.moveForShared();

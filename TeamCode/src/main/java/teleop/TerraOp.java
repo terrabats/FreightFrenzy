@@ -26,7 +26,7 @@ public class TerraOp extends Tele{
         gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));
         gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.intake.move(0));
         gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModules);
-//        gph1.link(Button.Y, automodules.UpLift);
+//        gph1.link(Button.Y, automodules.LiftUp);
 //        gph1.link(Button.B, automodules.ResetLift);
         gph1.link(Button.RIGHT_TRIGGER, automodules.DuckTele);
         gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);

@@ -10,7 +10,7 @@ import robotparts.electronics.positional.PMotor;
 import util.codeseg.ReturnParameterCodeSeg;
 
 public abstract class PMotorRobotPart extends RobotPart {
-    protected PMotor[] motors;
+    public PMotor[] motors;
 
     protected ReturnParameterCodeSeg<Double, Double>[] getTargets;
 
@@ -143,6 +143,7 @@ public abstract class PMotorRobotPart extends RobotPart {
      * @return
      */
     public Exit exitReachedTarget(){return new Exit(this::hasReachedTarget);}
+
 
     /**
      * Stop the motors

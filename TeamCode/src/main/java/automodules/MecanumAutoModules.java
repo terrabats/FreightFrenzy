@@ -10,8 +10,8 @@ public class MecanumAutoModules {
     /**
      * Low-Usage StageLists – Usually not going to be used
      */
-    public static StageList UpLift = new StageList(bot.lift.liftEncoder(0.2, 20));
-    public static StageList ResetLift = new StageList(bot.lift.liftEncoder(-0.2, 0));
+    public static StageList UpLift = new StageList(bot.lift.liftEncoderUp(0.2, 20));
+    public static StageList ResetLift = new StageList(bot.lift.liftEncoderDown(-0.2, 0));
 
     public static StageList OuttakeAlliance = bot.outtake.moveForAlliance();
     public static StageList OuttakeShared = bot.outtake.moveForShared();
