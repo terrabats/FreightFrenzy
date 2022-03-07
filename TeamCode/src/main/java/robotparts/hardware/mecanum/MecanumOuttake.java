@@ -41,7 +41,7 @@ public class MecanumOuttake extends RobotPart {
         ot.addPosition("sharedRight", 0.9);
 
         lock();
-        centerTurret();
+        turretCenter();
 //        turnToStart();
     }
 
@@ -68,7 +68,7 @@ public class MecanumOuttake extends RobotPart {
     /**
      * Moves the horizontal servo for everything except shared shipping hub
      */
-    public void centerTurret() { ot.setPosition("center"); }
+    public void turretCenter() { ot.setPosition("center"); }
 
     /**
      * Moves the vertical servo for locking
@@ -92,7 +92,7 @@ public class MecanumOuttake extends RobotPart {
      */
     private Main mainDrop() { return new Main(this::drop); }
     private Main mainLock() { return new Main(this::lock); }
-    private Main mainCenterTurret() { return new Main(this::centerTurret); }
+    private Main mainCenterTurret() { return new Main(this::turretCenter); }
     private Main mainSharedTurret() { return new Main(this::sharedTurretRight); }
     private Main mainTurnToStart() { return new Main(this::turnToStart); }
     private Main mainTurnToHorizontal() { return new Main(this::turnToHorizontal); }
