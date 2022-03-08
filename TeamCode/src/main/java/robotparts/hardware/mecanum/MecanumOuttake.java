@@ -93,148 +93,26 @@ public class MecanumOuttake extends RobotPart {
     private Main mainDrop() { return new Main(this::drop); }
     private Main mainLock() { return new Main(this::lock); }
     private Main mainCenterTurret() { return new Main(this::turretCenter); }
-    private Main mainSharedTurret() { return new Main(this::sharedTurretRight); }
+    private Main mainSharedTurretRight() { return new Main(this::sharedTurretRight); }
+    private Main mainSharedTurretLeft() { return new Main(this::sharedTurretLeft); }
     private Main mainTurnToStart() { return new Main(this::turnToStart); }
     private Main mainTurnToHorizontal() { return new Main(this::turnToHorizontal); }
 
     /**
-     * Stages for all of the above mains
-     * Exit condition is 1 second
-     * @return Stage for related main
+     * Stages for all the above functions
+     * @param main
+     * @param t
+     * @return
      */
-    public Stage stageDrop() {
-        return new Stage(
-                usePart(),
-                mainDrop(),
-                exitTime(0.3),
-                returnPart()
-        );
-    }
-    public Stage stageLock() {
-        return new Stage(
-                usePart(),
-                mainLock(),
-                exitTime(0.3),
-                returnPart()
-        );
-    }
+    public Stage buildStageTime(Main main, double t){ return new Stage(usePart(), main, exitTime(t), returnPart()); }
+    public Stage stageDrop(double t) { return buildStageTime(mainDrop(), t); } //0.25
+    public Stage stageLock(double t) { return buildStageTime(mainLock(), t); } //0.25
+    public Stage stageCenterTurret(double t) { return buildStageTime(mainCenterTurret(), t); }
+    public Stage stageSharedTurretRight(double t) { return buildStageTime(mainSharedTurretRight(), t); } // 0.5
+    public Stage stageSharedTurretLeft(double t) { return buildStageTime(mainSharedTurretLeft(), t); } //0.5
+    public Stage stageTurnToStart(double t) { return buildStageTime(mainTurnToStart(), t); } //0.05
+    public Stage stageTurnToHorizontal(double t) { return buildStageTime(mainTurnToStart(), t); } //0.05
 
-    public Stage stageLockFast() {
-        return new Stage(
-                usePart(),
-                mainLock(),
-                exitTime(0.05),
-                returnPart()
-        );
-    }
-    public Stage stageCenterTurret() {
-        return new Stage(
-                usePart(),
-                mainCenterTurret(),
-                exitTime(0.6),
-                returnPart()
-        );
-    }
-    public Stage stageCenterTurretFast() {
-        return new Stage(
-                usePart(),
-                mainCenterTurret(),
-                exitTime(0.05),
-                returnPart()
-        );
-    }
-    public Stage stageSharedTurret() {
-        return new Stage(
-                usePart(),
-                mainSharedTurret(),
-                exitTime(0.6),
-                returnPart()
-        );
-    }
-    public Stage stageTurnToStart() {
-        return new Stage(
-                usePart(),
-                mainTurnToStart(),
-                exitTime(1),
-                returnPart()
-        );
-    }
-
-    public Stage stageTurnToStartFast() {
-        return new Stage(
-                usePart(),
-                mainTurnToStart(),
-                exitTime(0.05),
-                returnPart()
-        );
-    }
-    public Stage stageTurnToHorizontal() {
-        return new Stage(
-                usePart(),
-                mainTurnToHorizontal(),
-                exitTime(1),
-                returnPart()
-        );
-    }
-
-    public Stage stageTurnToHorizontalFast() {
-        return new Stage(
-                usePart(),
-                mainTurnToHorizontal(),
-                exitTime(0.1),
-                returnPart()
-        );
-    }
-
-    /**
-     * Resets the outtake after shared or alliance shipping hub
-     * @return StageList to reset
-     */
-    public StageList moveForReset() {
-        return new StageList(
-            stageDrop(),
-            stageCenterTurret(),
-            stageLockFast(),
-            stageTurnToStartFast()
-        );
-    }
-
-    /**
-     * Moves the outtake for alliance shipping hub
-     * @return StageList to move for alliance shipping hub
-     */
-    public StageList moveForAlliance() {
-        return new StageList(
-            stageCenterTurret()
-        );
-    }
-
-    /**
-     * Moves the outtake for shared shipping hub
-     * @return StageList to move for shared shipping hub
-     */
-    public StageList moveForShared() {
-        return new StageList(
-            stageSharedTurret()
-        );
-    }
-
-    /**
-     * Releases the game element
-     * @return StageList to release
-     */
-    public StageList moveForDrop() {
-        return new StageList(
-            stageDrop()
-        );
-    }
-
-
-    public void setOuttakeMode(Modes.OuttakeMode outtakeMode){
-        this.outtakeMode = outtakeMode;
-    }
-
-    public Modes.OuttakeMode getOuttakeMode(){
-        return outtakeMode;
-    }
+    public void setOuttakeMode(Modes.OuttakeMode outtakeMode){ this.outtakeMode = outtakeMode; }
+    public Modes.OuttakeMode getOuttakeMode(){ return outtakeMode; }
 }

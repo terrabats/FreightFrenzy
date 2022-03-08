@@ -23,7 +23,6 @@ public class TerraOp extends Tele{
         // TODO LIFt
         // Fix the lift so it says up
         // Two side of field outtake shared
-        // Clean up automodules
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
         gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.intake.move(0));
         gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));

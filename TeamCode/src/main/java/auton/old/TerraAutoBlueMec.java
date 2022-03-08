@@ -1,7 +1,5 @@
 package auton.old;
 
-import automodules.MecanumAutoModules;
-import auton.old.CompleteAuto;
 import autoutil.executors.MecanumExecutorArcsPID;
 import elements.FieldSide;
 
@@ -24,23 +22,23 @@ public class TerraAutoBlueMec extends CompleteAuto {
     public void defineExecutorAndAddPoints() {
         executor = new MecanumExecutorArcsPID(this);
         addExecutorFuncs(
-                setPoint(70, 30, PI/2),
-                unsyncedRF(MecanumAutoModules.SpinCarousel),
-                setPoint(-50, 43, -PI/2),
-                setPoint(-60, 30, PI),
-                unsyncedRF(MecanumAutoModules.SetUpForAllianceShippingHub),
-                unsyncedRF(MecanumAutoModules.Release),
-                setPoint(-90, 0, -PI/2),
-                unsyncedRF(MecanumAutoModules.IntakeAndMoveForwardUntilFreight)
+//                setPoint(70, 30, PI/2),
+//                unsyncedRF(MecanumAutoModules.SpinCarousel),
+//                setPoint(-50, 43, -PI/2),
+//                setPoint(-60, 30, PI),
+//                unsyncedRF(MecanumAutoModules.SetUpForAllianceShippingHub),
+//                unsyncedRF(MecanumAutoModules.Release),
+//                setPoint(-90, 0, -PI/2),
+//                unsyncedRF(MecanumAutoModules.IntakeAndMoveForwardUntilFreight)
         );
         for (int i = 0; i < 2; i++) {
             addExecutorFuncs(
-                syncedRF(MecanumAutoModules.SetUpForAllianceShippingHub),
-                setPoint(-90, 0, -PI/2),
-                setPoint(-60, 30, PI),
-                unsyncedRF(MecanumAutoModules.Release),
-                setPoint(-90, 0, -PI/2),
-                unsyncedRF(MecanumAutoModules.IntakeAndMoveForwardUntilFreight)
+//                syncedRF(MecanumAutoModules.SetUpForAllianceShippingHub),
+//                setPoint(-90, 0, -PI/2),
+//                setPoint(-60, 30, PI),
+//                unsyncedRF(MecanumAutoModules.Release),
+//                setPoint(-90, 0, -PI/2),
+//                unsyncedRF(MecanumAutoModules.IntakeAndMoveForwardUntilFreight)
             );
         }
     }

@@ -14,25 +14,33 @@ public class AutoModules {
     public StageList LiftUpShared = new StageList(bot.lift.liftEncoderUp(0.5, 20));
     public StageList LiftReset = new StageList(bot.lift.liftEncoderDown(-0.2, 0));
 
-    public StageList OuttakeHorizontal = new StageList(bot.outtake.stageTurnToHorizontalFast());
-    public StageList OuttakeAlliance = new StageList(bot.outtake.stageCenterTurretFast());
-    public StageList OuttakeShared = bot.outtake.moveForShared();
-    public StageList OuttakeReset = bot.outtake.moveForReset();
-    public StageList OuttakeDrop = bot.outtake.moveForDrop();
-    public StageList OuttakeLock = new StageList(bot.outtake.stageLock());
-    public StageList IntakeOutAndLock = new StageList(bot.outtake.stageLockFast(), bot.intake.intakeOutAndLock());
+    public StageList OuttakeHorizontal = new StageList(bot.outtake.stageTurnToHorizontal(0.05));
+    public StageList OuttakeAlliance = new StageList(bot.outtake.stageCenterTurret(0.05));
+    public StageList OuttakeSharedRight = new StageList(bot.outtake.stageSharedTurretRight(0.5));
+    public StageList OuttakeSharedLeft = new StageList(bot.outtake.stageSharedTurretLeft(0.5));
+    public StageList OuttakeDrop = new StageList(bot.outtake.stageDrop(0.25));
+    public StageList OuttakeLock = new StageList(bot.outtake.stageLock(0.25));
+
+    public StageList OuttakeReset = new StageList(
+            bot.outtake.stageDrop(0.15),
+            bot.outtake.stageCenterTurret(0.25),
+            bot.outtake.stageLock(0.05),
+            bot.outtake.stageTurnToStart(0.05)
+    );
+
+    public StageList IntakeOutAndLock = new StageList(bot.outtake.stageLock(0.05), bot.intake.intakeOutAndLock());
     public StageList IntakeUntilFreight = new StageList(bot.intake.intakeUntilFreight());
 
-
     public StageList SetUpForAllianceShippingHub = new StageList().add(OuttakeHorizontal, LiftUpAlliance, OuttakeAlliance);
-    public StageList SetUpForSharedShippingHub = new StageList().add(OuttakeHorizontal, LiftUpShared, OuttakeShared);
+    public StageList SetUpForSharedShippingHubRight = new StageList().add(OuttakeHorizontal, LiftUpShared, OuttakeSharedRight);
+    public StageList SetUpForSharedShippingHubLeft = new StageList().add(OuttakeHorizontal, LiftUpShared, OuttakeSharedLeft);
+
+
 
     public DecisionList SetUpForBoth = new DecisionList(bot.outtake::getOuttakeMode)
             .addOption(ALLIANCE, () -> bot.addAutoModule(SetUpForAllianceShippingHub))
-            .addOption(SHARED, () -> bot.addAutoModule(SetUpForSharedShippingHub));
+            .addOption(SHARED, () -> bot.addAutoModule(SetUpForSharedShippingHubRight));
 
     public StageList ResetLiftAndOuttake = new StageList().add(OuttakeReset, LiftReset);
     public StageList IntakeCombined = new StageList().add(OuttakeDrop, IntakeUntilFreight, IntakeOutAndLock);
-
-//    public StageList IntakeAndMoveForwardUntilFreight = new StageList(bot.intake.intakeAndMoveForwardUntilFreight());
 }
