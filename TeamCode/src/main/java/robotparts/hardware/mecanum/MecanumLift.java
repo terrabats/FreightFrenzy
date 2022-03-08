@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import automodules.stage.Initial;
 import automodules.stage.Stage;
+import autoutil.controllers.PositionHolder;
 import global.Constants;
 import robotparts.electronics.continuous.CMotor;
 import robotparts.electronics.positional.PMotor;
@@ -16,6 +17,8 @@ import util.codeseg.CodeSeg;
 import util.codeseg.ReturnParameterCodeSeg;
 
 public class MecanumLift extends TwoLift {
+
+    private PositionHolder positionHolder;
 
     @Override
     public void move(double p){
@@ -35,7 +38,10 @@ public class MecanumLift extends TwoLift {
     @Override
     public void init() {
         super.init();
-        // TODO FIX
+        positionHolder = new PositionHolder(0.0, 0.005, 0.1);
+        positionHolder.setProcessVariable(this::getPositionUp);
+
+        // TOD4 FIX
         // Problem with stall detection
 //        motorUp.useStallDetector(0.2, getRestPows()[0], 200,0.03, 2);
 //        motorDown.useStallDetector(0.2, getRestPows()[1],200,0.03, 2);
@@ -88,4 +94,14 @@ public class MecanumLift extends TwoLift {
             stopEncoder(),
             returnPart()
     );}
+
+    public double getPositionUp(){
+        return motorUp.getPosition()*CM_PER_TICK();
+    }
+
+
+    public void holdPosition(){
+        positionHolder.update();
+        move(positionHolder.getOutput());
+    }
 }

@@ -56,7 +56,11 @@ public class TerraOp extends Tele{
 
         // Gamepad2
 
-        bot.lift.move(-gamepad2.right_stick_y);
+        if(gamepad1.right_stick_y == 0){
+            bot.lift.holdPosition();
+        }else {
+            bot.lift.move(-gamepad2.right_stick_y);
+        }
 
         log.show("OuttakeMode", bot.outtake.getOuttakeMode());
 
