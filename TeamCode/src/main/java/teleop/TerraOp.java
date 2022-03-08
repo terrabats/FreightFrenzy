@@ -32,8 +32,8 @@ public class TerraOp extends Tele{
         gph1.link(Button.LEFT_TRIGGER, OnTurnOffEventHandler.class, () -> bot.outtake.setOuttakeMode(ALLIANCE));
         gph1.link(Button.LEFT_TRIGGER, OnTurnOnEventHandler.class, () -> bot.outtake.setOuttakeMode(SHARED));
         gph1.link(Button.A, automodules.IntakeUntilFreight);
-        gph1.link(Button.B, automodules.SetUpForBoth);
-        gph1.link(Button.Y, automodules.ResetLiftAndOuttake);
+//        gph1.link(Button.B, automodules.SetUpForBoth);
+//        gph1.link(Button.Y, automodules.ResetLiftAndOuttake);
 
         gph2.link(Button.RIGHT_TRIGGER, OnPressEventHandler.class, bot.outtake::lock);
         gph2.link(Button.LEFT_TRIGGER, OnPressEventHandler.class, bot.outtake::drop);

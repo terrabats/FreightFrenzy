@@ -20,22 +20,15 @@ public class StageList {
     }
 
     public StageList add(Stage... stageArray){
-        ArrayList<Stage> newStages = new ArrayList<>();
-        newStages.addAll(stages);
-        newStages.addAll(Arrays.asList(stageArray));
-        return new StageList((Stage[]) newStages.toArray());
-    }
-
-    public StageList add(StageList other) {
-        return add((Stage[]) other.stages.toArray());
+        stages.addAll(Arrays.asList(stageArray));
+        return this;
     }
 
     public StageList add(StageList... other) {
-        StageList newStageList = new StageList().add(this);
         for (StageList list : other) {
-            add(list);
+            stages.addAll(list.stages);
         }
-        return newStageList;
+        return this;
     }
 
     /**

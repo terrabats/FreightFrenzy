@@ -43,7 +43,7 @@ public class MecanumLift extends TwoLift {
 
     @Override
     protected double[] getRestPows() {
-        return new double[]{0.07, -0.05};
+        return new double[]{0.08, -0.05};
     }
 
     @Override
