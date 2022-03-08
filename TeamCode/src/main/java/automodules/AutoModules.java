@@ -1,8 +1,10 @@
 package automodules;
 
+import elements.FieldSide;
 import util.condition.DecisionList;
 
 import static global.General.bot;
+import static global.General.fieldSide;
 import static teleutil.Modes.OuttakeMode.ALLIANCE;
 import static teleutil.Modes.OuttakeMode.SHARED;
 
@@ -35,11 +37,13 @@ public class AutoModules {
     public StageList SetUpForSharedShippingHubRight = new StageList().add(OuttakeHorizontal, LiftUpShared, OuttakeSharedRight);
     public StageList SetUpForSharedShippingHubLeft = new StageList().add(OuttakeHorizontal, LiftUpShared, OuttakeSharedLeft);
 
-
+    public DecisionList SetUpForSharedShippingHubBoth = new DecisionList(() -> fieldSide)
+            .addOption(FieldSide.BLUE, () -> bot.addAutoModule(SetUpForSharedShippingHubLeft))
+            .addOption(FieldSide.RED, () -> bot.addAutoModule(SetUpForSharedShippingHubRight));
 
     public DecisionList SetUpForBoth = new DecisionList(bot.outtake::getOuttakeMode)
             .addOption(ALLIANCE, () -> bot.addAutoModule(SetUpForAllianceShippingHub))
-            .addOption(SHARED, () -> bot.addAutoModule(SetUpForSharedShippingHubRight));
+            .addOption(SHARED, () -> SetUpForSharedShippingHubBoth.check());
 
     public StageList ResetLiftAndOuttake = new StageList().add(OuttakeReset, LiftReset);
     public StageList IntakeCombined = new StageList().add(OuttakeDrop, IntakeUntilFreight, IntakeOutAndLock);
