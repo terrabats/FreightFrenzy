@@ -19,6 +19,11 @@ public class TerraOp extends Tele{
 
     @Override
     public void initTele() {
+
+        // TODO LIFt
+        // Fix the lift so it says up
+        // Two side of field outtake shared
+        // Clean up automodules
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
         gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.intake.move(0));
         gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));
@@ -31,9 +36,9 @@ public class TerraOp extends Tele{
         gph1.link(Button.RIGHT_TRIGGER, automodules.OneDuck);
         gph1.link(Button.LEFT_TRIGGER, OnTurnOffEventHandler.class, () -> bot.outtake.setOuttakeMode(ALLIANCE));
         gph1.link(Button.LEFT_TRIGGER, OnTurnOnEventHandler.class, () -> bot.outtake.setOuttakeMode(SHARED));
-        gph1.link(Button.A, automodules.IntakeUntilFreight);
-//        gph1.link(Button.B, automodules.SetUpForBoth);
-//        gph1.link(Button.Y, automodules.ResetLiftAndOuttake);
+        gph1.link(Button.A, automodules.IntakeCombined);
+        gph1.link(Button.B, automodules.SetUpForBoth);
+        gph1.link(Button.Y, automodules.ResetLiftAndOuttake);
 
         gph2.link(Button.RIGHT_TRIGGER, OnPressEventHandler.class, bot.outtake::lock);
         gph2.link(Button.LEFT_TRIGGER, OnPressEventHandler.class, bot.outtake::drop);
@@ -49,7 +54,6 @@ public class TerraOp extends Tele{
 
         // Gamepad1
         bot.drive.moveSmooth(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
-        bot.carousel.move(gamepad1.left_trigger);
 
         // Gamepad2
 

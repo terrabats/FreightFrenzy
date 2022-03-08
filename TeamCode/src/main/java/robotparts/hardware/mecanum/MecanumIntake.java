@@ -4,6 +4,8 @@ import static global.General.bot;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+import automodules.StageList;
+import automodules.stage.Initial;
 import automodules.stage.Main;
 import automodules.stage.Stage;
 import automodules.stage.Stop;
@@ -62,6 +64,17 @@ public class MecanumIntake extends RobotPart {
             bot.color.exitFreight(),
             stopIntake(),
             returnPart()
+        );
+    }
+
+
+    public Stage intakeOutAndLock() {
+        return new Stage(
+                usePart(),
+                mainOuttake(),
+                exitTime(0.5),
+                stopIntake(),
+                returnPart()
         );
     }
 

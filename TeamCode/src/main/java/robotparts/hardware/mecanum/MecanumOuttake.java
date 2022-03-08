@@ -102,39 +102,56 @@ public class MecanumOuttake extends RobotPart {
      * Exit condition is 1 second
      * @return Stage for related main
      */
-    private Stage stageDrop() {
+    public Stage stageDrop() {
         return new Stage(
                 usePart(),
                 mainDrop(),
-                exitTime(1),
+                exitTime(0.3),
                 returnPart()
         );
     }
-    private Stage stageLock() {
+    public Stage stageLock() {
         return new Stage(
                 usePart(),
                 mainLock(),
-                exitTime(1),
+                exitTime(0.3),
                 returnPart()
         );
     }
-    private Stage stageCenterTurret() {
+
+    public Stage stageLockFast() {
+        return new Stage(
+                usePart(),
+                mainLock(),
+                exitTime(0.05),
+                returnPart()
+        );
+    }
+    public Stage stageCenterTurret() {
         return new Stage(
                 usePart(),
                 mainCenterTurret(),
-                exitTime(1),
+                exitTime(0.6),
                 returnPart()
         );
     }
-    private Stage stageSharedTurret() {
+    public Stage stageCenterTurretFast() {
+        return new Stage(
+                usePart(),
+                mainCenterTurret(),
+                exitTime(0.05),
+                returnPart()
+        );
+    }
+    public Stage stageSharedTurret() {
         return new Stage(
                 usePart(),
                 mainSharedTurret(),
-                exitTime(1),
+                exitTime(0.6),
                 returnPart()
         );
     }
-    private Stage stageTurnToStart() {
+    public Stage stageTurnToStart() {
         return new Stage(
                 usePart(),
                 mainTurnToStart(),
@@ -142,11 +159,29 @@ public class MecanumOuttake extends RobotPart {
                 returnPart()
         );
     }
-    private Stage stageTurnToHorizontal() {
+
+    public Stage stageTurnToStartFast() {
+        return new Stage(
+                usePart(),
+                mainTurnToStart(),
+                exitTime(0.05),
+                returnPart()
+        );
+    }
+    public Stage stageTurnToHorizontal() {
         return new Stage(
                 usePart(),
                 mainTurnToHorizontal(),
                 exitTime(1),
+                returnPart()
+        );
+    }
+
+    public Stage stageTurnToHorizontalFast() {
+        return new Stage(
+                usePart(),
+                mainTurnToHorizontal(),
+                exitTime(0.1),
                 returnPart()
         );
     }
@@ -159,7 +194,8 @@ public class MecanumOuttake extends RobotPart {
         return new StageList(
             stageDrop(),
             stageCenterTurret(),
-            stageTurnToStart()
+            stageLockFast(),
+            stageTurnToStartFast()
         );
     }
 
@@ -169,7 +205,6 @@ public class MecanumOuttake extends RobotPart {
      */
     public StageList moveForAlliance() {
         return new StageList(
-            stageTurnToHorizontal(),
             stageCenterTurret()
         );
     }
@@ -180,7 +215,6 @@ public class MecanumOuttake extends RobotPart {
      */
     public StageList moveForShared() {
         return new StageList(
-            stageTurnToHorizontal(),
             stageSharedTurret()
         );
     }
