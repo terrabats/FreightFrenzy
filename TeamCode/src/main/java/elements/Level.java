@@ -1,6 +1,8 @@
 package elements;
 
-public enum Level {
+import util.condition.DecisionList;
+
+public enum Level implements DecisionList.Decision {
     BOTTOM,
     MIDDLE,
     TOP

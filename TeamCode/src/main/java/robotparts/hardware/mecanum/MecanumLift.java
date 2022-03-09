@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import automodules.stage.Initial;
 import automodules.stage.Stage;
 import autoutil.controllers.PositionHolder;
+import elements.Level;
 import global.Constants;
 import robotparts.electronics.continuous.CMotor;
 import robotparts.electronics.positional.PMotor;
@@ -20,6 +21,31 @@ public class MecanumLift extends TwoLift {
 
     public PositionHolder positionHolder;
     private final double UP_SCALE_CONST = 0.96;
+    private Level levelMode = Level.TOP;
+
+    public void cycleLevel(){
+        levelMode = nextLevel();
+    }
+
+    public Level getLevelMode(){
+        return levelMode;
+    }
+
+    public void setLevelMode(Level level){
+        levelMode = level;
+    }
+
+    private Level nextLevel(){
+        switch (levelMode){
+            case TOP:
+                return Level.BOTTOM;
+            case MIDDLE:
+                return Level.TOP;
+            case BOTTOM:
+                return Level.MIDDLE;
+        }
+        return null;
+    }
 
     // TODO FIX
     // Make slow mode

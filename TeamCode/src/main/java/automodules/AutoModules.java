@@ -1,6 +1,9 @@
 package automodules;
 
+import org.checkerframework.common.subtyping.qual.Bottom;
+
 import elements.FieldSide;
+import elements.Level;
 import util.condition.DecisionList;
 
 import static global.General.bot;
@@ -10,12 +13,12 @@ import static teleutil.Modes.OuttakeMode.SHARED;
 
 public class AutoModules {
 
-    // TODO FIX
-    // Make automodules for other levels
-
     public StageList OneDuck = new StageList(bot.carousel.spinOneDuck(2,0.4,0.7));
 
-    public StageList LiftUpAlliance = new StageList(bot.lift.liftEncoderUp(0.6, 42));
+    public StageList LiftUpTop = new StageList(bot.lift.liftEncoderUp(0.6, 42));
+    public StageList LiftUpMiddle = new StageList(bot.lift.liftEncoderUp(0.6, 26));
+    public StageList LiftUpBottom = new StageList(bot.lift.liftEncoderUp(0.5, 10));
+
     public StageList LiftUpShared = new StageList(bot.lift.liftEncoderUp(0.5, 15));
     public StageList LiftReset = new StageList(bot.lift.liftEncoderDown(-0.3, 0));
 
@@ -38,7 +41,13 @@ public class AutoModules {
     public StageList IntakeOutAndLock = new StageList(bot.outtake.stageLock(0.05), bot.intake.intakeOutAndLock());
     public StageList IntakeUntilFreight = new StageList(bot.intake.intakeUntilFreight());
 
-    public StageList SetUpForAllianceShippingHub = new StageList().add(OuttakeHorizontalFast, LiftUpAlliance, OuttakeAlliance);
+    public StageList AllianceLiftUp(StageList liftUp){return new StageList().add(OuttakeHorizontalFast, liftUp, OuttakeAlliance);}
+
+    public DecisionList SetUpForAllianceShippingHub = new DecisionList(() -> bot.lift.getLevelMode())
+            .addOption(Level.TOP, () -> bot.addAutoModule(AllianceLiftUp(LiftUpTop)))
+            .addOption(Level.MIDDLE, () -> bot.addAutoModule(AllianceLiftUp(LiftUpMiddle)))
+            .addOption(Level.BOTTOM, () -> bot.addAutoModule(AllianceLiftUp(LiftUpBottom)));
+
     public StageList SetUpForSharedShippingHubRight = new StageList().add(OuttakeHorizontal, LiftUpShared, OuttakeSharedRight);
     public StageList SetUpForSharedShippingHubLeft = new StageList().add(OuttakeHorizontal, LiftUpShared, OuttakeSharedLeft);
 
@@ -47,7 +56,7 @@ public class AutoModules {
             .addOption(FieldSide.RED, () -> bot.addAutoModule(SetUpForSharedShippingHubRight));
 
     public DecisionList SetUpForBoth = new DecisionList(bot.outtake::getOuttakeMode)
-            .addOption(ALLIANCE, () -> bot.addAutoModule(SetUpForAllianceShippingHub))
+            .addOption(ALLIANCE, () -> SetUpForAllianceShippingHub.check())
             .addOption(SHARED, () -> SetUpForSharedShippingHubBoth.check());
 
     public StageList ResetLiftAndOuttake = new StageList().add(OuttakeReset, LiftReset);

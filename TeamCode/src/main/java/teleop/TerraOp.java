@@ -26,12 +26,13 @@ public class TerraOp extends Tele{
         gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.intake.move(0));
 
         gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModules);
-        gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);
-        gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot::resumeAutoModules);
+//        gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);
+//        gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot::resumeAutoModules);
 
-        gph1.link(Button.RIGHT_TRIGGER, automodules.OneDuck);
-        gph1.link(Button.LEFT_TRIGGER, OnTurnOffEventHandler.class, () -> bot.outtake.setOuttakeMode(ALLIANCE));
-        gph1.link(Button.LEFT_TRIGGER, OnTurnOnEventHandler.class, () -> bot.outtake.setOuttakeMode(SHARED));
+        gph1.link(Button.DPAD_UP, automodules.OneDuck);
+        gph1.link(Button.RIGHT_TRIGGER, OnTurnOffEventHandler.class, () -> bot.outtake.setOuttakeMode(ALLIANCE));
+        gph1.link(Button.RIGHT_TRIGGER, OnTurnOnEventHandler.class, () -> bot.outtake.setOuttakeMode(SHARED));
+        gph1.link(Button.LEFT_TRIGGER, OnPressEventHandler.class, bot.lift::cycleLevel);
         gph1.link(Button.A, automodules.IntakeCombined);
         gph1.link(Button.B, automodules.SetUpForBoth);
         gph1.link(Button.Y, automodules.ResetLiftAndOuttake);
@@ -62,6 +63,7 @@ public class TerraOp extends Tele{
         }
 
         log.show("OuttakeMode", bot.outtake.getOuttakeMode());
+        log.show("LevelMode", bot.lift.getLevelMode());
 //        log.show("Other pos", bot.lift.getPositionDown());
 //        log.show("Current Power", bot.lift.motorUp.getPower());
 //        log.show("PositionUp", bot.lift.getPositionUp());

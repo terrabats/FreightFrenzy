@@ -7,4 +7,10 @@ public class Modes {
         SHARED,
         ALLIANCE
     }
+
+    public enum DriveMode implements Decision {
+        FAST,
+        MEDIUM,
+        SLOW
+    }
 }
