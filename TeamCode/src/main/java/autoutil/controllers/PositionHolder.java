@@ -5,25 +5,32 @@ import geometry.position.Pose;
 
 public class PositionHolder extends Controller1D{
 
-    private double velocityThreshold = 0.01;
-    private double restPower = 0;
-    private double deltaPower = 0.01;
+    private final double velocityThreshold;
+    private double restPower;
+    private final double deltaPowerUp;
+    private final double deltaPowerDown;
 
-    public PositionHolder(double restPower, double deltaPower, double velocityThreshold){
+    public PositionHolder(double restPower, double deltaPowerUp,double deltaPowerDown,  double velocityThreshold){
         this.restPower = restPower;
-        this.deltaPower = deltaPower;
+        this.deltaPowerUp = deltaPowerUp;
+        this.deltaPowerDown = deltaPowerDown;
         this.velocityThreshold = velocityThreshold;
     }
 
     @Override
     public void update(Pose pose, PathSegment2 pathSegment) {
         updateProfilers();
-        double currentVel = processVariableProfiler.getDerivative();
-        if(Math.abs(currentVel) > velocityThreshold){
-            restPower -= (Math.signum(restPower)*deltaPower);
-        }else{
-            isAtTarget = true;
+        if(Math.abs(getVelocity()) > velocityThreshold) {
+            if(getVelocity() > 0){
+                restPower -= deltaPowerDown;
+            }else{
+                restPower += deltaPowerUp;
+            }
         }
         setOutput(restPower);
+    }
+
+    public double getVelocity(){
+        return processVariableProfiler.getDerivative();
     }
 }

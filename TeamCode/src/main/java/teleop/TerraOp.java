@@ -20,9 +20,6 @@ public class TerraOp extends Tele{
     @Override
     public void initTele() {
 
-        // TODO LIFt
-        // Fix the lift so it says up
-
         gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
         gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.intake.move(0));
         gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));
@@ -46,6 +43,8 @@ public class TerraOp extends Tele{
         gph2.link(Button.DPAD_RIGHT, OnPressEventHandler.class, bot.outtake::sharedTurretRight);
         gph2.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot.outtake::turretCenter);
         gph2.link(Button.DPAD_LEFT, OnPressEventHandler.class, bot.outtake::sharedTurretLeft);
+
+        bot.lift.resetEncoder();
     }
 
     @Override
@@ -56,13 +55,19 @@ public class TerraOp extends Tele{
 
         // Gamepad2
 
-        if(gamepad1.right_stick_y == 0){
+        if(gamepad2.right_stick_y == 0){
             bot.lift.holdPosition();
         }else {
             bot.lift.move(-gamepad2.right_stick_y);
         }
 
         log.show("OuttakeMode", bot.outtake.getOuttakeMode());
+//        log.show("Other pos", bot.lift.getPositionDown());
+//        log.show("Current Power", bot.lift.motorUp.getPower());
+//        log.show("PositionUp", bot.lift.getPositionUp());
+//        log.show("Velocity", bot.lift.positionHolder.getVelocity());
+//        log.show("Power", bot.lift.positionHolder.getOutput());
+
 
 
     }

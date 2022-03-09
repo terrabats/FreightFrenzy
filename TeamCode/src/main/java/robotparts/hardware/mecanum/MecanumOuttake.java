@@ -111,7 +111,7 @@ public class MecanumOuttake extends RobotPart {
     public Stage stageSharedTurretRight(double t) { return buildStageTime(mainSharedTurretRight(), t); } // 0.5
     public Stage stageSharedTurretLeft(double t) { return buildStageTime(mainSharedTurretLeft(), t); } //0.5
     public Stage stageTurnToStart(double t) { return buildStageTime(mainTurnToStart(), t); } //0.05
-    public Stage stageTurnToHorizontal(double t) { return buildStageTime(mainTurnToStart(), t); } //0.05
+    public Stage stageTurnToHorizontal(double t) { return buildStageTime(mainTurnToHorizontal(), t); } //0.05
 
     public void setOuttakeMode(Modes.OuttakeMode outtakeMode){ this.outtakeMode = outtakeMode; }
     public Modes.OuttakeMode getOuttakeMode(){ return outtakeMode; }

@@ -25,6 +25,7 @@ public abstract class TwoLift extends RobotPart {
     public abstract double CM_PER_TICK();
 
     public abstract void move(double pow);
+    public abstract void moveDown(double pow);
 
     @Override
     public void init() {
@@ -59,6 +60,9 @@ public abstract class TwoLift extends RobotPart {
         return motorDown.hasReachedPosition();
     }
 
+    public Main mainDown(double power){
+        return new Main(() -> moveDown(power));
+    }
     public Main main(double power){
         return new Main(() -> move(power));
     }

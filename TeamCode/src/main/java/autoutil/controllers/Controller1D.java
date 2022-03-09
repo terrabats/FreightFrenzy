@@ -11,7 +11,7 @@ public abstract class Controller1D {
 
     protected ReturnCodeSeg<Double> processVariable;
     protected ReturnCodeSeg<Double> processError = this::getRawError;
-    protected Profiler processVariableProfiler = new Profiler(() -> 0.0);
+    protected Profiler processVariableProfiler = new Profiler(this::getCurrentValue);
     protected Profiler errorProfiler = new Profiler(this::getError);
 
     private double output = 0;
@@ -42,6 +42,10 @@ public abstract class Controller1D {
         currentValue = processVariable.run();
         processVariableProfiler.update();
         errorProfiler.update();
+    }
+
+    public double getCurrentValue(){
+        return currentValue;
     }
 
     public double getOutput(){

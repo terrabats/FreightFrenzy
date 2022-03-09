@@ -18,15 +18,36 @@ import util.codeseg.ReturnParameterCodeSeg;
 
 public class MecanumLift extends TwoLift {
 
-    private PositionHolder positionHolder;
+    public PositionHolder positionHolder;
+    private final double UP_SCALE_CONST = 0.96;
+
+    // TODO FIX
+    // Make slow mode
 
     @Override
     public void move(double p){
         if(p > 0){
             motorUp.setPower(p + getRestPows()[0]);
-            motorDown.setPower((0.3 * p) + getRestPows()[1]);
+            motorDown.setPower(0);
         }else if (p < 0){
-            motorUp.setPower((0.5 * p) + getRestPows()[0]);
+            motorUp.setPower(0);
+            motorDown.setPower(p + getRestPows()[1]);
+        }else{
+            motorUp.setPower(getRestPows()[0]);
+            motorDown.setPower(getRestPows()[1]);
+        }
+    }
+
+    // TODO FIX
+    // Why do we need this?
+
+    @Override
+    public void moveDown(double p){
+        if(p > 0){
+            motorUp.setPower(p + getRestPows()[0]);
+            motorDown.setPower(0);
+        }else if (p < 0){
+            motorUp.setPower(-0.005);
             motorDown.setPower(p + getRestPows()[1]);
         }else{
             motorUp.setPower(getRestPows()[0]);
@@ -38,8 +59,10 @@ public class MecanumLift extends TwoLift {
     @Override
     public void init() {
         super.init();
-        positionHolder = new PositionHolder(0.0, 0.005, 0.1);
+
+        positionHolder = new PositionHolder(0.0, 0.007,0.003, 0.1);
         positionHolder.setProcessVariable(this::getPositionUp);
+
 
         // TOD4 FIX
         // Problem with stall detection
@@ -47,9 +70,13 @@ public class MecanumLift extends TwoLift {
 //        motorDown.useStallDetector(0.2, getRestPows()[1],200,0.03, 2);
     }
 
+    public double getVelocity(){
+        return positionHolder.getVelocity();
+    }
+
     @Override
     protected double[] getRestPows() {
-        return new double[]{0.08, -0.05};
+        return new double[]{0.12, -0.05};
     }
 
     @Override
@@ -78,7 +105,7 @@ public class MecanumLift extends TwoLift {
      */
     public Stage liftEncoderUp(double power, double height){return new Stage(
             usePart(),
-            initialSetTargetUp(height),
+            initialSetTargetUp(height*UP_SCALE_CONST),
             main(power),
             exitReachedTargetUp(),
             stopEncoder(),
@@ -89,7 +116,7 @@ public class MecanumLift extends TwoLift {
     public Stage liftEncoderDown(double power, double height){return new Stage(
             usePart(),
             initialSetTargetDown(height),
-            main(power),
+            mainDown(power),
             exitReachedTargetDown(),
             stopEncoder(),
             returnPart()
@@ -99,9 +126,22 @@ public class MecanumLift extends TwoLift {
         return motorUp.getPosition()*CM_PER_TICK();
     }
 
+    public double getPositionDown(){
+        return motorDown.getPosition()*CM_PER_TICK();
+    }
+
 
     public void holdPosition(){
-        positionHolder.update();
-        move(positionHolder.getOutput());
+        if(getPositionUp() > 10) {
+            if (motorUp.isAllowed() && motorDown.isAllowed()) {
+                positionHolder.update();
+                motorUp.setPower(positionHolder.getOutput() + getRestPows()[0]);
+                motorDown.setPower(getRestPows()[1]);
+            }
+        }else{
+            motorUp.setPower(0.08);
+            motorDown.setPower(-0.1);
+        }
+//        motorUp.setPower(getRestPows()[0]);
     }
 }
