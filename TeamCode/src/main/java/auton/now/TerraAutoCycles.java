@@ -19,30 +19,15 @@ public class TerraAutoCycles extends MecanumAuto {
 
     @Override
     public void define() {
-        // TODO FINISH
-
-
         addWaypoint(0,30,-60);
+        addConcurrentAutoModule(automodules.LiftUpTop);
         addSetpoint(15,55,-135);
-        addAutoModule(automodules.LiftUpTop);
+        addAutoModule(automodules.ResetLiftAndOuttake);
         addWaypoint(10,25,-115);
         addWaypoint(10,-5,-90);
         addWaypoint(-10,-10,-90);
+        addConcurrentAutoModule(automodules.IntakeCombined);
         addWaypoint(-70,-10,-90);
-
-
-//        addWaypoint(-70, 50, -90);
-
-
-//        addPose(0,0,0);
-//        addPose(0,30,-60);
-//        addPose(15,55,-135);
-//        addPose(10,25,-115);
-//        addPose(10,-5,-90);
-//        addPose(-10,-10,-90);
-//        addPose(-70,-10,-90);
-//        addPose(-70, 50, -90);
-
     }
 
 

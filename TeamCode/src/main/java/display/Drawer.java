@@ -93,7 +93,7 @@ public class Drawer extends JPanel {
 
     public void define(){
         drawField();
-//
+
 //        addWaypoint(0,0,0);
 //        addWaypoint(0,30,-60);
 //        addWaypoint(15,55,-135);
@@ -103,10 +103,10 @@ public class Drawer extends JPanel {
 //        addWaypoint(-70,-10,-90);
 //        addWaypoint(-70, 50, -90);
         // Just Duck
-//        addWaypoint(20,20,45);
-//        addWaypoint(50,30,90);
-//        addWaypoint(-20,65,135);
-//        addWaypoint(60,70,90);
+        addWaypoint(20,20,45);
+        addWaypoint(50,30,90);
+        addWaypoint(-20,65,135);
+        addWaypoint(60,70,90);
 
         // Everything
 //        addWaypoint(-50,55,-90);
@@ -128,8 +128,8 @@ public class Drawer extends JPanel {
     public void paintComponent(Graphics g) {
         this.g = (Graphics2D) g;
         define();
-        Point start = new Point(22, 154);
-//        Point start = new Point(22, 274);
+//        Point start = new Point(22, 154);
+        Point start = new Point(22, 274);
         ArrayList<Pose> newPoses = new ArrayList<>();
         for (Pose p: poses){
             double x = toPixX(p.p.y+start.x);
