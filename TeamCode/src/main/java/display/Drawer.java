@@ -3,7 +3,6 @@ package display;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Composite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -15,18 +14,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import elements.Case;
-import elements.FieldSide;
 import geometry.circles.AngleType;
-import geometry.polygons.Rect;
-import geometry.polygons.Triangle;
 import geometry.position.Line;
 import geometry.position.Point;
 import geometry.position.Pose;
 import geometry.position.Vector;
-import util.ExceptionCatcher;
-
-import static global.General.automodules;
 
 public class Drawer extends JPanel {
     protected Graphics2D g;
@@ -92,36 +84,37 @@ public class Drawer extends JPanel {
     }
 
 
-    public void addPose(double x, double y, double h){
+    public void addWaypoint(double x, double y, double h){
         poses.add(new Pose(new Point(x, y), AngleType.degToRad(h)));
     }
 
 
 
+
     public void define(){
         drawField();
-
-        addPose(0,0,0);
-        addPose(0,30,-60);
-        addPose(15,55,-135);
-        addPose(10,25,-115);
-        addPose(10,-5,-90);
-        addPose(-10,-10,-90);
-        addPose(-70,-10,-90);
-        addPose(-70, 50, -90);
+//
+//        addWaypoint(0,0,0);
+//        addWaypoint(0,30,-60);
+//        addWaypoint(15,55,-135);
+//        addWaypoint(10,25,-115);
+//        addWaypoint(10,-5,-90);
+//        addWaypoint(-10,-10,-90);
+//        addWaypoint(-70,-10,-90);
+//        addWaypoint(-70, 50, -90);
         // Just Duck
-//        addPose(20,20,45);
-//        addPose(50,30,90);
-//        addPose(-20,65,135);
-//        addPose(60,70,90);
+//        addWaypoint(20,20,45);
+//        addWaypoint(50,30,90);
+//        addWaypoint(-20,65,135);
+//        addWaypoint(60,70,90);
 
         // Everything
-//        addPose(-50,55,-90);
-//        addPose(-105,55,-135);
-//        addPose(-110,25,-115);
-//        addPose(-110,-5,-90);
-//        addPose(-130,-10,-90);
-//        addPose(-190,-10,-90);
+//        addWaypoint(-50,55,-90);
+//        addWaypoint(-105,55,-135);
+//        addWaypoint(-110,25,-115);
+//        addWaypoint(-110,-5,-90);
+//        addWaypoint(-130,-10,-90);
+//        addWaypoint(-190,-10,-90);
     }
 
     public double toPixX(double cm){

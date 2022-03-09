@@ -1,13 +1,14 @@
-package auton;
+package auton.now;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import auton.MecanumAuto;
 import elements.Case;
 import elements.FieldSide;
 
 import static global.General.*;
 
-public class TerraAuto extends MecanumAuto{
+public class TerraAutoDuck extends MecanumAuto {
 
     @Override
     public void initAuto() {
@@ -41,8 +42,8 @@ public class TerraAuto extends MecanumAuto{
     }
 
 
-    @Autonomous(name = "TerraAutoBlue", group = "Auto")
-    public static class TerraAutoBlue extends TerraAuto {{ fieldSide = FieldSide.BLUE; }}
-    @Autonomous(name = "TerraAutoRed", group = "auto")
-    public static class TerraAutoRed extends TerraAutoBlue {{ fieldSide = FieldSide.RED; }}
+    @Autonomous(name = "TerraAutoDuckBlue", group = "auto")
+    public static class TerraAutoDuckBlue extends TerraAutoDuck {{ fieldSide = FieldSide.BLUE; }}
+    @Autonomous(name = "TerraAutoDuckRed", group = "auto")
+    public static class TerraAutoDuckRed extends TerraAutoDuckBlue {{ fieldSide = FieldSide.RED; }}
 }
