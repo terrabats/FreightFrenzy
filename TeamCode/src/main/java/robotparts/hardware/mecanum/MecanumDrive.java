@@ -4,6 +4,7 @@ import static global.General.bot;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
 
+import automodules.StageList;
 import automodules.stage.Exit;
 import automodules.stage.Initial;
 import automodules.stage.Main;
@@ -11,11 +12,13 @@ import automodules.stage.Stage;
 import automodules.stage.Stop;
 import autoutil.executors.Executor;
 import autoutil.executors.MecanumExecutorArcsPID;
+import elements.Level;
 import geometry.circles.AngleType;
 import geometry.position.Pose;
 import math.misc.Logistic;
 import robotparts.RobotPart;
 import robotparts.electronics.continuous.CMotor;
+import teleutil.Modes.*;
 
 /**
  * NOTE: Uncommented
@@ -27,6 +30,7 @@ import robotparts.electronics.continuous.CMotor;
 public class MecanumDrive extends RobotPart {
     private Executor executor;
     private CMotor fr,br,fl,bl;
+    private DriveMode driveMode = DriveMode.FAST;
 
     @Override
     public void init(){
@@ -60,6 +64,19 @@ public class MecanumDrive extends RobotPart {
         Logistic movementCurveStrafe = new Logistic(30,6);
         Logistic movementCurveTurn = new Logistic(30,6);
         move(movementCurveForward.fodd(f), movementCurveStrafe.fodd(s), movementCurveTurn.fodd(t));
+    }
+
+    public void moveSmoothTele(double f, double s, double t){
+        Logistic movementCurveForward = new Logistic(10,5);
+        Logistic movementCurveStrafe = new Logistic(30,6);
+        Logistic movementCurveTurn = new Logistic(30,6);
+        double scale = 1;
+        if(driveMode.equals(DriveMode.MEDIUM)){
+            scale = 0.75;
+        }else if(driveMode.equals(DriveMode.SLOW)){
+            scale = 0.5;
+        }
+        move(movementCurveForward.fodd(f*scale), movementCurveStrafe.fodd(s*scale), movementCurveTurn.fodd(t*scale));
     }
 
     public Main mainMoveForward(double pow) { return new Main(() -> move(pow, 0, 0)); }
@@ -118,5 +135,51 @@ public class MecanumDrive extends RobotPart {
             exitFinishedPath(),
             returnPart()
         );
+    }
+
+    public StageList mainChangeDrive(DriveMode driveMode){
+        return new StageList(new Stage(
+                usePart(),
+                mainCycleDrive(driveMode),
+                exitAlways(),
+                returnPart()
+        ));
+    }
+
+
+    public Main mainCycleDrive(DriveMode drive){
+        return new Main(() -> driveMode = drive);
+    }
+
+    private DriveMode nextDrive(){
+        switch (driveMode){
+            case FAST:
+                return DriveMode.SLOW;
+            case MEDIUM:
+                return DriveMode.FAST;
+            case SLOW:
+                return DriveMode.MEDIUM;
+        }
+        return null;
+    }
+
+    // TOD4
+    // Make cycle class or smt for enums
+
+    public void cycleDriveUp(){
+        driveMode = nextDrive();
+    }
+
+    public void cycleDriveDown(){
+        cycleDriveUp();
+        cycleDriveUp();
+    }
+
+    public DriveMode getDriveMode(){
+        return driveMode;
+    }
+
+    public void setDriveMode(DriveMode driveMode){
+        this.driveMode = driveMode;
     }
 }

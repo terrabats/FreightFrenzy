@@ -29,10 +29,14 @@ public class TerraOp extends Tele{
 //        gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);
 //        gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot::resumeAutoModules);
 
-        gph1.link(Button.DPAD_UP, automodules.OneDuck);
+        gph1.link(Button.LEFT_TRIGGER, automodules.OneDuck);
         gph1.link(Button.RIGHT_TRIGGER, OnTurnOffEventHandler.class, () -> bot.outtake.setOuttakeMode(ALLIANCE));
         gph1.link(Button.RIGHT_TRIGGER, OnTurnOnEventHandler.class, () -> bot.outtake.setOuttakeMode(SHARED));
-        gph1.link(Button.LEFT_TRIGGER, OnPressEventHandler.class, bot.lift::cycleLevel);
+        gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot.lift::cycleLevelUp);
+        gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot.lift::cycleLevelDown);
+        gph1.link(Button.RIGHT_STICK_BUTTON, OnPressEventHandler.class, bot.drive::cycleDriveUp);
+        gph1.link(Button.LEFT_STICK_BUTTON, OnPressEventHandler.class, bot.drive::cycleDriveDown);
+
         gph1.link(Button.A, automodules.IntakeCombined);
         gph1.link(Button.B, automodules.SetUpForBoth);
         gph1.link(Button.Y, automodules.ResetLiftAndOuttake);
@@ -52,7 +56,7 @@ public class TerraOp extends Tele{
     public void loopTele() {
 
         // Gamepad1
-        bot.drive.moveSmooth(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
+        bot.drive.moveSmoothTele(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
 
         // Gamepad2
 
@@ -64,6 +68,7 @@ public class TerraOp extends Tele{
 
         log.show("OuttakeMode", bot.outtake.getOuttakeMode());
         log.show("LevelMode", bot.lift.getLevelMode());
+        log.show("DriveMode", bot.drive.getDriveMode());
 //        log.show("Other pos", bot.lift.getPositionDown());
 //        log.show("Current Power", bot.lift.motorUp.getPower());
 //        log.show("PositionUp", bot.lift.getPositionUp());
