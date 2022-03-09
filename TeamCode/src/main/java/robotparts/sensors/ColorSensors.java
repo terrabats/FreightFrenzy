@@ -52,9 +52,9 @@ public class ColorSensors extends RobotPart {
             v = (runningAvg2.get(0) + runningAvg2.get(1) + runningAvg2.get(2))/3.0;
             runningAvg2.remove(0);
         }
-        if(130 < h && h < 200 && (v > 3.0)){
+        if(130 < h && h < 200 && (v > 1.2)){
             return GameElement.BALL;
-        }else if(40 < h && h < 100 && (v > 3.0)){
+        }else if(40 < h && h < 100 && (v > 1.2)){
             return GameElement.CUBE;
         }else{
             return GameElement.NONE;

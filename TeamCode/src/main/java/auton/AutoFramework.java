@@ -35,6 +35,8 @@ public abstract class AutoFramework extends Auto{
     protected CaseScanner caseScanner;
     protected Case caseDetected;
 
+    public final double scale = 0.95;
+
     public abstract void define();
     public abstract Reactor getSetpointReactor();
     public abstract Reactor getWaypointReactor();
@@ -84,6 +86,8 @@ public abstract class AutoFramework extends Auto{
     }
 
     public void addSetpoint(double x, double y, double h){
+        x *= scale;
+        y *= scale;
         if(isFlipped()){
             x = -x;
             h = -h;
@@ -92,6 +96,8 @@ public abstract class AutoFramework extends Auto{
     }
 
     public void addWaypoint(double x, double y, double h){
+        x *= scale;
+        y *= scale;
         if(isFlipped()){
             x = -x;
             h = -h;
@@ -106,6 +112,8 @@ public abstract class AutoFramework extends Auto{
     public void addConcurrentAutoModule(StageList autoModule){
         getLastSegment().getGenerator().addConcurrentAutoModule(autoModule);
     }
+
+
 
     private <R extends Reactor, G extends Generator> void addSegment(R reactor, G generator, double x, double y, double h){
         if(isFirstSegment()){

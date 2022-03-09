@@ -100,6 +100,13 @@ public class MecanumLift extends TwoLift {
             returnPart()
     );}
 
+
+    public Stage liftPow(double power){return new Stage(
+            usePart(),
+            main(power),
+            exitAlways(),
+            returnPart()
+    );}
     /**
      * Lift to a certain position
      * @param power

@@ -1,6 +1,7 @@
 package robotparts.hardware.mecanum;
 
 import static global.General.bot;
+import static global.General.fieldSide;
 
 import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
 
@@ -12,6 +13,7 @@ import automodules.stage.Stage;
 import automodules.stage.Stop;
 import autoutil.executors.Executor;
 import autoutil.executors.MecanumExecutorArcsPID;
+import elements.FieldSide;
 import elements.Level;
 import geometry.circles.AngleType;
 import geometry.position.Pose;
@@ -80,6 +82,8 @@ public class MecanumDrive extends RobotPart {
     }
 
     public Main mainMoveForward(double pow) { return new Main(() -> move(pow, 0, 0)); }
+
+    public Main mainMove(double f, double s, double t) { return new Main(() -> move(f,s,t)); }
 
     /**
      * Stop the robot

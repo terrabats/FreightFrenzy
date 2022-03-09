@@ -21,7 +21,7 @@ public class MecanumCarousel extends RobotPart {
 
     @Override
     public void init() {
-        carousel = createCMotor("car", DcMotorSimple.Direction.FORWARD);
+        carousel = createCMotor("car", DcMotorSimple.Direction.REVERSE);
     }
 
     public void move(double power) {
@@ -64,6 +64,33 @@ public class MecanumCarousel extends RobotPart {
                 }),
                 exitTime(time),
                 stop(),
+                returnPart()
+        );
+    }
+
+
+    public Stage spinOneDuckMoving(double time, double minPow, double maxPow, double f, double s, double t) {
+        return new Stage(
+                usePart(),
+                bot.drive.usePart(),
+                new Initial(timerA::reset),
+                bot.drive.mainMove(f,s,t),
+                new Main(() ->{
+                    double secs = timerA.seconds();
+                    double halfTime = time/2;
+                    double slope = (maxPow-minPow)/halfTime;
+                    Linear l1 = new Linear(slope, minPow);
+                    Linear l2 = new Linear(-slope,l1.f(halfTime));
+                    if(secs < halfTime) {
+                        move(l1.f(secs));
+                    }else{
+                        move(l2.f(secs-halfTime));
+                    }
+                }),
+                exitTime(time),
+                stop(),
+                bot.drive.stopMove(),
+                bot.drive.returnPart(),
                 returnPart()
         );
     }

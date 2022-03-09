@@ -2,6 +2,7 @@ package automodules;
 
 import org.checkerframework.common.subtyping.qual.Bottom;
 
+import automodules.stage.Stage;
 import elements.FieldSide;
 import elements.Level;
 import teleutil.Modes;
@@ -14,11 +15,18 @@ import static teleutil.Modes.OuttakeMode.SHARED;
 
 public class AutoModules {
 
+    // TODO FIX
+    // Make these less skecth
+    // Add lift power holder in auto
+
     public StageList OneDuck = new StageList(bot.carousel.spinOneDuck(2,0.4,0.7));
 
+    public StageList OneDuckAuto = new StageList(
+            bot.carousel.spinOneDuckMoving(3,0.3,0.6, 0.0, 0.14, 0.0)
+    );
     public StageList LiftUpTop = new StageList(bot.lift.liftEncoderUp(0.6, 42));
-    public StageList LiftUpMiddle = new StageList(bot.lift.liftEncoderUp(0.6, 26));
-    public StageList LiftUpBottom = new StageList(bot.lift.liftEncoderUp(0.5, 10));
+    public StageList LiftUpMiddle = new StageList(bot.lift.liftEncoderUp(0.6, 20));
+    public StageList LiftUpBottom = new StageList(bot.lift.liftEncoderUp(0.5, 5));
 
     public StageList LiftUpShared = new StageList(bot.lift.liftEncoderUp(0.5, 15));
     public StageList LiftReset = new StageList(bot.lift.liftEncoderDown(-0.3, 0));
@@ -40,6 +48,15 @@ public class AutoModules {
             bot.outtake.stageCenterTurret(0.25),
             bot.outtake.stageLock(0.05),
             bot.outtake.stageTurnToStart(0.05)
+    );
+
+    public StageList OuttakeResetAuto = new StageList(
+            bot.lift.liftPow(0.2),
+            bot.outtake.stageDrop(0.15),
+            bot.outtake.stageCenterTurret(0.25),
+            bot.outtake.stageLock(0.05),
+            bot.outtake.stageTurnToStart(0.05),
+            bot.lift.liftPow(0.0)
     );
 
     public StageList IntakeOutAndLock = new StageList(bot.outtake.stageLock(0.05), bot.intake.intakeOutAndLock());
@@ -64,5 +81,7 @@ public class AutoModules {
             .addOption(SHARED, () -> SetUpForSharedShippingHubBoth.check());
 
     public StageList ResetLiftAndOuttake = new StageList().add(changeDrive(Modes.DriveMode.FAST), OuttakeReset, LiftReset);
+    public StageList ResetLiftAndOuttakeAuto = new StageList().add(OuttakeResetAuto, LiftReset);
+
     public StageList IntakeCombined = new StageList().add(changeDrive(Modes.DriveMode.MEDIUM), OuttakeDropFast, IntakeUntilFreight, IntakeOutAndLock);
 }

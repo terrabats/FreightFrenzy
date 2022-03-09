@@ -94,7 +94,7 @@ public class Drawer extends JPanel {
     public void define(){
         drawField();
 
-//        addWaypoint(0,0,0);
+        addWaypoint(0,0,0);
 //        addWaypoint(0,30,-60);
 //        addWaypoint(15,55,-135);
 //        addWaypoint(10,25,-115);

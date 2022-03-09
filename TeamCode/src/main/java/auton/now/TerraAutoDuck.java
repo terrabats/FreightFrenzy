@@ -18,13 +18,13 @@ public class TerraAutoDuck extends MecanumAuto {
 
     @Override
     public void define() {
-        addWaypoint(20,20,45);
-        addWaypoint(50,30,90);
-        addAutoModule(automodules.OneDuck);
-        addConcurrentAutoModule(automodules.LiftUpTop);
-        addWaypoint(-20,65,135);
-        addAutoModule(automodules.ResetLiftAndOuttake);
-        addWaypoint(60,70,90);
+        addWaypoint(20,10,45);
+        addSetpoint(30,20,90);
+        addAutoModule(automodules.OneDuckAuto);
+        addSetpoint(-28,55,135);
+        addAutoModule(automodules.AllianceLiftUp(automodules.LiftUpTop));
+        addAutoModule(automodules.ResetLiftAndOuttakeAuto);
+        addSetpoint(30,62,90);
     }
 
 
