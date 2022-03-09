@@ -18,6 +18,7 @@ public class AutoModules {
     // TODO FIX
     // Make these less skecth
     // Add lift power holder in auto
+    // Directions are wrong or smt
 
     public StageList OneDuck = new StageList(bot.carousel.spinOneDuck(2,0.4,0.7));
 

@@ -57,9 +57,9 @@ public class MecanumCarousel extends RobotPart {
                     Linear l1 = new Linear(slope, minPow);
                     Linear l2 = new Linear(-slope,l1.f(halfTime));
                     if(secs < halfTime) {
-                        move(l1.f(secs));
+                        move(-l1.f(secs));
                     }else{
-                        move(l2.f(secs-halfTime));
+                        move(-l2.f(secs-halfTime));
                     }
                 }),
                 exitTime(time),
