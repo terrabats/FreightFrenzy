@@ -33,6 +33,7 @@ public class AutoModules {
     public StageList OuttakeDrop = new StageList(bot.outtake.stageDrop(0.25));
     public StageList OuttakeDropFast = new StageList(bot.outtake.stageDrop(0.05));
     public StageList OuttakeLock = new StageList(bot.outtake.stageLock(0.25));
+    public StageList OuttakeLockFast = new StageList(bot.outtake.stageLock(0.05));
 
     public StageList OuttakeReset = new StageList(
             bot.outtake.stageDrop(0.15),
@@ -44,15 +45,15 @@ public class AutoModules {
     public StageList IntakeOutAndLock = new StageList(bot.outtake.stageLock(0.05), bot.intake.intakeOutAndLock());
     public StageList IntakeUntilFreight = new StageList(bot.intake.intakeUntilFreight());
 
-    public StageList AllianceLiftUp(StageList liftUp){return new StageList().add(OuttakeHorizontalFast, liftUp, OuttakeAlliance, changeDrive(Modes.DriveMode.SLOW));}
+    public StageList AllianceLiftUp(StageList liftUp){return new StageList().add(OuttakeLockFast, OuttakeHorizontalFast, liftUp, OuttakeAlliance, changeDrive(Modes.DriveMode.SLOW));}
 
     public DecisionList SetUpForAllianceShippingHub = new DecisionList(() -> bot.lift.getLevelMode())
             .addOption(Level.TOP, () -> bot.addAutoModule(AllianceLiftUp(LiftUpTop)))
             .addOption(Level.MIDDLE, () -> bot.addAutoModule(AllianceLiftUp(LiftUpMiddle)))
             .addOption(Level.BOTTOM, () -> bot.addAutoModule(AllianceLiftUp(LiftUpBottom)));
 
-    public StageList SetUpForSharedShippingHubRight = new StageList().add(OuttakeHorizontal, LiftUpShared, OuttakeSharedRight, changeDrive(Modes.DriveMode.SLOW));
-    public StageList SetUpForSharedShippingHubLeft = new StageList().add(OuttakeHorizontal, LiftUpShared, OuttakeSharedLeft, changeDrive(Modes.DriveMode.SLOW));
+    public StageList SetUpForSharedShippingHubRight = new StageList().add(OuttakeLockFast, OuttakeHorizontal, LiftUpShared, OuttakeSharedRight, changeDrive(Modes.DriveMode.SLOW));
+    public StageList SetUpForSharedShippingHubLeft = new StageList().add(OuttakeLockFast,OuttakeHorizontal, LiftUpShared, OuttakeSharedLeft, changeDrive(Modes.DriveMode.SLOW));
 
     public DecisionList SetUpForSharedShippingHubBoth = new DecisionList(() -> fieldSide)
             .addOption(FieldSide.BLUE, () -> bot.addAutoModule(SetUpForSharedShippingHubLeft))

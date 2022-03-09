@@ -100,15 +100,28 @@ public class Drawer extends JPanel {
 
     public void define(){
         drawField();
+
         addPose(0,0,0);
-        addPose(20,20,45);
-        addPose(50,30,90);
-        addPose(0,45,0);
-        addPose(-50,55,-90);
-        addPose(-105,55,-135);
-        addPose(-110,25,-115);
-        addPose(-110,-5,-90);
-        addPose(-130,-10,-90);
+        addPose(0,30,-60);
+        addPose(15,55,-135);
+        addPose(10,25,-115);
+        addPose(10,-5,-90);
+        addPose(-10,-10,-90);
+        addPose(-70,-10,-90);
+        addPose(-70, 50, -90);
+        // Just Duck
+//        addPose(20,20,45);
+//        addPose(50,30,90);
+//        addPose(-20,65,135);
+//        addPose(60,70,90);
+
+        // Everything
+//        addPose(-50,55,-90);
+//        addPose(-105,55,-135);
+//        addPose(-110,25,-115);
+//        addPose(-110,-5,-90);
+//        addPose(-130,-10,-90);
+//        addPose(-190,-10,-90);
     }
 
     public double toPixX(double cm){
@@ -122,7 +135,8 @@ public class Drawer extends JPanel {
     public void paintComponent(Graphics g) {
         this.g = (Graphics2D) g;
         define();
-        Point start = new Point(22, 274);
+        Point start = new Point(22, 154);
+//        Point start = new Point(22, 274);
         ArrayList<Pose> newPoses = new ArrayList<>();
         for (Pose p: poses){
             double x = toPixX(p.p.y+start.x);
