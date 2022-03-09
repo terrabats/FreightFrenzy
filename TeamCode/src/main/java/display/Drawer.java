@@ -1,17 +1,22 @@
 package display;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import elements.Case;
+import elements.FieldSide;
 import geometry.circles.AngleType;
 import geometry.polygons.Rect;
 import geometry.polygons.Triangle;
@@ -21,18 +26,22 @@ import geometry.position.Pose;
 import geometry.position.Vector;
 import util.ExceptionCatcher;
 
+import static global.General.automodules;
+
 public class Drawer extends JPanel {
     protected Graphics2D g;
     protected final int pointSize = 5;
     protected Color pointColor = Color.BLACK;
     protected final int lineWidth = 2;
-    protected Color lineColor = Color.GRAY;
-    protected final int poseLength = 10;
-    protected final Color poseColor = Color.DARK_GRAY;
+    protected Color lineColor = new Color(0, 102, 0);
+    protected final int poseLength = 15;
+    protected final Color poseColor = new Color(102, 0, 0);
     protected final int arcWidth = 2;
     protected final Color arcColor = new Color(122, 56, 3);
     protected final int circleWidth = 2;
     protected final Color circleColor = new Color(72, 76, 3);
+
+    protected final ArrayList<Pose> poses = new ArrayList<>();
 
     // TOD4 NEW
     // Finish this
@@ -45,13 +54,13 @@ public class Drawer extends JPanel {
     public void drawLine(Line l){
         g.setColor(lineColor);
         g.setStroke(new BasicStroke(lineWidth));
-        g.drawLine((int) l.p1.x, (int) l.p1.y, (int) l.p2.x, (int) l.p2.y);
+        g.drawLine((int) l.p1.x+3, (int) l.p1.y+3, (int) l.p2.x+3, (int) l.p2.y+3);
     }
     public void drawPose(Pose p){
         g.setColor(poseColor);
         g.setStroke(new BasicStroke(lineWidth));
         Vector poseLine = new Vector(poseLength,p.ang, AngleType.RADIANS);
-        double offset = (lineWidth+pointSize)/2.0;
+        double offset = 3;
         g.drawLine((int) (p.p.x+offset), (int) (p.p.y+offset), (int) (p.p.x + poseLine.getX()+offset), (int) (p.p.y + poseLine.getY()+offset));
         drawPoint(p.p);
     }
@@ -70,28 +79,89 @@ public class Drawer extends JPanel {
 
     public void drawField(){
         final BufferedImage image;
-//        System.out.println();
-//        File f = new File("display/ff.png");
-//        System.out.println(System.getProperty("user.dir")+ "\\TeamCode\\src\\main\\java\\display");
-        File f = new File(System.getProperty("user.dir")+ "\\TeamCode\\src\\main\\java\\display\\ff2.png");
-//        System.out.println("Heei");
-//        if(f.exists()) {
-//            System.out.println("Hiii");
-//        }
+        File f = new File(System.getProperty("user.dir")+ "\\TeamCode\\src\\main\\java\\display\\ff3.png");
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
         try {
-//            File f2 = new File("ff.png");
-//            if(f.exists() && !f.isDirectory()) {
-//
-//            }
             image = ImageIO.read(f);
-            g.drawImage(image, 0, 0, 780, 770, null);
+            g.drawImage(image, 0, 0, 790, 770, null);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
 
     }
 
-//    public void whatToDraw(){
+
+    public void addPose(double x, double y, double h){
+        poses.add(new Pose(new Point(x, y), AngleType.degToRad(h)));
+    }
+
+
+
+    public void define(){
+        drawField();
+        addPose(0,0,0);
+        addPose(20,20,45);
+        addPose(50,30,90);
+        addPose(0,45,0);
+        addPose(-50,55,-90);
+        addPose(-105,55,-135);
+        addPose(-110,25,-115);
+        addPose(-110,-5,-90);
+        addPose(-130,-10,-90);
+    }
+
+    public double toPixX(double cm){
+        return (cm*2.13);
+    }
+    public double toPixY(double cm){
+        return (cm*2.09);
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        this.g = (Graphics2D) g;
+        define();
+        Point start = new Point(22, 274);
+        ArrayList<Pose> newPoses = new ArrayList<>();
+        for (Pose p: poses){
+            double x = toPixX(p.p.y+start.x);
+            double y = toPixY(p.p.x+start.y);
+            double h = p.ang+ AngleType.degToRad(0);
+            newPoses.add(new Pose(new Point(x,y),h));
+        }
+        for (int i = 0; i < newPoses.size()-1; i++){
+            drawLine(new Line(newPoses.get(i).p,newPoses.get(i+1).p));
+        }
+        for(Pose p1: newPoses) {
+            drawPose(p1);
+        }
+
+
+        g.dispose();
+    }
+
+
+
+    public static void drawWindow(int width, int height, String name){
+        JFrame window = new JFrame(name);
+        Drawer drawer = new Drawer();
+        window.add(drawer);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setSize(height, width);
+        window.setVisible(true);
+    }
+
+
+
+
+
+
+
+
+
+
+    public void whatToDraw() {
 //        Triangle triangle = new Triangle(new Point(200,240), new Point(300,180), new Point(260,160));
 //        double area = triangle.area();
 //        Rect bbox = triangle.boundingbox();
@@ -121,29 +191,5 @@ public class Drawer extends JPanel {
 //        drawPoint(r3);
 //        drawPoint(r4);
 //    }
-
-
-    public void define(){
-        drawField();
-//        System.out.println("Hi");
-    }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        this.g = (Graphics2D) g;
-//        System.out.println("Hi");
-        define();
-//        whatToDraw();
-    }
-
-
-
-    public static void drawWindow(int width, int height, String name){
-        JFrame window = new JFrame(name);
-        Drawer drawer = new Drawer();
-        window.add(drawer);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(height, width);
-        window.setVisible(true);
     }
 }
