@@ -13,12 +13,15 @@ import elements.Case;
 import elements.FieldSide;
 import geometry.position.Point;
 import geometry.position.Pose;
+import robot.RobotFramework;
 import util.Timer;
+import util.User;
 import util.codeseg.CodeSeg;
 import util.condition.DecisionList;
 
 import static global.General.bot;
 import static global.General.log;
+import static global.General.mainUser;
 
 public abstract class AutoFramework extends Auto{
 
@@ -46,10 +49,16 @@ public abstract class AutoFramework extends Auto{
     public abstract CaseScanner getCaseScanner();
 
     public void setBackgroundTasks(CodeSeg backgroundTasks){
-        executor.setBackgroundTasks(() -> {
+        RobotFramework.backgroundThread.setExecutionCode(() -> {
+//            bot.checkAccess(User.BACK);
+            bot.checkAccess(mainUser);
             backgroundTasks.run();
             update(false);
         });
+//        executor.setBackgroundTasks(() -> {
+//            backgroundTasks.run();
+//            update(false);
+//        });
     }
 
     public boolean isFlipped(){

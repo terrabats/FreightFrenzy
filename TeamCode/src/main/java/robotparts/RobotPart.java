@@ -273,6 +273,9 @@ public class RobotPart {
      */
     public Stop returnPart(){return new Stop(() -> switchUser(mainUser));}
 
+
+    public Initial usePartForBackgroundTask(){return new Initial(() -> switchUser(User.BACK));}
+
     /**
      * Pause for some amount of time
      * @param time

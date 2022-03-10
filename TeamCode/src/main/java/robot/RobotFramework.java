@@ -30,6 +30,9 @@ public class RobotFramework {
      * The odometry thread is used to update odometry
      */
     public static TerraThread odometryThread;
+
+
+    public static TerraThread backgroundThread;
     /**
      * rfsHandler is used for running rfs code. Stages can be added to the queue
      */
@@ -46,6 +49,7 @@ public class RobotFramework {
         rfsHandler = new RobotFunctions();
         robotFunctionsThread = new TerraThread("RobotFunctionsThread");
         odometryThread = new TerraThread("OdometryThread");
+        backgroundThread = new TerraThread("BackgroundThread");
         rfsHandler.init();
     }
 
@@ -59,6 +63,7 @@ public class RobotFramework {
         forAllParts(RobotPart::init);
         robotFunctionsThread.start();
         odometryThread.start();
+        backgroundThread.start();
         gameTime.reset();
     }
 
