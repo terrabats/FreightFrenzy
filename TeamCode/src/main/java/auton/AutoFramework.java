@@ -13,6 +13,7 @@ import elements.Case;
 import elements.FieldSide;
 import geometry.position.Point;
 import geometry.position.Pose;
+import util.Timer;
 import util.codeseg.CodeSeg;
 import util.condition.DecisionList;
 
@@ -65,10 +66,11 @@ public abstract class AutoFramework extends Auto{
         caseScanner = getCaseScanner();
         bot.camera.setExternalScanner(caseScanner);
         bot.camera.startExternalCamera();
-        whileActive(() -> !isStarted(), () -> {
+        while (!isStarted()){
             caseDetected = caseScanner.getCase();
             log.show("Case Detected: ", caseDetected);
-        });
+            log.showTelemetry();
+        }
     }
 
     @Override

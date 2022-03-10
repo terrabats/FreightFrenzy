@@ -29,8 +29,8 @@ public enum Case implements Decision {
         }
     }
 
-    @Override
-    public String toString() {
-        return getLevel().toString();
-    }
+//    @Override
+//    public String toString() {
+//        return getLevel().toString();
+//    }
 }

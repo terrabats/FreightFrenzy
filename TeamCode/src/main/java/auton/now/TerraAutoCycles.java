@@ -13,21 +13,21 @@ public class TerraAutoCycles extends MecanumAuto {
 
     @Override
     public void initAuto() {
-//        scan();
-        caseDetected = Case.RIGHT;
+        scan();
+//        caseDetected = Case.RIGHT;
     }
 
     @Override
     public void define() {
-        addWaypoint(0,30,-60);
-        addConcurrentAutoModule(automodules.LiftUpTop);
-        addSetpoint(15,55,-135);
-        addAutoModule(automodules.ResetLiftAndOuttake);
-        addWaypoint(10,25,-115);
-        addWaypoint(10,-5,-90);
-        addWaypoint(-10,-10,-90);
-        addConcurrentAutoModule(automodules.IntakeCombined);
-        addWaypoint(-70,-10,-90);
+//        addWaypoint(0,30,-60);
+//        addConcurrentAutoModule(automodules.LiftUpTop);
+//        addSetpoint(15,55,-135);
+//        addAutoModule(automodules.ResetLiftAndOuttake);
+//        addWaypoint(10,25,-115);
+//        addWaypoint(10,-5,-90);
+//        addWaypoint(-10,-10,-90);
+//        addConcurrentAutoModule(automodules.IntakeCombined);
+//        addWaypoint(-70,-10,-90);
     }
 
 
