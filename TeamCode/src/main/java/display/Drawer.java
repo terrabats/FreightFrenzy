@@ -128,13 +128,15 @@ public class Drawer extends JPanel {
     public void paintComponent(Graphics g) {
         this.g = (Graphics2D) g;
         define();
+//        Point start = new Point(367-22, 154);
 //        Point start = new Point(22, 154);
         Point start = new Point(22, 274);
+//        Point start = new Point(367-22, 274);
         ArrayList<Pose> newPoses = new ArrayList<>();
         for (Pose p: poses){
             double x = toPixX(p.p.y+start.x);
             double y = toPixY(p.p.x+start.y);
-            double h = p.ang+ AngleType.degToRad(0);
+            double h = p.ang + AngleType.degToRad(0);
             newPoses.add(new Pose(new Point(x,y),h));
         }
         for (int i = 0; i < newPoses.size()-1; i++){
@@ -143,6 +145,7 @@ public class Drawer extends JPanel {
         for(Pose p1: newPoses) {
             drawPose(p1);
         }
+
 
 
         g.dispose();
