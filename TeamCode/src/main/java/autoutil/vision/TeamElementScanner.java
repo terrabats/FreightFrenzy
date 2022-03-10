@@ -13,7 +13,7 @@ public class TeamElementScanner extends CaseScanner{
 
     @Override
     protected Rect[] defineRegions() {
-        return defaultRegionGenerator(new Point(width/2.0,height/2.0), 40, 80);
+        return defaultRegionGenerator(new Point(width/2.0,(height/2.0)+0.0), 60, 130);
     }
 
     @Override
