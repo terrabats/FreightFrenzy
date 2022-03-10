@@ -23,6 +23,8 @@ public class PID extends Controller1D implements ParameterConstructor<Double> {
      * Input 5: Maximum Time <br>
      * Input 6: Maximum Derivative <br>
      * Input 7: Maximum Integral Range <br>
+     * Input 8: Rest Output <br>
+     * Input 9: Accuracy <br>
      * @param parameterType
      * @param parameters
      */
