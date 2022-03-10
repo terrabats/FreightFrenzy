@@ -12,8 +12,8 @@ public class TerraAutoDuck extends MecanumAuto {
 
     @Override
     public void initAuto() {
-//        scan();
-        caseDetected = Case.RIGHT;
+        scan();
+//        caseDetected = Case.RIGHT;
         setBackgroundTasks(bot.lift::holdPosition);
     }
 
@@ -22,9 +22,17 @@ public class TerraAutoDuck extends MecanumAuto {
         addWaypoint(20,10,45);
         addSetpoint(30,20,90);
         addAutoModule(automodules.OneDuckAuto);
-        addSetpoint(-28,55,135);
-        addAutoModule(automodules.AllianceLiftUp(automodules.LiftUpTop));
-        addAutoModule(automodules.ResetLiftAndOuttakeAuto);
+        customCase(Case.RIGHT, () -> {
+            addSetpoint(-28,55,135);
+            addAutoModule(automodules.AllianceLiftUp(automodules.LiftUpTop));
+        }, Case.CENTER, () -> {
+            addSetpoint(-35,60,135);
+            addAutoModule(automodules.AllianceLiftUp(automodules.LiftUpMiddle));
+        }, Case.LEFT, () -> {
+            addSetpoint(-40,65,135);
+            addAutoModule(automodules.AllianceLiftUp(automodules.LiftUpBottom));
+        });
+        addAutoModule(automodules.ResetLiftAndOuttake);
         addSetpoint(30,62,90);
     }
 

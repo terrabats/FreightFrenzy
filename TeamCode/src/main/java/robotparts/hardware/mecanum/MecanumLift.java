@@ -24,9 +24,6 @@ public class MecanumLift extends TwoLift {
     private final double UP_SCALE_CONST = 0.96;
     private Level levelMode = Level.TOP;
 
-    // TODO FIX
-    // Make slow mode
-
     @Override
     public void move(double p){
         if(p > 0){
