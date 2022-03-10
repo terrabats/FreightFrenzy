@@ -15,9 +15,6 @@ import static teleutil.Modes.OuttakeMode.SHARED;
 
 public class AutoModules {
 
-    // TODO FIX
-    // Make these less skecth
-
     public StageList OneDuck = new StageList(bot.carousel.spinOneDuck(2,0.4,0.7));
 
     public StageList OneDuckAuto = new StageList(bot.carousel.spinOneDuckMoving(3,0.3,0.6, 0.0, 0.14, 0.0));

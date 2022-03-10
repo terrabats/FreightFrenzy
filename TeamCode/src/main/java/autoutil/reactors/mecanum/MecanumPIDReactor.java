@@ -17,6 +17,9 @@ public class MecanumPIDReactor extends MecanumReactor{
 //    public PID yPID = new PID(0.04,0.005,0.005, 0.05, 0.5, 50, 5);
 //    public PID hPID = new PID(0.7,0,0.11, 0.07 , 0.5, 4, Math.toRadians(20));
 
+    // TODO FIX
+    // These need to be in standard_Extra
+
     public PID xPID = new PID(PID.PIDParameterType.DEFAULT_ALL, 0.04,0.005,0.0, 0.2, 0.05, 50.0, 5.0);
     public PID yPID = new PID(PID.PIDParameterType.DEFAULT_ALL, 0.04,0.005,0.0, 0.2, 0.05, 50., 5.0);
     public PID hPID = new PID(PID.PIDParameterType.DEFAULT_ALL, 0.4,0.0,0.0, 0.2 , 0.05, 50.0, Math.toRadians(20));

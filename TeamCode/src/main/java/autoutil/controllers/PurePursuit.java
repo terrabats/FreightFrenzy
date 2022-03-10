@@ -26,12 +26,19 @@ public class PurePursuit extends Controller2D implements ParameterConstructor<Do
     public double currentRadius = 5;
     private double kx;
     private double ky;
-    private double maximumTime;
     private double radiusK;
-    private double accuracy;
 
     private final Exponential radiusLogistic;
 
+    /**
+     * Constructor for Pure Pursuit <br>
+     * Input 1: X Proportional coefficient<br>
+     * Input 2: Y Proportional coefficient <br>
+     * Input 3: Radius Coefficient  <br>
+     * Input 4: Max Radius <br>
+     * @param parameterType
+     * @param input
+     */
     public PurePursuit(PurePursuitParameterType parameterType, Double... input){
         addConstructor(PurePursuitParameterType.DEFAULT, 2);
         addConstructor(PurePursuitParameterType.ALL, 4);
