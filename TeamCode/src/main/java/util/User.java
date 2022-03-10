@@ -17,6 +17,7 @@ public enum User {
     TELE,
     AUTO,
     ROFU,
+    BACK,
     NONE;
 
     /**

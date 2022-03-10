@@ -45,6 +45,13 @@ public abstract class AutoFramework extends Auto{
     public abstract Generator getWaypointGenerator();
     public abstract CaseScanner getCaseScanner();
 
+    public void setBackgroundTasks(CodeSeg backgroundTasks){
+        executor.setBackgroundTasks(() -> {
+            backgroundTasks.run();
+            update(false);
+        });
+    }
+
     public boolean isFlipped(){
         return fieldSide.equals(FieldSide.RED);
     }

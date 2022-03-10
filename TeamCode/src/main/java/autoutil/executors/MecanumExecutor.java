@@ -34,6 +34,7 @@ public class MecanumExecutor extends ExecutorNew implements Iterator {
                     reactor.setTarget(pose.asArray());
                     whileActive(() -> !reactor.isAtTarget(), ()-> {
                         reactor.moveToTarget();
+                        backgroundTasks.run();
                     });
                     reactor.nextTarget();
                 }
@@ -41,7 +42,9 @@ public class MecanumExecutor extends ExecutorNew implements Iterator {
                 ((PathAutoModule) pathSegment).runAutoModule();
                 if(!((PathAutoModule) pathSegment).isConcurrent()) {
                     bot.drive.move(0,0,0);
-                    whileActive(() -> !((PathAutoModule) pathSegment).isDoneWithAutoModule(), () -> {});
+                    whileActive(() -> !((PathAutoModule) pathSegment).isDoneWithAutoModule(), () -> {
+                        backgroundTasks.run();
+                    });
                 }
             }
         }

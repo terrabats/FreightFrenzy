@@ -14,6 +14,7 @@ public class TerraAutoDuck extends MecanumAuto {
     public void initAuto() {
 //        scan();
         caseDetected = Case.RIGHT;
+        setBackgroundTasks(bot.lift::holdPosition);
     }
 
     @Override

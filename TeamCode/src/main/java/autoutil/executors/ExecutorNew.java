@@ -3,8 +3,11 @@ package autoutil.executors;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.checkerframework.checker.units.qual.C;
+
 import autoutil.paths.Path;
 import autoutil.reactors.Reactor;
+import util.codeseg.CodeSeg;
 import util.codeseg.ReturnCodeSeg;
 
 public abstract class ExecutorNew {
@@ -12,6 +15,7 @@ public abstract class ExecutorNew {
     protected Path path;
     protected Reactor reactor;
     protected ReturnCodeSeg<Boolean> whileOpModeIsActive;
+    protected CodeSeg backgroundTasks = () -> {};
 
     public ExecutorNew(LinearOpMode opMode){
         whileOpModeIsActive = opMode::opModeIsActive;
@@ -28,4 +32,6 @@ public abstract class ExecutorNew {
     }
 
     public abstract void followPath();
+
+    public void setBackgroundTasks(CodeSeg backgroundTasks){ this.backgroundTasks = backgroundTasks; }
 }
