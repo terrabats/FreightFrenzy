@@ -95,18 +95,22 @@ public class Drawer extends JPanel {
         drawField();
 
         addWaypoint(0,0,0);
-//        addWaypoint(0,30,-60);
-//        addWaypoint(15,55,-135);
-//        addWaypoint(10,25,-115);
-//        addWaypoint(10,-5,-90);
-//        addWaypoint(-10,-10,-90);
-//        addWaypoint(-70,-10,-90);
+        addWaypoint(0,30,-60);
+        addWaypoint(15,55,-135);
+        addWaypoint(10,25,-115);
+        addWaypoint(10,-5,-90);
+        addWaypoint(-10,-10,-90);
+        addWaypoint(-70,-10,-90);
+        addWaypoint(-10,-12,-90);
+        addWaypoint(10,-7,-90);
+        addWaypoint(10,23,-115);
+//        addWaypoint(15,53,-135);
 //        addWaypoint(-70, 50, -90);
         // Just Duck
-        addWaypoint(20,20,45);
-        addWaypoint(50,30,90);
-        addWaypoint(-20,65,135);
-        addWaypoint(60,70,90);
+//        addWaypoint(20,20,45);
+//        addWaypoint(50,30,90);
+//        addWaypoint(-20,65,135);
+//        addWaypoint(60,70,90);
 
         // Everything
 //        addWaypoint(-50,55,-90);
@@ -129,8 +133,8 @@ public class Drawer extends JPanel {
         this.g = (Graphics2D) g;
         define();
 //        Point start = new Point(367-22, 154);
-//        Point start = new Point(22, 154);
-        Point start = new Point(22, 274);
+        Point start = new Point(22, 154);
+//        Point start = new Point(22, 274);
 //        Point start = new Point(367-22, 274);
         ArrayList<Pose> newPoses = new ArrayList<>();
         for (Pose p: poses){

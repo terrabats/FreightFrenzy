@@ -77,6 +77,11 @@ public abstract class AutoFramework extends Auto{
         addDecision(new DecisionList(() -> caseDetected).addOption(caseOne, one).addOption(caseTwo, two).addOption(caseThree, three));
     }
 
+
+    public void customNumber(int num, CodeSeg one){
+        for (int i = 0; i < num; i++) { one.run(); }
+    }
+
     public void scan(){
         scanning = true;
         caseScanner = getCaseScanner();

@@ -20,7 +20,11 @@ public class TerraAutoDuck extends MecanumAuto {
     @Override
     public void define() {
         addWaypoint(20,10,45);
-        addSetpoint(30,20,90);
+        customSide(FieldSide.BLUE, () -> {
+            addSetpoint(30,20,90);
+        }, FieldSide.RED, () -> {
+            addSetpoint(30,20,135);
+        });
         addAutoModule(automodules.OneDuckAuto);
         customCase(Case.RIGHT, () -> {
             addSetpoint(-28,55,135);
