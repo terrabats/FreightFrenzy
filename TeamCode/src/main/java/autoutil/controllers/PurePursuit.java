@@ -1,25 +1,20 @@
 package autoutil.controllers;
 
-import autoutil.paths.PathLine;
 import autoutil.paths.PathLine2;
 import autoutil.paths.PathSegment2;
-import geometry.polygons.Triangle;
 import geometry.position.Line;
 import geometry.position.Point;
 import geometry.position.Pose;
-import geometry.position.Vector;
 import geometry.position.Vector2;
 import math.misc.Exponential;
-import math.misc.Logistic;
 import math.polynomial.Quadratic;
 import math.trigonmetry.Trigonometry;
 import util.condition.Expectation;
 import util.condition.Magnitude;
-import util.templates.ParameterConstructor;
+import util.template.ParameterConstructor;
 
 import static global.General.fault;
 import static global.General.log;
-import static global.General.telemetry;
 
 public class PurePursuit extends Controller2D implements ParameterConstructor<Double> {
     public double maxRadius = 15;

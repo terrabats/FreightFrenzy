@@ -12,7 +12,7 @@ import geometry.circles.AngleType;
 import global.Common;
 import unittests.UnitTest;
 import util.codeseg.CodeSeg;
-import util.templates.Iterator;
+import util.template.Iterator;
 import util.condition.Status;
 
 public class AutoUnitTest extends UnitTest implements Iterator, Common {

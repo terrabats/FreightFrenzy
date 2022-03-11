@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import elements.FieldSide;
 import global.Common;
-import util.templates.Iterator;
+import util.template.Iterator;
 
 public abstract class Auto extends LinearOpMode implements Common, Iterator {
     /**

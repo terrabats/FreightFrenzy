@@ -11,6 +11,7 @@ import automodules.TankAutoModules;
 import debugging.Synchroniser;
 import elements.FieldSide;
 import robot.TerraBot;
+import teleop.independent.Independents;
 import teleutil.GamepadHandler;
 import debugging.Fault;
 import debugging.Logger;
@@ -70,6 +71,7 @@ public class General {
      */
     public static TankAutoModules tankAutoModules;
     public static AutoModules automodules;
+    public static Independents independents;
     /**
      * The main user
      * NOTE: This should either be TELE or AUTO

@@ -2,7 +2,7 @@ package autoutil.controllers;
 
 import autoutil.paths.PathSegment2;
 import geometry.position.Pose;
-import util.templates.ParameterConstructor;
+import util.template.ParameterConstructor;
 
 public class PID extends Controller1D implements ParameterConstructor<Double> {
     private double kp;

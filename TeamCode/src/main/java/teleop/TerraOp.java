@@ -17,6 +17,9 @@ import static teleutil.Modes.OuttakeMode.*;
 
 public class TerraOp extends Tele{
 
+    // TODO
+    // Independents
+
     @Override
     public void initTele() {
 
@@ -41,6 +44,10 @@ public class TerraOp extends Tele{
         gph1.link(Button.B, automodules.SetUpForBoth);
         gph1.link(Button.Y, automodules.ResetLiftAndOuttake);
 
+
+        gph1.link(Button.DPAD_RIGHT, independents.MoveForAllianceForward);
+        gph1.link(Button.DPAD_LEFT, independents.MoveForAllianceBackward);
+
         gph2.link(Button.RIGHT_TRIGGER, OnPressEventHandler.class, bot.outtake::lock);
         gph2.link(Button.LEFT_TRIGGER, OnPressEventHandler.class, bot.outtake::drop);
         gph2.link(Button.RIGHT_BUMPER, OnPressEventHandler.class, bot.outtake::turnToHorizontal);
@@ -54,6 +61,8 @@ public class TerraOp extends Tele{
 
     @Override
     public void loopTele() {
+
+
 
         // Gamepad1
         bot.drive.moveSmoothTele(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);

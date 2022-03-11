@@ -3,17 +3,14 @@ package autoutil.executors;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import autoutil.paths.PathAutoModule;
-import autoutil.paths.PathLine;
 import autoutil.paths.PathPause;
 import autoutil.paths.PathPose;
 import autoutil.paths.PathSegment2;
 import geometry.position.Pose;
-import util.codeseg.CodeSeg;
 import util.codeseg.ReturnCodeSeg;
-import util.templates.Iterator;
+import util.template.Iterator;
 
 import static global.General.bot;
-import static global.General.log;
 
 public class MecanumExecutor extends ExecutorNew implements Iterator {
 

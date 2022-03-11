@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import automodules.StageList;
 import geometry.CoordinatePlane;
 import robotparts.RobotPart;
+import teleop.independent.Independent;
+import teleutil.IndependentRunner;
 import util.TerraThread;
 import util.User;
 import util.codeseg.ParameterCodeSeg;
@@ -38,6 +40,9 @@ public class RobotFramework {
      */
     public RobotFunctions rfsHandler;
 
+
+    public IndependentRunner independentRunner;
+
     /**
      * Constructor for creating a robotFramework, this should be overridden by terraBot by extending this class
      * Objects are instantiated here, and rfsHandler is also initialized, which sets the update code
@@ -50,6 +55,7 @@ public class RobotFramework {
         robotFunctionsThread = new TerraThread("RobotFunctionsThread");
         odometryThread = new TerraThread("OdometryThread");
         backgroundThread = new TerraThread("BackgroundThread");
+        independentRunner = new IndependentRunner();
         rfsHandler.init();
     }
 
@@ -155,5 +161,10 @@ public class RobotFramework {
         for(RobotPart part: allRobotParts){
             run.run(part);
         }
+    }
+
+
+    public void addIndependent(Independent independent){
+        independentRunner.addIndependent(independent);
     }
 }

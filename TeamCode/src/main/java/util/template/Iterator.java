@@ -1,4 +1,4 @@
-package util.templates;
+package util.template;
 
 import util.Timer;
 import util.codeseg.CodeSeg;

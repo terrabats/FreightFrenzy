@@ -3,7 +3,7 @@ package unittests.auto.framework;
 import java.util.Arrays;
 
 import unittests.auto.AutoUnitTest;
-import util.templates.ParameterConstructor;
+import util.template.ParameterConstructor;
 
 import static global.General.log;
 

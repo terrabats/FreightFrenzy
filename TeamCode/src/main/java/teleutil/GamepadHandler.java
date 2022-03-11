@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.TreeMap;
 
 import automodules.StageList;
+import teleop.independent.Independent;
 import teleutil.button.Button;
 import teleutil.button.ButtonEventHandler;
 import teleutil.button.ButtonHandler;
@@ -88,6 +89,10 @@ public class GamepadHandler {
 
     public void link(Button b, DecisionList decisionList){
         link(b, OnPressEventHandler.class, decisionList::check);
+    }
+
+    public void link(Button b, Independent independent){
+        link(b, OnPressEventHandler.class, () -> bot.addIndependent(independent));
     }
 
     /**
