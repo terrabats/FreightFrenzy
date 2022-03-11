@@ -1,6 +1,4 @@
-package teleutil;
-
-import teleop.independent.Independent;
+package teleutil.independent;
 
 public class IndependentRunner {
     private Independent currentIndependent;

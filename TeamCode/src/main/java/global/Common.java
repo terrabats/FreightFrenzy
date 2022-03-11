@@ -7,7 +7,7 @@ import automodules.TankAutoModules;
 import debugging.Synchroniser;
 import elements.FieldSide;
 import robot.TerraBot;
-import teleop.independent.Independents;
+import teleutil.Independents;
 import teleutil.GamepadHandler;
 import debugging.Fault;
 import debugging.Logger;

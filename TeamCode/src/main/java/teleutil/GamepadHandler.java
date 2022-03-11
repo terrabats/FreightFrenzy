@@ -8,11 +8,11 @@ import java.util.Objects;
 import java.util.TreeMap;
 
 import automodules.StageList;
-import teleop.independent.Independent;
 import teleutil.button.Button;
 import teleutil.button.ButtonEventHandler;
 import teleutil.button.ButtonHandler;
 import teleutil.button.OnPressEventHandler;
+import teleutil.independent.Independent;
 import util.codeseg.CodeSeg;
 import util.codeseg.ReturnCodeSeg;
 import util.condition.DecisionList;

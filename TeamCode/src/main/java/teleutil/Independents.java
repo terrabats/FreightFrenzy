@@ -1,4 +1,6 @@
-package teleop.independent;
+package teleutil;
+
+import teleutil.independent.Independent;
 
 import static global.General.automodules;
 
