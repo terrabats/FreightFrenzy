@@ -51,7 +51,6 @@ public abstract class AutoFramework extends Auto{
 
     public void setBackgroundTasks(CodeSeg backgroundTasks){
         RobotFramework.backgroundThread.setExecutionCode(() -> {
-//            bot.checkAccess(User.BACK);
             if(!isStopRequested()) {
                 bot.checkAccess(mainUser);
                 backgroundTasks.run();

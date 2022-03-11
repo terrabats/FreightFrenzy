@@ -11,7 +11,6 @@ import static global.General.bot;
 
 public class TerraAutoCycles extends MecanumAuto {
 
-
     @Override
     public void initAuto() {
         scan();

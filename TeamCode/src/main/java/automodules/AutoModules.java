@@ -17,9 +17,7 @@ import static teleutil.Modes.OuttakeMode.SHARED;
 
 public class AutoModules {
 
-    public StageList Pause(double secs){
-        return new StageList(new Stage(RobotPart.exitTime(secs)));
-    }
+    public StageList Pause(double secs){ return new StageList(new Stage(RobotPart.exitTime(secs))); }
 
     public StageList OneDuck = new StageList(bot.carousel.spinOneDuck(2,0.4,0.7));
 
