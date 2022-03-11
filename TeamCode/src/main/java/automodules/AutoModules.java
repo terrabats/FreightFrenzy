@@ -2,9 +2,11 @@ package automodules;
 
 import org.checkerframework.common.subtyping.qual.Bottom;
 
+import automodules.stage.Main;
 import automodules.stage.Stage;
 import elements.FieldSide;
 import elements.Level;
+import robotparts.RobotPart;
 import teleutil.Modes;
 import util.condition.DecisionList;
 
@@ -15,6 +17,10 @@ import static teleutil.Modes.OuttakeMode.SHARED;
 
 public class AutoModules {
 
+    public StageList Pause(double secs){
+        return new StageList(new Stage(RobotPart.exitTime(secs)));
+    }
+
     public StageList OneDuck = new StageList(bot.carousel.spinOneDuck(2,0.4,0.7));
 
     public StageList OneDuckAutoBlue = new StageList(bot.carousel.spinOneDuckMoving(3,0.3,0.6, 1.0, 0.0, 0.14, 0.0));
@@ -23,6 +29,10 @@ public class AutoModules {
     public StageList LiftUpTop = new StageList(bot.lift.liftEncoderUp(0.6, 42));
     public StageList LiftUpMiddle = new StageList(bot.lift.liftEncoderUp(0.6, 20));
     public StageList LiftUpBottom = new StageList(bot.lift.liftEncoderUp(0.5, 5));
+
+    public StageList LiftUpTopFast = new StageList(bot.lift.liftEncoderUp(1.0, 42));
+    public StageList LiftUpMiddleFast = new StageList(bot.lift.liftEncoderUp(1.0, 20));
+    public StageList LiftUpBottomFast = new StageList(bot.lift.liftEncoderUp(1.0, 5));
 
     public StageList LiftUpShared = new StageList(bot.lift.liftEncoderUp(0.5, 15));
     public StageList LiftReset = new StageList(bot.lift.liftEncoderDown(-0.3, 0));

@@ -5,8 +5,12 @@ import automodules.StageList;
 import static global.General.bot;
 
 public class PathAutoModule extends PathSegment2{
-    private final StageList automodule;
+    private StageList automodule;
     private boolean isConcurrent;
+    public boolean isCancel = false;
+    public PathAutoModule(boolean isCancel){
+        this.isCancel = isCancel;
+    }
     public PathAutoModule(StageList automodule, boolean isConcurrent){
         this.automodule = automodule;
         this.isConcurrent = isConcurrent;

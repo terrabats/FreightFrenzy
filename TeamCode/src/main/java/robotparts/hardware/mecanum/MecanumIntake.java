@@ -14,6 +14,7 @@ import robotparts.electronics.continuous.CMotor;
 
 public class MecanumIntake extends RobotPart {
     private CMotor in;
+    public double scale = 1.0;
 
     /**
      * Create Intake Motor
@@ -24,7 +25,7 @@ public class MecanumIntake extends RobotPart {
     }
 
     public void move(double pow) {
-        in.setPower(pow);
+        in.setPower(pow*scale);
     }
 
     private Main mainIntake() { return new Main(() -> move(1)); }
@@ -72,7 +73,7 @@ public class MecanumIntake extends RobotPart {
         return new Stage(
                 usePart(),
                 mainOuttake(),
-                exitTime(0.5),
+                exitTime(1.0),
                 stopIntake(),
                 returnPart()
         );

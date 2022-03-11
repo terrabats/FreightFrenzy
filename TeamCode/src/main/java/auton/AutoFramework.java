@@ -17,6 +17,7 @@ import robot.RobotFramework;
 import util.Timer;
 import util.User;
 import util.codeseg.CodeSeg;
+import util.codeseg.ParameterCodeSeg;
 import util.condition.DecisionList;
 
 import static global.General.bot;
@@ -51,9 +52,13 @@ public abstract class AutoFramework extends Auto{
     public void setBackgroundTasks(CodeSeg backgroundTasks){
         RobotFramework.backgroundThread.setExecutionCode(() -> {
 //            bot.checkAccess(User.BACK);
-            bot.checkAccess(mainUser);
-            backgroundTasks.run();
-            update(false);
+            if(!isStopRequested()) {
+                bot.checkAccess(mainUser);
+                backgroundTasks.run();
+                update(false);
+            }else{
+                RobotFramework.backgroundThread.stopUpdating();
+            }
         });
 //        executor.setBackgroundTasks(() -> {
 //            backgroundTasks.run();
@@ -78,8 +83,8 @@ public abstract class AutoFramework extends Auto{
     }
 
 
-    public void customNumber(int num, CodeSeg one){
-        for (int i = 0; i < num; i++) { one.run(); }
+    public void customNumber(int num, ParameterCodeSeg<Integer> one){
+        for (int i = 0; i < num; i++) { one.run(i); }
     }
 
     public void scan(){
@@ -108,6 +113,10 @@ public abstract class AutoFramework extends Auto{
         }
     }
 
+    public void addPause(double time){
+        getLastSegment().getGenerator().addPause(time);
+    }
+
     public void addSetpoint(double x, double y, double h){
         x *= scale;
         y *= scale;
@@ -134,6 +143,10 @@ public abstract class AutoFramework extends Auto{
 
     public void addConcurrentAutoModule(StageList autoModule){
         getLastSegment().getGenerator().addConcurrentAutoModule(autoModule);
+    }
+
+    public void addCancelAutoModules(){
+        getLastSegment().getGenerator().addCancelAutoModule();
     }
 
 

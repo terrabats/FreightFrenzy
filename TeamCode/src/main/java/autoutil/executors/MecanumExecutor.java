@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import autoutil.paths.PathAutoModule;
 import autoutil.paths.PathLine;
+import autoutil.paths.PathPause;
 import autoutil.paths.PathPose;
 import autoutil.paths.PathSegment2;
 import geometry.position.Pose;
@@ -39,13 +40,23 @@ public class MecanumExecutor extends ExecutorNew implements Iterator {
                     reactor.nextTarget();
                 }
             }else if(pathSegment instanceof PathAutoModule){
-                ((PathAutoModule) pathSegment).runAutoModule();
-                if(!((PathAutoModule) pathSegment).isConcurrent()) {
-                    bot.drive.move(0,0,0);
-                    whileActive(() -> !((PathAutoModule) pathSegment).isDoneWithAutoModule(), () -> {
-                        backgroundTasks.run();
-                    });
+                if(!((PathAutoModule) pathSegment).isCancel){
+                    ((PathAutoModule) pathSegment).runAutoModule();
+                    if (!((PathAutoModule) pathSegment).isConcurrent()) {
+                        bot.drive.move(0, 0, 0);
+                        whileActive(() -> !((PathAutoModule) pathSegment).isDoneWithAutoModule(), () -> {
+                            backgroundTasks.run();
+                        });
+                    }
+                }else{
+                    bot.cancelAutoModules();
                 }
+            }else if(pathSegment instanceof PathPause){
+                ((PathPause) pathSegment).startPausing();
+                bot.drive.move(0,0,0);
+                whileActive(() -> !((PathPause) pathSegment).isDonePausing(), () -> {
+                    backgroundTasks.run();
+                });
             }
         }
         bot.drive.move(0,0,0);

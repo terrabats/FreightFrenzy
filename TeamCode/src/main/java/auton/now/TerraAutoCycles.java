@@ -11,45 +11,58 @@ import static global.General.bot;
 
 public class TerraAutoCycles extends MecanumAuto {
 
+
     @Override
     public void initAuto() {
         scan();
-//        caseDetected = Case.RIGHT;
-        setBackgroundTasks(bot.lift::holdPosition);
+        setBackgroundTasks(() -> {
+            bot.lift.holdPosition();
+            bot.intake.move(-0.8);
+        });
+        bot.intake.scale = 0.6;
     }
 
     @Override
     public void define() {
-        addWaypoint(0, 30, -60);
-        customNumber(2, () -> {
+        addWaypoint(20, 20, -60);
+        customNumber(5, i -> {
+            addCancelAutoModules();
             customCase(Case.RIGHT, () -> {
-                addConcurrentAutoModule(automodules.LiftUpTop);
-                addSetpoint(15, 55, -135);
+                addConcurrentAutoModule(automodules.AllianceLiftUp(automodules.LiftUpTopFast));
+                if(i==0) {
+                    addSetpoint(30, 47, -137);
+                }else if(i>0){
+                    addSetpoint(28, 35, -140);
+                }
             }, Case.CENTER, () -> {
-                addConcurrentAutoModule(automodules.LiftUpMiddle);
-                addSetpoint(20, 60, -135);
+                addConcurrentAutoModule(automodules.AllianceLiftUp(automodules.LiftUpMiddleFast));
+                addPause(0.5);
+                addSetpoint(37, 54, -137);
             }, Case.LEFT, () -> {
-                addConcurrentAutoModule(automodules.LiftUpBottom);
-                addSetpoint(25, 65, -135);
+                addConcurrentAutoModule(automodules.AllianceLiftUp(automodules.LiftUpBottomFast));
+                addPause(0.5);
+                addSetpoint(44, 61, -137);
             });
-            addAutoModule(automodules.OuttakeDrop);
+            addCancelAutoModules();
             addConcurrentAutoModule(automodules.ResetLiftAndOuttake);
-            addWaypoint(10, 25, -115);
-            addWaypoint(10, -5, -90);
-            addWaypoint(-10, -10, -90);
-            addConcurrentAutoModule(automodules.IntakeCombined);
-            addWaypoint(-80, -10, -90);
-            addWaypoint(-10,-10,-90);
-            addWaypoint(10,-5,-90);
-            addWaypoint(10,25,-115);
+            addPause(0.6);
+            addWaypoint(45, 25, -115);
+            addWaypoint(45, -10, -95);
+            addWaypoint(0, -10, -95);
+            if(i < 4) {
+                addConcurrentAutoModule(automodules.IntakeCombined);
+                addWaypoint(-50 - (3*i), -10, -90);
+                addPause(0.5);
+                addWaypoint(0, -10, -85);
+                addWaypoint(35, -10, -85);
+                addWaypoint(35, 25, -115);
+                addPause(0.1);
+            }
+            caseDetected = Case.RIGHT;
         });
-        addAutoModule(automodules.OuttakeDrop);
-        addConcurrentAutoModule(automodules.ResetLiftAndOuttake);
-        addWaypoint(10, 25, -115);
-        addWaypoint(10, -5, -90);
-        addWaypoint(-10, -10, -90);
-        addWaypoint(-70, -10, -90);
-        addSetpoint(-70, 50, -90);
+        addCancelAutoModules();
+        addWaypoint(-45, -10, -90);
+        addSetpoint(-45, 50, -90);
     }
 
 
