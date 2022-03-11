@@ -12,6 +12,7 @@ public class IndependentRunner {
     public void addIndependent(Independent independent){
         bot.drive.switchUser(User.BACK);
         RobotFramework.backgroundThread.setExecutionCode(() -> {
+            bot.drive.checkAccess(User.BACK);
             independent.runAuto();
             bot.drive.returnPart();
         });

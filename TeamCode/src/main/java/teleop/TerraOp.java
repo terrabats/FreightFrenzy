@@ -18,7 +18,7 @@ import static teleutil.Modes.OuttakeMode.*;
 public class TerraOp extends Tele{
 
     // TODO
-    // Independents
+    // Independents define all of them and when they run and the mode
 
     @Override
     public void initTele() {

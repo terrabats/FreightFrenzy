@@ -1,10 +1,11 @@
-package teleutil;
+package teleutil.independent;
 
 import teleutil.independent.Independent;
 
 import static global.General.automodules;
 
 public class Independents {
+
     public Independent MoveForAllianceBackward = new Independent() {
         @Override
         public void define() {
@@ -14,18 +15,21 @@ public class Independents {
             addSetpoint(40, 40, -45);
         }
     };
+
     public Independent MoveForAllianceForward = new Independent() {
         @Override
         public void define() {
 
         }
     };
+
     public Independent MoveForSharedForward = new Independent() {
         @Override
         public void define() {
 
         }
     };
+
     public Independent MoveForSharedBackward = new Independent() {
         @Override
         public void define() {
