@@ -13,7 +13,6 @@ public class TerraAutoDuck extends MecanumAuto {
     @Override
     public void initAuto() {
         scan();
-//        caseDetected = Case.RIGHT;
         setBackgroundTasks(bot.lift::holdPosition);
     }
 
@@ -22,22 +21,31 @@ public class TerraAutoDuck extends MecanumAuto {
         addWaypoint(20,10,45);
         customSide(FieldSide.BLUE, () -> {
             addSetpoint(30,20,90);
+            addAutoModule(automodules.OneDuckAutoBlue);
         }, FieldSide.RED, () -> {
-            addSetpoint(30,20,135);
+            addSetpoint(30,20,180);
+            addSetpoint(64,15,210);
+            addAutoModule(automodules.OneDuckAutoRed);
         });
-        addAutoModule(automodules.OneDuckAuto);
         customCase(Case.RIGHT, () -> {
+            addConcurrentAutoModule(automodules.AllianceLiftUp(automodules.LiftUpTop));
             addSetpoint(-28,55,135);
-            addAutoModule(automodules.AllianceLiftUp(automodules.LiftUpTop));
         }, Case.CENTER, () -> {
+            addConcurrentAutoModule(automodules.AllianceLiftUp(automodules.LiftUpMiddle));
+            addSetpoint(-15,40,135);
             addSetpoint(-35,60,135);
-            addAutoModule(automodules.AllianceLiftUp(automodules.LiftUpMiddle));
         }, Case.LEFT, () -> {
-            addSetpoint(-40,65,135);
-            addAutoModule(automodules.AllianceLiftUp(automodules.LiftUpBottom));
+            addConcurrentAutoModule(automodules.AllianceLiftUp(automodules.LiftUpBottom));
+            addSetpoint(-15,40,135);
+            addSetpoint(-42,67,135);
         });
         addAutoModule(automodules.ResetLiftAndOuttake);
-        addSetpoint(30,62,90);
+        customSide(FieldSide.BLUE, () -> {
+            addSetpoint(28,62,90);
+        }, FieldSide.RED, () -> {
+            addSetpoint(30,67,90);
+        });
+
     }
 
 

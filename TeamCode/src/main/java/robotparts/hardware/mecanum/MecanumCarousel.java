@@ -69,7 +69,7 @@ public class MecanumCarousel extends RobotPart {
     }
 
 
-    public Stage spinOneDuckMoving(double time, double minPow, double maxPow, double f, double s, double t) {
+    public Stage spinOneDuckMoving(double time, double minPow, double maxPow,double k,  double f, double s, double t) {
         return new Stage(
                 usePart(),
                 bot.drive.usePart(),
@@ -82,9 +82,9 @@ public class MecanumCarousel extends RobotPart {
                     Linear l1 = new Linear(slope, minPow);
                     Linear l2 = new Linear(-slope,l1.f(halfTime));
                     if(secs < halfTime) {
-                        move(l1.f(secs));
+                        move(k*l1.f(secs));
                     }else{
-                        move(l2.f(secs-halfTime));
+                        move(k*l2.f(secs-halfTime));
                     }
                 }),
                 exitTime(time),

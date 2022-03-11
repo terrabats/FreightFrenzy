@@ -17,7 +17,7 @@ public abstract class MecanumReactor extends Reactor {
     public void init() {
         movementController.setProcessVariable(() -> getPose().p.x, () -> getPose().p.y);
         headingController.setProcessVariable(() -> getPose().ang);
-        headingController.setProcessError(() -> GyroSensors.processThetaError(headingController.getRawError()));
+//        headingController.setProcessError(() -> GyroSensors.processThetaError(headingController.getRawError()));
         nextTarget();
     }
 

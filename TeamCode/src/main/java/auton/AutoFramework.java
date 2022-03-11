@@ -37,7 +37,7 @@ public abstract class AutoFramework extends Auto{
 
     protected boolean scanning = false;
     protected CaseScanner caseScanner;
-    protected Case caseDetected;
+    protected Case caseDetected = Case.RIGHT;
 
     public final double scale = 0.95;
 

@@ -13,6 +13,8 @@ import util.condition.Magnitude;
 import util.condition.Status;
 import static global.General.*;
 
+// TOD4 Threads dont stop in the middle of init in auton??
+
 public class TerraThread extends Thread {
     /**
      * Class for handling and creating thread
