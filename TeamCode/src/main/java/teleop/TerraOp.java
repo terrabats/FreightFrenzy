@@ -18,7 +18,8 @@ import static teleutil.Modes.OuttakeMode.*;
 public class TerraOp extends Tele{
 
     // TODO
-    // Independents define all of them and when they run and the mode
+    // Cancel Indpendents
+    // Indpedent Mode
 
     @Override
     public void initTele() {
@@ -43,7 +44,6 @@ public class TerraOp extends Tele{
         gph1.link(Button.A, automodules.IntakeCombined);
         gph1.link(Button.B, automodules.SetUpForBoth);
         gph1.link(Button.Y, automodules.ResetLiftAndOuttake);
-
 
         gph1.link(Button.DPAD_RIGHT, independents.MoveForAllianceForward);
         gph1.link(Button.DPAD_LEFT, independents.MoveForAllianceBackward);

@@ -27,6 +27,14 @@ public class TwoOdometry extends TankOdometry {
         localOdometryCenterOffset = new Vector2(0.0, 12.6);
     }
 
+    public void reset(){
+        positionRobotCenter = new Vector2(0,0);
+        horizontalEncoder.reset();
+        verticalEncoder.reset();
+        lastHorizontalEncoderPos = horizontalEncoder.getPos();
+        lastVerticalEncoderPos = verticalEncoder.getPos();
+    }
+
 
     @Override
     public void init() {
