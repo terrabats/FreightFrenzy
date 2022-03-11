@@ -18,7 +18,6 @@ import static teleutil.Modes.OuttakeMode.*;
 public class TerraOp extends Tele{
 
     // TODO
-    // Cancel Indpendents
     // Indpedent Mode
 
     @Override
@@ -29,7 +28,11 @@ public class TerraOp extends Tele{
         gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));
         gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.intake.move(0));
 
-        gph1.link(Button.X, OnPressEventHandler.class, bot::cancelAutoModules);
+        gph1.link(Button.X, OnPressEventHandler.class, () -> {
+            bot.cancelAutoModules();
+            bot.cancelIndependent();
+        });
+
 //        gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot::pauseAutoModules);
 //        gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot::resumeAutoModules);
 

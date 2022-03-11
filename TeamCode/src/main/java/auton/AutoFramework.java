@@ -41,6 +41,7 @@ public abstract class AutoFramework extends Auto{
     protected Case caseDetected = Case.RIGHT;
 
     public final double scale = 0.95;
+//    public boolean canceled = false;
 
     public abstract void define();
     public abstract Reactor getSetpointReactor();
@@ -105,6 +106,9 @@ public abstract class AutoFramework extends Auto{
             bot.camera.stopExternalCamera();
         }
         for(AutoSegment<? extends Reactor, ? extends Generator> autoSegment: segments){
+//            if(canceled){
+//                break;
+//            }
             executor = getExecutor();
             executor.setReactor(autoSegment.getReactor());
             executor.setPath(autoSegment.getGenerator().getPath());
