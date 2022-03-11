@@ -1,11 +1,24 @@
 package teleutil.independent;
 
+import teleutil.Modes;
 import teleutil.independent.Independent;
+import util.condition.DecisionList;
+import util.condition.DecisionList.Decision;
 
 import static global.General.automodules;
 import static global.General.bot;
+import static global.General.independents;
 
 public class Independents {
+
+    public Independent MoveForAllianceForward = new Independent(i -> {
+        i.addConcurrentAutoModule(automodules.ResetLiftAndOuttake);
+        i.addPause(0.6);
+        i.addWaypoint(25,-50,0);
+        i.addWaypoint(-5,-50,-5);
+        i.addWaypoint(-5,0,-5);
+        i.addConcurrentAutoModule(automodules.IntakeCombined);
+    });
 
     public Independent MoveForAllianceBackward = new Independent(i -> {
         bot.odometry.reset();
@@ -16,12 +29,12 @@ public class Independents {
         i.addSetpoint(40, -60, -45);
     });
 
-    public Independent MoveForAllianceForward = new Independent(i -> {
+    public Independent MoveForSharedForward = new Independent(i -> {
         i.addConcurrentAutoModule(automodules.ResetLiftAndOuttake);
         i.addPause(0.6);
-        i.addWaypoint(25,-50,0);
-        i.addWaypoint(-5,-50,-5);
-        i.addWaypoint(-5,0,-5);
+        i.addWaypoint(-15,-40,0);
+        i.addWaypoint(5,-40,5);
+        i.addWaypoint(5,0,5);
         i.addConcurrentAutoModule(automodules.IntakeCombined);
     });
 
@@ -34,13 +47,20 @@ public class Independents {
         i.addSetpoint(-30, -50, 30);
     });
 
-    public Independent MoveForSharedForward = new Independent(i -> {
-        i.addConcurrentAutoModule(automodules.ResetLiftAndOuttake);
-        i.addPause(0.6);
-        i.addWaypoint(-15,-40,0);
-        i.addWaypoint(5,-40,5);
-        i.addWaypoint(5,0,5);
-        i.addConcurrentAutoModule(automodules.IntakeCombined);
-    });
+    public DecisionList MoveForForward = new DecisionList(bot.outtake::getOuttakeMode)
+            .addOption(Modes.OuttakeMode.ALLIANCE, () -> bot.addIndependent(MoveForAllianceForward))
+            .addOption(Modes.OuttakeMode.SHARED, () -> bot.addIndependent(MoveForSharedForward));
+
+    public DecisionList MoveForBackward = new DecisionList(bot.outtake::getOuttakeMode)
+            .addOption(Modes.OuttakeMode.ALLIANCE, () -> bot.addIndependent(MoveForAllianceBackward))
+            .addOption(Modes.OuttakeMode.SHARED, () -> bot.addIndependent(MoveForSharedBackward));
+
+    public DecisionList Forward = new DecisionList(bot.drive::getIndependentMode)
+            .addOption(Modes.IndependentMode.MANUAL, () -> bot.addAutoModule(automodules.ResetLiftAndOuttake))
+            .addOption(Modes.IndependentMode.USING, independents.MoveForForward::check);
+
+    public DecisionList Backward = new DecisionList(bot.drive::getIndependentMode)
+            .addOption(Modes.IndependentMode.MANUAL, automodules.SetUpForBoth::check)
+            .addOption(Modes.IndependentMode.USING, independents.MoveForBackward::check);
 
 }

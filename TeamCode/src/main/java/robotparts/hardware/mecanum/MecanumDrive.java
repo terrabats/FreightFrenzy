@@ -31,11 +31,12 @@ import teleutil.Modes.*;
  */
 public class MecanumDrive extends RobotPart {
     private Executor executor;
-    private CMotor fr,br,fl,bl;
+    private CMotor fr, br, fl, bl;
     private DriveMode driveMode = DriveMode.FAST;
+    private IndependentMode independentMode = IndependentMode.MANUAL;
 
     @Override
-    public void init(){
+    public void init() {
         fr = createCMotor("fr", Direction.REVERSE);
         br = createCMotor("br", Direction.REVERSE);
         fl = createCMotor("fl", Direction.FORWARD);
@@ -44,53 +45,62 @@ public class MecanumDrive extends RobotPart {
 
     /**
      * Raw movement
+     *
      * @param f Forward Power
      * @param s Strafe Power
      * @param t Turn Power
      */
-    public void move(double f, double s, double t){
-        fr.setPower(f-s-t);
-        br.setPower(f+s-t);
-        fl.setPower(f+s+t);
-        bl.setPower(f-s+t);
+    public void move(double f, double s, double t) {
+        fr.setPower(f - s - t);
+        br.setPower(f + s - t);
+        fl.setPower(f + s + t);
+        bl.setPower(f - s + t);
     }
 
     /**
      * Move the robot smoothly
+     *
      * @param f Forward Power
      * @param s Strafe Power
      * @param t Turn Power
      */
-    public void moveSmooth(double f, double s, double t){
-        Logistic movementCurveForward = new Logistic(10,5);
-        Logistic movementCurveStrafe = new Logistic(30,6);
-        Logistic movementCurveTurn = new Logistic(30,6);
+    public void moveSmooth(double f, double s, double t) {
+        Logistic movementCurveForward = new Logistic(10, 5);
+        Logistic movementCurveStrafe = new Logistic(30, 6);
+        Logistic movementCurveTurn = new Logistic(30, 6);
         move(movementCurveForward.fodd(f), movementCurveStrafe.fodd(s), movementCurveTurn.fodd(t));
     }
 
-    public void moveSmoothTele(double f, double s, double t){
-        Logistic movementCurveForward = new Logistic(10,5);
-        Logistic movementCurveStrafe = new Logistic(30,6);
-        Logistic movementCurveTurn = new Logistic(30,6);
+    public void moveSmoothTele(double f, double s, double t) {
+        Logistic movementCurveForward = new Logistic(10, 5);
+        Logistic movementCurveStrafe = new Logistic(30, 6);
+        Logistic movementCurveTurn = new Logistic(30, 6);
         double scale = 1;
-        if(driveMode.equals(DriveMode.MEDIUM)){
+        if (driveMode.equals(DriveMode.MEDIUM)) {
             scale = 0.75;
-        }else if(driveMode.equals(DriveMode.SLOW)){
+        } else if (driveMode.equals(DriveMode.SLOW)) {
             scale = 0.5;
         }
-        move(movementCurveForward.fodd(f*scale), movementCurveStrafe.fodd(s*scale), movementCurveTurn.fodd(t*scale));
+        move(movementCurveForward.fodd(f * scale), movementCurveStrafe.fodd(s * scale), movementCurveTurn.fodd(t * scale));
     }
 
-    public Main mainMoveForward(double pow) { return new Main(() -> move(pow, 0, 0)); }
+    public Main mainMoveForward(double pow) {
+        return new Main(() -> move(pow, 0, 0));
+    }
 
-    public Main mainMove(double f, double s, double t) { return new Main(() -> move(f,s,t)); }
+    public Main mainMove(double f, double s, double t) {
+        return new Main(() -> move(f, s, t));
+    }
 
     /**
      * Stop the robot
+     *
      * @return
      */
 
-    public Stop stopMove() { return new Stop(() -> move(0, 0, 0)); }
+    public Stop stopMove() {
+        return new Stop(() -> move(0, 0, 0));
+    }
 
     /**
      * Initial to set path for executor
@@ -111,6 +121,7 @@ public class MecanumDrive extends RobotPart {
 
     /**
      * Main to execute a path
+     *
      * @return Main path executor
      */
     private Main executePath() {
@@ -119,6 +130,7 @@ public class MecanumDrive extends RobotPart {
 
     /**
      * Exit to execute a path
+     *
      * @return Path finished?
      */
     private Exit exitFinishedPath() {
@@ -128,20 +140,21 @@ public class MecanumDrive extends RobotPart {
     /**
      * Stage to move to a set of points
      * Autonomous movement in TeleOp
+     *
      * @param points List of arrays of points – each array of point is waypoints & 1 setpoint at the end
      * @return Stage to move
      */
     public Stage moveToPoint(Pose[]... points) {
         return new Stage(
-            usePart(),
-            setPath(points),
-            executePath(),
-            exitFinishedPath(),
-            returnPart()
+                usePart(),
+                setPath(points),
+                executePath(),
+                exitFinishedPath(),
+                returnPart()
         );
     }
 
-    public StageList mainChangeDrive(DriveMode driveMode){
+    public StageList mainChangeDrive(DriveMode driveMode) {
         return new StageList(new Stage(
                 usePart(),
                 mainCycleDrive(driveMode),
@@ -151,12 +164,12 @@ public class MecanumDrive extends RobotPart {
     }
 
 
-    public Main mainCycleDrive(DriveMode drive){
+    public Main mainCycleDrive(DriveMode drive) {
         return new Main(() -> driveMode = drive);
     }
 
-    private DriveMode nextDrive(){
-        switch (driveMode){
+    private DriveMode nextDrive() {
+        switch (driveMode) {
             case FAST:
                 return DriveMode.SLOW;
             case MEDIUM:
@@ -170,20 +183,28 @@ public class MecanumDrive extends RobotPart {
     // TOD4
     // Make cycle class or smt for enums
 
-    public void cycleDriveUp(){
+    public void cycleDriveUp() {
         driveMode = nextDrive();
     }
 
-    public void cycleDriveDown(){
+    public void cycleDriveDown() {
         cycleDriveUp();
         cycleDriveUp();
     }
 
-    public DriveMode getDriveMode(){
+    public DriveMode getDriveMode() {
         return driveMode;
     }
 
-    public void setDriveMode(DriveMode driveMode){
+    public void setDriveMode(DriveMode driveMode) {
         this.driveMode = driveMode;
+    }
+
+    public IndependentMode getIndependentMode() {
+        return independentMode;
+    }
+
+    public void setIndependentMode(IndependentMode independentMode) {
+        this.independentMode = independentMode;
     }
 }

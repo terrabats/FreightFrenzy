@@ -13,4 +13,9 @@ public class Modes {
         MEDIUM,
         SLOW
     }
+
+    public enum IndependentMode implements Decision {
+        MANUAL,
+        USING
+    }
 }

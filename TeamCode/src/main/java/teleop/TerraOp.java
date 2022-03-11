@@ -17,9 +17,6 @@ import static teleutil.Modes.OuttakeMode.*;
 
 public class TerraOp extends Tele{
 
-    // TODO
-    // Indpedent Mode
-
     @Override
     public void initTele() {
 
@@ -45,11 +42,9 @@ public class TerraOp extends Tele{
         gph1.link(Button.LEFT_STICK_BUTTON, OnPressEventHandler.class, bot.drive::cycleDriveDown);
 
         gph1.link(Button.A, automodules.IntakeCombined);
-        gph1.link(Button.B, automodules.SetUpForBoth);
-        gph1.link(Button.Y, automodules.ResetLiftAndOuttake);
 
-        gph1.link(Button.DPAD_RIGHT, independents.MoveForAllianceForward);
-        gph1.link(Button.DPAD_LEFT, independents.MoveForAllianceBackward);
+        gph1.link(Button.B, independents.Backward);
+        gph1.link(Button.Y, independents.Forward);
 
         gph2.link(Button.RIGHT_TRIGGER, OnPressEventHandler.class, bot.outtake::lock);
         gph2.link(Button.LEFT_TRIGGER, OnPressEventHandler.class, bot.outtake::drop);
@@ -64,13 +59,7 @@ public class TerraOp extends Tele{
 
     @Override
     public void loopTele() {
-
-
-
-        // Gamepad1
         bot.drive.moveSmoothTele(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
-
-        // Gamepad2
 
         if(gamepad2.right_stick_y == 0){
             bot.lift.holdPosition();
@@ -81,6 +70,10 @@ public class TerraOp extends Tele{
         log.show("OuttakeMode", bot.outtake.getOuttakeMode());
         log.show("LevelMode", bot.lift.getLevelMode());
         log.show("DriveMode", bot.drive.getDriveMode());
+        log.show("IndependentMode", bot.drive.getIndependentMode());
+
+
+
 //        log.show("Other pos", bot.lift.getPositionDown());
 //        log.show("Current Power", bot.lift.motorUp.getPower());
 //        log.show("PositionUp", bot.lift.getPositionUp());
