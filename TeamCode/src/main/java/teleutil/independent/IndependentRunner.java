@@ -1,12 +1,19 @@
 package teleutil.independent;
 
+import elements.Ball;
+import robot.RobotFramework;
+import util.User;
+
+import static global.General.bot;
+
 public class IndependentRunner {
-    private Independent currentIndependent;
+
+
     public void addIndependent(Independent independent){
-
-    }
-
-    public void returnToMain(){
-
+        bot.drive.switchUser(User.BACK);
+        RobotFramework.backgroundThread.setExecutionCode(() -> {
+            independent.runAuto();
+            bot.drive.returnPart();
+        });
     }
 }

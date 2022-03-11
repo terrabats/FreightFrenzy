@@ -12,37 +12,24 @@ public class Independents {
             addDecision(automodules.SetUpForAllianceShippingHub);
             addWaypoint(25,-60,0);
             addSetpoint(40, 40, -45);
-            returnToMain();
         }
     };
     public Independent MoveForAllianceForward = new Independent() {
         @Override
         public void define() {
-            addWaypoint(-5,-50,5);
-            addDecision(automodules.SetUpForAllianceShippingHub);
-            addWaypoint(25,-60,0);
-            addSetpoint(40, 40, -45);
-            returnToMain();
+
         }
     };
     public Independent MoveForSharedForward = new Independent() {
         @Override
         public void define() {
-            addWaypoint(-5,-50,5);
-            addDecision(automodules.SetUpForAllianceShippingHub);
-            addWaypoint(25,-60,0);
-            addSetpoint(40, 40, -45);
-            returnToMain();
+
         }
     };
     public Independent MoveForSharedBackward = new Independent() {
         @Override
         public void define() {
-            addWaypoint(-5,-50,5);
-            addDecision(automodules.SetUpForAllianceShippingHub);
-            addWaypoint(25,-60,0);
-            addSetpoint(40, 40, -45);
-            returnToMain();
+
         }
     };
 }
