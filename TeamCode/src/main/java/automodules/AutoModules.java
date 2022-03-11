@@ -62,9 +62,9 @@ public class AutoModules {
     public StageList AllianceLiftUp(StageList liftUp){return new StageList().add(OuttakeLockFast, OuttakeHorizontalFast, liftUp, OuttakeAlliance, changeDrive(Modes.DriveMode.SLOW));}
 
     public DecisionList SetUpForAllianceShippingHub = new DecisionList(() -> bot.lift.getLevelMode())
-            .addOption(Level.TOP, () -> bot.addAutoModule(AllianceLiftUp(LiftUpTop)))
-            .addOption(Level.MIDDLE, () -> bot.addAutoModule(AllianceLiftUp(LiftUpMiddle)))
-            .addOption(Level.BOTTOM, () -> bot.addAutoModule(AllianceLiftUp(LiftUpBottom)));
+            .addOption(Level.TOP, () -> bot.addAutoModule(AllianceLiftUp(LiftUpTopFast)))
+            .addOption(Level.MIDDLE, () -> bot.addAutoModule(AllianceLiftUp(LiftUpMiddleFast)))
+            .addOption(Level.BOTTOM, () -> bot.addAutoModule(AllianceLiftUp(LiftUpBottomFast)));
 
     public StageList SetUpForSharedShippingHubRight = new StageList().add(OuttakeLockFast, OuttakeHorizontal, LiftUpShared, OuttakeSharedRight, changeDrive(Modes.DriveMode.SLOW));
     public StageList SetUpForSharedShippingHubLeft = new StageList().add(OuttakeLockFast,OuttakeHorizontal, LiftUpShared, OuttakeSharedLeft, changeDrive(Modes.DriveMode.SLOW));
