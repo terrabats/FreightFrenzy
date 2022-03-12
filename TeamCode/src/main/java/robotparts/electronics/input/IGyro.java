@@ -25,7 +25,7 @@ public class IGyro extends Electronic {
         this.gyro.initialize(parameters);
     }
     public double getHeading(){
-        return gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+        return (gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle);
     }
 
 

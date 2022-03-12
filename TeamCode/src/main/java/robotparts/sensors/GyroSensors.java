@@ -12,6 +12,7 @@ public class GyroSensors extends RobotPart {
     private IGyro gsr, gsl;
     private double lastAngle = 0;
     private double heading = 0;
+    private double start = 0;
 
     @Override
     public void init() {
@@ -24,6 +25,10 @@ public class GyroSensors extends RobotPart {
      * @return heading
      */
     public double getRightHeadingDeg() {
+        return getRightHeadingDegRaw()-start;
+    }
+
+    public double getRightHeadingDegRaw() {
         double currentangle = -gsr.getHeading();
         double deltaAngle = currentangle - lastAngle;
         if (deltaAngle < -180)
@@ -42,6 +47,7 @@ public class GyroSensors extends RobotPart {
     public void reset(){
         heading = 0;
         lastAngle = 0;
+        start = getRightHeadingDegRaw();
     }
 
 

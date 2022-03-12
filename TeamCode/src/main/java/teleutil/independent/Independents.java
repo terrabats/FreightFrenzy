@@ -14,6 +14,7 @@ import static global.General.independents;
 public class Independents {
 
     public Independent MoveForAllianceForward(){return new Independent(i -> {
+        i.addCancelAutoModules();
         i.addConcurrentAutoModule(automodules.ResetLiftAndOuttake);
         i.addPause(0.5);
         i.addWaypoint(10,-70,10);
@@ -21,21 +22,23 @@ public class Independents {
         i.addConcurrentAutoModule(automodules.IntakeCombined);
     });}
 
-    public Independent MoveForAllianceBackward() {return new Independent(true, i -> {
+    public Independent MoveForAllianceBackward() {return new Independent(i -> {
         i.addWaypoint(-5,-50,5);
         i.addDecision(automodules.SetUpForBoth);
         i.addSetpoint(60, -80, -60);
     });}
 
     public Independent MoveForSharedForward(){return new Independent(i -> {
+        i.addCancelAutoModules();
         i.addConcurrentAutoModule(automodules.ResetLiftAndOuttake);
-        i.addPause(0.5);
-        i.addWaypoint(40,-60,50);
-        i.addWaypoint(5,0,-5);
+        i.addPause(0.6);
+        i.addWaypoint(-15,-40,0);
+        i.addWaypoint(5,-40,5);
+        i.addWaypoint(5,0,5);
         i.addConcurrentAutoModule(automodules.IntakeCombined);
     });}
 
-    public Independent MoveForSharedBackward(){return new Independent(true, i -> {
+    public Independent MoveForSharedBackward(){return new Independent(i -> {
         i.addWaypoint(5,-30,-5);
         i.addAutomodule(automodules.SetUpForBoth);
         i.addWaypoint(5,-40,-5);
@@ -52,11 +55,17 @@ public class Independents {
             .addOption(Modes.OuttakeMode.SHARED, () -> bot.addIndependent(MoveForSharedBackward()));
 
     public DecisionList Forward = new DecisionList(bot.drive::getIndependentMode)
-            .addOption(Modes.IndependentMode.MANUAL, () -> bot.addAutoModule(automodules.ResetLiftAndOuttake))
+            .addOption(Modes.IndependentMode.MANUAL, () -> {
+                bot.cancelAutoModules();
+                bot.addAutoModule(automodules.ResetLiftAndOuttake);
+            })
             .addOption(Modes.IndependentMode.USING, MoveForForward::check);
 
     public DecisionList Backward = new DecisionList(bot.drive::getIndependentMode)
             .addOption(Modes.IndependentMode.MANUAL, automodules.SetUpForBoth::check)
-            .addOption(Modes.IndependentMode.USING, MoveForBackward::check);
+            .addOption(Modes.IndependentMode.USING, () -> {
+                bot.odometry.reset();
+                MoveForBackward.check();
+            });
 
 }

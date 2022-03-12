@@ -76,7 +76,7 @@ public class AutoModules {
             .addOption(ALLIANCE, () -> SetUpForAllianceShippingHub.check())
             .addOption(SHARED, () -> SetUpForSharedShippingHubBoth.check());
 
-    public StageList ResetLiftAndOuttake = new StageList().add(Cancel(), changeDrive(Modes.DriveMode.FAST), OuttakeReset, LiftReset);
+    public StageList ResetLiftAndOuttake = new StageList().add(changeDrive(Modes.DriveMode.FAST), OuttakeReset, LiftReset);
 
     public StageList IntakeCombined = new StageList().add(changeDrive(Modes.DriveMode.MEDIUM), OuttakeDropFast, IntakeUntilFreight, IntakeOutAndLock);
 

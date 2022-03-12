@@ -62,7 +62,7 @@ public class TerraOp extends Tele{
 
         bot.lift.resetEncoder();
 
-        bot.drive.setIndependentMode(Modes.IndependentMode.USING);
+//        bot.drive.setIndependentMode(Modes.IndependentMode.USING);
     }
 
     @Override
