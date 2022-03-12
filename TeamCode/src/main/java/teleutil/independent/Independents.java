@@ -57,10 +57,10 @@ public class Independents {
 
     public DecisionList Forward = new DecisionList(bot.drive::getIndependentMode)
             .addOption(Modes.IndependentMode.MANUAL, () -> bot.addAutoModule(automodules.ResetLiftAndOuttake))
-            .addOption(Modes.IndependentMode.USING, independents.MoveForForward::check);
+            .addOption(Modes.IndependentMode.USING, MoveForForward::check);
 
     public DecisionList Backward = new DecisionList(bot.drive::getIndependentMode)
             .addOption(Modes.IndependentMode.MANUAL, automodules.SetUpForBoth::check)
-            .addOption(Modes.IndependentMode.USING, independents.MoveForBackward::check);
+            .addOption(Modes.IndependentMode.USING, MoveForBackward::check);
 
 }
