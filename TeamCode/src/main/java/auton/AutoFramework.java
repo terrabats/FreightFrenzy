@@ -3,6 +3,8 @@ package auton;
 import java.util.ArrayList;
 
 import automodules.StageList;
+import automodules.stage.Main;
+import automodules.stage.Stage;
 import autoutil.executors.ExecutorNew;
 import autoutil.generators.Generator;
 import autoutil.generators.PoseGenerator;
@@ -14,6 +16,7 @@ import elements.FieldSide;
 import geometry.position.Point;
 import geometry.position.Pose;
 import robot.RobotFramework;
+import robotparts.RobotPart;
 import util.Timer;
 import util.User;
 import util.codeseg.CodeSeg;
@@ -78,6 +81,10 @@ public abstract class AutoFramework extends Auto{
 
     public void addDecision(DecisionList decisionList){
         decisionList.check();
+    }
+
+    public void addAutomodule(DecisionList decisionList){
+        addAutoModule(new StageList(new Stage(new Main(decisionList::check), RobotPart.exitAlways())));
     }
 
     public void customSide(FieldSide sideOne, CodeSeg one, FieldSide sideTwo, CodeSeg two){

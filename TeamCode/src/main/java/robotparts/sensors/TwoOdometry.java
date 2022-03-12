@@ -7,32 +7,35 @@ import robotparts.unused.TankOdometry;
 import static global.General.bot;
 import static robot.RobotFramework.odometryThread;
 
+// TOD4
+// make proper reset method
 public class TwoOdometry extends TankOdometry {
 
-    private IEncoder horizontalEncoder;
-    private IEncoder verticalEncoder;
+    private volatile IEncoder horizontalEncoder;
+    private volatile IEncoder verticalEncoder;
 
 
-    private double lastHorizontalEncoderPos;
-    private double lastVerticalEncoderPos;
-
+    private volatile double lastHorizontalEncoderPos;
+    private volatile double lastVerticalEncoderPos;
 
     private final Vector2 positionOdometryCenter = new Vector2(0,0);
-    private Vector2 positionRobotCenter = new Vector2(0,0);
+    private volatile Vector2 positionRobotCenter = new Vector2(0,0);
     private final Vector2 localOdometryCenterOffset; // = new Vector2(3,-0.5);
-    private double heading = 0;
+    private volatile double heading = 0;
 
     public TwoOdometry() {
         super(0.0);
         localOdometryCenterOffset = new Vector2(0.0, 12.6);
     }
 
-    public void reset(){
+    public synchronized void reset(){
         positionRobotCenter = new Vector2(0,0);
         horizontalEncoder.reset();
         verticalEncoder.reset();
         lastHorizontalEncoderPos = horizontalEncoder.getPos();
         lastVerticalEncoderPos = verticalEncoder.getPos();
+        heading = 0;
+        bot.gyro.reset();
     }
 
 

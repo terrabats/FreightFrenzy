@@ -92,6 +92,7 @@ public class RobotFramework {
         cancelAutoModules();
         RobotFramework.backgroundThread.stopUpdating();
         cancelIndependent();
+        independentRunner.disableIndependent();
         TerraThread.stopUpdatingAllThreads();
         halt();
     }

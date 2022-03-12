@@ -18,6 +18,7 @@ import static teleutil.Modes.OuttakeMode.SHARED;
 public class AutoModules {
 
     public StageList Pause(double secs){ return new StageList(new Stage(RobotPart.exitTime(secs))); }
+    public StageList Cancel(){return new StageList(new Stage(new Main(bot::cancelAutoModules), RobotPart.exitAlways()));}
 
     public StageList OneDuck = new StageList(bot.carousel.spinOneDuck(2,0.4,0.7));
 
@@ -75,7 +76,8 @@ public class AutoModules {
             .addOption(ALLIANCE, () -> SetUpForAllianceShippingHub.check())
             .addOption(SHARED, () -> SetUpForSharedShippingHubBoth.check());
 
-    public StageList ResetLiftAndOuttake = new StageList().add(changeDrive(Modes.DriveMode.FAST), OuttakeReset, LiftReset);
+    public StageList ResetLiftAndOuttake = new StageList().add(Cancel(), changeDrive(Modes.DriveMode.FAST), OuttakeReset, LiftReset);
 
     public StageList IntakeCombined = new StageList().add(changeDrive(Modes.DriveMode.MEDIUM), OuttakeDropFast, IntakeUntilFreight, IntakeOutAndLock);
+
 }

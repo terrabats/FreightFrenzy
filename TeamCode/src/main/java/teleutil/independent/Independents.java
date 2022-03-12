@@ -1,7 +1,9 @@
 package teleutil.independent;
 
+import robotparts.sensors.TwoOdometry;
 import teleutil.Modes;
 import teleutil.independent.Independent;
+import util.User;
 import util.condition.DecisionList;
 import util.condition.DecisionList.Decision;
 
@@ -13,35 +15,29 @@ public class Independents {
 
     public Independent MoveForAllianceForward(){return new Independent(i -> {
         i.addConcurrentAutoModule(automodules.ResetLiftAndOuttake);
-        i.addPause(0.6);
-        i.addWaypoint(25,-50,0);
-        i.addWaypoint(-5,-50,-5);
+        i.addPause(0.5);
+        i.addWaypoint(10,-70,10);
         i.addWaypoint(-5,0,-5);
         i.addConcurrentAutoModule(automodules.IntakeCombined);
     });}
 
-    public Independent MoveForAllianceBackward() {return new Independent(i -> {
-        bot.odometry.reset();
-        i.addWaypoint(-5,-40,5);
-        i.addDecision(automodules.SetUpForBoth);
+    public Independent MoveForAllianceBackward() {return new Independent(true, i -> {
         i.addWaypoint(-5,-50,5);
-        i.addWaypoint(25,-50,0);
-        i.addSetpoint(40, -60, -45);
+        i.addDecision(automodules.SetUpForBoth);
+        i.addSetpoint(60, -80, -60);
     });}
 
     public Independent MoveForSharedForward(){return new Independent(i -> {
         i.addConcurrentAutoModule(automodules.ResetLiftAndOuttake);
-        i.addPause(0.6);
-        i.addWaypoint(-15,-40,0);
-        i.addWaypoint(5,-40,5);
-        i.addWaypoint(5,0,5);
+        i.addPause(0.5);
+        i.addWaypoint(40,-60,50);
+        i.addWaypoint(5,0,-5);
         i.addConcurrentAutoModule(automodules.IntakeCombined);
     });}
 
-    public Independent MoveForSharedBackward(){return new Independent(i -> {
-        bot.odometry.reset();
+    public Independent MoveForSharedBackward(){return new Independent(true, i -> {
         i.addWaypoint(5,-30,-5);
-        i.addDecision(automodules.SetUpForBoth);
+        i.addAutomodule(automodules.SetUpForBoth);
         i.addWaypoint(5,-40,-5);
         i.addWaypoint(-15,-40,0);
         i.addSetpoint(-30, -50, 30);

@@ -11,9 +11,10 @@ import static global.General.mainUser;
 
 public class IndependentRunner {
     // TOD4 Why do we need this?
-    public boolean isIndependentRunning = false;
+    public volatile boolean isIndependentRunning = false;
+    public volatile boolean disabled = false;
 
-    public void addIndependent(Independent independent){
+    public synchronized void addIndependent(Independent independent){
         isIndependentRunning = true;
         bot.drive.setDriveMode(Modes.DriveMode.FAST);
         bot.drive.switchUser(User.BACK);
@@ -27,8 +28,12 @@ public class IndependentRunner {
         });
     }
 
-    public void cancelIndependent(){
+    public synchronized void cancelIndependent(){
         isIndependentRunning = false;
         RobotFramework.backgroundThread.setExecutionCode(() -> {});
+    }
+
+    public synchronized void disableIndependent(){
+        disabled = true;
     }
 }
