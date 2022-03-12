@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import java.util.Arrays;
 
 import elements.FieldSide;
+import teleutil.Modes;
 import teleutil.button.Button;
 import teleutil.button.OnNotHeldEventHandler;
 import teleutil.button.OnPressEventHandler;
@@ -43,6 +44,10 @@ public class TerraOp extends Tele{
         gph1.link(Button.B, independents.Backward);
         gph1.link(Button.Y, independents.Forward);
 
+        gph1.link(Button.DPAD_RIGHT,OnPressEventHandler.class, bot.outtake::collectCap);
+        gph1.link(Button.DPAD_DOWN,OnPressEventHandler.class, bot.outtake::readyCap);
+        gph1.link(Button.DPAD_LEFT,OnPressEventHandler.class, bot.outtake::dropCap);
+
         gph2.link(Button.RIGHT_TRIGGER, OnPressEventHandler.class, bot.outtake::lock);
         gph2.link(Button.LEFT_TRIGGER, OnPressEventHandler.class, bot.outtake::drop);
         gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
@@ -56,6 +61,8 @@ public class TerraOp extends Tele{
         gph2.link(Button.DPAD_LEFT, OnPressEventHandler.class, bot.outtake::sharedTurretLeft);
 
         bot.lift.resetEncoder();
+
+//        bot.drive.setIndependentMode(Modes.IndependentMode.USING);
     }
 
     @Override

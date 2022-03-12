@@ -33,7 +33,7 @@ public class MecanumDrive extends RobotPart {
     private Executor executor;
     private CMotor fr, br, fl, bl;
     private DriveMode driveMode = DriveMode.FAST;
-    private IndependentMode independentMode = IndependentMode.USING;
+    private IndependentMode independentMode = IndependentMode.MANUAL;
 
     @Override
     public void init() {

@@ -15,7 +15,7 @@ public class MecanumOuttake extends RobotPart {
      * over is Outtake Vertical Controller
      * ohor is Outtake Horizontal Controller
      */
-    private PServo od, or, ol, ot;
+    private PServo od, or, ol, ot, cap;
 
     private Modes.OuttakeMode outtakeMode = Modes.OuttakeMode.ALLIANCE;
 
@@ -26,6 +26,12 @@ public class MecanumOuttake extends RobotPart {
         or = createPServo("or", Servo.Direction.FORWARD, 0, 1);
         ol = createPServo("ol", Servo.Direction.REVERSE, 0, 1);
         ot = createPServo("ot", Servo.Direction.FORWARD, 0, 1);
+        cap = createPServo("cap", Servo.Direction.REVERSE, 0, 1);
+
+        cap.addPosition("start", 0.0);
+        cap.addPosition("hold", 0.6);
+        cap.addPosition("down", 0.8);
+        cap.addPosition("end", 1.0);
 
         od.addPosition("releaseLeft", 0.0);
         od.addPosition("lock", 0.53);
@@ -42,7 +48,23 @@ public class MecanumOuttake extends RobotPart {
 
         lock();
         turretCenter();
-//        turnToStart();
+        startCap();
+
+    }
+
+
+    public void startCap(){cap.setPosition("start");}
+
+    public void collectCap(){
+        cap.setPosition("end");
+    }
+
+    public void readyCap(){
+        cap.setPosition("hold");
+    }
+
+    public void dropCap(){
+        cap.setPosition("down");
     }
 
     /**

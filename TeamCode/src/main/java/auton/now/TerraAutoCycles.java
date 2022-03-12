@@ -31,7 +31,7 @@ public class TerraAutoCycles extends MecanumAuto {
                 if(i==0) {
                     addSetpoint(30, 47, -137);
                 }else if(i>0){
-                    addSetpoint(28, 35, -140);
+                    addSetpoint(28+i, 35+i, -140);
                 }
             }, Case.CENTER, () -> {
                 addConcurrentAutoModule(automodules.AllianceLiftUp(automodules.LiftUpMiddleFast));
