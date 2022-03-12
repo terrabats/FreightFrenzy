@@ -13,7 +13,9 @@ public class Independent extends MecanumAuto {
         this.define = define;
     }
     @Override
-    public void initAuto() {}
+    public void initAuto() {
+        makeIndependent();
+    }
 
     @Override
     public void define() {

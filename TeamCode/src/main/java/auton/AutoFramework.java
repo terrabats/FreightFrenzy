@@ -40,6 +40,8 @@ public abstract class AutoFramework extends Auto{
     protected CaseScanner caseScanner;
     protected Case caseDetected = Case.RIGHT;
 
+    protected boolean isIndependent = false;
+
     public final double scale = 0.95;
 //    public boolean canceled = false;
 
@@ -49,6 +51,10 @@ public abstract class AutoFramework extends Auto{
     public abstract Generator getSetpointGenerator();
     public abstract Generator getWaypointGenerator();
     public abstract CaseScanner getCaseScanner();
+
+    public void makeIndependent(){
+        isIndependent = true;
+    }
 
     public void setBackgroundTasks(CodeSeg backgroundTasks){
         RobotFramework.backgroundThread.setExecutionCode(() -> {
@@ -106,10 +112,10 @@ public abstract class AutoFramework extends Auto{
             bot.camera.stopExternalCamera();
         }
         for(AutoSegment<? extends Reactor, ? extends Generator> autoSegment: segments){
-//            if(canceled){
-//                break;
-//            }
             executor = getExecutor();
+            if(isIndependent){
+                executor.makeIndependent();
+            }
             executor.setReactor(autoSegment.getReactor());
             executor.setPath(autoSegment.getGenerator().getPath());
             executor.followPath();

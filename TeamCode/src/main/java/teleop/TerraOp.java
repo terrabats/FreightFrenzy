@@ -2,12 +2,15 @@ package teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import java.util.Arrays;
+
 import elements.FieldSide;
 import teleutil.button.Button;
 import teleutil.button.OnNotHeldEventHandler;
 import teleutil.button.OnPressEventHandler;
 import teleutil.button.OnTurnOffEventHandler;
 import teleutil.button.OnTurnOnEventHandler;
+import util.User;
 
 import static global.General.bot;
 import static global.General.gph1;
@@ -20,11 +23,6 @@ public class TerraOp extends Tele{
     @Override
     public void initTele() {
 
-        gph1.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
-        gph1.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.intake.move(0));
-        gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));
-        gph1.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.intake.move(0));
-
         gph1.link(Button.X, OnPressEventHandler.class, () -> {
             bot.cancelAutoModules();
             bot.cancelIndependent();
@@ -34,10 +32,9 @@ public class TerraOp extends Tele{
 //        gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot::resumeAutoModules);
 
         gph1.link(Button.LEFT_TRIGGER, automodules.OneDuck);
-        gph1.link(Button.RIGHT_TRIGGER, OnTurnOffEventHandler.class, () -> bot.outtake.setOuttakeMode(ALLIANCE));
-        gph1.link(Button.RIGHT_TRIGGER, OnTurnOnEventHandler.class, () -> bot.outtake.setOuttakeMode(SHARED));
-        gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot.lift::cycleLevelUp);
-        gph1.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot.lift::cycleLevelDown);
+        gph1.link(Button.RIGHT_TRIGGER, OnPressEventHandler.class, bot.outtake::cycleOuttakeMode);
+        gph1.link(Button.RIGHT_BUMPER, OnPressEventHandler.class, bot.lift::cycleLevelUp);
+        gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, bot.drive::cycleIndependentMode);
         gph1.link(Button.RIGHT_STICK_BUTTON, OnPressEventHandler.class, bot.drive::cycleDriveUp);
         gph1.link(Button.LEFT_STICK_BUTTON, OnPressEventHandler.class, bot.drive::cycleDriveDown);
 
@@ -48,8 +45,12 @@ public class TerraOp extends Tele{
 
         gph2.link(Button.RIGHT_TRIGGER, OnPressEventHandler.class, bot.outtake::lock);
         gph2.link(Button.LEFT_TRIGGER, OnPressEventHandler.class, bot.outtake::drop);
-        gph2.link(Button.RIGHT_BUMPER, OnPressEventHandler.class, bot.outtake::turnToHorizontal);
-        gph2.link(Button.LEFT_BUMPER, OnPressEventHandler.class, bot.outtake::turnToStart);
+        gph2.link(Button.RIGHT_BUMPER, OnTurnOnEventHandler.class, () -> bot.intake.move(1));
+        gph2.link(Button.RIGHT_BUMPER, OnTurnOffEventHandler.class, () -> bot.intake.move(0));
+        gph2.link(Button.LEFT_BUMPER, OnPressEventHandler.class, () -> bot.intake.move(-1));
+        gph2.link(Button.LEFT_BUMPER, OnNotHeldEventHandler.class, () -> bot.intake.move(0));
+        gph2.link(Button.RIGHT_STICK_BUTTON, OnPressEventHandler.class, bot.outtake::turnToHorizontal);
+        gph2.link(Button.LEFT_STICK_BUTTON, OnPressEventHandler.class, bot.outtake::turnToStart);
         gph2.link(Button.DPAD_RIGHT, OnPressEventHandler.class, bot.outtake::sharedTurretRight);
         gph2.link(Button.DPAD_DOWN, OnPressEventHandler.class, bot.outtake::turretCenter);
         gph2.link(Button.DPAD_LEFT, OnPressEventHandler.class, bot.outtake::sharedTurretLeft);
@@ -74,6 +75,11 @@ public class TerraOp extends Tele{
 
 
 
+
+//        log.show("wasrun", bot.independentRunner.wasRun);
+//        log.show("numsegs", bot.independentRunner.numSegs);
+//        log.show("Access", bot.drive.checkAccess(User.BACK));
+//        log.show("odmety pos", Arrays.toString(bot.odometry.getPose()));
 //        log.show("Other pos", bot.lift.getPositionDown());
 //        log.show("Current Power", bot.lift.motorUp.getPower());
 //        log.show("PositionUp", bot.lift.getPositionUp());

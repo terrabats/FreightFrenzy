@@ -61,6 +61,6 @@ public class MecanumExecutor extends ExecutorNew implements Iterator {
 
     @Override
     public boolean condition() {
-        return whileOpModeIsActive.run();
+        return isIndependent || whileOpModeIsActive.run();
     }
 }

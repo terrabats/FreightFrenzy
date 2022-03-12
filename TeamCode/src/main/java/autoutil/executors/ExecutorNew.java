@@ -16,6 +16,7 @@ public abstract class ExecutorNew {
     protected Reactor reactor;
     protected ReturnCodeSeg<Boolean> whileOpModeIsActive;
     protected CodeSeg backgroundTasks = () -> {};
+    protected boolean isIndependent = false;
 
     public ExecutorNew(LinearOpMode opMode){
         whileOpModeIsActive = opMode::opModeIsActive;
@@ -34,4 +35,6 @@ public abstract class ExecutorNew {
     public abstract void followPath();
 
     public void setBackgroundTasks(CodeSeg backgroundTasks){ this.backgroundTasks = backgroundTasks; }
+
+    public void makeIndependent(){ isIndependent = true; }
 }

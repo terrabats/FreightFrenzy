@@ -33,7 +33,7 @@ public class MecanumDrive extends RobotPart {
     private Executor executor;
     private CMotor fr, br, fl, bl;
     private DriveMode driveMode = DriveMode.FAST;
-    private IndependentMode independentMode = IndependentMode.MANUAL;
+    private IndependentMode independentMode = IndependentMode.USING;
 
     @Override
     public void init() {
@@ -206,5 +206,13 @@ public class MecanumDrive extends RobotPart {
 
     public void setIndependentMode(IndependentMode independentMode) {
         this.independentMode = independentMode;
+    }
+
+    public void cycleIndependentMode(){
+        if(independentMode.equals(IndependentMode.USING)){
+            setIndependentMode(IndependentMode.MANUAL);
+        }else{
+            setIndependentMode(IndependentMode.USING);
+        }
     }
 }

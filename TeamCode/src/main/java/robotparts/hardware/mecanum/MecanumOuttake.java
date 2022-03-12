@@ -115,4 +115,13 @@ public class MecanumOuttake extends RobotPart {
 
     public void setOuttakeMode(Modes.OuttakeMode outtakeMode){ this.outtakeMode = outtakeMode; }
     public Modes.OuttakeMode getOuttakeMode(){ return outtakeMode; }
+
+
+    public void cycleOuttakeMode(){
+        if(outtakeMode.equals(Modes.OuttakeMode.SHARED)){
+            setOuttakeMode(Modes.OuttakeMode.ALLIANCE);
+        }else{
+            setOuttakeMode(Modes.OuttakeMode.SHARED);
+        }
+    }
 }

@@ -89,6 +89,9 @@ public class RobotFramework {
      * @link halt
      */
     public void stop(){
+        cancelAutoModules();
+        RobotFramework.backgroundThread.stopUpdating();
+        cancelIndependent();
         TerraThread.stopUpdatingAllThreads();
         halt();
     }
