@@ -30,21 +30,21 @@ public class Independents {
     });}
 
     public Independent MoveForSharedForward(){return new Independent(i -> {
-        i.addCancelAutoModules();
-        i.addConcurrentAutoModule(automodules.ResetLiftAndOuttake);
-        i.addPause(0.6);
-        i.addWaypoint(-15,-40,0);
-        i.addWaypoint(5,-40,5);
-        i.addWaypoint(5,0,5);
-        i.addConcurrentAutoModule(automodules.IntakeCombined);
+//        i.addCancelAutoModules();
+//        i.addConcurrentAutoModule(automodules.ResetLiftAndOuttake);
+//        i.addPause(0.6);
+//        i.addWaypoint(-15,-40,0);
+//        i.addWaypoint(5,-40,5);
+//        i.addWaypoint(5,0,5);
+//        i.addConcurrentAutoModule(automodules.IntakeCombined);
     });}
 
     public Independent MoveForSharedBackward(){return new Independent(i -> {
-        i.addWaypoint(5,-30,-5);
-        i.addAutomodule(automodules.SetUpForBoth);
-        i.addWaypoint(5,-40,-5);
-        i.addWaypoint(-15,-40,0);
-        i.addSetpoint(-30, -50, 30);
+//        i.addWaypoint(5,-30,-5);
+//        i.addAutomodule(automodules.SetUpForBoth);
+//        i.addWaypoint(5,-40,-5);
+//        i.addWaypoint(-15,-40,0);
+//        i.addSetpoint(-30, -50, 30);
     });}
 
     public DecisionList MoveForForward = new DecisionList(bot.outtake::getOuttakeMode)
