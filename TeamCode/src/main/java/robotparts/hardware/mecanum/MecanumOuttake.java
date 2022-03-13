@@ -29,8 +29,8 @@ public class MecanumOuttake extends RobotPart {
         cap = createPServo("cap", Servo.Direction.REVERSE, 0, 1);
 
         cap.addPosition("start", 0.0);
-        cap.addPosition("hold", 0.6);
-        cap.addPosition("down", 0.8);
+        cap.addPosition("hold", 0.5);
+        cap.addPosition("down", 0.7);
         cap.addPosition("end", 1.0);
 
         od.addPosition("releaseLeft", 0.0);

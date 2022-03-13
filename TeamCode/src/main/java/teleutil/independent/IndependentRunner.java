@@ -36,4 +36,8 @@ public class IndependentRunner {
     public synchronized void disableIndependent(){
         disabled = true;
     }
+
+    public synchronized void enableIndependent(){
+        disabled = false;
+    }
 }

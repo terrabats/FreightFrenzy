@@ -20,6 +20,8 @@ public class AutoModules {
     public StageList Pause(double secs){ return new StageList(new Stage(RobotPart.exitTime(secs))); }
     public StageList Cancel(){return new StageList(new Stage(new Main(bot::cancelAutoModules), RobotPart.exitAlways()));}
 
+    public StageList IntakeOut = new StageList(bot.intake.outtakeTime(10));
+
     public StageList OneDuck = new StageList(bot.carousel.spinOneDuck(2,0.4,0.7));
 
     public StageList OneDuckAutoBlue = new StageList(bot.carousel.spinOneDuckMoving(3,0.3,0.6, 1.0, 0.0, 0.14, 0.0));
@@ -34,7 +36,7 @@ public class AutoModules {
     public StageList LiftUpBottomFast = new StageList(bot.lift.liftEncoderUp(1.0, 5));
 
     public StageList LiftUpShared = new StageList(bot.lift.liftEncoderUp(0.5, 15));
-    public StageList LiftReset = new StageList(bot.lift.liftEncoderDown(-0.3, 0));
+    public StageList LiftReset = new StageList(bot.lift.liftEncoderDown(-0.5, 0));
 
     public StageList changeDrive(Modes.DriveMode driveMode){return bot.drive.mainChangeDrive(driveMode);}
 

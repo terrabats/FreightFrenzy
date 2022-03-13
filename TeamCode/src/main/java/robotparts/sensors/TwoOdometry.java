@@ -14,13 +14,16 @@ public class TwoOdometry extends TankOdometry {
     private volatile IEncoder horizontalEncoder;
     private volatile IEncoder verticalEncoder;
 
+    private volatile double startHorz = 0;
+    private volatile double startVert = 0;
+
 
     private volatile double lastHorizontalEncoderPos;
     private volatile double lastVerticalEncoderPos;
 
-    private final Vector2 positionOdometryCenter = new Vector2(0,0);
+    private volatile Vector2 positionOdometryCenter = new Vector2(0,0);
     private volatile Vector2 positionRobotCenter = new Vector2(0,0);
-    private final Vector2 localOdometryCenterOffset; // = new Vector2(3,-0.5);
+    private volatile Vector2 localOdometryCenterOffset;
     private volatile double heading = 0;
 
     public TwoOdometry() {
@@ -29,11 +32,20 @@ public class TwoOdometry extends TankOdometry {
     }
 
     public synchronized void reset(){
+        resetOnce();
+        resetOnce();
+    }
+
+    public synchronized void resetOnce(){
+        positionOdometryCenter = new Vector2(0,0);
         positionRobotCenter = new Vector2(0,0);
+        localOdometryCenterOffset = new Vector2(0.0, 12.6);
         horizontalEncoder.reset();
         verticalEncoder.reset();
-        lastHorizontalEncoderPos = horizontalEncoder.getPos();
-        lastVerticalEncoderPos = verticalEncoder.getPos();
+        startHorz = getHorizontalEncoderPositionRaw();
+        startVert = getVerticalEncoderPositionRaw();
+        lastHorizontalEncoderPos = 0;
+        lastVerticalEncoderPos = 0;
         heading = 0;
         bot.gyro.reset();
     }
@@ -51,10 +63,19 @@ public class TwoOdometry extends TankOdometry {
     }
 
     public double getHorizontalEncoderPosition(){
-        return horizontalEncoder.getPos();
+        return getHorizontalEncoderPositionRaw()-startHorz;
     }
 
     public double getVerticalEncoderPosition(){
+        return getVerticalEncoderPositionRaw()-startVert;
+    }
+
+
+    public double getHorizontalEncoderPositionRaw(){
+        return horizontalEncoder.getPos();
+    }
+
+    public double getVerticalEncoderPositionRaw(){
         return -verticalEncoder.getPos();
     }
 

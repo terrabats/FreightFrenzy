@@ -173,6 +173,7 @@ public class RobotFramework {
     }
 
     public void cancelIndependent(){
+        independentRunner.disableIndependent();
         independentRunner.cancelIndependent();
     }
 }

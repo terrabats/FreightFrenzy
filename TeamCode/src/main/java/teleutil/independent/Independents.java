@@ -17,8 +17,9 @@ public class Independents {
         i.addCancelAutoModules();
         i.addConcurrentAutoModule(automodules.ResetLiftAndOuttake);
         i.addPause(0.5);
-        i.addWaypoint(10,-70,10);
-        i.addWaypoint(-5,0,-5);
+        i.addWaypoint(30,-70,10);
+        i.addWaypoint(-3,-60,0);
+        i.addWaypoint(-3,0,-5);
         i.addConcurrentAutoModule(automodules.IntakeCombined);
     });}
 
@@ -59,11 +60,15 @@ public class Independents {
                 bot.cancelAutoModules();
                 bot.addAutoModule(automodules.ResetLiftAndOuttake);
             })
-            .addOption(Modes.IndependentMode.USING, MoveForForward::check);
+            .addOption(Modes.IndependentMode.USING, () -> {
+                bot.independentRunner.enableIndependent();
+                MoveForForward.check();
+            });
 
     public DecisionList Backward = new DecisionList(bot.drive::getIndependentMode)
             .addOption(Modes.IndependentMode.MANUAL, automodules.SetUpForBoth::check)
             .addOption(Modes.IndependentMode.USING, () -> {
+                bot.independentRunner.enableIndependent();
                 bot.odometry.reset();
                 MoveForBackward.check();
             });

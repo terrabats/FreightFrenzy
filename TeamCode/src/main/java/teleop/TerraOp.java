@@ -47,6 +47,7 @@ public class TerraOp extends Tele{
         gph1.link(Button.DPAD_RIGHT,OnPressEventHandler.class, bot.outtake::collectCap);
         gph1.link(Button.DPAD_DOWN,OnPressEventHandler.class, bot.outtake::readyCap);
         gph1.link(Button.DPAD_LEFT,OnPressEventHandler.class, bot.outtake::dropCap);
+        gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot.outtake::startCap);
 
         gph2.link(Button.RIGHT_TRIGGER, OnPressEventHandler.class, bot.outtake::lock);
         gph2.link(Button.LEFT_TRIGGER, OnPressEventHandler.class, bot.outtake::drop);
@@ -61,6 +62,8 @@ public class TerraOp extends Tele{
         gph2.link(Button.DPAD_LEFT, OnPressEventHandler.class, bot.outtake::sharedTurretLeft);
 
         bot.lift.resetEncoder();
+
+        bot.intake.scale = 0.8;
 
 //        bot.drive.setIndependentMode(Modes.IndependentMode.USING);
     }
@@ -86,7 +89,9 @@ public class TerraOp extends Tele{
 //        log.show("wasrun", bot.independentRunner.wasRun);
 //        log.show("numsegs", bot.independentRunner.numSegs);
 //        log.show("Access", bot.drive.checkAccess(User.BACK));
-//        log.show("odmety pos", Arrays.toString(bot.odometry.getPose()));
+        log.show("odmety pos", Arrays.toString(bot.odometry.getPose()));
+        log.show("horz", bot.odometry.getHorizontalEncoderPosition());
+        log.show("vert", bot.odometry.getVerticalEncoderPosition());
 //        log.show("Other pos", bot.lift.getPositionDown());
 //        log.show("Current Power", bot.lift.motorUp.getPower());
 //        log.show("PositionUp", bot.lift.getPositionUp());
