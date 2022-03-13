@@ -29,6 +29,7 @@ public class TerraAutoDuck extends MecanumAuto {
         });
         customCase(Case.RIGHT, () -> {
             addConcurrentAutoModule(automodules.AllianceLiftUp(automodules.LiftUpTopFast));
+            addSetpoint(-15,40,135);
             customSide(FieldSide.BLUE, () -> {
                 addSetpoint(-28,55,135);
             }, FieldSide.RED, () -> {
