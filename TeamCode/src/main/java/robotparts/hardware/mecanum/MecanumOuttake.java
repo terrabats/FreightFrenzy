@@ -34,6 +34,8 @@ public class MecanumOuttake extends RobotPart {
         cap.addPosition("down", 0.7);
         cap.addPosition("end", 1.0);
 
+        cap.addPosition("mid", 0.2);
+
         od.addPosition("releaseLeft", 0.0);
         od.addPosition("lock", 0.53);
         od.addPosition("releaseRight", 0.9);
@@ -67,6 +69,8 @@ public class MecanumOuttake extends RobotPart {
     public void dropCap(){
         cap.setPosition("down");
     }
+
+    public void midCap(){cap.setPosition("mid");}
 
     /**
      * Releases the release servo

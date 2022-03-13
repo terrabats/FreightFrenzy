@@ -23,6 +23,7 @@ public class TerraAutoCycles extends MecanumAuto {
 
     @Override
     public void define() {
+        bot.outtake.midCap();
         addWaypoint(20, 20, -60);
         customNumber(5, i -> {
             addCancelAutoModules();
@@ -31,7 +32,7 @@ public class TerraAutoCycles extends MecanumAuto {
                 if(i==0) {
                     addSetpoint(30, 47, -137);
                 }else if(i>0){
-                    addSetpoint(28+i, 35+i, -140);
+                    addSetpoint(30+i, 35+i, -140);
                 }
             }, Case.CENTER, () -> {
                 addConcurrentAutoModule(automodules.AllianceLiftUp(automodules.LiftUpMiddleFast));

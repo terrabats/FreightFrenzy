@@ -69,6 +69,11 @@ public class TerraOp extends Tele{
     }
 
     @Override
+    public void startTele() {
+        bot.outtake.midCap();
+    }
+
+    @Override
     public void loopTele() {
         bot.drive.moveSmoothTele(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
 
