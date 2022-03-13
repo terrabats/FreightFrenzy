@@ -24,8 +24,8 @@ public class AutoModules {
 
     public StageList OneDuck = new StageList(bot.carousel.spinOneDuck(2,0.4,0.7));
 
-    public StageList OneDuckAutoBlue = new StageList(bot.carousel.spinOneDuckMoving(3,0.3,0.6, 1.0, 0.0, 0.14, 0.0));
-    public StageList OneDuckAutoRed = new StageList(bot.carousel.spinOneDuckMoving(3,0.3,0.6,-1.0, 0.0, 0.14, 0.0));
+    public StageList OneDuckAutoBlue = new StageList(bot.carousel.spinOneDuckMoving(4,0.3,0.6, 1.0, 0.0, 0.14, 0.0));
+    public StageList OneDuckAutoRed = new StageList(bot.carousel.spinOneDuckMoving(4,0.3,0.6,-1.0, 0.0, 0.14, 0.0));
 
     public StageList LiftUpTopFast = new StageList(bot.lift.liftEncoderUp(1.0, 42));
     public StageList LiftUpMiddleFast = new StageList(bot.lift.liftEncoderUp(1.0, 20));

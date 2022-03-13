@@ -37,7 +37,7 @@ public class TerraOp extends Tele{
         gph1.link(Button.RIGHT_BUMPER, OnPressEventHandler.class, bot.outtake::cycleOuttakeMode);
         gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, bot.outtake::cycleSharedMode);
         gph1.link(Button.RIGHT_STICK_BUTTON, OnPressEventHandler.class, bot.drive::cycleDriveUp);
-        gph1.link(Button.LEFT_STICK_BUTTON, OnPressEventHandler.class, bot.drive::cycleIndependentMode);
+        gph1.link(Button.LEFT_STICK_BUTTON, OnPressEventHandler.class, () -> bot.intake.moveRaw(-1));
 
         gph1.link(Button.A, automodules.IntakeCombined);
 

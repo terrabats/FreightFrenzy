@@ -49,6 +49,11 @@ public class PServo extends Electronic {
         positions.put(name, p);
     }
 
+
+    public void changePosition(String name, double p){
+//        positions.replace()
+    }
+
     /**
      * Set the position to the pservo based on the name
      * @param name
