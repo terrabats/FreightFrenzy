@@ -18,6 +18,7 @@ public class MecanumOuttake extends RobotPart {
     private PServo od, or, ol, ot, cap;
 
     private Modes.OuttakeMode outtakeMode = Modes.OuttakeMode.ALLIANCE;
+    private Modes.SharedMode sharedMode = Modes.SharedMode.NORMAL;
 
 
     @Override
@@ -145,5 +146,21 @@ public class MecanumOuttake extends RobotPart {
         }else{
             setOuttakeMode(Modes.OuttakeMode.SHARED);
         }
+    }
+
+    public void cycleSharedMode(){
+        if(sharedMode.equals(Modes.SharedMode.CENTER)){
+            setSharedMode(Modes.SharedMode.NORMAL);
+        }else{
+            setSharedMode(Modes.SharedMode.CENTER);
+        }
+    }
+
+    public Modes.SharedMode getSharedMode() {
+        return sharedMode;
+    }
+
+    public void setSharedMode(Modes.SharedMode sharedMode) {
+        this.sharedMode = sharedMode;
     }
 }

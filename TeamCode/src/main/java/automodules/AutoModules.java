@@ -69,14 +69,20 @@ public class AutoModules {
 
     public StageList SetUpForSharedShippingHubRight = new StageList().add(OuttakeLockFast, OuttakeHorizontal, LiftUpShared, OuttakeSharedRight, changeDrive(Modes.DriveMode.SLOW));
     public StageList SetUpForSharedShippingHubLeft = new StageList().add(OuttakeLockFast,OuttakeHorizontal, LiftUpShared, OuttakeSharedLeft, changeDrive(Modes.DriveMode.SLOW));
+    public StageList SetUpForSharedShippingHubCenter = new StageList().add(OuttakeLockFast, OuttakeHorizontal, LiftUpShared, changeDrive(Modes.DriveMode.SLOW));
+
 
     public DecisionList SetUpForSharedShippingHubBoth = new DecisionList(() -> fieldSide)
             .addOption(FieldSide.BLUE, () -> bot.addAutoModule(SetUpForSharedShippingHubLeft))
             .addOption(FieldSide.RED, () -> bot.addAutoModule(SetUpForSharedShippingHubRight));
 
+    public DecisionList SetUpForSharedShippingHubAll = new DecisionList(bot.outtake::getSharedMode)
+            .addOption(Modes.SharedMode.NORMAL, SetUpForSharedShippingHubBoth::check)
+            .addOption(Modes.SharedMode.CENTER, () -> bot.addAutoModule(SetUpForSharedShippingHubCenter));
+
     public DecisionList SetUpForBoth = new DecisionList(bot.outtake::getOuttakeMode)
-            .addOption(ALLIANCE, () -> SetUpForAllianceShippingHub.check())
-            .addOption(SHARED, () -> SetUpForSharedShippingHubBoth.check());
+            .addOption(ALLIANCE, SetUpForAllianceShippingHub::check)
+            .addOption(SHARED, SetUpForSharedShippingHubAll::check);
 
     public StageList ResetLiftAndOuttake = new StageList().add(changeDrive(Modes.DriveMode.FAST), OuttakeReset, LiftReset);
 

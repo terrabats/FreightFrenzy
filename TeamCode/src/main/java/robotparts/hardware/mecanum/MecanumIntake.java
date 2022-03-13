@@ -28,9 +28,13 @@ public class MecanumIntake extends RobotPart {
         in.setPower(pow*scale);
     }
 
+    public void moveRaw(double pow) {
+        in.setPower(pow);
+    }
+
     private Main mainIntake() { return new Main(() -> move(1)); }
 
-    private Main mainOuttake() { return new Main(() -> move(-1)); }
+    private Main mainOuttake() { return new Main(() -> moveRaw(-1)); }
 
     private Stop stopIntake() { return new Stop(() -> move(0)); }
 

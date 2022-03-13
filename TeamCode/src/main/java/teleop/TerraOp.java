@@ -33,11 +33,11 @@ public class TerraOp extends Tele{
 //        gph1.link(Button.DPAD_UP, OnPressEventHandler.class, bot::resumeAutoModules);
 
         gph1.link(Button.LEFT_TRIGGER, automodules.OneDuck);
-        gph1.link(Button.RIGHT_TRIGGER, OnPressEventHandler.class, bot.outtake::cycleOuttakeMode);
-        gph1.link(Button.RIGHT_BUMPER, OnPressEventHandler.class, bot.lift::cycleLevelUp);
-        gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, bot.drive::cycleIndependentMode);
+        gph1.link(Button.RIGHT_TRIGGER, OnPressEventHandler.class, bot.lift::cycleLevelUp);
+        gph1.link(Button.RIGHT_BUMPER, OnPressEventHandler.class, bot.outtake::cycleOuttakeMode);
+        gph1.link(Button.LEFT_BUMPER, OnPressEventHandler.class, bot.outtake::cycleSharedMode);
         gph1.link(Button.RIGHT_STICK_BUTTON, OnPressEventHandler.class, bot.drive::cycleDriveUp);
-        gph1.link(Button.LEFT_STICK_BUTTON, OnPressEventHandler.class, bot.drive::cycleDriveDown);
+        gph1.link(Button.LEFT_STICK_BUTTON, OnPressEventHandler.class, bot.drive::cycleIndependentMode);
 
         gph1.link(Button.A, automodules.IntakeCombined);
 
@@ -79,8 +79,9 @@ public class TerraOp extends Tele{
         }
 
         log.show("OuttakeMode", bot.outtake.getOuttakeMode());
-        log.show("LevelMode", bot.lift.getLevelMode());
+        log.show("SharedMode", bot.outtake.getSharedMode());
         log.show("DriveMode", bot.drive.getDriveMode());
+        log.show("LevelMode", bot.lift.getLevelMode());
         log.show("IndependentMode", bot.drive.getIndependentMode());
 
 
@@ -89,9 +90,9 @@ public class TerraOp extends Tele{
 //        log.show("wasrun", bot.independentRunner.wasRun);
 //        log.show("numsegs", bot.independentRunner.numSegs);
 //        log.show("Access", bot.drive.checkAccess(User.BACK));
-        log.show("odmety pos", Arrays.toString(bot.odometry.getPose()));
-        log.show("horz", bot.odometry.getHorizontalEncoderPosition());
-        log.show("vert", bot.odometry.getVerticalEncoderPosition());
+//        log.show("odmety pos", Arrays.toString(bot.odometry.getPose()));
+//        log.show("horz", bot.odometry.getHorizontalEncoderPosition());
+//        log.show("vert", bot.odometry.getVerticalEncoderPosition());
 //        log.show("Other pos", bot.lift.getPositionDown());
 //        log.show("Current Power", bot.lift.motorUp.getPower());
 //        log.show("PositionUp", bot.lift.getPositionUp());

@@ -18,7 +18,7 @@ public class TerraAutoCycles extends MecanumAuto {
             bot.lift.holdPosition();
             bot.intake.move(-0.8);
         });
-        bot.intake.scale = 0.8;
+        bot.intake.scale = 0.65;
     }
 
     @Override
