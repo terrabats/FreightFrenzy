@@ -26,7 +26,7 @@ public class TerraAutoDuck extends MecanumAuto {
             addAutoModule(automodules.OneDuckAutoBlue);
         }, FieldSide.RED, () -> {
             addSetpoint(30,20,180);
-            addSetpoint(64,15,210);
+            addSetpoint(65,15,210);
             addAutoModule(automodules.OneDuckAutoRed);
         });
         customCase(Case.RIGHT, () -> {

@@ -1,11 +1,14 @@
 package robotparts.electronics.positional;
 
+import android.os.Build;
+
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.Servo.*;
 
 import java.util.Objects;
 import java.util.TreeMap;
 
+import androidx.annotation.RequiresApi;
 import robotparts.Electronic;
 
 public class PServo extends Electronic {
@@ -48,11 +51,11 @@ public class PServo extends Electronic {
     public void addPosition(String name, double p){
         positions.put(name, p);
     }
-
-
-    public void changePosition(String name, double p){
-//        positions.replace()
-    }
+//
+//    public void changePosition(String name, double p){
+//        positions.remove(name);
+//        addPosition(name, p);
+//    }
 
     /**
      * Set the position to the pservo based on the name
